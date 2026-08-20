@@ -1,0 +1,14 @@
+# 화학제품안전법(안전확인대상생활화학제품) 레짐 설정
+# 진입비용은 품목별로 다르므로 fees.yaml에서 조회한다(여기 scalar 값 없음).
+code: chemical_safety
+law_name: 화학제품안전법(안전확인대상생활화학제품)
+display_name: 생활화학제품(탈취제·방향제·초)
+supported: true
+
+# 품목별 시험비·기간은 fees.yaml, 갱신주기도 fees.yaml에서 읽는다.
+notes:
+  - "제품별·배합별 신고제. 품목마다 시험비가 들고 3년마다 갱신."
+  - "SKU를 늘릴 때마다 규제비용이 발생한다(화장품과 정반대)."
+
+last_updated: 2026-08-18
+source_url: "https://www.ktr.or.kr/certification/kc/contentsid/444/index.do"

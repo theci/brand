@@ -1,0 +1,17 @@
+# 안전확인대상생활화학제품 라벨 필수 기재 항목 (요약 · 예시)
+# ※ 실제 항목·문구는 「안전확인대상생활화학제품 지정 및 안전·표시기준」 고시로 확인·갱신할 것.
+last_updated: 2026-08-18
+source_url: "https://www.law.go.kr/  # 안전확인대상생활화학제품 표시기준 — 실제 URL로 교체"
+
+items:
+  - { key: product_name, label: 제품명, required: true }
+  - { key: report_number, label: 신고번호, required: true, note: "안전확인대상생활화학제품 신고번호 자리" }
+  - { key: safety_conformity, label: 안전기준 적합확인 표시, required: true }
+  - { key: manufacturer, label: 제조자/수입자 상호·주소·연락처, required: true }
+  - { key: manufacture_date, label: 제조일자 및 사용기한, required: true }
+  - { key: net_content, label: 내용량(중량·용량), required: true }
+  - { key: ingredients, label: 함유 성분(주요/유의 성분), required: true }
+  - { key: usage, label: 사용방법, required: true }
+  - { key: caution, label: 사용상 주의사항, required: true }
+  - { key: child_protection, label: 어린이보호포장 대상 여부, required: false, note: "해당 품목만" }
+  - { key: emergency, label: 응급조치 요령·연락처, required: true }

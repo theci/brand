@@ -1,0 +1,5 @@
+sample_id: LB-001
+formula_ref: lip-balm v1
+condition: freeze_thaw
+start_date: 2026-08-18
+observations: []   # 아직 관찰 전

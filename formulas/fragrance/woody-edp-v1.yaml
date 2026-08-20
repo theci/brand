@@ -1,0 +1,20 @@
+name: 우디 EDP
+version: 1
+총량_g: 50
+concentration_percent: 20    # EDP
+ethanol_percent: 78
+maceration_weeks: 4
+maceration_start_date: 2026-06-01   # 숙성 완료(6/29)했으나 아직 미시향 → maceration_due 대상
+
+accords:
+  - name: 베이스 (우디)
+    materials:
+      - { id: sandalwood, parts: 30, dilution: 10 }
+      - { id: cedarwood, parts: 20, dilution: 10 }
+      - { id: iso-e-super, parts: 30, dilution: 10 }
+      - { id: vanillin, parts: 10, dilution: 10 }
+  - name: 미들 (플로럴)
+    materials:
+      - { id: rose-absolute, parts: 10, dilution: 10 }
+
+evaluations: []

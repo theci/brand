@@ -1,0 +1,8 @@
+# 함유금지물질 (안전확인대상생활화학제품 지정 및 안전·표시기준 고시 별표)
+# ※ 빈 껍데기입니다. 고시 별표를 보고 직접 채우세요.
+#    substances가 비어 있으면 validate가 "규제 데이터 미입력" 경고를 냅니다(통과 아님).
+# 각 항목: name(성분명), cas(선택), reference(근거)
+last_updated: 2026-08-18
+source_url: "https://www.law.go.kr/  # 안전확인대상생활화학제품 지정 및 안전·표시기준 — 실제 URL로 교체"
+
+substances: []

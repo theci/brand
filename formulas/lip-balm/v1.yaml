@@ -1,0 +1,25 @@
+product: 립밤
+slug: lip-balm
+version: 1
+regime: cosmetics
+product_type: leave_on   # 입술에 남아있는 제품
+status: 개발중
+base_batch_g: 50
+phases:
+  - name: A            # 오일 + 버터 + 왁스: 가열 용해
+    process: 75도로 가열해 왁스·버터를 완전히 용해
+    ingredients:
+      - { id: castor-oil, percent: 35.0 }
+      - { id: mct, percent: 20.0 }
+      - { id: shea-butter, percent: 20.0 }
+      - { id: beeswax, percent: 15.0 }
+      - { id: cocoa-butter, percent: 8.5 }
+  - name: B            # 첨가: 냉각 후 투입
+    process: 60도 부근으로 낮춘 뒤 투입, 굳기 전 신속히 충전
+    ingredients:
+      - { id: tocopherol, percent: 0.5 }
+      - { id: peppermint-eo, percent: 1.0 }
+packaging:
+  - { id: lipbalm-tube-10ml, qty_per_unit: 1 }
+fill_volume_ml: 10
+notes: percent 합계 100.0. 페퍼민트 향(리모넨 알러젠 포함).

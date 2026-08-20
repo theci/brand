@@ -1,0 +1,21 @@
+# 안전확인대상생활화학제품 — 품목별 시험비용·기간 (KTR 공시, 2026-08 기준)
+# ※ 코드가 아니라 이 파일에서 읽는다. 실제 신고 전 KTR·한국환경산업기술원에 확인할 것.
+# lead_time 규칙: 기본 9영업일, 분사형(스프레이) 11영업일, 세탁세제/섬유유연제 40일.
+renewal_period_years: 3
+last_updated: 2026-08-18
+source_url: "https://www.ktr.or.kr/certification/kc/contentsid/444/index.do"
+
+categories:
+  초_발광용:                    { fee: 60000,   lead_time_days: 9 }
+  초_방향용_액상외:             { fee: 195000,  lead_time_days: 9 }
+  초_방향용_액상:               { fee: 285000,  lead_time_days: 9 }
+  탈취제_지속방출형:            { fee: 210000,  lead_time_days: 9 }
+  탈취제_비분사형_액상:         { fee: 320000,  lead_time_days: 9 }
+  탈취제_분사형_액상:           { fee: 485000,  lead_time_days: 11 }
+  방향제_지속방출형:            { fee: 270000,  lead_time_days: 9 }
+  방향제_비분사형:              { fee: 315000,  lead_time_days: 9 }
+  방향제_분사형:                { fee: 585000,  lead_time_days: 11 }
+  세탁세제_계면활성제_미함유:   { fee: 50000,   lead_time_days: 40 }
+  세탁세제_계면활성제_함유:     { fee: 1050000, lead_time_days: 40 }
+  섬유유연제_계면활성제_미함유: { fee: 970000,  lead_time_days: 40 }
+  섬유유연제_계면활성제_함유:   { fee: 1970000, lead_time_days: 40 }

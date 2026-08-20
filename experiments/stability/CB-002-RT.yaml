@@ -1,0 +1,13 @@
+sample_id: CB-002
+formula_ref: cleansing-balm v1
+condition: RT
+start_date: 2026-08-10
+observations:
+  - date: 2026-08-17   # 1주차
+    외관: 양호
+    분리: 없음
+    색: 변화없음
+    냄새: 변화없음
+    경도: 양호
+    판정: 적합
+    비고: 상온 기준품

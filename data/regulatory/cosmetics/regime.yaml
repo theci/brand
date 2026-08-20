@@ -1,0 +1,17 @@
+# 화장품법 레짐 설정
+# ※ 진입비용·기간은 예시/확인값이며, 실제 신고 전 관할 기관에 확인할 것.
+code: cosmetics
+law_name: 화장품법
+display_name: 화장품
+supported: true
+
+entry_cost: 100000          # 영업자(화장품제조판매업) 등록 1회
+lead_time_days: 10          # 등록 소요(영업일 기준 근사)
+sku_expansion_cost: 0       # ★ 등록 후 SKU 추가 규제비용 0원 (레짐의 핵심 특성)
+renewal_period_years: null  # 갱신 없음
+
+notes:
+  - "한 번 등록하면 SKU를 몇 개 내든 추가 규제비용이 0원입니다."
+
+last_updated: 2026-08-18
+source_url: "https://www.law.go.kr/  # 화장품법 — 실제 URL로 교체"

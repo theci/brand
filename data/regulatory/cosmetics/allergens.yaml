@@ -1,0 +1,40 @@
+# 표시대상 향료 알러젠 (EU 화장품 규정 부속서 III / 국내 고시 준용)
+# 표시 기준(다음 단계에서 계산):
+#   - rinse_off (씻어내는 제품): 완제품 중 0.01% 초과 시 성분표 표시
+#   - leave_on  (씻어내지 않는 제품): 완제품 중 0.001% 초과 시 성분표 표시
+# 각 알러젠: id, name(한글), inci
+last_updated: 2026-08-19
+source: "EU 화장품 규정 부속서 III / 식약처 고시 (사용자 확인분, 원문 대조 필요)"
+source_url: "https://www.law.go.kr/  # EU Annex III / 식약처 고시 — 실제 URL로 교체"
+
+allergens:
+  - id: linalool
+    name: 리날룰
+    inci: Linalool
+  - id: limonene
+    name: 리모넨
+    inci: Limonene
+  - id: geraniol
+    name: 제라니올
+    inci: Geraniol
+  - id: citral
+    name: 시트랄
+    inci: Citral
+  - id: citronellol
+    name: 시트로넬롤
+    inci: Citronellol
+  - id: eugenol
+    name: 유제놀
+    inci: Eugenol
+  - id: coumarin
+    name: 쿠마린
+    inci: Coumarin
+  - id: benzyl-alcohol
+    name: 벤질알코올
+    inci: Benzyl Alcohol
+  - id: benzyl-benzoate
+    name: 벤질벤조에이트
+    inci: Benzyl Benzoate
+  - id: farnesol
+    name: 파네솔
+    inci: Farnesol

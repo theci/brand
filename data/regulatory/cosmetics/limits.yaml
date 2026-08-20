@@ -1,0 +1,27 @@
+# 원료 사용 한도
+# 각 항목: ingredient_id, max_percent, 선택(product_type, reference)
+# product_type 생략 시 모든 제품 형태에 적용.
+# ※ 강제 검증(한도 초과 시 에러)은 다음 단계(계산 로직)에서 처리한다.
+#    현재는 데이터로만 보관한다.
+last_updated: 2026-08-19
+source: "사내 기준 + 식약처 사용상 제한 원료 고시 (사용자 확인분, 원문 대조 필요)"
+source_url: "https://www.mfds.go.kr/  # 사용상 제한 원료 고시 — 실제 URL로 교체"
+
+limits:
+  - ingredient_id: polysorbate-80
+    max_percent: 20.0
+    reference: 사내 권장(가용화제 과다 사용 시 자극 우려)
+
+  - ingredient_id: tocopherol
+    max_percent: 1.0
+    reference: 일반적 산화방지제 사용량
+
+  - ingredient_id: lavender-eo
+    max_percent: 1.0
+    product_type: leave_on
+    reference: 씻어내지 않는 제품 향료 자극 관리
+
+  - ingredient_id: peppermint-eo
+    max_percent: 1.0
+    product_type: leave_on
+    reference: 씻어내지 않는 제품 향료 자극 관리

@@ -1,0 +1,36 @@
+# 클렌징밤 2^3 완전요인 스크리닝
+# factor_values: low/high (또는 실제 수준값). scores: 1~5점(결측 허용).
+name: 클렌징밤 스크리닝
+formula_ref: cleansing-balm
+factors: [wax, emulsifier, shea]
+levels:
+  wax: { low: 10, high: 18 }
+  emulsifier: { low: 25, high: 35 }
+  shea: { low: 5, high: 15 }
+response_items: [경도, 발림, 유화, 헹굼, 세정력, 잔여감]
+
+runs:
+  - run_id: 1
+    factor_values: { wax: low, emulsifier: low, shea: low }
+    scores: { 경도: 3, 발림: 4, 유화: 3, 헹굼: 2, 세정력: 3, 잔여감: 2 }
+  - run_id: 2
+    factor_values: { wax: high, emulsifier: low, shea: low }
+    scores: { 경도: 4, 발림: 3, 유화: 3, 헹굼: 2, 세정력: 3, 잔여감: 2 }
+  - run_id: 3
+    factor_values: { wax: low, emulsifier: high, shea: low }
+    scores: { 경도: 3, 발림: 4, 유화: 4, 헹굼: 4, 세정력: 4, 잔여감: 3 }
+  - run_id: 4
+    factor_values: { wax: high, emulsifier: high, shea: low }
+    scores: { 경도: 4, 발림: 3, 유화: 4, 헹굼: 4, 세정력: 4, 잔여감: 3 }
+  - run_id: 5
+    factor_values: { wax: low, emulsifier: low, shea: high }
+    scores: { 경도: 3, 발림: 5, 유화: 3, 헹굼: 3, 세정력: 3, 잔여감: 3 }
+  - run_id: 6
+    factor_values: { wax: high, emulsifier: low, shea: high }
+    scores: { 경도: 4, 발림: 4, 유화: 3, 헹굼: 3, 세정력: 3, 잔여감: 3 }
+  - run_id: 7
+    factor_values: { wax: low, emulsifier: high, shea: high }
+    scores: { 경도: 3, 발림: 5, 유화: 5, 헹굼: 4, 세정력: 4, 잔여감: 4 }
+  - run_id: 8
+    factor_values: { wax: high, emulsifier: high, shea: high }
+    scores: { 경도: 4, 발림: 4, 유화: 5, 헹굼: 4, 세정력: 4, 잔여감: 4 }

@@ -1,0 +1,20 @@
+product: 섬유 탈취제
+slug: fabric-deodorizer
+version: 1
+regime: chemical_safety
+product_category: 탈취제_비분사형_액상   # fees.yaml 품목 코드
+# product_type은 화학제품안전법에선 미사용(코어 필수 필드라 placeholder).
+product_type: leave_on
+status: 개발중
+base_batch_g: 100
+phases:
+  - name: A
+    process: 정제수 베이스에 에탄올·가용화제·향을 혼합
+    ingredients:
+      - { id: water, percent: 88.0 }
+      - { id: ethanol, percent: 6.0 }
+      - { id: polysorbate-80, percent: 4.0 }
+      - { id: lavender-eo, percent: 2.0 }
+fill_volume_ml: 200
+notes: >
+  탈취제(비분사형 액상). 화학제품안전법 신고 대상. percent 합계 100.

@@ -1,0 +1,36 @@
+# 화장품 표시 규정 수치 (전부 이 파일에서 읽는다 — 코드에 하드코딩 금지)
+#
+# ⚠️ 아래 수치는 사용자가 확인한 값을 옮겨 적은 것이며, 반드시 식약처 고시
+#    원문과 대조해 최신 값으로 유지해야 한다. last_updated 를 갱신할 것.
+last_updated: 2026-08-19
+source: "화장품법 시행규칙 별표/식약처 고시 (사용자 확인분, 출시 전 원문 대조 필요)"
+source_url: "https://www.law.go.kr/  # 화장품법 시행규칙 — 실제 URL로 교체"
+
+# 최신성 검사: 이 일수를 넘기면 오래된 데이터로 경고
+stale_after_days: 180
+
+# 이 함량(%) 이하 성분·착향제·착색제는 표시 순서 무관
+ingredient_order_threshold_percent: 1.0
+
+# 제품 형태별 알레르기 유발성분 표시 임계값(%)
+allergen_thresholds:
+  rinse_off: 0.01     # 씻어내는 제품: 0.01% 초과 시 표시
+  leave_on: 0.001     # 씻어내지 않는 제품: 0.001% 초과 시 표시
+
+# 전성분 표시 필수 기준 (이 부피/중량 '초과' 시 전성분 표시 필수)
+full_labeling_volume_ml: 50
+full_labeling_weight_g: 50
+
+# 축약 표시 기준 (이 부피/중량 '이하' 시 아래 5가지 항목만 표시)
+minimal_labeling_volume_ml: 10
+minimal_labeling_weight_g: 10
+
+minimal_items:
+  - 화장품의 명칭
+  - 영업자(제조판매업자)의 상호
+  - 가격
+  - 제조번호
+  - 사용기한 또는 개봉 후 사용기간
+
+# 최소 글자 크기(포인트)
+min_font_size_pt: 5

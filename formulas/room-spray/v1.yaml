@@ -1,0 +1,21 @@
+product: 룸 스프레이(라벤더)
+slug: room-spray
+version: 1
+regime: chemical_safety
+product_category: 방향제_비분사형   # fees.yaml 품목 코드
+# product_type은 화장품 개념이라 화학제품안전법에선 사용하지 않지만 코어 필수 필드라 넣어둠.
+product_type: leave_on
+status: 개발중
+base_batch_g: 100
+phases:
+  - name: A
+    process: 에탄올에 향을 녹인 뒤 정제수·가용화제와 혼합
+    ingredients:
+      - { id: ethanol, percent: 78.0 }
+      - { id: polysorbate-80, percent: 7.0 }
+      - { id: lavender-eo, percent: 10.0 }
+      - { id: water, percent: 5.0 }
+fill_volume_ml: 100
+notes: >
+  방향제(비분사형). 화학제품안전법 안전확인대상생활화학제품 신고 대상.
+  percent 합계 100.

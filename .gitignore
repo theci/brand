@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+.DS_Store
+
+# DOE analyze 가 생성하는 산출물 (입력 yaml만 버전관리)
+experiments/doe/*-report.md
+experiments/doe/*-main-effects.png
+experiments/doe/*-interaction.png
+
+# 마이그레이션 백업
+*.bak

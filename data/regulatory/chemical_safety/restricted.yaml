@@ -1,0 +1,7 @@
+# 함유제한물질 (안전확인대상생활화학제품 지정 및 안전·표시기준 고시 별표)
+# ※ 빈 껍데기입니다. 고시 별표를 보고 직접 채우세요.
+# 각 항목: name, cas(선택), max_percent(한도%), product_category(특정 품목만이면 지정), reference
+last_updated: 2026-08-18
+source_url: "https://www.law.go.kr/  # 안전확인대상생활화학제품 지정 및 안전·표시기준 — 실제 URL로 교체"
+
+substances: []

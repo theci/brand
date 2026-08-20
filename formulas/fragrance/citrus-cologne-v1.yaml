@@ -1,0 +1,32 @@
+name: 시트러스 코롱
+version: 1
+총량_g: 100
+concentration_percent: 15    # EDP 급
+ethanol_percent: 80
+maceration_weeks: 4
+maceration_start_date: 2026-07-15
+
+# parts는 원액(neat) 기준 상대 비율. dilution은 계량에 쓰는 희석액 농도(%).
+accords:
+  - name: 탑 (시트러스)
+    materials:
+      - { id: bergamot, parts: 40, dilution: 100 }
+      - { id: lemon, parts: 20, dilution: 100 }
+  - name: 미들 (플로럴)
+    materials:
+      - { id: geranium, parts: 10, dilution: 10 }
+      - { id: rose-absolute, parts: 5, dilution: 10 }
+  - name: 베이스 (우디/머스크)
+    materials:
+      - { id: iso-e-super, parts: 15, dilution: 10 }
+      - { id: ambroxan, parts: 5, dilution: 10 }
+      - { id: sandalwood, parts: 5, dilution: 10 }
+
+evaluations:
+  - date: 2026-08-14
+    timepoints:
+      - { 시점: 0분, 강도: 5, 메모: "베르가못/레몬 톱노트 화사" }
+      - { 시점: 30분, 강도: 4, 메모: "제라늄 부각, 로지-그린" }
+      - { 시점: 2시간, 강도: 3, 메모: "로즈-우디로 전환" }
+      - { 시점: 6시간, 강도: 2, 메모: "앰브록산/샌달우드 잔향" }
+      - { 시점: 24시간, 강도: 1, 메모: "스킨 스멜, 은은한 머스크" }

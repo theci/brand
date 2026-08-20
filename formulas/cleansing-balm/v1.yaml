@@ -1,0 +1,28 @@
+product: 클렌징밤
+slug: cleansing-balm
+version: 1
+regime: cosmetics
+product_type: rinse_off   # 물에 유화되어 씻겨나가는 워터오프 밤
+status: 개발중
+base_batch_g: 100
+phases:
+  - name: A            # 오일 + 왁스: 가열 용해
+    process: 70~75도로 가열해 왁스가 완전히 녹을 때까지 저어 용해
+    ingredients:
+      - { id: mct, percent: 40.0 }
+      - { id: shea-butter, percent: 15.0 }
+      - { id: beeswax, percent: 12.0 }
+      - { id: cetyl-alcohol, percent: 3.0 }
+  - name: B            # 계면활성제: 워터오프 유화
+    process: A상 70도 유지 상태에서 투입 후 균질하게 혼합
+    ingredients:
+      - { id: polysorbate-80, percent: 18.0 }
+      - { id: olive-liquid, percent: 11.5 }
+  - name: C            # 첨가: 냉각 후 투입
+    process: 45도 이하로 냉각 후 투입, 기포 없이 저어 충전
+    ingredients:
+      - { id: tocopherol, percent: 0.5 }
+packaging:
+  - { id: jar-50ml, qty_per_unit: 1 }
+fill_volume_ml: 50
+notes: percent 합계 100.0. 물과 만나면 유화되어 씻겨나가는 rinse-off 밤.

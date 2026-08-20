@@ -1,0 +1,37 @@
+# 고체 샴푸바 2^3 완전요인 스크리닝
+# 변수: 계면활성제 총%(surfactant), 바인더(세틸알코올)%(binder), 버터%(butter)
+# 평가: 거품/세정력/헹굼/경도/컨디셔닝/잔여감 1~5점
+name: 샴푸바 스크리닝
+formula_ref: shampoo-bar
+factors: [surfactant, binder, butter]
+levels:
+  surfactant: { low: 55, high: 68 }
+  binder: { low: 10, high: 18 }
+  butter: { low: 8, high: 16 }
+response_items: [거품, 세정력, 헹굼, 경도, 컨디셔닝, 잔여감]
+
+runs:
+  - run_id: 1
+    factor_values: { surfactant: low, binder: low, butter: low }
+    scores: { 거품: 3, 세정력: 3, 헹굼: 4, 경도: 2, 컨디셔닝: 2, 잔여감: 2 }
+  - run_id: 2
+    factor_values: { surfactant: high, binder: low, butter: low }
+    scores: { 거품: 5, 세정력: 5, 헹굼: 4, 경도: 2, 컨디셔닝: 2, 잔여감: 2 }
+  - run_id: 3
+    factor_values: { surfactant: low, binder: high, butter: low }
+    scores: { 거품: 3, 세정력: 3, 헹굼: 3, 경도: 4, 컨디셔닝: 2, 잔여감: 3 }
+  - run_id: 4
+    factor_values: { surfactant: high, binder: high, butter: low }
+    scores: { 거품: 5, 세정력: 5, 헹굼: 3, 경도: 4, 컨디셔닝: 2, 잔여감: 3 }
+  - run_id: 5
+    factor_values: { surfactant: low, binder: low, butter: high }
+    scores: { 거품: 3, 세정력: 3, 헹굼: 2, 경도: 2, 컨디셔닝: 4, 잔여감: 4 }
+  - run_id: 6
+    factor_values: { surfactant: high, binder: low, butter: high }
+    scores: { 거품: 4, 세정력: 5, 헹굼: 2, 경도: 2, 컨디셔닝: 4, 잔여감: 4 }
+  - run_id: 7
+    factor_values: { surfactant: low, binder: high, butter: high }
+    scores: { 거품: 3, 세정력: 3, 헹굼: 2, 경도: 4, 컨디셔닝: 4, 잔여감: 4 }
+  - run_id: 8
+    factor_values: { surfactant: high, binder: high, butter: high }
+    scores: { 거품: 5, 세정력: 5, 헹굼: 2, 경도: 4, 컨디셔닝: 4, 잔여감: 4 }

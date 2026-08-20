@@ -1,0 +1,15 @@
+# 화장품 라벨 필수 기재 항목 (요약 · 예시)
+# ※ 실제 필수 항목은 화장품법 시행규칙 원문으로 확인·갱신할 것.
+last_updated: 2026-08-18
+source_url: "https://www.law.go.kr/  # 화장품법 시행규칙 표시기준 — 실제 URL로 교체"
+
+items:
+  - { key: product_name, label: 화장품의 명칭, required: true }
+  - { key: business_name, label: 영업자의 상호 및 주소, required: true }
+  - { key: ingredients, label: 전성분, required: true, note: "50ml/50g 초과 시 필수" }
+  - { key: net_content, label: 내용물의 용량 또는 중량, required: true }
+  - { key: batch_no, label: 제조번호, required: true }
+  - { key: use_by, label: 사용기한 또는 개봉 후 사용기간, required: true }
+  - { key: price, label: 가격, required: true }
+  - { key: caution, label: 사용할 때의 주의사항, required: true }
+  - { key: functional, label: 기능성화장품 문구·심사번호, required: false, note: "기능성일 때만" }

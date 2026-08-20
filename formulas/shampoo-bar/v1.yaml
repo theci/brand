@@ -1,0 +1,32 @@
+product: 라벤더 고체 샴푸바
+slug: shampoo-bar
+version: 1
+regime: cosmetics            # 인체 세정용 화장품 → 화장품법(등록 1회, SKU 추가 0원)
+product_type: rinse_off      # 씻어내는 제품 → 알러젠 임계값 0.01% 초과 시 표기
+status: 개발중
+base_batch_g: 300            # 홈 개발 배치 300g
+phases:
+  - name: A            # 계면활성제 베이스: 60~65도 가열, 눌러 반죽
+    process: SCI·CAPB를 60~65도로 가열하며 반죽 상태로 혼합
+    ingredients:
+      - { id: sci, percent: 55.0 }
+      - { id: capb, percent: 8.0 }
+  - name: B            # 바인더·에몰리언트: 용해 후 A에 혼합
+    process: 세틸알코올·버터·오일을 녹여 A에 넣고 균일하게 반죽
+    ingredients:
+      - { id: cetyl-alcohol, percent: 15.0 }
+      - { id: shea-butter, percent: 8.0 }
+      - { id: cocoa-butter, percent: 5.0 }
+      - { id: mct, percent: 5.0 }
+  - name: C            # 첨가: 40도 이하로 식힌 뒤 투입, 몰드 압축
+    process: 40도 이하로 낮춘 뒤 향·산화방지제·pH조절제 투입, 몰드에 압축
+    ingredients:
+      - { id: lavender-eo, percent: 1.0 }
+      - { id: tocopherol, percent: 0.5 }
+      - { id: citric-acid, percent: 2.5 }
+packaging:
+  - { id: soap-box, qty_per_unit: 1 }
+net_weight_g: 60             # 바 1개 60g (고형 → 부피 대신 중량으로 표시 판정)
+notes: >
+  syndet(합성계면활성제) 고체 샴푸바. percent 합계 100.
+  55% SCI 주세정 + CAPB 보조 + 세틸알코올 바인더 + 버터/오일 컨디셔닝.

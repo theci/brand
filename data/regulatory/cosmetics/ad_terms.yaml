@@ -1,0 +1,70 @@
+# 상세페이지 광고 문구 금지·주의 표현
+# 카테고리: functional_claim(기능성 심사 대상) / drug_claim(의약품 오인) /
+#           absolute_claim(절대·최상급 과장) / unverified_claim(미검증 효과)
+# 각 표현: expression, category, risk(high/medium/low), suggestion(대체안), reference(근거)
+#          pattern(선택, 정규식 직접 지정)
+#
+# ※ 초기 데이터는 예시 몇 개뿐입니다. 나머지는 직접 채우세요.
+# ※ 여러 단어 표현은 띄어쓰기 변형까지 잡도록 공백을 넣어 두세요(예: "주름 개선").
+last_updated: 2026-08-19
+source: "화장품법·기능성화장품 고시·표시광고 실증 가이드 (사용자 확인분, 원문 대조 필요)"
+source_url: "https://www.mfds.go.kr/  # 표시광고 실증 가이드 — 실제 URL로 교체"
+
+terms:
+  # --- 기능성화장품 심사 대상 표현 ---
+  - expression: 미백
+    category: functional_claim
+    risk: high
+    suggestion: "피부 톤 케어 / 화사한 피부 표현"
+    reference: "미백은 기능성화장품 심사·보고 대상. 일반 화장품 사용 불가."
+  - expression: 주름 개선
+    category: functional_claim
+    risk: high
+    suggestion: "탄력 있는 피부 표현 / 결 케어"
+    reference: "주름개선은 기능성화장품 심사·보고 대상."
+  - expression: 탈모 완화
+    category: functional_claim
+    risk: high
+    suggestion: "두피 청결·컨디셔닝 표현"
+    reference: "탈모 완화는 기능성/의약외품 영역."
+
+  # --- 의약품 오인 표현 ---
+  - expression: 치료
+    category: drug_claim
+    risk: high
+    suggestion: "관리 / 케어"
+    reference: "질병 치료·예방 암시는 의약품 오인 광고."
+  - expression: 재생
+    category: drug_claim
+    risk: high
+    suggestion: "결 정돈 / 컨디셔닝"
+    reference: "세포 재생 등 의약품 오인 표현."
+  - expression: 염증 완화
+    category: drug_claim
+    risk: high
+    suggestion: "진정 케어 표현"
+    reference: "염증 완화는 의약품 오인 표현."
+
+  # --- 절대·최상급 과장 표현 ---
+  - expression: 완벽
+    category: absolute_claim
+    risk: medium
+    suggestion: "매끄러운 / 균일한"
+    reference: "절대적 표현은 실증 없으면 과장광고 소지."
+  - expression: 최고
+    category: absolute_claim
+    risk: medium
+    suggestion: "프리미엄 / 차별화된"
+    reference: "배타성·최상급 표현 제한(실증 필요)."
+
+  # --- 미검증 효과 표현 ---
+  - expression: 즉각
+    category: unverified_claim
+    risk: medium
+    suggestion: "산뜻한 사용감"
+    reference: "즉효성은 실증 자료 없으면 사용 주의."
+  - expression: 하루 만에
+    category: unverified_claim
+    risk: low
+    suggestion: "꾸준히 사용 시"
+    reference: "기간 한정 효과 표현은 실증 필요."

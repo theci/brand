@@ -1,0 +1,47 @@
+# 패키지 마스터
+# 각 패키지: id, name, type
+# 선택: volume_ml, material, unit_price(개당 원), moq(최소 주문 수량), supplier, notes
+# ※ unit_price / moq 는 예시값이며, 실제 견적으로 교체할 것.
+
+packaging:
+  - id: jar-50ml
+    name: 50ml 유리 자
+    type: jar
+    volume_ml: 50
+    material: 유리
+    unit_price: 800
+    moq: 3000
+    notes: 클렌징밤용 광구병
+
+  - id: lipbalm-tube-10ml
+    name: 10ml 립밤 튜브
+    type: tube
+    volume_ml: 10
+    material: PP
+    unit_price: 350
+    moq: 2000
+
+  - id: lipbalm-tin-15ml
+    name: 15ml 립밤 틴
+    type: tin
+    volume_ml: 15
+    material: 알루미늄
+    unit_price: 500
+    moq: 2000
+
+  - id: dropper-30ml
+    name: 30ml 드로퍼 병
+    type: bottle
+    volume_ml: 30
+    material: 유리
+    unit_price: 900
+    moq: 3000
+    notes: 페이스오일용 스포이드 캡
+
+  - id: soap-box
+    name: 비누 종이 박스
+    type: box
+    material: 종이
+    unit_price: 300
+    moq: 1000
+    notes: 90~100g 비누바 1개 포장

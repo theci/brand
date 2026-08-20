@@ -1,0 +1,5 @@
+sample_id: SB-001
+formula_ref: shampoo-bar v1
+condition: 45C
+start_date: 2026-08-20        # 개발 배치 제조일 = 안정성 시험 시작
+observations: []              # 아직 관찰 전 (1주차부터 stability due로 알림)

@@ -1,0 +1,368 @@
+# 원료 마스터
+# 각 원료: id, name(한글명), inci(INCI 표준명), category(기능/분류)
+# 선택: max_percent(권장 상한), price_per_kg(원/kg), density(g/ml),
+#       has_coa(성적서 보유), cosmetic_grade(화장품용, 기본 true), grade(등급표기),
+#       cas, supplier, notes, fragrance(착향제), colorant(착색제),
+#       allergens: [{id, percent}]  (id는 allergens.yaml 참조,
+#                   percent는 원료 중 해당 알러젠 함량% — 공급처 CoA/GC 기준)
+# ※ price_per_kg / density / has_coa 등은 예시값이며, 실제 견적·성적서로 교체할 것.
+# ※ has_coa(성적서)·cosmetic_grade(화장품용 등급)는 UI 원료 페이지에서 붉게 경고된다.
+
+ingredients:
+  # --- 오일 / 에스테르 (에몰리언트) ---
+  - id: mct
+    name: 카프릴릭/카프릭 트리글리세라이드
+    inci: Caprylic/Capric Triglyceride
+    category: 에몰리언트
+    price_per_kg: 15000
+    density: 0.95
+    has_coa: true
+    grade: cosmetic
+    cas: "73398-61-5"
+    notes: 산패에 강하고 발림성이 가벼운 범용 베이스 오일
+
+  - id: jojoba-oil
+    name: 호호바오일
+    inci: Simmondsia Chinensis (Jojoba) Seed Oil
+    category: 에몰리언트
+    price_per_kg: 45000
+    density: 0.87
+    has_coa: true
+    grade: cosmetic
+    cas: "61789-91-1"
+    notes: 왁스 에스테르 구조로 안정성이 높음
+
+  - id: castor-oil
+    name: 피마자오일
+    inci: Ricinus Communis (Castor) Seed Oil
+    category: 에몰리언트
+    price_per_kg: 8000
+    density: 0.96
+    has_coa: true
+    grade: cosmetic
+    cas: "8001-79-4"
+    notes: 립밤 광택·부착력 향상
+
+  - id: olive-oil
+    name: 올리브오일
+    inci: Olea Europaea (Olive) Fruit Oil
+    category: 에몰리언트
+    price_per_kg: 12000
+    density: 0.91
+    has_coa: true
+    grade: cosmetic
+    cas: "8001-25-0"
+    notes: 비누 베이스 오일(온화, 컨디셔닝)
+
+  - id: coconut-oil
+    name: 코코넛오일
+    inci: Cocos Nucifera (Coconut) Oil
+    category: 에몰리언트
+    price_per_kg: 9000
+    density: 0.92
+    has_coa: true
+    grade: cosmetic
+    cas: "8001-31-8"
+    notes: 비누 기포·경도 향상
+
+  - id: sweet-almond-oil
+    name: 스위트아몬드오일
+    inci: Prunus Amygdalus Dulcis (Sweet Almond) Oil
+    category: 에몰리언트
+    price_per_kg: 20000
+    density: 0.91
+    has_coa: true
+    grade: cosmetic
+    cas: "8007-69-0"
+
+  - id: sunflower-oil
+    name: 해바라기씨오일
+    inci: Helianthus Annuus (Sunflower) Seed Oil
+    category: 에몰리언트
+    price_per_kg: 6000
+    density: 0.92
+    has_coa: false   # 성적서 미확보 — UI에서 경고
+    grade: cosmetic
+    cas: "8001-21-6"
+
+  - id: squalane
+    name: 스쿠알란
+    inci: Squalane
+    category: 에몰리언트
+    price_per_kg: 90000
+    density: 0.81
+    has_coa: true
+    grade: cosmetic
+    cas: "111-01-3"
+    notes: 무색·무취, 산화 안정성 우수
+
+  # --- 버터 ---
+  - id: shea-butter
+    name: 시어버터
+    inci: Butyrospermum Parkii (Shea) Butter
+    category: 버터
+    price_per_kg: 18000
+    density: 0.90
+    has_coa: true
+    grade: cosmetic
+    cas: "194043-92-0"
+
+  - id: cocoa-butter
+    name: 코코아버터
+    inci: Theobroma Cacao (Cocoa) Seed Butter
+    category: 버터
+    price_per_kg: 22000
+    density: 0.90
+    has_coa: true
+    grade: cosmetic
+    cas: "8002-31-1"
+    notes: 립밤 경도·바디감 부여
+
+  # --- 왁스 ---
+  - id: beeswax
+    name: 비즈왁스
+    inci: Cera Alba (Beeswax)
+    category: 왁스
+    price_per_kg: 25000
+    density: 0.96
+    has_coa: true
+    grade: cosmetic
+    cas: "8012-89-3"
+
+  - id: candelilla-wax
+    name: 칸데릴라왁스
+    inci: Euphorbia Cerifera (Candelilla) Wax
+    category: 왁스
+    price_per_kg: 40000
+    density: 0.95
+    has_coa: true
+    grade: cosmetic
+    cas: "8006-44-8"
+    notes: 식물성 왁스(비건 립밤용)
+
+  - id: carnauba-wax
+    name: 카르나우바왁스
+    inci: Copernicia Cerifera (Carnauba) Wax
+    category: 왁스
+    price_per_kg: 35000
+    density: 0.97
+    has_coa: true
+    grade: cosmetic
+    cas: "8015-86-9"
+    notes: 융점이 높아 경도 보강
+
+  # --- 지방산 / 지방알코올 (점증·경도) ---
+  - id: cetyl-alcohol
+    name: 세틸알코올
+    inci: Cetyl Alcohol
+    category: 점증제
+    price_per_kg: 12000
+    density: 0.81
+    has_coa: true
+    grade: cosmetic
+    cas: "36653-82-4"
+
+  - id: stearic-acid
+    name: 스테아릭애씨드
+    inci: Stearic Acid
+    category: 점증제
+    price_per_kg: 8000
+    density: 0.85
+    has_coa: true
+    grade: cosmetic
+    cas: "57-11-4"
+    notes: 비누 경도 향상, 크림 점도 보강
+
+  - id: lanolin
+    name: 라놀린
+    inci: Lanolin
+    category: 에몰리언트
+    price_per_kg: 30000
+    density: 0.94
+    has_coa: true
+    grade: cosmetic
+    cas: "8006-54-0"
+    notes: 밀착·보습(양모 유래)
+
+  # --- 계면활성제 / 가용화제 ---
+  - id: polysorbate-80
+    name: 폴리소르베이트80
+    inci: Polysorbate 80
+    category: 계면활성제
+    price_per_kg: 15000
+    density: 1.06
+    has_coa: true
+    grade: cosmetic
+    cas: "9005-65-6"
+    max_percent: 20.0
+    notes: 클렌징밤 워터오프(rinse-off)용 유화·가용화
+
+  - id: olive-liquid
+    name: 올리브리퀴드
+    inci: PEG-7 Glyceryl Cocoate
+    category: 계면활성제
+    price_per_kg: 20000
+    density: 1.03
+    has_coa: true
+    grade: cosmetic
+    cas: "68201-46-7"
+    max_percent: 15.0
+    notes: 온화한 가용화제
+
+  - id: sci
+    name: 소듐코코일이세티오네이트
+    inci: Sodium Cocoyl Isethionate
+    category: 계면활성제
+    price_per_kg: 12000
+    density: 1.0
+    has_coa: true
+    grade: cosmetic
+    cas: "61789-32-0"
+    notes: 고체 샴푸바 주 세정 성분(마일드, noodle/powder)
+
+  - id: capb
+    name: 코카미도프로필베타인
+    inci: Cocamidopropyl Betaine
+    category: 계면활성제
+    price_per_kg: 5000
+    density: 1.05
+    has_coa: true
+    grade: cosmetic
+    cas: "61789-40-0"
+    notes: 보조 계면활성제, 기포·컨디셔닝
+
+  - id: citric-acid
+    name: 시트릭애씨드
+    inci: Citric Acid
+    category: pH조절제
+    price_per_kg: 3000
+    density: 1.05
+    has_coa: true
+    grade: cosmetic
+    cas: "77-92-9"
+    notes: pH 조절(모발용 약산성)
+
+  # --- 보습제 / 용매 ---
+  - id: glycerin
+    name: 글리세린
+    inci: Glycerin
+    category: 보습제
+    price_per_kg: 4000
+    density: 1.26
+    has_coa: true
+    grade: cosmetic
+    cas: "56-81-5"
+
+  - id: water
+    name: 정제수
+    inci: Aqua
+    category: 용매
+    price_per_kg: 500
+    density: 1.00
+    has_coa: true
+    grade: cosmetic
+    cas: "7732-18-5"
+    notes: 비누 lye 용해용
+
+  - id: ethanol
+    name: 에탄올(변성)
+    inci: Alcohol Denat.
+    category: 용매
+    price_per_kg: 3500
+    density: 0.79
+    has_coa: true
+    grade: cosmetic
+    cas: "64-17-5"
+    notes: 방향제·룸스프레이 용매, 향 가용화
+
+  # --- 비누화제 ---
+  - id: sodium-hydroxide
+    name: 수산화나트륨
+    inci: Sodium Hydroxide
+    category: 비누화제
+    price_per_kg: 3000
+    density: 2.13
+    has_coa: true
+    grade: cosmetic
+    cas: "1310-73-2"
+    notes: 콜드프로세스 비누화(완제품에는 잔존하지 않음)
+
+  # --- 산화방지제 ---
+  - id: tocopherol
+    name: 토코페롤
+    inci: Tocopherol
+    category: 산화방지제
+    price_per_kg: 60000
+    density: 0.95
+    has_coa: true
+    grade: cosmetic
+    cas: "59-02-9"
+    max_percent: 1.0
+
+  - id: vitamin-e-acetate
+    name: 토코페릴아세테이트
+    inci: Tocopheryl Acetate
+    category: 산화방지제
+    price_per_kg: 50000
+    density: 0.95
+    has_coa: true
+    grade: cosmetic
+    cas: "7695-91-2"
+    max_percent: 1.0
+
+  # --- 에센셜 오일 / 추출물 (향·기능) ---
+  - id: lavender-eo
+    name: 라벤더오일
+    inci: Lavandula Angustifolia (Lavender) Oil
+    category: 에센셜오일
+    price_per_kg: 120000
+    density: 0.89
+    has_coa: true
+    grade: cosmetic
+    cas: "8000-28-0"
+    max_percent: 2.0
+    fragrance: true
+    # 예시값 — 실제는 공급처 GC 성적서로 대체할 것
+    allergens:
+      - { id: linalool, percent: 30.0 }
+      - { id: limonene, percent: 1.0 }
+      - { id: geraniol, percent: 0.5 }
+      - { id: coumarin, percent: 0.2 }
+
+  - id: peppermint-eo
+    name: 페퍼민트오일
+    inci: Mentha Piperita (Peppermint) Oil
+    category: 에센셜오일
+    price_per_kg: 80000
+    density: 0.90
+    has_coa: true
+    grade: cosmetic
+    cas: "8006-90-4"
+    max_percent: 2.0
+    fragrance: true
+    allergens:
+      - { id: limonene, percent: 2.0 }
+
+  - id: rosemary-extract
+    name: 로즈마리추출물
+    inci: Rosmarinus Officinalis (Rosemary) Leaf Extract
+    category: 산화방지제
+    price_per_kg: 100000
+    density: 0.95
+    has_coa: false   # 성적서 미확보 — UI에서 경고
+    grade: cosmetic
+    cas: "84604-14-8"
+    max_percent: 1.0
+
+  # --- ⚠️ 화장품용 아님(캔들용) — 실수 방지용 예시. 처방에 쓰지 말 것 ---
+  - id: candle-fragrance
+    name: 캔들용 프래그런스 오일
+    inci: Fragrance (candle grade)
+    category: 착향제
+    price_per_kg: 25000
+    density: 0.95
+    has_coa: false
+    cosmetic_grade: false   # 화장품용 아님 — UI에서 붉게 경고
+    grade: candle
+    fragrance: true
+    notes: 캔들·디퓨저용. 피부 안전성 미검증 → 화장품 처방 사용 금지.

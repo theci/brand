@@ -1,0 +1,30 @@
+product: 비누
+slug: soap
+version: 1
+regime: cosmetics
+product_type: rinse_off   # 씻어내는 제품
+status: 개발중
+base_batch_g: 1000        # 콜드프로세스 1kg 배치
+phases:
+  - name: A            # 오일/버터: 용해 후 40~45도 유지
+    process: 고체 유지를 녹여 오일과 섞고 40~45도로 맞춤
+    ingredients:
+      - { id: olive-oil, percent: 40.0 }
+      - { id: coconut-oil, percent: 24.0 }
+      - { id: shea-butter, percent: 6.0 }
+      - { id: castor-oil, percent: 5.0 }
+  - name: B            # lye 용액: 수산화나트륨을 정제수에 용해
+    process: 환기된 곳에서 정제수에 수산화나트륨을 조금씩 녹여 40~45도로 식힘
+    ingredients:
+      - { id: water, percent: 13.0 }
+      - { id: sodium-hydroxide, percent: 10.5 }
+  - name: C            # 트레이스 후 첨가
+    process: A상에 B상을 부어 트레이스 낸 뒤 향을 넣고 몰드에 부음
+    ingredients:
+      - { id: lavender-eo, percent: 1.5 }
+packaging:
+  - { id: soap-box, qty_per_unit: 1 }
+net_weight_g: 100    # 비누바 1개 내용량(고형 → 부피 대신 중량으로 표시 판정)
+notes: >
+  percent 합계 100.0. 콜드프로세스 레시피 기준(오일+lye+향 = 배치 전체).
+  수산화나트륨은 비누화 반응으로 소모되어 완제품에는 잔존하지 않는다.

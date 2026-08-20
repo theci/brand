@@ -1,0 +1,569 @@
+# brand-lab 사용 가이드 (P1~P11)
+
+이 문서는 **처음 쓰는 사람도** 설치부터 실제 작업, 테스트까지 따라 할 수 있도록 쓴 상세 가이드입니다.
+개요·설계는 [`README.md`](README.md), 실사용 시 주의점은 [`사용_참고사항.md`](사용_참고사항.md)를 함께 보세요.
+전체 흐름을 **한 제품으로** 따라가려면 [`예시_시나리오.md`](예시_시나리오.md)(고체 샴푸바 처음부터 끝까지)를 보세요.
+YAML·코딩이 처음이면 [`데이터_작성_가이드.md`](데이터_작성_가이드.md)(왜 이렇게 쓰는지, 비전공자용)부터 읽으세요.
+
+> ⚠️ **먼저 읽어주세요.** 이 도구의 라벨·규정·레짐·문구 판정은 **1차 스크리닝**이며 법적 판단이 아닙니다.
+> 규제 수치·분류 규칙은 예시값을 포함하므로, 실제 출시·신고 전 **식약처·환경부(KTR)·관할 기관**에 반드시 확인하세요.
+
+---
+
+## 목차
+
+1. [이 도구가 하는 일](#1-이-도구가-하는-일)
+2. [설치](#2-설치)
+3. [5분 빠른 시작](#3-5분-빠른-시작)
+4. [꼭 알아야 할 4가지 개념](#4-꼭-알아야-할-4가지-개념)
+5. [데이터 파일 지도](#5-데이터-파일-지도)
+6. [기능별 사용법](#6-기능별-사용법) — 배치 / 라벨 / 원가 / 조향 / DOE / 안정성 / 문구검사 / 규제판정
+7. [Streamlit UI](#7-streamlit-ui)
+8. [자주 하는 작업 (레시피)](#8-자주-하는-작업-레시피)
+9. [테스트 하는 법](#9-테스트-하는-법)
+10. [문제 해결](#10-문제-해결)
+11. [실사용 전 체크리스트](#11-실사용-전-체크리스트)
+12. [용어집 · 명령어 요약](#12-용어집--명령어-요약)
+
+---
+
+## 1. 이 도구가 하는 일
+
+집에서 화장품·향수·(일부) 생활화학제품 처방을 개발하고 OEM 양산으로 넘기는 **1인 브랜드**를 위한 로컬 도구입니다. 데이터는 전부 사람이 읽을 수 있는 YAML이고(DB 없음), Git으로 버전 관리합니다.
+
+| 기능 | 무엇을 | CLI | Streamlit |
+|---|---|---|---|
+| 배치 계산 | 처방을 임의 g으로 환산, 배치 지시서 | `batch` | 처방 |
+| 라벨/규정 | 전성분·알러젠·표시의무·배합한도 | `label` | 라벨 |
+| 원가/손익 | 개당 원가·마진·MOQ 병목 | `cost` | 원가 |
+| 조향 | 희석 계량·노트 비율·IFRA·숙성 | `fragrance` | — |
+| 실험(DOE) | 주효과·교호작용 분석·플롯 | `doe` | 실험 |
+| 실험(안정성) | 관찰 예정일·지연 알림 | `stability` | 실험 |
+| 문구 검사 | 상세페이지 금지·주의 표현 | `lint` | 문구검사 |
+| 규제 판정 | 제품 아이디어 → 레짐·비용·적합성 | `advise` | — |
+| 원료 조회 | CoA·화장품용 등급 붉은 표시 | — | 원료 |
+
+---
+
+## 2. 설치
+
+### 요구사항
+- Python 3.11 이상
+- [uv](https://docs.astral.sh/uv/) 권장 (없으면 pip)
+- macOS/Linux/Windows. 차트 한글이 필요하면 한글 폰트(AppleGothic·맑은 고딕·나눔고딕 등)
+
+### uv로 설치 (권장)
+```bash
+cd brand-lab
+uv venv                       # .venv 생성
+uv pip install -e ".[dev]"    # 라이브러리 + 개발/테스트 도구
+uv run brandlab --help        # 동작 확인
+```
+
+### pip로 설치 (uv가 없을 때)
+```bash
+cd brand-lab
+python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
+pip install -e ".[dev]"
+brandlab --help
+```
+
+> 이후 예시는 uv 기준(`uv run brandlab …`)입니다. pip+venv를 활성화했다면 `brandlab …`만 쓰면 됩니다.
+
+---
+
+## 3. 5분 빠른 시작
+
+설치 후 아래를 순서대로 실행하면 주요 기능을 한 번씩 봅니다. (모두 예시 데이터로 바로 동작)
+
+```bash
+# 1) 클렌징밤을 500g 배치로 환산
+uv run brandlab batch cleansing-balm v1 --grams 500
+
+# 2) 클렌징밤 라벨(전성분·알러젠·표시의무·배합한도) 스크리닝
+uv run brandlab label cleansing-balm v1
+
+# 3) 1000개 생산·판매가 34,000원 기준 원가·손익·MOQ
+uv run brandlab cost cleansing-balm v1 --units 1000 --price 34000
+
+# 4) 향수 블렌드 계량표 + IFRA
+uv run brandlab fragrance blend citrus-cologne v1
+
+# 5) 밀린 안정성 관찰 확인
+uv run brandlab stability due
+
+# 6) 상세페이지 문구 검사
+echo "미백 효과가 뛰어나고 주름개선에 좋은 크림" > /tmp/page.txt
+uv run brandlab lint /tmp/page.txt
+
+# 7) ★ 규제 판정: "공간에 쓰는 향 제품"을 향수 vs 방향제로 냈을 때 비용 비교
+uv run brandlab advise --use space --claim fragrance --form sustained_release --skus 10
+
+# 8) Streamlit UI 실행 (브라우저 자동 오픈)
+uv run streamlit run streamlit_app.py
+```
+
+---
+
+## 4. 꼭 알아야 할 4가지 개념
+
+**① 데이터는 전부 YAML.** 원료·처방·규제 수치가 `data/`와 `formulas/` 아래 YAML에 있습니다. 값을 바꾸면 **코드 수정 없이** 반영됩니다. Streamlit은 파일을 저장하고 브라우저를 새로고침하면 됩니다(파일 mtime으로 캐시 무효화).
+
+**② 처방은 `슬러그`와 `버전`으로 부른다.** 예: `formulas/cleansing-balm/v1.yaml` → 슬러그 `cleansing-balm`, 버전 `v1`. CLI에서 `brandlab label cleansing-balm v1`처럼 지정합니다.
+
+**③ "레짐(regime)"이 규제와 비용을 결정한다.** 각 처방에는 `regime` 필드가 있습니다.
+- `cosmetics`(화장품법): 등록 1회, **SKU 추가 규제비용 0원**.
+- `chemical_safety`(화학제품안전법): 탈취제·방향제·초. **품목마다 시험비 + 3년 갱신**.
+- `biocide`(살생물제)·`quasi_drug`(의약외품): **명시적 미지원**(만들려 하면 거부).
+
+**④ 모든 규정/판정 결과는 1차 스크리닝.** "통과"가 적법을 보장하지 않습니다. 각 출력 하단의 면책 문구를 반드시 확인하세요.
+
+---
+
+## 5. 데이터 파일 지도
+
+무엇을 하려면 어느 파일을 편집하는지:
+
+| 하고 싶은 것 | 편집할 파일 |
+|---|---|
+| 원료 추가/단가·밀도·CoA·알러젠% 수정 | `data/ingredients.yaml` |
+| 포장재 단가·MOQ 수정 | `data/packaging.yaml` |
+| 채널 수수료·배송비·반품률·부가세·목표마진 | `data/config.yaml` (`economics`) |
+| 경제성 경고 임계값 | `data/config.yaml` (`regulatory_thresholds`) |
+| 처방 만들기/수정 | `formulas/<슬러그>/v<n>.yaml` |
+| 향료 원료 | `data/aroma_materials.yaml` |
+| 향 처방 | `formulas/fragrance/<이름>-v<n>.yaml` |
+| DOE 설계·결과 | `experiments/doe/*.yaml` |
+| 안정성 시료·관찰 | `experiments/stability/*.yaml` |
+| 화장품 규제(알러젠·배합한도·표시규정·광고표현) | `data/regulatory/cosmetics/*.yaml` |
+| 화학제품안전법 시험비·금지/제한물질·라벨 | `data/regulatory/chemical_safety/*.yaml` |
+| 제품 의도→레짐 분류 규칙 | `data/regulatory/classification_rules.yaml` |
+
+> 규제 YAML에는 `last_updated`와 `source_url`(또는 `source`)이 있습니다. **값을 갱신하면 날짜도 함께 갱신**하세요. 180일이 지나면 도구가 경고합니다.
+
+---
+
+## 6. 기능별 사용법
+
+각 기능은 **CLI**(빠른 확인)와 **Python API**(자동화·통합) 둘 다 제공합니다. Python은 `BrandLab.load()`로 모든 데이터를 한 번에 불러온 뒤 함수를 호출하는 패턴입니다.
+
+```python
+from brandlab import BrandLab
+lab = BrandLab.load()                 # data/ + formulas/ 전체 로드·검증
+f = next(x for x in lab.formulas if x.slug == "cleansing-balm" and x.version == 1)
+```
+
+### 6.1 배치 계산 — `batch`
+
+**목적:** 처방(%)을 원하는 배치 크기(g)로 환산하고, 상(phase)별 계량표·배치 지시서를 만든다.
+
+**CLI**
+```bash
+uv run brandlab batch cleansing-balm v1 --grams 500          # rich 표 + 스케일업 리스크
+uv run brandlab batch cleansing-balm v1 --grams 500 --sheet  # 마크다운 배치 지시서(파일로 저장 가능)
+uv run brandlab batch cleansing-balm v1 -g 500 --sheet > 지시서.md
+```
+읽는 법: 상별 원료 목표 g, 상 소계, 전체 합계(=목표 g)와, 저울 최소 계량(0.1g) 미만 원료 경고. 마지막에 **스케일업 리스크**(왁스/버터 10% 초과 시 냉각 리스크, 유화제 존재 시 파일럿 권장).
+
+**Python**
+```python
+from brandlab import scale, batch_sheet
+r = scale(f, 500, ingredients=lab.ingredients)
+print(r.total_g, r.warnings)                 # 500.0, []
+md = batch_sheet(f, 500, ingredients=lab.ingredients, batch_no="B-001")
+```
+
+**확인/테스트:** `uv run pytest tests/test_batch.py -q` (100g→500g 정확히 5배, 합계 일치, 0.03g 계량 불가 경고 등).
+
+### 6.2 라벨 · 규정 스크리닝 — `label`
+
+**목적:** 전성분 표시(안), 알러젠 표기 의무, 용량별 표시 의무, 배합한도 초과를 한 번에 검사.
+
+**CLI**
+```bash
+uv run brandlab label cleansing-balm v1
+uv run brandlab label soap v1        # 비누는 "비누화물로 표기" 경고까지 확인
+```
+읽는 법: ① 전성분 문자열(함량 순, 1% 이하·착향제·착색제는 순서 무관, 표기의무 알러젠 뒤에 추가), ② 알러젠 판정(완제품 농도 vs 임계값 — 씻어내는 0.01%/안 씻어내는 0.001% 초과), ③ 표시 의무(50ml 초과=전성분 필수 / 10ml 이하=5항목 / 그 사이=축약), ④ 배합한도. **맨 아래 면책 문구.**
+
+**Python**
+```python
+from brandlab import screen
+s = screen(f, lab)
+print(s.inci.text)                            # 전성분 문자열
+print([a.inci for a in s.allergens.declared]) # 표기 의무 알러젠
+print(s.requirement.tier)                     # full / reduced / minimal
+```
+
+**확인/테스트:** `uv run pytest tests/test_labeling.py -q` (1% 경계, 향료 0.3%×리모넨 5%=0.015% 표기, 용량 경계 등).
+
+### 6.3 원가 · 손익 — `cost`
+
+**목적:** 개당 원가(원료비+부자재비), 판매가별 손익·마진, 목표마진 최소판매가, **MOQ 병목·사장 재고**, 손익분기 수량.
+
+**준비:** `data/ingredients.yaml`의 `price_per_kg`·`density`, `data/packaging.yaml`의 `unit_price`·`moq`, `data/config.yaml`의 `economics`.
+
+**CLI**
+```bash
+uv run brandlab cost cleansing-balm v1 --units 1000 --price 34000
+uv run brandlab cost cleansing-balm v1 -u 1000 -p 34000 --fixed 3000000   # 고정비 직접 지정
+```
+읽는 법: 원료/부자재 내역과 개당 원가 → 손익 요약(공헌이익·마진율·목표마진 최소판매가) → 손익분기 수량 → **MOQ 병목**(용기 MOQ가 필요 수량보다 크면 남는 수량=사장 재고, 묶인 자본 표시) → 총 선투입 자본. 마지막에 **가정 출처**(수수료율 등이 어디서 왔는지).
+
+**Python**
+```python
+from brandlab import unit_cost, price_simulator, moq_bottleneck, breakeven, min_price_for_margin
+uc  = unit_cost(f, 1000, ingredients=lab.ingredients, packaging=lab.packaging)
+sim = price_simulator(uc, 34000, economics=lab.config.economics)
+mb  = moq_bottleneck(f, 1000, ingredients=lab.ingredients, packaging=lab.packaging)
+print(uc.unit_cost, sim.margin_on_net, mb.total_upfront_capital)
+print(min_price_for_margin(uc, 0.40, economics=lab.config.economics))  # 목표마진 40% 최소판매가
+```
+
+**확인/테스트:** `uv run pytest tests/test_cost.py -q` (원료비 손계산 일치, MOQ 미달 사장 재고, 목표마진 역산 순환참조 없음).
+
+### 6.4 조향 — `fragrance`
+
+**목적:** 향 처방의 **희석 반영 계량표**, top/middle/base 노트 비율, **IFRA 한도** 체크, **숙성(시향) 알림**.
+
+**준비:** `data/aroma_materials.yaml`(향료 원료·IFRA 한도), `formulas/fragrance/*.yaml`(처방). `parts`는 원액 기준 비율, `dilution`은 계량용 희석 농도(%).
+
+**CLI**
+```bash
+uv run brandlab fragrance blend citrus-cologne v1   # 계량표 + 노트 피라미드 + IFRA
+uv run brandlab fragrance macerate                  # 숙성 끝났는데 미시향인 처방 알림
+```
+읽는 법: 계량표의 "원액 g"과 "계량 g"(희석액 실제 계량량 — 예: 10% 희석 15g = 원액 1.5g), 추가 에탄올·기타(물), 노트 비율(합 100%), IFRA 초과·한도 미입력 경고.
+
+**Python**
+```python
+from brandlab import blend_sheet, note_pyramid, ifra_check, load_aroma_materials, load_fragrance
+mats = load_aroma_materials()
+frag = load_fragrance("formulas/fragrance/citrus-cologne-v1.yaml")
+print(blend_sheet(frag, mats).ethanol_to_add_g)
+print(note_pyramid(frag, mats).ratios)      # {'top':60,'middle':15,'base':25}
+print(ifra_check(frag, mats).violations)    # IFRA 초과 원료
+```
+
+**확인/테스트:** `uv run pytest tests/test_fragrance.py -q` (10% 희석 환산, 노트 합 100%, IFRA 초과, 숙성 상태).
+
+### 6.5 실험 — DOE (`doe`)
+
+**목적:** 2^k 완전요인 설계의 **주효과·2요인 교호작용**을 항목별로 계산하고, 플롯(PNG)과 해석 리포트 생성.
+
+**준비:** `experiments/doe/<이름>.yaml` — `factors`, `response_items`, `runs[{run_id, factor_values, scores}]`. `factor_values`는 `low`/`high`(또는 실제 수준값).
+
+**CLI**
+```bash
+uv run brandlab doe analyze experiments/doe/cleansing-balm-screening.yaml
+```
+결과: 콘솔에 주효과 표 + 해석 문장("유화제가 헹굼에 가장 큰 영향(+1.50)"), 그리고 같은 폴더에 `*-report.md`, `*-main-effects.png`, `*-interaction.png` 생성(이 산출물은 gitignore됨). run이 8개 미만이면 "설계 불완전" 경고.
+
+**Python**
+```python
+from brandlab import doe_analysis, interpretation_sentences
+from brandlab.loader import load_doe
+a = doe_analysis(load_doe("experiments/doe/cleansing-balm-screening.yaml"))
+print(a.main_effects["emulsifier"]["헹굼"])       # 1.5
+print(interpretation_sentences(a))
+```
+
+**확인/테스트:** `uv run pytest tests/test_doe.py -q` (주효과 손계산, 결측 안전, 플롯 저장).
+
+### 6.6 실험 — 안정성 (`stability`)
+
+**목적:** 관찰 예정일(1/2/4/8주) 생성과 **밀린 관찰 감지**(관찰일을 놓치면 그 시점 데이터가 사라짐).
+
+**준비:** `experiments/stability/<이름>.yaml` — `sample_id`, `condition`(45C/RT/freeze_thaw/light), `start_date`, `observations[{date, 외관, 분리, 색, 냄새, 경도, 판정, 비고}]`.
+
+**CLI**
+```bash
+uv run brandlab stability due       # 예정일 지났는데 관찰 없는 시료(지연 큰 순)
+uv run brandlab stability summary   # 조건별 시계열(✓ 완료 / ✗ 지연 / · 예정)
+```
+
+**Python**
+```python
+from brandlab import stability_due, stability_schedule
+from brandlab.loader import load_all_stability
+from datetime import date
+print(stability_schedule(date(2026,1,1)))                  # 1/2/4/8주 예정일
+for d in stability_due(load_all_stability(), today=date.today()):
+    print(d.sample_id, d.week, d.days_overdue)
+```
+
+**확인/테스트:** `uv run pytest tests/test_stability.py -q` (예정일 생성, ±3일 허용 지연 판정).
+
+### 6.7 문구 검사 — `lint`
+
+**목적:** 상세페이지 문구에서 **기능성(미백·주름개선)·의약품 오인(치료·재생)·과장·미검증** 표현을 정규식으로 걸러냄(형태소 변형 포함: "미백"→"미백효과"·"미백에").
+
+**준비:** `data/regulatory/cosmetics/ad_terms.yaml`에 표현을 추가(초기엔 예시 10건뿐).
+
+**CLI**
+```bash
+echo "미백 효과가 뛰어나고 주름개선, 염증 완화에 좋은 크림. 하루만에 완벽한 피부!" > /tmp/page.txt
+uv run brandlab lint /tmp/page.txt
+```
+읽는 법: 위치·표현·매칭·카테고리·위험도(high/medium/low)·대체안 표. 등록된 표현이 없거나 정규식이 잘못되면 **조용히 통과하지 않고 경고**. 맨 아래 면책 문구.
+
+**Python**
+```python
+from brandlab import lint, load_ad_terms
+r = lint("미백효과와 주름개선", load_ad_terms())
+for x in r.findings: print(x.start, x.expression, x.risk, x.suggestion)
+```
+
+**확인/테스트:** `uv run pytest tests/test_adcopy.py -q` (형태소 변형, 띄어쓰기 변형, 빈 목록 경고, HTML 이스케이프).
+
+### 6.8 규제 판정 — `advise` ★ 핵심
+
+**목적:** 제품 아이디어(용도·기능·제형)를 넣으면 **가능한 레짐**을 찾고, **총 규제비용을 비교**하고, **1인 창업 적합성**을 판정. "같은 향을 향수(화장품)로 낼지 디퓨저(방향제)로 낼지"가 비용을 수백만원 바꾸는 걸 계산으로 보여줍니다.
+
+**준비:** `data/regulatory/classification_rules.yaml`(의도→레짐 매칭 규칙), 각 레짐의 `regime.yaml`·`fees.yaml`.
+
+**CLI**
+```bash
+# 옵션 방식
+uv run brandlab advise --use space --claim fragrance --form sustained_release --skus 10 --years 5
+uv run brandlab advise --use space --claim sanitize                  # 살균 → REJECT
+uv run brandlab advise --use fabric --claim deodorize --form liquid --skus 5 --budget 1000000
+# 대화형 방식(질문에 답)
+uv run brandlab advise --interactive
+```
+- `--use`: `body`/`space`/`fabric`/`surface`
+- `--claim`: `fragrance`/`cleanse`/`deodorize`/`moisturize`/`sanitize`/`pest_control`/`repellent`/`oral_care`/`hand_sanitize` … (여러 번 지정 가능)
+- `--form`: `liquid`/`solid`/`spray`/`sustained_release`
+- `--skus`(기본 1), `--years`(기본 5), `--budget`(주면 적합성 CAUTION 판정에 사용)
+
+읽는 법: ① 가능한 레짐/카테고리 후보(애매하면 여럿 + "관할 확인" 경고), ② 규제비용 비교표(등록비·SKU 확장비·갱신비·총비용·기간, 최저 경로 ⭐), ③ 적합성(OK/CAUTION/REJECT + 사유). 예: "공간+향+지속방출, SKU 10"이면 **방향제(화학, 총 540만원/5년)** vs **향수(화장품, 10만원)**가 나란히 뜨고, 향수 경로가 품목 시험비 270만원을 아낀다고 설명합니다.
+
+**Python**
+```python
+from brandlab import classify, compare, feasibility
+from brandlab.core.models import ProductIntent
+intent = ProductIntent(use="space", claims=["fragrance"], form="sustained_release")
+print([c.label for c in classify(intent).candidates])
+print(compare(intent, sku_count=10, horizon_years=5).summary)
+print(feasibility(ProductIntent(use="space", claims=["sanitize"])).verdict)  # REJECT
+```
+
+**확인/테스트:** `uv run pytest tests/test_advisor.py -q` (두 레짐 후보, SKU 10종 270만원 차이, 살균 REJECT, 빈 규칙 경고).
+
+---
+
+## 7. Streamlit UI
+
+```bash
+uv run streamlit run streamlit_app.py
+```
+브라우저가 열리고, 왼쪽 사이드바에서 페이지를 고릅니다. **YAML을 편집한 뒤 브라우저 새로고침**하면 반영됩니다.
+
+| 페이지 | 하는 일 |
+|---|---|
+| (홈) | 데이터 요약, 한글 폰트 상태 |
+| 처방 | 처방 선택 → 배치 크기 슬라이더로 g 실시간 환산 → 배치 지시서 마크다운 다운로드 |
+| 라벨 | 전성분 문자열(복사 버튼)·알러젠·표시의무·배합한도 |
+| 원가 | 수량·판매가 입력 → 원가·손익·MOQ 병목 + **판매가별 마진 곡선 차트** |
+| 실험 | DOE 주효과/교호작용 플롯 + 안정성 밀린 관찰·조건별 현황 |
+| 원료 | 원료 검색. **CoA 없음/화장품용 아님 원료는 붉은 행** |
+| 문구검사 | 문구 입력 → 위험도 색으로 하이라이트 + 발견 표 |
+
+> 로컬 전용입니다. **클라우드 배포 금지**(처방은 영업비밀). 인증·배포 기능은 의도적으로 없습니다.
+
+---
+
+## 8. 자주 하는 작업 (레시피)
+
+### 새 원료 추가
+`data/ingredients.yaml`의 `ingredients:` 목록에 항목 추가:
+```yaml
+  - id: my-oil                # 처방에서 참조할 고유 id
+    name: 내오일
+    inci: My Oil
+    category: 에몰리언트
+    price_per_kg: 15000
+    density: 0.91
+    has_coa: true             # 성적서 있으면 true (없으면 UI에서 붉게)
+    cosmetic_grade: true      # 화장품용이면 true
+```
+저장 후 확인: `uv run python -c "from brandlab.loader import load_ingredients; print('my-oil' in load_ingredients().index())"`
+
+### 새 처방 추가
+`formulas/<슬러그>/v1.yaml` 생성. **percent 합계는 정확히 100**, 참조하는 원료 id는 `ingredients.yaml`에 존재해야 합니다.
+```yaml
+product: 내크림
+slug: my-cream
+version: 1
+regime: cosmetics            # 화장품이면 cosmetics
+product_type: leave_on       # leave_on(안 씻어냄) / rinse_off(씻어냄)
+status: 개발중                # 개발중 / 확정
+base_batch_g: 100
+phases:
+  - name: A
+    process: 70도로 가열해 용해
+    ingredients:
+      - { id: my-oil, percent: 60.0 }
+      - { id: shea-butter, percent: 39.5 }
+      - { id: tocopherol, percent: 0.5 }
+fill_volume_ml: 50
+```
+확인: `uv run brandlab label my-cream v1` / `uv run pytest tests/test_references.py -q`
+
+### 샴푸 등 새 화장품 라인 추가 (프롬프트 불필요)
+화장품 레짐이 그대로 적용됩니다. **데이터만 추가**하세요.
+1. `ingredients.yaml`에 계면활성제(예: 소듐코코일이세티오네이트, 코카미도프로필베타인)·컨디셔닝제 추가
+2. `formulas/liquid-shampoo/v1.yaml` 생성(`regime: cosmetics`)
+3. 끝. `batch`/`label`/`cost` 그대로 동작.
+
+### 처방 새 버전 만들기
+`formulas/<슬러그>/v2.yaml`을 추가하고 `version: 2`, 필요하면 `parent_version: 1`. 파일을 지우지 말고 버전을 늘려 이력을 남기세요(Git).
+
+### 규제 데이터 갱신
+`data/regulatory/**/*.yaml`의 값을 고시 원문 대조 후 수정하고, **같은 파일의 `last_updated`도 오늘 날짜로** 바꾸세요. 180일 넘으면 도구가 경고합니다.
+
+### 새 레짐 추가 (개발자용)
+1. `data/regulatory/<code>/regime.yaml` 작성(+ 필요 시 `fees.yaml`, `label_items.yaml` 등)
+2. `src/brandlab/regimes/<code>.py`에 `Regime` 프로토콜 구현 클래스 작성
+3. `src/brandlab/regimes/registry.py`의 `_BUILTIN`에 **한 줄** 추가: `"<code>": <Class>`
+4. 처방 YAML의 `regime:`에 코드 지정
+자세히는 `README.md`의 "레짐 추가 방법".
+
+### 기존 처방에 regime 필드가 없을 때 (마이그레이션)
+```bash
+uv run python -m brandlab.migrate --dry-run   # 대상 확인
+uv run python -m brandlab.migrate             # regime: cosmetics 추가, 원본은 .bak 백업
+```
+
+---
+
+## 9. 테스트 하는 법
+
+이 프로젝트는 **150개 테스트**로 모든 기능을 검증합니다. 데이터를 바꾼 뒤에도 깨지지 않는지 확인하세요.
+
+### 전체 실행
+```bash
+uv run pytest -q               # 조용히
+uv run pytest                  # 자세히
+```
+정상이면 `150 passed`처럼 나옵니다.
+
+### 특정 기능만
+```bash
+uv run pytest tests/test_cost.py -q          # 원가만
+uv run pytest tests/test_advisor.py -q       # 규제 판정만
+uv run pytest -k "allergen" -q               # 이름에 allergen 포함된 테스트만
+uv run pytest tests/test_labeling.py::test_requirement_full_over_50 -q   # 딱 하나
+```
+
+### 실패를 자세히 보기
+```bash
+uv run pytest -x -q            # 첫 실패에서 멈춤
+uv run pytest -vv              # 상세 출력
+```
+
+### 각 테스트 파일이 검증하는 것
+
+| 파일 | 검증 내용 |
+|---|---|
+| `test_masters.py` | 원료·포장재·설정·규제 YAML 로드, id 유일성 |
+| `test_formula_validation.py` | 처방 percent 합계 100±0.01, 필수 필드 |
+| `test_references.py` | 없는 원료/패키지 참조 시 에러, 예시 처방 전체 로드 |
+| `test_batch.py` | 배치 환산(5배·합계), 계량 불가·스케일업 경고 |
+| `test_labeling.py` | 전성분 순서·1% 경계, 알러젠 임계값, 용량별 표시의무, 배합한도 |
+| `test_cost.py` | 원료비 손계산, MOQ 사장 재고, 목표마진 역산 |
+| `test_fragrance.py` | 희석 환산, 노트 100%, IFRA, 숙성 알림 |
+| `test_doe.py` | 주효과·교호작용, 결측 안전, 플롯 |
+| `test_stability.py` | 예정일 생성, 지연 판정 |
+| `test_adcopy.py` | 문구 정규식·형태소 변형, 빈 목록/오류 경고 |
+| `test_regimes.py` | 레짐 프로토콜, 미지원 거부, 새 레짐 한 줄 등록 |
+| `test_chemical_safety.py` | 품목별 시험비, SKU 확장비(화장품 0원 대비), 경제성 경고 |
+| `test_advisor.py` | 분류 후보, 비용 비교(270만원 차이), 살균 REJECT, 빈 규칙 경고 |
+| `test_ui.py` | 캐시 무효화(mtime), 원료 위험 플래그 |
+
+### 데이터를 바꾼 뒤 검증하는 습관
+새 원료/처방을 넣었다면:
+```bash
+uv run pytest tests/test_references.py tests/test_masters.py -q
+```
+로 참조 무결성과 로드를 확인하세요. 전체 데이터가 한 번에 로드되는지는:
+```bash
+uv run python -c "from brandlab.loader import BrandLab; lab=BrandLab.load(); print('OK', len(lab.formulas), '처방')"
+```
+
+---
+
+## 10. 문제 해결
+
+| 증상 | 원인 / 해결 |
+|---|---|
+| `brandlab: command not found` | 가상환경 미활성 → `uv run brandlab …` 쓰거나 `source .venv/bin/activate` |
+| `ModuleNotFoundError: brandlab` | 설치 안 됨 → `uv pip install -e ".[dev]"` |
+| `처방을 찾을 수 없습니다` | 슬러그/버전 오타. `ls formulas`로 슬러그, 파일명이 `v1.yaml`인지 확인 |
+| `percent 합계가 100…이 아닙니다` | 처방 phases의 percent 합이 100±0.01이 아님. 다시 계산 |
+| `참조하는 원료 id가 …에 없습니다` | 처방이 쓴 `id`가 `ingredients.yaml`에 없음. 철자·존재 확인 |
+| `Extra inputs are not permitted` (YAML) | 오타 필드거나, flow 스타일 `{…}` 안에 **콤마가 포함된 값**(예: 메모)이 있으면 `"따옴표"`로 감싸기 |
+| 차트 한글이 □로 깨짐 | 한글 폰트 설치(AppleGothic·나눔고딕). 홈 화면 폰트 경고 참고 |
+| Streamlit이 바뀐 YAML을 반영 안 함 | 파일 저장 후 브라우저 **새로고침**. 그래도면 캐시 지우기(⋮ → Clear cache) |
+| `advise`가 후보를 못 냄 | `--use/--claim/--form` 토큰이 규칙과 안 맞음. 규칙은 `classification_rules.yaml` 참고 |
+| 규제 데이터 오래됨 경고 | 정상 동작. 고시 확인 후 해당 파일 `last_updated` 갱신 |
+
+---
+
+## 11. 실사용 전 체크리스트
+
+출시·신고 전에 **반드시**:
+
+- [ ] `data/ingredients.yaml`의 단가·밀도·**CoA 보유**·**화장품용 등급**·**알러젠%**를 실제 값(견적·성적서·GC)으로 교체
+- [ ] `data/packaging.yaml`의 단가·MOQ를 실제 견적으로 교체
+- [ ] `data/config.yaml`의 수수료율·배송비·반품률을 실제 값으로
+- [ ] `data/aroma_materials.yaml`의 **IFRA 한도**를 IFRA Standards 원문으로
+- [ ] `data/regulatory/**` 값을 식약처·환경부(KTR) 고시 원문과 대조, `last_updated`·`source_url` 갱신
+- [ ] `ad_terms.yaml` 표현 목록을 실제 기준으로 보강(초기값은 예시 10건뿐)
+- [ ] `chemical_safety/prohibited.yaml`·`restricted.yaml`은 **빈 껍데기** → 고시 별표로 채우기
+- [ ] 제품 분류(레짐)를 **관할 기관에 서면 질의**로 확정
+- [ ] `uv run pytest -q` 통과 확인
+
+> 자세한 배경·가정은 [`사용_참고사항.md`](사용_참고사항.md)를 보세요.
+
+---
+
+## 12. 용어집 · 명령어 요약
+
+### 용어
+- **슬러그(slug)**: 처방 폴더 이름(예: `cleansing-balm`). CLI에서 처방을 부르는 이름.
+- **레짐(regime)**: 제품에 적용되는 법 체계. `cosmetics`/`chemical_safety`/`biocide`/`quasi_drug`.
+- **SKU 확장 비용**: 새 품목 1개를 추가할 때 드는 규제비용. 화장품 0원, 생활화학제품 품목마다 시험비.
+- **공헌이익**: 판매가에서 변동비(수수료·배송·원가·반품)를 뺀 개당 이익.
+- **사장 재고**: MOQ 때문에 필요량보다 많이 발주해 남는 재고(묶인 자본).
+- **원액/희석(조향)**: `parts`는 원액 기준 비율, `dilution`은 계량용 희석 농도(%).
+- **레짐 무관/core**: 어떤 법이든 동일한 계산(모델·배치·원가)은 `src/brandlab/core/`.
+
+### 전체 명령어
+```bash
+uv run brandlab batch <슬러그> <버전> --grams <g> [--sheet]
+uv run brandlab label <슬러그> <버전>
+uv run brandlab cost  <슬러그> <버전> --units <n> --price <원> [--fixed <원>]
+uv run brandlab fragrance blend <이름> <버전>
+uv run brandlab fragrance macerate
+uv run brandlab doe analyze <experiments/doe/파일.yaml>
+uv run brandlab stability due
+uv run brandlab stability summary
+uv run brandlab lint <텍스트파일>
+uv run brandlab advise --use <..> --claim <..> --form <..> [--skus n] [--years n] [--budget 원] [--interactive]
+uv run streamlit run streamlit_app.py
+uv run python -m brandlab.migrate [--dry-run]
+uv run pytest -q
+```
+
+### 파일 구조 요약
+```
+brand-lab/
+├── data/            # 원료·포장재·설정·향료·규제 YAML (여기를 편집)
+├── formulas/        # 처방(<슬러그>/v<n>.yaml), fragrance/, room-spray/ …
+├── experiments/     # DOE·안정성 데이터
+├── src/brandlab/    # 코드 (core/ regimes/ advisor/ + 기능 모듈 + cli.py)
+├── streamlit_app.py + pages/   # UI
+├── tests/           # pytest 150개
+├── README.md · GUIDE.md(이 문서) · 사용_참고사항.md
+```
