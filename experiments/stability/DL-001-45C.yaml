@@ -1,0 +1,5 @@
+sample_id: DL-001
+formula_ref: daily-lotion v1
+condition: 45C
+start_date: 2026-08-21        # 홈 배치 제조일 = 안정성 시험 시작
+observations: []              # 에멀전은 분리(크리밍)·변색·pH 변화·냄새를 관찰

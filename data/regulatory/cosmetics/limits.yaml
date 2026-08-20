@@ -8,6 +8,10 @@ source: "사내 기준 + 식약처 사용상 제한 원료 고시 (사용자 확
 source_url: "https://www.mfds.go.kr/  # 사용상 제한 원료 고시 — 실제 URL로 교체"
 
 limits:
+  - ingredient_id: phenoxyethanol
+    max_percent: 1.0
+    reference: 화장품 사용상 제한 원료 — 페녹시에탄올 1.0% (전 제품)
+
   - ingredient_id: polysorbate-80
     max_percent: 20.0
     reference: 사내 권장(가용화제 과다 사용 시 자극 우려)

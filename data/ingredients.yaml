@@ -366,3 +366,55 @@ ingredients:
     grade: candle
     fragrance: true
     notes: 캔들·디퓨저용. 피부 안전성 미검증 → 화장품 처방 사용 금지.
+
+  # --- 에멀전(수분로션)용 원료: 유화제·보습제·점증제·보존제 ---
+  - id: glyceryl-stearate-citrate
+    name: 글리세릴스테아레이트시트레이트
+    inci: Glyceryl Stearate Citrate
+    category: 유화제
+    price_per_kg: 25000
+    density: 0.9
+    has_coa: true
+    grade: cosmetic
+    notes: O/W(수중유형) 유화제. 오일과 물을 섞어 유화(에멀전)를 만드는 핵심 원료.
+
+  - id: sodium-hyaluronate
+    name: 소듐하이알루로네이트(히알루론산)
+    inci: Sodium Hyaluronate
+    category: 보습제
+    price_per_kg: 200000
+    density: 1.0
+    has_coa: true
+    grade: cosmetic
+    notes: 고분자 보습제. 자기 무게의 수백 배 수분을 잡아둠. 0.1~0.5%만 써도 충분.
+
+  - id: xanthan-gum
+    name: 잔탄검
+    inci: Xanthan Gum
+    category: 점증제
+    price_per_kg: 18000
+    density: 0.9
+    has_coa: true
+    grade: cosmetic
+    notes: 천연 점증제(발효 유래). 수상을 걸쭉하게 만들어 유화 안정성을 도움. 0.1~0.5%.
+
+  - id: phenoxyethanol
+    name: 페녹시에탄올
+    inci: Phenoxyethanol
+    category: 보존제
+    price_per_kg: 9000
+    density: 1.1
+    has_coa: true
+    grade: cosmetic
+    max_percent: 1.0
+    notes: 광범위 보존제. 물 든 제품 필수. 국내·EU 배합한도 1.0%.
+
+  - id: hexanediol
+    name: 1,2-헥산다이올
+    inci: 1,2-Hexanediol
+    category: 보습제
+    price_per_kg: 13000
+    density: 0.95
+    has_coa: true
+    grade: cosmetic
+    notes: 보습 겸 항균 보조. 보존제 효과를 보강해 방부력을 높임.

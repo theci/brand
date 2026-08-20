@@ -1,0 +1,37 @@
+# 데일리 수분 로션 2^3 완전요인 스크리닝
+# 변수: 유화제%(emulsifier), 오일상 총%(oil), 점증제%(thickener)
+# 평가: 점도/발림성/흡수력/유화안정성/보습감/백탁 1~5점
+name: 수분로션 스크리닝
+formula_ref: daily-lotion
+factors: [emulsifier, oil, thickener]
+levels:
+  emulsifier: { low: 3, high: 6 }
+  oil: { low: 10, high: 20 }
+  thickener: { low: 0.2, high: 0.5 }
+response_items: [점도, 발림성, 흡수력, 유화안정성, 보습감, 백탁]
+
+runs:
+  - run_id: 1
+    factor_values: { emulsifier: low, oil: low, thickener: low }
+    scores: { 점도: 2, 발림성: 4, 흡수력: 4, 유화안정성: 2, 보습감: 2, 백탁: 2 }
+  - run_id: 2
+    factor_values: { emulsifier: high, oil: low, thickener: low }
+    scores: { 점도: 2, 발림성: 4, 흡수력: 4, 유화안정성: 4, 보습감: 2, 백탁: 3 }
+  - run_id: 3
+    factor_values: { emulsifier: low, oil: high, thickener: low }
+    scores: { 점도: 3, 발림성: 4, 흡수력: 2, 유화안정성: 2, 보습감: 4, 백탁: 3 }
+  - run_id: 4
+    factor_values: { emulsifier: high, oil: high, thickener: low }
+    scores: { 점도: 3, 발림성: 4, 흡수력: 2, 유화안정성: 4, 보습감: 4, 백탁: 4 }
+  - run_id: 5
+    factor_values: { emulsifier: low, oil: low, thickener: high }
+    scores: { 점도: 4, 발림성: 3, 흡수력: 4, 유화안정성: 2, 보습감: 2, 백탁: 2 }
+  - run_id: 6
+    factor_values: { emulsifier: high, oil: low, thickener: high }
+    scores: { 점도: 4, 발림성: 3, 흡수력: 4, 유화안정성: 4, 보습감: 2, 백탁: 3 }
+  - run_id: 7
+    factor_values: { emulsifier: low, oil: high, thickener: high }
+    scores: { 점도: 5, 발림성: 3, 흡수력: 2, 유화안정성: 2, 보습감: 4, 백탁: 3 }
+  - run_id: 8
+    factor_values: { emulsifier: high, oil: high, thickener: high }
+    scores: { 점도: 5, 발림성: 3, 흡수력: 2, 유화안정성: 4, 보습감: 4, 백탁: 4 }
