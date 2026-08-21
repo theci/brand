@@ -1,0 +1,37 @@
+# 섬유 탈취 스프레이 2^3 완전요인 스크리닝
+# 변수: 소취제(사이클로덱스트린)%(deodorizer), 에탄올%(ethanol), 향료%(fragrance)
+# 평가: 탈취력/건조속도/향강도 1~5점
+name: 섬유탈취 스프레이 스크리닝
+formula_ref: fabric-spray
+factors: [deodorizer, ethanol, fragrance]
+levels:
+  deodorizer: { low: 2, high: 6 }
+  ethanol: { low: 2, high: 8 }
+  fragrance: { low: 0.3, high: 1.0 }
+response_items: [탈취력, 건조속도, 향강도]
+
+runs:
+  - run_id: 1
+    factor_values: { deodorizer: low, ethanol: low, fragrance: low }
+    scores: { 탈취력: 3, 건조속도: 3, 향강도: 3 }
+  - run_id: 2
+    factor_values: { deodorizer: high, ethanol: low, fragrance: low }
+    scores: { 탈취력: 5, 건조속도: 2, 향강도: 3 }
+  - run_id: 3
+    factor_values: { deodorizer: low, ethanol: high, fragrance: low }
+    scores: { 탈취력: 3, 건조속도: 5, 향강도: 3 }
+  - run_id: 4
+    factor_values: { deodorizer: high, ethanol: high, fragrance: low }
+    scores: { 탈취력: 5, 건조속도: 4, 향강도: 3 }
+  - run_id: 5
+    factor_values: { deodorizer: low, ethanol: low, fragrance: high }
+    scores: { 탈취력: 3, 건조속도: 3, 향강도: 5 }
+  - run_id: 6
+    factor_values: { deodorizer: high, ethanol: low, fragrance: high }
+    scores: { 탈취력: 5, 건조속도: 2, 향강도: 5 }
+  - run_id: 7
+    factor_values: { deodorizer: low, ethanol: high, fragrance: high }
+    scores: { 탈취력: 3, 건조속도: 5, 향강도: 5 }
+  - run_id: 8
+    factor_values: { deodorizer: high, ethanol: high, fragrance: high }
+    scores: { 탈취력: 5, 건조속도: 4, 향강도: 5 }

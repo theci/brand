@@ -24,6 +24,10 @@ rules:
   # --- 탈취: 탈취제(화학제품안전법) ---
   - match: { use: fabric, claim: deodorize, form: liquid }
     candidate: { regime: chemical_safety, category_code: 탈취제_비분사형_액상, category_label: "탈취제(비분사형 액상)" }
+  - match: { use: fabric, claim: deodorize, form: spray }
+    candidate: { regime: chemical_safety, category_code: 탈취제_분사형_액상, category_label: "탈취제(분사형 액상)" }
+  - match: { use: space, claim: deodorize, form: spray }
+    candidate: { regime: chemical_safety, category_code: 탈취제_분사형_액상, category_label: "탈취제(분사형 액상)" }
   - match: { use: space, claim: deodorize, form: sustained_release }
     candidate: { regime: chemical_safety, category_code: 탈취제_지속방출형, category_label: "탈취제(지속방출형)" }
 

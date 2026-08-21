@@ -1,0 +1,5 @@
+sample_id: FS-001
+formula_ref: fabric-spray v1
+condition: 45C
+start_date: 2026-08-21        # 홈 배치 제조일 = 안정성 시험 시작
+observations: []              # 분사형: 분리·변색·노즐 막힘(잔여물)·향 변조·미생물 관찰

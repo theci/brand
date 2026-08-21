@@ -54,3 +54,12 @@ packaging:
     unit_price: 2500
     moq: 1000
     notes: 방향제(리드 디퓨저)용 병·리드 세트
+
+  - id: trigger-spray-300ml
+    name: 300ml 트리거 스프레이 보틀
+    type: spray
+    volume_ml: 300
+    material: PET
+    unit_price: 700
+    moq: 2000
+    notes: 섬유 탈취 스프레이용 분사 트리거 보틀

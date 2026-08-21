@@ -441,3 +441,15 @@ ingredients:
     grade: cosmetic
     cas: "110-27-0"
     notes: 확산 보조. 향이 리드를 타고 잘 올라오게 함(모세관 상승 촉진).
+
+  # --- 섬유 탈취제용: 소취(냄새 포집) 성분 ---
+  - id: cyclodextrin
+    name: 하이드록시프로필사이클로덱스트린
+    inci: Hydroxypropyl Cyclodextrin
+    category: 소취제
+    price_per_kg: 45000
+    density: 1.0
+    has_coa: true
+    grade: cosmetic
+    cas: "128446-35-5"
+    notes: 도넛 모양 분자. 가운데 구멍에 냄새 분자를 가둬(캡슐화) 냄새를 '덮지 않고 잡음'.

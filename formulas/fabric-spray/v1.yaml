@@ -1,0 +1,30 @@
+product: 섬유 탈취 스프레이(라벤더)
+slug: fabric-spray
+version: 1
+regime: chemical_safety        # 화학제품안전법(생활화학제품)
+product_category: 탈취제_분사형_액상   # ★분사형(스프레이) — 비분사형보다 시험비 비쌈
+# product_type은 방향/탈취제엔 의미 없지만 코어 필수 필드라 placeholder.
+product_type: leave_on
+status: 개발중
+base_batch_g: 300
+phases:
+  # 물 베이스 상온 혼합. 사이클로덱스트린을 물에 먼저 녹인 뒤 나머지 투입.
+  - name: A (수상 혼합)
+    process: 정제수에 사이클로덱스트린을 완전히 녹인다
+    ingredients:
+      - { id: water, percent: 88.5 }
+      - { id: cyclodextrin, percent: 4.0 }
+  - name: B (가용화·첨가)
+    process: 에탄올에 향을 녹여 폴리소르베이트와 함께 A에 투입, 보존제 첨가
+    ingredients:
+      - { id: ethanol, percent: 4.0 }
+      - { id: polysorbate-80, percent: 2.0 }
+      - { id: phenoxyethanol, percent: 1.0 }
+      - { id: lavender-eo, percent: 0.5 }
+packaging:
+  - { id: trigger-spray-300ml, qty_per_unit: 1 }
+fill_volume_ml: 300
+notes: >
+  섬유 탈취 스프레이(분사형 액상). 화학제품안전법 신고 대상.
+  사이클로덱스트린이 냄새 분자를 포집(캡슐화)해 '덮는' 게 아니라 '잡는' 탈취.
+  물 베이스라 보존제 필수. percent 합계 100.
