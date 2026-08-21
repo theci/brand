@@ -45,3 +45,12 @@ packaging:
     unit_price: 300
     moq: 1000
     notes: 90~100g 비누바 1개 포장
+
+  - id: diffuser-bottle-200ml
+    name: 200ml 디퓨저 유리병 + 리드스틱
+    type: bottle
+    volume_ml: 200
+    material: 유리
+    unit_price: 2500
+    moq: 1000
+    notes: 방향제(리드 디퓨저)용 병·리드 세트

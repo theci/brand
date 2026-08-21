@@ -1,0 +1,5 @@
+sample_id: RD-001
+formula_ref: reed-diffuser v1
+condition: 45C
+start_date: 2026-08-21        # 홈 배치 제조일 = 안정성 시험 시작
+observations: []              # 방향제: 변색·층분리·발향 지속·향 변조를 관찰

@@ -418,3 +418,26 @@ ingredients:
     has_coa: true
     grade: cosmetic
     notes: 보습 겸 항균 보조. 보존제 효과를 보강해 방부력을 높임.
+
+  # --- 방향제(리드 디퓨저)용 원료: 용제·확산보조 ---
+  - id: dpg
+    name: 디프로필렌글라이콜
+    inci: Dipropylene Glycol
+    category: 용제
+    price_per_kg: 4000
+    density: 1.02
+    has_coa: true
+    grade: cosmetic
+    cas: "25265-71-8"
+    notes: 디퓨저 베이스 용제. 향을 녹이고 리드로 천천히 끌어올림. 저취·저휘발.
+
+  - id: ipm
+    name: 이소프로필미리스테이트
+    inci: Isopropyl Myristate
+    category: 용제
+    price_per_kg: 6000
+    density: 0.85
+    has_coa: true
+    grade: cosmetic
+    cas: "110-27-0"
+    notes: 확산 보조. 향이 리드를 타고 잘 올라오게 함(모세관 상승 촉진).

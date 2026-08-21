@@ -1,0 +1,24 @@
+product: 라벤더 리드 디퓨저
+slug: reed-diffuser
+version: 1
+regime: chemical_safety        # ★화장품 아님! 화학제품안전법(생활화학제품)
+product_category: 방향제_지속방출형   # fees.yaml 품목 코드 (리드=지속 방출)
+# product_type은 화장품 개념(씻어냄/안씻어냄)이라 방향제엔 의미 없지만 코어 필수 필드라 placeholder.
+product_type: leave_on
+status: 개발중
+base_batch_g: 200
+phases:
+  # 디퓨저는 가열 없이 상온에서 섞기만 하면 된다(에멀전·비누와 다름).
+  - name: A (상온 블렌딩)
+    process: 상온에서 용제(DPG·IPM·에탄올)에 향료를 넣고 맑아질 때까지 저어 혼합
+    ingredients:
+      - { id: dpg, percent: 63.0 }
+      - { id: ethanol, percent: 12.0 }
+      - { id: ipm, percent: 5.0 }
+      - { id: lavender-eo, percent: 20.0 }
+packaging:
+  - { id: diffuser-bottle-200ml, qty_per_unit: 1 }
+fill_volume_ml: 200
+notes: >
+  리드 디퓨저(방향제·지속방출형). 화학제품안전법 안전확인대상생활화학제품 신고 대상.
+  가열 없이 상온 블렌딩. 향료 20% + 용제(DPG/IPM/에탄올). percent 합계 100.

@@ -1,0 +1,37 @@
+# 리드 디퓨저 2^3 완전요인 스크리닝
+# 변수: 향료%(fragrance), 용제 DPG%(dpg), 확산제 IPM%(ipm)
+# 평가: 발향강도/지속력/확산속도 1~5점
+name: 디퓨저 스크리닝
+formula_ref: reed-diffuser
+factors: [fragrance, dpg, ipm]
+levels:
+  fragrance: { low: 15, high: 25 }
+  dpg: { low: 55, high: 68 }
+  ipm: { low: 3, high: 8 }
+response_items: [발향강도, 지속력, 확산속도]
+
+runs:
+  - run_id: 1
+    factor_values: { fragrance: low, dpg: low, ipm: low }
+    scores: { 발향강도: 3, 지속력: 3, 확산속도: 3 }
+  - run_id: 2
+    factor_values: { fragrance: high, dpg: low, ipm: low }
+    scores: { 발향강도: 5, 지속력: 2, 확산속도: 3 }
+  - run_id: 3
+    factor_values: { fragrance: low, dpg: high, ipm: low }
+    scores: { 발향강도: 2, 지속력: 5, 확산속도: 3 }
+  - run_id: 4
+    factor_values: { fragrance: high, dpg: high, ipm: low }
+    scores: { 발향강도: 4, 지속력: 4, 확산속도: 3 }
+  - run_id: 5
+    factor_values: { fragrance: low, dpg: low, ipm: high }
+    scores: { 발향강도: 3, 지속력: 3, 확산속도: 5 }
+  - run_id: 6
+    factor_values: { fragrance: high, dpg: low, ipm: high }
+    scores: { 발향강도: 5, 지속력: 2, 확산속도: 5 }
+  - run_id: 7
+    factor_values: { fragrance: low, dpg: high, ipm: high }
+    scores: { 발향강도: 2, 지속력: 5, 확산속도: 5 }
+  - run_id: 8
+    factor_values: { fragrance: high, dpg: high, ipm: high }
+    scores: { 발향강도: 4, 지속력: 4, 확산속도: 5 }
