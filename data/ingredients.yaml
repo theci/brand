@@ -641,3 +641,95 @@ ingredients:
     grade: food
     nutrition: { kcal_per_100g: 0, sodium_mg: 0 }
     notes: 바닐라향. 소량 사용.
+
+  # --- 시즈닝 견과류용 식품 원료 (견과·시즈닝·코팅 바인더) ---
+  - id: roasted-almond
+    name: 아몬드(로스팅)
+    inci: Roasted Almond
+    category: 견과류(식품)
+    price_per_kg: 14000
+    density: 0.55
+    has_coa: true
+    cosmetic_grade: false
+    food_grade: true
+    grade: food
+    nutrition: { kcal_per_100g: 600, protein_g: 21, fat_g: 52, carb_g: 22, sugar_g: 4, sodium_mg: 1 }
+    notes: 베이스 견과. 고지방이라 산패(산화)가 최대 품질 리스크(예시값).
+
+  - id: sugar
+    name: 설탕
+    inci: Sugar
+    category: 감미료(식품)
+    price_per_kg: 1500
+    density: 0.85
+    has_coa: true
+    cosmetic_grade: false
+    food_grade: true
+    grade: food
+    nutrition: { kcal_per_100g: 400, carb_g: 100, sugar_g: 100, sodium_mg: 0 }
+    notes: 시즈닝 단맛(예시값).
+
+  - id: honey-powder
+    name: 꿀분말
+    inci: Honey Powder
+    category: 감미료(식품)
+    price_per_kg: 12000
+    density: 0.6
+    has_coa: true
+    cosmetic_grade: false
+    food_grade: true
+    grade: food
+    nutrition: { kcal_per_100g: 320, carb_g: 80, sugar_g: 75, sodium_mg: 10 }
+    notes: 허니 풍미(예시값).
+
+  - id: butter-powder
+    name: 버터파우더
+    inci: Butter Powder
+    category: 유가공(식품)
+    price_per_kg: 18000
+    density: 0.5
+    has_coa: true
+    cosmetic_grade: false
+    food_grade: true
+    grade: food
+    nutrition: { kcal_per_100g: 520, protein_g: 5, fat_g: 35, carb_g: 45, sugar_g: 40, sodium_mg: 400, food_allergen_ids: [milk] }
+    notes: 버터 풍미. 우유 알레르기 유발물질 포함(예시값).
+
+  - id: coating-oil
+    name: 해바라기유(코팅유)
+    inci: Sunflower Oil
+    category: 유지(식품)
+    price_per_kg: 6000
+    density: 0.92
+    has_coa: true
+    cosmetic_grade: false
+    food_grade: true
+    grade: food
+    nutrition: { kcal_per_100g: 900, fat_g: 100, sodium_mg: 0 }
+    notes: 시즈닝 파우더 부착용 바인더(코팅유). 많으면 산패·눅눅 위험(예시값).
+
+  - id: refined-salt
+    name: 정제염
+    inci: Refined Salt
+    category: 정제염(식품)
+    price_per_kg: 800
+    density: 1.2
+    has_coa: true
+    cosmetic_grade: false
+    food_grade: true
+    grade: food
+    nutrition: { kcal_per_100g: 0, carb_g: 0, sugar_g: 0, sodium_mg: 39000 }
+    notes: 짠맛. 소량이라도 나트륨 기여가 큼(예시값).
+
+  - id: yeast-extract
+    name: 효모추출물
+    inci: Yeast Extract
+    category: 향미증진(식품)
+    price_per_kg: 15000
+    density: 0.7
+    has_coa: true
+    cosmetic_grade: false
+    food_grade: true
+    grade: food
+    nutrition: { kcal_per_100g: 250, protein_g: 40, carb_g: 20, sugar_g: 0, sodium_mg: 3500 }
+    notes: 감칠맛(우마미). 나트륨 포함(예시값).

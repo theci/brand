@@ -1,0 +1,31 @@
+product: 허니버터 시즈닝 아몬드
+slug: honey-butter-almond
+version: 1
+regime: food                 # ★ 식품위생법(일반식품). 견과류가공품.
+product_category: 견과류가공품
+# product_type은 화장품 개념이라 식품엔 의미 없지만 코어 필수 필드라 placeholder.
+product_type: leave_on
+status: 개발중
+base_batch_g: 1000
+phases:
+  # 시즈닝 견과 공정: 로스팅 → 오일 코팅(바인더) → 시즈닝 파우더 텀블링 부착 → 건조.
+  - name: A (로스팅·오일 코팅)
+    process: 아몬드를 로스팅하고, 코팅유를 분무해 표면을 코팅(파우더 부착용 바인더)
+    ingredients:
+      - { id: roasted-almond, percent: 78.0 }
+      - { id: coating-oil, percent: 3.0 }       # 바인더 — 시즈닝 부착률 좌우
+  - name: B (시즈닝 텀블링·건조)
+    process: 텀블러에서 시즈닝 파우더를 넣어 균일 부착 후 저온 건조
+    ingredients:
+      - { id: sugar, percent: 8.0 }
+      - { id: honey-powder, percent: 5.0 }
+      - { id: butter-powder, percent: 3.0 }      # 우유 알레르기
+      - { id: refined-salt, percent: 1.5 }
+      - { id: yeast-extract, percent: 1.5 }      # 감칠맛(단짠 밸런스)
+packaging:
+  - { id: nut-pack-30g, qty_per_unit: 1 }
+net_weight_g: 30             # 30g 봉지(1회 제공량 기준 영양 환산)
+notes: >
+  허니버터 시즈닝 아몬드(일반식품·견과류가공품). 학습용 재구성 — HBAF 실제 레시피 아님.
+  핵심 품질변수: 시즈닝 부착률(바인더 오일) · 바삭함(로스팅) · 산패(견과 지방 산화).
+  percent 합계 100. 플레이버 확장(와사비·콘칩 등)은 시즈닝 파우더만 교체 = SKU 확장비 0원.

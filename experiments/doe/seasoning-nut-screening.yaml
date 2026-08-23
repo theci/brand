@@ -1,0 +1,41 @@
+# 시즈닝 견과 2^3 완전요인 스크리닝
+# 변수:
+#   oil       : 코팅유(바인더) % — 시즈닝 파우더 부착
+#   seasoning : 시즈닝 파우더 총 % (설탕+꿀+버터+염+효모)
+#   roast     : 로스팅 온도(°C) — 바삭함·고소함
+# 평가(1~5점): 부착률 / 바삭함 / 맛강도 / 고소함 / 산패위험(낮을수록 좋음)
+# ※ HBAF 실제 처방이 아니라 학습용 재구성 데이터.
+name: 시즈닝 견과 스크리닝
+formula_ref: honey-butter-almond
+factors: [oil, seasoning, roast]
+levels:
+  oil: { low: 2, high: 5 }
+  seasoning: { low: 15, high: 22 }
+  roast: { low: 150, high: 170 }
+response_items: [부착률, 바삭함, 맛강도, 고소함, 산패위험]
+
+runs:
+  - run_id: 1
+    factor_values: { oil: low, seasoning: low, roast: low }
+    scores: { 부착률: 2, 바삭함: 3, 맛강도: 3, 고소함: 2, 산패위험: 2 }
+  - run_id: 2
+    factor_values: { oil: high, seasoning: low, roast: low }
+    scores: { 부착률: 4, 바삭함: 2, 맛강도: 3, 고소함: 2, 산패위험: 4 }
+  - run_id: 3
+    factor_values: { oil: low, seasoning: high, roast: low }
+    scores: { 부착률: 2, 바삭함: 3, 맛강도: 5, 고소함: 2, 산패위험: 2 }
+  - run_id: 4
+    factor_values: { oil: high, seasoning: high, roast: low }
+    scores: { 부착률: 4, 바삭함: 2, 맛강도: 5, 고소함: 2, 산패위험: 4 }
+  - run_id: 5
+    factor_values: { oil: low, seasoning: low, roast: high }
+    scores: { 부착률: 2, 바삭함: 5, 맛강도: 3, 고소함: 4, 산패위험: 3 }
+  - run_id: 6
+    factor_values: { oil: high, seasoning: low, roast: high }
+    scores: { 부착률: 4, 바삭함: 4, 맛강도: 3, 고소함: 4, 산패위험: 5 }
+  - run_id: 7
+    factor_values: { oil: low, seasoning: high, roast: high }
+    scores: { 부착률: 2, 바삭함: 5, 맛강도: 5, 고소함: 4, 산패위험: 3 }
+  - run_id: 8
+    factor_values: { oil: high, seasoning: high, roast: high }
+    scores: { 부착률: 4, 바삭함: 4, 맛강도: 5, 고소함: 4, 산패위험: 5 }

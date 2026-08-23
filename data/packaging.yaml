@@ -80,3 +80,11 @@ packaging:
     unit_price: 150
     moq: 5000
     notes: 저당 아이스크림용 미니컵+돔뚜껑. 냉동 유통(콜드체인) 필요.
+
+  - id: nut-pack-30g
+    name: 30g 견과 시즈닝 파우치(질소충전)
+    type: pouch
+    material: 알루미늄증착 필름(식품용)
+    unit_price: 200
+    moq: 5000
+    notes: 시즈닝 견과용 질소충전 봉지. 차광·산소차단으로 산패 지연. 상온 유통.
