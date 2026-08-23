@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import streamlit as st
 
+from brandlab.food import nutrition_facts
 from brandlab.labeling import screen
 from brandlab.regimes import UnsupportedRegimeError, regime_for
 from brandlab.regimes.registry import UnknownRegimeError
@@ -131,6 +132,38 @@ def render_regime(regime, formula) -> None:
     )
 
 
+def render_food(formula, lab, regime) -> None:
+    """식품 뷰: 영양성분표(계산) + 레짐 검증(알레르기·등급) + 표시 필수항목."""
+    facts = nutrition_facts(formula, lab.ingredients)
+
+    st.subheader("영양성분표 (원료 영양의 가중합 · 계산값)")
+    serving = formula.net_weight_g
+    p, s = facts.per_100g, facts.per_serving
+    items = [
+        ("열량(kcal)", p.kcal, s.kcal if s else None),
+        ("단백질(g)", p.protein_g, s.protein_g if s else None),
+        ("지방(g)", p.fat_g, s.fat_g if s else None),
+        ("탄수화물(g)", p.carb_g, s.carb_g if s else None),
+        ("당류(g)", p.sugar_g, s.sugar_g if s else None),
+        ("나트륨(mg)", p.sodium_mg, s.sodium_mg if s else None),
+    ]
+    rows = []
+    for name, v100, vs in items:
+        row = {"항목": name, "100g당": round(v100, 1)}
+        if s is not None:
+            row[f"1회 제공량({serving:g}g)"] = round(vs, 1)
+        rows.append(row)
+    st.table(rows)
+
+    for flag in facts.emphasis_flags:
+        st.success(f"강조표시 후보: {flag}")
+    for w in facts.warnings:
+        st.warning(w)
+
+    # 이어서 표준 레짐 뷰(알레르기·등급 검증 + 식품 표시 필수항목)
+    render_regime(regime, formula)
+
+
 lab = load_lab()
 if not lab.formulas:
     st.info("처방이 없습니다.")
@@ -152,8 +185,10 @@ except UnknownRegimeError as exc:
     st.error(str(exc))
     st.stop()
 
-# 레짐에 따라 화면 분기: 화장품은 리치 뷰, 그 외는 레짐 뷰.
+# 레짐에 따라 화면 분기: 화장품 리치 뷰 / 식품 영양성분 뷰 / 그 외 레짐 뷰.
 if regime_code == "cosmetics":
     render_cosmetics(formula, lab)
+elif regime_code == "food":
+    render_food(formula, lab, regime)
 else:
     render_regime(regime, formula)

@@ -728,6 +728,34 @@ class RestrictedList(BaseModel):
     substances: list[RestrictedSubstance] = Field(default_factory=list)
 
 
+class FoodAllergen(BaseModel):
+    """식품 알레르기 유발물질 1종.
+
+    id      : 원료 FoodNutrition.food_allergen_ids 가 참조하는 id (예: "milk")
+    name    : 한글 표시명 (예: "우유")
+    keywords: 원재료명에서 탐지할 키워드(선택) — 유청·카제인 등
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    id: str = Field(min_length=1)
+    name: str = Field(min_length=1)
+    keywords: list[str] = Field(default_factory=list)
+
+
+class FoodAllergenList(BaseModel):
+    """allergens_food.yaml — 식품 알레르기 표시대상."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    last_updated: date | None = None
+    source_url: str = Field(min_length=1)
+    allergens: list[FoodAllergen] = Field(default_factory=list)
+
+    def index(self) -> dict[str, FoodAllergen]:
+        return {a.id: a for a in self.allergens}
+
+
 # ---------------------------------------------------------------------------
 # 규제 판정 (RegimeAdvisor) — 제품 의도 → 레짐 분류
 # ---------------------------------------------------------------------------

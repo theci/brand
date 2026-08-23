@@ -1,0 +1,26 @@
+# 식품 알레르기 유발물질 표시대상 (식품표시광고법 표시기준)
+# ※ 표시대상 목록·범위는 고시로 확인·갱신할 것(현재는 확인 필요 예시).
+#    id는 원료 nutrition.food_allergen_ids 가 참조한다.
+last_updated: 2026-08-24
+source_url: "https://www.foodsafetykorea.go.kr/  # 알레르기 표시대상 — 실제 URL로 교체"
+
+allergens:
+  - { id: egg, name: 알류(가금류), keywords: [난, 계란, 달걀, 난백, 난황] }
+  - { id: milk, name: 우유, keywords: [우유, 유청, 카제인, 분유, 유당] }
+  - { id: buckwheat, name: 메밀, keywords: [메밀] }
+  - { id: peanut, name: 땅콩, keywords: [땅콩] }
+  - { id: soy, name: 대두, keywords: [대두, 콩, 두유, 대두단백] }
+  - { id: wheat, name: 밀, keywords: [밀, 밀가루, 글루텐] }
+  - { id: mackerel, name: 고등어, keywords: [고등어] }
+  - { id: crab, name: 게, keywords: [게] }
+  - { id: shrimp, name: 새우, keywords: [새우] }
+  - { id: pork, name: 돼지고기, keywords: [돼지고기, 돈육] }
+  - { id: peach, name: 복숭아, keywords: [복숭아] }
+  - { id: tomato, name: 토마토, keywords: [토마토] }
+  - { id: sulfites, name: 아황산류, keywords: [아황산, 아황산나트륨, 이산화황] }
+  - { id: walnut, name: 호두, keywords: [호두] }
+  - { id: chicken, name: 닭고기, keywords: [닭고기, 계육] }
+  - { id: beef, name: 쇠고기, keywords: [쇠고기, 우육] }
+  - { id: squid, name: 오징어, keywords: [오징어] }
+  - { id: shellfish, name: 조개류, keywords: [조개, 굴, 전복, 홍합] }
+  - { id: pine-nut, name: 잣, keywords: [잣] }

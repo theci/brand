@@ -9,10 +9,11 @@ from __future__ import annotations
 
 import pytest
 
+from brandlab.adcopy import lint
 from brandlab.advisor import classify, compare, feasibility
 from brandlab.core.models import Formula, ProductIntent
 from brandlab.food import nutrition_facts
-from brandlab.loader import BrandLab
+from brandlab.loader import BrandLab, load_ad_terms, load_food_allergens
 from brandlab.regimes import Regime, available, get_regime
 from brandlab.regimes.base import Finding, LabelSpec
 
@@ -216,3 +217,31 @@ def test_hff_validate_warns_high_cost_and_burden(project_root):
     assert any(x.code == "hff.burden" for x in findings)
     # 식품용 원료라 등급 error는 없어야 한다.
     assert not any(x.code == "hff.grade.not_food" for x in findings)
+
+
+# ---------------------------------------------------------------------------
+# P-Food-5: 식품 알레르기 데이터 + 광고표현(식품표시광고법)
+# ---------------------------------------------------------------------------
+def test_food_allergens_loads(project_root):
+    lst = load_food_allergens(project_root / "data" / "regulatory")
+    idx = lst.index()
+    assert "milk" in idx and idx["milk"].name == "우유"
+
+
+def test_food_ad_terms_flags_functional_claims(project_root):
+    terms = load_ad_terms(
+        project_root / "data" / "regulatory" / "food" / "ad_terms.yaml"
+    )
+    r = lint("면역력 높이는 다이어트 젤리, 혈당 관리에 좋아요", terms)
+    highs = {f.expression for f in r.findings if f.risk == "high"}
+    assert {"면역력", "다이어트", "혈당"} <= highs
+
+
+def test_food_validate_maps_allergen_name(project_root):
+    # 원료의 food_allergen_ids(milk)가 한글명(우유)으로 매핑돼 안내되는지.
+    regime = get_regime("food", project_root)
+    f = _mk_formula([{"id": "whey-protein-isolate", "percent": 100.0}])
+    msg = next(
+        x.message for x in regime.validate(f) if x.code == "food.allergen.declare"
+    )
+    assert "우유" in msg and "milk" in msg

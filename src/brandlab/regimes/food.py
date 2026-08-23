@@ -20,6 +20,7 @@ from pathlib import Path
 from ..core.models import Formula, IngredientMaster
 from ..loader import (
     PROJECT_ROOT,
+    load_food_allergens,
     load_ingredients,
     load_prohibited,
     load_regime_info,
@@ -93,19 +94,35 @@ class FoodRegime:
                 )
             )
 
-        # ③ 알레르기 유발물질 안내
+        # ③ 알레르기 유발물질 안내 (id → 한글명 매핑, 미등록 id는 경고)
+        allergen_idx = load_food_allergens(self._reg_dir).index()
         for ing_id in self._formula_ids(product):
             ing = idx.get(ing_id)
-            if ing is None or ing.nutrition is None:
+            if ing is None or ing.nutrition is None or not ing.nutrition.food_allergen_ids:
                 continue
-            if ing.nutrition.food_allergen_ids:
-                joined = ", ".join(ing.nutrition.food_allergen_ids)
+            parts: list[str] = []
+            unknown: list[str] = []
+            for aid in ing.nutrition.food_allergen_ids:
+                a = allergen_idx.get(aid)
+                if a is None:
+                    unknown.append(aid)
+                    parts.append(aid)
+                else:
+                    parts.append(f"{a.name}({aid})")
+            findings.append(
+                Finding(
+                    "info",
+                    "food.allergen.declare",
+                    f"알레르기 유발물질 포함 원료: {ing.name}({ing_id}) → {', '.join(parts)}. "
+                    "라벨에 알레르기 표시가 필요합니다.",
+                )
+            )
+            if unknown:
                 findings.append(
                     Finding(
-                        "info",
-                        "food.allergen.declare",
-                        f"알레르기 유발물질 포함 원료: {ing.name}({ing_id}) → {joined}. "
-                        "라벨에 알레르기 표시가 필요합니다.",
+                        "warning",
+                        "food.allergen.unknown",
+                        f"allergens_food.yaml에 없는 알레르기 id: {unknown}. 목록을 보강하세요.",
                     )
                 )
 

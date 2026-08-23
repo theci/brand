@@ -18,6 +18,7 @@ from .models import (
     Config,
     DoeDesign,
     Formula,
+    FoodAllergenList,
     Fragrance,
     IngredientMaster,
     ChemicalSafetyFees,
@@ -138,6 +139,14 @@ def load_restricted(
     """data/regulatory/<regime_code>/restricted.yaml 을 읽는다."""
     path = Path(regulatory_dir) / regime_code / "restricted.yaml"
     return RestrictedList.model_validate(_read_yaml(path))
+
+
+def load_food_allergens(
+    regulatory_dir: Path | str = REGULATORY_DIR,
+) -> FoodAllergenList:
+    """data/regulatory/food/allergens_food.yaml 을 읽는다."""
+    path = Path(regulatory_dir) / "food" / "allergens_food.yaml"
+    return FoodAllergenList.model_validate(_read_yaml(path))
 
 
 # ---------------------------------------------------------------------------
@@ -333,6 +342,7 @@ __all__ = [
     "load_classification_rules",
     "load_prohibited",
     "load_restricted",
+    "load_food_allergens",
     "load_formula",
     "iter_formula_paths",
     "load_doe",
