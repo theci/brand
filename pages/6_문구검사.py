@@ -1,19 +1,65 @@
-"""문구 검사 페이지 — 상세페이지 문구에서 금지·주의 표현 하이라이트."""
+"""문구 검사 페이지 — 광고표현 도메인(레짐)별로 규칙을 골라 검사한다.
+
+같은 마케팅 문구라도 제품이 무엇이냐에 따라 적용되는 광고 규제가 다르다
+(화장품=화장품법 표시광고, 식품=식품표시광고법, …). 그래서 검사에 쓸
+'광고표현 도메인'을 먼저 고르고, 해당 레짐의 ad_terms.yaml로 검사한다.
+
+도메인은 data/regulatory/<레짐>/ad_terms.yaml 존재로 자동 탐색한다.
+새 레짐(예: food)의 ad_terms.yaml을 추가하면 코드 수정 없이 선택지에 나타난다.
+"""
 
 from __future__ import annotations
+
+from pathlib import Path
 
 import streamlit as st
 
 from brandlab.adcopy import highlight_html, lint
-from brandlab.ui import load_ad_terms, setup_korean_font
+from brandlab.loader import (
+    PROJECT_ROOT,
+    load_ad_terms,
+    load_regime_info,
+)
+from brandlab.ui import setup_korean_font
 
 st.set_page_config(page_title="문구검사 · brand-lab", page_icon="📝", layout="wide")
 setup_korean_font()
 st.title("상세페이지 문구 검사")
 
-terms = load_ad_terms()
+reg_dir = Path(PROJECT_ROOT) / "data" / "regulatory"
+
+# 광고표현 도메인 자동 탐색: ad_terms.yaml 이 있는 레짐만 선택지에 오른다.
+domains = sorted(p.parent.name for p in reg_dir.glob("*/ad_terms.yaml"))
+if not domains:
+    st.error(
+        "광고표현 데이터를 찾지 못했습니다. "
+        "data/regulatory/<레짐>/ad_terms.yaml 을 추가하세요."
+    )
+    st.stop()
+
+
+def domain_label(code: str) -> str:
+    """레짐 코드를 사람이 읽는 이름으로. regime.yaml 이 없으면 코드 그대로."""
+    try:
+        info = load_regime_info(code, reg_dir)
+        return f"{info.display_name} ({code})"
+    except Exception:
+        return code
+
+
+label_to_code = {domain_label(c): c for c in domains}
+chosen_label = st.selectbox("광고표현 도메인(레짐)", list(label_to_code))
+regime_code = label_to_code[chosen_label]
+
+if len(domains) == 1:
+    st.caption(
+        "현재 등록된 광고표현 도메인은 화장품뿐입니다. "
+        "다른 레짐(예: 식품)의 ad_terms.yaml 을 추가하면 여기서 선택할 수 있습니다."
+    )
+
+terms = load_ad_terms(reg_dir / regime_code / "ad_terms.yaml")
 st.caption(
-    f"등록된 표현 {len(terms.terms)}건 "
+    f"'{chosen_label}' 기준 · 등록된 표현 {len(terms.terms)}건 "
     + (f"· 데이터 갱신 {terms.last_updated}" if terms.last_updated else "")
 )
 
