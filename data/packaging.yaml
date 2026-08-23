@@ -63,3 +63,11 @@ packaging:
     unit_price: 700
     moq: 2000
     notes: 섬유 탈취 스프레이용 분사 트리거 보틀
+
+  - id: jelly-pouch-30g
+    name: 30g 젤리 스틱 파우치
+    type: pouch
+    material: 필름(식품용)
+    unit_price: 120
+    moq: 5000
+    notes: 저당 젤리(상온 유통)용 개별 스틱 파우치. 식품 포장재.

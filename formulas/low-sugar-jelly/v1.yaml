@@ -21,7 +21,9 @@ phases:
     ingredients:
       - { id: citric-acid-food, percent: 2.0 }
       - { id: grape-flavor-food, percent: 0.5 }
-net_weight_g: 30             # 젤리 1컵 30g(1회 제공량 기준 영양 환산에 사용)
+packaging:
+  - { id: jelly-pouch-30g, qty_per_unit: 1 }
+net_weight_g: 30             # 젤리 1스틱 30g(1회 제공량 기준 영양 환산에 사용)
 notes: >
   저당 포도 젤리(일반식품). 설탕 대신 알룰로스로 당류를 낮춤. percent 합계 100.
   기능성(혈당·다이어트 등)을 표방하면 건강기능식품 영역이 되므로 표시·광고 주의.
