@@ -71,3 +71,12 @@ packaging:
     unit_price: 120
     moq: 5000
     notes: 저당 젤리(상온 유통)용 개별 스틱 파우치. 식품 포장재.
+
+  - id: icecream-cup-100
+    name: 100ml 아이스크림 컵(뚜껑 포함)
+    type: cup
+    volume_ml: 100
+    material: 종이+PE(식품용)
+    unit_price: 150
+    moq: 5000
+    notes: 저당 아이스크림용 미니컵+돔뚜껑. 냉동 유통(콜드체인) 필요.

@@ -1,0 +1,32 @@
+product: 저당 바닐라 아이스크림
+slug: lowsugar-icecream
+version: 1
+regime: food                 # ★ 식품위생법(일반식품). 아이스크림류/빙과.
+product_category: 빙과류_아이스크림
+# product_type은 화장품 개념이라 식품엔 의미 없지만 코어 필수 필드라 placeholder.
+product_type: leave_on
+status: 개발중
+base_batch_g: 1000           # 홈 개발 배치 1kg
+phases:
+  # 식품은 '상(phase)'을 공정 단계로 쓴다. 아이스크림: 믹스→살균→균질→에이징→프리징.
+  - name: A (믹스 조제·저온살균·균질)
+    process: 원료를 섞어 65도 30분 저온살균 후 균질(homogenize), 급냉
+    ingredients:
+      - { id: milk, percent: 44.0 }
+      - { id: cream, percent: 30.0 }          # 유지방 — 크리미함·녹는속도
+      - { id: skim-milk-powder, percent: 6.0 } # 무지유고형분 — 바디감
+      - { id: allulose, percent: 12.0 }        # 저당 핵심(빙점강하로 얼음결정↓)
+      - { id: erythritol, percent: 6.0 }       # 저가 감미료(과다 시 쿨링 뒷맛)
+      - { id: soy-lecithin, percent: 0.3 }     # 유화제
+      - { id: stabilizer-blend, percent: 1.0 } # 안정제 — 얼음결정 억제
+  - name: B (에이징 후 향·프리징)
+    process: 4도에서 4~12시간 숙성(에이징) 후 착향, 프리저로 공기 주입(오버런)하며 냉동
+    ingredients:
+      - { id: vanilla-flavor-food, percent: 0.7 }
+packaging:
+  - { id: icecream-cup-100, qty_per_unit: 1 }
+net_weight_g: 100            # 미니컵 100g(1회 제공량 기준 영양 환산)
+notes: >
+  저당 바닐라 아이스크림(일반식품·빙과). 설탕 대신 알룰로스+에리스리톨로 당류↓.
+  ※ 라라스윗 실제 레시피가 아니라 학습용 재구성. percent 합계 100.
+  냉동 유통(콜드체인) 제품 — 저자본 물류 부담 큼(시나리오 참조).

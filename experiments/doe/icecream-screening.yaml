@@ -1,0 +1,41 @@
+# 저당 아이스크림 2^3 완전요인 스크리닝
+# 변수:
+#   allulose_share : 총 감미료 중 알룰로스 비중(%) (low=에리스리톨 많음, high=알룰로스 많음)
+#   fat            : 유지방(%)
+#   stabilizer     : 안정제(%)
+# 평가(1~5점): 크리미함 / 결정감(얼음 꺼끌함·낮을수록 좋음) / 녹는저항 / 단맛 / 쿨링뒷맛(낮을수록 좋음)
+# ※ 라라스윗 실제 처방이 아니라 학습용 재구성 데이터.
+name: 저당 아이스크림 스크리닝
+formula_ref: lowsugar-icecream
+factors: [allulose_share, fat, stabilizer]
+levels:
+  allulose_share: { low: 50, high: 80 }
+  fat: { low: 8, high: 14 }
+  stabilizer: { low: 0.4, high: 1.2 }
+response_items: [크리미함, 결정감, 녹는저항, 단맛, 쿨링뒷맛]
+
+runs:
+  - run_id: 1
+    factor_values: { allulose_share: low, fat: low, stabilizer: low }
+    scores: { 크리미함: 2, 결정감: 5, 녹는저항: 2, 단맛: 3, 쿨링뒷맛: 5 }
+  - run_id: 2
+    factor_values: { allulose_share: high, fat: low, stabilizer: low }
+    scores: { 크리미함: 2, 결정감: 4, 녹는저항: 2, 단맛: 4, 쿨링뒷맛: 2 }
+  - run_id: 3
+    factor_values: { allulose_share: low, fat: high, stabilizer: low }
+    scores: { 크리미함: 4, 결정감: 4, 녹는저항: 3, 단맛: 3, 쿨링뒷맛: 5 }
+  - run_id: 4
+    factor_values: { allulose_share: high, fat: high, stabilizer: low }
+    scores: { 크리미함: 4, 결정감: 3, 녹는저항: 3, 단맛: 4, 쿨링뒷맛: 2 }
+  - run_id: 5
+    factor_values: { allulose_share: low, fat: low, stabilizer: high }
+    scores: { 크리미함: 3, 결정감: 3, 녹는저항: 4, 단맛: 3, 쿨링뒷맛: 4 }
+  - run_id: 6
+    factor_values: { allulose_share: high, fat: low, stabilizer: high }
+    scores: { 크리미함: 3, 결정감: 2, 녹는저항: 4, 단맛: 4, 쿨링뒷맛: 1 }
+  - run_id: 7
+    factor_values: { allulose_share: low, fat: high, stabilizer: high }
+    scores: { 크리미함: 5, 결정감: 2, 녹는저항: 5, 단맛: 3, 쿨링뒷맛: 4 }
+  - run_id: 8
+    factor_values: { allulose_share: high, fat: high, stabilizer: high }
+    scores: { 크리미함: 5, 결정감: 1, 녹는저항: 5, 단맛: 4, 쿨링뒷맛: 1 }

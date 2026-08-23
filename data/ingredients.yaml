@@ -549,3 +549,95 @@ ingredients:
     grade: food
     nutrition: { kcal_per_100g: 400, protein_g: 85, fat_g: 1, carb_g: 5, sugar_g: 2, sodium_mg: 300, food_allergen_ids: [milk] }
     notes: 고단백 스낵용. 우유 알레르기 유발물질 포함(예시값).
+
+  # --- 저당 아이스크림용 식품 원료 (유제품·감미료·유화안정제) ---
+  - id: milk
+    name: 우유
+    inci: Milk
+    category: 유제품(식품)
+    price_per_kg: 2000
+    density: 1.03
+    has_coa: true
+    cosmetic_grade: false
+    food_grade: true
+    grade: food
+    nutrition: { kcal_per_100g: 60, protein_g: 3.2, fat_g: 3.3, carb_g: 4.8, sugar_g: 4.8, sodium_mg: 44, food_allergen_ids: [milk] }
+    notes: 아이스크림 믹스 베이스(예시값). ※ ingredients.yaml에 화장품용 water와 별개.
+
+  - id: cream
+    name: 생크림
+    inci: Cream
+    category: 유지방(식품)
+    price_per_kg: 9000
+    density: 0.99
+    has_coa: true
+    cosmetic_grade: false
+    food_grade: true
+    grade: food
+    nutrition: { kcal_per_100g: 340, protein_g: 2.1, fat_g: 36, carb_g: 3.0, sugar_g: 3.0, sodium_mg: 30, food_allergen_ids: [milk] }
+    notes: 유지방원. 크리미함·녹는속도를 좌우(예시값).
+
+  - id: skim-milk-powder
+    name: 탈지분유
+    inci: Skim Milk Powder
+    category: 유고형분(식품)
+    price_per_kg: 8000
+    density: 0.5
+    has_coa: true
+    cosmetic_grade: false
+    food_grade: true
+    grade: food
+    nutrition: { kcal_per_100g: 358, protein_g: 36, fat_g: 1, carb_g: 52, sugar_g: 52, sodium_mg: 550, food_allergen_ids: [milk] }
+    notes: 무지유고형분(조직·바디감). 유당 포함(예시값).
+
+  - id: erythritol
+    name: 에리스리톨
+    inci: Erythritol
+    category: 감미료(식품)
+    price_per_kg: 5000
+    density: 1.2
+    has_coa: true
+    cosmetic_grade: false
+    food_grade: true
+    grade: food
+    nutrition: { kcal_per_100g: 0, carb_g: 100, sugar_g: 0, sodium_mg: 0 }
+    notes: 당알코올 감미료. 저가지만 과다 시 쿨링 뒷맛·설사 이슈(예시값).
+
+  - id: soy-lecithin
+    name: 대두레시틴
+    inci: Soy Lecithin
+    category: 유화제(식품)
+    price_per_kg: 12000
+    density: 1.0
+    has_coa: true
+    cosmetic_grade: false
+    food_grade: true
+    grade: food
+    nutrition: { kcal_per_100g: 760, protein_g: 0, fat_g: 80, carb_g: 10, sugar_g: 0, sodium_mg: 5, food_allergen_ids: [soy] }
+    notes: 유화제(지방 분산). 대두 알레르기 유발물질 포함(예시값).
+
+  - id: stabilizer-blend
+    name: 안정제(구아검·로커스트빈검)
+    inci: Guar Gum, Locust Bean Gum
+    category: 안정제(식품)
+    price_per_kg: 20000
+    density: 0.8
+    has_coa: true
+    cosmetic_grade: false
+    food_grade: true
+    grade: food
+    nutrition: { kcal_per_100g: 300, protein_g: 1, carb_g: 77, sugar_g: 0, sodium_mg: 20 }
+    notes: 얼음결정 억제·조직 안정. 소량으로 식감을 크게 바꿈(예시값).
+
+  - id: vanilla-flavor-food
+    name: 바닐라착향료(식품용)
+    inci: Vanilla Flavor
+    category: 착향료(식품)
+    price_per_kg: 30000
+    density: 1.0
+    has_coa: true
+    cosmetic_grade: false
+    food_grade: true
+    grade: food
+    nutrition: { kcal_per_100g: 0, sodium_mg: 0 }
+    notes: 바닐라향. 소량 사용.
