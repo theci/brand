@@ -1,0 +1,17 @@
+# 건강기능식품 라벨 필수 기재 항목 (요약 · 예시)
+# ※ 실제 항목·문구·도안은 건강기능식품 표시기준 고시로 확인·갱신할 것.
+last_updated: 2026-08-24
+source_url: "https://www.mfds.go.kr/  # 건강기능식품 표시기준 — 실제 URL로 교체"
+
+items:
+  - { key: hff_mark, label: "'건강기능식품' 문구 및 도안", required: true }
+  - { key: product_name, label: 제품명, required: true }
+  - { key: business, label: 업소명 및 소재지, required: true }
+  - { key: expiry, label: 소비기한 및 보관방법, required: true }
+  - { key: net_content, label: 내용량, required: true }
+  - { key: functional_ingredient, label: 기능성 원료명 및 함량, required: true }
+  - { key: functionality, label: 영양·기능정보(인정된 기능성 내용), required: true }
+  - { key: intake, label: 섭취량·섭취방법, required: true }
+  - { key: intake_caution, label: 섭취 시 주의사항, required: true }
+  - { key: not_drug, label: "'질병 예방·치료 의약품이 아님' 문구", required: true }
+  - { key: adverse_report, label: 이상사례 신고 안내, required: true }

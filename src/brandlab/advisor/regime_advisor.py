@@ -321,9 +321,10 @@ def feasibility(
             f"최저 비용 경로 '{cheapest.candidate.label}' 총 규제비용 "
             f"{cheapest.total_regulatory_cost:,}원 (SKU {sku_count}종·{horizon_years}년)."
         )
+        cfg = load_config(Path(root) / "data" / "config.yaml")
+        thresholds = cfg.regulatory_thresholds
         if budget:
-            cfg = load_config(Path(root) / "data" / "config.yaml")
-            ratio = cfg.regulatory_thresholds.budget_caution_ratio
+            ratio = thresholds.budget_caution_ratio
             share = cheapest.total_regulatory_cost / budget
             if share > ratio:
                 verdict = "CAUTION"
@@ -331,6 +332,14 @@ def feasibility(
                     f"규제비용이 예산의 {share:.0%}로 임계({ratio:.0%})를 초과합니다. "
                     "총 예산 대비 비중을 재검토하세요."
                 )
+        # 예산을 안 줘도, 최저 경로 규제비용이 1인 창업 임계를 넘으면 CAUTION.
+        # (건강기능식품 등 진입 부담이 큰 레짐을 자동으로 잡는다.)
+        if verdict == "OK" and cheapest.total_regulatory_cost > thresholds.high_entry_cost:
+            verdict = "CAUTION"
+            reasons.append(
+                f"규제비용 {cheapest.total_regulatory_cost:,}원이 1인 창업 임계"
+                f"({thresholds.high_entry_cost:,}원)를 초과합니다. 사업성을 재검토하세요."
+            )
     return FeasibilityResult(
         intent=intent,
         verdict=verdict,

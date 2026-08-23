@@ -14,6 +14,7 @@ from .base import Regime
 from .chemical_safety import ChemicalSafetyRegime
 from .cosmetics import CosmeticsRegime
 from .food import FoodRegime
+from .health_functional_food import HealthFunctionalFoodRegime
 from .unsupported import BiocideRegime, QuasiDrugRegime
 
 # 레짐 코드 → 팩토리(root를 받아 Regime 인스턴스를 만든다).
@@ -22,6 +23,7 @@ _BUILTIN: dict[str, Callable[[Path | str], Regime]] = {
     "cosmetics": CosmeticsRegime,
     "chemical_safety": ChemicalSafetyRegime,
     "food": FoodRegime,
+    "health_functional_food": HealthFunctionalFoodRegime,
     "biocide": BiocideRegime,
     "quasi_drug": QuasiDrugRegime,
 }

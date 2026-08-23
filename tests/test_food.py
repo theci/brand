@@ -9,14 +9,15 @@ from __future__ import annotations
 
 import pytest
 
-from brandlab.core.models import Formula
+from brandlab.advisor import classify, compare, feasibility
+from brandlab.core.models import Formula, ProductIntent
 from brandlab.food import nutrition_facts
 from brandlab.loader import BrandLab
 from brandlab.regimes import Regime, available, get_regime
 from brandlab.regimes.base import Finding, LabelSpec
 
 
-def _mk_formula(ingredients: list[dict], regime: str = "food") -> Formula:
+def _mk_formula(ingredients: list[dict], *, regime: str = "food") -> Formula:
     """테스트용 최소 처방(합계 100)."""
     return Formula.model_validate(
         {
@@ -161,3 +162,57 @@ def test_nutrition_facts_missing_warns(project_root):
     facts = nutrition_facts(f, lab.ingredients)
     assert facts.warnings
     assert "glycerin" in facts.warnings[0]
+
+
+# ---------------------------------------------------------------------------
+# P-Food-4: 건강기능식품 레짐 + advise 규칙 (일반식품 vs 건기식)
+# ---------------------------------------------------------------------------
+def test_hff_regime_registered_and_conforms(project_root):
+    assert "health_functional_food" in available()
+    regime = get_regime("health_functional_food", project_root)
+    assert isinstance(regime, Regime)
+    assert regime.code == "health_functional_food"
+
+
+def test_classify_ingest_nourish_is_food(project_root):
+    res = classify(ProductIntent(use="ingest", claims=["nourish"]), root=project_root)
+    assert {c.regime_code for c in res.candidates} == {"food"}
+
+
+def test_classify_ingest_functional_is_hff(project_root):
+    res = classify(ProductIntent(use="ingest", claims=["blood_sugar"]), root=project_root)
+    assert {c.regime_code for c in res.candidates} == {"health_functional_food"}
+
+
+def test_compare_food_vs_hff_cost_gap(project_root):
+    # 같은 섭취 제품이라도 '영양(일반식품)' vs '혈당(건기식)'은 비용이 천지차.
+    intent = ProductIntent(use="ingest", claims=["nourish", "blood_sugar"])
+    result = compare(intent, sku_count=3, horizon_years=5, root=project_root)
+    rows = {r.candidate.regime_code: r for r in result.rows}
+    assert "food" in rows and "health_functional_food" in rows
+    assert rows["health_functional_food"].total_regulatory_cost == 3_000_000
+    assert rows["food"].total_regulatory_cost < rows["health_functional_food"].total_regulatory_cost
+    assert result.cheapest.candidate.regime_code == "food"
+    assert "저렴" in result.summary
+
+
+def test_feasibility_ingest_food_ok(project_root):
+    r = feasibility(ProductIntent(use="ingest", claims=["nourish"]), root=project_root)
+    assert r.verdict == "OK"
+
+
+def test_feasibility_ingest_functional_caution(project_root):
+    # 건기식 단독 경로 → 진입비용(제조업 허가) 임계 초과 → 예산 없어도 CAUTION.
+    r = feasibility(ProductIntent(use="ingest", claims=["immune"]), root=project_root)
+    assert r.verdict == "CAUTION"
+    assert any("임계" in x or "초과" in x for x in r.reasons)
+
+
+def test_hff_validate_warns_high_cost_and_burden(project_root):
+    regime = get_regime("health_functional_food", project_root)
+    f = _mk_formula([{"id": "allulose", "percent": 100.0}], regime="health_functional_food")
+    findings = regime.validate(f)
+    assert any(x.code == "hff.cost.high" and x.level == "warning" for x in findings)
+    assert any(x.code == "hff.burden" for x in findings)
+    # 식품용 원료라 등급 error는 없어야 한다.
+    assert not any(x.code == "hff.grade.not_food" for x in findings)
