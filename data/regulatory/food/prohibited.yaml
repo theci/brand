@@ -1,0 +1,8 @@
+# 식품 사용금지 원료/물질 (식품위생법·식품첨가물 기준 및 규격 별표)
+# ※ 빈 껍데기입니다. 고시 별표를 보고 직접 채우세요.
+#    substances가 비어 있으면 food 레짐 validate가 "규제 데이터 미입력" 경고를 냅니다(통과 아님).
+# 각 항목: name(성분명), cas(선택), reference(근거)
+last_updated: 2026-08-24
+source_url: "https://www.foodsafetykorea.go.kr/  # 식품첨가물 기준 및 규격 — 실제 URL로 교체"
+
+substances: []

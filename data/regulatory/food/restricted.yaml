@@ -1,0 +1,8 @@
+# 식품 사용제한 원료/첨가물 (식품첨가물 기준 및 규격 — 사용량 한도)
+# ※ 빈 껍데기입니다. 고시 별표(사용기준)를 보고 직접 채우세요.
+# 각 항목: name(성분명), cas(선택), max_percent(완제품 중 한도%),
+#          product_category(특정 식품유형에만 적용 시), reference(근거)
+last_updated: 2026-08-24
+source_url: "https://www.foodsafetykorea.go.kr/  # 식품첨가물 사용기준 — 실제 URL로 교체"
+
+substances: []

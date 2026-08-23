@@ -32,6 +32,7 @@ from .doe import (
     interpretation_sentences,
     main_effects_plot,
 )
+from .food import nutrition_facts
 from .fragrance import blend_sheet, ifra_check, maceration_due, note_pyramid
 from .labeling import screen
 from .loader import (
@@ -241,6 +242,67 @@ def label(
 
     # 면책 문구 — 반드시 맨 아래
     console.print(Panel(result.disclaimer, border_style="red"))
+
+
+@app.command()
+def nutrition(
+    slug: str = typer.Argument(..., help="처방 슬러그 (예: low-sugar-jelly)"),
+    version: str = typer.Argument(..., help="버전 (예: v1)"),
+) -> None:
+    """식품 처방의 영양성분표(100g·1회 제공량)를 계산한다."""
+    ver = _parse_version(version)
+    lab = BrandLab.load()
+    formula = _find_formula(lab, slug, ver)
+
+    if formula.regime != "food":
+        console.print(
+            f"[yellow]⚠ 이 처방의 레짐은 '{formula.regime}'입니다. "
+            "영양성분 계산은 식품(food) 처방을 위한 기능입니다.[/yellow]"
+        )
+
+    facts = nutrition_facts(formula, lab.ingredients)
+
+    console.print(
+        Panel.fit(
+            f"[bold]{formula.product}[/bold]  ([cyan]{formula.slug}[/cyan] v{formula.version})",
+            title="영양성분 계산",
+        )
+    )
+
+    table = Table(title="영양성분표", title_justify="left", header_style="bold")
+    table.add_column("항목")
+    table.add_column("100g당", justify="right")
+    serving = formula.net_weight_g
+    if facts.per_serving is not None:
+        table.add_column(f"1회 제공량({serving:g}g)", justify="right")
+
+    rows = [
+        ("열량(kcal)", facts.per_100g.kcal, facts.per_serving.kcal if facts.per_serving else None),
+        ("단백질(g)", facts.per_100g.protein_g, facts.per_serving.protein_g if facts.per_serving else None),
+        ("지방(g)", facts.per_100g.fat_g, facts.per_serving.fat_g if facts.per_serving else None),
+        ("탄수화물(g)", facts.per_100g.carb_g, facts.per_serving.carb_g if facts.per_serving else None),
+        ("당류(g)", facts.per_100g.sugar_g, facts.per_serving.sugar_g if facts.per_serving else None),
+        ("나트륨(mg)", facts.per_100g.sodium_mg, facts.per_serving.sodium_mg if facts.per_serving else None),
+    ]
+    for name, v100, vserv in rows:
+        if facts.per_serving is not None:
+            table.add_row(name, f"{v100:.1f}", f"{vserv:.1f}")
+        else:
+            table.add_row(name, f"{v100:.1f}")
+    console.print(table)
+
+    for flag in facts.emphasis_flags:
+        console.print(f"[green]· {flag}[/green]")
+    for w in facts.warnings:
+        console.print(f"[yellow]⚠ {w}[/yellow]")
+
+    console.print(
+        Panel(
+            "이 계산은 원료 영양성분(예시값 포함)의 가중합입니다. 실제 표시 전 "
+            "공인 영양성분 분석과 식약처 표시기준을 확인하십시오.",
+            border_style="red",
+        )
+    )
 
 
 @app.command()

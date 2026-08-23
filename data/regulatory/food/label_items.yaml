@@ -1,0 +1,16 @@
+# 일반식품 라벨 필수 기재 항목 (요약 · 예시)
+# ※ 실제 항목·문구·순서는 「식품 등의 표시·광고에 관한 법률」 및 표시기준 고시로 확인·갱신할 것.
+last_updated: 2026-08-24
+source_url: "https://www.foodsafetykorea.go.kr/  # 식품표시광고법 표시기준 — 실제 URL로 교체"
+
+items:
+  - { key: product_type, label: "식품유형(예: 과자류·캔디류/젤리)", required: true }
+  - { key: business, label: 업소명 및 소재지, required: true }
+  - { key: expiry, label: 소비기한(구 유통기한), required: true }
+  - { key: net_content, label: 내용량(및 열량), required: true }
+  - { key: ingredients, label: 원재료명(함량 순), required: true }
+  - { key: nutrition, label: 영양성분표(열량·나트륨·탄수화물·당류·지방·단백질 등), required: true }
+  - { key: allergen, label: 알레르기 유발물질 표시, required: true, note: "해당 원료 함유 시" }
+  - { key: gmo, label: 유전자변형식품(GMO) 표시, required: false, note: "해당 시" }
+  - { key: origin, label: 원산지 표시, required: false, note: "해당 품목·원료 시" }
+  - { key: caution, label: 보관방법·주의사항·부정불량식품 신고 안내, required: true }

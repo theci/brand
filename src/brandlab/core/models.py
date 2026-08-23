@@ -58,6 +58,25 @@ class AllergenContent(BaseModel):
     percent: float = Field(gt=0, le=100)
 
 
+class FoodNutrition(BaseModel):
+    """식품 원료의 100g당 영양성분. 식품 레짐에서만 사용(화장품 원료는 None).
+
+    완제품 영양 = Σ(처방 내 원료 함량% / 100 × 원료 100g당 값).
+    food_allergen_ids: data/regulatory/food/allergens_food.yaml 의 알레르기 id 목록.
+    ※ 초기값은 예시이며, 공급처 성적서/식품영양성분 DB 값으로 교체할 것.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    kcal_per_100g: float = Field(ge=0)
+    protein_g: float = Field(default=0.0, ge=0)
+    fat_g: float = Field(default=0.0, ge=0)
+    carb_g: float = Field(default=0.0, ge=0)
+    sugar_g: float = Field(default=0.0, ge=0)
+    sodium_mg: float = Field(default=0.0, ge=0)
+    food_allergen_ids: list[str] = Field(default_factory=list)
+
+
 class Ingredient(BaseModel):
     """원료 1종.
 
@@ -92,6 +111,10 @@ class Ingredient(BaseModel):
     fragrance: bool = False
     # 착색제(색소) 여부 — 전성분 표시에서 순서 무관 그룹으로 분류
     colorant: bool = False
+    # 식품 원료의 100g당 영양성분(식품 레짐 전용). 화장품 원료는 None.
+    nutrition: FoodNutrition | None = None
+    # 식품용 등급 여부(화장품 cosmetic_grade와 대칭). 식품 처방은 True여야 한다.
+    food_grade: bool = False
     supplier: str | None = None
     notes: str | None = None
 
