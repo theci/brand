@@ -1,0 +1,35 @@
+name: 헤트라스풍 시그니처(재구성)
+version: 1
+총량_g: 100
+concentration_percent: 20    # 디퓨저 향료 로드 기준(향수로 쓸 땐 15~20)
+ethanol_percent: 0           # 디퓨저는 DPG 용제 기반 — 어코드 자체엔 에탄올 미포함
+maceration_weeks: 2
+maceration_start_date: 2026-08-22
+
+# ⚠️ 이 처방은 실제 헤트라스 레시피가 아니라, 공개된 시향 인상(머스크-우디 + 시트러스 톱)을
+#    이 플랫폼의 원료로 재구성한 학습용 예시입니다. 실제 브랜드 처방과 무관합니다.
+# parts는 원액(neat) 기준 상대 비율. dilution은 계량에 쓰는 희석액 농도(%).
+accords:
+  - name: 탑 (시트러스 — 첫인상 확산)
+    materials:
+      - { id: bergamot, parts: 25, dilution: 100 }
+      - { id: lemon, parts: 10, dilution: 100 }
+  - name: 미들 (플로럴-그린 — 연결)
+    materials:
+      - { id: geranium, parts: 8, dilution: 10 }
+      - { id: rose-absolute, parts: 4, dilution: 10 }
+  - name: 베이스 (우디-머스크 — 잔향·지속의 핵심)
+    materials:
+      - { id: sandalwood, parts: 15, dilution: 10 }
+      - { id: ambroxan, parts: 12, dilution: 10 }
+      - { id: iso-e-super, parts: 20, dilution: 10 }
+      - { id: cedarwood, parts: 6, dilution: 10 }
+
+evaluations:
+  - date: 2026-08-22
+    timepoints:
+      - { 시점: 0분, 강도: 5, 메모: "베르가못 톱 화사하게 확산 — 첫인상 담당" }
+      - { 시점: 2시간, 강도: 4, 메모: "제라늄-로즈 미들로 부드럽게 전환" }
+      - { 시점: 8시간, 강도: 3, 메모: "샌달우드-앰브록산 우디머스크 잔향 시작" }
+      - { 시점: 24시간, 강도: 3, 메모: "잔향 유지력 강함 — 저가 대비 차별점" }
+      - { 시점: 72시간, 강도: 2, 메모: "iso-e-super 벨벳 우디 남음, 공간 무드 지속" }
