@@ -17,5 +17,8 @@ experiments/doe/*-interaction.png
 제품표준서*.md
 dossiers/
 
+# 상품 등록 자료 산출물 (화면에서 생성/저장)
+listings/
+
 # 마이그레이션 백업
 *.bak
