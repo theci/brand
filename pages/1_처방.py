@@ -14,6 +14,7 @@ from brandlab.formula_edit import (
     update_formula,
 )
 from brandlab.regimes import available
+from brandlab.templates import TEMPLATES, instantiate, list_templates
 from brandlab.ui import load_lab, setup_korean_font
 
 setup_korean_font()
@@ -92,6 +93,50 @@ def _assemble(
     if parent_version is not None:
         data["parent_version"] = int(parent_version)
     return data
+
+# ---------------------------------------------------------------------------
+# 템플릿에서 시작 (초보 추천)
+# ---------------------------------------------------------------------------
+with st.expander("🧩 템플릿에서 시작 (초보 추천)"):
+    st.caption("검증된 골격 처방으로 시작합니다. 생성 후 사전점검·수정으로 자유롭게 다듬으세요.")
+    _tlabels = {f"{name} — {desc}": key for key, name, desc in list_templates()}
+    _tlabel = st.selectbox("템플릿", list(_tlabels), key="tmpl_sel")
+    _tkey = _tlabels[_tlabel]
+    _t = TEMPLATES[_tkey]
+
+    tc1, tc2, tc3 = st.columns(3)
+    t_slug = tc1.text_input("slug (폴더명, 예: my-lotion)", key="tmpl_slug")
+    t_version = tc2.number_input("버전", min_value=1, value=1, step=1, key="tmpl_ver")
+    t_product = tc3.text_input("제품명(비우면 기본값)", key="tmpl_product")
+
+    st.caption(
+        f"레짐 {_t['regime']} · {_t['product_type']} · 기준 {_t.get('base_batch_g', 100)}g "
+        f"· 상 {len(_t['phases'])}개"
+    )
+    _prev = [
+        {"상": ph["name"], "원료": ", ".join(f"{i['id']} {i['percent']}%" for i in ph["ingredients"])}
+        for ph in _t["phases"]
+    ]
+    st.table(_prev)
+
+    if st.button("템플릿으로 생성", type="primary", key="tmpl_create"):
+        try:
+            if not t_slug.strip():
+                st.error("slug을 입력하세요.")
+            else:
+                data = instantiate(
+                    _tkey, slug=t_slug, version=int(t_version), product=t_product or None
+                )
+                path = create_formula(
+                    data, ingredient_ids=set(ing_ids), packaging_ids=set(pkg_ids)
+                )
+                st.success(
+                    f"생성됨: formulas/{path.parent.name}/{path.name} "
+                    "— 사전점검에서 HLB·배합한도를 확인하세요."
+                )
+                st.rerun()
+        except Exception as exc:  # noqa: BLE001
+            st.error(f"생성 실패: {exc}")
 
 # ---------------------------------------------------------------------------
 # 새 처방 생성
