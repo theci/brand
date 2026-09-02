@@ -14,10 +14,12 @@ from pathlib import Path
 
 import streamlit as st
 
-from brandlab.adcopy import highlight_html, lint
+from brandlab.adcopy import highlight_html
+from brandlab.compliance import compliance_check
 from brandlab.loader import (
     PROJECT_ROOT,
     load_ad_terms,
+    load_brand_core,
     load_regime_info,
 )
 from brandlab.ui import setup_korean_font
@@ -62,10 +64,25 @@ st.caption(
     + (f"· 데이터 갱신 {terms.last_updated}" if terms.last_updated else "")
 )
 
+# 브랜드 코어의 금지어까지 함께 검사한다(STEP9 규제 검수 게이트와 동일 엔진).
+core = load_brand_core()
+use_brand = st.checkbox(
+    "브랜드 금지어도 함께 검사(브랜드 코어)", value=bool(core.forbidden_words)
+)
+if core.forbidden_words:
+    st.caption("브랜드 금지어: " + ", ".join(core.forbidden_words))
+else:
+    st.caption("브랜드 코어에 금지어가 없습니다(STEP10 브랜드 코어에서 ⑧ 금지어를 채우세요).")
+st.caption("※ 이 검사는 STEP9 상품등록의 '규제 검수 게이트'와 같은 엔진입니다.")
+
 sample = "미백 효과가 뛰어난 크림. 주름개선과 염증 완화에 도움을 주고, 하루만에 완벽한 피부로."
 text = st.text_area("상세페이지 문구 입력", value=sample, height=200)
 
-result = lint(text, terms)
+result = compliance_check(
+    text,
+    terms=terms,
+    forbidden_words=core.forbidden_words if use_brand else None,
+)
 
 for w in result.warnings:
     st.warning(w)
@@ -75,6 +92,12 @@ c1, c2, c3 = st.columns(3)
 c1.metric("high", counts["high"])
 c2.metric("medium", counts["medium"])
 c3.metric("low", counts["low"])
+
+if text.strip():
+    if result.ok:
+        st.success("✅ 통과 — high 위험 표현 없음 (통과=합법 아님, 1차 스크리닝)")
+    else:
+        st.error(f"❌ 확인 필요 — high 위험 {counts['high']}건. 아래 강조 표현을 고치세요.")
 
 st.subheader("하이라이트")
 if text.strip():
