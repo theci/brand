@@ -1,0 +1,20 @@
+# 식품 출시 관문 체크리스트 (예시 — 식약처 기준 반드시 확인)
+regime: food
+source_url: https://www.foodsafetykorea.go.kr
+gates:
+  - key: manufacture-report
+    title: 품목제조보고
+    category: 등록
+    note: 품목별 제조보고(위탁 시 제조사).
+  - key: self-quality-test
+    title: 자가품질검사
+    category: 시험
+    note: 품목별 주기적 검사.
+  - key: allergen-label
+    title: 알레르기·원재료 표시 확인
+    category: 표시
+    note: 알레르기 유발물질·원재료명·함량 표기.
+  - key: label-review
+    title: 표시기재 검수
+    category: 표시
+    note: 영양성분·유통기한·보관방법 등 법정 표기.

@@ -13,7 +13,7 @@ from __future__ import annotations
 import streamlit as st
 
 from brandlab.dashboard import build_dashboard
-from brandlab.loader import load_all_fragrances, load_inventory
+from brandlab.loader import load_all_fragrances, load_cert_status, load_inventory
 from brandlab.ui import load_lab, load_stability_samples, setup_korean_font
 
 st.set_page_config(page_title="brand-lab", page_icon="🧪", layout="wide")
@@ -29,6 +29,7 @@ def _render_dashboard(lab) -> None:
             inventory=load_inventory(),
             stability_samples=load_stability_samples(),
             fragrances=load_all_fragrances(),
+            cert_status=load_cert_status(),
         )
     except Exception as exc:  # noqa: BLE001 — 대시보드 실패가 홈 전체를 막지 않게
         st.caption(f"대시보드 집계 생략: {exc}")
@@ -78,7 +79,8 @@ def home() -> None:
 - **STEP 7 · 원가·구매** — 손익·마진, 구매 목록
 - **STEP 8 · 문서** — 제품표준서(공장·기관 제출용)
 - **STEP 9 · 상품 등록** — 상세페이지·리스팅 자료 + 규제 검수 게이트
-- **STEP 10 · 마케팅** — 브랜드 코어 시트(근거 자동 추출) · 이미지 프롬프트 빌더(나노바나나 6블록)
+- **STEP 10 · 마케팅** — 브랜드 코어 시트 · 개발 서사(Build in Public) · 이미지 프롬프트 빌더
+- **STEP 11 · 출시 준비** — 인증·시험 관문 추적(등록·시험·표시·생산)
 
 YAML 파일을 편집하거나 화면에서 등록/수정한 뒤 **새로고침(F5)** 하면 반영됩니다.
 """
@@ -144,6 +146,9 @@ SECTIONS = {
         st.Page("pages/16_브랜드코어.py", title="브랜드 코어", icon="🎯"),
         st.Page("pages/20_개발서사.py", title="개발 서사", icon="🎬"),
         st.Page("pages/18_이미지프롬프트.py", title="이미지 프롬프트", icon="🖼️"),
+    ],
+    "STEP 11 · 출시 준비": [
+        st.Page("pages/21_인증추적.py", title="인증·시험 추적", icon="✅"),
     ],
 }
 

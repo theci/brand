@@ -12,6 +12,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from datetime import date
 
+from .certification import due_items as cert_due_items
 from .checks import check_formula
 from .fragrance import maceration_due
 from .inventory import inventory_rows
@@ -37,6 +38,7 @@ def build_dashboard(
     inventory=None,
     stability_samples=None,
     fragrances=None,
+    cert_status=None,
     today: date | None = None,
     near_days: int = 30,
 ) -> list[Alert]:
@@ -57,6 +59,15 @@ def build_dashboard(
                 for d in due
             ]
             alerts.append(Alert("stability_due", "밀린 안정성 관찰", len(due), items, "high", "실험"))
+
+    # 1.5) 밀린 인증·시험 관문(기한 경과 + 미완료)
+    if cert_status is not None:
+        cdue = cert_due_items(cert_status, today=today)
+        if cdue:
+            items = [
+                f"{e.product_ref} · {e.gate_key} (기한 {e.due_date})" for e in cdue
+            ]
+            alerts.append(Alert("cert_due", "밀린 인증·시험", len(cdue), items, "high", "출시 준비"))
 
     # 2) 유통기한 만료/임박 원료
     if inventory is not None:

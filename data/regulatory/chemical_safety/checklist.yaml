@@ -1,0 +1,20 @@
+# 생활화학제품(디퓨저 등) 출시 관문 체크리스트 (예시 — 환경부/K-BPC 기준 확인)
+regime: chemical_safety
+source_url: https://ecolife.me.go.kr
+gates:
+  - key: safety-confirm
+    title: 안전확인대상 생활화학제품 안전기준 확인
+    category: 시험
+    note: 지정 시험기관 안전기준 확인·시험.
+  - key: product-report
+    title: 신고
+    category: 등록
+    note: 안전기준 확인 후 신고.
+  - key: coa-collect
+    title: 원료별 성분·안전 자료 확보
+    category: 시험
+    note: 함유금지·제한물질 확인.
+  - key: label-review
+    title: 표시기재 검수
+    category: 표시
+    note: 사용상 주의·성분·신고번호 등 표기.

@@ -17,6 +17,8 @@ from .models import (
     AromaMaterialList,
     BatchRecord,
     BrandCore,
+    CertChecklist,
+    CertStatusList,
     Config,
     DoeDesign,
     Formula,
@@ -110,6 +112,26 @@ def load_positioning(
     if not p.exists():
         return Positioning()
     return Positioning.model_validate(_read_yaml(p))
+
+
+def load_cert_checklist(
+    regime_code: str, regulatory_dir: Path | str = REGULATORY_DIR
+) -> CertChecklist | None:
+    """data/regulatory/<regime>/checklist.yaml 을 읽는다. 없으면 None."""
+    path = Path(regulatory_dir) / regime_code / "checklist.yaml"
+    if not path.exists():
+        return None
+    return CertChecklist.model_validate(_read_yaml(path))
+
+
+def load_cert_status(
+    path: Path | str = DATA_DIR / "brand" / "cert_status.yaml",
+) -> CertStatusList:
+    """인증 진행 상태를 로드한다. 파일이 없으면 빈 목록(선택 데이터)."""
+    p = Path(path)
+    if not p.exists():
+        return CertStatusList()
+    return CertStatusList.model_validate(_read_yaml(p))
 
 
 def load_allergens(
@@ -389,6 +411,8 @@ __all__ = [
     "load_brand_core",
     "load_prompt_keywords",
     "load_positioning",
+    "load_cert_checklist",
+    "load_cert_status",
     "load_allergens",
     "load_limits",
     "load_labeling_rules",

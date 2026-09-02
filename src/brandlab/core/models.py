@@ -1010,3 +1010,56 @@ class Positioning(BaseModel):
     category: str | None = None  # 카테고리(작은 시장)
     entry_situations: list[str] = Field(default_factory=list)  # 카테고리 진입점(상황)
     comparison: list[ComparisonRow] = Field(default_factory=list)
+
+
+# ---------------------------------------------------------------------------
+# 인증·시험 관문 (data/regulatory/<regime>/checklist.yaml, data/brand/cert_status.yaml)
+# ---------------------------------------------------------------------------
+class CertStatus(str, Enum):
+    WAITING = "대기"
+    PROGRESS = "진행"
+    DONE = "완료"
+
+
+class CertGate(BaseModel):
+    """레짐별 필수 관문 1개(등록·시험·표시·생산 …)."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    key: str = Field(min_length=1)
+    title: str = Field(min_length=1)
+    category: str = "기타"  # 등록 | 시험 | 표시 | 생산 | 기타
+    note: str | None = None
+
+
+class CertChecklist(BaseModel):
+    """checklist.yaml — 레짐의 출시 관문 정의(예시, 확인 필요)."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    regime: str = Field(min_length=1)
+    last_updated: date | None = None
+    source_url: str | None = None
+    gates: list[CertGate] = Field(default_factory=list)
+
+
+class CertStatusEntry(BaseModel):
+    """제품별 관문 진행 상태."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    product_ref: str = Field(min_length=1)  # "slug vN"
+    gate_key: str = Field(min_length=1)
+    status: CertStatus = CertStatus.WAITING
+    due_date: date | None = None
+    cost: int | None = Field(default=None, ge=0)
+    owner: str | None = None
+    note: str | None = None
+
+
+class CertStatusList(BaseModel):
+    """cert_status.yaml — 관문 진행 상태 목록."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    entries: list[CertStatusEntry] = Field(default_factory=list)

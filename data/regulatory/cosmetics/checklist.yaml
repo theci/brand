@@ -1,0 +1,28 @@
+# 화장품 출시 관문 체크리스트 (예시 — 식약처 최신 기준으로 반드시 확인)
+regime: cosmetics
+source_url: https://www.mfds.go.kr
+gates:
+  - key: responsible-sales
+    title: 화장품책임판매업 등록
+    category: 등록
+    note: 판매 주체 등록. 집에서 만든 제품 판매 불가 — 위탁제조판매 구조.
+  - key: cgmp-oem
+    title: CGMP 제조업체(OEM/ODM) 위탁계약
+    category: 생산
+    note: 실제 제조는 CGMP 인증 공장에 위탁.
+  - key: stability
+    title: 안정성 시험 완료
+    category: 시험
+    note: RT/4℃/45℃ 가속·장기. 플랫폼 실험 STEP에서 데이터 확보.
+  - key: challenge-test
+    title: 방부력(챌린지) 시험
+    category: 시험
+    note: 물 함유 제품 필수. 외부 시험 랩 위탁.
+  - key: coa-collect
+    title: 원료별 CoA(성적서) 수집
+    category: 시험
+    note: 전 원료 규격서 확보(공장 이관·규제에 필요).
+  - key: label-review
+    title: 표시기재사항 검수
+    category: 표시
+    note: 전성분·주의·용량·책임판매업자 등 법정 표기.
