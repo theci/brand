@@ -1,0 +1,40 @@
+product: 순한 수분 로션
+slug: basic-lotion
+version: 2
+parent_version: 1           # v1에서 개선(HLB 위험 → 적합)
+regime: cosmetics
+product_type: leave_on
+status: 개발중
+base_batch_g: 200
+# ★ v1의 HLB 위험(공급 10.0 < 요구 12.57)을 해결한 버전.
+#   유화제를 '글리세릴스테아레이트시트레이트(HLB10) + 폴리소르베이트80(HLB15)' 2종 조합으로
+#   바꿔 공급 HLB를 12.0으로 끌어올림 → 사전점검 '적합'(Δ-0.57).
+phases:
+  - name: A (수상)
+    process: 70~75도로 가열하며 잔탄검을 글리세린에 먼저 개어 넣어 뭉침 방지
+    ingredients:
+      - { id: water, percent: 71.8 }
+      - { id: glycerin, percent: 5.0 }
+      - { id: sodium-hyaluronate, percent: 0.1 }
+      - { id: xanthan-gum, percent: 0.3 }
+  - name: B (유상)
+    process: 70~75도로 가열해 유화제(2종)·왁스·오일을 완전 용해
+    ingredients:
+      - { id: glyceryl-stearate-citrate, percent: 3.0 }   # HLB 10
+      - { id: polysorbate-80, percent: 2.0 }              # HLB 15(공동유화 — 공급 HLB↑)
+      - { id: cetyl-alcohol, percent: 4.0 }
+      - { id: squalane, percent: 9.0 }
+      - { id: shea-butter, percent: 1.0 }
+  - name: C (냉각 첨가)
+    process: 40도 이하로 냉각한 뒤 보존제·향·산화방지제 투입
+    ingredients:
+      - { id: phenoxyethanol, percent: 1.0 }
+      - { id: hexanediol, percent: 2.0 }
+      - { id: tocopherol, percent: 0.5 }
+      - { id: lavender-eo, percent: 0.3 }
+packaging:
+  - { id: jar-50ml, qty_per_unit: 1 }
+fill_volume_ml: 50
+notes: >
+  O/W 로션(개선판). 공급 HLB 12.0 ≈ 요구 12.57(Δ-0.57) → 유화 안정 예상.
+  물 함유 → 보존제 필수. 판매 전 미생물·방부력(챌린지) 시험은 외부 랩 필수.

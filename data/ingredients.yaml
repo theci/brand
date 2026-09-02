@@ -199,7 +199,8 @@ ingredients:
     grade: cosmetic
     cas: "9005-65-6"
     max_percent: 20.0
-    notes: 클렌징밤 워터오프(rinse-off)용 유화·가용화
+    hlb: 15.0            # 고HLB 유화제. O/W 유화에서 공동유화(공급 HLB↑)에 사용.
+    notes: 클렌징밤 워터오프(rinse-off)용 유화·가용화 + O/W 공동유화제
 
   - id: olive-liquid
     name: 올리브리퀴드

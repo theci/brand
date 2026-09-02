@@ -1,0 +1,41 @@
+# 순한 수분 로션 2^3 완전요인 스크리닝
+# 변수:
+#   emulsifier : 유화제 총량 % (유화 안정성)
+#   oil        : 유상 총량 % (보습감 ↑ · 발림 무거움 ↑)
+#   humectant  : 글리세린 % (끈적임)
+# 평가(1~5점): 유화안정성 / 보습감 / 발림성(가벼움) / 끈적임(낮을수록 좋음)
+# ※ 학습용 재구성 데이터. 실제 관능은 직접 시험으로 채울 것.
+name: 수분로션 스크리닝
+formula_ref: basic-lotion
+factors: [emulsifier, oil, humectant]
+levels:
+  emulsifier: { low: 4, high: 6 }
+  oil: { low: 10, high: 16 }
+  humectant: { low: 3, high: 7 }
+response_items: [유화안정성, 보습감, 발림성, 끈적임]
+
+runs:
+  - run_id: 1
+    factor_values: { emulsifier: low, oil: low, humectant: low }
+    scores: { 유화안정성: 2, 보습감: 2, 발림성: 4, 끈적임: 2 }
+  - run_id: 2
+    factor_values: { emulsifier: high, oil: low, humectant: low }
+    scores: { 유화안정성: 4, 보습감: 2, 발림성: 4, 끈적임: 2 }
+  - run_id: 3
+    factor_values: { emulsifier: low, oil: high, humectant: low }
+    scores: { 유화안정성: 2, 보습감: 4, 발림성: 2, 끈적임: 2 }
+  - run_id: 4
+    factor_values: { emulsifier: high, oil: high, humectant: low }
+    scores: { 유화안정성: 4, 보습감: 4, 발림성: 2, 끈적임: 2 }
+  - run_id: 5
+    factor_values: { emulsifier: low, oil: low, humectant: high }
+    scores: { 유화안정성: 2, 보습감: 2, 발림성: 4, 끈적임: 4 }
+  - run_id: 6
+    factor_values: { emulsifier: high, oil: low, humectant: high }
+    scores: { 유화안정성: 4, 보습감: 2, 발림성: 4, 끈적임: 4 }
+  - run_id: 7
+    factor_values: { emulsifier: low, oil: high, humectant: high }
+    scores: { 유화안정성: 2, 보습감: 4, 발림성: 2, 끈적임: 4 }
+  - run_id: 8
+    factor_values: { emulsifier: high, oil: high, humectant: high }
+    scores: { 유화안정성: 4, 보습감: 4, 발림성: 2, 끈적임: 4 }

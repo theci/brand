@@ -1,0 +1,37 @@
+product: 순한 수분 로션
+slug: basic-lotion
+version: 1
+regime: cosmetics
+product_type: leave_on       # 안 씻어냄 → 알러젠 임계값 0.001%(엄격)
+status: 개발중
+base_batch_g: 200
+# ★ 초보자의 '첫 시도' 처방. 리치한 유상(스쿠알란·세틸)을 중간 HLB 유화제 하나로만
+#   잡으려다 사전점검에서 HLB '위험'(층분리 위험)이 나온다. → v2에서 고HLB 공동유화제 추가.
+phases:
+  - name: A (수상)
+    process: 70~75도로 가열하며 잔탄검을 글리세린에 먼저 개어 넣어 뭉침 방지
+    ingredients:
+      - { id: water, percent: 72.8 }
+      - { id: glycerin, percent: 5.0 }
+      - { id: sodium-hyaluronate, percent: 0.1 }
+      - { id: xanthan-gum, percent: 0.3 }
+  - name: B (유상)
+    process: 70~75도로 가열해 유화제·왁스·오일을 완전 용해
+    ingredients:
+      - { id: glyceryl-stearate-citrate, percent: 4.0 }   # 유일한 유화제(HLB 10)
+      - { id: cetyl-alcohol, percent: 4.0 }               # 요구 HLB 15(컨시스턴시)
+      - { id: squalane, percent: 9.0 }                    # 요구 HLB 12(리치)
+      - { id: shea-butter, percent: 1.0 }                 # 요구 HLB 8
+  - name: C (냉각 첨가)
+    process: 40도 이하로 냉각한 뒤 보존제·향·산화방지제 투입(열에 약함)
+    ingredients:
+      - { id: phenoxyethanol, percent: 1.0 }   # 보존제 — 한도 1.0%에 '도달'(사전점검 경고)
+      - { id: hexanediol, percent: 2.0 }
+      - { id: tocopherol, percent: 0.5 }
+      - { id: lavender-eo, percent: 0.3 }
+packaging:
+  - { id: jar-50ml, qty_per_unit: 1 }
+fill_volume_ml: 50
+notes: >
+  O/W 로션 첫 시도(학습용). 리치 유상(요구 HLB 12.57) vs 유화제 1종(공급 HLB 10.0)
+  → 사전점검 HLB '위험'(Δ-2.57). v2에서 폴리소르베이트80(HLB 15)을 공동유화제로 추가해 해결.
