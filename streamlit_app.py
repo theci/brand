@@ -142,6 +142,7 @@ SECTIONS = {
     ],
     "STEP 10 · 마케팅": [
         st.Page("pages/16_브랜드코어.py", title="브랜드 코어", icon="🎯"),
+        st.Page("pages/20_개발서사.py", title="개발 서사", icon="🎬"),
         st.Page("pages/18_이미지프롬프트.py", title="이미지 프롬프트", icon="🖼️"),
     ],
 }
