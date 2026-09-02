@@ -16,11 +16,24 @@ import yaml
 
 from .core.models import DoeDesign, StabilitySample
 from .loader import EXPERIMENTS_DIR, load_doe, load_stability
+from .master_edit import save_with_backup
 
 
 def _dump(data: dict) -> str:
     # default_flow_style=None: 중첩 소형 컬렉션은 flow({a: 1})로, 손으로 쓴 기존 파일과 유사.
     return yaml.safe_dump(data, allow_unicode=True, sort_keys=False, default_flow_style=None)
+
+
+def _leading_comments(text: str) -> str:
+    """파일 맨 위의 주석·빈 줄 블록을 반환(첫 내용 줄에서 멈춤). 재덤프 시 헤더 보존용."""
+    out: list[str] = []
+    for ln in text.splitlines():
+        if ln.strip() == "" or ln.lstrip().startswith("#"):
+            out.append(ln)
+        else:
+            break
+    joined = "\n".join(out).rstrip("\n")
+    return (joined + "\n") if joined.strip() else ""
 
 
 def full_factorial_runs(factors: list[str], response_items: list[str]) -> list[dict]:
@@ -77,6 +90,41 @@ def delete_experiment(path: Path | str) -> None:
     path.unlink()
 
 
+# ---------------------------------------------------------------------------
+# 결과 입력 — DOE 점수 / 안정성 관찰값 (기존 파일 갱신, 헤더 주석 보존, .bak 롤백)
+# ---------------------------------------------------------------------------
+def set_doe_scores(path: Path | str, scores_by_run: dict) -> None:
+    """DOE 파일의 런별 점수를 갱신한다. scores_by_run: {run_id: {평가항목: 값|None}}."""
+    path = Path(path)
+    original = path.read_text(encoding="utf-8")
+    data = load_doe(path).model_dump(mode="json", exclude_none=True)
+    smap = {str(k): v for k, v in scores_by_run.items()}
+    for run in data.get("runs", []):
+        key = str(run["run_id"])
+        if key in smap:
+            run["scores"] = smap[key]
+    new_text = _leading_comments(original) + _dump(data)
+    save_with_backup(path, new_text, load_doe)
+
+
+def set_stability_observations(path: Path | str, observations: list[dict]) -> None:
+    """안정성 파일의 관찰 목록을 통째로 교체한다(추가·수정·삭제 반영).
+
+    observations의 각 항목은 최소 date를 가져야 하며, 빈 필드는 제외된다.
+    """
+    path = Path(path)
+    original = path.read_text(encoding="utf-8")
+    data = load_stability(path).model_dump(mode="json", exclude_none=True)
+    cleaned = []
+    for o in observations:
+        if not o.get("date"):
+            continue
+        cleaned.append({k: v for k, v in o.items() if v not in (None, "")})
+    data["observations"] = cleaned
+    new_text = _leading_comments(original) + _dump(data)
+    save_with_backup(path, new_text, load_stability)
+
+
 __all__ = [
     "full_factorial_runs",
     "doe_path",
@@ -84,4 +132,6 @@ __all__ = [
     "create_doe",
     "create_stability",
     "delete_experiment",
+    "set_doe_scores",
+    "set_stability_observations",
 ]

@@ -22,9 +22,15 @@ from brandlab.experiment_edit import (
     delete_experiment,
     doe_path,
     full_factorial_runs,
+    set_doe_scores,
+    set_stability_observations,
     stability_path,
 )
-from brandlab.loader import iter_doe_paths, iter_stability_paths
+from brandlab.loader import (
+    iter_doe_paths,
+    iter_stability_paths,
+    load_stability,
+)
 from brandlab.stability import stability_due, stability_summary
 from brandlab.ui import (
     load_doe_designs,
@@ -38,6 +44,20 @@ setup_korean_font()
 st.title("실험")
 
 _FORMULA_REFS = [""] + [f"{f.slug} v{f.version}" for f in load_lab().formulas]
+
+
+def _cell(v):
+    """표 셀 값을 문자열 또는 None으로 정리(빈칸/NaN → None)."""
+    if v is None:
+        return None
+    try:
+        if pd.isna(v):
+            return None
+    except (TypeError, ValueError):
+        pass
+    s = str(v).strip()
+    return s or None
+
 
 tab_doe, tab_stab = st.tabs(["DOE 분석", "안정성 시험"])
 
@@ -125,6 +145,44 @@ with tab_doe:
     else:
         fname = st.selectbox("DOE 파일", list(designs))
         design = designs[fname]
+
+        with st.expander("✏️ 점수 입력/수정"):
+            st.caption("factor_values(회색)는 읽기전용. 각 평가항목 점수를 입력하고 저장하세요.")
+            _rows = []
+            for run in design.runs:
+                row = {"run_id": run.run_id}
+                for fac in design.factors:
+                    row[fac] = str(run.factor_values.get(fac, ""))
+                for item in design.response_items:
+                    row[item] = run.scores.get(item)
+                _rows.append(row)
+            _edited = st.data_editor(
+                pd.DataFrame(_rows),
+                num_rows="fixed",
+                width="stretch",
+                disabled=["run_id"] + design.factors,
+                column_config={
+                    item: st.column_config.NumberColumn(item, min_value=0.0, step=1.0)
+                    for item in design.response_items
+                },
+                key=f"doe_scores_{fname}",
+            )
+            _dpath = {p.name: p for p in iter_doe_paths()}.get(fname)
+            if st.button("점수 저장", type="primary", key=f"doe_scores_save_{fname}"):
+                try:
+                    new_scores = {}
+                    for _, r in _edited.iterrows():
+                        sc = {}
+                        for item in design.response_items:
+                            v = pd.to_numeric(r[item], errors="coerce")
+                            sc[item] = None if pd.isna(v) else float(v)
+                        new_scores[r["run_id"]] = sc
+                    set_doe_scores(_dpath, new_scores)
+                    st.success("점수 저장됨 (.bak 백업)")
+                    st.rerun()
+                except Exception as exc:  # noqa: BLE001
+                    st.error(f"저장 실패: {exc}")
+
         analysis = doe_analysis(design)
 
         for w in analysis.warnings:
@@ -203,6 +261,50 @@ with tab_stab:
     if not samples:
         st.info("experiments/stability/*.yaml 이 없습니다. 위 '➕ 새 안정성 시료 등록'에서 시작하세요.")
     else:
+        _OBS_COLS = ["date", "외관", "분리", "색", "냄새", "경도", "판정", "비고"]
+        with st.expander("✏️ 관찰 기록 입력/수정"):
+            st.caption("행을 추가해 관찰을 기록하세요. date는 필수(관찰 예정: 시작일 기준 1/2/4/8주).")
+            _spaths = {p.name: p for p in iter_stability_paths()}
+            _osel = st.selectbox("시료 파일", list(_spaths), key="obs_sel")
+            _osample = load_stability(_spaths[_osel])
+            _orows = [
+                {"date": o.date, "외관": o.외관, "분리": o.분리, "색": o.색,
+                 "냄새": o.냄새, "경도": o.경도, "판정": o.판정, "비고": o.비고}
+                for o in _osample.observations
+            ]
+            _oedit = st.data_editor(
+                pd.DataFrame(_orows) if _orows else pd.DataFrame(columns=_OBS_COLS),
+                num_rows="dynamic",
+                width="stretch",
+                column_config={"date": st.column_config.DateColumn("date")},
+                key=f"obs_edit_{_osel}",
+            )
+            if st.button("관찰 저장", type="primary", key=f"obs_save_{_osel}"):
+                try:
+                    obs = []
+                    for _, r in _oedit.iterrows():
+                        d = r["date"]
+                        if d is None or (isinstance(d, float) and pd.isna(d)):
+                            continue
+                        try:
+                            if pd.isna(d):
+                                continue
+                        except (TypeError, ValueError):
+                            pass
+                        d = d.date() if hasattr(d, "date") else d
+                        obs.append({
+                            "date": d.isoformat() if hasattr(d, "isoformat") else str(d),
+                            "외관": _cell(r.get("외관")), "분리": _cell(r.get("분리")),
+                            "색": _cell(r.get("색")), "냄새": _cell(r.get("냄새")),
+                            "경도": _cell(r.get("경도")), "판정": _cell(r.get("판정")),
+                            "비고": _cell(r.get("비고")),
+                        })
+                    set_stability_observations(_spaths[_osel], obs)
+                    st.success("관찰 저장됨 (.bak 백업)")
+                    st.rerun()
+                except Exception as exc:  # noqa: BLE001
+                    st.error(f"저장 실패: {exc}")
+
         today = date.today()
         due = stability_due(samples, today=today)
 

@@ -12,6 +12,8 @@ from brandlab.experiment_edit import (
     delete_experiment,
     doe_path,
     full_factorial_runs,
+    set_doe_scores,
+    set_stability_observations,
     stability_path,
 )
 from brandlab.loader import load_doe, load_stability
@@ -108,3 +110,44 @@ def test_delete_experiment(tmp_path):
 def test_delete_missing_raises(tmp_path):
     with pytest.raises(FileNotFoundError):
         delete_experiment(doe_path("nope", tmp_path))
+
+
+def test_set_doe_scores_and_preserve_header(tmp_path):
+    path = doe_path("hd", tmp_path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    # 헤더 주석이 있는 DOE 파일
+    path.write_text(
+        "# 헤더 설명: 변수 A/B\n"
+        "name: 점수테스트\n"
+        "factors: [a, b]\n"
+        "response_items: [y]\n"
+        "runs:\n"
+        "- run_id: 1\n  factor_values: {a: low, b: low}\n  scores: {y: null}\n"
+        "- run_id: 2\n  factor_values: {a: high, b: low}\n  scores: {y: null}\n"
+        "- run_id: 3\n  factor_values: {a: low, b: high}\n  scores: {y: null}\n"
+        "- run_id: 4\n  factor_values: {a: high, b: high}\n  scores: {y: null}\n",
+        encoding="utf-8",
+    )
+    set_doe_scores(path, {1: {"y": 3.0}, 2: {"y": 5.0}, 3: {"y": 2.0}, 4: {"y": 4.0}})
+    design = load_doe(path)
+    assert {r.run_id: r.scores["y"] for r in design.runs} == {1: 3.0, 2: 5.0, 3: 2.0, 4: 4.0}
+    assert "# 헤더 설명" in path.read_text(encoding="utf-8")  # 헤더 보존
+
+
+def test_set_stability_observations(tmp_path):
+    path = stability_path("s", tmp_path)
+    create_stability(
+        {"sample_id": "S-1", "condition": "45C", "start_date": date(2026, 9, 1)}, path=path
+    )
+    set_stability_observations(
+        path,
+        [
+            {"date": "2026-09-08", "외관": "양호", "판정": "적합"},
+            {"date": "2026-09-15", "색": "미세 황변", "판정": "관찰", "비고": ""},
+        ],
+    )
+    sample = load_stability(path)
+    assert len(sample.observations) == 2
+    assert sample.observations[0].외관 == "양호"
+    assert sample.observations[1].판정 == "관찰"
+    assert sample.observations[1].비고 is None  # 빈 필드 제외
