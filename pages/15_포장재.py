@@ -14,6 +14,7 @@ from brandlab.master_edit import (
     append_item,
     delete_item,
     render_packaging_block,
+    replace_item,
     save_with_backup,
 )
 from brandlab.ui import format_won, load_lab, setup_korean_font
@@ -34,6 +35,10 @@ def _num(s: str) -> float | None:
 def _int(s: str) -> int | None:
     s = (s or "").strip()
     return None if s == "" else int(s)
+
+
+def _s(x) -> str:
+    return "" if x is None else str(x)
 
 
 lab = load_lab()
@@ -79,6 +84,50 @@ with st.expander("➕ 새 포장재 등록"):
                 st.rerun()
         except Exception as exc:  # noqa: BLE001
             st.error(f"등록 실패: {exc}")
+
+with st.expander("✏️ 포장재 수정"):
+    if not pkgs:
+        st.info("수정할 포장재가 없습니다.")
+    else:
+        e_options = {f"{p.name} ({p.id})": p for p in pkgs}
+        ep = e_options[st.selectbox("수정할 포장재", list(e_options), key="edit_pkg_sel")]
+        k = ep.id
+        st.caption(f"id: {ep.id} (id는 변경 불가).")
+        c1, c2, c3 = st.columns(3)
+        e_name = c1.text_input("이름", value=ep.name, key=f"e_name_{k}")
+        e_type = c2.text_input("형태", value=ep.type, key=f"e_type_{k}")
+        e_volume = c3.text_input("용량(ml)", value=_s(ep.volume_ml), key=f"e_vol_{k}")
+        c4, c5, c6 = st.columns(3)
+        e_material = c4.text_input("재질", value=ep.material or "", key=f"e_mat_{k}")
+        e_price = c5.text_input("개당 단가(원)", value=_s(ep.unit_price), key=f"e_price_{k}")
+        e_moq = c6.text_input("MOQ", value=_s(ep.moq), key=f"e_moq_{k}")
+        e_supplier = st.text_input("공급처", value=ep.supplier or "", key=f"e_sup_{k}")
+        e_notes = st.text_input("메모", value=ep.notes or "", key=f"e_notes_{k}")
+
+        if st.button("수정 저장", type="primary", key=f"e_save_{k}"):
+            try:
+                base = ep.model_dump(exclude_none=True)
+                base.update({"name": e_name.strip(), "type": e_type.strip()})
+                opt = {
+                    "volume_ml": _num(e_volume), "material": e_material.strip() or None,
+                    "unit_price": _num(e_price), "moq": _int(e_moq),
+                    "supplier": e_supplier.strip() or None, "notes": e_notes.strip() or None,
+                }
+                for kk, vv in opt.items():
+                    if vv is None:
+                        base.pop(kk, None)
+                    else:
+                        base[kk] = vv
+                Packaging.model_validate(base)
+                block = render_packaging_block(base)
+                original = PKG_PATH.read_text(encoding="utf-8")
+                save_with_backup(
+                    PKG_PATH, replace_item(original, ep.id, block), load_packaging
+                )
+                st.success(f"수정됨: {ep.id}  (백업: packaging.yaml.bak)")
+                st.rerun()
+            except Exception as exc:  # noqa: BLE001
+                st.error(f"수정 실패: {exc}")
 
 with st.expander("🗑️ 포장재 삭제"):
     if not pkgs:

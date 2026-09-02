@@ -15,6 +15,7 @@ from brandlab.master_edit import (
     append_item,
     delete_item,
     render_ingredient_block,
+    replace_item,
     save_with_backup,
 )
 from brandlab.ui import ingredient_flags, load_lab, setup_korean_font
@@ -24,6 +25,11 @@ def _num(s: str) -> float | None:
     """빈 문자열이면 None, 아니면 float. 형식이 틀리면 ValueError."""
     s = (s or "").strip()
     return None if s == "" else float(s)
+
+
+def _s(x) -> str:
+    """선택 숫자/문자 필드를 프리필 문자열로(없으면 빈 문자열)."""
+    return "" if x is None else str(x)
 
 st.set_page_config(page_title="원료 · brand-lab", page_icon="📦", layout="wide")
 setup_korean_font()
@@ -166,6 +172,74 @@ with st.expander("➕ 새 원료 등록"):
                 st.rerun()
         except Exception as exc:  # noqa: BLE001 — 사용자에게 사유 표시
             st.error(f"등록 실패: {exc}")
+
+with st.expander("✏️ 원료 수정"):
+    if not ings:
+        st.info("수정할 원료가 없습니다.")
+    else:
+        e_options = {f"{i.name} ({i.id})": i for i in ings}
+        ei = e_options[st.selectbox("수정할 원료", list(e_options), key="edit_ing_sel")]
+        k = ei.id  # 위젯 key 접미사 — 선택이 바뀌면 값이 새로 채워짐
+        st.caption(
+            f"id: {ei.id} (id는 변경 불가). 알러젠·영양성분 등 고급 필드는 그대로 유지됩니다."
+        )
+        c1, c2 = st.columns(2)
+        e_name = c1.text_input("원료명(한글)", value=ei.name, key=f"e_name_{k}")
+        e_inci = c2.text_input("INCI", value=ei.inci, key=f"e_inci_{k}")
+        e_category = st.text_input("분류", value=ei.category, key=f"e_cat_{k}")
+        c3, c4, c5 = st.columns(3)
+        e_price = c3.text_input("단가(원/kg)", value=_s(ei.price_per_kg), key=f"e_price_{k}")
+        e_density = c4.text_input("밀도(g/ml)", value=_s(ei.density), key=f"e_density_{k}")
+        e_max = c5.text_input("권장상한(%)", value=_s(ei.max_percent), key=f"e_max_{k}")
+        c6, c7, c8 = st.columns(3)
+        e_hlb = c6.text_input("HLB", value=_s(ei.hlb), key=f"e_hlb_{k}")
+        e_req = c7.text_input("required HLB", value=_s(ei.required_hlb), key=f"e_req_{k}")
+        e_cas = c8.text_input("CAS", value=ei.cas or "", key=f"e_cas_{k}")
+        c9, c10 = st.columns(2)
+        e_grade = c9.text_input("등급", value=ei.grade or "", key=f"e_grade_{k}")
+        e_supplier = c10.text_input("공급처", value=ei.supplier or "", key=f"e_supplier_{k}")
+        e_notes = st.text_input("메모", value=ei.notes or "", key=f"e_notes_{k}")
+        c11, c12, c13, c14, c15 = st.columns(5)
+        e_coa = c11.checkbox("CoA 보유", value=ei.has_coa, key=f"e_coa_{k}")
+        e_cos = c12.checkbox("화장품용", value=ei.cosmetic_grade, key=f"e_cos_{k}")
+        e_food = c13.checkbox("식품용", value=ei.food_grade, key=f"e_food_{k}")
+        e_fra = c14.checkbox("착향제", value=ei.fragrance, key=f"e_fra_{k}")
+        e_col = c15.checkbox("착색제", value=ei.colorant, key=f"e_col_{k}")
+
+        if st.button("수정 저장", type="primary", key=f"e_save_{k}"):
+            try:
+                base = ei.model_dump(exclude_none=True)  # 고급 필드 보존
+                base.update({
+                    "name": e_name.strip(),
+                    "inci": e_inci.strip(),
+                    "category": e_category.strip(),
+                })
+                opt = {
+                    "max_percent": _num(e_max), "price_per_kg": _num(e_price),
+                    "density": _num(e_density), "hlb": _num(e_hlb),
+                    "required_hlb": _num(e_req), "grade": e_grade.strip() or None,
+                    "cas": e_cas.strip() or None, "supplier": e_supplier.strip() or None,
+                    "notes": e_notes.strip() or None,
+                }
+                for kk, vv in opt.items():
+                    if vv is None:
+                        base.pop(kk, None)  # 비우면 필드 제거
+                    else:
+                        base[kk] = vv
+                base.update({
+                    "has_coa": e_coa, "cosmetic_grade": e_cos, "food_grade": e_food,
+                    "fragrance": e_fra, "colorant": e_col,
+                })
+                Ingredient.model_validate(base)
+                block = render_ingredient_block(base)
+                original = ING_PATH.read_text(encoding="utf-8")
+                save_with_backup(
+                    ING_PATH, replace_item(original, ei.id, block), load_ingredients
+                )
+                st.success(f"수정됨: {ei.id}  (백업: ingredients.yaml.bak)")
+                st.rerun()
+            except Exception as exc:  # noqa: BLE001
+                st.error(f"수정 실패: {exc}")
 
 with st.expander("🗑️ 원료 삭제"):
     if not ings:

@@ -11,6 +11,7 @@ from brandlab.master_edit import (
     delete_item,
     render_ingredient_block,
     render_packaging_block,
+    replace_item,
     save_with_backup,
 )
 
@@ -85,6 +86,42 @@ def test_delete_middle_item_keeps_others(tmp_path):
 def test_delete_missing_raises():
     with pytest.raises(KeyError):
         delete_item(ING_YAML, "does-not-exist")
+
+
+def test_replace_item_keeps_position_and_others(tmp_path):
+    path = tmp_path / "ingredients.yaml"
+    path.write_text(ING_YAML, encoding="utf-8")
+    block = render_ingredient_block(
+        {"id": "mct", "name": "MCT오일(수정)", "inci": "Caprylic/Capric Triglyceride",
+         "category": "에몰리언트", "price_per_kg": 18000.0, "has_coa": True}
+    )
+    new_text = replace_item(path.read_text(encoding="utf-8"), "mct", block)
+    path.write_text(new_text, encoding="utf-8")
+
+    master = load_ingredients(path)
+    idx = master.index()
+    assert set(idx) == {"mct", "glycerin"}  # 항목 수 유지
+    assert idx["mct"].name == "MCT오일(수정)"
+    assert idx["mct"].price_per_kg == 18000.0
+    # 위치 유지: mct가 여전히 glycerin보다 먼저
+    ids_in_order = [i.id for i in master.ingredients]
+    assert ids_in_order == ["mct", "glycerin"]
+    assert "# --- 오일 ---" in new_text  # 항목 앞 주석 보존
+
+
+def test_replace_preserves_advanced_fields_via_render():
+    # render_block은 order에 없는 필드(allergens 등)를 뒤에 붙여 보존한다.
+    block = render_ingredient_block(
+        {"id": "x", "name": "향료", "inci": "Parfum", "category": "착향제",
+         "fragrance": True, "allergens": [{"id": "limonene", "percent": 2.0}]}
+    )
+    parsed = yaml.safe_load(block)[0]
+    assert parsed["allergens"] == [{"id": "limonene", "percent": 2.0}]
+
+
+def test_replace_missing_raises():
+    with pytest.raises(KeyError):
+        replace_item(ING_YAML, "nope", "  - id: nope\n    name: x")
 
 
 def test_packaging_add_and_delete(tmp_path):

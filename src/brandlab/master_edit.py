@@ -48,11 +48,18 @@ def _ordered(fields: dict, order: list[str]) -> dict:
             continue
         if isinstance(val, str) and val.strip() == "":
             continue
+        if isinstance(val, (list, dict)) and len(val) == 0:
+            continue  # 빈 allergens/nutrition 등은 렌더링에서 제외
         out[key] = val
-    # order에 없는 키가 있으면 뒤에 붙인다(안전).
+    # order에 없는 키가 있으면 뒤에 붙인다(안전). 알러젠·영양성분 등 고급 필드 보존.
     for key, val in fields.items():
-        if key not in out and key not in order and val is not None:
-            out[key] = val
+        if key in out or key in order or val is None:
+            continue
+        if isinstance(val, str) and val.strip() == "":
+            continue
+        if isinstance(val, (list, dict)) and len(val) == 0:
+            continue
+        out[key] = val
     return out
 
 
@@ -130,6 +137,26 @@ def delete_item(text: str, id_value: str) -> str:
     return out + "\n" if trailing_nl else out
 
 
+def replace_item(text: str, id_value: str, new_block: str) -> str:
+    """대상 id 항목 블록을 new_block으로 제자리 교체한 새 텍스트를 반환.
+
+    위치(정렬 순서)는 유지된다. 못 찾으면 KeyError.
+    해당 항목 내부의 인라인 주석은 교체로 사라진다(폼 편집의 한계).
+    """
+    trailing_nl = text.endswith("\n")
+    lines = text.splitlines()
+    loc = _find_item(lines, id_value)
+    if loc is None:
+        raise KeyError(f"id를 찾을 수 없습니다: {id_value}")
+    start, end = loc
+    block_lines = new_block.rstrip("\n").split("\n")
+    if end < len(lines):
+        block_lines = block_lines + [""]  # 다음 항목과의 빈 줄 간격 유지
+    lines[start:end] = block_lines
+    out = "\n".join(lines).rstrip("\n")
+    return out + "\n" if trailing_nl else out
+
+
 # ---------------------------------------------------------------------------
 # 안전 저장 (백업 + 검증 + 롤백)
 # ---------------------------------------------------------------------------
@@ -159,5 +186,6 @@ __all__ = [
     "render_packaging_block",
     "append_item",
     "delete_item",
+    "replace_item",
     "save_with_backup",
 ]
