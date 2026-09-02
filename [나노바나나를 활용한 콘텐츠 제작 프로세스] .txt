@@ -1,0 +1,1025 @@
+[나노바나나를 활용한 콘텐츠 제작 프로세스] 
+나노바나나(NanoBanana)를 활용해 AI 이미지 프롬프트를 설계하는 전용 툴로 사용할거야.
+전문 프
+롬프트 엔지니어처럼, 프롬프트를 앞으로 아래 구조로 답변을 만들어줘. 
+사용할 프롬프트의 구조는 다음과 같아. 
+[Subject] ...(등장인물 · 제품 · 주요 오브젝트 등)
+ 
+[Concept] ...(콘셉트 · 주제 등)
+ 
+[Composition] ...(구도 · 시점 등)
+ 
+[Styling] ...(헤어 · 메이크업· 의상 · 질감 등)
+ 
+[Lighting & Background] ...(조명 · 배경 · 그림자)
+ 
+[Aesthetic & Brand Context] ...(브랜드 무드 · 레퍼런스 · 완성도) 
+이 구조의 모든 항목을 항상 사용할 필요는 없고 필요한 항목만 선택적으로 입력하면,
+해당 글을    
+바탕으로 자연스럽고 완성도 높은 영어 프롬프트로 다듬어 제시해줘. 
+또한 내가 참고 이미지를 업로드하면,
+그 이미지를 분석해 유사한 비주얼을 생성할 수 있도록
+프롬프
+트 가이드라인을 구조적으로 제안해줘 
+이 세션의 목적은 다음과 같아: - 프롬프트 기획의 체계화 - 이미지 생성 방향 제시 - 브랜드 무드와 비주얼 일관성 유지 
+모든 답변은 실무적이고 명확한, 프롬프트 설계 중심으로 작성해줘. 
+
+---
+[제품의 디테일을 살린 다양한 각도에서의 연출] 
+1) Top-down view(위에서 내려다보는 샷) 
+[Subject] A transparent perfume bottle with a metallic cap and a soft beige label, viewed from 
+directly above the cap. 
+[Concept] Modern minimalism and luxury, capturing the pure geometry and symmetry of the bottle. 
+[Composition] Strong top-down angle centered on the bottle cap — the camera positioned directly 
+above, looking straight down, showing the circular cap and rectangular bottle body below; 
+symmetrical, product-focused layout. 
+[Styling] Clean glass texture with subtle reflections, polished metallic cap, and matte beige label; no 
+text or logo for an elegant minimal appearance. 
+[Lighting & Background] Soft, even studio lighting from above to emphasize the shape and material; 
+smooth beige background with gentle shadows under the bottle for depth. 
+[Aesthetic & Brand Context] Dior-inspired high-end still-life aesthetic — sophisticated, minimal, and 
+editorial, highlighting purity of form and luxury simplicity. 
+2) Top-down view(밑에서 위를 올려다보는 샷) 
+[Subject] A transparent glass perfume bottle with a metallic cap and minimal beige label, viewed 
+from a low-angle perspective beneath the glass base. 
+[Concept] Refined luxury seen from an unconventional viewpoint — elevating the product’s structure 
+and transparency through cinematic tension. 
+[Composition] Low-angle shot from beneath the bottle’s glass bottom, looking upward toward the 
+cap; the perspective emphasizes the thickness of the glass and vertical symmetry, creating a 
+powerful and sculptural impression. 
+[Styling] Clean, reflective glass surface with subtle highlights; polished silver cap gleaming softly; 
+beige label visible through refracted glass. 
+[Lighting & Background] Soft directional lighting from below and behind, creating gentle reflections 
+and refractions through the glass; warm beige background with subtle gradient to enhance depth. 
+[Aesthetic & Brand Context] Dior-inspired editorial mood — elegant, architectural, and luminous, 
+blending minimalism with cinematic product drama. 
+3) 45 degree side view(45도 각도의 측면샷) 
+[Subject] A transparent glass perfume bottle with a metallic cap and minimal beige label, viewed 
+from a 45-degree side angle. 
+[Concept] Modern sophistication and quiet luxury, highlighting the bottle’s structure and reflection 
+with balanced elegance. 
+[Composition] Camera positioned at a 45-degree diagonal side angle, slightly above the bottle’s 
+midline — showing both the metallic cap and front face while preserving depth and perspective. The 
+composition emphasizes symmetry, form, and refined proportion. 
+[Styling] Crystal-clear glass texture with smooth reflections, silver cap catching soft highlights, matte 
+beige label adding contrast. 
+[Lighting & Background] Soft directional lighting from the front-left to accentuate the bottle’s edges 
+and contours; warm beige background with delicate shadow gradation to enhance realism. 
+[Aesthetic & Brand Context] Dior-inspired still-life photography — minimalist yet cinematic, refined, 
+and premium, blending clarity, warmth, and editorial polish. 
+
+---
+[단조로운 누끼컷에 생명을 불어넣는 AI 배경 연출법] 
+Generate 9 high-quality variation photos of the uploaded cosmetic product  
+(e.g., perfume) arranged in a 3×3 grid layout on one sheet.  
+Each variation should look realistic and suitable for  
+E-Commerce product detail pages. 
+---
+[제품+모델컷 키비주얼] 
+1) 틴트+모델 연출컷 
+[Concept] A hyper-realistic beauty model portrait for a lip tint campaign. use reference model and lip
+
+The model is positioned in a medium close-up, angled ¾ view, facing slightly to the side but with 
+eyes looking directly toward the camera.
+The model is holding the lip tint product close to her cheek, 
+slightly below eye level, with a delicate and elegant hand pose, fingertips gently pinching the 
+product. The hand is positioned so the product label faces forward clearly.
+Her expression is soft, 
+calm, and dreamy, lips slightly closed with a natural plump pink gloss.
+Lighting is soft and even, with 
+a diffused beauty light that makes the skin appear luminous and smooth.
+ 
+[Background] soft pink gradient with no distractions, matching a romantic and feminine campaign 
+mood.
+Hair is straight and tucked behind one ear, with soft side bangs.
+Makeup is dewy and natural 
+with soft pink blush concentrated on the cheeks, light eye definition, and plump pink lips.
+Outfit: 
+frilled or textured pale pink top, matching the romantic vibe.
+ 
+[Composition] Product and model's face are both in sharp focus, filling most of the frame. No 
+cropping of the hand or product.
+ 
+[Style] Korean beauty campaign, 2025 trend aesthetic, dreamy soft editorial look. High-resolution, 
+hyper-realistic, perfect lighting balance. 
+2) 블러셔+모델 연출컷 
+[Subject]
+ model holding a blush compact near her face, beauty campaign portrait, upper body 
+shot, straight-on angle, calm smile, clean makeup look, realistic lighting and skin texture 
+[Composition] the model is positioned at the center of the frame, captured from the upper chest to 
+the top of the head, facing directly toward the camera. both elbows rest naturally on a clean white 
+table surface that fills the bottom edge of the image, creating a soft horizontal base line. the model’s 
+right hand (on the left side from the viewer’s perspective) is gently holding an open blush compact 
+slightly angled toward the camera, positioned beside her right cheek at eye level — the compact is 
+tilted about 20–30 degrees forward so that both the inner mirror and blush surface are visible.
+ the 
+left hand (viewer’s right side) rests gracefully on the table, fingers relaxed and slightly curved, 
+supporting a natural posture.
+ the shoulders are squared, but the head is subtly tilted (about 10 
+degrees) toward the compact hand, producing a friendly and balanced expression.
+ the model’s 
+gaze is softly directed at the camera, maintaining a natural and confident smile.
+ the frame is 
+composed symmetrically — equal space on both sides of the model, with negative space above the 
+head and around the product to emphasize minimalism and cleanliness.
+ the white tabletop aligns 
+horizontally with the lower one-fifth of the frame, while the background occupies the remaining four
+fifths, blending seamlessly into a vertical gradient (white at the top, soft peach at the bottom).
+ the 
+product is clearly the secondary focal point after the model’s face — positioned along the 
+intersection of the rule of thirds lines near the upper left quadrant.
+ the lighting direction is frontal 
+and slightly elevated, casting a soft shadow behind the model and under the compact, subtly 
+grounding the image.
+ overall, the composition conveys balance, symmetry, and clarity, ensuring 
+both the model’s expression and product visibility are perfectly centered and harmonized. 
+[Styling]
+ model with long straight hair, glossy and sleek finish, wearing a simple white strapless 
+top, peach-pink blush applied naturally on cheeks, glossy lips, subtle eyeliner, product compact open 
+showing the blush texture inside, compact angled slightly toward the camera 
+[Lighting & Background]
+ soft diffused studio lighting from the front, no harsh shadows, evenly 
+illuminated skin, warm tone highlights on face and product, seamless gradient background 
+transitioning from white (top) to peach beige (bottom), smooth and bright editorial tone 
+[Aesthetic & Brand Context]
+ high-end cosmetic campaign look, minimalist and clean atmosphere, 
+focus on healthy skin and blush product color, professional studio photography style used in Korean 
+beauty brand visuals, realistic rendering with balanced color grading 
+3) 앰플+모델 연출컷 
+[Concept]
+A high-end skincare editorial scene featuring a modern, elegant female model applying 
+serum to her face. The atmosphere evokes a premium beauty brand campaign — fresh, radiant, and 
+clean. The focus is on the model’s clear skin, natural expression, and the act of applying serum with a 
+dropper near the cheek area. The overall mood is soft, luxurious, and contemporary. The serum has a 
+transparent, watery texture with a faint aqua-blue tint, emphasizing hydration and freshness. 
+[Composition]
+Shot Type: Medium close-up (shoulders to top of head), straight-on or slightly 
+angled view.
+Main Subject: Female model with fair, glowing skin, glossy lips, and refined features, 
+looking slightly to the side with a serene expression. Hair is neat, parted in the center or softly tucked 
+behind the ears. The dropper is positioned close to her cheek with a drop of serum about to touch 
+the skin, conveying freshness and skincare ritual.
+Product Placement: The serum bottle is held lightly 
+near the chest or in one hand, clearly visible but not obstructing the model’s face. The dropper is 
+angled toward the cheek with a single serum droplet in focus.
+Background: Clean, minimalist studio 
+background in soft pastel sky blue gradient (bright and luminous), no props other than model and 
+serum.
+Lighting: Bright softbox lighting, evenly illuminating the model’s face with natural skin 
+highlights. Slight glossy reflections on serum droplet and bottle. No harsh shadows.
+Skin Texture: 
+Porcelain-like, luminous, with realistic fine details (pores, light freckles). Emphasize hydration and 
+dewy glow. 
+Pose: The model holds the serum dropper near her right cheek, with a droplet of aqua-blue 
+transparent serum about to touch the skin. A small, visible serum streak is already on the cheek, 
+catching soft reflections. 
+[Style]
+High-resolution beauty editorial photography. Modern beauty campaign style. Ultra-clean, 
+minimal aesthetic. Focus on soft gradients, flawless skin, and glossy light play. The overall image 
+should feel like a luxury skincare ad. 
+[Additional Instructions] 
+Use the attached model image as the subject reference. 
+Use the attached serum product image for accurate shape, texture, and color of the bottle and 
+dropper. 
+Do not include any additional props. 
+Maintain a realistic, photographic look rather than AI-generated feel. 
+Avoid exaggerated expressions or unnatural hand positions. 
+---
+[스킨케어 원료&제형 시각화] 
+1) 스킨케어 원료 시각화 프롬프트 
+A professional high-resolution studio photograph of three **transparent glass Petri dishes**  
+arranged in a straight horizontal line on a clean white background.  
+Each Petri dish is **flat and shallow**, made of **clear glossy glass** with a thin rim edge visible,  
+and has **no vertical height** like a beaker.  
+The glass surface should show subtle reflections and light refraction, emphasizing its smooth and 
+minimal texture.  
+No lids are present — only the open circular dishes are shown from above. 
+Camera angle: slightly elevated top view (around 20°), showing the circular rim and soft shadow 
+beneath each dish.  
+Lighting: soft diffused daylight from the top-right direction, creating gentle shadows and realistic 
+highlights on the rim.  
+The overall tone is clean, bright, and minimal, suitable for premium skincare ingredient photography. 
+Do NOT include any text, labels, markings, or measurement lines on or near the dishes.  
+The background must remain pure white and seamless, with no gradients or reflections beyond the 
+natural glass shadow. 
+[Ingredient Template — replace freely] - left dish: [ingredient_1] - center dish: [ingredient_2] - right dish: [ingredient_3] 
+Example setup:  
+left dish: rice grains  
+center dish: golden honey gel  
+right dish: white creamy milk  
+Keep all camera settings, composition, and lighting identical when changing ingredients.  
+Style reference: Laneige, Sulwhasoo, or Hera skincare ingredient photography —  
+scientific yet elegant, bright, and minimal aesthetic. 
+2) 스킨케어 제형 시각화 프롬프트 (클렌징폼) 
+[Subject]
+A single ivory matte tube of foam cleanser with a black glossy cap, placed diagonally on a 
+creamy textured background. The cleanser texture underneath is the same product, spread smoothly 
+in a natural curved motion. 
+[Concept]
+A premium skincare visual emphasizing natural ingredients and gentle exfoliation. The 
+focus is on the cleanser’s soft texture and the fine rice bran grains embedded in it, expressing purity 
+and subtle luxury. 
+[Composition]
+Top-down angle at approximately 35 degrees.
+The tube lies diagonally across the 
+creamy spread, from the top-left toward the bottom-right corner.
+The texture is spread in a slightly 
+uneven, organic way, with visible ridges and thickness variations to show its realistic form. 
+[Styling]
+The tube surface is matte ivory with a smooth, refined finish.
+The black cap has a soft 
+glossy reflection for contrast.
+The cleanser texture beneath is creamy beige-white with tiny 
+brownish exfoliating particles (rice bran grains) evenly distributed.
+The texture should appear soft, 
+moist, and light — not dense or heavy — like a foamy cream rather than clay. 
+[Lighting & Background]
+Soft warm daylight coming from the upper left, forming a short, natural 
+shadow on the lower right side of the tube and along the texture ridges.
+The background color is a 
+warm beige tone with minimal reflection.
+The lighting highlights the moist surface and tiny grains 
+without harsh contrast. 
+[Aesthetic & Brand Context]
+Elegant and natural skincare editorial style inspired by brands 
+like Tamburins, Dior, or I'm From.
+Emphasizes the texture realism, purity, and sensorial appeal.
+
+Premium yet approachable — suitable for luxury skincare advertising or detailed product pages. 
+2) 스킨케어 제형 시각화 프롬프트 (세럼) 
+[Subject] A transparent rectangular glass serum bottle labeled “Aqua Glow Serum,” containing light 
+blue liquid, with a white dropper cap 
+[Concept] Clean, refreshing skincare product photography evoking marine hydration and purity — 
+focus on light refraction, transparency, and water ripples 
+[Composition] Top-down flat lay shot showing the full bottle placed slightly diagonally on the 
+surface of pale aqua water; ripples forming circular patterns around the bottle; crisp shadow cast to 
+the lower right, emphasizing the bottle’s depth and thickness 
+[Styling] Minimal styling, no additional props; the serum bottle filled with clear blue liquid; 
+condensation droplets and reflections on the glass; white cap with soft highlights; modern and 
+clinical precision with a fresh aquatic tone 
+[Lighting & Background] Strong top lighting angled slightly from upper left to create shimmering 
+reflections and soft refraction through the water; background is a smooth light aqua-blue surface 
+with visible ripple shadows; the overall tone is bright, airy, and clean 
+[Aesthetic & Brand Context] High-end skincare editorial inspired by minimalist marine beauty 
+brands such as Laneige, Tatcha, and Dr. Jart+; aesthetic keywords: clarity, hydration, luminosity, and 
+serenity 
+2) 스킨케어 제형 시각화 프롬프트 (크림) 
+[Subject]
+A jar of avocado nourishment cream placed on a beige stone surface, surrounded by a 
+halved avocado, a whole avocado, and small yellow flowers with green eucalyptus leaves.
+Small 
+touches of light green cream texture are gently spread beside the jar. 
+[Concept]
+A natural skincare visual highlighting nourishment, hydration, and plant-based purity.
+
+Warm, cozy, and organic — showcasing the cream’s rich texture and avocado ingredients. 
+[Composition]
+Front-facing composition with a slight top-down perspective (~25 degrees).
+The jar 
+is centered, with the halved avocado placed on the left and a full avocado slightly behind on the 
+right.
+Small flower accents and cream texture strokes in the foreground create balance and realism. 
+[Styling]
+The cream jar is frosted glass with a soft pastel green lid.
+The label is minimalist, featuring 
+clean typography in beige and olive tones.
+The avocado cut shows realistic color gradients — bright 
+green flesh, smooth brown seed, and natural texture details.
+The cream swatches are soft and 
+glossy with a natural green tint. 
+[Lighting & Background]
+Warm natural daylight coming from the upper left, casting soft shadows to 
+the lower right.
+Background is a muted light yellow-green gradient, harmonizing with the product 
+tone.
+The lighting emphasizes freshness, texture, and a calm organic feel. 
+[Aesthetic & Brand Context]
+Editorial skincare photography inspired by brands like Innisfree, 
+Melixir, or Glow Recipe.
+Focuses on “natural ingredients meets luxury minimalism.”
+Suitable for eco
+friendly or vegan skincare campaigns. 
+---
+[색조 제품 제형·색감 표현 (립·치크 발색컷)] 
+1) 립제품 제형/ 발색 컷 
+미드저니 프롬프트 
+a close-up of a glossy creamy lip tint smear, soft mauve pink shade, smooth light curved swipe 
+texture on clean white background, realistic lighting, subtle highlights and shadows, perfect cosmetic 
+texture detail, high-resolution product photography, macro shot, minimal aesthetic, ultra-realistic 
+rendera --v 7 
+나노바나나_색상 수정 프롬프트(색상에 대한 설명) 
+#c69595: Dusky Rose Pink(미세한 회색기와 베이지기가 섞인 차분한 핑크) 
+#c95f6e:Vibrant Rose (강한 채도의 핑크-레드 중간, 약간의 코랄 뉘앙스) 
+#96544b:Brick Rose Brown(붉은 브라운 기반에 로즈 피그먼트가 섞인 고급스러운 컬러.) 
+*아래의 강의 예제 제형을 그대로 나노바나나 이미지로 사용해서 색상만 변경해주셔도 됩니다. 
+[Subject] * 지금 업로드한 이미지 립제품의 외형 그대로 이미지를 제작해줘. 변형없이 그대로 립 제품이 들어
+가도록 
+A lip tint bottle with an open cap and applicator wand placed on top of a smeared layer of lip product 
+texture.
+The lip tint is rectangular and transparent, revealing a rosy pink shade inside.
+The applicator 
+(doe-foot tip) is coated with the same formula and lies diagonally next to the bottle, resting naturally 
+over the textured smear.
+The actual lip product image will be inserted via image prompt. 
+[Composition] The camera is positioned directly above (top view), perfectly aligned for a clean flat
+lay composition.
+At the center of the frame lies a wide smear of lip product, shaped organically with 
+smooth, slightly irregular edges —
+thicker at one side, gradually tapering off toward the other, 
+resembling a brush stroke.
+The lip tint bottle is placed diagonally (roughly 30° angle), partially 
+overlapping the smear’s central area,
+so that its transparent walls reflect the creamy gloss 
+underneath.
+The applicator wand lies beside the bottle, cap detached,
+angled slightly outward to 
+reveal the doe-foot tip covered in pigment. 
+The product and texture occupy the center of the frame,
+with the smear forming a visual base that 
+grounds the layout.
+A soft drop shadow beneath both the bottle and cap adds realism and 
+separation from the white background.
+No other props — minimal, editorial setup emphasizing 
+product texture and color payoff. 
+The negative space around the smear is clean and spacious,
+keeping full focus on the lip color and 
+packaging.
+The composition maintains asymmetrical balance,
+with the bottle leaning slightly to the 
+left and the applicator cap extending to the right. 
+[Lighting] Soft, high-key studio lighting coming from the upper left direction,
+creating a gentle 
+highlight across the top edges of the bottle and texture.
+Light reflections on the glass are crisp yet 
+diffused, enhancing the glossiness of the lip tint formula.
+Subtle shadows fall diagonally toward the 
+lower right,
+adding depth without breaking the minimal aesthetic.
+The background remains pure 
+white, with no gradient or noise.
+Overall light temperature: neutral daylight (~5500K), slightly warm 
+to enhance pink tone vibrancy. 
+[Texture & Detail] Lip tint texture: smooth, creamy, high viscosity, slightly glossy finish. 
+Pigment color: rosy pink / medium rosewood tone with strong opacity and even surface sheen. 
+Bottle: clear rectangular glass with soft reflections, edges well-defined. 
+Cap: matte light pink plastic, smooth surface. 
+Applicator: transparent wand with fuzzy tip fully coated in color. 
+Shadows: soft-edged, natural falloff. 
+No background grain — pure studio clarity, 8K detail. 
+[Color Scheme] Primary: Rosy Pink (#D97683), Warm White
+Accent: Soft Blush (#EBC6C6), 
+Transparent Glass Highlight
+Mood: Clean, feminine, minimal, elegant, commercial beauty tone. 
+[Camera & Perspective] Lens: 85mm macro lens 
+Angle: top-down (90° overhead) 
+Focus: entire product and texture in sharp detail 
+Depth of field: deep (uniform sharpness across the frame) 
+Framing: product and smear centered, slight diagonal orientation for dynamic balance 
+[Aesthetic & Brand Context] High-end cosmetic editorial flat-lay emphasizing texture, pigmentation, 
+and color payoff.
+Inspired by beauty campaign photography from brands like NARS, HERA, or Fenty 
+Beauty.
+Minimalist composition, pure white background, balanced shadow and highlight.
+8K ultra
+realistic render, professional product photography lighting. 
+2) 블러셔 제품 제형/ 발색 컷 
+[Subject] Pressed powder blush texture in two shades (soft pink and peach coral), realistic little 
+broken edges and an almost unbroken form. Actual product image used as color reference. 
+[Composition] Top-down shot. Two circular blush textures centered side-by-side on white 
+background, evenly spaced, with natural debris around edges and subtle shadows underneath. 
+[Lighting] Soft diffused daylight from top-left (~5500K), smooth highlight gradients, pure white 
+background, no harsh contrast. 
+[Texture & Detail] Matte powder surface with visible pigment grains, organic cracks and powder 
+dust, realistic color payoff, no reflections. 
+[Aesthetic & Brand Context] 8K macro cosmetic texture photography, luxury minimalist tone, 
+suitable for premium beauty campaigns. 
+[Subject] Two compact blush cases (soft pink and peach coral) placed side-by-side on a white 
+surface,
+each paired with a crushed powder texture swatch directly in front of it.
+The blush 
+compacts are open, showing the cream texture inside.
+Below them, their corresponding powdered 
+blush smears extend downward,
+representing the product’s color payoff and texture.
+The actual 
+blush compacts will be inserted via image prompt. 
+[Composition] Camera angle: slightly top-down (around 25–30°) — not a flat lay, but angled enough 
+to reveal depth of both the compacts and the powder texture.
+The two open blush cases are 
+placed horizontally side-by-side,
+left side: soft pink blush, right side: warm peach blush.
+Each 
+compact is opened at roughly 110°, catching natural light on the metal rim. 
+The pink blush sits on the left; in front of it, a rectangular smear of crushed pink powder extends 
+downward,
+with soft powder fallout along its top and sides — natural, uneven scattering,
+and a 
+smooth gradient fade toward the bottom. 
+The peach blush sits on the right; in front of it, a similar rectangular smear of peach powder,
+same 
+shape and size as the left one, evenly spaced.
+The two texture swatches are parallel, aligned neatly 
+beneath their respective compacts,
+with equal space between them and clean vertical flow. 
+The overall layout forms a balanced “2-compartment composition” —
+products at the top, textures 
+directly below.
+The image is centered with both compacts slightly facing the front,
+creating a 
+realistic tabletop display. 
+[Lighting] Bright, natural daylight illumination coming from the upper left direction,
+casting soft 
+shadows toward the lower right.
+Lighting is crisp and diffused, creating subtle reflections on the 
+silver compact rims
+and soft highlights on the blush surface.
+No artificial color tint — purely neutral 
+white balance (~5500K).
+Shadows are visible but clean-edged, emphasizing dimensionality. 
+[Texture & Detail] Blush texture: fine matte powder, densely pigmented. 
+Powder smears: smooth in the center, broken edges with scattered chunks at the top. 
+Gradient effect: top part rich in pigment, fading softly toward the bottom. 
+Surface: matte finish, no glitter or shine. 
+Compact rims: metallic reflection, slightly glossy but not mirror-bright. 
+Background: white studio surface with faint texture of natural light shadow. 
+[Color Scheme] Left: Soft Pink (#F4A6B0)
+Right: Peach Coral (#F1A36E)
+Background: Pure White 
+(#FFFFFF)
+Mood: bright, clean, luxurious, minimal. 
+---
+[뷰티 상세페이지를 위한 제품 비주얼 컨셉 연출] 
+1) 쌀 클렌징폼 비주얼 컷 
+[Subject] * 지금 업로드한 이미지 제품의 외형 그대로 이미지를 제작해줘. 색상과 형태의 변형없이 그대로 제
+품이 들어가도록 
+A minimalist skincare product scene featuring a rice-based foam cleanser tube placed on a round 
+wooden platform.
+The cleanser tube (actual product to be inserted via image prompt) stands 
+vertically at the center,
+surrounded by natural rice grains, a wooden rice box, and golden rice stalks.
+
+The overall composition emphasizes calmness, warmth, and natural origin. 
+[Composition] Camera is positioned frontally at eye level, slightly angled down by about 10–15°,
+
+creating a balanced tabletop product composition.
+The cleanser tube is placed at the center of the 
+circular wooden base,
+facing forward with the label perfectly visible and aligned with the camera.
+To 
+the left, a small square wooden box filled with white rice grains is slightly tilted,
+allowing some grains 
+to spill naturally onto the base.
+To the right and behind the tube, two curved golden rice 
+stalks gently arch over the product,
+forming a soft frame around it and creating a sense of natural 
+harmony. Behind the main setup, a piece of light brown kraft paper stands upright,
+adding depth and 
+texture to the otherwise clean background.
+The paper’s edge is slightly irregular and organic, 
+providing a handcrafted feel. 
+The entire arrangement rests on a circular wooden platform with visible grain texture,
+elevated 
+slightly from the background to add soft shadows underneath.
+The shot maintains a strong vertical 
+balance — the cleanser is central,
+while the props (rice box, stalks, paper) are arranged diagonally to 
+create dynamic flow. 
+The negative space around the product is evenly distributed,
+and the frame leaves ample breathing 
+room above the rice stalk tips.
+The visual weight is perfectly balanced between left (box) and right 
+(grain stalks). 
+[Lighting] Soft diffused sunlight coming from the upper right direction,
+casting gentle shadows 
+toward the lower left.
+Lighting is warm and natural, emphasizing the creamy beige tones of the 
+scene.
+No harsh contrast — everything appears smooth and velvety,
+highlighting the product’s 
+natural, mild image.
+A faint bounce light from the front subtly fills the shadow side of the cleanser 
+tube,
+keeping the logo and text clearly visible.
+Color temperature: around 4800–5200K (neutral 
+warm daylight). 
+[Texture & Detail] 
+• Cleanser tube: matte white surface with black cap,
+label printed in minimalist serif 
+typography. 
+• Rice grains: glossy, realistic texture with soft specular highlights. 
+• Wooden rice box: pale natural wood tone with visible grain pattern. 
+• Wooden circular platform: smooth surface with faint shadows around the base. 
+• Rice stalks: golden and slightly curved, soft light passes through them. 
+• Kraft paper backdrop: natural fiber texture, slightly crumpled edges. 
+• Background: seamless, warm beige gradient — no visible horizon line. 
+[Color Scheme] 
+Primary: Beige, Ivory, Light Brown
+Accent: Golden Yellow (rice stalks), Warm White (tube, rice)
+
+Mood: Natural, soft, minimalistic, warm, organic. 
+[Camera & Perspective] 
+• Lens: 50mm standard or 70mm macro lens. 
+• Angle: Slight top-down (10–15° tilt), eye-level perspective. 
+• Depth of field: Moderate, focus on product and props,
+background softly blurred but still 
+readable. 
+• Framing: Central composition, symmetrical with slight diagonal prop flow. 
+[Aesthetic & Brand Context] 
+Natural skincare editorial visual inspired by Korean clean beauty brands.
+Focus on purity, 
+sustainability, and nature-origin ingredients.
+Studio lighting mimics warm daylight, minimal shadows,
+
+perfect for an eco-friendly, ingredient-focused campaign image.
+8K realistic rendering, soft 
+diffusion, warm minimalist tone. 
+2) 세럼 클렌징폼 비주얼 컷 
+* 해당 프롬프트는 참고용으로 활용해주시되, 원하는 결과가 생성되지 않을 경우에는 단계별로 이미지를 분리하
+여 제작하시는 것을 권장 드립니다. 
+① 제품 각도 → ② 배경 연출 → ③ 주변 오브젝트 표현 순으로 단계별 생성 후 조합하시면, 보다 정확하고 완
+성도 높은 결과를 얻을 수 있습니다.  
+[Subject] A cylindrical glass serum bottle filled with clear aqua-blue liquid, labeled “Aqua Glow 
+Serum.”
+The bottle is smooth, transparent, and filled with small bubbles suspended in the liquid.
+It 
+floats in midair surrounded by spherical water droplets, conveying a pure hydration and freshness 
+mood.
+The actual serum product will be inserted via image prompt. 
+[Composition] The camera is positioned slightly below the serum, angled upward at approximately 
+35°,
+creating a subtle low-angle perspective where the viewer looks up at the product. 
+The cylindrical serum bottle stands almost vertically, centered perfectly in the frame.
+Its curved 
+glass bottom faces the camera, showing natural refraction and light bending through the glass 
+thickness and the blue liquid inside.
+The front label is clearly legible, facing directly toward the 
+camera with a slight curvature along the bottle’s surface. 
+The bottle appears to be floating in midair, with a soft reflection glow beneath it —
+as if it’s 
+suspended above a lightly reflective surface.
+The reflection is diffused and subtle, giving a sense of 
+floating rather than resting on any plane. 
+Around the serum, 6–8 water droplets of various sizes are suspended in the air.
+Some droplets are 
+positioned in the foreground (closer to the viewer),
+while others are in the midground and 
+background, creating depth layering and spatial realism.
+Each droplet is perfectly spherical, 
+refracting light and softly reflecting the serum’s blue hue.
+The arrangement is slightly diagonal — 
+larger droplets toward the lower left and upper right,
+and smaller droplets scattered between, giving 
+the frame rhythmic balance. 
+The background features a soft gradient from pure white (top) to sky blue (bottom),
+transitioning 
+smoothly to emphasize brightness and freshness.
+A faint horizon-like reflection glow spreads below 
+the bottle,
+suggesting diffused ambient light rather than a visible surface. 
+The composition is perfectly symmetrical along the vertical axis,
+with the bottle centered both 
+horizontally and vertically,
+allowing the viewer’s eye to rest naturally on the product.
+The 
+surrounding space (negative space) equals roughly 1.5× the bottle’s height,
+maintaining an elegant 
+editorial layout suitable for premium skincare visuals. 
+Overall, the shot combines macro precision + spatial softness,
+balancing realism (sharp label, glass 
+refraction) with airiness (floating droplets and light diffusion). 
+[Lighting] Cool, diffused daylight illumination from the upper right direction.
+The glass catches 
+delicate specular highlights along its curved edges,
+and subtle reflections appear on the droplet 
+surfaces.
+Soft ambient light fills the background with a clean, cinematic glow.
+Color temperature: 
+approximately 6200K (cool white light).
+Light wraps naturally around the bottle and droplets, 
+producing gentle brightness gradients.
+No harsh shadows — the entire frame maintains a luminous, 
+airy quality. 
+[Texture & Detail] Glass material: crystal-clear, smooth, slightly glossy with natural refraction. 
+Liquid: transparent aqua-blue with fine suspended air bubbles. 
+Label: white matte texture with slightly embossed typography, clearly visible and centered. 
+Droplets: glossy, high surface tension spheres reflecting the light source softly. 
+The bottom of the serum bottle shows a faint internal reflection and refracted rim light, adding depth. 
+No visible surface or glass plate — everything appears to float in open air. 
+[Color Scheme] Primary: Aqua Blue, Clear White
+Accent: Ice Silver, Misty Cyan
+Tone: Cool, 
+luminous, and clean — evoking hydration and clarity. 
+[Camera & Perspective] Lens: 85mm macro lens, shallow depth of field. 
+Viewpoint: low-angle (35° upward) from below the bottle. 
+Focus: sharp on the serum label and glass texture,
+while foreground and background droplets 
+appear slightly blurred (soft bokeh). 
+Depth: medium macro focus plane, maintaining realism and spatial separation. 
+[Aesthetic & Brand Context] High-end skincare campaign visual emphasizing hydration, purity, and 
+transparency.
+Editorial-style macro photography with cinematic lighting and pristine composition.
+
+8K ultra-realistic rendering, minimalistic clean background,
+floating glass bottle, suspended water 
+droplets,
+luxury cosmetic product photography, premium hydration aesthetic. 
+3) 크림 클렌징폼 비주얼 컷 
+[Subject] *지금 업로드한 이미지 제품의 외형 그대로 이미지를 제작해줘. 색상과 형태의 변형없이 그대로 제
+품이 들어가도록
+A green glass jar of avocado nourishment cream placed at the center.
+The actual 
+product image will be inserted via image prompt.
+The lid is mint green, the body is semi-matte 
+frosted glass, and the label faces the camera directly with clear typography. 
+[Composition]
+The product is resting on a piece of old brown wood covered with lush green moss.
+
+The jar is positioned at the center, slightly tilted toward the camera at a 30-degree angle.
+Tiny white 
+wildflowers (5–7 pieces) are scattered naturally across the moss,
+and small dew drops shimmer in 
+the light.
+Background fades into soft blur (bokeh) while the product and immediate surroundings 
+remain sharp.
+Camera angle is slightly top-down, around 35 degrees from above. 
+[Lighting]
+Warm natural sunlight coming from the top left (10 o’clock direction).
+Soft, diffused 
+golden light highlighting the product lid and label.
+Gentle shadow cast toward the lower right (4 
+o’clock direction).
+Light reflections emphasize the glass texture of the jar;
+the illumination feels 
+cinematic, natural, and slightly dewy. 
+[Texture & Detail]
+Moss surface is rich, moist, and detailed with tiny droplets.
+Wood texture 
+underneath is cracked and aged, covered partially with green moss.
+Small white flowers with semi
+transparent petals and yellow centers are scattered nearby.
+Fern leaves behind the jar balance the 
+green tones.
+Background has soft green bokeh, evoking a serene forest mood. 
+[Color Palette]
+Main colors: moss green, mint, brown, ivory
+Accent colors: golden sunlight, soft 
+white, sage green
+Overall tone: warm, natural, organic, premium skincare advertisement mood. 
+[Aesthetic & Brand Context]
+High-end clean beauty product photography,
+evoking eco-luxury and 
+natural purity.
+8K ultra realistic macro shot, cinematic sunlight, shallow depth of field,
+editorial-grade 
+commercial lighting, minimal background, premium product composition. 
+4) 립 비주얼 컷 
+[Concept]
+Use the uploaded lip tint product image as the main subject. Create a high-end beauty 
+brand editorial composition inspired by luxury cosmetic ads. The lip tint stands diagonally, balanced 
+on top of a fresh strawberry is skewered by a shiny silver fork. The fork rests delicately on the rim of 
+a transparent glass filled with pink-tinted water. The scene has a clean, minimal, yet playful and 
+luxurious aesthetic. 
+[Composition] Main Object: Keep the original shape, color, gloss, and cap design of the uploaded 
+product image. The product should be placed at a slight diagonal angle for a dynamic composition. 
+Cherry: Realistic fresh strawberry with light red color, placed near the center. 
+Fork: Sleek, stainless-steel fork, positioned diagonally for a modern editorial look. 
+Glass: Transparent cylindrical glass filled with translucent pink water, positioned at the bottom center 
+of the frame. The fork rests stably on the rim. 
+Background: Soft gradient in pastel pink, fading to white toward the edges for a clean commercial 
+look. 
+[Style]
+Luxury beauty brand campaign photography, ultra-high resolution, macro lens clarity. 
+Emphasize glossy textures on the lip tint bottle and reflections on the glass and fork. Studio lighting 
+with soft bright light from the top-left, creating clean highlights and subtle shadows. No text or logos 
+should be added. Maintain a professional, editorial atmosphere similar to Dior or Laka beauty 
+campaigns. 
+5) 블러셔 비주얼 컷 
+[Concept] *지금 업로드한 이미지 제품의 외형 그대로 이미지를 제작해줘. 색상과 형태의 변형없이 그대로 블
+러셔 제품이 들어가도록
+A luxurious high-end beauty editorial shot featuring a single blush compact 
+placed on a glossy pastel soft peach apricot surface. The compact has a metallic silver rim and soft 
+peach apricot powder, and should match the reference image exactly in every aspect except the 
+blush color. The overall scene should evoke the refined aesthetic of premium Korean beauty brands 
+such as Hince or Laka, with soft minimal styling and sophisticated lighting.
+ 
+[Composition]
+Shot Type: Close-up hero product shot, slightly low angle, focusing on the compact.
+
+Placement: The compact is positioned at a gentle diagonal tilt, as if resting naturally on a rounded 
+glossy soft peach apricot surface. The lid is open at a 45° angle, showcasing the blush texture inside.
+
+Background: Gradient apricot background (light pastel apricot fading into soft white at the top), 
+clean and minimal with no distracting elements.
+Surface: Glossy, curved soft peach apricot surface 
+like the top of a cosmetic bottle, with soft reflections and a premium finish.
+ 
+[Lighting]
+Bright, diffused studio lighting with soft shadows. A slight specular highlight hits the silver 
+rim to emphasize its metallic finish. A soft reflection is visible beneath the product to ground it 
+realistically.
+[Style]
+High-fashion beauty campaign aesthetic. Minimalist composition, premium 
+editorial polish. Sharp product detail, soft background focus (shallow depth of field).
+ 
+[Reference Image Use]
+Use the attached blush compact image (the one with silver rim and soft 
+apricot blush) as the main product, preserving its shape, logo placement (if any), metallic rim, and 
+overall layout. Do not modify any design elements except the blush powder color. 
+---
+[글로벌 뷰티 모델 페르소나 생성 및 피부 디테일 보정] 
+1) 한국 20대 여성 모델 
+[Subject]
+A hyper-realistic 2025 Korean beauty model portrait. The model has a sleek black straight 
+hairstyle with a center part, softly contoured V-line face, luminous clear skin, large almond-shaped 
+eyes with defined eyeliner and long lashes, naturally full glossy lips, and balanced facial proportions. 
+[Concept]
+Modern luxury beauty portrait expressing a calm, youthful, yet sophisticated charm. The 
+aesthetic embodies the 2025 clean-beauty trend — delicate, doll-like, and editorial, evoking the aura 
+of a high-end beauty campaign. 
+[Composition]
+ Medium close-up (shoulders-up), straight-on shot, perfectly centered symmetry.
+ 
+Model gazes forward calmly with a serene, confident expression. Shoulders bare, no visible clothing 
+except a clean white off-shoulder top. 
+[Styling]
+Hair: Long, straight black hair, naturally shiny and smooth.
+Makeup: Light foundation with 
+soft highlight, subtle blush, defined eyeliner, clean brows, pink glossy lips.
+Outfit: Minimal white off
+shoulder top for a pure editorial aesthetic. 
+[Lighting & Background]
+Soft, even studio lighting with a gentle highlight on the skin and lips.
+
+Background: pastel pink-white gradient, evoking a fresh, elegant, and feminine luxury beauty tone. 
+[Aesthetic & Brand Context]
+Inspired by Korean luxury brands such as Hera, Tamburins, and 
+Amuse.
+ 
+[Style]
+A clean, polished editorial portrait reflecting the 2025 Asian influencer aesthetic — refined, 
+symmetrical, hyperreal yet natural 
+2) 글로벌 30대 여성 모델 
+[Concept]
+ A hyper-realistic global beauty influencer portrait for a luxury 2025 cosmetic campaign.
+ 
+The model has a softly balanced Western-Asian features — harmonious bone structure, lifted cheek 
+contour, large shimmering eyes with refined lashes, and glossy full lips.
+Her skin looks luminous and 
+healthy, with a porcelain-like clarity and a soft inner glow.
+The overall aesthetic is elegant, refined, 
+and modern — like a luxury global influencer featured in Dior Beauty or YSL Beauté campaigns. 
+[Composition]
+ Medium close-up (shoulders up), straight-on camera angle.
+ Centered framing, 
+model gazing directly into the lens.
+ Expression: calm, poised, slightly dreamy, refined confidence.
+ 
+No hands, no product, pure portrait focus. 
+[Styling]
+ Hair: Sleek straight hair in natural soft brown or neutral chestnut tone.
+ Makeup: clean 
+radiant base, subtle blush, softly defined eyes, and natural pink-beige glossy lips. Outfit: minimal 
+white top or bare shoulders for a refined editorial tone. 
+[Background]
+ Soft gradient background — pastel blue transitioning to white, creating a modern, 
+luxurious atmosphere reminiscent of beauty campaign studio lighting. 
+[Lighting]
+ Front diffused beauty light with gentle rim glow on both sides, producing a polished skin 
+texture.
+Delicate specular highlights on the lips, nose bridge, and hairline for a glossy, editorial finish. 
+[Style]
+ High-end global beauty influencer editorial look 2025 luxury campaign aesthetic — minimal, 
+clean, luminous, refined symmetry. Comparable to Dior Beauty, YSL Beauté, or Hince global 
+campaigns. 
+---
+[제품+모델컷 키비주얼] 
+1) 틴트+모델 연출컷 
+[Concept] A hyper-realistic beauty model portrait for a lip tint campaign. use reference model and lip
+
+The model is positioned in a medium close-up, angled ¾ view, facing slightly to the side but with 
+eyes looking directly toward the camera.
+The model is holding the lip tint product close to her cheek, 
+slightly below eye level, with a delicate and elegant hand pose, fingertips gently pinching the 
+product. The hand is positioned so the product label faces forward clearly.
+Her expression is soft, 
+calm, and dreamy, lips slightly closed with a natural plump pink gloss.
+Lighting is soft and even, with 
+a diffused beauty light that makes the skin appear luminous and smooth.
+ 
+[Background] soft pink gradient with no distractions, matching a romantic and feminine campaign 
+mood.
+Hair is straight and tucked behind one ear, with soft side bangs.
+Makeup is dewy and natural 
+with soft pink blush concentrated on the cheeks, light eye definition, and plump pink lips.
+Outfit: 
+frilled or textured pale pink top, matching the romantic vibe.
+ 
+[Composition] Product and model's face are both in sharp focus, filling most of the frame. No 
+cropping of the hand or product.
+ 
+[Style] Korean beauty campaign, 2025 trend aesthetic, dreamy soft editorial look. High-resolution, 
+hyper-realistic, perfect lighting balance. 
+2) 블러셔+모델 연출컷 
+[Subject]
+ model holding a blush compact near her face, beauty campaign portrait, upper body 
+shot, straight-on angle, calm smile, clean makeup look, realistic lighting and skin texture 
+[Composition] the model is positioned at the center of the frame, captured from the upper chest to 
+the top of the head, facing directly toward the camera. both elbows rest naturally on a clean white 
+table surface that fills the bottom edge of the image, creating a soft horizontal base line. the model’s 
+right hand (on the left side from the viewer’s perspective) is gently holding an open blush compact 
+slightly angled toward the camera, positioned beside her right cheek at eye level — the compact is 
+tilted about 20–30 degrees forward so that both the inner mirror and blush surface are visible.
+ the 
+left hand (viewer’s right side) rests gracefully on the table, fingers relaxed and slightly curved, 
+supporting a natural posture.
+ the shoulders are squared, but the head is subtly tilted (about 10 
+degrees) toward the compact hand, producing a friendly and balanced expression.
+ the model’s 
+gaze is softly directed at the camera, maintaining a natural and confident smile.
+ the frame is 
+composed symmetrically — equal space on both sides of the model, with negative space above the 
+head and around the product to emphasize minimalism and cleanliness.
+ the white tabletop aligns 
+horizontally with the lower one-fifth of the frame, while the background occupies the remaining four
+fifths, blending seamlessly into a vertical gradient (white at the top, soft peach at the bottom).
+ the 
+product is clearly the secondary focal point after the model’s face — positioned along the 
+intersection of the rule of thirds lines near the upper left quadrant.
+ the lighting direction is frontal 
+and slightly elevated, casting a soft shadow behind the model and under the compact, subtly 
+grounding the image.
+ overall, the composition conveys balance, symmetry, and clarity, ensuring 
+both the model’s expression and product visibility are perfectly centered and harmonized. 
+[Styling]
+ model with long straight hair, glossy and sleek finish, wearing a simple white strapless 
+top, peach-pink blush applied naturally on cheeks, glossy lips, subtle eyeliner, product compact open 
+showing the blush texture inside, compact angled slightly toward the camera 
+[Lighting & Background]
+ soft diffused studio lighting from the front, no harsh shadows, evenly 
+illuminated skin, warm tone highlights on face and product, seamless gradient background 
+transitioning from white (top) to peach beige (bottom), smooth and bright editorial tone 
+[Aesthetic & Brand Context]
+ high-end cosmetic campaign look, minimalist and clean atmosphere, 
+focus on healthy skin and blush product color, professional studio photography style used in Korean 
+beauty brand visuals, realistic rendering with balanced color grading 
+3) 앰플+모델 연출컷 
+[Concept]
+A high-end skincare editorial scene featuring a modern, elegant female model applying 
+serum to her face. The atmosphere evokes a premium beauty brand campaign — fresh, radiant, and 
+clean. The focus is on the model’s clear skin, natural expression, and the act of applying serum with a 
+dropper near the cheek area. The overall mood is soft, luxurious, and contemporary. The serum has a 
+transparent, watery texture with a faint aqua-blue tint, emphasizing hydration and freshness. 
+[Composition]
+Shot Type: Medium close-up (shoulders to top of head), straight-on or slightly 
+angled view.
+Main Subject: Female model with fair, glowing skin, glossy lips, and refined features, 
+looking slightly to the side with a serene expression. Hair is neat, parted in the center or softly tucked 
+behind the ears. The dropper is positioned close to her cheek with a drop of serum about to touch 
+the skin, conveying freshness and skincare ritual.
+Product Placement: The serum bottle is held lightly 
+near the chest or in one hand, clearly visible but not obstructing the model’s face. The dropper is 
+angled toward the cheek with a single serum droplet in focus.
+Background: Clean, minimalist studio 
+background in soft pastel sky blue gradient (bright and luminous), no props other than model and 
+serum.
+Lighting: Bright softbox lighting, evenly illuminating the model’s face with natural skin 
+highlights. Slight glossy reflections on serum droplet and bottle. No harsh shadows.
+Skin Texture: 
+Porcelain-like, luminous, with realistic fine details (pores, light freckles). Emphasize hydration and 
+dewy glow. 
+Pose: The model holds the serum dropper near her right cheek, with a droplet of aqua-blue 
+transparent serum about to touch the skin. A small, visible serum streak is already on the cheek, 
+catching soft reflections. 
+[Style]
+High-resolution beauty editorial photography. Modern beauty campaign style. Ultra-clean, 
+minimal aesthetic. Focus on soft gradients, flawless skin, and glossy light play. The overall image 
+should feel like a luxury skincare ad. 
+[Additional Instructions] 
+Use the attached model image as the subject reference. 
+Use the attached serum product image for accurate shape, texture, and color of the bottle and 
+dropper. 
+Do not include any additional props. 
+Maintain a realistic, photographic look rather than AI-generated feel. 
+Avoid exaggerated expressions or unnatural hand positions. 
+---
+이미지 속 AI 모델 프롬프트 템플릿의 텍스트 내용을 항목별로 정리해 드립니다.
+------------------------------
+## AI 모델 프롬프트 템플릿## 1. 모델 기본 정보 (Identity)
+
+* 연령대
+* 국적/인종
+* 전체 분위기
+
+## 2. 얼굴·헤어 특징 (Face & Hair)
+
+* 얼굴 분위기
+* 눈매/표정
+* 헤어 길이/컬러
+
+## 3. 피부·메이크업 (Skin & Makeup)
+
+* 피부 질감
+* 메이크업
+
+## 4. 의상 · 스타일 (Outfit)
+
+* 스타일
+* 색조/소재
+
+## 5. 포즈/프레이밍 (Pose & Framing)
+
+* 샷 종류
+* 카메라 각도
+
+## 6. 조명 · 분위기 (Lighting & Mood)
+
+* 조명 종류
+* 분위기
+
+## 7. 배경·환경 (Background)
+
+* 배경 형태
+* 컬러톤
+* 추가요소
+
+## 8. 스타일 · 품질 지시어 (Quality & Style)
+
+* 스타일
+* 제외 요소
+---
+[모델 생성 프롬프트] 
+1) AI 모델(한국인 여성) 
+A 20s Korean female model, elegant and unique beauty, with a refined and modern charm.
+Upper 
+body portrait in a clean studio setting, softly lit.
+Long straight black hair with subtle soft bangs 
+framing the face, neatly styled.
+Flawless translucent skin with a natural glow, slightly rosy cheeks, 
+glossy lips.
+Large expressive eyes with a calm and elegant gaze.
+Wearing a simple sleeveless black 
+top.
+Composition focused on the face and upper body, fashion/beauty campaign style.
+Background 
+clean and minimal, softly tinted pastel tone.
+Photorealistic, high-end beauty brand aesthetic, no text, 
+no props. 
+* 상반신 3분할(각도별 이미지로 따로 생성 가능) 
+A consistent Korean female fashion model, same identity across all views, elegant and modern 
+beauty.
+Upper body studio portraits with a clean white background, softly lit.
+Wearing a simple black 
+sleeveless top, natural makeup with a refined look, long straight hair neatly styled.
+Generate three 
+variations of the same model:
+ 
+(a) front view, upper body, looking directly at the camera.
+ 
+(b) 45-degree angle half side view, upper body, calm and natural expression.
+ 
+(c) full side profile view of the upper body.
+ 
+All shots photorealistic, fashion e-commerce catalog style, consistent proportions and features, no 
+text, no props. 
+* 전신 이미지 
+Use the reference image.
+Generate a full-body portrait of the same model identity, consistent face 
+and features.
+Show the entire figure from head to toe, including shoes.
+Standing pose, natural 
+posture, fashion e-commerce catalog style.
+Clean white studio background, soft even lighting.
+
+Model wears a simple black sleeveless top, slim-fit jeans, and neutral fashion shoes.
+Photorealistic, 
+accurate 8-head body proportion, no props, no text. 
+2) AI 모델(외국인 여성) 
+A young female model with a soft, refined, and calm presence. 
+Symmetrical oval face shape, delicate and balanced facial features. 
+Large light gray-blue eyes with a clear gaze, naturally long lashes, subtle soft eyeliner. 
+Straight, sleek long blonde hair with a clean middle part, evenly tucked behind the ears. 
+Flawless porcelain-like skin with a natural glow, soft pink blush, and muted rosy nude lips. 
+Neutral expression, slightly relaxed lips, calm forward-facing gaze. 
+Wearing a simple, minimal sleeveless black top. 
+Upper-body portrait, chest-up framing, centered composition. 
+Clean studio lighting, soft and even, no harsh shadows. 
+Background pure white, seamless, minimal and modern. 
+Photorealistic, beauty brand campaign quality. 
+Ultra-detailed skin texture, natural color tone, no props, no text, no jewelry. 
+3) AI 모델(외국인 남성) 
+A young male model with a calm and refined beauty, balanced and symmetrical features. 
+Soft angular oval face shape, clean jawline, straight eyebrows with a natural arch. 
+Medium-length straight brown hair with natural flow, parted slightly off-center, tucked softly behind 
+the ears. 
+Warm brown eyes with a gentle forward gaze, naturally long lashes, minimal makeup. 
+Smooth clear skin with a natural glow, soft pink blush around cheeks and nose bridge, lips slightly 
+rosy and full. 
+Wearing a simple sleeveless black top. 
+Upper-body portrait, centered composition, chest-up framing. 
+Neutral expression, relaxed lips, soft direct gaze. 
+Soft and even studio lighting, no harsh shadows. 
+Pure white seamless background. 
+Photorealistic, beauty brand campaign quality. 
+Ultra-detailed facial texture, clean color grading, no text, no props, no accessories. 
+
+
