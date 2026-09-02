@@ -9,7 +9,21 @@ from __future__ import annotations
 import pandas as pd
 import streamlit as st
 
+from brandlab.core.models import Ingredient
+from brandlab.loader import DATA_DIR, load_ingredients
+from brandlab.master_edit import (
+    append_item,
+    delete_item,
+    render_ingredient_block,
+    save_with_backup,
+)
 from brandlab.ui import ingredient_flags, load_lab, setup_korean_font
+
+
+def _num(s: str) -> float | None:
+    """빈 문자열이면 None, 아니면 float. 형식이 틀리면 ValueError."""
+    s = (s or "").strip()
+    return None if s == "" else float(s)
 
 st.set_page_config(page_title="원료 · brand-lab", page_icon="📦", layout="wide")
 setup_korean_font()
@@ -83,6 +97,106 @@ with st.expander("🔎 PubChem 원료 자동채움 (CAS·밀도)"):
                     st.rerun()
             elif not proposals:
                 st.info("채울 새 값이 없습니다(이미 채워져 있음).")
+
+ING_PATH = DATA_DIR / "ingredients.yaml"
+
+with st.expander("➕ 새 원료 등록"):
+    with st.form("add_ingredient"):
+        st.caption("id·이름·INCI·분류는 필수. 나머지는 비워두면 생략됩니다.")
+        c1, c2 = st.columns(2)
+        new_id = c1.text_input("id (고유 슬러그, 예: shea-butter)")
+        new_name = c2.text_input("원료명(한글)")
+        c3, c4 = st.columns(2)
+        new_inci = c3.text_input("INCI 표준명")
+        new_category = c4.text_input("분류(예: 에몰리언트, 유화제, 방부제)")
+
+        c5, c6, c7 = st.columns(3)
+        new_price = c5.text_input("단가(원/kg)")
+        new_density = c6.text_input("밀도(g/ml)")
+        new_max = c7.text_input("권장상한(%)")
+        c8, c9, c10 = st.columns(3)
+        new_hlb = c8.text_input("HLB(유화제만)")
+        new_req_hlb = c9.text_input("required HLB(오일만)")
+        new_cas = c10.text_input("CAS")
+        c11, c12 = st.columns(2)
+        new_grade = c11.text_input("등급(cosmetic/candle/food 등)")
+        new_supplier = c12.text_input("공급처")
+        new_notes = st.text_input("메모")
+
+        c13, c14, c15, c16, c17 = st.columns(5)
+        new_coa = c13.checkbox("CoA 보유", value=False)
+        new_cosmetic = c14.checkbox("화장품용", value=True)
+        new_food = c15.checkbox("식품용", value=False)
+        new_fragrance = c16.checkbox("착향제", value=False)
+        new_colorant = c17.checkbox("착색제", value=False)
+
+        submitted = st.form_submit_button("등록")
+    if submitted:
+        try:
+            fields = {
+                "id": new_id.strip(),
+                "name": new_name.strip(),
+                "inci": new_inci.strip(),
+                "category": new_category.strip(),
+                "max_percent": _num(new_max),
+                "price_per_kg": _num(new_price),
+                "density": _num(new_density),
+                "hlb": _num(new_hlb),
+                "required_hlb": _num(new_req_hlb),
+                "has_coa": new_coa,
+                "cosmetic_grade": new_cosmetic,
+                "grade": new_grade.strip() or None,
+                "cas": new_cas.strip() or None,
+                "fragrance": new_fragrance,
+                "colorant": new_colorant,
+                "food_grade": new_food,
+                "supplier": new_supplier.strip() or None,
+                "notes": new_notes.strip() or None,
+            }
+            # 1) 단일 항목 pydantic 검증 (필수·타입·범위)
+            Ingredient.model_validate({k: v for k, v in fields.items() if v is not None})
+            if fields["id"] in lab.ingredients.index():
+                st.error(f"이미 존재하는 id입니다: {fields['id']}")
+            else:
+                block = render_ingredient_block(fields)
+                original = ING_PATH.read_text(encoding="utf-8")
+                # 2) 백업 + 쓰기 + 전체 재검증(중복 id 등) + 실패 시 롤백
+                save_with_backup(ING_PATH, append_item(original, block), load_ingredients)
+                st.success(f"등록됨: {fields['id']}  (백업: ingredients.yaml.bak)")
+                st.rerun()
+        except Exception as exc:  # noqa: BLE001 — 사용자에게 사유 표시
+            st.error(f"등록 실패: {exc}")
+
+with st.expander("🗑️ 원료 삭제"):
+    if not ings:
+        st.info("삭제할 원료가 없습니다.")
+    else:
+        del_options = {f"{i.name} ({i.id})": i.id for i in ings}
+        del_label = st.selectbox("삭제할 원료", list(del_options), key="del_ing_sel")
+        del_id = del_options[del_label]
+        # 처방이 참조 중이면 삭제 금지(참조 무결성 보호)
+        users = [
+            f"{f.slug} v{f.version}"
+            for f in lab.formulas
+            if del_id in f.ingredient_ids()
+        ]
+        if users:
+            st.warning(
+                f"이 원료를 사용하는 처방이 있어 삭제할 수 없습니다: {', '.join(users)}. "
+                "먼저 해당 처방에서 제거하세요."
+            )
+        else:
+            confirm = st.checkbox(f"정말 '{del_id}' 를 삭제합니다", key="del_ing_confirm")
+            if st.button("삭제", type="primary", disabled=not confirm, key="del_ing_btn"):
+                try:
+                    original = ING_PATH.read_text(encoding="utf-8")
+                    save_with_backup(
+                        ING_PATH, delete_item(original, del_id), load_ingredients
+                    )
+                    st.success(f"삭제됨: {del_id}  (백업: ingredients.yaml.bak)")
+                    st.rerun()
+                except Exception as exc:  # noqa: BLE001
+                    st.error(f"삭제 실패: {exc}")
 
 query = st.text_input("검색 (원료명 / INCI / id / 분류)", "").strip().lower()
 
