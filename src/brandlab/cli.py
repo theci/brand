@@ -28,6 +28,7 @@ from .batchrecord import (
 from .checks import check_formula
 from .core.models import ProductIntent
 from .diff import formula_diff
+from .dossier import build_dossier
 from .ingredient_edit import set_ingredient_fields
 from .inventory import inventory_rows, unknown_inventory_ids
 from .pubchem import PubChemError, fetch_pubchem, http_get_json
@@ -1256,6 +1257,38 @@ def shopping_cmd(
     )
     for w in sl.warnings:
         console.print(f"[dim]  · {w}[/dim]")
+
+
+@app.command("dossier")
+def dossier_cmd(
+    slug: str = typer.Argument(..., help="처방 슬러그 (예: daily-lotion)"),
+    version: str = typer.Argument(..., help="버전 (예: v1)"),
+    units: int = typer.Option(None, "--units", "-u", help="원가 요약 포함(생산 수량)"),
+    out: Path = typer.Option(None, "--out", "-o", help="저장 경로(.md). 없으면 화면 출력"),
+) -> None:
+    """제품표준서(처방·전성분·제조·규제·안정성·원가)를 1개 문서로 컴파일한다."""
+    ver = _parse_version(version)
+    lab = BrandLab.load()
+    formula = _find_formula(lab, slug, ver)
+
+    md = build_dossier(
+        formula,
+        lab,
+        units=units,
+        stability=load_all_stability(),
+        batches=load_all_batches(),
+    )
+
+    if out is not None:
+        out.write_text(md, encoding="utf-8")
+        console.print(
+            Panel.fit(
+                f"제품표준서 생성: [bold]{formula.product} v{formula.version}[/bold]\n{out}",
+                title="dossier",
+            )
+        )
+    else:
+        typer.echo(md)
 
 
 def main() -> None:

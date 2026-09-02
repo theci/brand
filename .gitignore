@@ -12,5 +12,9 @@ experiments/doe/*-report.md
 experiments/doe/*-main-effects.png
 experiments/doe/*-interaction.png
 
+# dossier 가 생성하는 제품표준서 산출물 (필요 시 --out 으로 생성)
+제품표준서*.md
+dossiers/
+
 # 마이그레이션 백업
 *.bak
