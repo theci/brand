@@ -521,6 +521,58 @@ class BatchRecord(BaseModel):
 
 
 # ---------------------------------------------------------------------------
+# 재고 (data/inventory.yaml)
+# ---------------------------------------------------------------------------
+class InventoryIngredient(BaseModel):
+    """원료 재고 1종.
+
+    on_hand_g   : 현재 보유량(g)
+    pack_size_g : 공급사 판매 단위(g). 구매는 이 배수로만 가능(장바구니 올림에 사용).
+    pack_price  : 1팩 가격(원). 없으면 ingredients.yaml의 price_per_kg로 환산.
+    expiry      : 유통기한(미개봉).
+    opened      : 개봉일. pao_months와 함께 '개봉 후 사용기한'을 계산.
+    pao_months  : 개봉 후 사용 가능 개월(Period After Opening).
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    id: str = Field(min_length=1)
+    on_hand_g: float = Field(default=0.0, ge=0)
+    pack_size_g: float | None = Field(default=None, gt=0)
+    pack_price: float | None = Field(default=None, ge=0)
+    expiry: date | None = None
+    opened: date | None = None
+    pao_months: int | None = Field(default=None, gt=0)
+    notes: str | None = None
+
+
+class InventoryPackaging(BaseModel):
+    """포장재 재고 1종. 구매 단위(MOQ)는 packaging.yaml을 따른다."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    id: str = Field(min_length=1)
+    on_hand: int = Field(default=0, ge=0)
+    notes: str | None = None
+
+
+class Inventory(BaseModel):
+    """inventory.yaml 최상위 구조. 파일이 없으면 빈 재고로 취급한다(선택 데이터)."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    last_updated: date | None = None
+    ingredients: list[InventoryIngredient] = Field(default_factory=list)
+    packaging: list[InventoryPackaging] = Field(default_factory=list)
+
+    def ingredient_index(self) -> dict[str, InventoryIngredient]:
+        return {i.id: i for i in self.ingredients}
+
+    def packaging_index(self) -> dict[str, InventoryPackaging]:
+        return {p.id: p for p in self.packaging}
+
+
+# ---------------------------------------------------------------------------
 # 조향: 향료 원료 (data/aroma_materials.yaml)
 # ---------------------------------------------------------------------------
 class AromaNote(str, Enum):

@@ -29,7 +29,9 @@ from .checks import check_formula
 from .core.models import ProductIntent
 from .diff import formula_diff
 from .ingredient_edit import set_ingredient_fields
+from .inventory import inventory_rows, unknown_inventory_ids
 from .pubchem import PubChemError, fetch_pubchem, http_get_json
+from .shopping import shopping_list
 from .cost import (
     breakeven,
     min_price_for_margin,
@@ -61,6 +63,7 @@ from .loader import (
     load_doe,
     load_fragrance,
     load_ingredients,
+    load_inventory,
 )
 from .models import Formula, Fragrance
 from .stability import stability_due, stability_summary
@@ -1115,6 +1118,144 @@ def ingredient_enrich(
         raise typer.Exit(code=1) from exc
 
     console.print("[green]✓ ingredients.yaml 갱신:[/green] " + ", ".join(f"{k}={v}" for k, v in applied.items()))
+
+
+@app.command("inventory")
+def inventory_cmd(
+    near_days: int = typer.Option(30, "--near-days", help="유통기한 '임박' 기준(일)"),
+) -> None:
+    """원료 재고와 유통/개봉 기한 상태를 표로 본다."""
+    lab = BrandLab.load()
+    inv = load_inventory()
+    if not inv.ingredients and not inv.packaging:
+        console.print(
+            "[dim]재고가 없습니다. data/inventory.yaml 을 만들어 보유 원료를 등록하세요.[/dim]"
+        )
+        return
+
+    # 마스터에 없는 id 경고
+    unknown = unknown_inventory_ids(inv, lab.ingredients.index(), lab.packaging.index())
+    for u in unknown:
+        console.print(f"[yellow]⚠ 재고 항목 '{u}' 가 마스터(원료/포장)에 없습니다.[/yellow]")
+
+    today = date_cls.today()
+    rows = inventory_rows(inv, lab.ingredients.index(), today, near_days)
+    color = {"만료": "red", "임박": "yellow", "신선": "green", None: "dim"}
+    table = Table(title="원료 재고", title_justify="left", header_style="bold")
+    table.add_column("원료")
+    table.add_column("보유(g)", justify="right")
+    table.add_column("사용기한")
+    table.add_column("남은일", justify="right")
+    table.add_column("상태")
+    for r in rows:
+        c = color.get(r.status, "white")
+        exp = r.effective_expiry.isoformat() if r.effective_expiry else "―"
+        days = f"{r.days_left}" if r.days_left is not None else "―"
+        status = r.status or "미상"
+        table.add_row(r.name, f"{r.on_hand_g:g}", exp, days, f"[{c}]{status}[/{c}]")
+    console.print(table)
+
+    expired = [r for r in rows if r.status == "만료"]
+    near = [r for r in rows if r.status == "임박"]
+    if expired:
+        console.print(f"[red]■ 만료 {len(expired)}종 — 폐기하고 재구매하세요.[/red]")
+    if near:
+        console.print(f"[yellow]■ 임박 {len(near)}종 — 우선 소진하거나 발주 준비.[/yellow]")
+
+    if inv.packaging:
+        pt = Table(title="포장 재고", title_justify="left", header_style="bold")
+        pt.add_column("포장재")
+        pt.add_column("보유(개)", justify="right")
+        pidx = lab.packaging.index()
+        for p in inv.packaging:
+            name = pidx[p.id].name if p.id in pidx else p.id
+            pt.add_row(name, f"{p.on_hand:,}")
+        console.print(pt)
+
+
+@app.command("shopping")
+def shopping_cmd(
+    slug: str = typer.Argument(..., help="처방 슬러그 (예: daily-lotion)"),
+    version: str = typer.Argument(..., help="버전 (예: v1)"),
+    units: int = typer.Option(None, "--units", "-u", help="생산 수량(포장 포함 계산)"),
+    grams: float = typer.Option(None, "--grams", "-g", help="원료 배치 크기(g). 원료만 계산"),
+) -> None:
+    """생산에 필요한 구매 목록을 만든다(재고 차감·팩/MOQ 올림·비용)."""
+    if (units is None) == (grams is None):
+        raise typer.BadParameter("--units 또는 --grams 중 하나만 지정하세요.")
+    ver = _parse_version(version)
+    lab = BrandLab.load()
+    formula = _find_formula(lab, slug, ver)
+    inv = load_inventory()
+
+    try:
+        sl = shopping_list(
+            formula,
+            ingredients=lab.ingredients,
+            packaging=lab.packaging,
+            inventory=inv,
+            units=units,
+            grams=grams,
+        )
+    except ValueError as exc:
+        raise typer.BadParameter(str(exc)) from exc
+
+    def won(x: float) -> str:
+        return f"{x:,.0f}원"
+
+    scope = f"{units:,}개 생산" if units is not None else f"{grams:g}g 배치"
+    console.print(
+        Panel.fit(
+            f"[bold]{formula.product}[/bold]  ([cyan]{formula.slug}[/cyan] v{formula.version})\n"
+            f"목표: [bold]{scope}[/bold]   재고 차감 후 구매 목록",
+            title="장바구니(shopping)",
+        )
+    )
+
+    it = Table(title="원료 구매", title_justify="left", header_style="bold")
+    it.add_column("원료")
+    it.add_column("필요g", justify="right")
+    it.add_column("보유g", justify="right")
+    it.add_column("부족g", justify="right")
+    it.add_column("구매", justify="right")
+    it.add_column("비용", justify="right")
+    for l in sl.ingredients:
+        if l.buy_g <= 0:
+            buy = "[green]구매 불필요[/green]"
+        elif l.packs is not None:
+            buy = f"{l.packs}팩({l.buy_g:g}g)"
+        else:
+            buy = f"{l.buy_g:g}g"
+        it.add_row(
+            l.name, f"{l.need_g:g}", f"{l.on_hand_g:g}", f"{l.short_g:g}", buy, won(l.cost)
+        )
+        if l.note:
+            console.print(f"[yellow]  ⚠ {l.name}: {l.note}[/yellow]")
+    console.print(it)
+
+    if sl.packaging:
+        pt = Table(title="포장 구매", title_justify="left", header_style="bold")
+        pt.add_column("포장재")
+        pt.add_column("필요", justify="right")
+        pt.add_column("보유", justify="right")
+        pt.add_column("부족", justify="right")
+        pt.add_column("발주", justify="right")
+        pt.add_column("사장재고", justify="right")
+        pt.add_column("비용", justify="right")
+        for l in sl.packaging:
+            dead = f"[red]{l.dead_qty:,}[/red]" if l.dead_qty else "0"
+            order = f"{l.order_qty:,}" if l.order_qty else "[green]0[/green]"
+            pt.add_row(
+                l.name, f"{l.need_units:,}", f"{l.on_hand:,}", f"{l.short:,}", order, dead, won(l.cost)
+            )
+        console.print(pt)
+
+    console.print(
+        f"\n[bold]총 예상 구매액: {won(sl.total_cost)}[/bold] "
+        f"(원료 {won(sl.material_cost)} + 포장 {won(sl.packaging_cost)})"
+    )
+    for w in sl.warnings:
+        console.print(f"[dim]  · {w}[/dim]")
 
 
 def main() -> None:

@@ -1,0 +1,39 @@
+# 재고 — 현재 보유 원료·포장. (선택 데이터: 이 파일이 없어도 도구는 동작)
+# 원료:
+#   on_hand_g   현재 보유량(g)
+#   pack_size_g 공급사 판매 단위(g) — 장바구니는 이 배수로 올림
+#   pack_price  1팩 가격(원). 없으면 ingredients.yaml의 price_per_kg로 환산
+#   expiry      유통기한(미개봉) / opened+pao_months = 개봉 후 사용기한
+# 포장: on_hand 보유 개수(구매 단위 MOQ는 packaging.yaml을 따름)
+last_updated: 2026-09-02
+
+ingredients:
+  - id: glycerin
+    on_hand_g: 500
+    pack_size_g: 1000
+    pack_price: 4500
+    expiry: 2027-06-30          # 미개봉 — 신선
+
+  - id: jojoba-oil
+    on_hand_g: 200
+    pack_size_g: 500
+    pack_price: 22500
+    opened: 2026-08-01          # 개봉 후 12개월 → 2027-08-01
+    pao_months: 12
+
+  - id: shea-butter
+    on_hand_g: 300
+    pack_size_g: 1000
+    pack_price: 18000
+    expiry: 2026-09-20          # 임박(30일 이내)
+
+  - id: phenoxyethanol
+    on_hand_g: 50
+    pack_size_g: 500
+    pack_price: 4500
+    opened: 2026-01-10          # 개봉 후 6개월 → 2026-07-10 = 이미 만료
+    pao_months: 6
+
+packaging:
+  - id: jar-50ml
+    on_hand: 200

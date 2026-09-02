@@ -22,6 +22,7 @@ from .models import (
     FoodAllergenList,
     Fragrance,
     IngredientMaster,
+    Inventory,
     ChemicalSafetyFees,
     ClassificationRules,
     LabelingRules,
@@ -70,6 +71,14 @@ def load_packaging(path: Path | str = DATA_DIR / "packaging.yaml") -> PackagingM
 
 def load_config(path: Path | str = DATA_DIR / "config.yaml") -> Config:
     return Config.model_validate(_read_yaml(Path(path)))
+
+
+def load_inventory(path: Path | str = DATA_DIR / "inventory.yaml") -> Inventory:
+    """재고를 로드한다. 파일이 없으면 빈 재고를 반환한다(선택 데이터)."""
+    p = Path(path)
+    if not p.exists():
+        return Inventory()
+    return Inventory.model_validate(_read_yaml(p))
 
 
 def load_allergens(
@@ -345,6 +354,7 @@ __all__ = [
     "load_ingredients",
     "load_packaging",
     "load_config",
+    "load_inventory",
     "load_allergens",
     "load_limits",
     "load_labeling_rules",
