@@ -18,6 +18,72 @@ st.title("원료")
 lab = load_lab()
 ings = lab.ingredients.ingredients
 
+with st.expander("🔎 PubChem 원료 자동채움 (CAS·밀도)"):
+    from brandlab.ingredient_edit import set_ingredient_fields
+    from brandlab.loader import DATA_DIR, load_ingredients
+    from brandlab.pubchem import PubChemError, fetch_pubchem, http_get_json
+
+    st.caption("무인증 공개 DB(PubChem)에서 CAS·밀도를 조회해 비어 있는 칸을 채웁니다.")
+    ing_options = {f"{i.name} ({i.id})": i for i in ings}
+    target = ing_options[st.selectbox("원료 선택", list(ing_options), key="enrich_sel")]
+    force = st.checkbox("이미 값이 있어도 덮어쓰기", key="enrich_force")
+
+    if st.button("PubChem 조회"):
+        with st.spinner("PubChem 조회 중…"):
+            try:
+                st.session_state["enrich_result"] = (
+                    target.id,
+                    fetch_pubchem(name=target.inci, cas=target.cas, get_json=http_get_json),
+                )
+            except PubChemError as exc:
+                st.session_state["enrich_result"] = (target.id, None)
+                st.error(f"조회 실패: {exc}")
+
+    res = st.session_state.get("enrich_result")
+    if res and res[0] == target.id and res[1] is not None:
+        data = res[1]
+        if not data.found:
+            st.warning("PubChem에서 찾지 못했습니다(고분자·혼합물·복합 INCI명일 수 있음).")
+        else:
+            proposals: dict[str, object] = {}
+
+            def _plan(field, current, suggested):
+                if suggested is None:
+                    return "―"
+                if current is not None and not force:
+                    return "유지(값 있음)"
+                proposals[field] = suggested
+                return "✅ 채움 대상"
+
+            st.table(
+                [
+                    {"필드": "CAS", "현재": target.cas or "―", "PubChem": data.cas or "―",
+                     "반영": _plan("cas", target.cas, data.cas)},
+                    {"필드": "density", "현재": target.density or "―", "PubChem": data.density or "―",
+                     "반영": _plan("density", target.density, data.density)},
+                    {"필드": "분자량", "현재": "―", "PubChem": data.molecular_weight or "―", "반영": "정보"},
+                    {"필드": "분자식", "현재": "―", "PubChem": data.molecular_formula or "―", "반영": "정보"},
+                ]
+            )
+            if data.source_url:
+                st.caption(f"출처: {data.source_url}")
+
+            if proposals and st.button("ingredients.yaml에 채우기(저장)"):
+                path = DATA_DIR / "ingredients.yaml"
+                original = path.read_text(encoding="utf-8")
+                new_text, applied = set_ingredient_fields(original, target.id, proposals)
+                path.write_text(new_text, encoding="utf-8")
+                try:
+                    load_ingredients(path)
+                except Exception as exc:  # noqa: BLE001 — 검증 실패면 롤백
+                    path.write_text(original, encoding="utf-8")
+                    st.error(f"검증 실패로 되돌렸습니다: {exc}")
+                else:
+                    st.success("갱신: " + ", ".join(f"{k}={v}" for k, v in applied.items()))
+                    st.rerun()
+            elif not proposals:
+                st.info("채울 새 값이 없습니다(이미 채워져 있음).")
+
 query = st.text_input("검색 (원료명 / INCI / id / 분류)", "").strip().lower()
 
 
