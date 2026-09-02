@@ -5,6 +5,7 @@ from __future__ import annotations
 import streamlit as st
 
 from brandlab.dossier import build_dossier
+from brandlab.factory_package import build_package, zip_package
 from brandlab.loader import load_all_batches, load_all_stability
 from brandlab.ui import load_lab, setup_korean_font
 
@@ -32,10 +33,28 @@ md = build_dossier(
     batches=load_all_batches(),
 )
 
-st.download_button(
+_stability = load_all_stability()
+_batches = load_all_batches()
+
+d1, d2 = st.columns(2)
+d1.download_button(
     "제품표준서 내려받기 (.md)",
     md,
     file_name=f"제품표준서_{formula.slug}_v{formula.version}.md",
 )
+_pkg = zip_package(
+    build_package(
+        formula, lab,
+        units=int(units) if units else None,
+        stability=_stability, batches=_batches,
+    )
+)
+d2.download_button(
+    "🏭 공장 제출 패키지 (zip)",
+    _pkg,
+    file_name=f"공장제출_{formula.slug}_v{formula.version}.zip",
+    mime="application/zip",
+)
+st.caption("공장 제출 패키지 = 공장용 커버레터(요청·QA/QC·주의) + 제품표준서. NDA 후 공유하세요.")
 st.divider()
 st.markdown(md)
