@@ -16,6 +16,7 @@ from brandlab.doe import (
     interpretation_sentences,
     main_effects_plot,
 )
+from brandlab.doe_optimize import recommend
 from brandlab.experiment_edit import (
     create_doe,
     create_stability,
@@ -200,6 +201,62 @@ with tab_doe:
         st.subheader("해석")
         for s in interpretation_sentences(analysis):
             st.markdown(f"- {s}")
+
+        st.subheader("🎯 추천 조합 (최적화)")
+        st.caption(
+            "각 평가항목의 목표(최대/최소)와 가중치를 정하면, desirability로 최고 관측 런을 고르고 "
+            "주효과로 다음에 시도할 조합을 추천합니다. (관능 점수 기반 — 참고용)"
+        )
+        _goal_df = st.data_editor(
+            pd.DataFrame([
+                {
+                    "평가항목": it,
+                    "목표": ("min" if any(k in it for k in ("끈적", "산패", "위험", "자극")) else "max"),
+                    "가중치": 1.0,
+                }
+                for it in design.response_items
+            ]),
+            num_rows="fixed",
+            width="stretch",
+            disabled=["평가항목"],
+            column_config={
+                "목표": st.column_config.SelectboxColumn("목표", options=["max", "min"]),
+                "가중치": st.column_config.NumberColumn("가중치", min_value=0.0, step=0.5),
+            },
+            key=f"doe_goals_{fname}",
+        )
+        _goals = {r["평가항목"]: r["목표"] for _, r in _goal_df.iterrows()}
+        _weights = {r["평가항목"]: float(r["가중치"]) for _, r in _goal_df.iterrows()}
+        _rec = recommend(design, _goals, _weights)
+        for w in _rec.warnings:
+            st.caption("· " + w)
+
+        st.markdown("**추천 최적 조합** (다음 실험 후보)")
+        _opt_rows = []
+        for c in _rec.factor_choices:
+            val = ""
+            if design.levels and c.factor in design.levels and c.level in ("low", "high"):
+                lv = design.levels[c.factor].get(c.level)
+                val = f"{lv:g}" if isinstance(lv, (int, float)) else ""
+            _opt_rows.append(
+                {"인자": c.factor, "추천 수준": c.level, "수준값": val, "영향도": c.influence}
+            )
+        st.table(_opt_rows)
+        st.caption("무관 = 상충(가중치로 조정)/영향 미미. 영향도 +면 high·−면 low 유리.")
+
+        if _rec.best_run is not None:
+            _fv = ", ".join(f"{k}={v}" for k, v in _rec.best_run.factor_values.items())
+            st.markdown(
+                f"**최고 관측 런**: #{_rec.best_run.run_id} "
+                f"(desirability {_rec.best_run.desirability}) — {_fv}"
+            )
+        with st.expander("런 랭킹 (desirability)"):
+            st.table([
+                {"순위": i + 1, "run_id": r.run_id, "desirability": r.desirability,
+                 **{k: v for k, v in r.factor_values.items()}}
+                for i, r in enumerate(_rec.ranked)
+                if r.desirability is not None
+            ])
 
         # 플롯: 기존 함수가 PNG로 저장하므로 임시파일에 저장 후 표시
         tmp = Path(tempfile.mkdtemp())
