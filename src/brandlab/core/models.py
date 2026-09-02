@@ -976,3 +976,37 @@ class PromptKeywordLibrary(BaseModel):
 
     def get(self, category: str) -> list[PromptKeyword]:
         return self.categories.get(category, [])
+
+
+# ---------------------------------------------------------------------------
+# 포지셔닝 (data/brand/positioning.yaml) — 뾰족함의 뿌리
+# ---------------------------------------------------------------------------
+class ComparisonRow(BaseModel):
+    """경쟁 비교표 1행."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    axis: str = Field(min_length=1)  # 비교 축(예: 유화제 종류, 스쿠알란 함량)
+    ours: str = ""  # 우리 값
+    theirs: str = ""  # 경쟁/기존 값
+    ours_wins: bool = False  # 우리 우위인가
+
+
+class Positioning(BaseModel):
+    """포지셔닝 문장의 구성 요소. 모든 칸 선택(부분 저장·점진 편집).
+
+    목표 문장: "우리는 [타겟]에게 [경쟁]이 해결 못한 [페인]을 [신물질/공정]으로
+    [수치적 이익]으로 해결하는 유일한 [카테고리]다."
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    product_ref: str | None = None  # 근거 추출 기준 제품 "slug vN"
+    target: str | None = None  # 타겟
+    competitor: str | None = None  # 경쟁사/기존 물질(현상으로, 실명 지양)
+    pain: str | None = None  # 고객 페인 포인트
+    tech: str | None = None  # 우리만의 신물질/신공정
+    metric_benefit: str | None = None  # 구체적 수치적 이익/성능
+    category: str | None = None  # 카테고리(작은 시장)
+    entry_situations: list[str] = Field(default_factory=list)  # 카테고리 진입점(상황)
+    comparison: list[ComparisonRow] = Field(default_factory=list)

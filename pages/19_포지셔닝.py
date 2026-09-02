@@ -1,0 +1,121 @@
+"""포지셔닝 페이지(STEP 0 · 전략) — '뾰족함'을 강제해 포지셔닝 문장을 조립한다.
+
+모든 STEP의 뿌리. 수치적 차별점은 제품 데이터 근거에서 제안한다.
+"""
+
+from __future__ import annotations
+
+import pandas as pd
+import streamlit as st
+
+from brandlab.core.models import ComparisonRow, Positioning
+from brandlab.loader import load_positioning
+from brandlab.positioning import (
+    build_statement,
+    comparison_summary,
+    save_positioning,
+    suggest_metrics,
+    variants,
+)
+from brandlab.ui import load_lab, setup_korean_font
+
+setup_korean_font()
+st.title("포지셔닝 🎯 (전략)")
+st.caption(
+    "뾰족함이 모든 것의 뿌리입니다. '우리는 [타겟]에게 [경쟁]이 못 푼 [페인]을 "
+    "[신물질/공정]으로 [수치적 이익]으로 해결하는 유일한 [카테고리]다' — 이 문장을 데이터로 완성하세요."
+)
+
+lab = load_lab()
+pos = load_positioning()
+
+# 근거 추출 기준 제품
+opts = ["(없음)"] + [f"{f.slug} v{f.version}" for f in lab.formulas]
+_idx = opts.index(pos.product_ref) if pos.product_ref in opts else 0
+product_ref = st.selectbox("근거 기준 제품", opts, index=_idx)
+selected = None
+if product_ref != "(없음)":
+    selected = next((f for f in lab.formulas if f"{f.slug} v{f.version}" == product_ref), None)
+
+# 구성 요소
+c1, c2 = st.columns(2)
+target = c1.text_input("타겟 (인물로)", value=pos.target or "")
+competitor = c2.text_input("경쟁/기존 방식 (현상으로 — 실명 지양)", value=pos.competitor or "")
+c3, c4 = st.columns(2)
+pain = c3.text_input("페인 포인트", value=pos.pain or "")
+tech = c4.text_input("우리만의 신물질/신공정", value=pos.tech or "")
+c5, c6 = st.columns(2)
+metric_benefit = c5.text_input("수치적 이익/성능 (핵심!)", value=pos.metric_benefit or "")
+category = c6.text_input("카테고리 (작은 시장)", value=pos.category or "")
+entry = st.text_area(
+    "카테고리 진입점 — 고객이 우리를 떠올리는 상황 (한 줄에 하나)",
+    value="\n".join(pos.entry_situations), height=80,
+)
+
+# 수치적 차별점 후보(제품 데이터 근거)
+if selected is not None:
+    with st.expander("🔎 수치적 차별점 후보 (제품 데이터 근거)", expanded=not metric_benefit):
+        metrics = suggest_metrics(selected, lab)
+        if metrics:
+            for m in metrics:
+                st.write(f"- {m}")
+            st.caption("위 사실을 '수치적 이익/성능' 칸에 활용하세요. 검증 가능한 숫자가 뾰족함을 만듭니다.")
+        else:
+            st.info("숫자 있는 근거가 없습니다. DOE·안정성·처방을 채우면 후보가 늘어납니다.")
+
+# 경쟁 비교표
+st.subheader("경쟁 비교표 — 우리 vs 기존")
+comp_df = st.data_editor(
+    pd.DataFrame(
+        [{"비교 축": r.axis, "우리": r.ours, "경쟁": r.theirs, "우리 우위": r.ours_wins}
+         for r in pos.comparison]
+        or [{"비교 축": "", "우리": "", "경쟁": "", "우리 우위": False}]
+    ),
+    num_rows="dynamic",
+    width="stretch",
+    column_config={"우리 우위": st.column_config.CheckboxColumn("우리 우위")},
+    key="pos_comp",
+)
+comparison = [
+    ComparisonRow(
+        axis=str(r["비교 축"]).strip(),
+        ours=str(r["우리"] or "").strip(),
+        theirs=str(r["경쟁"] or "").strip(),
+        ours_wins=bool(r["우리 우위"]),
+    )
+    for _, r in comp_df.iterrows()
+    if str(r["비교 축"]).strip()
+]
+
+# 현재 포지셔닝 구성
+current = Positioning(
+    product_ref=None if product_ref == "(없음)" else product_ref,
+    target=target or None,
+    competitor=competitor or None,
+    pain=pain or None,
+    tech=tech or None,
+    metric_benefit=metric_benefit or None,
+    category=category or None,
+    entry_situations=[x.strip() for x in entry.splitlines() if x.strip()],
+    comparison=comparison,
+)
+
+_summary = comparison_summary(current)
+if _summary:
+    st.caption(f"우리 우위 요약: {_summary}")
+
+st.divider()
+st.subheader("포지셔닝 문장")
+st.success(build_statement(current))
+st.markdown("**변형 3안**")
+for v in variants(current):
+    st.write(f"- {v}")
+
+if st.button("💾 포지셔닝 저장", type="primary"):
+    try:
+        path = save_positioning(current)
+        st.success(f"저장됨: {path} — 브랜드 코어(③적·④약속)에 이 포지셔닝을 반영하세요.")
+    except Exception as exc:  # noqa: BLE001
+        st.error(f"저장 실패: {exc}")
+
+st.caption("이 포지셔닝이 브랜드 코어·상품등록·마케팅 프롬프트의 뿌리가 됩니다.")

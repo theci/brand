@@ -29,6 +29,7 @@ from .models import (
     LabelingRules,
     LimitList,
     PackagingMaster,
+    Positioning,
     ProhibitedList,
     PromptKeywordLibrary,
     RegimeInfo,
@@ -99,6 +100,16 @@ def load_prompt_keywords(
     if not p.exists():
         return PromptKeywordLibrary()
     return PromptKeywordLibrary.model_validate(_read_yaml(p))
+
+
+def load_positioning(
+    path: Path | str = DATA_DIR / "brand" / "positioning.yaml",
+) -> Positioning:
+    """포지셔닝을 로드한다. 파일이 없으면 빈 포지셔닝을 반환한다(선택 데이터)."""
+    p = Path(path)
+    if not p.exists():
+        return Positioning()
+    return Positioning.model_validate(_read_yaml(p))
 
 
 def load_allergens(
@@ -377,6 +388,7 @@ __all__ = [
     "load_inventory",
     "load_brand_core",
     "load_prompt_keywords",
+    "load_positioning",
     "load_allergens",
     "load_limits",
     "load_labeling_rules",
