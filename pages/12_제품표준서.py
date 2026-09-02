@@ -8,7 +8,6 @@ from brandlab.dossier import build_dossier
 from brandlab.loader import load_all_batches, load_all_stability
 from brandlab.ui import load_lab, setup_korean_font
 
-st.set_page_config(page_title="제품표준서 · brand-lab", page_icon="📄", layout="wide")
 setup_korean_font()
 st.title("제품표준서 (dossier)")
 st.caption("처방·전성분·제조지시·품질규격·규제·안정성·원가·배치이력을 1개 문서로 컴파일한다.")

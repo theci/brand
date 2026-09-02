@@ -7,7 +7,6 @@ import streamlit as st
 from brandlab.checks import check_formula
 from brandlab.ui import load_lab, setup_korean_font
 
-st.set_page_config(page_title="사전점검 · brand-lab", page_icon="🧪", layout="wide")
 setup_korean_font()
 st.title("처방 사전점검 · HLB · 배합한도")
 st.caption("제형을 만들기 전에, 유화가 깨질 위험과 배합한도 초과를 처방서 숫자로 미리 거른다.")

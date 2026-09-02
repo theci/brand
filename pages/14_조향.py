@@ -8,7 +8,6 @@ from brandlab.fragrance import blend_sheet, ifra_check, maceration_due, note_pyr
 from brandlab.loader import load_all_fragrances, load_aroma_materials
 from brandlab.ui import setup_korean_font
 
-st.set_page_config(page_title="조향 · brand-lab", page_icon="🌸", layout="wide")
 setup_korean_font()
 st.title("조향 (fragrance)")
 st.caption("희석 배율을 반영한 계량표 + 노트 피라미드 + IFRA 사용한도 체크.")

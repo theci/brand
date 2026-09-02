@@ -7,7 +7,6 @@ import streamlit as st
 from brandlab.diff import formula_diff
 from brandlab.ui import format_won, load_lab, setup_korean_font
 
-st.set_page_config(page_title="버전비교 · brand-lab", page_icon="🔀", layout="wide")
 setup_korean_font()
 st.title("처방 버전 비교 (diff)")
 st.caption("무엇을 바꿔서 원가가 어떻게 달라졌는지 한 표로. 개선 이력을 추적한다.")

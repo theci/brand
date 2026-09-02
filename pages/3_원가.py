@@ -13,7 +13,6 @@ from brandlab.cost import (
 )
 from brandlab.ui import format_won, load_lab, setup_korean_font
 
-st.set_page_config(page_title="원가 · brand-lab", page_icon="💰", layout="wide")
 setup_korean_font()
 st.title("원가 · 손익")
 

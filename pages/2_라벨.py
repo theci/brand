@@ -19,7 +19,6 @@ from brandlab.regimes import UnsupportedRegimeError, regime_for
 from brandlab.regimes.registry import UnknownRegimeError
 from brandlab.ui import load_lab, setup_korean_font
 
-st.set_page_config(page_title="라벨 · brand-lab", page_icon="🏷", layout="wide")
 setup_korean_font()
 st.title("라벨 스크리닝")
 

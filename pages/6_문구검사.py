@@ -22,7 +22,6 @@ from brandlab.loader import (
 )
 from brandlab.ui import setup_korean_font
 
-st.set_page_config(page_title="문구검사 · brand-lab", page_icon="📝", layout="wide")
 setup_korean_font()
 st.title("상세페이지 문구 검사")
 

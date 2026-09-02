@@ -19,7 +19,6 @@ from brandlab.master_edit import (
 )
 from brandlab.ui import format_won, load_lab, setup_korean_font
 
-st.set_page_config(page_title="포장재 · brand-lab", page_icon="📦", layout="wide")
 setup_korean_font()
 st.title("포장재")
 st.caption("병·튜브·박스 등 부자재 마스터. 원가·MOQ·장바구니 계산의 기준이 됩니다.")

@@ -31,7 +31,6 @@ def _s(x) -> str:
     """선택 숫자/문자 필드를 프리필 문자열로(없으면 빈 문자열)."""
     return "" if x is None else str(x)
 
-st.set_page_config(page_title="원료 · brand-lab", page_icon="📦", layout="wide")
 setup_korean_font()
 st.title("원료")
 

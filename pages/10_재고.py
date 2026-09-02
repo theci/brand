@@ -10,7 +10,6 @@ from brandlab.inventory import inventory_rows, unknown_inventory_ids
 from brandlab.loader import load_inventory
 from brandlab.ui import load_lab, setup_korean_font
 
-st.set_page_config(page_title="재고 · brand-lab", page_icon="📦", layout="wide")
 setup_korean_font()
 st.title("재고 · 유통기한")
 st.caption("보유 원료와 유통기한(개봉 후 사용기한 포함)을 만료/임박/신선으로 판정한다.")

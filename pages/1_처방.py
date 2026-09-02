@@ -16,7 +16,6 @@ from brandlab.formula_edit import (
 from brandlab.regimes import available
 from brandlab.ui import load_lab, setup_korean_font
 
-st.set_page_config(page_title="처방 · brand-lab", page_icon="🧪", layout="wide")
 setup_korean_font()
 st.title("처방")
 

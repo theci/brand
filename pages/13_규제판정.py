@@ -8,7 +8,6 @@ from brandlab.advisor import classify, compare, feasibility
 from brandlab.core.models import ProductIntent
 from brandlab.ui import format_won, setup_korean_font
 
-st.set_page_config(page_title="규제판정 · brand-lab", page_icon="⚖️", layout="wide")
 setup_korean_font()
 st.title("규제 판정 (RegimeAdvisor)")
 st.caption("제품 의도(용도·기능·제형)로 적용 법(레짐)을 분류하고, 경로별 규제비용을 비교한다.")

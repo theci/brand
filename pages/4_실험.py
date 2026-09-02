@@ -39,7 +39,6 @@ from brandlab.ui import (
     setup_korean_font,
 )
 
-st.set_page_config(page_title="실험 · brand-lab", page_icon="🔬", layout="wide")
 setup_korean_font()
 st.title("실험")
 

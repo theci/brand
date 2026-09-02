@@ -16,7 +16,6 @@ from brandlab.batchrecord import (
 from brandlab.loader import EXPERIMENTS_DIR, iter_batch_paths, load_all_batches
 from brandlab.ui import load_lab, setup_korean_font
 
-st.set_page_config(page_title="배치기록 · brand-lab", page_icon="🧾", layout="wide")
 setup_korean_font()
 st.title("배치 기록 (batchlog)")
 st.caption("실제로 만든 배치의 실측 무게·수율·pH를 처방 버전에 연결해 남긴다.")

@@ -8,7 +8,6 @@ from brandlab.loader import load_inventory
 from brandlab.shopping import shopping_list
 from brandlab.ui import format_won, load_lab, setup_korean_font
 
-st.set_page_config(page_title="장바구니 · brand-lab", page_icon="🛒", layout="wide")
 setup_korean_font()
 st.title("장바구니 (shopping)")
 st.caption("생산에 필요한 양에서 재고를 빼고, 부족분만 공급사 팩·MOQ 단위로 올려 구매 목록을 만든다.")
