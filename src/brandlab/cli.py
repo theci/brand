@@ -7,9 +7,11 @@
 
 from __future__ import annotations
 
+from datetime import date as date_cls
 from pathlib import Path
 
 import typer
+import yaml
 from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
@@ -17,7 +19,15 @@ from rich.table import Table
 from .adcopy import lint as lint_text
 from .advisor import classify, compare, feasibility
 from .batch import batch_sheet, scale, scale_report
+from .batchrecord import (
+    batch_record_to_yaml_dict,
+    batch_summary,
+    make_batch_id,
+    new_batch_record,
+)
+from .checks import check_formula
 from .core.models import ProductIntent
+from .diff import formula_diff
 from .cost import (
     breakeven,
     min_price_for_margin,
@@ -36,9 +46,12 @@ from .food import nutrition_facts
 from .fragrance import blend_sheet, ifra_check, maceration_due, note_pyramid
 from .labeling import screen
 from .loader import (
+    EXPERIMENTS_DIR,
     BrandLab,
+    iter_batch_paths,
     iter_fragrance_paths,
     load_ad_terms,
+    load_all_batches,
     load_all_fragrances,
     load_all_stability,
     load_aroma_materials,
@@ -791,6 +804,216 @@ def advise(
     console.print(Panel(body, title=f"적합성: [{color}]{feas.verdict}[/{color}]", border_style=color))
 
     console.print(Panel(cls.disclaimer, border_style="red"))
+
+
+@app.command("diff")
+def diff_cmd(
+    slug: str = typer.Argument(..., help="처방 슬러그 (예: daily-toner)"),
+    old_version: str = typer.Argument(..., help="이전 버전 (예: v1)"),
+    new_version: str = typer.Argument(..., help="비교할 버전 (예: v2)"),
+    units: int = typer.Option(1000, "--units", "-u", help="원가 비교 기준 수량"),
+) -> None:
+    """두 처방 버전의 원료·함량·개당원가 변화를 비교한다."""
+    ov = _parse_version(old_version)
+    nv = _parse_version(new_version)
+    lab = BrandLab.load()
+    old = _find_formula(lab, slug, ov)
+    new = _find_formula(lab, slug, nv)
+    d = formula_diff(
+        old, new, ingredients=lab.ingredients, packaging=lab.packaging, cost_units=units
+    )
+
+    console.print(
+        Panel.fit(
+            f"[cyan]{d.slug}[/cyan]  v{d.old_version} → v{d.new_version}\n"
+            f"{d.old_product}  →  {d.new_product}",
+            title="처방 비교(diff)",
+        )
+    )
+
+    mark = {"신규": "green", "삭제": "red", "증량": "yellow", "감량": "yellow", "유지": "dim"}
+    table = Table(title="원료 함량 변화", title_justify="left", header_style="bold")
+    table.add_column("원료")
+    table.add_column(f"v{d.old_version} %", justify="right")
+    table.add_column(f"v{d.new_version} %", justify="right")
+    table.add_column("Δ", justify="right")
+    table.add_column("변화")
+    for l in d.lines:
+        color = mark.get(l.change, "white")
+        old_s = f"{l.old_percent:g}" if l.old_percent is not None else "―"
+        new_s = f"{l.new_percent:g}" if l.new_percent is not None else "―"
+        delta_s = f"{l.delta:+g}" if l.delta is not None else ""
+        table.add_row(l.name, old_s, new_s, delta_s, f"[{color}]{l.change}[/{color}]")
+    console.print(table)
+
+    # 원가 변화
+    c = d.cost
+    if c.note:
+        console.print(f"[yellow]⚠ {c.note}[/yellow]")
+    else:
+        def won(x: float | None) -> str:
+            return f"{x:,.0f}원" if x is not None else "-"
+
+        def signed(x: float | None) -> str:
+            if x is None:
+                return "-"
+            color = "red" if x > 0 else "green" if x < 0 else "dim"
+            return f"[{color}]{x:+,.0f}원[/{color}]"
+
+        ctable = Table(
+            title=f"개당 원가 변화 (수량 {units:,}개 기준)",
+            title_justify="left",
+            header_style="bold",
+        )
+        ctable.add_column("항목")
+        ctable.add_column(f"v{d.old_version}", justify="right")
+        ctable.add_column(f"v{d.new_version}", justify="right")
+        ctable.add_column("Δ", justify="right")
+        ctable.add_row("개당 원료비", won(c.old_material), won(c.new_material), signed(c.material_delta))
+        ctable.add_row("개당 원가", won(c.old_unit), won(c.new_unit), signed(c.unit_delta))
+        console.print(ctable)
+
+    for w in d.warnings:
+        console.print(f"[yellow]⚠ {w}[/yellow]")
+
+
+@app.command("check")
+def check_cmd(
+    slug: str = typer.Argument(..., help="처방 슬러그 (예: daily-lotion)"),
+    version: str = typer.Argument(..., help="버전 (예: v1)"),
+) -> None:
+    """제조 전 사전점검: HLB 유화 균형 + 배합한도 스캔."""
+    ver = _parse_version(version)
+    lab = BrandLab.load()
+    formula = _find_formula(lab, slug, ver)
+    result = check_formula(formula, ingredients=lab.ingredients, limits=lab.limits)
+
+    console.print(
+        Panel.fit(
+            f"[bold]{formula.product}[/bold]  ([cyan]{formula.slug}[/cyan] v{formula.version})",
+            title="처방 사전점검(check)",
+        )
+    )
+
+    # HLB
+    h = result.hlb
+    hcolor = {"적합": "green", "주의": "yellow", "위험": "red", "해당없음": "dim"}.get(
+        h.verdict, "white"
+    )
+    console.print(
+        Panel(
+            h.message
+            + (
+                f"\n유화제: {', '.join(h.emulsifiers)}\n유상: {', '.join(h.oils)}"
+                if h.applicable
+                else ""
+            ),
+            title=f"HLB 균형: [{hcolor}]{h.verdict}[/{hcolor}]",
+            border_style=hcolor,
+        )
+    )
+
+    # 배합한도
+    if not result.limit_findings:
+        console.print("[green]✓ 배합한도 초과·근접 원료 없음[/green]")
+    else:
+        ltable = Table(title="배합한도 점검", title_justify="left", header_style="bold")
+        ltable.add_column("원료")
+        ltable.add_column("함량 %", justify="right")
+        ltable.add_column("한도 %", justify="right")
+        ltable.add_column("출처")
+        ltable.add_column("판정")
+        for f in result.limit_findings:
+            scolor = "red" if f.status == "초과" else "yellow"
+            ltable.add_row(
+                f.name,
+                f"{f.percent:g}",
+                f"{f.limit:g}",
+                f.source,
+                f"[{scolor}]{f.status}[/{scolor}]",
+            )
+        console.print(ltable)
+
+    verdict = "[green]통과[/green]" if result.ok else "[red]확인 필요[/red]"
+    console.print(f"종합: {verdict}")
+
+
+batchlog_app = typer.Typer(help="배치 기록(실측 결과)", no_args_is_help=True)
+app.add_typer(batchlog_app, name="batchlog")
+
+
+@batchlog_app.command("new")
+def batchlog_new(
+    slug: str = typer.Argument(..., help="처방 슬러그 (예: daily-toner)"),
+    version: str = typer.Argument(..., help="버전 (예: v1)"),
+    grams: float = typer.Option(..., "--grams", "-g", help="목표 배치 크기(g)"),
+) -> None:
+    """목표 무게를 채운 빈 배치 기록 YAML을 experiments/batches/에 생성한다."""
+    ver = _parse_version(version)
+    lab = BrandLab.load()
+    formula = _find_formula(lab, slug, ver)
+
+    today = date_cls.today()
+    # 같은 처방·같은 날짜의 기존 기록 수 + 1 로 시퀀스 결정
+    existing = [p.name for p in iter_batch_paths()]
+    prefix = make_batch_id(slug, today, 0).rsplit("-", 1)[0]  # 접두어-날짜
+    seq = sum(1 for n in existing if n.startswith(prefix)) + 1
+    batch_id = make_batch_id(slug, today, seq)
+
+    record = new_batch_record(
+        formula, grams, ingredients=lab.ingredients, batch_id=batch_id, on_date=today
+    )
+    out_dir = EXPERIMENTS_DIR / "batches"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    out_path = out_dir / f"{batch_id}.yaml"
+    if out_path.exists():
+        raise typer.BadParameter(f"이미 존재합니다: {out_path}")
+
+    with out_path.open("w", encoding="utf-8") as fp:
+        yaml.safe_dump(
+            batch_record_to_yaml_dict(record),
+            fp,
+            allow_unicode=True,
+            sort_keys=False,
+        )
+
+    console.print(
+        Panel.fit(
+            f"배치 기록 생성: [bold]{batch_id}[/bold]\n{out_path}\n\n"
+            "→ 제조 후 [bold]actual_g / yield_g / ph / observations[/bold] 를 채우세요.",
+            title="batchlog new",
+        )
+    )
+
+
+@batchlog_app.command("summary")
+def batchlog_summary() -> None:
+    """배치 기록들을 수율·pH 표로 요약한다."""
+    records = load_all_batches()
+    rows = batch_summary(records)
+    if not rows:
+        console.print("[dim]배치 기록이 없습니다. 'brandlab batchlog new'로 시작하세요.[/dim]")
+        return
+    table = Table(title="배치 기록 요약", title_justify="left", header_style="bold")
+    table.add_column("배치ID")
+    table.add_column("처방")
+    table.add_column("일자")
+    table.add_column("목표g", justify="right")
+    table.add_column("회수g", justify="right")
+    table.add_column("수율", justify="right")
+    table.add_column("pH", justify="right")
+    for r in rows:
+        yield_s = f"{r.yield_g:g}" if r.yield_g is not None else "―"
+        pct_s = f"{r.yield_percent:g}%" if r.yield_percent is not None else "―"
+        if r.ph is None:
+            ph_s = "―"
+        else:
+            pcolor = "green" if r.ph_ok else "red"
+            ph_s = f"[{pcolor}]{r.ph:g}[/{pcolor}]"
+        table.add_row(
+            r.batch_id, r.formula_ref, r.date.isoformat(), f"{r.target_g:g}", yield_s, pct_s, ph_s
+        )
+    console.print(table)
 
 
 def main() -> None:

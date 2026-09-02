@@ -30,6 +30,7 @@ ingredients:
     has_coa: true
     grade: cosmetic
     cas: "61789-91-1"
+    required_hlb: 6.5    # O/W 유화에 필요한 HLB(오일마다 다름). check 명령이 사용.
     notes: 왁스 에스테르 구조로 안정성이 높음
 
   - id: castor-oil
@@ -94,6 +95,7 @@ ingredients:
     has_coa: true
     grade: cosmetic
     cas: "111-01-3"
+    required_hlb: 12.0   # O/W 유화에 필요한 HLB
     notes: 무색·무취, 산화 안정성 우수
 
   # --- 버터 ---
@@ -106,6 +108,7 @@ ingredients:
     has_coa: true
     grade: cosmetic
     cas: "194043-92-0"
+    required_hlb: 8.0    # O/W 유화에 필요한 HLB
 
   - id: cocoa-butter
     name: 코코아버터
@@ -161,6 +164,7 @@ ingredients:
     has_coa: true
     grade: cosmetic
     cas: "36653-82-4"
+    required_hlb: 15.0   # 지방알코올(공동유화·컨시스턴시). O/W 요구 HLB 높음
 
   - id: stearic-acid
     name: 스테아릭애씨드
@@ -376,6 +380,7 @@ ingredients:
     density: 0.9
     has_coa: true
     grade: cosmetic
+    hlb: 10.0            # 이 유화제가 '공급'하는 HLB. check 명령이 요구 HLB와 비교.
     notes: O/W(수중유형) 유화제. 오일과 물을 섞어 유화(에멀전)를 만드는 핵심 원료.
 
   - id: sodium-hyaluronate
@@ -387,6 +392,17 @@ ingredients:
     has_coa: true
     grade: cosmetic
     notes: 고분자 보습제. 자기 무게의 수백 배 수분을 잡아둠. 0.1~0.5%만 써도 충분.
+
+  - id: panthenol
+    name: 판테놀(프로비타민B5)
+    inci: Panthenol
+    category: 보습제
+    price_per_kg: 30000
+    density: 1.2
+    has_coa: true
+    grade: cosmetic
+    cas: "16485-10-2"
+    notes: 수용성 보습·진정 활성. 보습과 다른 '진정' 축을 더하는 USP 원료. 권장 0.5~5%.
 
   - id: xanthan-gum
     name: 잔탄검

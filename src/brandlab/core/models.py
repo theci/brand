@@ -98,6 +98,10 @@ class Ingredient(BaseModel):
     price_per_kg: float | None = Field(default=None, ge=0)
     # 밀도(g/ml). 부피 기준 내용량을 질량으로 환산할 때 사용. 없으면 1.0 g/ml로 가정.
     density: float | None = Field(default=None, gt=0)
+    # 유화제 자신의 HLB 값(0~20). 유화제(계면활성제)에만 입력. 유화 성공 예측(check)에 사용.
+    hlb: float | None = Field(default=None, ge=0, le=20)
+    # 이 오일/유상 원료를 O/W로 유화하는 데 필요한 required HLB(0~20). 유상 원료에만 입력.
+    required_hlb: float | None = Field(default=None, ge=0, le=20)
     # 성적서(CoA) 보유 여부. 안전상 기본 False(미확인) — UI에서 붉게 표시.
     has_coa: bool = False
     # 화장품용 등급 여부. 캔들/식품/공업용이면 False — UI에서 붉게 표시.
@@ -464,6 +468,56 @@ class StabilitySample(BaseModel):
     condition: StabilityCondition
     start_date: date
     observations: list[StabilityObservation] = Field(default_factory=list)
+
+
+# ---------------------------------------------------------------------------
+# 배치 기록 (experiments/batches/*.yaml)
+# ---------------------------------------------------------------------------
+class BatchLine(BaseModel):
+    """배치 제조 시 원료 1줄의 목표 vs 실측 무게.
+
+    target_g : 처방 환산으로 계산된 목표 투입량(g)
+    actual_g : 저울로 실제 계량해 넣은 값(g). 비워두면 목표대로 넣은 것으로 간주하지 않고 '미기록'.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    id: str = Field(min_length=1)
+    target_g: float = Field(ge=0)
+    actual_g: float | None = Field(default=None, ge=0)
+
+
+class BatchRecord(BaseModel):
+    """소량 제조 1회 기록 (experiments/batches/*.yaml).
+
+    벤치에서 실제로 만든 배치의 '실측 결과'를 시스템에 남긴다.
+      - 목표 배치량 대비 실제 회수량 → 수율(yield)
+      - 측정 pH (피부 제품 4.5~6.0 목표)
+      - 원료별 목표 vs 실측 무게(선택)
+      - 자유 관찰 메모
+    측정 도구(저울·pH미터)로 얻은 숫자를 처방 버전에 연결해 재현성을 확보한다.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    batch_id: str = Field(min_length=1)  # 예: DT-20260902-01
+    formula_ref: str = Field(min_length=1)  # 예: "daily-toner v1"
+    slug: str | None = None
+    version: int | None = Field(default=None, gt=0)
+    date: date
+    target_g: float = Field(gt=0)  # 목표 배치량
+    yield_g: float | None = Field(default=None, ge=0)  # 실제 회수량(완성 후 무게)
+    ph: float | None = Field(default=None, ge=0, le=14)  # 측정 pH
+    lines: list[BatchLine] = Field(default_factory=list)  # 원료별 목표/실측
+    observations: str | None = None  # 외관·향·사용감 등 자유 메모
+    operator: str | None = None
+
+    @property
+    def yield_percent(self) -> float | None:
+        """수율(%) = 회수량 / 목표량 × 100. 회수량 미기록이면 None."""
+        if self.yield_g is None or self.target_g <= 0:
+            return None
+        return round(self.yield_g / self.target_g * 100.0, 1)
 
 
 # ---------------------------------------------------------------------------

@@ -1,0 +1,53 @@
+batch_id: DL-20260902-02
+formula_ref: daily-lotion v2
+slug: daily-lotion
+version: 2
+date: 2026-09-02
+target_g: 100.0
+yield_g: 93.0
+ph: 5.3
+lines:
+- id: water
+  target_g: 69.65
+  actual_g: null
+- id: glycerin
+  target_g: 5.0
+  actual_g: null
+- id: sodium-hyaluronate
+  target_g: 0.15
+  actual_g: null
+- id: panthenol
+  target_g: 1.0
+  actual_g: null
+- id: xanthan-gum
+  target_g: 0.4
+  actual_g: null
+- id: glyceryl-stearate-citrate
+  target_g: 5.0
+  actual_g: null
+- id: cetyl-alcohol
+  target_g: 2.0
+  actual_g: null
+- id: jojoba-oil
+  target_g: 6.0
+  actual_g: null
+- id: squalane
+  target_g: 4.0
+  actual_g: null
+- id: shea-butter
+  target_g: 3.0
+  actual_g: null
+- id: phenoxyethanol
+  target_g: 1.0
+  actual_g: null
+- id: hexanediol
+  target_g: 2.0
+  actual_g: null
+- id: tocopherol
+  target_g: 0.5
+  actual_g: null
+- id: lavender-eo
+  target_g: 0.3
+  actual_g: null
+observations: 잔탄검 0.4로 점도 개선(묽음 해소). 유화 양호·층분리 없음. 판테놀 투입 후 발림 부드러움. v1 대비 개선 확인.
+operator: 박창훈

@@ -1,0 +1,42 @@
+product: 데일리 수분 로션
+slug: daily-lotion
+version: 2
+regime: cosmetics
+product_type: leave_on
+status: 개발중
+base_batch_g: 200
+parent_version: 1              # v1에서 개선. diff로 v1↔v2 비교.
+phases:
+  # 수상: v1 대비 (1) 잔탄검 0.3→0.4 (배치기록서 '묽음' 개선), (2) 히알루론산 0.1→0.15,
+  #       (3) 판테놀 1.0 신규(보습+진정 '다른 축' = USP). 물로 100 맞춤.
+  - name: A (수상)
+    process: 70~75도로 가열하며 잔탄검을 글리세린에 먼저 개어 넣어 뭉침 방지, 판테놀 용해
+    ingredients:
+      - { id: water, percent: 69.65 }
+      - { id: glycerin, percent: 5.0 }
+      - { id: sodium-hyaluronate, percent: 0.15 }
+      - { id: panthenol, percent: 1.0 }
+      - { id: xanthan-gum, percent: 0.4 }
+  # 유상: v1과 동일(유화 균형 HLB를 흔들지 않기 위해 오일/유화제는 유지)
+  - name: B (유상)
+    process: 70~75도로 가열해 유화제·왁스·버터를 완전 용해
+    ingredients:
+      - { id: glyceryl-stearate-citrate, percent: 5.0 }
+      - { id: cetyl-alcohol, percent: 2.0 }
+      - { id: jojoba-oil, percent: 6.0 }
+      - { id: squalane, percent: 4.0 }
+      - { id: shea-butter, percent: 3.0 }
+  - name: C (냉각 첨가)
+    process: 40도 이하로 냉각한 뒤 보존제·향·산화방지제 투입(열에 약함)
+    ingredients:
+      - { id: phenoxyethanol, percent: 1.0 }
+      - { id: hexanediol, percent: 2.0 }
+      - { id: tocopherol, percent: 0.5 }
+      - { id: lavender-eo, percent: 0.3 }
+packaging:
+  - { id: jar-50ml, qty_per_unit: 1 }
+fill_volume_ml: 50
+notes: >
+  v1 → v2 개선판. 유상(오일·유화제)은 그대로 두어 HLB 균형을 유지하고,
+  수상에서만 보습 '다른 축'(판테놀)과 점도(잔탄검)를 손봤다.
+  USP = "글리세린 증량"이 아니라 "보습+진정 다축 조합". percent 합계 100.

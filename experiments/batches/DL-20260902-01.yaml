@@ -1,0 +1,50 @@
+batch_id: DL-20260902-01
+formula_ref: daily-lotion v1
+slug: daily-lotion
+version: 1
+date: 2026-09-02
+target_g: 100.0
+yield_g: 92.5
+ph: 5.2
+lines:
+- id: water
+  target_g: 70.8
+  actual_g: null
+- id: glycerin
+  target_g: 5.0
+  actual_g: null
+- id: sodium-hyaluronate
+  target_g: 0.1
+  actual_g: null
+- id: xanthan-gum
+  target_g: 0.3
+  actual_g: null
+- id: glyceryl-stearate-citrate
+  target_g: 5.0
+  actual_g: null
+- id: cetyl-alcohol
+  target_g: 2.0
+  actual_g: null
+- id: jojoba-oil
+  target_g: 6.0
+  actual_g: null
+- id: squalane
+  target_g: 4.0
+  actual_g: null
+- id: shea-butter
+  target_g: 3.0
+  actual_g: null
+- id: phenoxyethanol
+  target_g: 1.0
+  actual_g: null
+- id: hexanediol
+  target_g: 2.0
+  actual_g: null
+- id: tocopherol
+  target_g: 0.5
+  actual_g: null
+- id: lavender-eo
+  target_g: 0.3
+  actual_g: null
+observations: 유화 양호(층분리 없음). 냉각 후 약간 묽음 → 다음 배치서 잔탄검 0.3→0.4 검토.
+operator: 박창훈

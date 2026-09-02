@@ -15,6 +15,7 @@ from .models import (
     AdTermList,
     AllergenList,
     AromaMaterialList,
+    BatchRecord,
     Config,
     DoeDesign,
     Formula,
@@ -201,6 +202,18 @@ def load_stability(path: Path | str) -> StabilitySample:
     return StabilitySample.model_validate(_read_yaml(Path(path)))
 
 
+def load_batch(path: Path | str) -> BatchRecord:
+    return BatchRecord.model_validate(_read_yaml(Path(path)))
+
+
+def iter_batch_paths(experiments_dir: Path | str = EXPERIMENTS_DIR) -> list[Path]:
+    return sorted(Path(experiments_dir).glob("batches/*.yaml"))
+
+
+def load_all_batches(experiments_dir: Path | str = EXPERIMENTS_DIR) -> list[BatchRecord]:
+    return [load_batch(p) for p in iter_batch_paths(experiments_dir)]
+
+
 def iter_doe_paths(experiments_dir: Path | str = EXPERIMENTS_DIR) -> list[Path]:
     return sorted(Path(experiments_dir).glob("doe/*.yaml"))
 
@@ -348,6 +361,9 @@ __all__ = [
     "load_doe",
     "load_stability",
     "load_all_stability",
+    "load_batch",
+    "load_all_batches",
+    "iter_batch_paths",
     "iter_doe_paths",
     "iter_stability_paths",
     "load_aroma_materials",
