@@ -7,7 +7,7 @@
 - 검증은 **pydantic v2**
 - 테스트는 **pytest**
 
-> 구현 범위: **레짐 추상화(화장품법·화학제품안전법) + 규제 판정(RegimeAdvisor) + 배치 계산 + 전성분/규정 스크리너 + 원가/손익 + 실험 관리(DOE·안정성) + 조향(블렌드·IFRA·숙성) + 문구 검사 + CLI + Streamlit UI**.
+> 구현 범위: **레짐 추상화(화장품법·화학제품안전법) + 규제 판정(RegimeAdvisor) + 배치 계산 + 전성분/규정 스크리너 + 원가/손익 + 실험 관리(DOE·안정성) + 조향(블렌드·IFRA·숙성) + 문구 검사 + R&D 개발 루프(HLB 사전점검·버전 diff·배치 기록) + 원료 자동채움(PubChem) + 재고·장바구니 + 제품표준서 + CLI + Streamlit UI**.
 >
 > ⚠️ **이 도구는 법적 판단을 대체하지 않습니다.** 전성분/규정/레짐 판정은 1차 스크리닝이며,
 > 규제 수치는 코드에 넣지 않고 전부 `data/regulatory/**/*.yaml`에서 읽습니다.
@@ -316,6 +316,35 @@ print(result.disclaimer)
 ```bash
 brandlab lint detail_page.txt    # 텍스트 파일의 문제 표현을 표로 출력
 ```
+
+## R&D 개발 루프 · 재고 · 문서 (신규 명령)
+
+제형을 실제로 만들고 개선하는 전 과정을 돕는 명령들입니다. 전체 흐름 예시는 [`예시_시나리오_처방개선.md`](예시_시나리오_처방개선.md).
+
+| 명령 | 하는 일 | 모듈 |
+|---|---|---|
+| `check <slug> <ver>` | 제조 전 **HLB 유화 균형**(요구 vs 공급) + 배합한도 사전점검 | `checks.py` |
+| `diff <slug> <v1> <v2>` | 버전 간 원료 신규/증량/감량 + 개당 원가 델타 | `diff.py` |
+| `batchlog new/summary` | 배치 실측(수율·pH) 기록·요약 | `batchrecord.py` |
+| `ingredient enrich <id>` | PubChem(무인증)에서 **CAS·밀도 자동채움** | `pubchem.py` |
+| `inventory` | 재고·유통기한(개봉후 사용기한 포함) 상태 | `inventory.py` |
+| `shopping <slug> <ver>` | 필요량 − 재고 = 부족분을 팩/MOQ로 올림 + 비용 | `shopping.py` |
+| `dossier <slug> <ver>` | 제품표준서(전성분·제조·규제·안정성·원가) 컴파일 | `dossier.py` |
+
+```bash
+brandlab check daily-lotion v1                          # 유화 균형 + 배합한도
+brandlab diff daily-lotion v1 v2 --units 1000           # 처방 개선 비교
+brandlab batchlog new daily-lotion v1 --grams 100       # 기록지 생성 → 실측 기입
+brandlab batchlog summary
+brandlab ingredient enrich phenoxyethanol --write       # CAS·밀도 자동채움
+brandlab inventory                                      # 재고·유통기한
+brandlab shopping daily-lotion v1 --units 1000          # 재고 차감 구매목록
+brandlab dossier daily-lotion v2 --units 1000 --out 제품표준서.md
+```
+
+- `check`의 HLB 점검은 원료에 `hlb`(유화제)·`required_hlb`(오일) 값이 있을 때 동작합니다.
+- 재고(`data/inventory.yaml`)는 **선택 데이터** — 없으면 `shopping`은 전량 구매 목록으로 동작합니다.
+- 배치 기록(`experiments/batches/*.yaml`)은 버전관리 대상, 제품표준서 생성물(`제품표준서*.md`)은 `.gitignore` 처리됩니다.
 
 ## Streamlit UI (로컬 전용)
 
