@@ -912,3 +912,43 @@ class ClassificationRules(BaseModel):
     last_updated: date | None = None
     source_url: str = Field(min_length=1)
     rules: list[ClassificationRule] = Field(default_factory=list)
+
+
+# ---------------------------------------------------------------------------
+# 브랜드 코어 시트 (data/brand/core.yaml) — 마케팅 자산의 뿌리
+# ---------------------------------------------------------------------------
+class BrandVisual(BaseModel):
+    """브랜드 코어 시트 ⑦ 비주얼 코드."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    main_color: str | None = None  # HEX
+    sub_color: str | None = None
+    point_color: str | None = None
+    container: str | None = None  # 용기(포장재에서 자동 제안)
+    texture: str | None = None  # 제형 무드
+    font_title: str | None = None
+    font_body: str | None = None
+    photo_note: str | None = None  # 조명·색온도·배경 등
+
+
+class BrandCore(BaseModel):
+    """브랜드 코어 시트 9칸. 모든 마케팅 AI 프롬프트 앞에 붙일 '브랜드 자산'.
+
+    모든 칸은 선택(부분 저장·점진 편집 허용). ⑤근거·⑦비주얼·⑧금지어는 플랫폼이 초안을 채운다.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    brand_name: str | None = None
+    product_ref: str | None = None  # "slug vN" — 근거 추출 기준 제품
+    entry_points: list[str] = Field(default_factory=list)  # ① 카테고리 진입점
+    persona: str | None = None  # ② 타깃(인물)
+    enemy: str | None = None  # ③ 적
+    promise: str | None = None  # ④ 약속
+    evidence: list[str] = Field(default_factory=list)  # ⑤ 근거(자동 추출 → 선택/편집)
+    tone_adjectives: list[str] = Field(default_factory=list)  # ⑥ 톤 형용사
+    forbidden_words: list[str] = Field(default_factory=list)  # ⑧ 브랜드 금지어
+    vocabulary: list[str] = Field(default_factory=list)  # ⑧ 애용어
+    visual: BrandVisual = Field(default_factory=BrandVisual)  # ⑦
+    one_liner: str | None = None  # ⑨ 한 줄 소개

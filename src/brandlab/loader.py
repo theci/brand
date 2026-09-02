@@ -16,6 +16,7 @@ from .models import (
     AllergenList,
     AromaMaterialList,
     BatchRecord,
+    BrandCore,
     Config,
     DoeDesign,
     Formula,
@@ -79,6 +80,14 @@ def load_inventory(path: Path | str = DATA_DIR / "inventory.yaml") -> Inventory:
     if not p.exists():
         return Inventory()
     return Inventory.model_validate(_read_yaml(p))
+
+
+def load_brand_core(path: Path | str = DATA_DIR / "brand" / "core.yaml") -> BrandCore:
+    """브랜드 코어 시트를 로드한다. 파일이 없으면 빈 시트를 반환한다(선택 데이터)."""
+    p = Path(path)
+    if not p.exists():
+        return BrandCore()
+    return BrandCore.model_validate(_read_yaml(p))
 
 
 def load_allergens(
@@ -355,6 +364,7 @@ __all__ = [
     "load_packaging",
     "load_config",
     "load_inventory",
+    "load_brand_core",
     "load_allergens",
     "load_limits",
     "load_labeling_rules",
