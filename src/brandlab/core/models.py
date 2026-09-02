@@ -952,3 +952,27 @@ class BrandCore(BaseModel):
     vocabulary: list[str] = Field(default_factory=list)  # ⑧ 애용어
     visual: BrandVisual = Field(default_factory=BrandVisual)  # ⑦
     one_liner: str | None = None  # ⑨ 한 줄 소개
+
+
+# ---------------------------------------------------------------------------
+# 나노바나나 프롬프트 키워드 팔레트 (data/marketing/prompt_keywords.yaml)
+# ---------------------------------------------------------------------------
+class PromptKeyword(BaseModel):
+    """프롬프트 키워드 1개(영어 키워드 + 한글 설명 + 예시 힌트)."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    en: str = Field(min_length=1)
+    ko: str = ""
+    hint: str | None = None
+
+
+class PromptKeywordLibrary(BaseModel):
+    """prompt_keywords.yaml — 카테고리(angle/lighting/…)별 키워드 목록."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    categories: dict[str, list[PromptKeyword]] = Field(default_factory=dict)
+
+    def get(self, category: str) -> list[PromptKeyword]:
+        return self.categories.get(category, [])

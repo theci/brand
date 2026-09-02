@@ -1,0 +1,291 @@
+# 나노바나나 프롬프트 키워드 팔레트 (나노바나나 핵심 프롬프트.xlsx 이관)
+# 6블록 프롬프트의 드롭다운 재료. 카테고리별 {en, ko, hint}.
+categories:
+  angle:
+  - en: top-down
+    ko: 탑뷰 각도
+    hint: Top-down product shot on clean background
+  - en: low-angle
+    ko: 로우앵글
+    hint: Heroic low-angle emphasizing silhouette
+  - en: 45-degree
+    ko: 45도 사선 앵글
+    hint: Natural 45-degree shot capturing depth
+  - en: side profile
+    ko: 측면 앵글
+    hint: Clean side profile for product edges
+  - en: macro close-up
+    ko: 매크로 근접샷
+    hint: Ultra-close texture-focused shot
+  - en: front-facing
+    ko: 정면 구도
+    hint: Centered product-forward clarity
+  - en: diagonal angle
+    ko: 대각 구도
+    hint: Dynamic diagonal frame
+  - en: over-shoulder
+    ko: 오버숄더 구도
+    hint: POV-style angled shot
+  - en: flat lay
+    ko: 플랫레이
+    hint: Balanced symmetrical flat lay
+  - en: eye-level
+    ko: 아이레벨
+    hint: Neutral eye-level realism
+  - en: tilted frame
+    ko: 틸트 구도
+    hint: Stylish editorial tilt
+  - en: compressed angle
+    ko: 압축 구도
+    hint: Shallow depth compressed lens feel
+  - en: dynamic motion angle
+    ko: 다이내믹 모션 구도
+    hint: Angle suggesting movement
+  - en: product hero angle
+    ko: 히어로샷
+    hint: Main-subject spotlight angle
+  - en: wide-angle
+    ko: 광각 구도
+    hint: Wide view expanding space
+  lighting:
+  - en: soft diffused
+    ko: 소프트 디퓨즈
+    hint: Soft minimal shadow lighting
+  - en: hard directional
+    ko: 하드 셰도우
+    hint: Sharp-edged contrast shadows
+  - en: backlight
+    ko: 백라이팅
+    hint: Glow creation from behind
+  - en: side light
+    ko: 사이드 조명
+    hint: Sculpting volume with side light
+  - en: top light
+    ko: 탑 조명
+    hint: Clear top illumination
+  - en: studio key light
+    ko: 스튜디오 키라이트
+    hint: Clean studio highlight
+  - en: rim light
+    ko: 림라이트
+    hint: Silhouette outlining light
+  - en: natural daylight
+    ko: 자연광
+    hint: Sunlight from window direction
+  - en: warm tone light
+    ko: 웜 톤 조명
+    hint: Warm cozy ambience
+  - en: cool tone light
+    ko: 쿨 톤 조명
+    hint: Fresh cool lighting
+  - en: spotlight
+    ko: 스포트라이트
+    hint: Focused dramatic highlight
+  - en: gradient light
+    ko: 그라데이션 조명
+    hint: Smooth gradient background glow
+  - en: reflected light
+    ko: 반사광
+    hint: Light bounced from surfaces
+  - en: neon glow
+    ko: 네온 글로우
+    hint: Neon modern glow
+  - en: high-contrast
+    ko: 하이 콘트라스트
+    hint: Strong contrast lighting
+  composition:
+  - en: minimal centered
+    ko: 미니멀 중앙 배치
+    hint: Clean centered layout with a calm tone
+  - en: floating object
+    ko: 공중/물 속 오브젝트
+    hint: Product floating with soft shadow
+  - en: product pedestal
+    ko: 피데스탈·받침대 구성
+    hint: Product elevated on a cube/stone block
+  - en: side-by-side
+    ko: 사이드 바이 사이드 배치
+    hint: Two objects aligned side by side
+  - en: depth layering
+    ko: 깊이감
+    hint: Layered props creating natural depth
+  - en: triangle layout
+    ko: 삼각형 안정 레이아웃
+    hint: Stable triangle-based placement
+  - en: rule of thirds
+    ko: 삼분할 구성
+    hint: Clean 1/3 composition emphasizing balance
+  - en: asymmetric balance
+    ko: 비대칭 밸런스
+    hint: Modern asymmetric product placement
+  - en: diagonal placement
+    ko: 대각 배치
+    hint: Dynamic diagonal direction
+  - en: stacked objects
+    ko: 스태킹·층층이 배치
+    hint: Stacked items creating height variation
+  - en: frame-in-frame
+    ko: 프레임 인 프레임
+    hint: Product framed within shapes or props
+  - en: leading lines
+    ko: 리딩 라인
+    hint: Lines guiding eyes toward the product
+  - en: negative space
+    ko: 네거티브 스페이스
+    hint: Spacious minimal negative space layout
+  - en: prop interaction
+    ko: 소품 상호작용
+    hint: Product interacting with props naturally
+  - en: textured base
+    ko: 텍스처 기반 연출
+    hint: Product placed on textured material (fabric, stone)
+  texture:
+  - en: matte finish
+    ko: 매트 질감
+    hint: Soft non-reflective texture
+  - en: glossy shine
+    ko: 글로시 질감
+    hint: High-gloss reflective surface
+  - en: fabric texture
+    ko: 패브릭 질감
+    hint: Soft fabric material
+  - en: grainy texture
+    ko: 그레인 질감
+    hint: Fine grain for vintage tone
+  - en: plastic smooth
+    ko: 플라스틱 질감
+    hint: Smooth plastic look
+  - en: rough stone
+    ko: 거친 돌 질감
+    hint: Stone-inspired surface
+  - en: soft velvet
+    ko: 벨벳 질감
+    hint: Velvety soft texture
+  - en: metallic sheen
+    ko: 메탈릭 광택
+    hint: Smooth metallic reflection
+  - en: paper texture
+    ko: 지류 질감
+    hint: Textured paper backdrop
+  - en: canvas texture
+    ko: 캔버스 질감
+    hint: Artistic canvas grain
+  - en: rubberized surface
+    ko: 러버 질감
+    hint: Soft rubber material
+  - en: woodgrain
+    ko: 우드 텍스처
+    hint: Natural wooden pattern
+  - en: clay texture
+    ko: 클레이 질감
+    hint: Soft handmade clay feel
+  - en: satin finish
+    ko: 새틴 질감
+    hint: Slight reflective satin
+  - en: sand texture
+    ko: 모래 질감
+    hint: Fine sandy background
+  color:
+  - en: pastel tone
+    ko: 파스텔 톤
+    hint: Soft pastel palette
+  - en: monochrome
+    ko: 모노크롬
+    hint: Single-tone minimal style
+  - en: warm palette
+    ko: 웜 팔레트
+    hint: Warm temperature colors
+  - en: cool palette
+    ko: 쿨 팔레트
+    hint: Fresh cool colors
+  - en: neutral beige
+    ko: 뉴트럴 베이지
+    hint: Calm beige palette
+  - en: earth tone
+    ko: 자연톤
+    hint: Natural earthy colors
+  - en: high saturation
+    ko: 고채도
+    hint: Bold vivid colors
+  - en: low saturation
+    ko: 저채도
+    hint: Faded muted palette
+  - en: gradient tone
+    ko: 그라데이션 톤
+    hint: Soft color gradients
+  - en: vintage tone
+    ko: 빈티지 톤
+    hint: Retro muted palette
+  - en: icy blue
+    ko: 아이스블루
+    hint: Clean crisp blue tone
+  - en: rosy pink
+    ko: 로지핑크
+    hint: Soft romantic pink
+  - en: forest green
+    ko: 포레스트 그린
+    hint: Natural green tone
+  - en: sunset orange
+    ko: 선셋 오렌지
+    hint: Warm glowing orange
+  - en: pure white
+    ko: 퓨어 화이트
+    hint: Bright white cleanliness
+  aesthetic:
+  - en: modern clean
+    ko: 모던 깔끔
+    hint: Clean modern brand aesthetic
+  - en: luxury glossy
+    ko: 럭셔리 글로시
+    hint: Premium glossy feel
+  - en: natural organic
+    ko: 내추럴 오가닉
+    hint: Nature-inspired aesthetic
+  - en: editorial high-end
+    ko: 에디토리얼
+    hint: Magazine editorial tone
+  - en: youthful fresh
+    ko: 영프레시
+    hint: Vibrant youthful vibe
+  - en: retro vintage
+    ko: 레트로 빈티지
+    hint: Nostalgic aesthetic
+  - en: artsy minimal
+    ko: 아트 미니멀
+    hint: Minimal artistic tone
+  - en: tech sleek
+    ko: 테크 슬릭
+    hint: Futuristic tech vibe
+  - en: soft feminine
+    ko: 소프트 페미닌
+    hint: Gentle feminine style
+  - en: bold masculine
+    ko: 볼드 매스큘린
+    hint: Strong masculine tone
+  - en: lifestyle casual
+    ko: 라이프스타일 캐주얼
+    hint: Natural lifestyle aesthetic
+  - en: cafe mood
+    ko: 카페 무드
+    hint: Warm cozy cafe-like visuals
+  - en: holiday festive
+    ko: 홀리데이
+    hint: Seasonal celebratory mood
+  - en: earth natural
+    ko: 자연친화적 내추럴
+    hint: Grounded earthy vibe
+  - en: neo-modern
+    ko: 네오모던
+    hint: Sleek contemporary style
+  - en: romantic soft glow
+    ko: 로맨틱 소프트 글로우
+    hint: Dreamy romantic glow with soft warm highlights
+  - en: minimal warm beige
+    ko: 미니멀 웜 베이지 톤
+    hint: Clean minimal mood in warm beige color palette
+  - en: sporty energetic
+    ko: 스포티 에너지 톤
+    hint: Fresh active lifestyle vibe with energetic sporty atmosphere
+  - en: dreamy pastel
+    ko: 드리미 파스텔 톤
+    hint: Soft pastel dreamy aesthetic with gentle light mood

@@ -30,6 +30,7 @@ from .models import (
     LimitList,
     PackagingMaster,
     ProhibitedList,
+    PromptKeywordLibrary,
     RegimeInfo,
     RegimeLabelItems,
     RestrictedList,
@@ -88,6 +89,16 @@ def load_brand_core(path: Path | str = DATA_DIR / "brand" / "core.yaml") -> Bran
     if not p.exists():
         return BrandCore()
     return BrandCore.model_validate(_read_yaml(p))
+
+
+def load_prompt_keywords(
+    path: Path | str = DATA_DIR / "marketing" / "prompt_keywords.yaml",
+) -> PromptKeywordLibrary:
+    """나노바나나 프롬프트 키워드 팔레트를 로드한다. 없으면 빈 라이브러리."""
+    p = Path(path)
+    if not p.exists():
+        return PromptKeywordLibrary()
+    return PromptKeywordLibrary.model_validate(_read_yaml(p))
 
 
 def load_allergens(
@@ -365,6 +376,7 @@ __all__ = [
     "load_config",
     "load_inventory",
     "load_brand_core",
+    "load_prompt_keywords",
     "load_allergens",
     "load_limits",
     "load_labeling_rules",
