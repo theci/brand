@@ -12,18 +12,52 @@ from __future__ import annotations
 
 import streamlit as st
 
-from brandlab.ui import load_lab, setup_korean_font
+from brandlab.dashboard import build_dashboard
+from brandlab.loader import load_all_fragrances, load_inventory
+from brandlab.ui import load_lab, load_stability_samples, setup_korean_font
 
 st.set_page_config(page_title="brand-lab", page_icon="🧪", layout="wide")
 
+_SEV_RENDER = {"high": st.error, "medium": st.warning, "info": st.info}
+
+
+def _render_dashboard(lab) -> None:
+    """🔔 오늘 할 일 — 지금 처리할 알림을 심각도 순으로 표시."""
+    try:
+        alerts = build_dashboard(
+            lab,
+            inventory=load_inventory(),
+            stability_samples=load_stability_samples(),
+            fragrances=load_all_fragrances(),
+        )
+    except Exception as exc:  # noqa: BLE001 — 대시보드 실패가 홈 전체를 막지 않게
+        st.caption(f"대시보드 집계 생략: {exc}")
+        return
+
+    st.subheader("🔔 오늘 할 일")
+    if not alerts:
+        st.success("✅ 지금 처리할 알림이 없습니다. 좋아요!")
+        return
+    for a in alerts:
+        render = _SEV_RENDER.get(a.severity, st.info)
+        render(f"**{a.label}** · {a.count}건  →  사이드바 **{a.page}**")
+        with st.expander(f"{a.label} 자세히 ({a.count})"):
+            for it in a.items[:50]:
+                st.write(f"- {it}")
+            if len(a.items) > 50:
+                st.caption(f"… 외 {len(a.items) - 50}건")
+
 
 def home() -> None:
-    """홈 — 개요 + 데이터 현황."""
+    """홈 — 오늘 할 일(대시보드) + 개요 + 데이터 현황."""
     font = setup_korean_font()
     st.title("🧪 brand-lab")
     st.caption("화장품·생활화학·식품 1인 브랜드 처방 관리 — 로컬 도구")
 
     lab = load_lab()
+    _render_dashboard(lab)
+
+    st.divider()
     c1, c2, c3 = st.columns(3)
     c1.metric("처방", f"{len(lab.formulas)}종")
     c2.metric("원료", f"{len(lab.ingredients.ingredients)}종")
