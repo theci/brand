@@ -37,7 +37,7 @@ with tab_summary:
                     "처방": r.formula_ref,
                     "일자": r.date.isoformat(),
                     "목표g": r.target_g,
-                    "회수g": r.yield_g if r.yield_g is not None else "―",
+                    "회수g": f"{r.yield_g:g}" if r.yield_g is not None else "―",
                     "수율": f"{r.yield_percent:g}%" if r.yield_percent is not None else "―",
                     "pH": ("―" if r.ph is None else (f"✅ {r.ph:g}" if r.ph_ok else f"⚠ {r.ph:g}")),
                 }

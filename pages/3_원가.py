@@ -91,7 +91,7 @@ mrows = [
     {
         "부자재": it.name,
         "필요": it.need_qty,
-        "MOQ": it.moq if it.moq else "-",
+        "MOQ": f"{it.moq:,}" if it.moq else "-",
         "발주": it.order_qty,
         "사장재고": it.dead_qty,
         "자본": format_won(it.capital),

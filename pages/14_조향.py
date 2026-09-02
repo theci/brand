@@ -62,7 +62,7 @@ st.table(
         {
             "원료": f.name,
             "사용률%": f.usage_percent,
-            "한도%": f.limit_percent if f.limit_percent is not None else "―",
+            "한도%": f"{f.limit_percent:g}" if f.limit_percent is not None else "―",
             "판정": ("한도없음" if f.limit_percent is None else ("초과" if f.over else "적합")),
         }
         for f in ifra.findings

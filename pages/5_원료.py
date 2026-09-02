@@ -302,7 +302,7 @@ for ing in filtered:
             "INCI": ing.inci,
             "분류": ing.category,
             "등급": ing.grade or "-",
-            "단가(원/kg)": ing.price_per_kg if ing.price_per_kg is not None else "-",
+            "단가(원/kg)": f"{ing.price_per_kg:,.0f}" if ing.price_per_kg is not None else "-",
             "CoA": "O" if ing.has_coa else "✗ 없음",
             "화장품용": "O" if ing.cosmetic_grade else "✗ 아님",
             "경고": ", ".join(flags) if flags else "",

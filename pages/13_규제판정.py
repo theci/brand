@@ -52,7 +52,7 @@ if cmp.rows:
                 f"SKU×{int(skus)}": format_won(r.sku_expansion_total) if r.supported else "―",
                 "갱신비": format_won(r.renewal_cost) if r.supported else "―",
                 "총 규제비용": format_won(r.total_regulatory_cost) if r.supported else "미지원",
-                "기간(일)": r.lead_time_days if r.supported else "―",
+                "기간(일)": str(r.lead_time_days) if r.supported else "―",
             }
             for r in cmp.rows
         ]

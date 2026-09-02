@@ -167,10 +167,10 @@ st.table(
             "id": p.id,
             "이름": p.name,
             "형태": p.type,
-            "용량(ml)": p.volume_ml if p.volume_ml is not None else "-",
+            "용량(ml)": f"{p.volume_ml:g}" if p.volume_ml is not None else "-",
             "재질": p.material or "-",
             "단가": format_won(p.unit_price) if p.unit_price is not None else "-",
-            "MOQ": p.moq if p.moq is not None else "-",
+            "MOQ": f"{p.moq:,}" if p.moq is not None else "-",
             "공급처": p.supplier or "-",
         }
         for p in pkgs

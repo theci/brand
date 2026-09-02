@@ -37,7 +37,7 @@ st.table(
             "원료": r.name,
             "보유(g)": r.on_hand_g,
             "사용기한": r.effective_expiry.isoformat() if r.effective_expiry else "―",
-            "남은일": r.days_left if r.days_left is not None else "―",
+            "남은일": f"{r.days_left:,}" if r.days_left is not None else "―",
             "상태": emoji.get(r.status, "⚪ 미상"),
         }
         for r in rows
