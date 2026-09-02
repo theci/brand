@@ -6,7 +6,13 @@ import pandas as pd
 import streamlit as st
 
 from brandlab.batch import batch_sheet, scale
-from brandlab.formula_edit import create_formula, delete_formula, formula_path
+from brandlab.formula_edit import (
+    create_formula,
+    delete_formula,
+    formula_path,
+    next_version,
+    update_formula,
+)
 from brandlab.regimes import available
 from brandlab.ui import load_lab, setup_korean_font
 
@@ -17,6 +23,76 @@ st.title("처방")
 lab = load_lab()
 ing_ids = sorted(lab.ingredients.index())
 pkg_ids = sorted(lab.packaging.index())
+_PTYPES = ["leave_on", "rinse_off"]
+_STATUSES = ["개발중", "확정"]
+
+
+def _phases_from_editor(df) -> list[dict]:
+    """원료 편집표(상/원료 id/percent/공정)를 상별로 그룹핑한 phases 리스트로 변환."""
+    order: list[str] = []
+    buckets: dict[str, dict] = {}
+    for _, r in df.iterrows():
+        name = str(r["상"] or "").strip()
+        iid = str(r["원료 id"] or "").strip()
+        pct = pd.to_numeric(r["percent"], errors="coerce")
+        if not name or not iid or pd.isna(pct):
+            continue
+        if name not in buckets:
+            buckets[name] = {"name": name, "ingredients": []}
+            order.append(name)
+        buckets[name]["ingredients"].append({"id": iid, "percent": float(pct)})
+        proc = str(r.get("공정(선택)", "") or "").strip()
+        if proc and "process" not in buckets[name]:
+            buckets[name]["process"] = proc
+    phases = []
+    for n in order:
+        b = buckets[n]
+        phase = {"name": b["name"]}
+        if "process" in b:
+            phase["process"] = b["process"]
+        phase["ingredients"] = b["ingredients"]
+        phases.append(phase)
+    return phases
+
+
+def _packaging_from_editor(df) -> list[dict]:
+    out = []
+    for _, r in df.iterrows():
+        pid = str(r["포장재 id"] or "").strip()
+        qty = pd.to_numeric(r["개수"], errors="coerce")
+        if pid and not pd.isna(qty):
+            out.append({"id": pid, "qty_per_unit": int(qty)})
+    return out
+
+
+def _assemble(
+    *, product, slug, version, regime, ptype, status, batch,
+    phases, packaging, category, fill, netw, notes, parent_version=None,
+) -> dict:
+    """폼 입력을 처방 dict로 조립(선택 필드는 값이 있을 때만 포함)."""
+    data: dict = {
+        "product": product.strip(),
+        "slug": slug.strip(),
+        "version": int(version),
+        "regime": regime,
+        "product_type": ptype,
+        "status": status,
+        "base_batch_g": float(batch),
+        "phases": phases,
+    }
+    if category.strip():
+        data["product_category"] = category.strip()
+    if packaging:
+        data["packaging"] = packaging
+    if fill.strip():
+        data["fill_volume_ml"] = float(fill)
+    if netw.strip():
+        data["net_weight_g"] = float(netw)
+    if notes.strip():
+        data["notes"] = notes.strip()
+    if parent_version is not None:
+        data["parent_version"] = int(parent_version)
+    return data
 
 # ---------------------------------------------------------------------------
 # 새 처방 생성
@@ -71,71 +147,136 @@ with st.expander("➕ 새 처방 생성"):
 
     if st.button("처방 생성", type="primary", key="nf_create"):
         try:
-            # 상별로 원료를 그룹핑(등장 순서 유지). 공정은 상별 첫 비어있지 않은 값.
-            order: list[str] = []
-            buckets: dict[str, dict] = {}
-            for _, r in ing_df.iterrows():
-                name = str(r["상"] or "").strip()
-                iid = str(r["원료 id"] or "").strip()
-                pct = pd.to_numeric(r["percent"], errors="coerce")
-                if not name or not iid or pd.isna(pct):
-                    continue
-                if name not in buckets:
-                    buckets[name] = {"name": name, "ingredients": []}
-                    order.append(name)
-                buckets[name]["ingredients"].append({"id": iid, "percent": float(pct)})
-                proc = str(r.get("공정(선택)", "") or "").strip()
-                if proc and "process" not in buckets[name]:
-                    buckets[name]["process"] = proc
-            phases = []
-            for n in order:
-                b = buckets[n]
-                phase = {"name": b["name"]}
-                if "process" in b:
-                    phase["process"] = b["process"]
-                phase["ingredients"] = b["ingredients"]
-                phases.append(phase)
-
-            packaging = []
-            for _, r in pkg_df.iterrows():
-                pid = str(r["포장재 id"] or "").strip()
-                qty = pd.to_numeric(r["개수"], errors="coerce")
-                if pid and not pd.isna(qty):
-                    packaging.append({"id": pid, "qty_per_unit": int(qty)})
-
-            data: dict = {
-                "product": f_product.strip(),
-                "slug": f_slug.strip(),
-                "version": int(f_version),
-                "regime": f_regime,
-                "product_type": f_ptype,
-                "status": f_status,
-                "base_batch_g": float(f_batch),
-                "phases": phases,
-            }
-            if f_category.strip():
-                data["product_category"] = f_category.strip()
-            if packaging:
-                data["packaging"] = packaging
-            if f_fill.strip():
-                data["fill_volume_ml"] = float(f_fill)
-            if f_netw.strip():
-                data["net_weight_g"] = float(f_netw)
-            if f_notes.strip():
-                data["notes"] = f_notes.strip()
-
+            phases = _phases_from_editor(ing_df)
             if not phases:
                 st.error("원료를 1개 이상 입력하세요.")
             else:
+                data = _assemble(
+                    product=f_product, slug=f_slug, version=f_version, regime=f_regime,
+                    ptype=f_ptype, status=f_status, batch=f_batch, phases=phases,
+                    packaging=_packaging_from_editor(pkg_df), category=f_category,
+                    fill=f_fill, netw=f_netw, notes=f_notes,
+                )
                 path = create_formula(
-                    data,
-                    ingredient_ids=set(ing_ids),
-                    packaging_ids=set(pkg_ids),
+                    data, ingredient_ids=set(ing_ids), packaging_ids=set(pkg_ids)
                 )
                 st.success(f"생성됨: formulas/{path.parent.name}/{path.name}")
                 st.rerun()
         except Exception as exc:  # noqa: BLE001 — 사용자에게 사유 표시
             st.error(f"생성 실패: {exc}")
+
+# ---------------------------------------------------------------------------
+# 처방 수정 (기존 처방을 불러와 값 변경 → 새 버전 저장 or 현재 버전 덮어쓰기)
+# ---------------------------------------------------------------------------
+with st.expander("✏️ 처방 수정"):
+    if not lab.formulas:
+        st.info("수정할 처방이 없습니다.")
+    else:
+        edit_opts = {f"{f.slug} v{f.version} — {f.product}": f for f in lab.formulas}
+        ef = edit_opts[st.selectbox("수정할 처방", list(edit_opts), key="edit_sel")]
+        sv = f"{ef.slug}_v{ef.version}"  # 선택이 바뀌면 위젯 키가 바뀌어 값이 새로 채워짐
+        st.caption(f"현재: {ef.slug} v{ef.version} · 레짐 {ef.regime}")
+
+        c1, c2, c3 = st.columns(3)
+        e_product = c1.text_input("제품명", value=ef.product, key=f"ep_product_{sv}")
+        e_regime = c2.selectbox(
+            "레짐", available(),
+            index=available().index(ef.regime) if ef.regime in available() else 0,
+            key=f"ep_regime_{sv}",
+        )
+        e_status = c3.selectbox(
+            "상태", _STATUSES, index=_STATUSES.index(ef.status.value), key=f"ep_status_{sv}"
+        )
+        c4, c5, c6 = st.columns(3)
+        e_ptype = c4.selectbox(
+            "제품형태", _PTYPES, index=_PTYPES.index(ef.product_type.value), key=f"ep_ptype_{sv}"
+        )
+        e_batch = c5.number_input(
+            "기준 배치(g)", min_value=1.0, value=float(ef.base_batch_g), step=10.0, key=f"ep_batch_{sv}"
+        )
+        e_category = c6.text_input("품목 카테고리(선택)", value=ef.product_category or "", key=f"ep_cat_{sv}")
+        c7, c8, c9 = st.columns(3)
+        e_fill = c7.text_input("충전 부피 ml(선택)", value="" if ef.fill_volume_ml is None else str(ef.fill_volume_ml), key=f"ep_fill_{sv}")
+        e_netw = c8.text_input("내용량 g(선택)", value="" if ef.net_weight_g is None else str(ef.net_weight_g), key=f"ep_netw_{sv}")
+        e_notes = c9.text_input("메모(선택)", value=ef.notes or "", key=f"ep_notes_{sv}")
+
+        st.markdown("**원료 (상별)**")
+        e_rows = []
+        for ph in ef.phases:
+            for j, ing in enumerate(ph.ingredients):
+                e_rows.append({
+                    "상": ph.name,
+                    "원료 id": ing.id,
+                    "percent": ing.percent,
+                    "공정(선택)": (ph.process or "") if j == 0 else "",
+                })
+        e_ing_df = st.data_editor(
+            pd.DataFrame(e_rows),
+            num_rows="dynamic",
+            width="stretch",
+            column_config={
+                "상": st.column_config.TextColumn("상"),
+                "원료 id": st.column_config.SelectboxColumn("원료 id", options=ing_ids),
+                "percent": st.column_config.NumberColumn("percent", min_value=0.0, max_value=100.0, step=0.1),
+                "공정(선택)": st.column_config.TextColumn("공정(선택)"),
+            },
+            key=f"ep_ing_{sv}",
+        )
+        _et = float(pd.to_numeric(e_ing_df["percent"], errors="coerce").fillna(0).sum())
+        (st.success if abs(_et - 100.0) < 0.01 else st.caption)(
+            f"현재 percent 합계: {_et:.2f} (100이어야 저장 가능)"
+        )
+
+        st.markdown("**포장재 (선택)**")
+        e_prows = [{"포장재 id": r.id, "개수": r.qty_per_unit} for r in ef.packaging]
+        e_pkg_df = st.data_editor(
+            pd.DataFrame(e_prows) if e_prows
+            else pd.DataFrame({"포장재 id": pd.Series(dtype="object"), "개수": pd.Series(dtype="int")}),
+            num_rows="dynamic",
+            width="stretch",
+            column_config={
+                "포장재 id": st.column_config.SelectboxColumn("포장재 id", options=pkg_ids),
+                "개수": st.column_config.NumberColumn("개수", min_value=1, step=1),
+            },
+            key=f"ep_pkg_{sv}",
+        )
+
+        _nv = next_version(ef.slug)
+        save_mode = st.radio(
+            "저장 방식",
+            [f"새 버전으로 저장 (v{_nv}, 권장)", f"현재 버전 덮어쓰기 (v{ef.version})"],
+            key=f"ep_mode_{sv}",
+        )
+        new_version_mode = save_mode.startswith("새 버전")
+        if not new_version_mode:
+            st.caption("⚠️ 덮어쓰기는 현재 파일을 바꿉니다(.bak 백업·검증 실패 시 롤백).")
+        if st.button("수정 저장", type="primary", key=f"ep_save_{sv}"):
+            try:
+                phases = _phases_from_editor(e_ing_df)
+                if not phases:
+                    st.error("원료를 1개 이상 입력하세요.")
+                else:
+                    data = _assemble(
+                        product=e_product, slug=ef.slug,
+                        version=_nv if new_version_mode else ef.version,
+                        regime=e_regime, ptype=e_ptype, status=e_status, batch=e_batch,
+                        phases=phases, packaging=_packaging_from_editor(e_pkg_df),
+                        category=e_category, fill=e_fill, netw=e_netw, notes=e_notes,
+                        parent_version=ef.version if new_version_mode else None,
+                    )
+                    if new_version_mode:
+                        path = create_formula(
+                            data, ingredient_ids=set(ing_ids), packaging_ids=set(pkg_ids)
+                        )
+                        st.success(f"새 버전 저장됨: formulas/{path.parent.name}/{path.name}")
+                    else:
+                        update_formula(
+                            data, ingredient_ids=set(ing_ids), packaging_ids=set(pkg_ids)
+                        )
+                        st.success(f"덮어쓰기 완료: {ef.slug} v{ef.version} (백업 .bak)")
+                    st.rerun()
+            except Exception as exc:  # noqa: BLE001
+                st.error(f"수정 실패: {exc}")
 
 # ---------------------------------------------------------------------------
 # 처방 삭제

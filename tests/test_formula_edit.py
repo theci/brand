@@ -4,7 +4,13 @@ from __future__ import annotations
 
 import pytest
 
-from brandlab.formula_edit import create_formula, delete_formula, formula_path
+from brandlab.formula_edit import (
+    create_formula,
+    delete_formula,
+    formula_path,
+    next_version,
+    update_formula,
+)
 from brandlab.loader import load_formula
 
 ING_IDS = {"water", "glycerin", "dpg"}
@@ -84,3 +90,40 @@ def test_delete_removes_file_and_empty_dir(tmp_path):
 def test_delete_missing_raises(tmp_path):
     with pytest.raises(FileNotFoundError):
         delete_formula(formula_path("nope", 1, tmp_path))
+
+
+def test_next_version(tmp_path):
+    assert next_version("my-test", tmp_path) == 1
+    create_formula(_valid_data(version=1), ingredient_ids=ING_IDS, packaging_ids=PKG_IDS, formulas_dir=tmp_path)
+    assert next_version("my-test", tmp_path) == 2
+    create_formula(_valid_data(version=2), ingredient_ids=ING_IDS, packaging_ids=PKG_IDS, formulas_dir=tmp_path)
+    assert next_version("my-test", tmp_path) == 3
+
+
+def test_update_overwrites_and_backs_up(tmp_path):
+    path = create_formula(_valid_data(), ingredient_ids=ING_IDS, packaging_ids=PKG_IDS, formulas_dir=tmp_path)
+    data = _valid_data()
+    data["product"] = "수정된 이름"
+    data["phases"][0]["ingredients"] = [
+        {"id": "water", "percent": 70.0},
+        {"id": "glycerin", "percent": 30.0},
+    ]
+    update_formula(data, ingredient_ids=ING_IDS, packaging_ids=PKG_IDS, formulas_dir=tmp_path)
+    f = load_formula(path, ingredient_ids=ING_IDS, packaging_ids=PKG_IDS)
+    assert f.product == "수정된 이름"
+    assert path.with_suffix(".yaml.bak").exists()  # 백업 생성
+
+
+def test_update_missing_file_raises(tmp_path):
+    with pytest.raises(FileNotFoundError):
+        update_formula(_valid_data(), ingredient_ids=ING_IDS, packaging_ids=PKG_IDS, formulas_dir=tmp_path)
+
+
+def test_update_rolls_back_on_invalid(tmp_path):
+    path = create_formula(_valid_data(), ingredient_ids=ING_IDS, packaging_ids=PKG_IDS, formulas_dir=tmp_path)
+    good = path.read_text(encoding="utf-8")
+    bad = _valid_data()
+    bad["phases"][0]["ingredients"][1]["id"] = "nope"  # 참조 실패
+    with pytest.raises(ValueError):
+        update_formula(bad, ingredient_ids=ING_IDS, packaging_ids=PKG_IDS, formulas_dir=tmp_path)
+    assert path.read_text(encoding="utf-8") == good  # 원문 유지
