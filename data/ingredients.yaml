@@ -415,6 +415,7 @@ ingredients:
     notes: 천연 점증제(발효 유래). 수상을 걸쭉하게 만들어 유화 안정성을 도움. 0.1~0.5%.
 
   - id: phenoxyethanol
+    cas: "122-99-6"
     name: 페녹시에탄올
     inci: Phenoxyethanol
     category: 보존제

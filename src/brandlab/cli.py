@@ -28,6 +28,8 @@ from .batchrecord import (
 from .checks import check_formula
 from .core.models import ProductIntent
 from .diff import formula_diff
+from .ingredient_edit import set_ingredient_fields
+from .pubchem import PubChemError, fetch_pubchem, http_get_json
 from .cost import (
     breakeven,
     min_price_for_margin,
@@ -46,6 +48,7 @@ from .food import nutrition_facts
 from .fragrance import blend_sheet, ifra_check, maceration_due, note_pyramid
 from .labeling import screen
 from .loader import (
+    DATA_DIR,
     EXPERIMENTS_DIR,
     BrandLab,
     iter_batch_paths,
@@ -57,6 +60,7 @@ from .loader import (
     load_aroma_materials,
     load_doe,
     load_fragrance,
+    load_ingredients,
 )
 from .models import Formula, Fragrance
 from .stability import stability_due, stability_summary
@@ -1014,6 +1018,103 @@ def batchlog_summary() -> None:
             r.batch_id, r.formula_ref, r.date.isoformat(), f"{r.target_g:g}", yield_s, pct_s, ph_s
         )
     console.print(table)
+
+
+ingredient_app = typer.Typer(help="원료 데이터 관리", no_args_is_help=True)
+app.add_typer(ingredient_app, name="ingredient")
+
+
+@ingredient_app.command("enrich")
+def ingredient_enrich(
+    ing_id: str = typer.Argument(..., help="원료 id (예: glycerin)"),
+    write: bool = typer.Option(
+        False, "--write", help="누락 필드(cas·density)를 ingredients.yaml에 반영"
+    ),
+    force: bool = typer.Option(False, "--force", help="이미 값이 있어도 덮어씀"),
+    timeout: float = typer.Option(10.0, "--timeout", help="조회 타임아웃(초)"),
+) -> None:
+    """PubChem(무인증)에서 원료의 CAS·밀도·분자정보를 조회한다.
+
+    기본은 조회만(dry-run). --write 를 주면 비어 있는 필드만 채운다.
+    """
+    lab = BrandLab.load()
+    ing = lab.ingredients.index().get(ing_id)
+    if ing is None:
+        available = ", ".join(sorted(lab.ingredients.index()))
+        raise typer.BadParameter(f"원료 id를 찾을 수 없습니다: {ing_id}\n사용 가능: {available}")
+
+    console.print(
+        Panel.fit(
+            f"[bold]{ing.name}[/bold]  ([cyan]{ing.id}[/cyan])\nINCI: {ing.inci}",
+            title="PubChem 원료 조회(enrich)",
+        )
+    )
+
+    with console.status("PubChem 조회 중…"):
+        data = fetch_pubchem(
+            name=ing.inci,
+            cas=ing.cas,
+            get_json=lambda u: http_get_json(u, timeout=timeout),
+        )
+
+    if not data.found:
+        console.print("[yellow]PubChem에서 원료를 찾지 못했습니다.[/yellow]")
+        for n in data.notes:
+            console.print(f"[dim]  · {n}[/dim]")
+        return
+
+    # 채울 수 있는 모델 필드: cas, density (MW·분자식은 정보 표시만)
+    proposals: dict[str, object] = {}
+    table = Table(title="조회 결과", title_justify="left", header_style="bold")
+    table.add_column("필드")
+    table.add_column("현재값")
+    table.add_column("PubChem")
+    table.add_column("반영")
+
+    def plan(field: str, current: object, suggested: object) -> str:
+        if suggested is None:
+            return "-"
+        if current is not None and not force:
+            return "[dim]유지[/dim]"  # 이미 값 있음
+        proposals[field] = suggested
+        return "[green]채움[/green]" if write else "[cyan]제안[/cyan]"
+
+    table.add_row("CAS", str(ing.cas or "―"), str(data.cas or "―"), plan("cas", ing.cas, data.cas))
+    table.add_row(
+        "density", str(ing.density or "―"), str(data.density or "―"),
+        plan("density", ing.density, data.density),
+    )
+    table.add_row("분자량", "―", str(data.molecular_weight or "―"), "[dim]정보[/dim]")
+    table.add_row("분자식", "―", str(data.molecular_formula or "―"), "[dim]정보[/dim]")
+    console.print(table)
+    if data.source_url:
+        console.print(f"[dim]출처: {data.source_url}[/dim]")
+    for n in data.notes:
+        console.print(f"[dim]  · {n}[/dim]")
+
+    if not write:
+        if proposals:
+            console.print(
+                "\n[dim]--write 를 주면 위 '제안' 필드를 ingredients.yaml에 반영합니다.[/dim]"
+            )
+        return
+
+    if not proposals:
+        console.print("[green]반영할 새 값이 없습니다(이미 채워져 있음).[/green]")
+        return
+
+    # 원문 텍스트를 주석 보존 방식으로 갱신 → 재검증(실패 시 롤백)
+    path = DATA_DIR / "ingredients.yaml"
+    original = path.read_text(encoding="utf-8")
+    new_text, applied = set_ingredient_fields(original, ing_id, proposals)
+    path.write_text(new_text, encoding="utf-8")
+    try:
+        load_ingredients(path)
+    except Exception as exc:  # noqa: BLE001 — 어떤 검증 오류든 롤백
+        path.write_text(original, encoding="utf-8")
+        raise typer.Exit(code=1) from exc
+
+    console.print("[green]✓ ingredients.yaml 갱신:[/green] " + ", ".join(f"{k}={v}" for k, v in applied.items()))
 
 
 def main() -> None:
