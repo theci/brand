@@ -1266,3 +1266,72 @@ class CertStatusList(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     entries: list[CertStatusEntry] = Field(default_factory=list)
+
+
+# ---------------------------------------------------------------------------
+# 진행 트래커 — 데일리 루틴 커리큘럼 (data/curriculum.yaml + data/brand/progress.yaml)
+# 12주 5막 커리큘럼을 데이터로 담아 '오늘의 퀘스트·스트릭·마일스톤'을 홈에 띄운다.
+# ---------------------------------------------------------------------------
+class Milestone(BaseModel):
+    """막(Act)의 마일스톤 배지와 완료 조건(DoD)."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    badge: str = Field(min_length=1)  # 예: "안전한 실험자"
+    dod: str = Field(min_length=1)  # 완료 조건 설명
+
+
+class Act(BaseModel):
+    """커리큘럼의 한 막(Act)."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    id: str = Field(min_length=1)  # "act1" … "act5"
+    title: str = Field(min_length=1)
+    weeks: str = ""  # 표시용 라벨(예: "Week 2~4")
+    goal: str = ""
+    milestone: Milestone
+
+
+class Quest(BaseModel):
+    """하루치 퀘스트 1개(데스크/랩)."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    id: str = Field(min_length=1)  # 고유(예: "act2-w2-d1")
+    act: str = Field(min_length=1)  # 소속 act id
+    week: int | None = None
+    kind: str = "desk"  # "desk" | "lab"
+    text: str = Field(min_length=1)
+    est_min: int | None = None
+
+
+class Curriculum(BaseModel):
+    """data/curriculum.yaml — 프로그램 정의(리포지토리 포함, reference)."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    acts: list[Act] = Field(min_length=1)
+    quests: list[Quest] = Field(min_length=1)
+
+
+class DailyReport(BaseModel):
+    """하루 3줄 보고 1건."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    date: date
+    did: str = ""  # 오늘 한 것
+    blocked: str | None = None  # 막힌 것/질문
+    next: str | None = None  # 내일 할 것
+    ten_min: bool = False  # 10분 법칙으로 출석한 날
+
+
+class Progress(BaseModel):
+    """data/brand/progress.yaml — 사용자 진행 상태."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    start_date: date | None = None  # D0
+    done: list[str] = Field(default_factory=list)  # 완료한 quest id
+    reports: list[DailyReport] = Field(default_factory=list)

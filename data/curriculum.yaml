@@ -1,0 +1,70 @@
+# 데일리 루틴 커리큘럼 (12주 5막) — docs/사업_데일리루틴_커리큘럼.md 에서 옮김.
+# 진행 트래커가 이 파일을 읽어 '오늘의 퀘스트·마일스톤'을 홈에 띄운다.
+# 완료 기반 진행: 날짜를 강제하지 않고 '다음 미완료 퀘스트'를 짚어준다(결석해도 안 밀림).
+acts:
+  - id: act1
+    title: 랩 온보딩
+    weeks: Week 1
+    goal: 제품은 안 만든다. 안전·도구·측정·습관을 익힌다.
+    milestone: {badge: 안전한 실험자, dod: 안전 세팅 + 측정값 3개 + 데일리 보고 5회}
+  - id: act2
+    title: 디퓨저 — 첫 제품
+    weeks: Week 2~4
+    goal: 물이 없어 방부·유화·미생물 문제 제로. 가장 안전하고 빠른 첫 성공.
+    milestone: {badge: 첫 제품 + 첫 데이터, dod: 디퓨저 완성품 1병 + 향 DOE 1회 + 원가 1건}
+  - id: act3
+    title: 무수 스킨케어
+    weeks: Week 5~7
+    goal: 여전히 물이 없어 방부 부담 적고, 가온 혼합·경도/발림성 사용감을 익힌다.
+    milestone: {badge: 제품 라인 + 첫 라벨, dod: 무수 2종 + 전성분·라벨 1건 + 안정성 4주 관찰}
+  - id: act4
+    title: 안정성 정석
+    weeks: Week 8~10
+    goal: 개발의 정의가 바뀐다. 만드는 것이 아니라 안 변하는 걸 증명하는 것.
+    milestone: {badge: 안정성 증명, dod: 대표 제품 1종 4~8주 안정성 리포트(RT·4℃·45℃ 비교)}
+  - id: act5
+    title: 사업화 준비 & 공장 첫 문의
+    weeks: Week 11~12
+    goal: 집에서 만든 것을 세상으로 내보낼 다리를 놓는다.
+    milestone: {badge: 공장 문 두드리기, dod: 원페이저 + 규제 체크 + 공장 3곳 + 첫 문의 메일 발송}
+quests:
+  # --- ACT 1 (Week 1) ---
+  - {id: act1-d1, act: act1, week: 1, kind: desk, est_min: 20, text: "커리큘럼 정독 + 데일리 보고 포맷 세팅 + 첫 보고 작성"}
+  - {id: act1-d2, act: act1, week: 1, kind: desk, est_min: 30, text: "안전 체크(소화기·배기·방독마스크·고글·장갑) + 장비 가이드 §4 재독"}
+  - {id: act1-d3, act: act1, week: 1, kind: desk, est_min: 30, text: "예시 시나리오 1개 읽고 STEP 흐름 익히기 + Streamlit 실행 연습"}
+  - {id: act1-l1, act: act1, week: 1, kind: lab, text: "저울 영점·교정, 정제수 10.000g/50.00g 계량 연습, 온도·pH 측정"}
+  - {id: act1-l2, act: act1, week: 1, kind: lab, text: "계량·온도값 3개 이상 기록(첫 데이터) + 작업대 레이아웃 정리"}
+  # --- ACT 2 (Week 2~4) ---
+  - {id: act2-w2-d1, act: act2, week: 2, kind: desk, text: "디퓨저 처방 설계(베이스 dpg/ipm + 에탄올 + 향료, 50~100g 기준)"}
+  - {id: act2-w2-d2, act: act2, week: 2, kind: desk, text: "향료 IFRA/용도 그레이드 확인, 원료 CoA를 notes에 기록"}
+  - {id: act2-w2-d3, act: act2, week: 2, kind: desk, text: "작업 순서·안전 체크리스트를 종이에 써서 실험대에 붙이기"}
+  - {id: act2-w2-l1, act: act2, week: 2, kind: lab, text: "디퓨저 1차 배치 50~100g 제조(계량→혼합→리드스틱) + 전 과정 기록"}
+  - {id: act2-w2-l2, act: act2, week: 2, kind: lab, text: "발향·확산 관찰(첫날/3일차), 층분리 여부 확인, 사진"}
+  - {id: act2-w3-d1, act: act2, week: 3, kind: desk, text: "향 조합 2~3개 변수로 DOE 실험 설계(experiments/doe에 작성)"}
+  - {id: act2-w3-l1, act: act2, week: 3, kind: lab, text: "DOE 런 제조·평가(발향·지속·확산·기호도 점수화) → doe 분석 주효과"}
+  - {id: act2-w3-l2, act: act2, week: 3, kind: lab, text: "결과 해석 보고 — 무엇이 발향을 지배하는가?"}
+  - {id: act2-w4-d1, act: act2, week: 4, kind: desk, text: "DOE 최적안으로 처방 확정 + cost로 원가 산출(원료+포장+배송)"}
+  - {id: act2-w4-d2, act: act2, week: 4, kind: desk, text: "낱개 온라인 판매 시 공헌이익 확인 → 가격·채널 감 잡기"}
+  - {id: act2-w4-l1, act: act2, week: 4, kind: lab, text: "최종 처방 재현 배치 1회 + 안정성 시료 RT/4℃/45℃ 배치(관찰 시작)"}
+  # --- ACT 3 (Week 5~7) ---
+  - {id: act3-w5-d1, act: act3, week: 5, kind: desk, text: "왁스+오일+산화방지제(tocopherol) 처방 설계, 목표 경도 설정"}
+  - {id: act3-w5-l1, act: act3, week: 5, kind: lab, text: "간접 가온으로 왁스 용융→오일 혼합→몰드/틴 붓기, 굳힘·발림성 관찰"}
+  - {id: act3-w6-d1, act: act3, week: 6, kind: desk, text: "왁스비/오일종류/버터 함량 DOE 설계"}
+  - {id: act3-w6-l1, act: act3, week: 6, kind: lab, text: "DOE 제조·평가(경도·발림성 점수화) → 주효과 → 최적 경도 처방"}
+  - {id: act3-w7-d1, act: act3, week: 7, kind: desk, text: "라벨 페이지로 전성분·표시의무·배합한도·알러젠 표시 점검"}
+  - {id: act3-w7-d2, act: act3, week: 7, kind: desk, text: "제품 컨셉 한 줄·타깃·차별점 정리(브랜드 씨앗)"}
+  - {id: act3-w7-l1, act: act3, week: 7, kind: lab, text: "최종 2종 재현 배치 + 안정성 시료 추가 배치"}
+  # --- ACT 4 (Week 8~10) ---
+  - {id: act4-w8-d1, act: act4, week: 8, kind: desk, text: "안정성 관찰 항목표(외관·색·향·층분리·경도·pH·무게변화) + 주간 관찰 스케줄"}
+  - {id: act4-w8-l1, act: act4, week: 8, kind: lab, text: "각 온도 시료 관찰·측정·기록, 변화 사진 아카이빙"}
+  - {id: act4-w9-d1, act: act4, week: 9, kind: desk, text: "(분기) 유화 로션 입문 준비 또는 디퓨저/무수 2호 라인 설계"}
+  - {id: act4-w9-l1, act: act4, week: 9, kind: lab, text: "유화 루트(수상/유상 70~75℃ 유화) 또는 확장 루트(2호 라인) 제조"}
+  - {id: act4-w10-d1, act: act4, week: 10, kind: desk, text: "안정성 결과를 1페이지 리포트로 정리(표+사진+결론) — 공장 제출 자산"}
+  - {id: act4-w10-l1, act: act4, week: 10, kind: lab, text: "최종 재현 배치, 남은 안정성 관찰 마감"}
+  # --- ACT 5 (Week 11~12) ---
+  - {id: act5-w11-d1, act: act5, week: 11, kind: desk, text: "advise로 규제 레짐·등록 비용·SKU 확장비 확인"}
+  - {id: act5-w11-d2, act: act5, week: 11, kind: desk, text: "제품 원페이저 작성(컨셉/타깃/처방 요약/원가/안정성 결론/목표가)"}
+  - {id: act5-w11-d3, act: act5, week: 11, kind: desk, text: "브랜드 씨앗 구체화(이름 후보·톤·한 줄 슬로건)"}
+  - {id: act5-w12-d1, act: act5, week: 12, kind: desk, text: "OEM/ODM 공장 후보 3곳 리스트업(제형·MOQ·인증 확인)"}
+  - {id: act5-w12-d2, act: act5, week: 12, kind: desk, text: "첫 문의 메일 초안 작성 → 검토 요청 후 발송"}
+  - {id: act5-w12-l1, act: act5, week: 12, kind: lab, text: "공장에 보낼 레퍼런스 샘플 소량 재현·포장"}

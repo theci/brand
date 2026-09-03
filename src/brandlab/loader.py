@@ -21,6 +21,7 @@ from .models import (
     CertChecklist,
     CertStatusList,
     Config,
+    Curriculum,
     Discovery,
     DoeDesign,
     Formula,
@@ -38,6 +39,7 @@ from .models import (
     PackagingMaster,
     PanelTest,
     Positioning,
+    Progress,
     ProhibitedList,
     ReviewBook,
     PromptKeywordLibrary,
@@ -115,6 +117,19 @@ def load_budget(path: Path | str = DATA_DIR / "brand" / "budget.yaml") -> Budget
     if not p.exists():
         return Budget()
     return Budget.model_validate(_read_yaml(p))
+
+
+def load_curriculum(path: Path | str = DATA_DIR / "curriculum.yaml") -> Curriculum:
+    """데일리 루틴 커리큘럼(프로그램 정의)을 로드한다."""
+    return Curriculum.model_validate(_read_yaml(Path(path)))
+
+
+def load_progress(path: Path | str = DATA_DIR / "brand" / "progress.yaml") -> Progress:
+    """진행 상태를 로드한다. 파일이 없으면 빈 상태(선택 데이터)."""
+    p = Path(path)
+    if not p.exists():
+        return Progress()
+    return Progress.model_validate(_read_yaml(p))
 
 
 def load_discovery(brand_dir: Path | str = DATA_DIR / "brand") -> Discovery:
@@ -493,6 +508,8 @@ __all__ = [
     "load_panel",
     "iter_panel_paths",
     "load_all_panel",
+    "load_curriculum",
+    "load_progress",
     "load_aroma_materials",
     "load_fragrance",
     "load_all_fragrances",

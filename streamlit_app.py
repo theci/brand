@@ -10,14 +10,27 @@
 
 from __future__ import annotations
 
+from datetime import date
+
 import streamlit as st
 
+from brandlab.curriculum import (
+    current_position,
+    days_since_report,
+    milestone_status,
+    next_quests,
+    save_progress,
+    streak,
+    toggle_quest,
+)
 from brandlab.dashboard import build_dashboard
 from brandlab.loader import (
     load_all_fragrances,
     load_all_panel,
     load_cert_status,
+    load_curriculum,
     load_inventory,
+    load_progress,
 )
 from brandlab.ui import load_lab, load_stability_samples, setup_korean_font
 
@@ -41,38 +54,72 @@ def _render_dashboard(lab) -> None:
         st.caption(f"대시보드 집계 생략: {exc}")
         return
 
-    st.subheader("🔔 오늘 할 일")
+    st.markdown("#### 🔔 오늘 할 일")
     if not alerts:
-        st.success("✅ 지금 처리할 알림이 없습니다. 좋아요!")
+        st.success("지금 처리할 알림이 없습니다. 좋아요! 👍")
         return
     for a in alerts:
         render = _SEV_RENDER.get(a.severity, st.info)
         render(f"**{a.label}** · {a.count}건  →  사이드바 **{a.page}**")
-        with st.expander(f"{a.label} 자세히 ({a.count})"):
+        with st.expander(f"자세히 ({a.count}건)"):
             for it in a.items[:50]:
                 st.write(f"- {it}")
             if len(a.items) > 50:
                 st.caption(f"… 외 {len(a.items) - 50}건")
 
 
-def home() -> None:
-    """홈 — 오늘 할 일(대시보드) + 개요 + 데이터 현황."""
-    font = setup_korean_font()
-    st.title("🧪 brand-lab")
-    st.caption("화장품·생활화학·식품 1인 브랜드 처방 관리 — 로컬 도구")
+def _render_quests(cur, prog, today) -> None:
+    """📍 오늘 — 진행 상태 한 줄 + 오늘의 퀘스트(체크=완료 즉시 저장)."""
+    pos = current_position(cur, prog, today)
+    strk = streak(prog, today)
+    dsr = days_since_report(prog, today)
 
-    lab = load_lab()
-    _render_dashboard(lab)
+    dplus = f"D+{pos.day_index}" if pos.day_index is not None else "D+—"
+    act_txt = pos.act.title if pos.act else "시작 전"
+    week_txt = f" · {pos.week}주차" if pos.week else ""
+    fire = f"🔥 {strk}일" if strk else "스트릭 0일"
+    st.markdown(f"#### 📍 오늘 · `{dplus}` · **{act_txt}**{week_txt} · {fire}")
 
-    st.divider()
-    c1, c2, c3 = st.columns(3)
-    c1.metric("처방", f"{len(lab.formulas)}종")
-    c2.metric("원료", f"{len(lab.ingredients.ingredients)}종")
-    c3.metric("포장재", f"{len(lab.packaging.packaging)}종")
+    if prog.start_date is None:
+        st.info("시작일(D0)을 정하면 며칠째인지 표시돼요 → 사이드바 **오늘·진행**에서 설정")
+    if dsr is not None and dsr >= 2:
+        st.warning(f"⚠️ 마지막 보고 {dsr}일 전 — **10분 법칙**으로 딱 10분만 복귀하세요. 0과 10분은 하늘과 땅 차이!")
 
-    st.markdown(
-        """
-### 사용법
+    default_kind = "lab" if today.weekday() >= 5 else "desk"
+    labels = {"desk": "🖥️ 데스크(평일)", "lab": "🧪 랩(주말)"}
+    kind = st.radio(
+        "퀘스트 종류",
+        ["desk", "lab"],
+        index=0 if default_kind == "desk" else 1,
+        format_func=lambda k: labels[k],
+        horizontal=True,
+        label_visibility="collapsed",
+    )
+    done_set = set(prog.done)
+    todays = next_quests(cur, prog, kind=kind, n=3)
+    if not todays:
+        st.success(f"{labels[kind]} 퀘스트를 모두 마쳤어요! 🎉 다른 종류나 다음 막으로 가세요.")
+    for q in todays:
+        est = f"  ·  ⏱ {q.est_min}분" if q.est_min else ""
+        checked = st.checkbox(f"{q.text}{est}", value=q.id in done_set, key=f"home_q_{q.id}")
+        if checked != (q.id in done_set):
+            save_progress(toggle_quest(prog, q.id, checked))
+            st.rerun()
+    st.caption("체크하면 바로 저장됩니다. 전체 지도·3줄 보고는 사이드바 **오늘·진행**에서.")
+
+
+def _render_milestones(cur, prog) -> None:
+    """🏅 마일스톤 — 막별 진행률 막대."""
+    stats = milestone_status(cur, prog)
+    earned = sum(1 for m in stats if m.earned)
+    st.markdown(f"#### 🏅 마일스톤 · {earned}/{len(stats)}")
+    for m in stats:
+        badge = "🏅" if m.earned else "⬜"
+        ratio = (m.done / m.total) if m.total else 0.0
+        st.progress(ratio, text=f"{badge} {m.act.milestone.badge} ({m.done}/{m.total})")
+
+
+_STEP_GUIDE = """
 왼쪽 사이드바는 **제품 개발 순서(STEP)** 로 묶여 있습니다. 위에서 아래로 진행하세요.
 
 - **STEP 0 · 기획·전략** — 페르소나·페인·시장/경쟁 조사 → 문제 정의 → 포지셔닝(뾰족함) → 브랜드 코어. 모든 STEP의 뿌리
@@ -90,19 +137,54 @@ def home() -> None:
 
 YAML 파일을 편집하거나 화면에서 등록/수정한 뒤 **새로고침(F5)** 하면 반영됩니다.
 """
-    )
+
+
+def home() -> None:
+    """홈 — 오늘의 퀘스트·알림·현황을 한눈에(2열 레이아웃)."""
+    font = setup_korean_font()
+    lab = load_lab()
+    today = date.today()
+    try:
+        cur, prog = load_curriculum(), load_progress()
+    except Exception as exc:  # noqa: BLE001 — 커리큘럼 로드 실패가 홈을 막지 않게
+        cur = prog = None
+        _curr_err = str(exc)
+
+    st.title("🧪 brand-lab")
+    st.caption("화장품·생활화학·식품 1인 브랜드 처방 관리 — 로컬 도구")
+
+    main, side = st.columns([2, 1], gap="large")
+
+    with main:
+        if cur and prog:
+            with st.container(border=True):
+                _render_quests(cur, prog, today)
+        else:
+            st.caption(f"진행 트래커 생략: {_curr_err}")
+        with st.container(border=True):
+            _render_dashboard(lab)
+
+    with side:
+        with st.container(border=True):
+            st.markdown("#### 📊 현황")
+            d1, d2, d3 = st.columns(3)
+            d1.metric("처방", len(lab.formulas))
+            d2.metric("원료", len(lab.ingredients.ingredients))
+            d3.metric("포장재", len(lab.packaging.packaging))
+        if cur and prog:
+            with st.container(border=True):
+                _render_milestones(cur, prog)
+
+    with st.expander("📖 처음이신가요? 화면 사용법 (STEP 안내)"):
+        st.markdown(_STEP_GUIDE)
 
     if font is None:
-        st.warning(
-            "한글 폰트를 찾지 못했습니다. 차트의 한글이 깨질 수 있습니다 "
-            "(맑은 고딕/나눔고딕 등 설치 권장)."
-        )
+        st.caption("⚠️ 한글 폰트 미검출 — 차트 한글이 깨질 수 있습니다(맑은 고딕/나눔고딕 권장).")
     else:
         st.caption(f"차트 한글 폰트: {font}")
-
-    st.info(
-        "이 도구의 라벨/규정 결과는 1차 스크리닝입니다. 법적 판단이 아니며, "
-        "출시 전 반드시 식약처·환경부 고시 원문과 대조하고 전문가 검토를 받으십시오."
+    st.caption(
+        "ℹ️ 라벨/규정 결과는 1차 스크리닝입니다. 법적 판단이 아니며, 출시 전 식약처·환경부 "
+        "고시 원문 대조와 전문가 검토가 필요합니다."
     )
 
 
@@ -110,6 +192,7 @@ YAML 파일을 편집하거나 화면에서 등록/수정한 뒤 **새로고침(
 SECTIONS = {
     "시작": [
         st.Page(home, title="홈", icon="🏠", default=True),
+        st.Page("pages/29_진행.py", title="오늘·진행", icon="🎯"),
     ],
     "STEP 0 · 기획·전략": [
         st.Page("pages/25_페르소나.py", title="페르소나·JTBD", icon="🧑"),
