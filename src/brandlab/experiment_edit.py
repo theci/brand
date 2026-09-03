@@ -14,8 +14,8 @@ from pathlib import Path
 
 import yaml
 
-from .core.models import DoeDesign, StabilitySample
-from .loader import EXPERIMENTS_DIR, load_doe, load_stability
+from .core.models import DoeDesign, PanelTest, StabilitySample
+from .loader import EXPERIMENTS_DIR, load_doe, load_panel, load_stability
 from .master_edit import save_with_backup
 
 
@@ -58,6 +58,10 @@ def stability_path(filename: str, experiments_dir: Path | str = EXPERIMENTS_DIR)
     return Path(experiments_dir) / "stability" / f"{filename}.yaml"
 
 
+def panel_path(filename: str, experiments_dir: Path | str = EXPERIMENTS_DIR) -> Path:
+    return Path(experiments_dir) / "panel" / f"{filename}.yaml"
+
+
 def _create(data: dict, path: Path, model, loader) -> Path:
     model.model_validate(data)  # 1) 구조 검증
     if path.exists():
@@ -80,6 +84,11 @@ def create_doe(data: dict, *, path: Path) -> Path:
 def create_stability(data: dict, *, path: Path) -> Path:
     """안정성 시료 파일을 생성. 실패 시 파일을 남기지 않는다."""
     return _create(data, path, StabilitySample, load_stability)
+
+
+def create_panel(data: dict, *, path: Path) -> Path:
+    """시제품 관능 평가 파일을 생성(응답 없는 골격). 실패 시 파일을 남기지 않는다."""
+    return _create(data, path, PanelTest, load_panel)
 
 
 def delete_experiment(path: Path | str) -> None:
@@ -125,13 +134,42 @@ def set_stability_observations(path: Path | str, observations: list[dict]) -> No
     save_with_backup(path, new_text, load_stability)
 
 
+def set_panel_responses(path: Path | str, responses: list[dict]) -> None:
+    """관능 파일의 응답 목록을 통째로 교체한다(추가·수정·삭제 반영).
+
+    각 응답은 panelist가 있어야 하며, scores의 결측(None)과 빈 필드는 제외한다.
+    """
+    path = Path(path)
+    original = path.read_text(encoding="utf-8")
+    data = load_panel(path).model_dump(mode="json", exclude_none=True)
+    cleaned: list[dict] = []
+    for r in responses:
+        name = (r.get("panelist") or "").strip()
+        if not name:
+            continue
+        scores = {k: v for k, v in (r.get("scores") or {}).items() if v is not None}
+        row: dict = {"panelist": name}
+        if (r.get("segment") or "").strip():
+            row["segment"] = r["segment"].strip()
+        row["scores"] = scores
+        if (r.get("comment") or "").strip():
+            row["comment"] = r["comment"].strip()
+        cleaned.append(row)
+    data["responses"] = cleaned
+    new_text = _leading_comments(original) + _dump(data)
+    save_with_backup(path, new_text, load_panel)
+
+
 __all__ = [
     "full_factorial_runs",
     "doe_path",
     "stability_path",
+    "panel_path",
     "create_doe",
     "create_stability",
+    "create_panel",
     "delete_experiment",
     "set_doe_scores",
     "set_stability_observations",
+    "set_panel_responses",
 ]

@@ -16,6 +16,7 @@ from .certification import due_items as cert_due_items
 from .checks import check_formula
 from .fragrance import maceration_due
 from .inventory import inventory_rows
+from .panel import summarize as panel_summarize
 from .stability import stability_due
 
 # 심각도 정렬 순서
@@ -39,6 +40,7 @@ def build_dashboard(
     stability_samples=None,
     fragrances=None,
     cert_status=None,
+    panel_tests=None,
     today: date | None = None,
     near_days: int = 30,
 ) -> list[Alert]:
@@ -114,6 +116,27 @@ def build_dashboard(
         if sniff:
             items = [f"{s.name} v{s.version} (숙성 후 {s.days}일)" for s in sniff]
             alerts.append(Alert("maceration_due", "시향 필요(숙성 완료)", len(sniff), items, "medium", "조향"))
+
+    # 5.5) 관능 평가 — 응답 미입력 / 목표 미달(약점) 시제품
+    if panel_tests:
+        pending = [t.test_id for t in panel_tests if not t.responses]
+        if pending:
+            alerts.append(
+                Alert("panel_pending", "관능 응답 미입력", len(pending), pending,
+                      "medium", "관능·패널 평가")
+            )
+        weak_items = []
+        for t in panel_tests:
+            if not t.responses:
+                continue
+            summ = panel_summarize(t)
+            if summ.weak:
+                weak_items.append(f"{t.formula_ref or t.test_id} — 약점: {', '.join(summ.weak)}")
+        if weak_items:
+            alerts.append(
+                Alert("panel_weak", "관능 약점 시제품", len(weak_items), weak_items,
+                      "medium", "관능·패널 평가")
+            )
 
     # 6) 개발중 처방 — 진행 중 작업 목록(정보)
     developing = [f"{f.slug} v{f.version} — {f.product}" for f in lab.formulas if f.status.value == "개발중"]

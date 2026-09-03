@@ -471,6 +471,36 @@ class StabilitySample(BaseModel):
 
 
 # ---------------------------------------------------------------------------
+# 실험: 시제품 관능·패널 평가 (experiments/panel/*.yaml)
+# 본생산 직전, 시제품을 다수(타깃)에게 나눠주고 정량 피드백을 받는 수용도 게이트.
+# ---------------------------------------------------------------------------
+class PanelResponse(BaseModel):
+    """평가자 1명의 응답. scores는 항목별 점수(결측 허용 — DoeRun과 동일 규칙)."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    panelist: str = Field(min_length=1)  # 이름/코드(익명화 가능)
+    segment: str | None = None  # 타깃/비타깃 — 필터·가중용
+    scores: dict[str, float | None] = Field(default_factory=dict)
+    comment: str | None = None  # 자유 코멘트(근거 인용 후보)
+
+
+class PanelTest(BaseModel):
+    """시제품 관능 평가 1회 (experiments/panel/*.yaml)."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    test_id: str = Field(min_length=1)
+    formula_ref: str | None = None  # "slug vN" — 어느 시제품
+    sample_label: str | None = None  # 나눠준 시료 코드(로트/배치)
+    test_date: date | None = None
+    scale_max: int = Field(default=5, ge=2)  # 척도 상한(기본 5점)
+    attributes: list[str] = Field(min_length=1)  # 평가 항목
+    targets: dict[str, float] | None = None  # 항목별 목표선(미달=약점)
+    responses: list[PanelResponse] = Field(default_factory=list)
+
+
+# ---------------------------------------------------------------------------
 # 배치 기록 (experiments/batches/*.yaml)
 # ---------------------------------------------------------------------------
 class BatchLine(BaseModel):

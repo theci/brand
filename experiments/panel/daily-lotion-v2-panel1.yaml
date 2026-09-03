@@ -1,0 +1,16 @@
+# 시제품 관능·패널 평가 — 오후 산뜻 보습 로션 v2, 1차 라운드(예시 데이터).
+# 본생산(MOQ) 직전, 시제품을 타깃/비타깃에게 나눠주고 5점 척도로 수용도를 확인한다.
+# 점수는 주관적·소표본 → 내부 의사결정·참고용(효능 표방 아님).
+test_id: daily-lotion-v2-panel1
+formula_ref: daily-lotion v2
+sample_label: LOT-2026-03-A
+test_date: 2026-03-10
+scale_max: 5
+attributes: [촉촉함, 산뜻함_비끈적, 향, 발림성, 재구매의사]
+targets: {촉촉함: 4.0, 산뜻함_비끈적: 4.0, 재구매의사: 4.0}
+responses:
+  - {panelist: P1, segment: 타깃, scores: {촉촉함: 4, 산뜻함_비끈적: 5, 향: 4, 발림성: 4, 재구매의사: 5}, comment: "오후에 덧발라도 안 밀려요."}
+  - {panelist: P2, segment: 타깃, scores: {촉촉함: 3, 산뜻함_비끈적: 4, 향: 3, 발림성: 4, 재구매의사: 4}, comment: "향이 살짝 약해요."}
+  - {panelist: P3, segment: 타깃, scores: {촉촉함: 4, 산뜻함_비끈적: 4, 향: 4, 발림성: 5, 재구매의사: 4}, comment: "흡수 빠르고 좋아요."}
+  - {panelist: P4, segment: 비타깃, scores: {촉촉함: 5, 산뜻함_비끈적: 3, 향: 5, 발림성: 4, 재구매의사: 3}, comment: "보습은 좋은데 약간 무거워요."}
+  - {panelist: P5, segment: 타깃, scores: {촉촉함: 4, 산뜻함_비끈적: 5, 향: 3, 발림성: 4, 재구매의사: 5}, comment: ""}

@@ -36,6 +36,7 @@ from .models import (
     LabelingRules,
     LimitList,
     PackagingMaster,
+    PanelTest,
     Positioning,
     ProhibitedList,
     ReviewBook,
@@ -330,6 +331,18 @@ def load_all_stability(
     return [load_stability(p) for p in iter_stability_paths(experiments_dir)]
 
 
+def load_panel(path: Path | str) -> PanelTest:
+    return PanelTest.model_validate(_read_yaml(Path(path)))
+
+
+def iter_panel_paths(experiments_dir: Path | str = EXPERIMENTS_DIR) -> list[Path]:
+    return sorted(Path(experiments_dir).glob("panel/*.yaml"))
+
+
+def load_all_panel(experiments_dir: Path | str = EXPERIMENTS_DIR) -> list[PanelTest]:
+    return [load_panel(p) for p in iter_panel_paths(experiments_dir)]
+
+
 # ---------------------------------------------------------------------------
 # 조향 (data/aroma_materials.yaml, formulas/fragrance/*.yaml)
 # ---------------------------------------------------------------------------
@@ -477,6 +490,9 @@ __all__ = [
     "iter_batch_paths",
     "iter_doe_paths",
     "iter_stability_paths",
+    "load_panel",
+    "iter_panel_paths",
+    "load_all_panel",
     "load_aroma_materials",
     "load_fragrance",
     "load_all_fragrances",

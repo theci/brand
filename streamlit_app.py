@@ -13,7 +13,12 @@ from __future__ import annotations
 import streamlit as st
 
 from brandlab.dashboard import build_dashboard
-from brandlab.loader import load_all_fragrances, load_cert_status, load_inventory
+from brandlab.loader import (
+    load_all_fragrances,
+    load_all_panel,
+    load_cert_status,
+    load_inventory,
+)
 from brandlab.ui import load_lab, load_stability_samples, setup_korean_font
 
 st.set_page_config(page_title="brand-lab", page_icon="🧪", layout="wide")
@@ -30,6 +35,7 @@ def _render_dashboard(lab) -> None:
             stability_samples=load_stability_samples(),
             fragrances=load_all_fragrances(),
             cert_status=load_cert_status(),
+            panel_tests=load_all_panel(),
         )
     except Exception as exc:  # noqa: BLE001 — 대시보드 실패가 홈 전체를 막지 않게
         st.caption(f"대시보드 집계 생략: {exc}")
@@ -74,7 +80,7 @@ def home() -> None:
 - **STEP 2 · 원료·재료** — 원료·포장재 등록/수정, 재고 확인
 - **STEP 3 · 처방·설계** — 처방 생성·수정, 사전점검(HLB·배합한도), 조향
 - **STEP 4 · 제조·기록** — 배치 실측(수율·pH) 기록
-- **STEP 5 · 실험·검증** — DOE·안정성, 버전 비교
+- **STEP 5 · 실험·검증** — DOE·안정성, 관능·패널 평가(시제품 수용도), 버전 비교
 - **STEP 6 · 표시·검토** — 전성분·라벨, 광고 문구 검사
 - **STEP 7 · 원가·구매** — 손익·마진, 구매 목록, 자금 6:4 배분·런웨이
 - **STEP 8 · 문서** — 제품표준서(공장·기관 제출용)
@@ -130,6 +136,7 @@ SECTIONS = {
     ],
     "STEP 5 · 실험·검증": [
         st.Page("pages/4_실험.py", title="실험", icon="🔬"),
+        st.Page("pages/28_관능평가.py", title="관능·패널 평가", icon="🧪"),
         st.Page("pages/8_버전비교.py", title="버전비교", icon="🔀"),
     ],
     "STEP 6 · 표시·검토": [
