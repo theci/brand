@@ -6,6 +6,8 @@
 
 from __future__ import annotations
 
+import re
+
 import streamlit as st
 
 from brandlab.brand_core import (
@@ -22,6 +24,7 @@ from brandlab.loader import (
     load_brand_core,
     load_discovery,
 )
+from brandlab.prompt_builder import MOODBOARD_KINDS, moodboard_prompt
 from brandlab.ui import load_lab, setup_korean_font
 
 setup_korean_font()
@@ -151,6 +154,58 @@ current = BrandCore(
     ),
     one_liner=one_liner or None,
 )
+
+# --- 브랜딩 느낌 미리보기 (비용 투입 전 빠르게) ---
+st.divider()
+st.subheader("🎨 브랜딩 느낌 미리보기 — 비용 투입 전 빠르게 확인")
+st.caption(
+    "이미지 생성은 외부 도구에서 합니다. 여기선 ⓐ 팔레트를 즉석에서 보고, "
+    "ⓑ 브랜딩 느낌 확인용 무드보드 프롬프트를 만들어 붙여넣기만 하면 됩니다(제품 실물 불필요)."
+)
+
+
+def _css_color(v: str | None) -> str | None:
+    """HEX(#없이 3/6/8자리)면 #을 붙이고, 그 외(#포함 hex·named color)는 그대로."""
+    if not v:
+        return None
+    v = v.strip()
+    if re.fullmatch(r"[0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8}", v):
+        return "#" + v
+    return v
+
+
+_palette = [("메인", main_color), ("서브", sub_color), ("포인트", point_color)]
+_shown = [(lbl, css) for lbl, hx in _palette if (css := _css_color(hx))]
+if _shown:
+    cols = st.columns(len(_shown))
+    for col, (lbl, css) in zip(cols, _shown):
+        col.markdown(
+            f"<div style='height:64px;border-radius:8px;border:1px solid #ccc;background:{css}'></div>"
+            f"<div style='text-align:center;margin-top:4px'><b>{lbl}</b><br><code>{css}</code></div>",
+            unsafe_allow_html=True,
+        )
+    _bar = "".join(f"<span style='flex:1;background:{css}'></span>" for _, css in _shown)
+    st.markdown(
+        f"<div style='display:flex;height:28px;border-radius:6px;overflow:hidden;margin-top:8px'>{_bar}</div>",
+        unsafe_allow_html=True,
+    )
+else:
+    st.caption("⑦ 비주얼에 메인/서브/포인트 컬러(HEX)를 넣으면 여기서 팔레트를 바로 봅니다.")
+
+mk1, mk2 = st.columns([3, 1])
+mb_kind = mk1.selectbox("무드보드 종류", list(MOODBOARD_KINDS), key="bc_mb_kind")
+if mk2.button("무드보드 프롬프트", key="bc_mb_gen"):
+    st.session_state["bc_mb_out"] = moodboard_prompt(current, kind=mb_kind)
+if st.session_state.get("bc_mb_out"):
+    st.caption(
+        "외부 이미지 도구(나노바나나 등)에 붙여넣어 느낌을 확인하세요. "
+        "제품 실물이 없으므로 자유 컨셉 생성입니다(제품 촬영 프롬프트는 STEP 10 '이미지 프롬프트')."
+    )
+    st.code(st.session_state["bc_mb_out"])
+    st.download_button(
+        "⬇️ 무드보드 프롬프트 (.txt)", st.session_state["bc_mb_out"],
+        file_name="브랜드무드보드_prompt.txt", key="bc_mb_dl",
+    )
 
 st.divider()
 b1, b2 = st.columns(2)

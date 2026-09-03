@@ -113,10 +113,48 @@ def assemble(blocks: dict[str, str], *, real_product: bool = True) -> str:
     return "\n\n".join(lines) + "\n"
 
 
+# 브랜드 무드보드 — 제품 실물 없이 '브랜딩 느낌'만 빠르게 확인(비용 투입 전 탐색).
+# 종류(한글 라벨 → 영어 컨셉 문구). 제품이 없으므로 REALSHOT_GUARD를 넣지 않는다.
+MOODBOARD_KINDS: dict[str, str] = {
+    "무드보드": "a curated brand mood board, a collage of textures, materials and color swatches",
+    "컬러 스토리": "a brand color story, palette swatches paired with material and fabric texture samples",
+    "패키지 무드": "packaging concept mood, blank unbranded container silhouettes in the brand palette",
+    "키비주얼": "a brand key visual, a hero atmosphere scene expressing the brand feeling",
+}
+
+
+def moodboard_prompt(core: BrandCore, *, kind: str = "무드보드") -> str:
+    """브랜드 코어의 컬러·톤만으로 브랜딩 느낌 확인용 무드보드 프롬프트를 만든다.
+
+    제품 실물이 없는 기획 단계 탐색용이라 REALSHOT_GUARD 없이 자유 컨셉으로 생성한다
+    (제품 촬영 프롬프트는 compose_blocks/assemble 경로를 쓴다).
+    """
+    v = core.visual
+    base = MOODBOARD_KINDS.get(kind) or next(iter(MOODBOARD_KINDS.values()))
+    concept = f"{base} for {core.brand_name or 'the brand'}"
+    if core.one_liner:
+        concept += f" — {core.one_liner}"
+    colors = [c for c in (v.main_color, v.sub_color, v.point_color) if c]
+    styling = ", ".join(x for x in (v.texture, v.photo_note) if x)
+    aesthetic = ", ".join(
+        [*core.tone_adjectives, "cohesive brand identity, editorial moodboard aesthetic"]
+    )
+    blocks = {
+        "concept": concept,
+        "composition": "balanced grid moodboard layout with generous negative space",
+        "styling": styling,
+        "lighting": f"palette {', '.join(colors)}" if colors else "soft natural daylight",
+        "aesthetic": aesthetic,
+    }
+    return assemble(blocks, real_product=False)
+
+
 __all__ = [
     "REALSHOT_GUARD",
     "PRESETS",
+    "MOODBOARD_KINDS",
     "product_hints",
     "compose_blocks",
     "assemble",
+    "moodboard_prompt",
 ]
