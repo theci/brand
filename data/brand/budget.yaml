@@ -1,0 +1,10 @@
+# 자금 6:4 (Phase 10). 제품 60 : 마케팅 40. category: 제품/마케팅/기타.
+# 예시는 '제품 편중' 상태(제품 75%) — 마케팅 투자 부족 경고가 뜬다.
+total_capital: 10000000        # 총 가용 자본(원)
+target_product_ratio: 0.6      # 제품 목표 비중(6:4)
+monthly_burn: 800000           # 월 고정 소진(런웨이 계산)
+expenses:
+  - { category: 제품, amount: 3600000, note: 초도 원료+포장(1000개), spent_on: 2026-08-10 }
+  - { category: 마케팅, amount: 700000, note: 상세페이지 촬영, spent_on: 2026-08-18 }
+  - { category: 마케팅, amount: 500000, note: 초기 광고 테스트, spent_on: 2026-08-25 }
+  - { category: 기타, amount: 100000, note: 화장품책임판매업 등록, spent_on: 2026-08-05 }

@@ -1161,6 +1161,31 @@ class ReviewBook(BaseModel):
 
 
 # ---------------------------------------------------------------------------
+# 자금 6:4 (data/brand/budget.yaml) — Phase 10. 제품 60 : 마케팅 40.
+# ---------------------------------------------------------------------------
+class Expense(BaseModel):
+    """지출 1건. category는 제품/마케팅/기타."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    category: str = Field(default="기타")  # 제품 | 마케팅 | 기타
+    amount: float = Field(ge=0)
+    note: str | None = None
+    spent_on: date | None = None  # 필드명 date 회피
+
+
+class Budget(BaseModel):
+    """budget.yaml 최상위 — 총 자본·6:4 목표·월 소진·지출 내역."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    total_capital: float = Field(default=0.0, ge=0)  # 총 가용 자본(원)
+    target_product_ratio: float = Field(default=0.6, ge=0, le=1)  # 제품 목표 비중(6:4→0.6)
+    monthly_burn: float | None = Field(default=None, ge=0)  # 월 고정 소진(런웨이 계산)
+    expenses: list[Expense] = Field(default_factory=list)
+
+
+# ---------------------------------------------------------------------------
 # 인증·시험 관문 (data/regulatory/<regime>/checklist.yaml, data/brand/cert_status.yaml)
 # ---------------------------------------------------------------------------
 class CertStatus(str, Enum):

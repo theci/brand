@@ -17,6 +17,7 @@ from .models import (
     AromaMaterialList,
     BatchRecord,
     BrandCore,
+    Budget,
     CertChecklist,
     CertStatusList,
     Config,
@@ -105,6 +106,14 @@ def load_reviews(path: Path | str = DATA_DIR / "brand" / "reviews.yaml") -> Revi
     if not p.exists():
         return ReviewBook()
     return ReviewBook.model_validate(_read_yaml(p))
+
+
+def load_budget(path: Path | str = DATA_DIR / "brand" / "budget.yaml") -> Budget:
+    """자금 배분을 로드한다. 파일이 없으면 빈 예산(선택 데이터)."""
+    p = Path(path)
+    if not p.exists():
+        return Budget()
+    return Budget.model_validate(_read_yaml(p))
 
 
 def load_discovery(brand_dir: Path | str = DATA_DIR / "brand") -> Discovery:
@@ -442,6 +451,7 @@ __all__ = [
     "load_brand_core",
     "load_discovery",
     "load_reviews",
+    "load_budget",
     "load_prompt_keywords",
     "load_positioning",
     "load_cert_checklist",
