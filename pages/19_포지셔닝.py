@@ -9,7 +9,8 @@ import pandas as pd
 import streamlit as st
 
 from brandlab.core.models import ComparisonRow, Positioning
-from brandlab.loader import load_positioning
+from brandlab.discovery import to_positioning_inputs
+from brandlab.loader import load_discovery, load_positioning
 from brandlab.positioning import (
     build_statement,
     comparison_summary,
@@ -28,6 +29,23 @@ st.caption(
 
 lab = load_lab()
 pos = load_positioning()
+
+# 기획(Discovery)에서 프리필 — 페르소나·페인·경쟁 빈틈을 빈 칸에만 채운다
+_pre = to_positioning_inputs(load_discovery())
+if _pre:
+    _keys = ", ".join(k for k in _pre if k != "comparison")
+    st.info(f"🧩 기획에서 프리필 가능: {_keys}" + (" + 경쟁 비교표" if "comparison" in _pre else ""))
+    if st.button("기획에서 프리필 (빈 칸만 채움)"):
+        _data = pos.model_dump()
+        for _k, _v in _pre.items():
+            if _k == "comparison":
+                if not pos.comparison:
+                    _data["comparison"] = [r.model_dump() for r in _v]
+                    st.session_state.pop("pos_comp", None)  # data_editor 재초기화
+            elif not _data.get(_k):
+                _data[_k] = _v
+        pos = Positioning(**_data)
+        st.success("기획에서 프리필했습니다. 아래에서 검토·수정 후 저장하세요.")
 
 # 근거 추출 기준 제품
 opts = ["(없음)"] + [f"{f.slug} v{f.version}" for f in lab.formulas]

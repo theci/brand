@@ -15,7 +15,13 @@ from brandlab.brand_core import (
     suggest_container,
 )
 from brandlab.core.models import BrandCore, BrandVisual
-from brandlab.loader import load_ad_terms, load_all_stability, load_brand_core
+from brandlab.discovery import to_brandcore_inputs
+from brandlab.loader import (
+    load_ad_terms,
+    load_all_stability,
+    load_brand_core,
+    load_discovery,
+)
 from brandlab.ui import load_lab, setup_korean_font
 
 setup_korean_font()
@@ -40,6 +46,18 @@ def _csv(s: str) -> list[str]:
 # ⑤ 근거는 세션으로 관리(자동 추출 → 추가 시 텍스트에어리어에 반영)
 if "core_evidence" not in st.session_state:
     st.session_state["core_evidence"] = "\n".join(core.evidence)
+
+# 기획(Discovery)에서 프리필 — ② 타깃·③ 적·① 진입점을 빈 칸에만 채운다
+_ci = to_brandcore_inputs(load_discovery())
+if _ci:
+    if st.button("🧩 기획에서 프리필 (② 타깃·③ 적·① 진입점, 빈 칸만)"):
+        if _ci.get("persona") and not (st.session_state.get("bc_persona") or "").strip():
+            st.session_state["bc_persona"] = _ci["persona"]
+        if _ci.get("enemy") and not (st.session_state.get("bc_enemy") or "").strip():
+            st.session_state["bc_enemy"] = _ci["enemy"]
+        if _ci.get("entry_points") and not (st.session_state.get("bc_entry") or "").strip():
+            st.session_state["bc_entry"] = "\n".join(_ci["entry_points"])
+        st.rerun()
 
 # --- 기본 정보 ---
 c1, c2, c3 = st.columns(3)
