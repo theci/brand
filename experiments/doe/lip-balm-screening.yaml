@@ -1,0 +1,21 @@
+# 립밤 2^3 완전요인 스크리닝 — 무수 고체의 핵심은 '경도(발림성) 균형'
+# 변수: 왁스%(wax, 경도↑), 버터%(butter, 바디감), 피마자오일%(gloss, 광택↑)
+# 평가: 경도/발림성/광택 1~5점 (경도 너무↑ = 발림성↓ 트레이드오프)
+name: 립밤 경도·발림성 스크리닝
+formula_ref: lip-balm
+factors: [wax, butter, gloss]
+levels:
+  wax: { low: 12, high: 20 }
+  butter: { low: 20, high: 35 }
+  gloss: { low: 25, high: 40 }
+response_items: [경도, 발림성, 광택]
+
+runs:
+  - { run_id: 1, factor_values: { wax: low,  butter: low,  gloss: low  }, scores: { 경도: 2, 발림성: 4, 광택: 2 } }
+  - { run_id: 2, factor_values: { wax: high, butter: low,  gloss: low  }, scores: { 경도: 4, 발림성: 2, 광택: 2 } }
+  - { run_id: 3, factor_values: { wax: low,  butter: high, gloss: low  }, scores: { 경도: 3, 발림성: 4, 광택: 3 } }
+  - { run_id: 4, factor_values: { wax: high, butter: high, gloss: low  }, scores: { 경도: 5, 발림성: 3, 광택: 3 } }
+  - { run_id: 5, factor_values: { wax: low,  butter: low,  gloss: high }, scores: { 경도: 2, 발림성: 5, 광택: 4 } }
+  - { run_id: 6, factor_values: { wax: high, butter: low,  gloss: high }, scores: { 경도: 4, 발림성: 3, 광택: 5 } }
+  - { run_id: 7, factor_values: { wax: low,  butter: high, gloss: high }, scores: { 경도: 3, 발림성: 4, 광택: 5 } }
+  - { run_id: 8, factor_values: { wax: high, butter: high, gloss: high }, scores: { 경도: 5, 발림성: 3, 광택: 5 } }
