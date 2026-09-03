@@ -29,10 +29,14 @@ def test_brief_core_sections_and_label(lab):
         "### 전성분 표시(안)",
         "## 4. 용기 · 포장 규격",
         "## 5. 비주얼 코드",
-        "## 6. 디자이너 확인 체크리스트",
+        "## 6. 패키지·라벨 아트 프롬프트 (일러스트레이터용)",
+        "## 7. 디자이너 확인 체크리스트",
     ]:
         assert h in md, f"누락: {h}"
     assert "Glycerin" in md  # 전성분 INCI 반영
+    # 아트 프롬프트: 벡터·일러스트레이터 지정 + 실촬영 가드
+    assert "VECTOR" in md and "Adobe Illustrator" in md
+    assert "shot in real life" in md  # 제품 실물 실촬영 가드
 
 
 def test_brief_pulls_concept_from_discovery_and_core(lab):

@@ -167,8 +167,73 @@ def build_brief(
         L.append("- (브랜드 코어의 ⑦ 비주얼을 채우면 컬러·용기·사진 톤이 여기 반영됩니다.)")
     L.append("")
 
-    # ── 6. 디자이너 체크리스트 ──
-    L.append("## 6. 디자이너 확인 체크리스트")
+    # ── 6. 패키지·라벨 아트 프롬프트 (일러스트레이터용) ──
+    L.append("## 6. 패키지·라벨 아트 프롬프트 (일러스트레이터용)")
+    L.append("")
+    L.append(
+        "> 이 프롬프트로 이미지 생성 → **일러스트레이터**에서 벡터/인쇄용으로 다듬으세요. "
+        "규격·브랜드 비주얼·규제(필수기재 여백)가 자동 반영됩니다."
+    )
+    L.append("")
+
+    container = None
+    if formula.packaging:
+        pkg = pidx.get(formula.packaging[0].id)
+        if pkg is not None:
+            parts = [pkg.name, pkg.type]
+            if pkg.volume_ml:
+                parts.append(f"{pkg.volume_ml:g}mL")
+            if pkg.material:
+                parts.append(pkg.material)
+            container = ", ".join(p for p in parts if p)
+    container = container or (vis.container or "제품 용기")
+    tone = ", ".join(core.tone_adjectives) if core.tone_adjectives else "담백하고 정직한"
+    palette = (
+        " / ".join(c for c in [vis.main_color, vis.sub_color, vis.point_color] if c)
+        or "브랜드 컬러(브랜드 코어 ⑦에서 지정)"
+    )
+    mood = vis.texture or "산뜻하고 가벼운"
+    concept = (persona.one_line if persona else None) or core.promise or formula.product
+    forbidden = (
+        ", ".join(core.forbidden_words)
+        if core.forbidden_words
+        else "미백/최고/완벽 등 과장·의약품 오인 표현"
+    )
+    req = (
+        ", ".join(scr.requirement.required_items)
+        if scr.requirement.required_items
+        else "제품명·전성분·용량·제조번호·사용기한 등 법정 필수기재"
+    )
+
+    L.append("**① 라벨 그래픽 (플랫 벡터)**")
+    L.append("```")
+    L.append(
+        f"Minimalist print-ready VECTOR label design for {formula.product} ({container}). "
+        f"Korean indie cosmetic brand. Brand mood: {tone}. Color palette: {palette}. Feel: {mood}. "
+        f"Concept: {concept}. Clean typographic hierarchy, generous whitespace; "
+        f"leave clearly defined empty zones for required legal text ({req}). "
+        f"Flat vector, editorial, CMYK, suitable for Adobe Illustrator. "
+        f"No photo of the actual product. Avoid claims: {forbidden}."
+    )
+    L.append("```")
+    L.append("")
+    L.append("**② 패키지 키비주얼 (무드·배경)**")
+    L.append("```")
+    L.append(
+        f"Product key-visual mood board for {formula.product} in a {container}. "
+        f"Tone: {tone}. Palette: {palette}. Texture: {mood}. Soft natural light, minimal props. "
+        f"Persona: {concept}. Background & mood only — the real product must be shot in real life "
+        f"(do not fabricate the bottle). Avoid claims: {forbidden}."
+    )
+    L.append("```")
+    L.append("")
+    L.append(
+        "> ⚠️ 제품 실물(용기 형태·색·제형)은 **실촬영**이 원칙입니다. AI는 배경·무드·레이아웃까지."
+    )
+    L.append("")
+
+    # ── 7. 디자이너 체크리스트 ──
+    L.append("## 7. 디자이너 확인 체크리스트")
     L.append("")
     L.append("- [ ] 위 **필수 기재 항목**을 모두 배치했는가")
     L.append("- [ ] 전성분 표시(안)을 그대로 반영했는가(임의 수정 금지)")
