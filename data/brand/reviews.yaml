@@ -1,0 +1,25 @@
+# 고객 후기 (Phase 9). rating(1~5). verified=구매확인, incentivized=대가성(협찬/원고료).
+# rating>=4 & verified 후기는 '근거 카드'로 되먹여 브랜드 코어 ⑤ 근거를 강화한다.
+reviews:
+  - id: rv-001
+    product_ref: daily-lotion v2
+    rating: 5
+    text: 오후에도 당기지 않고 화장 위에 덧발라도 밀리지 않아요.
+    author: 사무직 직장인
+    reviewed_on: 2026-08-28
+    verified: true
+    incentivized: false
+  - id: rv-002
+    product_ref: daily-lotion v2
+    rating: 4
+    text: 끈적이지 않아 좋아요. 향이 조금만 더 은은하면 완벽하겠어요.
+    reviewed_on: 2026-08-30
+    verified: true
+    incentivized: true
+  - id: rv-003
+    product_ref: daily-lotion v1
+    rating: 3
+    text: 무난해요.
+    reviewed_on: 2026-08-25
+    verified: false
+    incentivized: false

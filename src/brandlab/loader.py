@@ -37,6 +37,7 @@ from .models import (
     PackagingMaster,
     Positioning,
     ProhibitedList,
+    ReviewBook,
     PromptKeywordLibrary,
     RegimeInfo,
     RegimeLabelItems,
@@ -96,6 +97,14 @@ def load_brand_core(path: Path | str = DATA_DIR / "brand" / "core.yaml") -> Bran
     if not p.exists():
         return BrandCore()
     return BrandCore.model_validate(_read_yaml(p))
+
+
+def load_reviews(path: Path | str = DATA_DIR / "brand" / "reviews.yaml") -> ReviewBook:
+    """수집 후기를 로드한다. 파일이 없으면 빈 목록(선택 데이터)."""
+    p = Path(path)
+    if not p.exists():
+        return ReviewBook()
+    return ReviewBook.model_validate(_read_yaml(p))
 
 
 def load_discovery(brand_dir: Path | str = DATA_DIR / "brand") -> Discovery:
@@ -432,6 +441,7 @@ __all__ = [
     "load_inventory",
     "load_brand_core",
     "load_discovery",
+    "load_reviews",
     "load_prompt_keywords",
     "load_positioning",
     "load_cert_checklist",

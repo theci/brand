@@ -1135,6 +1135,32 @@ class Positioning(BaseModel):
 
 
 # ---------------------------------------------------------------------------
+# 후기 (data/brand/reviews.yaml) — 고객 접점 Phase 9. 후기 = 새 증거.
+# ---------------------------------------------------------------------------
+class Review(BaseModel):
+    """수집한 고객 후기 1건."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    id: str = Field(min_length=1)
+    product_ref: str | None = None  # "slug vN"
+    rating: int = Field(ge=1, le=5)
+    text: str = Field(min_length=1)
+    author: str | None = None
+    reviewed_on: date | None = None  # 필드명 date는 타입을 가리므로 reviewed_on
+    verified: bool = False  # 구매 확인 후기
+    incentivized: bool = False  # 대가성(협찬·원고료) — 뒷광고 표기 대상
+
+
+class ReviewBook(BaseModel):
+    """reviews.yaml 최상위."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    reviews: list[Review] = Field(default_factory=list)
+
+
+# ---------------------------------------------------------------------------
 # 인증·시험 관문 (data/regulatory/<regime>/checklist.yaml, data/brand/cert_status.yaml)
 # ---------------------------------------------------------------------------
 class CertStatus(str, Enum):
