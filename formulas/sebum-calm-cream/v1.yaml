@@ -1,0 +1,46 @@
+product: 시크 진정 밸런스 크림
+slug: sebum-calm-cream
+version: 1
+regime: cosmetics
+product_type: leave_on      # 안 씻어냄 → 알러젠 임계 0.001%(엄격), 무향 지향
+status: 개발중
+base_batch_g: 200
+phases:
+  # 수상: 수용성 진정·장벽 활성 + 폴리올(말라세지아가 먹지 않는 보습)
+  - name: A (수상)
+    process: 70~75도로 가열하며 잔탄검을 글리세린에 개어 넣고, 수용성 활성을 완전 용해
+    ingredients:
+      - { id: water, percent: 66.5 }
+      - { id: glycerin, percent: 5.0 }
+      - { id: niacinamide, percent: 2.0 }
+      - { id: allantoin, percent: 0.5 }
+      - { id: beta-glucan, percent: 1.0 }
+      - { id: zinc-pca, percent: 1.0 }
+      - { id: pentylene-glycol, percent: 3.0 }
+      - { id: xanthan-gum, percent: 0.3 }
+  # 유상: ★말라세지아-세이프 에몰리언트만 (C11~24 지방산 오일 배제)
+  - name: B (유상)
+    process: 70~75도로 가열해 유화제·지방알코올·실리콘·경질오일 용해
+    ingredients:
+      - { id: glyceryl-stearate-citrate, percent: 4.0 }
+      - { id: cetyl-alcohol, percent: 2.0 }
+      - { id: squalane, percent: 5.0 }
+      - { id: mct, percent: 3.0 }
+      - { id: dimethicone, percent: 3.0 }
+  # 냉각: 열에 약한 병풀·판테놀 + 보존제 (무향 — 향료 자극 배제)
+  - name: C (냉각 첨가)
+    process: 40도 이하로 냉각 후 병풀·판테놀·보존제 투입
+    ingredients:
+      - { id: centella-extract, percent: 1.0 }
+      - { id: panthenol, percent: 1.0 }
+      - { id: phenoxyethanol, percent: 0.7 }
+      - { id: hexanediol, percent: 1.0 }
+packaging:
+  - { id: jar-50ml, qty_per_unit: 1 }
+fill_volume_ml: 50
+notes: >
+  예민·지성(지루성 피부염 경향) 피부용 진정 밸런스 크림. ★화장품이므로 '치료·완화' 표방 금지.
+  설계 원칙 (전문성): (1) 말라세지아가 대사하는 C11~24 지방산 오일(올리브·코코넛 등) 전면 배제,
+  대신 스쿠알란·MCT(C8/C10)·디메치콘 등 '먹이 아닌' 에몰리언트만 사용.
+  (2) 진정·장벽(나이아신아마이드·병풀·베타글루칸·알란토인·판테놀)·피지(징크피씨에이).
+  (3) 무향(향료 자극 배제). 물 베이스라 보존제 필수. percent 합계 100.
