@@ -1,0 +1,48 @@
+# 기획(Discovery) — 자료·시장·경쟁 조사
+# sources: 모든 수치·주장이 참조하는 출처(1급 객체). market_notes·competitors 가 source_ref 로 연결.
+# competitors[].gaps(빈틈)는 포지셔닝 comparison 으로 승격된다.
+sources:
+  - id: src-review-oy
+    title: 올리브영 수분크림 리뷰 300건 키워드 분석
+    kind: 리뷰
+    researched_on: 2026-08-20
+    reliability: 3
+  - id: src-community
+    title: 민감성 피부 커뮤니티 게시글 관찰
+    kind: 커뮤니티
+    researched_on: 2026-08-22
+    reliability: 2
+  - id: src-mfds
+    title: 화장품 사용상 제한 원료 고시
+    url: https://www.mfds.go.kr
+    kind: 규정
+    researched_on: 2026-01-01
+    reliability: 5
+
+market_notes:
+  - topic: 수분크림 시장 트렌드
+    summary: 저자극·장벽 강화 컨셉이 리뷰 상위 키워드로 성장
+    metric: 상위 키워드 '진정·장벽·산뜻'
+    tags: [트렌드]
+    source_ref: src-review-oy
+  - topic: 인디 브랜드 가격대
+    summary: 3~4만원대 소용량에 집중
+    metric: 30~50ml, 3.5만원 전후
+    tags: [가격]
+    source_ref: src-review-oy
+
+competitors:
+  - name: 대형 A사 수분크림
+    category: 기초 수분크림
+    price_band: 2~3만원
+    claims: [72시간 보습]
+    strengths: [높은 인지도, 오프라인 유통]
+    gaps: [끈적임, 흡수 느림, 강한 향]
+    source_ref: src-review-oy
+  - name: 병원 처방형 보습제
+    category: 더모코스메틱
+    price_band: 3~5만원
+    claims: [장벽 회복]
+    strengths: [전문가 신뢰]
+    gaps: [무거운 사용감, 높은 가격]
+    source_ref: src-community

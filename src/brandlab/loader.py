@@ -20,12 +20,16 @@ from .models import (
     CertChecklist,
     CertStatusList,
     Config,
+    Discovery,
     DoeDesign,
     Formula,
     FoodAllergenList,
     Fragrance,
     IngredientMaster,
     Inventory,
+    PersonaBook,
+    ProblemStatement,
+    Research,
     ChemicalSafetyFees,
     ClassificationRules,
     LabelingRules,
@@ -92,6 +96,24 @@ def load_brand_core(path: Path | str = DATA_DIR / "brand" / "core.yaml") -> Bran
     if not p.exists():
         return BrandCore()
     return BrandCore.model_validate(_read_yaml(p))
+
+
+def load_discovery(brand_dir: Path | str = DATA_DIR / "brand") -> Discovery:
+    """기획(Discovery) 3파일을 조립해 반환한다. 각 파일은 선택(없으면 빈 모델).
+
+    personas.yaml → PersonaBook, research.yaml → Research, problem.yaml → ProblemStatement.
+    """
+    base = Path(brand_dir)
+
+    def _load(name: str, model):
+        p = base / name
+        return model.model_validate(_read_yaml(p)) if p.exists() else model()
+
+    return Discovery(
+        personas=_load("personas.yaml", PersonaBook),
+        research=_load("research.yaml", Research),
+        problem=_load("problem.yaml", ProblemStatement),
+    )
 
 
 def load_prompt_keywords(
@@ -409,6 +431,7 @@ __all__ = [
     "load_config",
     "load_inventory",
     "load_brand_core",
+    "load_discovery",
     "load_prompt_keywords",
     "load_positioning",
     "load_cert_checklist",

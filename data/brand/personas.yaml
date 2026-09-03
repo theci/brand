@@ -1,0 +1,30 @@
+# 기획(Discovery) — 페르소나·JTBD·페인
+# 모든 칸 선택(부분 저장). pains[].source_ref 는 research.yaml sources[].id 를 가리킨다.
+# pains 점수 = severity(심각도) × frequency(빈도) → 우선순위 랭킹.
+personas:
+  - id: dry-office-30s
+    name: 건조한 사무직 30대
+    one_line: 냉난방 사무실에서 하루 종일 당김을 느끼는 30대 직장인
+    context: 실내 근무 8시간, 냉난방 상시, 점심 후 화장 들뜸
+    jobs:
+      - 바쁜 아침에 빠르게 흡수되는 보습
+      - 메이크업 위에도 덧바를 수 있는 산뜻함
+    current_solution: 대형 브랜드 수분크림
+    dissatisfaction: 끈적이고 흡수가 느려 화장이 밀림
+    priority: 5
+    pains:
+      - { desc: 오후만 되면 볼이 당기고 각질이 인다, severity: 4, frequency: 5, source_ref: src-review-oy }
+      - { desc: 수분크림이 끈적여 덧바르기 싫다, severity: 3, frequency: 4, source_ref: src-review-oy }
+
+  - id: sensitive-barrier
+    name: 장벽 무너진 민감성
+    one_line: 잦은 트러블·따가움으로 성분을 깐깐히 보는 민감성 피부
+    context: 환절기 홍조·따가움, 성분표 꼼꼼 확인
+    jobs:
+      - 자극 없이 진정과 보습을 동시에
+      - 성분 신뢰(무엇이 왜 들었는지)
+    current_solution: 병원 처방 보습제
+    dissatisfaction: 처방은 비싸고 사용감이 무겁다
+    priority: 3
+    pains:
+      - { desc: 새 제품마다 따가울까 봐 불안하다, severity: 5, frequency: 3, source_ref: src-community }

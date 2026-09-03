@@ -979,6 +979,128 @@ class PromptKeywordLibrary(BaseModel):
 
 
 # ---------------------------------------------------------------------------
+# 기획(Discovery) — 고객·문제 발견 (data/brand/personas.yaml·research.yaml·problem.yaml)
+#   포지셔닝(아래)의 상류. 리서치가 쌓여도 안 깨지게 파일·모델을 분리한다.
+#   모든 칸 선택(부분 저장·점진 편집). 출처(ResearchSource)를 1급 객체로 둔다.
+# ---------------------------------------------------------------------------
+class PainPoint(BaseModel):
+    """페르소나의 고통 1개. 우선순위 점수 = 심각도 × 빈도."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    desc: str = Field(min_length=1)
+    severity: int = Field(default=3, ge=1, le=5)  # 심각도(1~5)
+    frequency: int = Field(default=3, ge=1, le=5)  # 빈도(1~5)
+    source_ref: str | None = None  # research.yaml sources[].id 참조
+
+    @property
+    def score(self) -> int:
+        return self.severity * self.frequency
+
+
+class Persona(BaseModel):
+    """타깃 고객 1인."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    id: str = Field(min_length=1)
+    name: str = Field(min_length=1)
+    one_line: str | None = None  # 한 줄 정의
+    context: str | None = None  # 상황·맥락(인구·환경)
+    jobs: list[str] = Field(default_factory=list)  # 해결하려는 일(JTBD)
+    current_solution: str | None = None  # 지금 쓰는 대안
+    dissatisfaction: str | None = None  # 그 대안의 불만
+    priority: int = Field(default=3, ge=1, le=5)  # 타깃 우선순위
+    pains: list[PainPoint] = Field(default_factory=list)
+
+
+class PersonaBook(BaseModel):
+    """personas.yaml 최상위."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    personas: list[Persona] = Field(default_factory=list)
+
+    def index(self) -> dict[str, Persona]:
+        return {p.id: p for p in self.personas}
+
+
+class ResearchSource(BaseModel):
+    """자료 출처 1개 — 모든 수치·주장이 이걸 참조한다(확장성의 핵심)."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    id: str = Field(min_length=1)
+    title: str = Field(min_length=1)
+    url: str | None = None
+    kind: str | None = None  # 기사/논문/리뷰/커뮤니티/규정/데이터 …
+    # 필드명을 date로 두면 date 타입을 가려(기본값 None) 파이단틱 평가가 깨짐 → researched_on 사용.
+    researched_on: date | None = None
+    reliability: int = Field(default=3, ge=1, le=5)  # 신뢰도(1~5)
+
+
+class MarketNote(BaseModel):
+    """시장 조사 노트 1개."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    topic: str = Field(min_length=1)
+    summary: str | None = None
+    metric: str | None = None  # 수치(예: "시장 3,200억, 연 8%")
+    tags: list[str] = Field(default_factory=list)  # 트렌드/규모/가격/규제 …
+    source_ref: str | None = None
+
+
+class Competitor(BaseModel):
+    """경쟁 제품/현상 1개. gaps(빈틈)가 포지셔닝 comparison으로 승격된다."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    name: str = Field(min_length=1)  # 현상으로 기술(실명 지양)
+    category: str | None = None
+    price_band: str | None = None
+    claims: list[str] = Field(default_factory=list)  # 소구점
+    strengths: list[str] = Field(default_factory=list)
+    gaps: list[str] = Field(default_factory=list)  # 약점/빈틈
+    source_ref: str | None = None
+
+
+class Research(BaseModel):
+    """research.yaml 최상위 — 출처·시장노트·경쟁."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    sources: list[ResearchSource] = Field(default_factory=list)
+    market_notes: list[MarketNote] = Field(default_factory=list)
+    competitors: list[Competitor] = Field(default_factory=list)
+
+    def source_index(self) -> dict[str, ResearchSource]:
+        return {s.id: s for s in self.sources}
+
+
+class ProblemStatement(BaseModel):
+    """problem.yaml — 발견을 종합한 문제 정의."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    persona_ref: str | None = None  # personas[].id
+    core_pain: str | None = None
+    statement: str | None = None  # 문제 문장
+    hypothesis: str | None = None  # 이걸 풀면 ~일 것이다
+    success_metric: str | None = None  # 성공 판단 지표
+
+
+class Discovery(BaseModel):
+    """기획 3파일을 묶은 것. load_discovery가 조립해 반환(하류 프리필의 입력원)."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    personas: PersonaBook = Field(default_factory=PersonaBook)
+    research: Research = Field(default_factory=Research)
+    problem: ProblemStatement = Field(default_factory=ProblemStatement)
+
+
+# ---------------------------------------------------------------------------
 # 포지셔닝 (data/brand/positioning.yaml) — 뾰족함의 뿌리
 # ---------------------------------------------------------------------------
 class ComparisonRow(BaseModel):
