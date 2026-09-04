@@ -12,11 +12,12 @@ from brandlab.experiment_edit import (
     delete_experiment,
     doe_path,
     full_factorial_runs,
+    set_batch_actuals,
     set_doe_scores,
     set_stability_observations,
     stability_path,
 )
-from brandlab.loader import load_doe, load_stability
+from brandlab.loader import load_batch, load_doe, load_stability
 
 
 def test_full_factorial_2factors():
@@ -151,3 +152,44 @@ def test_set_stability_observations(tmp_path):
     assert sample.observations[0].외관 == "양호"
     assert sample.observations[1].판정 == "관찰"
     assert sample.observations[1].비고 is None  # 빈 필드 제외
+
+
+def _write_batch(path):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        "# 배치 헤더\n"
+        "batch_id: DL-20260902-01\n"
+        "formula_ref: daily-lotion v1\n"
+        "date: 2026-09-02\n"
+        "target_g: 100.0\n"
+        "lines:\n"
+        "- {id: water, target_g: 60.0}\n"
+        "- {id: glycerin, target_g: 5.0}\n",
+        encoding="utf-8",
+    )
+
+
+def test_set_batch_actuals(tmp_path):
+    path = tmp_path / "batches" / "DL-20260902-01.yaml"
+    _write_batch(path)
+    set_batch_actuals(
+        path,
+        yield_g=92.5, ph=5.2, observations="냉각 후 약간 묽음",
+        actuals_by_id={"water": 59.5, "glycerin": None},
+    )
+    rec = load_batch(path)
+    assert rec.yield_g == 92.5 and rec.ph == 5.2
+    assert rec.observations == "냉각 후 약간 묽음"
+    assert rec.yield_percent == 92.5  # 92.5 / 100
+    lines = {ln.id: ln.actual_g for ln in rec.lines}
+    assert lines["water"] == 59.5 and lines["glycerin"] is None
+    assert "# 배치 헤더" in path.read_text(encoding="utf-8")  # 헤더 보존
+
+
+def test_set_batch_actuals_clears_blank(tmp_path):
+    path = tmp_path / "batches" / "b.yaml"
+    _write_batch(path)
+    set_batch_actuals(path, yield_g=90.0)
+    set_batch_actuals(path, yield_g=None, observations="  ")  # 비우면 제거
+    rec = load_batch(path)
+    assert rec.yield_g is None and rec.observations is None

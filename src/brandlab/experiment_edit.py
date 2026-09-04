@@ -15,7 +15,7 @@ from pathlib import Path
 import yaml
 
 from .core.models import DoeDesign, PanelTest, StabilitySample
-from .loader import EXPERIMENTS_DIR, load_doe, load_panel, load_stability
+from .loader import EXPERIMENTS_DIR, load_batch, load_doe, load_panel, load_stability
 from .master_edit import save_with_backup
 
 
@@ -134,6 +134,44 @@ def set_stability_observations(path: Path | str, observations: list[dict]) -> No
     save_with_backup(path, new_text, load_stability)
 
 
+def set_batch_actuals(
+    path: Path | str,
+    *,
+    yield_g: float | None = None,
+    ph: float | None = None,
+    observations: str | None = None,
+    operator: str | None = None,
+    actuals_by_id: dict[str, float | None] | None = None,
+) -> None:
+    """배치 파일의 제조 후 실측값을 갱신한다.
+
+    수율(yield_g)·pH·관찰·작업자와 원료별 실측 무게(actual_g)를 채운다.
+    값이 없으면(None/빈 문자열) 해당 필드를 제거(미기록)한다.
+    """
+    path = Path(path)
+    original = path.read_text(encoding="utf-8")
+    data = load_batch(path).model_dump(mode="json", exclude_none=True)
+    for key, val in (
+        ("yield_g", yield_g), ("ph", ph),
+        ("observations", observations), ("operator", operator),
+    ):
+        if val is None or (isinstance(val, str) and not val.strip()):
+            data.pop(key, None)
+        else:
+            data[key] = val.strip() if isinstance(val, str) else val
+    amap = actuals_by_id or {}
+    for line in data.get("lines", []):
+        aid = line.get("id")
+        if aid in amap:
+            v = amap[aid]
+            if v is None:
+                line.pop("actual_g", None)
+            else:
+                line["actual_g"] = v
+    new_text = _leading_comments(original) + _dump(data)
+    save_with_backup(path, new_text, load_batch)
+
+
 def set_panel_responses(path: Path | str, responses: list[dict]) -> None:
     """관능 파일의 응답 목록을 통째로 교체한다(추가·수정·삭제 반영).
 
@@ -172,4 +210,5 @@ __all__ = [
     "set_doe_scores",
     "set_stability_observations",
     "set_panel_responses",
+    "set_batch_actuals",
 ]
