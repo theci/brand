@@ -208,22 +208,35 @@ def build_brief(
     L.append("**① 라벨 그래픽 (플랫 벡터)**")
     L.append("```")
     L.append(
-        f"Minimalist print-ready VECTOR label design for {formula.product} ({container}). "
-        f"Korean indie cosmetic brand. Brand mood: {tone}. Color palette: {palette}. Feel: {mood}. "
-        f"Concept: {concept}. Clean typographic hierarchy, generous whitespace; "
-        f"leave clearly defined empty zones for required legal text ({req}). "
-        f"Flat vector, editorial, CMYK, suitable for Adobe Illustrator. "
-        f"No photo of the actual product. Avoid claims: {forbidden}."
+        f"[Subject] Minimalist print-ready VECTOR label design for {formula.product} "
+        f"({container}). Korean indie cosmetic brand.\n"
+        f"[Concept] {concept} — brand mood: {tone}, feel: {mood}.\n"
+        f"[Composition] Clean typographic hierarchy with generous whitespace; clearly defined "
+        f"empty zones reserved for required legal text ({req}); balanced margins.\n"
+        f"[Styling] Flat vector, editorial, CMYK, print-ready for Adobe Illustrator; crisp "
+        f"line work, no raster effects.\n"
+        f"[Color Scheme] Brand palette {palette}; limited, harmonious ink colors.\n"
+        f"[Aesthetic & Brand Context] Refined minimal Korean clean-beauty label; "
+        f"no photo of the actual product, no logos-as-noise. Avoid claims: {forbidden}."
     )
     L.append("```")
     L.append("")
     L.append("**② 패키지 키비주얼 (무드·배경)**")
     L.append("```")
     L.append(
-        f"Product key-visual mood board for {formula.product} in a {container}. "
-        f"Tone: {tone}. Palette: {palette}. Texture: {mood}. Soft natural light, minimal props. "
-        f"Persona: {concept}. Background & mood only — the real product must be shot in real life "
-        f"(do not fabricate the bottle). Avoid claims: {forbidden}."
+        f"[Subject] Product key-visual for {formula.product} in a {container}; "
+        f"the REAL product must be shot in real life and composited in — never fabricate the "
+        f"bottle (background & mood only).\n"
+        f"[Concept] {concept} — tone: {tone}, texture: {mood}.\n"
+        f"[Composition] Hero product with generous negative space; minimal props; "
+        f"soft grounding shadow for depth.\n"
+        f"[Lighting & Background] Soft natural light, ~5500K neutral daylight, no harsh "
+        f"shadows; seamless gradient background in the brand palette.\n"
+        f"[Color Scheme] Brand palette {palette}; clean, balanced color grading.\n"
+        f"[Camera & Perspective] Eye-level three-quarter angle, 50mm lens, moderate depth of "
+        f"field.\n"
+        f"[Aesthetic & Brand Context] High-end editorial product photography; "
+        f"8K ultra-realistic render, photographic — not AI-generated. Avoid claims: {forbidden}."
     )
     L.append("```")
     L.append("")
