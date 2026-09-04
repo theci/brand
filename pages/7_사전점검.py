@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import streamlit as st
 
-from brandlab.checks import check_formula, formulation_balance
+from brandlab.checks import check_formula, formulation_balance, preservation_check
 from brandlab.ui import load_lab, setup_korean_font
 
 setup_korean_font()
@@ -48,6 +48,16 @@ else:
             for f in result.limit_findings
         ]
     )
+
+# 보존 시스템
+st.subheader("보존 시스템")
+pres = preservation_check(formula, ingredients=lab.ingredients)
+render_p = {"양호": st.success, "주의": st.warning, "위험": st.error, "해당없음": st.info}.get(
+    pres.verdict, st.info
+)
+render_p(f"**{pres.verdict}**" + (" (무수)" if pres.verdict == "해당없음" else ""))
+for cmt in pres.comments:
+    st.caption(cmt)
 
 # 제형·유수분 밸런스
 st.subheader("제형 · 유수분 밸런스")

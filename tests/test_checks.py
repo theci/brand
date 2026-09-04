@@ -2,7 +2,12 @@
 
 from __future__ import annotations
 
-from brandlab.checks import check_formula, formulation_balance, moisture_role
+from brandlab.checks import (
+    check_formula,
+    formulation_balance,
+    moisture_role,
+    preservation_check,
+)
 from brandlab.core.models import Formula, Ingredient, IngredientLimit, LimitList
 
 
@@ -144,3 +149,41 @@ def test_humectant_without_occlusive_warns():
     f = _formula([("water", 88.0), ("glycerin", 10.0), ("emul", 2.0)])
     b = formulation_balance(f, ingredients=ings)
     assert any("잠금" in c for c in b.comments)  # 휴멕턴트↑ 옥클루시브↓ 경고
+
+
+# ---------------------------------------------------------------------------
+# 보존 시스템 점검
+# ---------------------------------------------------------------------------
+def test_preservation_good():
+    ings = _idx(_bing("water", "용제"), _bing("phenoxy", "보존제"), _bing("hexanediol", "보습제"), _bing("gly", "보습제"))
+    f = _formula([("water", 90.0), ("phenoxy", 1.0), ("hexanediol", 2.0), ("gly", 7.0)])
+    r = preservation_check(f, ingredients=ings)
+    assert r.is_water_based and r.verdict == "양호" and r.ok
+
+
+def test_preservation_missing_is_danger():
+    ings = _idx(_bing("water", "용제"), _bing("gly", "보습제"))
+    f = _formula([("water", 95.0), ("gly", 5.0)])
+    r = preservation_check(f, ingredients=ings)
+    assert r.verdict == "위험" and not r.ok
+
+
+def test_preservation_anhydrous_na():
+    ings = _idx(_bing("wax", "왁스"), _bing("oil", "에몰리언트"))
+    f = _formula([("wax", 40.0), ("oil", 60.0)])
+    r = preservation_check(f, ingredients=ings)
+    assert not r.is_water_based and r.verdict == "해당없음" and r.ok
+
+
+def test_preservation_single_warns():
+    ings = _idx(_bing("water", "용제"), _bing("phenoxy", "보존제"), _bing("gly", "보습제"))
+    f = _formula([("water", 90.0), ("phenoxy", 1.0), ("gly", 9.0)])
+    r = preservation_check(f, ingredients=ings)
+    assert r.verdict == "주의"  # 단일 보존제·보조 없음
+
+
+def test_preservation_booster_only_danger():
+    ings = _idx(_bing("water", "용제"), _bing("hexanediol", "보습제"), _bing("gly", "보습제"))
+    f = _formula([("water", 90.0), ("hexanediol", 2.0), ("gly", 8.0)])
+    r = preservation_check(f, ingredients=ings)
+    assert r.verdict == "위험" and r.boosters

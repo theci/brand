@@ -338,6 +338,84 @@ def formulation_balance(
     )
 
 
+# ---------------------------------------------------------------------------
+# 보존 시스템 점검 (물 든 제형의 미생물 방어)
+# ---------------------------------------------------------------------------
+_PRESERVATIVE_CATEGORIES = {"보존제"}
+# 다기능 항균보조 — 단독으로는 광범위 보존제가 아님(보존 부담을 낮추는 보조).
+_BOOSTER_IDS = {"pentylene-glycol", "hexanediol", "caprylyl-glycol", "ethylhexylglycerin"}
+_WATER_INCI = {"water", "aqua"}
+_WATER_IDS = {"water", "purified-water"}
+
+
+@dataclass
+class PreservationResult:
+    is_water_based: bool
+    preservatives: list[str]
+    boosters: list[str]
+    verdict: str  # "양호" | "주의" | "위험" | "해당없음"(무수)
+    comments: list[str] = field(default_factory=list)
+
+    @property
+    def ok(self) -> bool:
+        return self.verdict in {"양호", "해당없음"}
+
+
+def preservation_check(
+    formula: Formula,
+    *,
+    ingredients: IngredientMaster | Mapping[str, Ingredient],
+) -> PreservationResult:
+    """물이 든 처방에 보존제가 있는지·광범위한지 점검한다.
+
+    - 무수(물 없음): 보존제 필수 아님 → '해당없음'
+    - 물 있는데 보존제 없음 → '위험'
+    - 보존제 있으나 단일·보조 없음 → '주의'(광범위 커버 권장)
+    - 그 외 → '양호'
+    """
+    idx = _ingredient_index(ingredients)
+    agg = _aggregate(formula)
+
+    water = False
+    pres: list[str] = []
+    boost: list[str] = []
+    for ing_id in agg:
+        ing = idx.get(ing_id)
+        if ing is None:
+            continue
+        if ing.inci.strip().lower() in _WATER_INCI or ing_id in _WATER_IDS:
+            water = True
+        if ing.category in _PRESERVATIVE_CATEGORIES:
+            pres.append(ing.name)
+        if ing_id in _BOOSTER_IDS:
+            boost.append(ing.name)
+
+    comments: list[str] = []
+    if not water:
+        verdict = "해당없음"
+        comments.append("무수(물 없음) — 미생물 위험이 낮아 보존제가 필수는 아닙니다. 대신 산패(산화방지제)를 관리하세요.")
+    elif not pres:
+        verdict = "위험"
+        comments.append("물이 들어가는데 보존제(카테고리 '보존제')가 없습니다. 미생물 오염 위험 — 보존제 필수.")
+        if boost:
+            comments.append(f"다기능 항균보조({', '.join(boost)})만으로는 광범위 보존이 부족할 수 있습니다.")
+    else:
+        verdict = "양호"
+        comments.append(f"보존제 {len(pres)}종 포함: {', '.join(pres)}.")
+        if len(pres) == 1 and not boost:
+            verdict = "주의"
+            comments.append("단일 보존제 — 세균·곰팡이·효모 광범위 커버를 위해 다기능 보조(펜틸렌글라이콜·1,2-헥산다이올 등) 병용을 권장.")
+        comments.append("최종 방부력은 반드시 챌린지(방부력) 시험으로 검증하세요.")
+
+    return PreservationResult(
+        is_water_based=water,
+        preservatives=pres,
+        boosters=boost,
+        verdict=verdict,
+        comments=comments,
+    )
+
+
 __all__ = [
     "HlbResult",
     "LimitFinding",
@@ -348,4 +426,6 @@ __all__ = [
     "FormulationBalance",
     "formulation_balance",
     "moisture_role",
+    "PreservationResult",
+    "preservation_check",
 ]
