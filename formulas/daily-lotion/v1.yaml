@@ -10,19 +10,19 @@ phases:
   - name: A (수상)
     process: 70~75도로 가열하며 잔탄검을 글리세린에 먼저 개어 넣어 뭉침 방지
     ingredients:
-      - { id: water, percent: 70.8 }
+      - { id: water, percent: 78.3 }
       - { id: glycerin, percent: 5.0 }
       - { id: sodium-hyaluronate, percent: 0.1 }
       - { id: xanthan-gum, percent: 0.3 }
-  # 유상(oil phase): 기름에 녹는 것들 + 유화제. 같은 70~75도로 가열해 완전 용해.
+  # 유상(oil phase): '산뜻 로션'답게 유상 ~13%로 가볍게(비율 유지→HLB 균형 보존).
   - name: B (유상)
-    process: 70~75도로 가열해 유화제·왁스·버터를 완전 용해
+    process: 70~75도로 가열해 유화제·지방알코올·오일·버터를 완전 용해
     ingredients:
-      - { id: glyceryl-stearate-citrate, percent: 5.0 }
-      - { id: cetyl-alcohol, percent: 2.0 }
-      - { id: jojoba-oil, percent: 6.0 }
-      - { id: squalane, percent: 4.0 }
-      - { id: shea-butter, percent: 3.0 }
+      - { id: glyceryl-stearate-citrate, percent: 4.0 }
+      - { id: cetyl-alcohol, percent: 1.5 }
+      - { id: jojoba-oil, percent: 3.0 }
+      - { id: squalane, percent: 2.5 }
+      - { id: shea-butter, percent: 1.5 }
   # 유화: A에 B를 부으며 균질기로 유화 → 40도 이하로 냉각 후 C 투입
   - name: C (냉각 첨가)
     process: 40도 이하로 냉각한 뒤 보존제·향·산화방지제 투입(열에 약함)

@@ -1,0 +1,46 @@
+product: 오후 진정 배리어 크림
+slug: barrier-cream
+version: 1
+regime: cosmetics
+product_type: leave_on       # 안 씻어냄 → 알러젠 임계 0.001%(엄격)
+status: 개발중
+base_batch_g: 200
+parent_version: null
+phases:
+  # 수상: 휴멕턴트(보습) + 수용성 진정·장벽 활성
+  - name: A (수상)
+    process: 70~75도로 가열하며 잔탄검을 글리세린에 개어 넣고 수용성 활성을 완전 용해
+    ingredients:
+      - { id: water, percent: 61.0 }
+      - { id: glycerin, percent: 6.0 }
+      - { id: sodium-hyaluronate, percent: 0.1 }
+      - { id: panthenol, percent: 1.0 }
+      - { id: niacinamide, percent: 3.0 }
+      - { id: allantoin, percent: 0.3 }
+      - { id: beta-glucan, percent: 1.0 }
+      - { id: xanthan-gum, percent: 0.3 }
+  # 유상: 크림다운 유분(~24%) — 에몰리언트 + 옥클루시브(시어) 균형
+  - name: B (유상)
+    process: 70~75도로 가열해 유화제·지방알코올·버터·오일을 완전 용해
+    ingredients:
+      - { id: glyceryl-stearate-citrate, percent: 5.0 }
+      - { id: cetyl-alcohol, percent: 3.0 }
+      - { id: shea-butter, percent: 5.0 }
+      - { id: squalane, percent: 6.0 }
+      - { id: jojoba-oil, percent: 5.0 }
+  # 냉각: 열에 약한 병풀 + 산화방지 + 보존
+  - name: C (냉각 첨가)
+    process: 40도 이하로 냉각 후 병풀·토코페롤·보존제 투입(열에 약함)
+    ingredients:
+      - { id: centella-extract, percent: 1.0 }
+      - { id: tocopherol, percent: 0.5 }
+      - { id: phenoxyethanol, percent: 0.8 }
+      - { id: hexanediol, percent: 1.0 }
+packaging:
+  - { id: jar-50ml, qty_per_unit: 1 }
+fill_volume_ml: 50
+notes: >
+  '오후' 브랜드 라인 확장 — 로션보다 유분을 높인(유상 ~24%) 진정 배리어 크림.
+  건조·장벽이 약한 피부 겨냥(질병 표방 금지: 보습·진정 화장품).
+  진정·장벽(나이아신아마이드·병풀·베타글루칸·판테놀·알란토인) + 유수분 균형(시어·스쿠알란·호호바).
+  물 베이스라 보존제 필수, 무향 지향. percent 합계 100.
