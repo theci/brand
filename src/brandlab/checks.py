@@ -223,6 +223,121 @@ def check_formula(
     )
 
 
+# ---------------------------------------------------------------------------
+# 제형·유수분 밸런스 분석 (로션/크림 개발 특화)
+# ---------------------------------------------------------------------------
+# 유상(oil phase)으로 보는 보습 역할
+_OIL_ROLES = {"emollient", "occlusive", "emulsifier", "fragrance", "antioxidant"}
+
+
+def _texture(oil_pct: float) -> str:
+    """유상 % → 텍스처 분류(휴리스틱)."""
+    if oil_pct < 8:
+        return "라이트(에센스·젤 로션)"
+    if oil_pct < 18:
+        return "로션(가벼움)"
+    if oil_pct < 30:
+        return "크림"
+    if oil_pct < 50:
+        return "리치 크림"
+    return "밤/무수 근접"
+
+
+def moisture_role(ing: Ingredient | None) -> str:
+    """원료의 보습 역할 추론. ing.moisture_role 우선, 없으면 category/HLB로."""
+    if ing is None:
+        return "other"
+    if ing.moisture_role:
+        return ing.moisture_role
+    cat = ing.category
+    if cat in {"왁스", "버터"}:
+        return "occlusive"
+    if cat == "에몰리언트":
+        return "emollient"
+    if cat == "보습제":
+        return "humectant"
+    if cat in {"계면활성제", "유화제"}:
+        return "emulsifier"
+    if cat in {"에센셜오일", "향료"} or ing.fragrance:
+        return "fragrance"
+    if cat == "산화방지제":
+        return "antioxidant"
+    if cat in {"용제", "용매"}:
+        return "solvent"
+    if cat == "점증제":  # 지방알코올(required_hlb 보유)=유상, 잔탄검 등=수상
+        return "emollient" if ing.required_hlb is not None else "thickener_water"
+    return "other"
+
+
+@dataclass
+class FormulationBalance:
+    oil_pct: float  # 유상 합계 %
+    water_pct: float  # 수상(=100-유상) %
+    texture: str  # 텍스처 분류
+    humectant_pct: float
+    emollient_pct: float
+    occlusive_pct: float
+    emulsifier_pct: float
+    role_pct: dict[str, float] = field(default_factory=dict)
+    comments: list[str] = field(default_factory=list)
+
+
+def formulation_balance(
+    formula: Formula,
+    *,
+    ingredients: IngredientMaster | Mapping[str, Ingredient],
+) -> FormulationBalance:
+    """유상/수상 비율·텍스처·휴멕턴트/에몰리언트/옥클루시브 3축을 계산한다."""
+    idx = _ingredient_index(ingredients)
+    agg = _aggregate(formula)
+
+    role_pct: dict[str, float] = {}
+    oil = 0.0
+    for ing_id, pct in agg.items():
+        ing = idx.get(ing_id)
+        r = moisture_role(ing)
+        role_pct[r] = role_pct.get(r, 0.0) + pct
+        is_oil = r in _OIL_ROLES or (
+            ing is not None and (ing.required_hlb is not None or ing.hlb is not None)
+        )
+        if is_oil:
+            oil += pct
+
+    oil = round(oil, 2)
+    water = round(100.0 - oil, 2)
+
+    def g(r: str) -> float:
+        return round(role_pct.get(r, 0.0), 2)
+
+    hum, emol, occl, emul = g("humectant"), g("emollient"), g("occlusive"), g("emulsifier")
+
+    comments: list[str] = []
+    if occl >= 15:
+        comments.append(f"옥클루시브(왁스·버터·실리콘) {occl:g}% — 무겁고 번들거릴 수 있음(지성·여름 주의).")
+    if hum >= 5 and occl < 3:
+        comments.append(
+            f"휴멕턴트 {hum:g}% 대비 잠금(옥클루시브) {occl:g}% — 건조 환경에선 오히려 당길 수 있음(잠금 보강 고려)."
+        )
+    if emol == 0 and occl == 0 and oil > 0:
+        comments.append("유상이 유화제 위주 — 에몰리언트/옥클루시브가 적어 사용감이 빈약할 수 있음.")
+    if oil == 0:
+        comments.append("유상 0%(무수 또는 수상 전용) — 유수분 밸런스 개념이 크게 적용되지 않습니다.")
+    if not comments:
+        comments.append("유수분·보습 3축이 무난한 범위입니다.")
+
+    return FormulationBalance(
+        oil_pct=oil,
+        water_pct=water,
+        texture=_texture(oil),
+        humectant_pct=hum,
+        emollient_pct=emol,
+        occlusive_pct=occl,
+        emulsifier_pct=emul,
+        role_pct={k: round(v, 2) for k, v in role_pct.items()},
+        comments=comments,
+    )
+
+
 __all__ = [
     "HlbResult",
     "LimitFinding",
@@ -230,4 +345,7 @@ __all__ = [
     "check_hlb",
     "check_limits",
     "check_formula",
+    "FormulationBalance",
+    "formulation_balance",
+    "moisture_role",
 ]

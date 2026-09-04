@@ -4,12 +4,12 @@ from __future__ import annotations
 
 import streamlit as st
 
-from brandlab.checks import check_formula
+from brandlab.checks import check_formula, formulation_balance
 from brandlab.ui import load_lab, setup_korean_font
 
 setup_korean_font()
-st.title("처방 사전점검 · HLB · 배합한도")
-st.caption("제형을 만들기 전에, 유화가 깨질 위험과 배합한도 초과를 처방서 숫자로 미리 거른다.")
+st.title("처방 사전점검 · HLB · 배합한도 · 유수분")
+st.caption("제형을 만들기 전에, 유화 위험·배합한도·유수분(제형) 밸런스를 처방서 숫자로 미리 본다.")
 
 lab = load_lab()
 if not lab.formulas:
@@ -48,6 +48,41 @@ else:
             for f in result.limit_findings
         ]
     )
+
+# 제형·유수분 밸런스
+st.subheader("제형 · 유수분 밸런스")
+bal = formulation_balance(formula, ingredients=lab.ingredients)
+c1, c2, c3 = st.columns(3)
+c1.metric("유상(oil)", f"{bal.oil_pct:g}%")
+c2.metric("수상(water)", f"{bal.water_pct:g}%")
+c3.metric("텍스처", bal.texture)
+st.caption("텍스처 기준(유상%): <8 라이트 · 8~18 로션 · 18~30 크림 · 30~50 리치 · >50 밤")
+
+st.write("**보습 3축**")
+b1, b2, b3, b4 = st.columns(4)
+b1.metric("휴멕턴트", f"{bal.humectant_pct:g}%", help="수분을 끌어당김(글리세린·HA·판테놀)")
+b2.metric("에몰리언트", f"{bal.emollient_pct:g}%", help="발림·매끈(오일·에스터·지방알코올)")
+b3.metric("옥클루시브", f"{bal.occlusive_pct:g}%", help="수분 잠금(왁스·버터·실리콘)")
+b4.metric("유화제", f"{bal.emulsifier_pct:g}%", help="물·기름 결합")
+
+try:
+    import matplotlib.pyplot as plt
+
+    fig, ax = plt.subplots(figsize=(6, 1.8))
+    axes = ["휴멕턴트", "에몰리언트", "옥클루시브"]
+    vals = [bal.humectant_pct, bal.emollient_pct, bal.occlusive_pct]
+    ax.barh(axes, vals, color=["#1c7ed6", "#2b8a3e", "#e8590c"])
+    ax.invert_yaxis()
+    for i, v in enumerate(vals):
+        ax.text(v, i, f" {v:g}%", va="center", fontsize=8)
+    ax.set_xlabel("% (처방 대비)")
+    fig.tight_layout()
+    st.pyplot(fig)
+except Exception:  # noqa: BLE001 — 차트 실패가 페이지를 막지 않게
+    pass
+
+for cmt in bal.comments:
+    st.info(cmt)
 
 # 종합
 if result.ok:

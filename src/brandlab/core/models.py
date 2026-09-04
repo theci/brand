@@ -102,6 +102,9 @@ class Ingredient(BaseModel):
     hlb: float | None = Field(default=None, ge=0, le=20)
     # 이 오일/유상 원료를 O/W로 유화하는 데 필요한 required HLB(0~20). 유상 원료에만 입력.
     required_hlb: float | None = Field(default=None, ge=0, le=20)
+    # 보습 역할(선택). 비우면 category로 추론. 제형·유수분 밸런스 분석(check)에 사용.
+    #   humectant(수분 끌어당김) | emollient(발림·매끈) | occlusive(수분 잠금) | none
+    moisture_role: str | None = None
     # 성적서(CoA) 보유 여부. 안전상 기본 False(미확인) — UI에서 붉게 표시.
     has_coa: bool = False
     # 화장품용 등급 여부. 캔들/식품/공업용이면 False — UI에서 붉게 표시.

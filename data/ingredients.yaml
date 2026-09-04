@@ -825,4 +825,5 @@ ingredients:
     grade: cosmetic
     cas: "9006-65-9"
     required_hlb: 5.0
+    moisture_role: occlusive   # 실리콘 = 수분 잠금(보호막)막 형성
     notes: 실리콘 에몰리언트(발림성·보호막). 지방산이 아니라 말라세지아 먹이 아님 → 안전.

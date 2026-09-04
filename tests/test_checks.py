@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from brandlab.checks import check_formula
+from brandlab.checks import check_formula, formulation_balance, moisture_role
 from brandlab.core.models import Formula, Ingredient, IngredientLimit, LimitList
 
 
@@ -93,3 +93,54 @@ def test_limit_from_regulatory_list_respects_product_type():
     f_off = _formula([("water", 98.0), ("x", 2.0)], product_type="rinse_off")
     r_off = check_formula(f_off, ingredients=ings, limits=limits)
     assert not any(x.id == "x" for x in r_off.limit_findings)
+
+
+# ---------------------------------------------------------------------------
+# 제형·유수분 밸런스
+# ---------------------------------------------------------------------------
+def _bing(id_, category, **kw):
+    return Ingredient(id=id_, name=id_, inci=id_, category=category, **kw)
+
+
+def test_formulation_balance_cream():
+    ings = _idx(
+        _bing("water", "용제"),
+        _bing("glycerin", "보습제"),
+        _bing("squalane", "에몰리언트", required_hlb=12),
+        _bing("beeswax", "왁스"),
+        _bing("emul", "계면활성제", hlb=10),
+    )
+    f = _formula([("water", 75.0), ("glycerin", 5.0), ("squalane", 12.0), ("beeswax", 3.0), ("emul", 5.0)])
+    b = formulation_balance(f, ingredients=ings)
+    assert b.oil_pct == 20.0 and b.water_pct == 80.0
+    assert "크림" in b.texture
+    assert b.humectant_pct == 5.0
+    assert b.emollient_pct == 12.0
+    assert b.occlusive_pct == 3.0
+    assert b.emulsifier_pct == 5.0
+
+
+def test_moisture_role_override_and_occlusive_axis():
+    # 카테고리는 에몰리언트지만 moisture_role=occlusive로 지정 → 옥클루시브 축에 잡힘
+    dime = _bing("dime", "에몰리언트", moisture_role="occlusive")
+    assert moisture_role(dime) == "occlusive"
+    ings = _idx(_bing("water", "용제"), dime)
+    f = _formula([("water", 90.0), ("dime", 10.0)])
+    b = formulation_balance(f, ingredients=ings)
+    assert b.occlusive_pct == 10.0 and b.emollient_pct == 0.0
+    assert b.oil_pct == 10.0
+
+
+def test_formulation_balance_anhydrous_or_waterless_comment():
+    ings = _idx(_bing("water", "용제"), _bing("glycerin", "보습제"))
+    f = _formula([("water", 95.0), ("glycerin", 5.0)])
+    b = formulation_balance(f, ingredients=ings)
+    assert b.oil_pct == 0.0
+    assert any("유상 0%" in c for c in b.comments)
+
+
+def test_humectant_without_occlusive_warns():
+    ings = _idx(_bing("water", "용제"), _bing("glycerin", "보습제"), _bing("emul", "계면활성제", hlb=10))
+    f = _formula([("water", 88.0), ("glycerin", 10.0), ("emul", 2.0)])
+    b = formulation_balance(f, ingredients=ings)
+    assert any("잠금" in c for c in b.comments)  # 휴멕턴트↑ 옥클루시브↓ 경고
