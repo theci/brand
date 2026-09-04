@@ -34,6 +34,7 @@ from .models import (
     Research,
     ChemicalSafetyFees,
     ClassificationRules,
+    IncompatibilityRules,
     LabelingRules,
     LimitList,
     PackagingMaster,
@@ -242,6 +243,16 @@ def load_classification_rules(
     """data/regulatory/classification_rules.yaml 을 읽는다."""
     path = Path(regulatory_dir) / "classification_rules.yaml"
     return ClassificationRules.model_validate(_read_yaml(path))
+
+
+def load_incompatibilities(
+    regulatory_dir: Path | str = REGULATORY_DIR,
+) -> IncompatibilityRules:
+    """data/regulatory/incompatibilities.yaml 을 읽는다. 없으면 빈 규칙."""
+    path = Path(regulatory_dir) / "incompatibilities.yaml"
+    if not path.exists():
+        return IncompatibilityRules()
+    return IncompatibilityRules.model_validate(_read_yaml(path))
 
 
 def load_prohibited(
@@ -492,6 +503,7 @@ __all__ = [
     "load_regime_label_items",
     "load_chemical_safety_fees",
     "load_classification_rules",
+    "load_incompatibilities",
     "load_prohibited",
     "load_restricted",
     "load_food_allergens",

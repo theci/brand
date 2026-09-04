@@ -4,11 +4,20 @@ from __future__ import annotations
 
 from brandlab.checks import (
     check_formula,
+    compatibility_check,
     formulation_balance,
     moisture_role,
     preservation_check,
 )
-from brandlab.core.models import Formula, Ingredient, IngredientLimit, LimitList
+from brandlab.core.models import (
+    Formula,
+    IncompatibilityRule,
+    IncompatibilityRules,
+    IncompatMatch,
+    Ingredient,
+    IngredientLimit,
+    LimitList,
+)
 
 
 def _formula(pairs, product_type="leave_on"):
@@ -187,3 +196,52 @@ def test_preservation_booster_only_danger():
     f = _formula([("water", 90.0), ("hexanediol", 2.0), ("gly", 8.0)])
     r = preservation_check(f, ingredients=ings)
     assert r.verdict == "위험" and r.boosters
+
+
+# ---------------------------------------------------------------------------
+# 원료 상용성(충돌) 점검
+# ---------------------------------------------------------------------------
+_NIAC_VITC = IncompatibilityRules(rules=[
+    IncompatibilityRule(
+        id="niac-vitc",
+        a=IncompatMatch(ids=["niacinamide"]),
+        b=IncompatMatch(inci_contains=["ascorbic acid"]),
+        severity="medium",
+        reason="테스트 충돌",
+    )
+])
+
+
+def test_compat_conflict_fires():
+    ings = _idx(
+        _bing("water", "용제"),
+        _bing("niacinamide", "진정"),
+        Ingredient(id="vitc", name="비타민C", inci="Ascorbic Acid", category="항산화"),
+    )
+    f = _formula([("water", 90.0), ("niacinamide", 5.0), ("vitc", 5.0)])
+    res = compatibility_check(f, ingredients=ings, rules=_NIAC_VITC)
+    assert len(res) == 1 and res[0].rule_id == "niac-vitc"
+    assert "니아신아마이드" not in res[0].a_names  # 이름 기준(name="niacinamide")
+    assert res[0].b_names == ["비타민C"]
+
+
+def test_compat_no_conflict_when_one_side_absent():
+    ings = _idx(_bing("water", "용제"), _bing("niacinamide", "진정"))
+    f = _formula([("water", 95.0), ("niacinamide", 5.0)])
+    assert compatibility_check(f, ingredients=ings, rules=_NIAC_VITC) == []
+
+
+def test_compat_empty_rules():
+    ings = _idx(_bing("water", "용제"))
+    f = _formula([("water", 100.0)])
+    assert compatibility_check(f, ingredients=ings, rules=IncompatibilityRules()) == []
+
+
+def test_shipped_rules_no_false_positive_on_real_formulas():
+    from brandlab.loader import BrandLab, load_incompatibilities
+
+    lab = BrandLab.load()
+    rules = load_incompatibilities()
+    for f in lab.formulas:
+        res = compatibility_check(f, ingredients=lab.ingredients, rules=rules)
+        assert res == [], f"{f.slug} v{f.version} 오탐: {[c.rule_id for c in res]}"

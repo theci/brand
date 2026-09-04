@@ -18,6 +18,8 @@ from dataclasses import dataclass, field
 
 from .core.models import (
     Formula,
+    IncompatibilityRules,
+    IncompatMatch,
     Ingredient,
     IngredientMaster,
     LimitList,
@@ -416,6 +418,62 @@ def preservation_check(
     )
 
 
+# ---------------------------------------------------------------------------
+# 원료 상용성(충돌) 점검
+# ---------------------------------------------------------------------------
+@dataclass
+class CompatFinding:
+    rule_id: str
+    severity: str  # high | medium | low
+    a_names: list[str]
+    b_names: list[str]
+    reason: str
+    advice: str | None = None
+
+
+_SEV_RANK = {"high": 0, "medium": 1, "low": 2}
+
+
+def _match(ing: Ingredient, m: IncompatMatch) -> bool:
+    if ing.id in m.ids:
+        return True
+    if ing.category in m.categories:
+        return True
+    inci = ing.inci.lower()
+    return any(sub.lower() in inci for sub in m.inci_contains)
+
+
+def compatibility_check(
+    formula: Formula,
+    *,
+    ingredients: IngredientMaster | Mapping[str, Ingredient],
+    rules: IncompatibilityRules,
+) -> list[CompatFinding]:
+    """처방 원료 조합을 규칙과 대조해 충돌을 찾는다. 규칙 없으면 빈 목록."""
+    idx = _ingredient_index(ingredients)
+    agg = _aggregate(formula)
+    present = [idx[i] for i in agg if i in idx]
+
+    findings: list[CompatFinding] = []
+    for rule in rules.rules:
+        a_hits = [ing.name for ing in present if _match(ing, rule.a)]
+        b_hits = [ing.name for ing in present if _match(ing, rule.b)]
+        # 서로 '다른' 원료가 a·b에 각각 있어야 실제 충돌(같은 원료 1개가 양쪽 매칭은 제외)
+        if a_hits and b_hits and any(x != y for x in a_hits for y in b_hits):
+            findings.append(
+                CompatFinding(
+                    rule_id=rule.id,
+                    severity=rule.severity,
+                    a_names=sorted(set(a_hits)),
+                    b_names=sorted(set(b_hits)),
+                    reason=rule.reason,
+                    advice=rule.advice,
+                )
+            )
+    findings.sort(key=lambda f: _SEV_RANK.get(f.severity, 3))
+    return findings
+
+
 __all__ = [
     "HlbResult",
     "LimitFinding",
@@ -428,4 +486,6 @@ __all__ = [
     "moisture_role",
     "PreservationResult",
     "preservation_check",
+    "CompatFinding",
+    "compatibility_check",
 ]

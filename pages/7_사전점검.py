@@ -4,7 +4,13 @@ from __future__ import annotations
 
 import streamlit as st
 
-from brandlab.checks import check_formula, formulation_balance, preservation_check
+from brandlab.checks import (
+    check_formula,
+    compatibility_check,
+    formulation_balance,
+    preservation_check,
+)
+from brandlab.loader import load_incompatibilities
 from brandlab.ui import load_lab, setup_korean_font
 
 setup_korean_font()
@@ -48,6 +54,21 @@ else:
             for f in result.limit_findings
         ]
     )
+
+# 원료 상용성(충돌)
+st.subheader("원료 상용성(충돌)")
+compat = compatibility_check(formula, ingredients=lab.ingredients, rules=load_incompatibilities())
+if not compat:
+    st.success("알려진 충돌 규칙에 걸리는 원료 조합 없음")
+else:
+    sev_icon = {"high": "🔴", "medium": "🟡", "low": "🔵"}
+    for c in compat:
+        st.warning(
+            f"{sev_icon.get(c.severity, '⚠')} **{', '.join(c.a_names)} × {', '.join(c.b_names)}** — {c.reason}"
+        )
+        if c.advice:
+            st.caption(f"→ {c.advice}")
+st.caption("일반 통용 규칙 기반의 1차 경고입니다. 최종은 상용성·안정성 시험으로 확인하세요.")
 
 # 보존 시스템
 st.subheader("보존 시스템")

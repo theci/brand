@@ -1338,3 +1338,39 @@ class Progress(BaseModel):
     start_date: date | None = None  # D0
     done: list[str] = Field(default_factory=list)  # 완료한 quest id
     reports: list[DailyReport] = Field(default_factory=list)
+
+
+# ---------------------------------------------------------------------------
+# 원료 상용성(충돌) 규칙 (data/regulatory/incompatibilities.yaml)
+# ---------------------------------------------------------------------------
+class IncompatMatch(BaseModel):
+    """충돌 규칙의 한쪽 매칭 조건. 하나라도 맞으면 매칭."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    ids: list[str] = Field(default_factory=list)  # 원료 id
+    categories: list[str] = Field(default_factory=list)  # 카테고리
+    inci_contains: list[str] = Field(default_factory=list)  # INCI 부분문자열(소문자 비교)
+
+
+class IncompatibilityRule(BaseModel):
+    """원료 A군 × B군 충돌 1건."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    id: str = Field(min_length=1)
+    a: IncompatMatch
+    b: IncompatMatch
+    severity: str = "medium"  # high | medium | low
+    reason: str = Field(min_length=1)
+    advice: str | None = None
+
+
+class IncompatibilityRules(BaseModel):
+    """incompatibilities.yaml 최상위."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    last_updated: date | None = None
+    source_url: str | None = None
+    rules: list[IncompatibilityRule] = Field(default_factory=list)
