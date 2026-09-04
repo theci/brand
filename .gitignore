@@ -20,5 +20,8 @@ dossiers/
 # 상품 등록 자료 산출물 (화면에서 생성/저장)
 listings/
 
+# 진행 트래커 개인 데이터(오늘·진행) — 로컬 상태라 추적 안 함
+data/brand/progress.yaml
+
 # 마이그레이션 백업
 *.bak
