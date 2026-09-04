@@ -22,6 +22,10 @@ from brandlab.ui import setup_korean_font
 setup_korean_font()
 st.title("문제 정의 🎯")
 st.caption("페르소나·페인·조사를 하나의 문제 문장으로 종합합니다. 이게 개발이 풀어야 할 과녁입니다.")
+st.info(
+    "표기: 🔒 **자동**(버튼으로 채워짐·수정 가능) · ✍️ **직접 입력**(칸 안 흐린 예시 참고). "
+    "먼저 **[✨ 문제 문장 자동 초안]** 을 누르면 문제 문장이 채워지고, 나머지를 다듬으면 됩니다."
+)
 
 disc = load_discovery()
 prob = disc.problem
@@ -45,16 +49,26 @@ if st.button("✨ 문제 문장 자동 초안") and prim is not None:
 # --- 편집 폼 ---
 _ref_opts = ["(미지정)"] + persona_ids
 _idx = _ref_opts.index(prob.persona_ref) if prob.persona_ref in _ref_opts else 0
-persona_ref = st.selectbox("대상 페르소나", _ref_opts, index=_idx)
-core_pain = st.text_input("핵심 페인", value=prob.core_pain or "")
+persona_ref = st.selectbox("🔒 대상 페르소나 (목록에서 선택)", _ref_opts, index=_idx)
+core_pain = st.text_input(
+    "✍️ 핵심 페인", value=prob.core_pain or "",
+    placeholder="예: 오후 당김 + 끈적임(덧바름 불가)",
+)
 statement = st.text_area(
-    "문제 문장",
+    "🔒 문제 문장 (자동 초안 → 다듬기)",
     value=st.session_state.get("prob_statement", prob.statement or ""),
     height=90, key="prob_statement",
+    placeholder="예: 냉난방 사무실 30대는 '오후 당김' 문제를 겪는다. 지금은 대형 브랜드 수분크림을 쓰지만 끈적이고 흡수가 느려 화장이 밀린다.",
 )
 c1, c2 = st.columns(2)
-hypothesis = c1.text_area("가설 — 이걸 풀면 ~", value=prob.hypothesis or "", height=90)
-success_metric = c2.text_area("성공 기준(지표)", value=prob.success_metric or "", height=90)
+hypothesis = c1.text_area(
+    "✍️ 가설 — 이걸 풀면 ~", value=prob.hypothesis or "", height=90,
+    placeholder="예: 다축 보습 + 가벼운 유상으로 '산뜻한 지속 보습'을 만들면 덧바름 불만이 해결된다",
+)
+success_metric = c2.text_area(
+    "✍️ 성공 기준(지표)", value=prob.success_metric or "", height=90,
+    placeholder="예: 사용 4주 후 '오후 당김' 관능점수 개선 + 덧바름 만족 후기",
+)
 
 if st.button("💾 문제 정의 저장", type="primary"):
     new = ProblemStatement(

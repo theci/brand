@@ -26,6 +26,10 @@ st.caption(
     "뾰족함이 모든 것의 뿌리입니다. '우리는 [타겟]에게 [경쟁]이 못 푼 [페인]을 "
     "[신물질/공정]으로 [수치적 이익]으로 해결하는 유일한 [카테고리]다' — 이 문장을 데이터로 완성하세요."
 )
+st.info(
+    "표기: 🔒 **자동/프리필**(제품 선택·[프리필] 버튼으로 채워짐) · ✍️ **직접 입력**(칸 안 흐린 예시 참고). "
+    "**[기획에서 프리필]** 은 앞 STEP(페르소나·문제정의) 값을 **빈 칸에만** 채웁니다. 아래 문장은 칸을 채우면 **자동 조립**돼요."
+)
 
 lab = load_lab()
 pos = load_positioning()
@@ -50,24 +54,38 @@ if _pre:
 # 근거 추출 기준 제품
 opts = ["(없음)"] + [f"{f.slug} v{f.version}" for f in lab.formulas]
 _idx = opts.index(pos.product_ref) if pos.product_ref in opts else 0
-product_ref = st.selectbox("근거 기준 제품", opts, index=_idx)
+product_ref = st.selectbox(
+    "🔒 근거 기준 제품 (선택하면 아래 '수치적 차별점 후보'가 자동으로 뜸)", opts, index=_idx
+)
 selected = None
 if product_ref != "(없음)":
     selected = next((f for f in lab.formulas if f"{f.slug} v{f.version}" == product_ref), None)
 
 # 구성 요소
 c1, c2 = st.columns(2)
-target = c1.text_input("타겟 (인물로)", value=pos.target or "")
-competitor = c2.text_input("경쟁/기존 방식 (현상으로 — 실명 지양)", value=pos.competitor or "")
+target = c1.text_input("✍️ 타겟 (인물로)", value=pos.target or "", placeholder="예: 냉난방 사무실 30대")
+competitor = c2.text_input(
+    "✍️ 경쟁/기존 방식 (현상으로 — 실명 지양)", value=pos.competitor or "",
+    placeholder="예: A사 수분크림(끈적임)",
+)
 c3, c4 = st.columns(2)
-pain = c3.text_input("페인 포인트", value=pos.pain or "")
-tech = c4.text_input("우리만의 신물질/신공정", value=pos.tech or "")
+pain = c3.text_input("✍️ 페인 포인트", value=pos.pain or "", placeholder="예: 오후 당김")
+tech = c4.text_input(
+    "✍️ 우리만의 신물질/신공정", value=pos.tech or "",
+    placeholder="예: 다축 보습(글리세린+히알루론산+판테놀)",
+)
 c5, c6 = st.columns(2)
-metric_benefit = c5.text_input("수치적 이익/성능 (핵심!)", value=pos.metric_benefit or "")
-category = c6.text_input("카테고리 (작은 시장)", value=pos.category or "")
+metric_benefit = c5.text_input(
+    "✍️ 수치적 이익/성능 (핵심!)", value=pos.metric_benefit or "",
+    placeholder="예: 오후 4시 당김 개선·끈적임 없음",
+)
+category = c6.text_input(
+    "✍️ 카테고리 (작은 시장)", value=pos.category or "", placeholder="예: 사무실용 산뜻 보습 로션",
+)
 entry = st.text_area(
-    "카테고리 진입점 — 고객이 우리를 떠올리는 상황 (한 줄에 하나)",
+    "✍️ 카테고리 진입점 — 고객이 우리를 떠올리는 상황 (한 줄에 하나)",
     value="\n".join(pos.entry_situations), height=80,
+    placeholder="예: 오후에 볼이 당길 때\n메이크업 위 덧바를 때",
 )
 
 # 수치적 차별점 후보(제품 데이터 근거)
@@ -91,7 +109,12 @@ comp_df = st.data_editor(
     ),
     num_rows="dynamic",
     width="stretch",
-    column_config={"우리 우위": st.column_config.CheckboxColumn("우리 우위")},
+    column_config={
+        "비교 축": st.column_config.TextColumn("비교 축", help="무엇으로 비교하나. 예: 끈적임 / 흡수 속도 / 지속력"),
+        "우리": st.column_config.TextColumn("우리", help="우리 제품. 예: 산뜻·빠른 흡수"),
+        "경쟁": st.column_config.TextColumn("경쟁", help="경쟁/기존. 예: 끈적임·흡수 느림"),
+        "우리 우위": st.column_config.CheckboxColumn("우리 우위", help="이 축에서 우리가 이기면 체크"),
+    },
     key="pos_comp",
 )
 comparison = [

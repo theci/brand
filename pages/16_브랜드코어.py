@@ -33,6 +33,10 @@ st.caption(
     "마케팅의 뿌리. 9칸을 채우면 '브랜드 자산' 텍스트가 되어, 모든 마케팅 AI 프롬프트 앞에 붙습니다. "
     "⑤근거·⑦비주얼·⑧금지어는 제품 데이터에서 초안을 제안합니다."
 )
+st.info(
+    "표기: 🔒 **자동/프리필**(①②③은 [프리필] 버튼, ⑤ 근거는 제품에서 추출) · ✍️ **직접 입력**"
+    "(칸 안 흐린 예시 참고). 예시는 `산뜻보습로션` 시나리오 기준입니다."
+)
 
 lab = load_lab()
 core = load_brand_core()
@@ -64,21 +68,34 @@ if _ci:
 
 # --- 기본 정보 ---
 c1, c2, c3 = st.columns(3)
-brand_name = c1.text_input("브랜드명", value=core.brand_name or "", key="bc_name")
+brand_name = c1.text_input("✍️ 브랜드명", value=core.brand_name or "", key="bc_name", placeholder="예: 오후(OHU)")
 _refs = ["(미지정)"] + [f"{f.slug} v{f.version}" for f in lab.formulas]
 _ref_idx = _refs.index(core.product_ref) if core.product_ref in _refs else 0
-product_ref = c2.selectbox("기준 제품(근거 추출용)", _refs, index=_ref_idx, key="bc_ref")
-one_liner = c3.text_input("⑨ 한 줄 소개(30자 이내)", value=core.one_liner or "", key="bc_one")
+product_ref = c2.selectbox("🔒 기준 제품(근거 추출용)", _refs, index=_ref_idx, key="bc_ref")
+one_liner = c3.text_input(
+    "✍️ ⑨ 한 줄 소개(30자 이내)", value=core.one_liner or "", key="bc_one",
+    placeholder="예: 산뜻하게, 오후까지",
+)
 
 # --- ①~④ ---
 entry = st.text_area(
-    "① 카테고리 진입점 — 고객이 언제 우리를 떠올리는가 (한 줄에 하나, 3개 권장)",
+    "🔒 ① 카테고리 진입점 — 고객이 언제 우리를 떠올리는가 (한 줄에 하나, 3개 권장)",
     value="\n".join(core.entry_points), key="bc_entry", height=90,
+    placeholder="예: 오후에 볼이 당길 때\n메이크업 위 덧바를 때",
 )
 a1, a2 = st.columns(2)
-persona = a1.text_area("② 타깃 — 인물로 묘사", value=core.persona or "", key="bc_persona", height=90)
-enemy = a2.text_area("③ 적 — 무엇에 반대하는가", value=core.enemy or "", key="bc_enemy", height=90)
-promise = st.text_area("④ 약속 — 한 문장", value=core.promise or "", key="bc_promise", height=70)
+persona = a1.text_area(
+    "🔒 ② 타깃 — 인물로 묘사", value=core.persona or "", key="bc_persona", height=90,
+    placeholder="예: 냉난방 사무실에서 오후만 되면 당김을 느끼는 30대 직장인",
+)
+enemy = a2.text_area(
+    "🔒 ③ 적 — 무엇에 반대하는가", value=core.enemy or "", key="bc_enemy", height=90,
+    placeholder="예: 끈적여서 덧바를 수 없는 무거운 수분크림",
+)
+promise = st.text_area(
+    "✍️ ④ 약속 — 한 문장", value=core.promise or "", key="bc_promise", height=70,
+    placeholder="예: 산뜻하게, 오후까지",
+)
 
 # --- ⑤ 근거 (자동 추출) ---
 st.subheader("⑤ 근거 — 증명 가능한 사실만")
@@ -111,9 +128,9 @@ evidence_text = st.text_area(
 
 # --- ⑥ 톤 / ⑧ 어휘 ---
 t1, t2, t3 = st.columns(3)
-tone = t1.text_input("⑥ 톤 형용사(쉼표)", value=", ".join(core.tone_adjectives), key="bc_tone")
-vocab = t2.text_input("⑧ 애용어(쉼표)", value=", ".join(core.vocabulary), key="bc_vocab")
-forbidden = t3.text_input("⑧ 금지어(쉼표)", value=", ".join(core.forbidden_words), key="bc_forb")
+tone = t1.text_input("✍️ ⑥ 톤 형용사(쉼표)", value=", ".join(core.tone_adjectives), key="bc_tone", placeholder="예: 담백한, 정직한")
+vocab = t2.text_input("✍️ ⑧ 애용어(쉼표)", value=", ".join(core.vocabulary), key="bc_vocab", placeholder="예: 산뜻, 지속, 가벼운")
+forbidden = t3.text_input("✍️ ⑧ 금지어(쉼표)", value=", ".join(core.forbidden_words), key="bc_forb", placeholder="예: 완벽, 최고, 미백")
 
 # 규제 금지어(참고 — ad_terms에서)
 _reg_terms = [t.expression for t in load_ad_terms().terms]
@@ -127,13 +144,13 @@ if selected_formula is not None:
     if _sc:
         st.caption(f"용기 제안: {_sc}")
 v1, v2, v3 = st.columns(3)
-main_color = v1.text_input("메인 컬러(HEX)", value=core.visual.main_color or "", key="bc_mc")
-sub_color = v2.text_input("서브 컬러", value=core.visual.sub_color or "", key="bc_sc")
-point_color = v3.text_input("포인트 컬러", value=core.visual.point_color or "", key="bc_pc")
+main_color = v1.text_input("✍️ 메인 컬러(HEX)", value=core.visual.main_color or "", key="bc_mc", placeholder="예: EAE0D5 (# 없이도 OK)")
+sub_color = v2.text_input("✍️ 서브 컬러", value=core.visual.sub_color or "", key="bc_sc", placeholder="예: 6B705C")
+point_color = v3.text_input("✍️ 포인트 컬러", value=core.visual.point_color or "", key="bc_pc", placeholder="예: C97C5D")
 v4, v5, v6 = st.columns(3)
-container = v4.text_input("용기", value=core.visual.container or "", key="bc_cont")
-texture = v5.text_input("제형 무드", value=core.visual.texture or "", key="bc_tex")
-photo_note = v6.text_input("사진 톤(조명·색온도·배경)", value=core.visual.photo_note or "", key="bc_photo")
+container = v4.text_input("✍️ 용기", value=core.visual.container or "", key="bc_cont", placeholder="예: 유리 에어리스 50mL")
+texture = v5.text_input("✍️ 제형 무드", value=core.visual.texture or "", key="bc_tex", placeholder="예: matte, soft-touch")
+photo_note = v6.text_input("✍️ 사진 톤(조명·색온도·배경)", value=core.visual.photo_note or "", key="bc_photo", placeholder="예: 자연광, 따뜻한 색온도, 미니멀 배경")
 
 # --- 현재 값으로 코어 구성(저장·내보내기 공통) ---
 current = BrandCore(

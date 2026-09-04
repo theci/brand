@@ -17,9 +17,38 @@ from brandlab.ui import setup_korean_font
 setup_korean_font()
 st.title("시장 · 경쟁 조사 🔎")
 st.caption("자료를 구조화해 쌓습니다. 출처는 1급 객체 — 모든 수치·주장이 출처를 답니다.")
+st.info(
+    "✍️ **이 화면은 모두 직접 입력**입니다. 칸 제목(헤더)에 마우스를 올리면 **예시**가 떠요. "
+    "먼저 **출처**를 만들고, 시장·경쟁이 그 출처 id를 `source_ref`로 가리키게 하세요."
+)
 
 disc = load_discovery()
 research = disc.research
+
+_SRC_COLS = {
+    "id": st.column_config.TextColumn("id", help="다른 항목이 source_ref로 참조하는 고유 id. 예: src-review-oy"),
+    "title": st.column_config.TextColumn("title", help="자료 이름. 예: 올리브영 수분크림 리뷰 300건 분석"),
+    "url": st.column_config.TextColumn("url", help="링크(선택). 예: https://..."),
+    "kind": st.column_config.TextColumn("kind", help="자료 종류. 예: 리뷰 / 기사 / 통계 / 논문"),
+    "researched_on": st.column_config.TextColumn("researched_on", help="조사일(선택). 예: 2026-03-01"),
+    "reliability": st.column_config.NumberColumn("reliability", help="신뢰도 1~5. 예: 3", min_value=1, max_value=5, step=1),
+}
+_NOTE_COLS = {
+    "topic": st.column_config.TextColumn("topic", help="시장 주제. 예: 사무직 여성 보습 니즈"),
+    "summary": st.column_config.TextColumn("summary", help="요약. 예: 오후 건조·화장 들뜸 불만이 반복 등장"),
+    "metric": st.column_config.TextColumn("metric", help="숫자(선택). 예: 리뷰 300건 중 42% 끈적임 언급"),
+    "tags(쉼표)": st.column_config.TextColumn("tags(쉼표)", help="태그, 쉼표로. 예: 보습, 끈적임, 사무직"),
+    "source_ref": st.column_config.TextColumn("source_ref", help="위 출처 id. 예: src-review-oy"),
+}
+_COMP_COLS = {
+    "name": st.column_config.TextColumn("name", help="경쟁 제품/브랜드. 예: 대형 A사 수분크림"),
+    "category": st.column_config.TextColumn("category", help="분류(선택). 예: 수분크림"),
+    "price_band": st.column_config.TextColumn("price_band", help="가격대. 예: 2~3만원"),
+    "claims(쉼표)": st.column_config.TextColumn("claims(쉼표)", help="그들의 주장, 쉼표로. 예: 72시간 보습"),
+    "strengths(쉼표)": st.column_config.TextColumn("strengths(쉼표)", help="강점, 쉼표로. 예: 브랜드 인지도, 매장 접근성"),
+    "gaps(쉼표)": st.column_config.TextColumn("gaps(쉼표)", help="빈틈 — 포지셔닝 비교표로 승격. 예: 끈적임, 흡수 느림, 강한 향"),
+    "source_ref": st.column_config.TextColumn("source_ref", help="위 출처 id. 예: src-review-oy"),
+}
 
 
 def _csv(s) -> list[str]:
@@ -56,7 +85,7 @@ src_rows = st.data_editor(
       "researched_on": s.researched_on.isoformat() if s.researched_on else "",
       "reliability": s.reliability} for s in research.sources]
     or [{"id": "", "title": "", "url": "", "kind": "", "researched_on": "", "reliability": 3}],
-    num_rows="dynamic", key="src_tbl", width="stretch",
+    num_rows="dynamic", key="src_tbl", width="stretch", column_config=_SRC_COLS,
 )
 
 # --- 시장 노트 ---
@@ -65,7 +94,7 @@ note_rows = st.data_editor(
     [{"topic": n.topic, "summary": n.summary or "", "metric": n.metric or "",
       "tags(쉼표)": ", ".join(n.tags), "source_ref": n.source_ref or ""} for n in research.market_notes]
     or [{"topic": "", "summary": "", "metric": "", "tags(쉼표)": "", "source_ref": ""}],
-    num_rows="dynamic", key="note_tbl", width="stretch",
+    num_rows="dynamic", key="note_tbl", width="stretch", column_config=_NOTE_COLS,
 )
 
 # --- 경쟁 ---
@@ -76,7 +105,7 @@ comp_rows = st.data_editor(
       "gaps(쉼표)": ", ".join(c.gaps), "source_ref": c.source_ref or ""} for c in research.competitors]
     or [{"name": "", "category": "", "price_band": "", "claims(쉼표)": "",
          "strengths(쉼표)": "", "gaps(쉼표)": "", "source_ref": ""}],
-    num_rows="dynamic", key="comp_tbl", width="stretch",
+    num_rows="dynamic", key="comp_tbl", width="stretch", column_config=_COMP_COLS,
 )
 
 if st.button("💾 조사 저장", type="primary"):
