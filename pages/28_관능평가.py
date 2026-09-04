@@ -27,6 +27,10 @@ st.caption(
     "확정 후보 시제품을 타깃/비타깃에게 나눠주고 5점 척도로 수용도를 받습니다. "
     "본생산 전 방향을 확정하는 게이트 — 점수는 주관적·소표본이라 내부 참고용입니다."
 )
+st.info(
+    "표기: 🔒 **자동**(요약·비교·근거는 응답에서 자동 계산) · ✍️ **직접 입력**(평가 ID·항목·"
+    "응답 점수). 칸 안 흐린 예시를 참고하세요."
+)
 
 _FORMULA_REFS = [""] + [f"{f.slug} v{f.version}" for f in load_lab().formulas]
 _SEG_OPTS = ["타깃", "비타깃"]
@@ -40,11 +44,11 @@ tab_new, tab_input, tab_report = st.tabs(["➕ 새 평가", "✏️ 응답 입�
 with tab_new:
     st.caption("평가 항목·척도·목표선을 정해 골격을 만듭니다. 응답은 '응답 입력' 탭에서 채웁니다.")
     c1, c2, c3 = st.columns(3)
-    n_id = c1.text_input("평가 ID (예: daily-lotion-v2-panel1)", key="np_id")
-    n_ref = c2.selectbox("시제품(연결 처방)", _FORMULA_REFS, key="np_ref")
-    n_file = c3.text_input("파일명(.yaml 제외)", key="np_file")
+    n_id = c1.text_input("✍️ 평가 ID", key="np_id", placeholder="예: daily-lotion-v2-panel1")
+    n_ref = c2.selectbox("🔒 시제품(연결 처방)", _FORMULA_REFS, key="np_ref")
+    n_file = c3.text_input("✍️ 파일명(.yaml 제외)", key="np_file", placeholder="예: daily-lotion-v2-panel1")
     c4, c5, c6 = st.columns(3)
-    n_label = c4.text_input("시료 코드(로트/배치, 선택)", key="np_label")
+    n_label = c4.text_input("✍️ 시료 코드(로트/배치, 선택)", key="np_label", placeholder="예: LOT-2026-03-A")
     n_date = c5.date_input("평가일", value=date.today(), key="np_date")
     n_scale = c6.number_input("척도 상한", min_value=2, max_value=10, value=5, step=1, key="np_scale")
 

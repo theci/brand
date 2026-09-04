@@ -42,6 +42,10 @@ from brandlab.ui import (
 
 setup_korean_font()
 st.title("실험")
+st.info(
+    "표기: 🔒 **자동**(런 골격·관찰 예정일이 자동 생성) · ✍️ **직접 입력**(설계 이름·평가항목·"
+    "시료 ID 등). 점수·관찰값은 생성 후 표에서 채웁니다."
+)
 
 _FORMULA_REFS = [""] + [f"{f.slug} v{f.version}" for f in load_lab().formulas]
 
@@ -71,9 +75,9 @@ with tab_doe:
             "점수(scores)는 빈칸으로 만들어지며, 벤치 실험 후 채웁니다."
         )
         c1, c2, c3 = st.columns(3)
-        d_name = c1.text_input("설계 이름", key="nd_name")
-        d_ref = c2.selectbox("연결 처방(선택)", _FORMULA_REFS, key="nd_ref")
-        d_file = c3.text_input("파일명(.yaml 제외)", key="nd_file")
+        d_name = c1.text_input("✍️ 설계 이름", key="nd_name", placeholder="예: 로션 점도 최적화")
+        d_ref = c2.selectbox("🔒 연결 처방(선택)", _FORMULA_REFS, key="nd_ref")
+        d_file = c3.text_input("✍️ 파일명(.yaml 제외)", key="nd_file", placeholder="예: lotion-viscosity-doe")
 
         st.markdown("**인자·수준** — 2~4개 권장. low/high 값은 표시용(선택)")
         fac_df = st.data_editor(
@@ -87,7 +91,9 @@ with tab_doe:
             },
             key="nd_factors",
         )
-        d_items_raw = st.text_input("평가항목 (쉼표로 구분, 예: 발향강도, 지속력)", key="nd_items")
+        d_items_raw = st.text_input(
+            "✍️ 평가항목 (쉼표로 구분)", key="nd_items", placeholder="예: 점도, 발림성, 촉촉함"
+        )
 
         factors = [str(r["인자"]).strip() for _, r in fac_df.iterrows() if str(r["인자"]).strip()]
         items = [s.strip() for s in d_items_raw.split(",") if s.strip()]
@@ -276,12 +282,12 @@ with tab_stab:
             "관찰 기록은 이후 YAML에 채웁니다."
         )
         c1, c2 = st.columns(2)
-        s_id = c1.text_input("시료 ID (예: RD-001)", key="ns_id")
-        s_ref = c2.selectbox("연결 처방(선택)", _FORMULA_REFS, key="ns_ref")
+        s_id = c1.text_input("✍️ 시료 ID", key="ns_id", placeholder="예: DL-001")
+        s_ref = c2.selectbox("🔒 연결 처방(선택)", _FORMULA_REFS, key="ns_ref")
         c3, c4, c5 = st.columns(3)
         s_cond = c3.selectbox("조건", [c.value for c in StabilityCondition], key="ns_cond")
         s_start = c4.date_input("시작일", value=date.today(), key="ns_start")
-        s_file = c5.text_input("파일명(.yaml 제외)", key="ns_file")
+        s_file = c5.text_input("✍️ 파일명(.yaml 제외)", key="ns_file", placeholder="예: daily-lotion-stability")
         if st.button("안정성 시료 등록", type="primary", key="ns_create"):
             try:
                 if not s_id.strip() or not s_file.strip():

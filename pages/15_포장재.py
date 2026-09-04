@@ -22,6 +22,7 @@ from brandlab.ui import format_won, load_lab, setup_korean_font
 setup_korean_font()
 st.title("포장재")
 st.caption("병·튜브·박스 등 부자재 마스터. 원가·MOQ·장바구니 계산의 기준이 됩니다.")
+st.info("✍️ **모두 직접 입력**입니다. **id·이름·형태 3칸만** 필수 — 칸 안 흐린 예시를 참고하세요.")
 
 PKG_PATH = DATA_DIR / "packaging.yaml"
 
@@ -45,19 +46,19 @@ pkgs = lab.packaging.packaging
 
 with st.expander("➕ 새 포장재 등록"):
     with st.form("add_packaging"):
-        st.caption("id·이름·형태는 필수. 나머지는 비워두면 생략됩니다.")
+        st.caption("✍️ id·이름·형태는 필수. 나머지는 비워두면 생략됩니다.")
         c1, c2, c3 = st.columns(3)
-        new_id = c1.text_input("id (예: jar-30ml)")
-        new_name = c2.text_input("이름")
-        new_type = c3.text_input("형태(jar/tube/bottle/box/pouch 등)")
+        new_id = c1.text_input("id", placeholder="예: airless-50ml")
+        new_name = c2.text_input("이름", placeholder="예: 화이트 에어리스 50mL")
+        new_type = c3.text_input("형태", placeholder="예: bottle / jar / tube / box / pouch")
         c4, c5, c6 = st.columns(3)
-        new_volume = c4.text_input("용량(ml)")
-        new_material = c5.text_input("재질(유리/PP/종이 등)")
-        new_price = c6.text_input("개당 단가(원)")
+        new_volume = c4.text_input("용량(ml)", placeholder="예: 50")
+        new_material = c5.text_input("재질", placeholder="예: PP / 유리 / PE / 종이")
+        new_price = c6.text_input("개당 단가(원)", placeholder="예: 800")
         c7, c8 = st.columns(2)
-        new_moq = c7.text_input("MOQ(최소주문수량)")
-        new_supplier = c8.text_input("공급처")
-        new_notes = st.text_input("메모")
+        new_moq = c7.text_input("MOQ(최소주문수량)", placeholder="예: 3000")
+        new_supplier = c8.text_input("공급처", placeholder="예: OO패키지")
+        new_notes = st.text_input("메모", placeholder="예: 펌프 별도 발주 필요")
         submitted = st.form_submit_button("등록")
     if submitted:
         try:

@@ -21,6 +21,10 @@ from brandlab.ui import load_lab, setup_korean_font
 setup_korean_font()
 st.title("고객 접점 · 후기 💬")
 st.caption("배송→소비자→재구매. 문구는 규제 게이트를 통과해야 하고, 대가성 후기엔 뒷광고 표기가 붙습니다.")
+st.info(
+    "표기: 🔒 **자동 생성**(제품·브랜드 코어로 문구가 채워짐 — 그대로 쓰거나 수정) · "
+    "✍️ 필요 시 문구를 다듬고 **대가성 여부**만 체크하세요."
+)
 
 lab = load_lab()
 core = load_brand_core()

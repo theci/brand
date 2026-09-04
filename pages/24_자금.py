@@ -18,6 +18,10 @@ from brandlab.ui import format_won, setup_korean_font
 setup_korean_font()
 st.title("자금 6:4 💰")
 st.caption("제품 60 : 마케팅 40 목표 대비 편차와 런웨이를 봅니다. (배송·회계는 외부 도구)")
+st.info(
+    "표기: 🔒 **자동**(비중·런웨이·경고는 아래에서 자동 계산) · ✍️ **직접 입력**(총 자본·월 소진·"
+    "지출 내역). 지출은 category만 목록에서 고르고 금액·메모는 직접 적으세요."
+)
 
 budget = load_budget()
 
@@ -40,10 +44,13 @@ def _date(v):
 
 
 c1, c2, c3 = st.columns(3)
-total_capital = c1.number_input("총 자본(원)", min_value=0, value=int(budget.total_capital), step=100000)
-target = c2.slider("제품 목표 비중", 0.0, 1.0, float(budget.target_product_ratio), 0.05)
-monthly_burn = c3.number_input("월 소진(원, 런웨이용)", min_value=0,
-                               value=int(budget.monthly_burn or 0), step=100000)
+total_capital = c1.number_input("✍️ 총 자본(원)", min_value=0, value=int(budget.total_capital),
+                                step=100000, help="굴릴 수 있는 전체 자본. 예: 10000000")
+target = c2.slider("✍️ 제품 목표 비중", 0.0, 1.0, float(budget.target_product_ratio), 0.05,
+                   help="제품:마케팅 목표 비율. 예: 0.6 = 6:4")
+monthly_burn = c3.number_input("✍️ 월 소진(원, 런웨이용)", min_value=0,
+                               value=int(budget.monthly_burn or 0), step=100000,
+                               help="월평균 지출. 예: 800000")
 
 st.subheader("지출 내역")
 exp_rows = st.data_editor(
@@ -51,7 +58,12 @@ exp_rows = st.data_editor(
       "spent_on": e.spent_on.isoformat() if e.spent_on else ""} for e in budget.expenses]
     or [{"category": "제품", "amount": 0, "note": "", "spent_on": ""}],
     num_rows="dynamic", width="stretch", key="budget_exp",
-    column_config={"category": st.column_config.SelectboxColumn("category", options=list(CATEGORIES))},
+    column_config={
+        "category": st.column_config.SelectboxColumn("category", options=list(CATEGORIES), help="제품/마케팅/기타 중 선택"),
+        "amount": st.column_config.NumberColumn("amount", help="금액(원). 예: 3600000", min_value=0),
+        "note": st.column_config.TextColumn("note", help="메모. 예: OEM 시생산비 / 상세페이지 촬영"),
+        "spent_on": st.column_config.TextColumn("spent_on", help="지출일(선택). 예: 2026-03-01"),
+    },
 )
 
 current = Budget(

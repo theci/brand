@@ -25,6 +25,10 @@ st.caption(
     "실제로 팔기 위한 관문(등록·시험·표시·생산)을 추적합니다. 상품등록 전에 완료하세요. "
     "⚠️ 관문·비용·기한은 예시 — 식약처·환경부 등 공식 기준으로 반드시 확인."
 )
+st.info(
+    "표기: 🔒 **자동**(관문·분류·안내는 레짐 체크리스트에서 채워짐, 회색 = 수정 불가) · "
+    "✍️ **직접 입력**(상태·기한·비용·담당·메모). 칸 제목에 마우스를 올리면 예시가 떠요."
+)
 
 lab = load_lab()
 if not lab.formulas:
@@ -64,9 +68,11 @@ edited = st.data_editor(
     width="stretch",
     disabled=["관문", "분류", "안내"],
     column_config={
-        "상태": st.column_config.SelectboxColumn("상태", options=["대기", "진행", "완료"]),
-        "기한": st.column_config.DateColumn("기한"),
-        "비용": st.column_config.NumberColumn("비용(원)", min_value=0, step=10000),
+        "상태": st.column_config.SelectboxColumn("상태", options=["대기", "진행", "완료"], help="대기/진행/완료 중 선택"),
+        "기한": st.column_config.DateColumn("기한", help="목표 완료일. 예: 2026-04-30 (지나면 홈에서 '밀린 인증' 경고)"),
+        "비용": st.column_config.NumberColumn("비용(원)", min_value=0, step=10000, help="예상 비용. 예: 300000"),
+        "담당": st.column_config.TextColumn("담당", help="누가. 예: 본인 / OEM / 시험기관"),
+        "메모": st.column_config.TextColumn("메모", help="진행 메모. 예: 방부력 시험 의뢰 완료, 결과 대기"),
     },
     key=f"cert_{pref}",
 )

@@ -20,6 +20,10 @@ st.caption(
     "제품 데이터 + 브랜드 코어로 상세페이지·리스팅 자료를 만듭니다. "
     "제품 실물 이미지는 실촬영 필수 — AI는 배경만. 카피는 규제 검수 게이트를 통과시켜 내보내세요."
 )
+st.info(
+    "표기: 🔒 **거의 자동**(제품을 고르면 상품명·전성분·근거·프롬프트가 전부 생성) · "
+    "✍️ **직접 입력**은 맨 아래 **규제 검수 게이트**에 문구를 붙여넣는 것뿐입니다."
+)
 
 lab = load_lab()
 if not lab.formulas:
@@ -90,7 +94,10 @@ st.caption(
     "AI가 만든 카피(또는 직접 쓴 문구)를 여기 붙여 검사하세요. 화장품법 표현 + 브랜드 금지어를 "
     "함께 봅니다. high 위험이 없어야 '통과'입니다. (통과=합법 아님, 1차 스크리닝)"
 )
-text = st.text_area("검사할 마케팅 문구", height=160, key="gate_text")
+text = st.text_area(
+    "✍️ 검사할 마케팅 문구 (위 카피 프롬프트로 만든 결과를 붙여넣기)", height=160, key="gate_text",
+    placeholder="예: 오후에도 산뜻하게. 끈적임 없이 지속되는 보습…",
+)
 if text.strip():
     res = compliance_check(text, forbidden_words=core.forbidden_words)
     counts = res.counts_by_risk()

@@ -26,6 +26,10 @@ from brandlab.ui import setup_korean_font
 
 setup_korean_font()
 st.title("상세페이지 문구 검사")
+st.info(
+    "표기: ✍️ **직접 입력**(검사할 문구를 붙여넣기) · 🔒 **자동**(위험 표현·대체안은 자동 판정). "
+    "아래 칸엔 예시 문구가 들어 있어요 — 지우고 내 상세페이지 문구를 붙여넣으세요."
+)
 
 reg_dir = Path(PROJECT_ROOT) / "data" / "regulatory"
 
@@ -76,7 +80,7 @@ else:
 st.caption("※ 이 검사는 STEP9 상품등록의 '규제 검수 게이트'와 같은 엔진입니다.")
 
 sample = "미백 효과가 뛰어난 크림. 주름개선과 염증 완화에 도움을 주고, 하루만에 완벽한 피부로."
-text = st.text_area("상세페이지 문구 입력", value=sample, height=200)
+text = st.text_area("✍️ 상세페이지 문구 붙여넣기", value=sample, height=200)
 
 result = compliance_check(
     text,

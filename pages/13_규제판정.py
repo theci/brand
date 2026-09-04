@@ -11,14 +11,26 @@ from brandlab.ui import format_won, setup_korean_font
 setup_korean_font()
 st.title("규제 판정 (RegimeAdvisor)")
 st.caption("제품 의도(용도·기능·제형)로 적용 법(레짐)을 분류하고, 경로별 규제비용을 비교한다.")
+st.info(
+    "표기: ✍️ **직접 선택**(위 용도·제형·기능) → 🔒 **자동 판정**(아래 레짐·비용·적합성). "
+    "칸 제목에 마우스를 올리면 각 옵션의 **뜻**이 보여요."
+)
 
 c1, c2, c3 = st.columns(3)
-use = c1.selectbox("용도", ["body", "space", "fabric", "surface"])
-form = c2.selectbox("제형", ["liquid", "solid", "spray", "sustained_release"])
+use = c1.selectbox(
+    "✍️ 용도", ["body", "space", "fabric", "surface"],
+    help="body=몸(화장품) · space=공간(디퓨저) · fabric=섬유 · surface=표면. 예: 로션→body",
+)
+form = c2.selectbox(
+    "✍️ 제형", ["liquid", "solid", "spray", "sustained_release"],
+    help="liquid=액체 · solid=고체 · spray=스프레이 · sustained_release=서방(디퓨저). 예: 로션→liquid",
+)
 claims = c3.multiselect(
-    "기능(복수)",
+    "✍️ 기능(복수)",
     ["fragrance", "cleanse", "deodorize", "moisturize", "sanitize"],
     default=["fragrance"],
+    help="fragrance=발향 · cleanse=세정 · deodorize=탈취 · moisturize=보습 · sanitize=살균"
+    "(⚠️ 넣으면 살생물제로 승격). 예: 로션→moisturize",
 )
 c4, c5, c6 = st.columns(3)
 skus = c4.number_input("예상 SKU 수", min_value=1, value=5)

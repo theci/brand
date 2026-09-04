@@ -19,6 +19,10 @@ from brandlab.ui import load_lab, setup_korean_font
 setup_korean_font()
 st.title("배치 기록 (batchlog)")
 st.caption("실제로 만든 배치의 실측 무게·수율·pH를 처방 버전에 연결해 남긴다.")
+st.info(
+    "표기: 🔒 **자동**(처방을 고르면 기록지 YAML이 자동 생성) · ✍️ **직접 입력**(제조 후 "
+    "저장된 파일에 실측값 기입). 화면에서 고를 건 **처방·목표 배치 크기**뿐입니다."
+)
 
 lab = load_lab()
 
@@ -68,7 +72,10 @@ with tab_new:
 
     st.write(f"생성될 배치 ID: **{batch_id}**")
     st.code(yaml_text, language="yaml")
-    st.caption("제조 후 actual_g / yield_g / ph / observations 를 채우세요.")
+    st.caption(
+        "✍️ 제조 후 저장된 파일에 실측값을 채우세요 — "
+        "예) `yield_g: 92.5` · `ph: 5.2` · `observations: 냉각 후 약간 묽음`"
+    )
 
     col1, col2 = st.columns(2)
     col1.download_button("YAML 내려받기", yaml_text, file_name=f"{batch_id}.yaml")

@@ -33,6 +33,10 @@ def _s(x) -> str:
 
 setup_korean_font()
 st.title("원료")
+st.info(
+    "표기: 🔒 **자동**(위 PubChem 조회로 CAS·밀도 채움) · ✍️ **직접 입력**. "
+    "새 원료는 **id·이름·INCI·분류 4칸만** 필수 — 나머지는 비우거나 PubChem으로 채우면 됩니다."
+)
 
 lab = load_lab()
 ings = lab.ingredients.ingredients
@@ -107,13 +111,13 @@ ING_PATH = DATA_DIR / "ingredients.yaml"
 
 with st.expander("➕ 새 원료 등록"):
     with st.form("add_ingredient"):
-        st.caption("id·이름·INCI·분류는 필수. 나머지는 비워두면 생략됩니다.")
+        st.caption("✍️ id·이름·INCI·분류는 필수. 나머지는 비워두면 생략(CAS·밀도는 위 PubChem으로 자동).")
         c1, c2 = st.columns(2)
-        new_id = c1.text_input("id (고유 슬러그, 예: shea-butter)")
-        new_name = c2.text_input("원료명(한글)")
+        new_id = c1.text_input("id (고유 슬러그)", placeholder="예: panthenol")
+        new_name = c2.text_input("원료명(한글)", placeholder="예: 판테놀(프로비타민B5)")
         c3, c4 = st.columns(2)
-        new_inci = c3.text_input("INCI 표준명")
-        new_category = c4.text_input("분류(예: 에몰리언트, 유화제, 방부제)")
+        new_inci = c3.text_input("INCI 표준명", placeholder="예: Panthenol")
+        new_category = c4.text_input("분류", placeholder="예: 보습제 / 에몰리언트 / 유화제 / 방부제")
 
         c5, c6, c7 = st.columns(3)
         new_price = c5.text_input("단가(원/kg)")

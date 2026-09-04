@@ -19,6 +19,10 @@ from brandlab.ui import load_lab, setup_korean_font
 
 setup_korean_font()
 st.title("처방")
+st.info(
+    "표기: 🔒 **자동/불러오기**(템플릿·수정 시 기존 값이 채워짐) · ✍️ **직접 입력**. "
+    "초보라면 **🧩 템플릿에서 시작**을 추천 — 골격이 채워진 뒤 사전점검·수정으로 다듬으면 됩니다."
+)
 
 lab = load_lab()
 ing_ids = sorted(lab.ingredients.index())
@@ -144,20 +148,20 @@ with st.expander("🧩 템플릿에서 시작 (초보 추천)"):
 with st.expander("➕ 새 처방 생성"):
     st.caption("원료 표의 percent 합계가 100이어야 저장됩니다. 상(A·B…)별로 원료를 묶으세요.")
     c1, c2, c3 = st.columns(3)
-    f_product = c1.text_input("제품명", key="nf_product")
-    f_slug = c2.text_input("slug (폴더명, 예: my-cream)", key="nf_slug")
+    f_product = c1.text_input("✍️ 제품명", key="nf_product", placeholder="예: 오후 산뜻 보습 로션")
+    f_slug = c2.text_input("✍️ slug (폴더명)", key="nf_slug", placeholder="예: daily-lotion")
     f_version = c3.number_input("버전", min_value=1, value=1, step=1, key="nf_version")
     c4, c5, c6 = st.columns(3)
-    f_regime = c4.selectbox("레짐", available(), key="nf_regime")
-    f_ptype = c5.selectbox("제품형태", ["leave_on", "rinse_off"], key="nf_ptype")
-    f_status = c6.selectbox("상태", ["개발중", "확정"], key="nf_status")
+    f_regime = c4.selectbox("🔒 레짐 (목록에서 선택)", available(), key="nf_regime")
+    f_ptype = c5.selectbox("🔒 제품형태", ["leave_on", "rinse_off"], key="nf_ptype")
+    f_status = c6.selectbox("🔒 상태", ["개발중", "확정"], key="nf_status")
     c7, c8, c9 = st.columns(3)
     f_batch = c7.number_input("기준 배치(g)", min_value=1.0, value=100.0, step=10.0, key="nf_batch")
-    f_category = c8.text_input("품목 카테고리(선택)", key="nf_cat")
-    f_notes = c9.text_input("메모(선택)", key="nf_notes")
+    f_category = c8.text_input("✍️ 품목 카테고리(선택)", key="nf_cat", placeholder="예: 보습 로션")
+    f_notes = c9.text_input("✍️ 메모(선택)", key="nf_notes", placeholder="예: 다축 보습 컨셉")
     c10, c11 = st.columns(2)
-    f_fill = c10.text_input("충전 부피 ml(선택)", key="nf_fill")
-    f_netw = c11.text_input("내용량 g(선택)", key="nf_netw")
+    f_fill = c10.text_input("✍️ 충전 부피 ml(선택)", key="nf_fill", placeholder="예: 50")
+    f_netw = c11.text_input("✍️ 내용량 g(선택)", key="nf_netw", placeholder="예: 50")
 
     st.markdown("**원료 (상별)** — 행 추가/삭제 가능")
     ing_df = st.data_editor(
