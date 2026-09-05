@@ -165,8 +165,10 @@ class CodexEntry(BaseModel):
 
     model_config = ConfigDict(extra="forbid")
 
-    id: str = Field(min_length=1)  # ingredients.yaml의 원료 id
+    id: str = Field(min_length=1)  # ingredients.yaml의 원료 id (없으면 학습 전용 항목)
     summary: str = Field(min_length=1)  # 한 줄 정의
+    # 기능 분류. 마스터에 있으면 마스터 category가 우선, 없으면(학습 전용) 이 값으로 묶는다.
+    category: str | None = None
     what: str | None = None  # 이게 뭔가 / 유래
     why: str | None = None  # 왜 넣나 / 기능
     feel: str | None = None  # 사용감·발림

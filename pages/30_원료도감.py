@@ -33,13 +33,16 @@ if not codex.entries:
     st.warning("아직 도감 항목이 없습니다. `data/ingredient_codex.yaml`에 원료를 추가하세요.")
     st.stop()
 
-# 도감 항목을 카테고리별로 묶어 선택지 구성 (마스터의 category 사용)
-def _cat(entry_id: str) -> str:
-    ing = master.get(entry_id)
-    return ing.category if ing else "(마스터 없음)"
+# 도감 항목을 카테고리별로 묶는다. 마스터에 있으면 마스터 category 우선,
+# 없으면(학습 전용) 항목의 category, 그것도 없으면 "(기타)".
+def _cat(e: CodexEntry) -> str:
+    ing = master.get(e.id)
+    if ing:
+        return ing.category
+    return e.category or "(기타)"
 
 
-entries = sorted(codex.entries, key=lambda e: (_cat(e.id), e.id))
+entries = sorted(codex.entries, key=lambda e: (_cat(e), e.id))
 
 # 검색 + 카테고리 필터
 c1, c2 = st.columns([2, 1])
@@ -50,13 +53,18 @@ with c1:
         key="cx_q",
     ).strip().lower()
 with c2:
-    cats = ["전체"] + sorted({_cat(e.id) for e in entries})
+    cats = ["전체"] + sorted({_cat(e) for e in entries})
     cat_sel = st.selectbox("분류", cats, key="cx_cat")
+
+st.caption(
+    f"총 **{len(codex.entries)}종** · 마스터 연동 원료는 계산용 데이터가 함께 뜨고, "
+    "📖 표시는 아직 처방/마스터에 없는 **학습 전용** 항목입니다(처방에 넣으면 자동 연결)."
+)
 
 
 def _matches(e: CodexEntry) -> bool:
     ing = master.get(e.id)
-    if cat_sel != "전체" and _cat(e.id) != cat_sel:
+    if cat_sel != "전체" and _cat(e) != cat_sel:
         return False
     if not q:
         return True
@@ -75,7 +83,8 @@ if not shown:
 def _label(e: CodexEntry) -> str:
     ing = master.get(e.id)
     name = ing.name if ing else e.id
-    return f"{name}  ·  {_cat(e.id)}"
+    mark = "" if ing else "📖 "
+    return f"{mark}{name}  ·  {_cat(e)}"
 
 
 sel = st.selectbox("원료 선택", shown, format_func=_label, key="cx_sel")
@@ -86,22 +95,19 @@ ing = master.get(sel.id)
 st.markdown("---")
 name = ing.name if ing else sel.id
 st.subheader(name)
-sub = []
-if ing:
-    sub.append(f"INCI: {ing.inci}")
-    sub.append(_cat(sel.id))
-if sub:
-    st.caption("  ·  ".join(sub))
+sub = [f"INCI: {ing.inci}"] if ing else []
+sub.append(_cat(sel))
+st.caption("  ·  ".join(sub))
 st.markdown(f"**{sel.summary}**")
 
 if sel.needs_verification:
     st.warning("⚠️ 아래 안전·함량·규제성 서술은 **검증 필요**한 예시입니다. 배합 전 CoA/TDS·규제판정으로 확인하세요.")
 
-# 마스터에 없는 id면 안내
+# 마스터에 없으면 학습 전용 항목 안내(에러 아님 — 정상)
 if ing is None:
-    st.error(
-        f"이 도감 항목의 id `{sel.id}` 가 원료 마스터에 없습니다. "
-        "`data/ingredients.yaml`에 원료를 추가하거나 도감 id를 맞춰주세요."
+    st.info(
+        f"📖 **학습 전용 항목** — `{sel.id}` 는 아직 원료 마스터/처방에 없습니다. "
+        "이 처방에 실제로 쓰기로 하면 `원료` 페이지에서 등록하세요. 등록하면 오른쪽에 단가·HLB 등이 자동 연결됩니다."
     )
 
 left, right = st.columns([2, 1], gap="large")
@@ -144,7 +150,8 @@ with left:
 with right:
     st.markdown("**📊 계산용 데이터 (원료 마스터)**")
     if ing is None:
-        st.write("— 마스터에 원료가 없습니다.")
+        st.write("📖 학습 전용 — 아직 마스터에 없어 단가·HLB 등은 없습니다.")
+        st.caption("`원료` 페이지에서 등록하면 여기에 자동으로 채워집니다.")
     else:
         rows: list[tuple[str, str]] = []
         if ing.max_percent is not None:

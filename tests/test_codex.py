@@ -18,12 +18,34 @@ def test_load_codex_ok(project_root):
     assert idx["glycerin"].summary
 
 
-def test_codex_ids_exist_in_master(project_root):
-    """도감의 모든 id는 원료 마스터에 실제로 존재해야 한다(고아 방지)."""
+def test_codex_master_linked_entries_resolve(project_root):
+    """마스터에 있는 id는 정상 연결되고, 학습 전용(마스터에 없는) 항목은 허용된다.
+
+    도감은 계산용 마스터와 분리되어 '공용 팔레트 백과'로 넓게 성장할 수 있다.
+    마스터에 없는 항목은 category로 분류되어야 브라우징에서 묶인다.
+    """
     codex = load_codex(project_root / "data" / "ingredient_codex.yaml")
     master = load_ingredients(project_root / "data" / "ingredients.yaml").index()
-    orphans = [e.id for e in codex.entries if e.id not in master]
-    assert orphans == [], f"마스터에 없는 도감 id: {orphans}"
+    # 마스터에 연결된 항목은 실제로 그 원료를 가리킨다
+    linked = [e for e in codex.entries if e.id in master]
+    assert linked, "마스터 연동 항목이 하나도 없다"
+    # 학습 전용(마스터에 없는) 항목은 분류(category)가 있어 카테고리 필터에 잡힌다
+    learning_only = [e for e in codex.entries if e.id not in master]
+    assert all(e.category for e in learning_only), (
+        "학습 전용 항목은 category가 있어야 한다: "
+        f"{[e.id for e in learning_only if not e.category]}"
+    )
+
+
+def test_codex_covers_scenario_formula(project_root):
+    """시나리오 처방(daily-lotion v2) 원료는 모두 도감에 있어야 한다."""
+    from brandlab.loader import load_formula
+
+    codex = load_codex(project_root / "data" / "ingredient_codex.yaml").index()
+    f = load_formula(project_root / "formulas" / "daily-lotion" / "v2.yaml")
+    fids = {i.id for ph in f.phases for i in ph.ingredients}
+    missing = sorted(fids - set(codex))
+    assert missing == [], f"도감에 없는 처방 원료: {missing}"
 
 
 def test_codex_entries_need_verification_default(project_root):

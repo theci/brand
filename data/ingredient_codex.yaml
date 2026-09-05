@@ -319,3 +319,1235 @@ entries:
     newbie_tip: "'천연이라 안심'이 아니라 '천연도 알러젠·자극이 있다'가 정답. 리브온은 0.2% 안팎부터 보수적으로."
     needs_verification: true
     sources: []
+
+  # ===========================================================================
+  # 공용 팔레트 확장 — 소규모 화장품 워크호스(학습 전용 포함). 전부 검증 필요.
+  # ===========================================================================
+  - id: castor-oil
+    category: 에몰리언트
+    summary: 광택·부착력을 주는 점성 높은 식물성 오일
+    what: 피마자 씨앗 오일. 리시놀레익산이 많아 점도가 높고 광이 난다.
+    why: 립밤·립 제품의 광택과 색소 분산·부착에 강하다.
+    typical_percent: 5~30% (립), 소량(스킨케어)
+    phase: 유상
+    cautions: 특유의 끈적임·무게감. 스킨케어엔 소량.
+    substitutes:
+    - 호호바오일(jojoba-oil)
+    newbie_tip: 립 광택이 필요하면 1순위 오일.
+    needs_verification: true
+    sources: []
+  - id: olive-oil
+    category: 에몰리언트
+    summary: 온화하고 컨디셔닝이 좋은 클래식 베이스 오일
+    what: 올리브 열매 오일. 올레익산이 풍부.
+    why: 비누·크림의 순한 베이스. 보습·컨디셔닝.
+    typical_percent: 3~15%
+    phase: 유상
+    cautions: 무거운 편이라 산뜻 콘셉트엔 과할 수 있다.
+    substitutes:
+    - 스위트아몬드오일(sweet-almond-oil)
+    newbie_tip: 순하지만 무거움 — 가벼운 오일과 섞어 쓰면 좋다.
+    needs_verification: true
+    sources: []
+  - id: coconut-oil
+    category: 에몰리언트
+    summary: 상온 고체의 세정·보습 오일(비누에 인기)
+    what: 코코넛 오일. 라우릭산이 많아 비누화 시 거품이 풍부.
+    why: 비누의 세정력·거품, 보습.
+    typical_percent: 5~30% (비누)
+    phase: 유상
+    cautions: 여드름성 피부엔 모공 막힘(코메도제닉) 우려. 얼굴 리브온엔 주의.
+    substitutes:
+    - 팜유
+    newbie_tip: 비누엔 좋지만 얼굴 크림엔 신중히.
+    needs_verification: true
+    sources: []
+  - id: sweet-almond-oil
+    category: 에몰리언트
+    summary: 순하고 범용성 좋은 스위트아몬드 오일
+    what: 스위트아몬드 씨앗 오일. 올레익·리놀레익산 균형.
+    why: 순한 보습·마사지·크림 베이스.
+    typical_percent: 3~15%
+    phase: 유상
+    cautions: 견과 알레르기 고지 필요할 수 있음.
+    substitutes:
+    - 살구씨오일
+    - 해바라기오일(sunflower-oil)
+    newbie_tip: 무난한 만능 오일. 초보 베이스로 좋다.
+    needs_verification: true
+    sources: []
+  - id: sunflower-oil
+    category: 에몰리언트
+    summary: 가볍고 저렴한 리놀레익산 오일
+    what: 해바라기 씨앗 오일. 하이올레익/하이리놀레익 타입이 있다.
+    why: 가벼운 보습, 장벽 지지(리놀레익).
+    typical_percent: 3~15%
+    phase: 유상
+    cautions: 리놀레익 타입은 산패가 빠름 — 토코페롤 병용·냉암 보관.
+    substitutes:
+    - 포도씨오일(grapeseed-oil)
+    newbie_tip: 저렴·가벼움. 산화방지제와 함께.
+    needs_verification: true
+    sources: []
+  - id: argan-oil
+    category: 에몰리언트
+    summary: 보습·컨디셔닝으로 인기인 아르간 오일
+    what: 아르간 커널 오일. 비타민E·불포화지방산.
+    why: 헤어·스킨 보습, 프리미엄 소구.
+    typical_percent: 2~10%
+    phase: 유상
+    cautions: 단가 높음. 진품·정제도 확인.
+    substitutes:
+    - 마카다미아오일(macadamia-oil)
+    newbie_tip: 마케팅 힘이 있는 오일. 소량으로 프리미엄감.
+    needs_verification: true
+    sources: []
+  - id: grapeseed-oil
+    category: 에몰리언트
+    summary: 가볍고 산뜻한 포도씨 오일
+    what: 포도씨 오일. 리놀레익산 풍부, 가벼운 사용감.
+    why: 산뜻한 보습·마사지.
+    typical_percent: 3~15%
+    phase: 유상
+    cautions: 산패 빠른 편 — 토코페롤·냉암 보관.
+    substitutes:
+    - 해바라기오일(sunflower-oil)
+    newbie_tip: 가벼움을 원할 때. 산화방지 필수.
+    needs_verification: true
+    sources: []
+  - id: rosehip-oil
+    category: 에몰리언트
+    summary: 리놀레닉산이 풍부한 로즈힙 오일
+    what: 로즈힙 씨앗 오일. 오메가3/6, 트랜스레티노익 미량.
+    why: 톤·결 케어 소구, 야간 보습.
+    typical_percent: 2~10%
+    phase: 유상(주로 냉각/후첨)
+    cautions: 산화가 매우 빠름 — 소량 구매·냉장·토코페롤 병용.
+    substitutes:
+    - 에브닝프림로즈오일(evening-primrose-oil)
+    newbie_tip: 좋지만 잘 상한다. 조금씩.
+    needs_verification: true
+    sources: []
+  - id: evening-primrose-oil
+    category: 에몰리언트
+    summary: 감마리놀렌산(GLA)이 있는 달맞이꽃 오일
+    what: 달맞이꽃 종자 오일. GLA 함유.
+    why: 건성·민감 장벽 지지 소구.
+    typical_percent: 2~10%
+    phase: 유상(후첨 선호)
+    cautions: 산패 빠름 — 냉장·토코페롤.
+    substitutes:
+    - 보라지오일
+    newbie_tip: GLA 소구 오일. 산화 관리 중요.
+    needs_verification: true
+    sources: []
+  - id: avocado-oil
+    category: 에몰리언트
+    summary: 리치한 보습의 아보카도 오일
+    what: 아보카도 과육 오일. 올레익산·불검화물 풍부.
+    why: 건성·성숙 피부 리치 보습.
+    typical_percent: 3~12%
+    phase: 유상
+    cautions: 무거운 편 — 산뜻 콘셉트엔 소량.
+    substitutes:
+    - 올리브오일(olive-oil)
+    newbie_tip: 겨울·건성 크림에 어울린다.
+    needs_verification: true
+    sources: []
+  - id: macadamia-oil
+    category: 에몰리언트
+    summary: 피지와 닮은 팔미톨레익 오일
+    what: 마카다미아 너트 오일. 팔미톨레익산이 많아 피부 친화적.
+    why: 흡수 좋은 보습, 성숙 피부.
+    typical_percent: 3~12%
+    phase: 유상
+    cautions: 견과 알레르기 고지 고려.
+    substitutes:
+    - 호호바오일(jojoba-oil)
+    newbie_tip: 흡수감 좋은 리치 오일.
+    needs_verification: true
+    sources: []
+  - id: camellia-oil
+    category: 에몰리언트
+    summary: 가볍고 매끈한 동백 오일
+    what: 동백 씨앗 오일. 올레익산 풍부, 전통 헤어·스킨 오일.
+    why: 가벼운 보습·광, 헤어.
+    typical_percent: 2~10%
+    phase: 유상
+    cautions: 정제도에 따라 향·색 차이.
+    substitutes:
+    - 아르간오일(argan-oil)
+    newbie_tip: 한국적 소구가 되는 가벼운 오일.
+    needs_verification: true
+    sources: []
+  - id: lanolin
+    category: 에몰리언트
+    summary: 강력한 오클루시브인 양모 유래 왁스
+    what: 양털에서 얻는 라놀린. 피부 유사 지질, 수분 잠금 강함.
+    why: 입술·건조 부위 강한 보습·잠금.
+    typical_percent: 1~10%
+    phase: 유상
+    cautions: 울 알레르기 반응 가능. 동물 유래(비건 아님).
+    substitutes:
+    - 시어버터(shea-butter)
+    newbie_tip: 트임·건조엔 강력하나 알레르기·비건 이슈 확인.
+    needs_verification: true
+    sources: []
+  - id: ipm
+    category: 용제
+    summary: 발림을 가볍게 만드는 에스테르(IPM)
+    what: 아이소프로필미리스테이트. 가벼운 합성 에스테르.
+    why: 유분감을 줄이고 퍼짐성·흡수감을 높인다.
+    typical_percent: 1~10%
+    phase: 유상
+    cautions: 코메도제닉 우려 보고 — 여드름성엔 신중.
+    substitutes:
+    - 카프릴릭/카프릭 트라이글리세라이드(mct)
+    newbie_tip: 무거운 오일의 유분감을 낮출 때.
+    needs_verification: true
+    sources: []
+  - id: dimethicone
+    category: 에몰리언트
+    summary: 매끈한 막을 만드는 대표 실리콘
+    what: 다이메티콘. 폴리다이메틸실록산 오일.
+    why: 보송한 발림·광·수분 증발 지연, 프라이머 감.
+    typical_percent: 1~10%
+    phase: 유상 또는 냉각첨가
+    cautions: 환경·씻김성 논쟁 있음(브랜드 철학에 따라 선택).
+    substitutes:
+    - 다이메티콘 대체 식물성 에스테르
+    newbie_tip: '''실키한 마무리''를 원할 때 소량.'
+    needs_verification: true
+    sources: []
+  - id: cyclopentasiloxane
+    category: 실리콘
+    summary: 가볍게 날아가는 휘발성 실리콘(D5)
+    what: 사이클로펜타실록세인. 휘발성 실리콘.
+    why: 도포 후 증발해 산뜻·매끈한 초기 감.
+    typical_percent: 1~10%
+    phase: 유상/냉각첨가
+    cautions: 규제·환경 이슈 지역별 확인. 휘발성 주의.
+    substitutes:
+    - 아이소도데케인
+    newbie_tip: 선·프라이머의 산뜻한 초기감에.
+    needs_verification: true
+    sources: []
+  - id: phenyl-trimethicone
+    category: 실리콘
+    summary: 광과 발색을 돕는 페닐 실리콘
+    what: 페닐트라이메티콘. 굴절률 높은 실리콘.
+    why: 광택·색상 선명도, 컨디셔닝.
+    typical_percent: 1~5%
+    phase: 유상
+    cautions: 다른 실리콘과 상용성 확인.
+    substitutes:
+    - 다이메티콘(dimethicone)
+    newbie_tip: 메이크업 광·발색 보강에.
+    needs_verification: true
+    sources: []
+  - id: cocoa-butter
+    category: 버터
+    summary: 단단하고 향긋한 코코아버터
+    what: 카카오 씨앗 지방. 상온에서 단단하고 초콜릿 향.
+    why: 경도·오클루시브 보습, 립·밤.
+    typical_percent: 1~5% (크림), 립 더 높게
+    phase: 유상
+    cautions: 과하면 딱딱·왁시. 블룸(표면 백화) 가능.
+    substitutes:
+    - 시어버터(shea-butter)
+    newbie_tip: 경도가 필요할 때. 향이 강하니 콘셉트 고려.
+    needs_verification: true
+    sources: []
+  - id: mango-butter
+    category: 버터
+    summary: 가볍고 매끈한 망고버터
+    what: 망고 씨앗 지방. 시어보다 가벼운 사용감.
+    why: 리치하되 덜 무거운 보습.
+    typical_percent: 1~5%
+    phase: 유상
+    cautions: 정제도에 따라 향·색.
+    substitutes:
+    - 시어버터(shea-butter)
+    newbie_tip: 시어가 무거우면 망고로 가볍게.
+    needs_verification: true
+    sources: []
+  - id: beeswax
+    category: 왁스
+    summary: 경도·구조를 주는 꿀벌 왁스
+    what: 비즈왁스(Cera Alba). 밤·연고 구조재.
+    why: 립밤·밤·W/O 안정화, 경도.
+    typical_percent: 3~15% (밤)
+    phase: 유상
+    cautions: 비건 아님. 과하면 딱딱·끌림.
+    substitutes:
+    - 칸데릴라왁스(candelilla-wax)
+    newbie_tip: 밤·립의 굳기를 잡는 기본 왁스.
+    needs_verification: true
+    sources: []
+  - id: candelilla-wax
+    category: 왁스
+    summary: 식물성(비건) 경화 왁스
+    what: 칸데릴라 식물 왁스. 비즈왁스보다 경도 강함.
+    why: 비건 밤·립 경화.
+    typical_percent: 2~10%
+    phase: 유상
+    cautions: 비즈왁스보다 소량으로 단단 — 양 조절.
+    substitutes:
+    - 카나우바왁스(carnauba-wax)
+    newbie_tip: 비건 라인의 경화 왁스. 조금씩.
+    needs_verification: true
+    sources: []
+  - id: carnauba-wax
+    category: 왁스
+    summary: 녹는점 높은 고광택 식물 왁스
+    what: 카나우바 야자 왁스. 매우 단단·고광택.
+    why: 경도·광택 상승(마스카라·립·밤).
+    typical_percent: 1~5%
+    phase: 유상
+    cautions: 녹는점 높아 가열 충분히. 과하면 부서짐.
+    substitutes:
+    - 칸데릴라왁스(candelilla-wax)
+    newbie_tip: 광과 단단함을 소량으로.
+    needs_verification: true
+    sources: []
+  - id: stearic-acid
+    category: 점증제
+    summary: 경도와 크림 바디를 주는 지방산
+    what: 스테아릭애씨드. 지방산으로 크림 경도·백색 크림감.
+    why: 크림 점도·바디, 비누화(TEA/알칼리와).
+    typical_percent: 1~5%
+    phase: 유상
+    cautions: 알칼리와 만나면 비누화 — 처방 의도 확인.
+    substitutes:
+    - 세틸알코올(cetyl-alcohol)
+    newbie_tip: 클래식 콜드크림 질감에.
+    needs_verification: true
+    sources: []
+  - id: cetearyl-alcohol
+    category: 지방알코올
+    summary: 점도·안정성을 주는 세테아릴알코올
+    what: 세틸+스테아릴 혼합 지방알코올. '알코올'이지만 건조하지 않음.
+    why: 유화 안정·점도·부드러운 발림.
+    typical_percent: 1~5%
+    phase: 유상
+    cautions: 소비자 '알코올 오해' — 지방알코올 설명 권장.
+    substitutes:
+    - 세틸알코올(cetyl-alcohol)
+    newbie_tip: 로션 되기·안정성의 만능 점증.
+    needs_verification: true
+    sources: []
+  - id: stearyl-alcohol
+    category: 지방알코올
+    summary: 더 단단한 결을 주는 스테아릴알코올
+    what: 스테아릴알코올. 세틸보다 무겁고 왁시.
+    why: 크림 경도·리치 바디.
+    typical_percent: 1~4%
+    phase: 유상
+    cautions: 과하면 무겁고 끌림.
+    substitutes:
+    - 세테아릴알코올(cetearyl-alcohol)
+    newbie_tip: 리치한 크림 바디가 필요할 때.
+    needs_verification: true
+    sources: []
+  - id: behenyl-alcohol
+    category: 지방알코올
+    summary: 고급 실크감을 주는 베헤닐알코올
+    what: 베헤닐(C22) 지방알코올. 매끈하고 리치.
+    why: 점도·안정·실크 발림.
+    typical_percent: 0.5~3%
+    phase: 유상
+    cautions: 소량으로 점도 상승 — 과량 주의.
+    substitutes:
+    - 세테아릴알코올(cetearyl-alcohol)
+    newbie_tip: 고급스러운 발림을 소량으로.
+    needs_verification: true
+    sources: []
+  - id: glyceryl-stearate
+    category: 유화제
+    summary: 보조 유화·유연을 주는 GMS
+    what: 글리세릴스테아레이트(GMS). 흔한 O/W 보조 유화·컨디셔너.
+    why: 주 유화제와 함께 안정·유연·바디.
+    typical_percent: 1~4%
+    phase: 유상
+    pairs_with:
+    - 세테아릴알코올(cetearyl-alcohol)
+    cautions: 단독 유화력은 약함 — 주 유화제 병용.
+    substitutes:
+    - 글리세릴스테아레이트 SE
+    newbie_tip: '''GMS+세테아릴알코올'' 조합이 클래식.'
+    needs_verification: true
+    sources: []
+  - id: cetearyl-glucoside
+    category: 유화제
+    summary: 순한 식물 유래 O/W 유화제(글루코사이드)
+    what: 세테아릴글루코사이드+세테아릴알코올 계열(몬타노브류).
+    why: 순하고 자연스러운 로션·크림.
+    typical_percent: 2~5%
+    phase: 유상
+    cautions: 점도·전상 온도 관리. 겔네트워크 형성.
+    substitutes:
+    - 세테아릴올리베이트(cetearyl-olivate)
+    newbie_tip: '''자연주의'' 로션에 인기.'
+    needs_verification: true
+    sources: []
+  - id: cetearyl-olivate
+    category: 유화제
+    summary: 올리브 유래 순한 유화제(올리벰류)
+    what: 세테아릴올리베이트+소르비탄올리베이트. 올리브 유래 O/W.
+    why: 촉촉·순한 크림, 리퀴드 크리스탈.
+    typical_percent: 3~6%
+    phase: 유상
+    cautions: 충분한 가열·교반으로 안정화.
+    substitutes:
+    - 세테아릴글루코사이드(cetearyl-glucoside)
+    newbie_tip: 촉촉·순함을 원하는 크림.
+    needs_verification: true
+    sources: []
+  - id: emulsifying-wax
+    category: 유화제
+    summary: 초보에게 쉬운 범용 이멀시파잉왁스
+    what: 세테아릴알코올+세테아레스계가 섞인 완성형 유화왁스(NF).
+    why: 실패 적은 범용 O/W 로션·크림.
+    typical_percent: 3~8%
+    phase: 유상
+    cautions: 성분 조성이 제품마다 다름 — 사양 확인.
+    substitutes:
+    - 글리세릴스테아레이트 시트레이트(glyceryl-stearate-citrate)
+    newbie_tip: '''처음이라 쉬운 유화제''로 무난.'
+    needs_verification: true
+    sources: []
+  - id: polysorbate-80
+    category: 계면활성제
+    summary: 향·오일을 물에 녹이는 가용화제(트윈80)
+    what: 폴리소르베이트80. 고HLB 비이온 가용화제.
+    why: 소량 오일·에센셜오일을 물에 투명 분산.
+    typical_percent: 0.5~3%
+    phase: 수상/후첨
+    cautions: 유화가 아니라 가용화 — 비율 맞춰야 투명.
+    substitutes:
+    - 폴리소르베이트20
+    newbie_tip: 미스트에 EO 넣을 때.
+    needs_verification: true
+    sources: []
+  - id: polysorbate-60
+    category: 유화제
+    summary: 크림 보조 유화·가용화(트윈60)
+    what: 폴리소르베이트60. O/W 보조 유화/가용화.
+    why: 크림 안정 보조, 오일 분산.
+    typical_percent: 1~4%
+    phase: 유상/수상
+    cautions: 단독보단 병용. HLB 계산에 활용.
+    substitutes:
+    - 폴리소르베이트80(polysorbate-80)
+    newbie_tip: 유화 안정 보조에.
+    needs_verification: true
+    sources: []
+  - id: sorbitan-stearate
+    category: 유화제
+    summary: 저HLB W/O 짝 유화제(스팬60)
+    what: 소르비탄스테아레이트. 저HLB, 폴리소르베이트와 짝.
+    why: O/W에서 HLB 맞춤·안정 보강.
+    typical_percent: 0.5~3%
+    phase: 유상
+    pairs_with:
+    - 폴리소르베이트60(polysorbate-60)
+    cautions: 단독 O/W 어려움 — 고HLB와 조합.
+    newbie_tip: HLB 조합 설계에 쓰는 짝꿍.
+    needs_verification: true
+    sources: []
+  - id: lecithin
+    category: 유화제
+    summary: 천연 인지질 유화제(레시틴)
+    what: 대두/해바라기 레시틴. 천연 인지질.
+    why: 천연 유화·리포좀, 컨디셔닝.
+    typical_percent: 0.5~3%
+    phase: 유상/수상
+    cautions: 산패·냄새·점착 — 수소첨가 타입이 안정적.
+    substitutes:
+    - 수소첨가레시틴
+    newbie_tip: 천연 유화 소구, 소량.
+    needs_verification: true
+    sources: []
+  - id: sci
+    category: 계면활성제
+    summary: 순하고 크리미한 세정 계면활성제(SCI)
+    what: 소듐코코일아이세티오네이트. 순한 음이온 계면활성제.
+    why: 시앰바·클렌저의 크리미·순한 거품.
+    typical_percent: 10~50% (고형/클렌저)
+    phase: 워시상
+    cautions: 분진 흡입 주의(가루). 용해에 열 필요.
+    substitutes:
+    - 소듐라우로일사코시네이트
+    newbie_tip: 순한 세정의 스타. 가루 취급 주의.
+    needs_verification: true
+    sources: []
+  - id: capb
+    category: 계면활성제
+    summary: 거품·순함을 돕는 양쪽성 계면활성제(코카미도프로필베타인)
+    what: 코카미도프로필베타인. 양쪽성 보조 계면활성제.
+    why: 거품 보강·자극 완화(주 계면활성제와).
+    typical_percent: 5~20% (희석 전)
+    phase: 워시상
+    pairs_with:
+    - 코코글루코사이드(coco-glucoside)
+    cautions: 미량 불순물(아마이드아민) 감작 이슈 보고.
+    newbie_tip: 단독보단 보조로 거품·순함 up.
+    needs_verification: true
+    sources: []
+  - id: coco-glucoside
+    category: 계면활성제
+    summary: 순한 식물 유래 비이온 계면활성제
+    what: 코코글루코사이드. 알킬폴리글루코사이드(APG).
+    why: 순한 세정·거품, 자연주의 소구.
+    typical_percent: 5~20%
+    phase: 워시상
+    cautions: 단독 거품 약함 — 조합 사용. pH 높은 편.
+    substitutes:
+    - 데실글루코사이드(decyl-glucoside)
+    newbie_tip: 순함 소구 워시에.
+    needs_verification: true
+    sources: []
+  - id: decyl-glucoside
+    category: 계면활성제
+    summary: 민감성용 순한 글루코사이드
+    what: 데실글루코사이드. APG 계열, 매우 순함.
+    why: 베이비·민감 세정.
+    typical_percent: 5~20%
+    phase: 워시상
+    cautions: 점증 어려움 — 소금/검 조절.
+    substitutes:
+    - 코코글루코사이드(coco-glucoside)
+    newbie_tip: 가장 순한 축. 점도 설계 필요.
+    needs_verification: true
+    sources: []
+  - id: sles
+    category: 계면활성제
+    summary: 거품·세정 강한 대중적 계면활성제(SLES)
+    what: 소듐라우레스설페이트. 강한 세정·풍부한 거품.
+    why: 샴푸·바디워시 대중적 베이스.
+    typical_percent: 5~30% (원액 기준 환산)
+    phase: 워시상
+    cautions: 탈지·자극 소구 반대 브랜드는 회피. 1,4-다이옥산 관리.
+    substitutes:
+    - 코코글루코사이드(coco-glucoside)
+    newbie_tip: 거품·세정 강력하나 순함 콘셉트엔 부적합.
+    needs_verification: true
+    sources: []
+  - id: propanediol
+    category: 보습제
+    summary: 산뜻한 식물 유래 보습·용해 보조
+    what: 프로판다이올(1,3). 글리세린보다 가벼운 다가알코올.
+    why: 보습, 활성 용해, 방부 보조.
+    typical_percent: 2~10%
+    phase: 수상
+    cautions: 일부 원료 용해 특성 확인.
+    substitutes:
+    - 부틸렌글라이콜(butylene-glycol)
+    newbie_tip: 글리세린 끈적임 대안으로 인기.
+    needs_verification: true
+    sources: []
+  - id: butylene-glycol
+    category: 보습제
+    summary: 가벼운 보습·용매 다가알코올
+    what: 부틸렌글라이콜. 산뜻한 보습·추출물 용매.
+    why: 보습, 추출물 캐리어, 방부 보조.
+    typical_percent: 2~10%
+    phase: 수상
+    cautions: 고농도 자극 가능성 개인차.
+    substitutes:
+    - 프로판다이올(propanediol)
+    newbie_tip: 추출물 베이스에 흔함.
+    needs_verification: true
+    sources: []
+  - id: betaine
+    category: 보습제
+    summary: 순하고 산뜻한 천연 보습(베타인)
+    what: 베타인(사탕무 유래). 삼투 보습·순함.
+    why: 보습, 자극 완화 보조.
+    typical_percent: 0.5~5%
+    phase: 수상
+    cautions: 흡습성 — 분말 보관 주의.
+    substitutes:
+    - 글리세린(glycerin)
+    newbie_tip: 글리세린 일부를 대체해 산뜻하게.
+    needs_verification: true
+    sources: []
+  - id: sodium-pca
+    category: 보습제
+    summary: 피부 천연보습인자(NMF) 성분
+    what: 소듐PCA. 피부에 존재하는 NMF, 강한 흡습.
+    why: 즉각 보습·촉촉.
+    typical_percent: 0.2~2%
+    phase: 수상
+    cautions: 흡습 강해 과량 시 끈적/역효과. 소량.
+    substitutes:
+    - 베타인(betaine)
+    newbie_tip: NMF 소구 보습, 조금만.
+    needs_verification: true
+    sources: []
+  - id: urea
+    category: 보습제
+    summary: 보습·각질 유연의 요소(우레아)
+    what: 우레아. 저농도 보습, 고농도 각질 유연.
+    why: 건조·각질 케어.
+    typical_percent: 2~10%
+    phase: 수상(냉각 선호)
+    cautions: 가열·pH에 분해(암모니아) — 저온 투입·pH 관리.
+    substitutes:
+    - 락틱애씨드(lactic-acid)
+    newbie_tip: 건성/각질엔 강하나 안정성 까다로움.
+    needs_verification: true
+    sources: []
+  - id: trehalose
+    category: 보습제
+    summary: 보호·보습의 당류 트레할로스
+    what: 트레할로스. 이당류, 세포 보호·보습.
+    why: 순한 보습, 진정 소구.
+    typical_percent: 0.5~3%
+    phase: 수상
+    cautions: 특이 주의 적으나 미생물 먹이 가능 — 보존 확인.
+    substitutes:
+    - 베타인(betaine)
+    newbie_tip: 순한 보습 부스터.
+    needs_verification: true
+    sources: []
+  - id: carbomer
+    category: 점증제
+    summary: 맑은 젤을 만드는 대표 합성 점증제
+    what: 카보머. 중화하면 투명 젤이 되는 아크릴 폴리머.
+    why: 에센스·젤·크림 점도, 유화 안정.
+    typical_percent: 0.1~0.6%
+    phase: 수상(분산 후 중화)
+    pairs_with:
+    - 트라이에탄올아민(triethanolamine)
+    cautions: 중화제(알칼리) 필요, 전해질·저pH에 약함.
+    substitutes:
+    - 아리스토플렉스(ammonium-acryloyldimethyltaurate)
+    newbie_tip: 맑은 젤·에센스 점도의 표준. 중화 필수.
+    needs_verification: true
+    sources: []
+  - id: ammonium-acryloyldimethyltaurate
+    category: 점증제
+    summary: 중화 불필요·전해질 강한 폴리머(아리스토플렉스류)
+    what: 암모늄아크릴로일다이메틸타우레이트 코폴리머.
+    why: 냉공정 점증·유화 안정, 전해질 내성.
+    typical_percent: 0.5~2%
+    phase: 수상(냉공정 가능)
+    cautions: 핸들링·응집 주의.
+    substitutes:
+    - 카보머(carbomer)
+    newbie_tip: 중화 없이 쓰는 편리한 점증.
+    needs_verification: true
+    sources: []
+  - id: hydroxyethylcellulose
+    category: 점증제
+    summary: 맑고 순한 셀룰로오스 점증(HEC)
+    what: 하이드록시에틸셀룰로오스. 비이온 셀룰로오스 점증.
+    why: 맑은 젤·세정 점도, 순함.
+    typical_percent: 0.3~2%
+    phase: 수상
+    cautions: 분산 시 뭉침 — 천천히. 미생물 관리.
+    substitutes:
+    - 셀룰로오스검(cellulose-gum)
+    newbie_tip: 순한 맑은 젤에.
+    needs_verification: true
+    sources: []
+  - id: cellulose-gum
+    category: 점증제
+    summary: 순한 음이온 셀룰로오스검(CMC)
+    what: 카복시메틸셀룰로오스(소듐). 점증·안정.
+    why: 점도·현탁 안정.
+    typical_percent: 0.2~1.5%
+    phase: 수상
+    cautions: 전해질·저pH 영향.
+    substitutes:
+    - 잔탄검(xanthan-gum)
+    newbie_tip: 자연 유래 점증 옵션.
+    needs_verification: true
+    sources: []
+  - id: sclerotium-gum
+    category: 점증제
+    summary: 매끈한 천연 발효검
+    what: 스클레로튬검. 발효 유래 다당류, 실 늘어짐 적음.
+    why: 잔탄보다 매끈한 점증·유화 안정.
+    typical_percent: 0.1~0.5%
+    phase: 수상
+    cautions: 소량 강력 — 과량 시 미끈.
+    substitutes:
+    - 잔탄검(xanthan-gum)
+    newbie_tip: 잔탄의 스트링잉이 싫으면 대안.
+    needs_verification: true
+    sources: []
+  - id: benzyl-alcohol
+    category: 보존제
+    summary: 넓게 쓰는 보존제 겸 용매
+    what: 벤질알코올. 방향족 알코올, 보존·용매.
+    why: 보존(주로 병용), 방부 스펙트럼 보강.
+    typical_percent: 0.3~1.0%
+    phase: 냉각첨가
+    pairs_with:
+    - 다이하이드로아세틱애씨드
+    cautions: 표시대상 향료 성분·자극 가능. 상한·pH 확인.
+    newbie_tip: 단독보다 소듐벤조에이트 등과 병용.
+    needs_verification: true
+    sources: []
+  - id: sodium-benzoate
+    category: 보존제
+    summary: 저pH에서 작동하는 산성 보존제
+    what: 소듐벤조에이트. 안식향산 소금, 낮은 pH에서 활성.
+    why: 곰팡이·효모 억제(산성 제형).
+    typical_percent: 0.2~0.5%
+    phase: 수상
+    pairs_with:
+    - 포타슘소르베이트(potassium-sorbate)
+    cautions: pH 5 이하에서 효과 — pH 관리 필수. 비타민C와 상호작용 주의.
+    newbie_tip: 저pH 제형 보존. pH 맞춰야 효과.
+    needs_verification: true
+    sources: []
+  - id: potassium-sorbate
+    category: 보존제
+    summary: 곰팡이·효모용 산성 보존제
+    what: 포타슘소르베이트. 소르빈산 소금.
+    why: 곰팡이·효모 억제(산성).
+    typical_percent: 0.2~0.6%
+    phase: 수상
+    pairs_with:
+    - 소듐벤조에이트(sodium-benzoate)
+    cautions: 저pH 필요. 변색 가능. 단독 항균 스펙트럼 좁음.
+    newbie_tip: 소듐벤조에이트와 짝으로.
+    needs_verification: true
+    sources: []
+  - id: ethylhexylglycerin
+    category: 보존제
+    summary: 보존 부스터 겸 데오·보습
+    what: 에틸헥실글리세린. 방부 보조·데오·컨디셔닝.
+    why: 주 보존제 효과 상승, 부드러운 사용감.
+    typical_percent: 0.3~1.0%
+    phase: 냉각첨가
+    pairs_with:
+    - 페녹시에탄올(phenoxyethanol)
+    cautions: 단독 보존제 아님 — 부스터.
+    newbie_tip: 페녹시에탄올과 클래식 조합.
+    needs_verification: true
+    sources: []
+  - id: caprylyl-glycol
+    category: 보존제
+    summary: 보습 겸 방부 보조 다이올
+    what: 카프릴릴글라이콜. 다가알코올 방부 보조·보습.
+    why: 방부력 보강, 보습.
+    typical_percent: 0.3~1.0%
+    phase: 수상/냉각
+    cautions: 단독 완전 방부 아님.
+    substitutes:
+    - 1,2-헥산다이올(hexanediol)
+    newbie_tip: '''무보존제 소구''의 보조 다이올.'
+    needs_verification: true
+    sources: []
+  - id: chlorphenesin
+    category: 보존제
+    summary: 곰팡이에 강한 보조 보존제
+    what: 클로르페네신. 항진균 보조 보존제.
+    why: 페녹시 등과 병용해 스펙트럼 보강.
+    typical_percent: 0.2~0.3%
+    phase: 냉각첨가
+    pairs_with:
+    - 페녹시에탄올(phenoxyethanol)
+    cautions: 상한 낮음·지역 규제 확인.
+    newbie_tip: 곰팡이 보강용 소량.
+    needs_verification: true
+    sources: []
+  - id: vitamin-e-acetate
+    category: 산화방지제
+    summary: 안정적인 비타민E 유도체(토코페릴아세테이트)
+    what: 토코페릴아세테이트. 토코페롤보다 안정한 유도체.
+    why: 피부 컨디셔닝·표기용(제형 산패 방지력은 토코페롤보다 약).
+    typical_percent: 0.1~1%
+    phase: 유상
+    cautions: '''제형 산패 방지''는 순수 토코페롤이 더 유효.'
+    substitutes:
+    - 토코페롤(tocopherol)
+    newbie_tip: 라벨 소구엔 흔하나 산패방지는 토코페롤로.
+    needs_verification: true
+    sources: []
+  - id: rosemary-extract
+    category: 산화방지제
+    summary: 천연 산화방지 로즈마리 추출물
+    what: 로즈마리 잎 추출물(로즈마리닉산 등). 오일 산패 지연.
+    why: 오일·버터 산패 방지(천연).
+    typical_percent: 0.05~0.5%
+    phase: 유상
+    pairs_with:
+    - 토코페롤(tocopherol)
+    cautions: 향·색 부여 가능. 표준화 제품 사용.
+    newbie_tip: 토코페롤과 함께 천연 산화방지 조합.
+    needs_verification: true
+    sources: []
+  - id: ferulic-acid
+    category: 산화방지제
+    summary: 비타민C·E 항산화를 돕는 페룰산
+    what: 페룰릭애씨드. 항산화, 비타민C/E 안정·시너지.
+    why: 항산화 세럼 소구, C+E 안정.
+    typical_percent: 0.5~1%
+    phase: 수상/용해 주의
+    pairs_with:
+    - 아스코르빅애씨드(ascorbic-acid)
+    cautions: 용해·안정 까다로움, pH 관리.
+    newbie_tip: 비타민C 세럼의 단짝.
+    needs_verification: true
+    sources: []
+  - id: citric-acid
+    category: pH조절제
+    summary: pH를 낮추는 대표 산(구연산)
+    what: 시트릭애씨드. 흔한 pH 하강제·킬레이트 보조.
+    why: 제형 pH를 목표로 낮춤.
+    typical_percent: 0.05~0.5% (조절량)
+    phase: 수상(후 미세조정)
+    cautions: 과량 시 급격한 pH 변화 — 소량씩. 버퍼 고려.
+    substitutes:
+    - 락틱애씨드(lactic-acid)
+    newbie_tip: pH 낮출 때 조금씩 적정.
+    needs_verification: true
+    sources: []
+  - id: lactic-acid
+    category: pH조절제
+    summary: pH 조절 겸 각질·보습의 AHA
+    what: 락틱애씨드. pH 하강 + 저농도 보습/각질.
+    why: pH 조절, AHA 기능.
+    typical_percent: 0.05~0.5% (pH), 각질은 더 높게
+    phase: 수상
+    cautions: 각질 농도에선 자극·광민감 — 표방·규정 주의.
+    substitutes:
+    - 시트릭애씨드(citric-acid)
+    newbie_tip: pH도 낮추고 순한 각질도.
+    needs_verification: true
+    sources: []
+  - id: triethanolamine
+    category: pH조절제
+    summary: 카보머 중화용 알칼리(TEA)
+    what: 트라이에탄올아민. 카보머 등 산성 폴리머 중화.
+    why: 젤 형성·pH 상승.
+    typical_percent: 0.1~1% (중화량)
+    phase: 수상
+    cautions: 니트로사민 우려로 회피 브랜드 있음 — 대체(아르기닌 등) 고려.
+    substitutes:
+    - 소듐하이드록사이드(sodium-hydroxide)
+    newbie_tip: 카보머 젤 만들 때. 대체제도 검토.
+    needs_verification: true
+    sources: []
+  - id: sodium-hydroxide
+    category: 비누화제
+    summary: 강알칼리 pH 상승·비누화제(가성소다)
+    what: 소듐하이드록사이드(lye). 비누화·pH 상승.
+    why: 비누 제조, 폴리머 중화·pH.
+    typical_percent: 미량(중화), 비누는 계산량
+    phase: 수상
+    cautions: 부식성 — 보호구·주의. 반드시 희석·계산.
+    substitutes:
+    - 포타슘하이드록사이드
+    newbie_tip: 비누엔 필수지만 취급 위험. 정확 계량.
+    needs_verification: true
+    sources: []
+  - id: disodium-edta
+    category: pH조절제
+    summary: 금속이온을 잡는 킬레이트제(EDTA)
+    what: 다이소듐이디티에이. 금속이온 봉쇄로 안정·방부 보조.
+    why: 산패·변색 방지, 방부력·거품 보조.
+    typical_percent: 0.05~0.2%
+    phase: 수상
+    cautions: 생분해성 논쟁 — 대체(소듐피테이트 등) 고려.
+    substitutes:
+    - 소듐피테이트
+    - 소듐글루코네이트
+    newbie_tip: 안정성 보험. 아주 소량.
+    needs_verification: true
+    sources: []
+  - id: sodium-lactate
+    category: pH조절제
+    summary: 보습 겸 완충의 젖산소금
+    what: 소듐락테이트. NMF 성분·완충·보습.
+    why: 보습, pH 완충, 비누 경도.
+    typical_percent: 0.5~3%
+    phase: 수상
+    cautions: 고농도 광민감 보고 — 리브온 농도 유의.
+    substitutes:
+    - 소듐PCA(sodium-pca)
+    newbie_tip: 보습+완충 이중 역할.
+    needs_verification: true
+    sources: []
+  - id: allantoin
+    category: 진정
+    summary: 진정·각질 유연의 순한 활성
+    what: 알란토인. 순한 진정·피부 컨디셔닝.
+    why: 진정 소구, 장벽 편안.
+    typical_percent: 0.1~0.5%
+    phase: 수상
+    cautions: 용해도 낮음 — 과량 시 재결정.
+    substitutes:
+    - 판테놀(panthenol)
+    newbie_tip: 순하고 무난한 진정. 소량.
+    needs_verification: true
+    sources: []
+  - id: centella-extract
+    category: 진정
+    summary: 병풀(시카) 진정 추출물
+    what: 센텔라아시아티카 추출물. 시카 소구.
+    why: 진정·장벽 소구, 민감.
+    typical_percent: 1~5% (추출물)
+    phase: 수상
+    cautions: 표준화·마데카소사이드 함량 확인.
+    substitutes:
+    - 마데카소사이드(madecassoside)
+    newbie_tip: '''시카'' 마케팅의 핵심 원료.'
+    needs_verification: true
+    sources: []
+  - id: madecassoside
+    category: 활성/기능성
+    summary: 센텔라 유효성분 마데카소사이드
+    what: 마데카소사이드. 병풀 트라이터페노이드 단일 성분.
+    why: 진정·장벽 소구(고순도).
+    typical_percent: 0.1~1%
+    phase: 수상
+    cautions: 단가 높음. 효능 표방은 규정 확인.
+    substitutes:
+    - 센텔라추출물(centella-extract)
+    newbie_tip: 시카를 고순도로 소구할 때.
+    needs_verification: true
+    sources: []
+  - id: beta-glucan
+    category: 진정
+    summary: 보습·진정의 베타글루칸
+    what: 베타글루칸(귀리/효모). 보습막·진정 소구.
+    why: 진정·보습, 순함.
+    typical_percent: 0.1~1%
+    phase: 수상
+    cautions: 점도 높음 — 처방 점도 고려.
+    substitutes:
+    - 판테놀(panthenol)
+    newbie_tip: 순한 보습+진정 부스터.
+    needs_verification: true
+    sources: []
+  - id: adenosine
+    category: 활성/기능성
+    summary: 주름개선 고시 기능성 성분(아데노신)
+    what: 아데노신. 국내 주름개선 기능성 고시 원료.
+    why: 주름개선 기능성(고시 농도).
+    typical_percent: 0.04% (국내 고시)
+    phase: 수상
+    cautions: 기능성 표방은 고시 농도·심사/보고 필요 — 임의 표방 금지.
+    substitutes:
+    - 레티놀(retinol)
+    newbie_tip: 기능성 주장하려면 고시 농도·절차 준수.
+    needs_verification: true
+    sources: []
+  - id: ascorbic-acid
+    category: 활성/기능성
+    summary: 순수 비타민C(강력하나 불안정)
+    what: 아스코르빅애씨드(L-). 항산화·미백 소구, 불안정.
+    why: 항산화·톤 소구.
+    typical_percent: 5~20%
+    phase: 수상(저pH·무수 설계)
+    cautions: 산화·변색 빠름, 저pH 자극 — C+E+페룰산·저pH·불투명 용기.
+    substitutes:
+    - 아스코빌글루코사이드(ascorbyl-glucoside)
+    newbie_tip: 효과 크나 잘 변한다. 안정 설계 필수.
+    needs_verification: true
+    sources: []
+  - id: ascorbyl-glucoside
+    category: 활성/기능성
+    summary: 안정한 비타민C 유도체
+    what: 아스코빌글루코사이드. 안정적 비타민C 유도체.
+    why: 순한 톤·항산화 소구, 안정.
+    typical_percent: 2~5%
+    phase: 수상
+    cautions: 효소 전환 필요·즉효성은 낮음. 표방 규정 확인.
+    substitutes:
+    - 소듐아스코빌포스페이트(sodium-ascorbyl-phosphate)
+    newbie_tip: 입문용 안정 비타민C.
+    needs_verification: true
+    sources: []
+  - id: sodium-ascorbyl-phosphate
+    category: 활성/기능성
+    summary: 안정한 비타민C 인산염(SAP)
+    what: 소듐아스코빌포스페이트. 안정 비타민C 유도체.
+    why: 항산화·트러블 소구, 안정.
+    typical_percent: 1~3%
+    phase: 수상
+    cautions: 금속이온·pH 영향 — EDTA·pH 관리.
+    substitutes:
+    - 아스코빌글루코사이드(ascorbyl-glucoside)
+    newbie_tip: 안정적이라 다루기 쉬움.
+    needs_verification: true
+    sources: []
+  - id: retinol
+    category: 활성/기능성
+    summary: 주름개선 대표 성분(레티놀)
+    what: 레티놀. 비타민A, 국내 주름개선 기능성 고시.
+    why: 주름·결 소구(고시 농도·안정 필요).
+    typical_percent: 0.04~0.3% (순도·고시 확인)
+    phase: 유상/캡슐·무수 설계
+    cautions: 빛·산소·열에 매우 불안정, 자극·광민감. 고시 절차·경고 표기.
+    substitutes:
+    - 바쿠치올(bakuchiol)
+    newbie_tip: 효과·규제 모두 까다로움 — 안정화·표기 철저.
+    needs_verification: true
+    sources: []
+  - id: bakuchiol
+    category: 활성/기능성
+    summary: 레티놀 대안 식물 소구 성분(바쿠치올)
+    what: 바쿠치올. 식물 유래, '순한 레티놀 대안' 소구.
+    why: 결·톤 소구, 안정적.
+    typical_percent: 0.5~2%
+    phase: 유상/수상 분산
+    cautions: 기능성 고시 성분 아님 — 효능 표방 주의.
+    substitutes:
+    - 레티놀(retinol)
+    newbie_tip: 레티놀 자극이 부담이면 대안 소구.
+    needs_verification: true
+    sources: []
+  - id: salicylic-acid
+    category: 활성/기능성
+    summary: 모공·각질용 BHA(살리실산)
+    what: 살리실릭애씨드. 지용성 BHA, 각질·피지.
+    why: 트러블·모공 소구.
+    typical_percent: 0.5~2% (규정 상한 확인)
+    phase: 용해 주의(알코올/글라이콜)
+    cautions: 상한·pH 규정, 임부 주의 표기. 자극.
+    substitutes:
+    - 글라이콜릭애씨드(glycolic-acid)
+    newbie_tip: 저농도부터. 상한·표기 확인 필수.
+    needs_verification: true
+    sources: []
+  - id: glycolic-acid
+    category: 활성/기능성
+    summary: 각질 케어용 대표 AHA(글라이콜산)
+    what: 글라이콜릭애씨드. 분자 작은 AHA, 각질.
+    why: 각질·톤 소구.
+    typical_percent: 2~10% (규정·pH 확인)
+    phase: 수상(pH 관리)
+    cautions: 저pH 자극·광민감 — 상한·pH·경고 표기.
+    substitutes:
+    - 락틱애씨드(lactic-acid)
+    newbie_tip: 입문은 저농도·높은 pH. 자외선 주의 안내.
+    needs_verification: true
+    sources: []
+  - id: arbutin
+    category: 활성/기능성
+    summary: 미백 소구 성분(알부틴)
+    what: 알파/베타 알부틴. 미백 소구(하이드로퀴논 유도).
+    why: 톤·미백 소구.
+    typical_percent: 1~2%
+    phase: 수상
+    cautions: 미백 효능 표방은 규정 준수. 빛·열 변색.
+    substitutes:
+    - 나이아신아마이드(niacinamide)
+    newbie_tip: 미백은 표방 규정을 반드시 확인.
+    needs_verification: true
+    sources: []
+  - id: tranexamic-acid
+    category: 활성/기능성
+    summary: 톤·색소 소구 성분(트라넥삼산)
+    what: 트라넥사믹애씨드. 톤·색소 균일 소구.
+    why: 톤 케어 소구.
+    typical_percent: 0.5~3%
+    phase: 수상
+    cautions: 효능 표방 규정 확인.
+    substitutes:
+    - 나이아신아마이드(niacinamide)
+    newbie_tip: 최근 인기 톤 케어 성분.
+    needs_verification: true
+    sources: []
+  - id: ceramide-np
+    category: 활성/기능성
+    summary: 장벽 핵심 지질 세라마이드
+    what: 세라마이드NP. 피부 장벽 지질.
+    why: 장벽·보습 소구.
+    typical_percent: 0.05~0.5%
+    phase: 유상(용해·분산 주의)
+    pairs_with:
+    - 콜레스테롤
+    - 지방산
+    cautions: 용해 까다로움 — 가열·보조 지질·리포좀.
+    newbie_tip: 장벽 소구엔 강력하나 배합 난이도.
+    needs_verification: true
+    sources: []
+  - id: palmitoyl-tripeptide
+    category: 활성/기능성
+    summary: 안티에이징 소구 펩타이드
+    what: 팔미토일트라이펩타이드류. 결·탄력 소구 펩타이드.
+    why: 안티에이징 소구.
+    typical_percent: 1~5% (원액 희석 기준)
+    phase: 수상/냉각첨가
+    cautions: 열·pH 민감, 고가. 효능 표방 주의.
+    substitutes:
+    - 아데노신(adenosine)
+    newbie_tip: 프리미엄 소구용. 냉각 후 소량.
+    needs_verification: true
+    sources: []
+  - id: green-tea-extract
+    category: 진정
+    summary: 항산화·진정 소구 녹차 추출물
+    what: 카멜리아시넨시스(녹차) 추출물. 폴리페놀·항산화.
+    why: 진정·항산화 소구.
+    typical_percent: 0.5~5% (추출물)
+    phase: 수상
+    cautions: 변색·표준화 확인. 방부 유의.
+    substitutes:
+    - 로즈마리추출물(rosemary-extract)
+    newbie_tip: 친숙한 항산화 소구 원료.
+    needs_verification: true
+    sources: []
+  - id: zinc-pca
+    category: 피지조절
+    summary: 피지·트러블 소구 아연 성분
+    what: 징크PCA. 피지조절·트러블 소구.
+    why: 피지·번들거림 소구.
+    typical_percent: 0.1~1%
+    phase: 수상
+    cautions: 효능 표방 규정. 배합 상용성 확인.
+    substitutes:
+    - 나이아신아마이드(niacinamide)
+    newbie_tip: 지성·트러블 라인 소구 성분.
+    needs_verification: true
+    sources: []
+  - id: pentylene-glycol
+    category: 보습
+    summary: 보습 겸 방부 보조 다이올
+    what: 펜틸렌글라이콜. 보습·용매·방부 보조.
+    why: 보습, 활성 용해, 방부력 보강.
+    typical_percent: 1~5%
+    phase: 수상
+    cautions: 단독 완전 방부 아님.
+    substitutes:
+    - 1,2-헥산다이올(hexanediol)
+    newbie_tip: '''무보존제 소구''의 다이올.'
+    needs_verification: true
+    sources: []
+  - id: dpg
+    category: 보습제
+    summary: 가벼운 보습·용매 다이올(DPG)
+    what: 다이프로필렌글라이콜. 가벼운 보습·향 용매.
+    why: 보습, 향·활성 캐리어.
+    typical_percent: 2~10%
+    phase: 수상
+    cautions: 개인차 자극 가능성.
+    substitutes:
+    - 프로판다이올(propanediol)
+    newbie_tip: 향·활성 캐리어로 흔함.
+    needs_verification: true
+    sources: []
+  - id: cyclodextrin
+    category: 소취제
+    summary: 냄새분자를 가두는 사이클로덱스트린
+    what: 사이클로덱스트린. 고리형 당, 냄새·휘발분자 포집.
+    why: 소취·자극원료 마스킹.
+    typical_percent: 0.5~3%
+    phase: 수상
+    cautions: 포집 용량 한계. 배합 상용성.
+    newbie_tip: 데오·소취 소구에.
+    needs_verification: true
+    sources: []
+  - id: ethanol
+    category: 용매
+    summary: 가용화·청량·건조를 주는 알코올
+    what: 에탄올(변성/무수). 용매·가용화·청량감·휘발.
+    why: 향·활성 용해, 산뜻·빠른 건조, 토너.
+    typical_percent: 1~30%
+    phase: 수상/후첨
+    cautions: 고농도 건조·자극, 인화성. '무알코올' 소구와 상충.
+    substitutes:
+    - 프로판다이올(propanediol)
+    newbie_tip: 청량감엔 좋지만 건조·콘셉트 상충 주의.
+    needs_verification: true
+    sources: []
+  - id: fragrance
+    category: 착향제
+    summary: 향을 담당하는 조합 향료(파르푸/향료)
+    what: 프래그런스(Parfum). 다성분 조합 향료.
+    why: 제품 향·경험 설계.
+    typical_percent: 0.1~1% (리브온 낮게)
+    phase: 냉각첨가
+    cautions: 표시대상 알러젠 포함 가능 — 함량 따라 라벨. 자극·변색.
+    substitutes:
+    - 무향 설계
+    - 에센셜오일 블렌드
+    newbie_tip: 향은 경험의 핵심이나 알러젠·자극 관리.
+    needs_verification: true
+    sources: []
+  - id: peppermint-eo
+    category: 에센셜오일
+    summary: 청량감을 주는 페퍼민트 오일
+    what: 멘타피페리타 오일. 멘톨로 시원함.
+    why: 쿨링·향 소구(발·두피 등).
+    typical_percent: 0.1~0.5%
+    phase: 냉각첨가
+    cautions: 멘톨 자극·점막·영유아 주의. 리브온 저농도.
+    substitutes:
+    - 멘톨
+    newbie_tip: 쿨링 소구에 소량. 민감부위 주의.
+    needs_verification: true
+    sources: []
+  - id: tea-tree-eo
+    category: 에센셜오일
+    summary: 트러블 소구 티트리 오일
+    what: 멜라루카(티트리) 오일. 향·트러블 소구.
+    why: 트러블 라인 향·소구.
+    typical_percent: 0.1~1%
+    phase: 냉각첨가
+    cautions: 산화 시 감작↑ — 신선·저농도. 효능 표방 주의.
+    substitutes:
+    - 로즈마리추출물(rosemary-extract)
+    newbie_tip: '''트러블'' 소구에 소량. 산화 관리.'
+    needs_verification: true
+    sources: []
+  - id: geranium-eo
+    category: 에센셜오일
+    summary: 플로럴 향의 제라늄 오일
+    what: 펠라고늄(제라늄) 오일. 로즈 톤 플로럴.
+    why: 천연 플로럴 향 블렌드.
+    typical_percent: 0.1~0.5%
+    phase: 냉각첨가
+    cautions: 제라니올 등 알러젠 — 함량·표기.
+    substitutes:
+    - 라벤더오일(lavender-eo)
+    newbie_tip: 천연 향 블렌드의 플로럴 축.
+    needs_verification: true
+    sources: []
+  - id: titanium-dioxide
+    category: 색소
+    summary: 백색·자외선 산란의 이산화티탄
+    what: 티타늄다이옥사이드. 백색 안료·무기 자외선 산란.
+    why: 백탁·커버, 무기 선케어(산란).
+    typical_percent: 1~25% (용도별)
+    phase: 유상/분산
+    cautions: 나노·흡입(스프레이) 이슈, 선케어는 기능성/시험 필요.
+    substitutes:
+    - 징크옥사이드
+    newbie_tip: 백색·무기선케어 원료. 규제·시험 주의.
+    needs_verification: true
+    sources: []
+  - id: iron-oxides
+    category: 색소
+    summary: 기본 색을 내는 산화철(적·황·흑)
+    what: 아이언옥사이드. 무기 색소(적·황·흑 조합).
+    why: 메이크업·톤 색상.
+    typical_percent: 0.1~10% (용도별)
+    phase: 분산상
+    cautions: 분산·색 재현 관리. 화장품 등급·중금속 규격.
+    substitutes:
+    - 미카(mica)
+    newbie_tip: BB/톤업 색조의 기본 색소.
+    needs_verification: true
+    sources: []
+  - id: mica
+    category: 색소
+    summary: 펄·광채를 주는 미네랄 미카
+    what: 미카(운모). 펄·시머 효과 광물.
+    why: 광채·펄 메이크업, 코팅 펄.
+    typical_percent: 1~20%
+    phase: 분산상
+    cautions: 채굴 윤리·화장품 등급 확인.
+    substitutes:
+    - 합성 플루오르플로고파이트
+    newbie_tip: 반짝임·펄 소구에.
+    needs_verification: true
+    sources: []
