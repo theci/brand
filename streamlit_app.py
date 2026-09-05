@@ -206,6 +206,7 @@ SECTIONS = {
     ],
     "STEP 2 · 원료·재료": [
         st.Page("pages/5_원료.py", title="원료", icon="📦"),
+        st.Page("pages/30_원료도감.py", title="원료 도감", icon="📚"),
         st.Page("pages/15_포장재.py", title="포장재", icon="📦"),
         st.Page("pages/10_재고.py", title="재고", icon="📊"),
     ],

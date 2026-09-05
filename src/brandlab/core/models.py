@@ -150,6 +150,61 @@ class IngredientMaster(BaseModel):
 
 
 # ---------------------------------------------------------------------------
+# 원료 도감 / 백과 (data/ingredient_codex.yaml)
+# ---------------------------------------------------------------------------
+class CodexEntry(BaseModel):
+    """원료 1종의 '사람이 읽는' 백과 항목.
+
+    id로 Ingredient 마스터와 연결된다. 계산용 정형 데이터(단가·HLB·상한 등)는
+    ingredients.yaml에 두고, 이 파일은 '이게 뭔지·왜 넣는지·어떻게 쓰는지' 같은
+    학습용 지식만 담는다. 궁금한 원료부터 하나씩 채워 나가는 성격(전 원료 강제 아님).
+
+    ※ 안전·함량·규제성 서술은 needs_verification=True로 두고 UI에서 '검증 필요'로
+      표시한다. 실제 공급처 CoA·문헌으로 확인하기 전에는 사실로 단정하지 않는다.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    id: str = Field(min_length=1)  # ingredients.yaml의 원료 id
+    summary: str = Field(min_length=1)  # 한 줄 정의
+    what: str | None = None  # 이게 뭔가 / 유래
+    why: str | None = None  # 왜 넣나 / 기능
+    feel: str | None = None  # 사용감·발림
+    typical_percent: str | None = None  # 대표 사용 범위(예: "3~10%")
+    phase: str | None = None  # 투입 상/시점(예: "유상, 가열 단계")
+    pairs_with: list[str] = Field(default_factory=list)  # 궁합 좋은 원료/조합
+    avoid_with: list[str] = Field(default_factory=list)  # 피할 조합
+    cautions: str | None = None  # 주의(산패·pH·변색·자극 등)
+    substitutes: list[str] = Field(default_factory=list)  # 대체 원료
+    newbie_tip: str | None = None  # 초보 팁
+    needs_verification: bool = True  # 안전·규제성 서술 검증 필요 표시
+    sources: list[str] = Field(default_factory=list)  # 근거 URL/문헌
+
+
+class IngredientCodex(BaseModel):
+    """ingredient_codex.yaml 최상위 구조."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    entries: list[CodexEntry] = Field(default_factory=list)
+
+    @model_validator(mode="after")
+    def _unique_ids(self) -> "IngredientCodex":
+        seen: set[str] = set()
+        dups: set[str] = set()
+        for e in self.entries:
+            if e.id in seen:
+                dups.add(e.id)
+            seen.add(e.id)
+        if dups:
+            raise ValueError(f"도감 id가 중복되었습니다: {sorted(dups)}")
+        return self
+
+    def index(self) -> dict[str, CodexEntry]:
+        return {e.id: e for e in self.entries}
+
+
+# ---------------------------------------------------------------------------
 # 패키지 마스터 (data/packaging.yaml)
 # ---------------------------------------------------------------------------
 class Packaging(BaseModel):

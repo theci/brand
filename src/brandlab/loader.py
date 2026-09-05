@@ -27,6 +27,7 @@ from .models import (
     Formula,
     FoodAllergenList,
     Fragrance,
+    IngredientCodex,
     IngredientMaster,
     Inventory,
     PersonaBook,
@@ -82,6 +83,14 @@ def load_ingredients(path: Path | str = DATA_DIR / "ingredients.yaml") -> Ingred
 
 def load_packaging(path: Path | str = DATA_DIR / "packaging.yaml") -> PackagingMaster:
     return PackagingMaster.model_validate(_read_yaml(Path(path)))
+
+
+def load_codex(path: Path | str = DATA_DIR / "ingredient_codex.yaml") -> IngredientCodex:
+    """원료 도감(백과)을 로드한다. 파일이 없으면 빈 도감(선택 데이터)."""
+    p = Path(path)
+    if not p.exists():
+        return IngredientCodex()
+    return IngredientCodex.model_validate(_read_yaml(p))
 
 
 def load_config(path: Path | str = DATA_DIR / "config.yaml") -> Config:
@@ -485,6 +494,7 @@ __all__ = [
     "ReferenceIntegrityError",
     "load_ingredients",
     "load_packaging",
+    "load_codex",
     "load_config",
     "load_inventory",
     "load_brand_core",

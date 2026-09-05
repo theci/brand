@@ -1,0 +1,321 @@
+# 원료 도감 (백과) — 사람이 읽는 학습용 지식
+#
+# 각 항목은 id로 ingredients.yaml(계산용 마스터)과 연결된다.
+# 계산에 쓰는 정형 데이터(단가·HLB·상한 등)는 ingredients.yaml에 있고,
+# 여기엔 '이게 뭔지·왜 넣는지·어떻게 쓰는지·조심할 점' 같은 학습용 지식만 담는다.
+# 궁금한 원료부터 하나씩 채워 나가면 된다(전 원료 강제 아님).
+#
+# ※ 아래 사용 범위(typical_percent)·주의(cautions)는 일반적으로 통용되는 값을
+#   예시로 적은 것이며 needs_verification: true 로 표시된다. 실제 배합 전
+#   공급처 CoA/기술자료(TDS)·문헌으로 반드시 확인할 것. UI에서 '검증 필요'로 표시된다.
+
+entries:
+  # --- 보습제 (휴멕턴트) ---
+  - id: glycerin
+    summary: 가장 기본적인 수분 끌어당김(휴멕턴트) 보습제
+    what: 글리세롤. 식물성 유지에서 얻는 무색·점성 액체로 화장품 보습의 표준 원료.
+    why: 공기·하부 각질층의 수분을 끌어당겨 촉촉함을 유지시킨다. 저렴하고 안정적이라 거의 모든 스킨케어에 들어간다.
+    feel: 소량은 산뜻하나 많이 넣으면 끈적임이 생긴다.
+    typical_percent: "3~10% (넘으면 끈적)"
+    phase: 수상. 물에 먼저 녹여 사용
+    pairs_with:
+      - 히알루론산(sodium-hyaluronate)과 병용해 다층 보습
+      - 판테놀(panthenol)
+    avoid_with: []
+    cautions: 고농도로 단독 사용 시 오히려 건조한 환경에서 피부 수분을 빼앗을 수 있어 유상(오일)과 함께 잠가주는 설계가 좋다.
+    substitutes:
+      - 프로판다이올(dpg)
+      - 부틸렌글라이콜
+    newbie_tip: 처음엔 정제수 다음으로 넣는 '기본 보습' 정도로 이해하면 된다. 5% 근처에서 시작.
+    needs_verification: true
+    sources: []
+
+  - id: sodium-hyaluronate
+    summary: 물을 대량으로 머금는 스타 보습 성분(히알루론산의 소금 형태)
+    what: 히알루론산나트륨. 히알루론산보다 안정적이고 침투가 쉬워 화장품엔 이 형태를 주로 쓴다.
+    why: 자기 무게의 수백 배 물을 머금어 피부 표면에 수분막을 형성한다. 마케팅에서 '히알루론산'으로 소구되는 성분.
+    feel: 매끈하고 촉촉. 마르며 당김이 느껴질 수 있어 오일·글리세린과 함께 쓴다.
+    typical_percent: "0.1~1% (분자량에 따라 다름)"
+    phase: 수상. 물에 천천히 뿌려 팽윤시킨 뒤 사용
+    pairs_with:
+      - 글리세린(glycerin)
+      - 판테놀(panthenol)
+    avoid_with: []
+    cautions: 가루가 뭉치기 쉬워 물에 조금씩 분산시켜야 한다. 저·고분자를 섞으면 표면·심층 보습을 함께 노릴 수 있다.
+    substitutes:
+      - 베타글루칸(beta-glucan)
+    newbie_tip: 아주 조금(0.2% 안팎)만 넣어도 느낌이 확 달라진다. 넣고 하루 방치해 완전히 녹은 뒤 판단.
+    needs_verification: true
+    sources: []
+
+  # --- 유화제 / 점증제 (제형의 뼈대) ---
+  - id: glyceryl-stearate-citrate
+    summary: 물과 기름을 섞어 로션·크림을 만드는 유화제(O/W)
+    what: 식물 유래 O/W(수중유형) 유화제. 순하고 사용감이 가벼워 데일리 로션에 적합.
+    why: 물(수상)과 오일(유상)은 원래 섞이지 않는데, 유화제가 둘 사이 경계를 안정화해 균일한 로션으로 만든다. 유화가 실패하면 층분리가 난다.
+    feel: 가볍고 산뜻한 마무리.
+    typical_percent: "2~5%"
+    phase: 유상에 넣어 함께 가열(70~75℃) 후 수상과 합쳐 유화
+    pairs_with:
+      - 세틸알코올(cetyl-alcohol)로 점도·안정성 보강
+      - 잔탄검(xanthan-gum)으로 유화 안정화
+    avoid_with: []
+    cautions: 수상·유상을 비슷한 온도(약 70~75℃)로 맞춰 섞어야 유화가 잘 된다. 온도가 어긋나면 분리 위험.
+    substitutes:
+      - 올리브 유래 유화제(olive-liquid)
+    newbie_tip: "'로션의 성패는 유화제 + 온도 + 교반'이라고 기억. 안정성 시험(45℃·동결융해)으로 분리 여부를 반드시 확인."
+    needs_verification: true
+    sources: []
+
+  - id: cetyl-alcohol
+    summary: 로션을 되직하게 만드는 지방 알코올(건조한 '알코올'과 다름)
+    what: 세틸알코올. 이름에 '알코올'이 붙지만 에탄올 같은 휘발성 알코올이 아니라 왁스질의 지방 알코올이라 피부를 말리지 않는다.
+    why: 제형에 점도와 바디감을 주고 유화를 안정화한다. 발림성을 부드럽게 만든다.
+    feel: 매끈하고 도톰한 사용감. 과하면 무겁고 밀림.
+    typical_percent: "1~4%"
+    phase: 유상. 가열해 녹인 뒤 유화
+    pairs_with:
+      - 유화제(glyceryl-stearate-citrate)
+      - 스테아릭애씨드(stearic-acid)
+    avoid_with: []
+    cautions: 소비자가 '알코올=건조'로 오해하기 쉬우니 라벨·상세페이지에서 지방 알코올임을 설명하면 좋다.
+    substitutes:
+      - 스테아릴알코올
+      - 세테아릴알코올
+    newbie_tip: 로션이 너무 묽으면 0.5%씩 올려가며 점도를 잡는 대표 원료.
+    needs_verification: true
+    sources: []
+
+  - id: xanthan-gum
+    summary: 소량으로 점도를 잡는 천연 검(증점제·유화 안정제)
+    what: 잔탄검. 발효로 얻는 다당류 점증제. 아주 조금으로도 큰 점도 변화를 준다.
+    why: 수상의 점도를 높여 층분리를 막고 사용감을 잡는다. 유화 보조로도 쓴다.
+    feel: 과하면 미끈거리고 실 늘어짐(스트링잉)이 생긴다.
+    typical_percent: "0.1~0.5%"
+    phase: 수상. 글리세린에 미리 분산시킨 뒤 물에 풀면 뭉침이 적다
+    pairs_with:
+      - 글리세린(glycerin)에 선분산
+    avoid_with: []
+    cautions: 물에 바로 넣으면 덩어리(피시아이)가 생긴다. 반드시 글리세린 등에 먼저 분산.
+    substitutes:
+      - 카보머
+      - 하이드록시에틸셀룰로오스
+    newbie_tip: "'0.2%도 많다' 싶을 만큼 소량. 저울 정밀도가 중요."
+    needs_verification: true
+    sources: []
+
+  # --- 에몰리언트 (오일) ---
+  - id: mct
+    summary: 산뜻하고 산패에 강한 범용 베이스 오일
+    what: 카프릴릭/카프릭 트리글리세라이드. 코코넛/팜에서 얻는 가벼운 에스테르 오일.
+    why: 피부에 유분감을 주되 무겁지 않아 로션의 기본 오일로 널리 쓴다. 산패에 강해 보관이 편하다.
+    feel: 가볍고 매끈. 번들거림이 적다.
+    typical_percent: "3~15%"
+    phase: 유상. 가열해 다른 유상과 함께 유화
+    pairs_with:
+      - 유화제(glyceryl-stearate-citrate)
+      - 호호바오일(jojoba-oil)
+    avoid_with: []
+    cautions: C11 미만 지방산이라 말라세지아(곰팡이)의 먹이가 아니라 알려져 있어 얼굴에도 무난한 편.
+    substitutes:
+      - 스쿠알란(squalane)
+      - 호호바오일(jojoba-oil)
+    newbie_tip: 처음엔 저렴한 MCT로 제형 감을 잡고, 이후 스쿠알란·호호바로 업그레이드하는 흐름이 흔하다.
+    needs_verification: true
+    sources: []
+
+  # --- 보존제 (안전의 핵심) ---
+  - id: phenoxyethanol
+    summary: 물 든 화장품의 부패를 막는 대표 보존제
+    what: 페녹시에탄올. 광범위 항균력을 가진 대표적 보존제로 많은 제품에 단독·병용으로 쓰인다.
+    why: 물이 들어간 제형은 미생물이 반드시 번식하므로 보존제 없이는 안전한 제품이 될 수 없다. 부패는 눈에 안 보여도 진행된다.
+    feel: 사용감 영향은 거의 없다.
+    typical_percent: "0.5~1.0% (규정 상한 확인 필수)"
+    phase: 후첨. 유화가 끝나 40℃ 아래로 식은 뒤 투입(열에 약함)
+    pairs_with:
+      - 에틸헥실글리세린 등과 병용해 항균 스펙트럼 보강
+    avoid_with: []
+    cautions: 나라별 사용 상한이 정해져 있으니 규제판정에서 반드시 확인. 뜨거울 때 넣으면 효과가 떨어질 수 있어 냉각 후 투입.
+    substitutes:
+      - 1,2-헥산다이올(hexanediol) 계열 다가알코올(보존 보조)
+      - 펜틸렌글라이콜(pentylene-glycol)
+    newbie_tip: "'물이 들어가면 보존제는 선택이 아니라 필수'라고 기억. 자가 사용이라도 최소 보존은 넣는 게 안전."
+    needs_verification: true
+    sources: []
+
+  # --- 기능성 (액티브) ---
+  - id: niacinamide
+    summary: 진정·톤 케어로 인기 많은 대표 기능성 성분(비타민B3)
+    what: 나이아신아마이드. 물에 잘 녹는 안정적인 비타민B3 유도체.
+    why: 피부 장벽·피지·톤 관련해 폭넓게 소구되어 마케팅 소구점이 되는 액티브. 안정적이라 초보가 다루기 쉽다.
+    feel: 사용감 부담이 거의 없다.
+    typical_percent: "2~5% (고농도 시 자극 보고 있음)"
+    phase: 수상. 물에 녹여 사용
+    pairs_with:
+      - 판테놀(panthenol)
+      - 알란토인(allantoin)
+    avoid_with:
+      - 강산성(낮은 pH) 환경에서 장기 방치 시 분해 가능 — pH 관리
+    cautions: 과량(예 10%)에서 홍조·자극 보고가 있어 무리한 고농도는 피한다. 효능 표방은 표시·광고 규정 확인 필요.
+    substitutes:
+      - 판테놀(panthenol)
+    newbie_tip: 효과보다 '자극 없이 무난하게' 넣기 좋은 입문 액티브. 2%부터 시작해 반응을 본다.
+    needs_verification: true
+    sources: []
+
+  # ===========================================================================
+  # 산뜻보습로션(daily-lotion) 처방 원료 — 시나리오 처방에 실제로 들어가는 나머지
+  # ===========================================================================
+
+  # --- 용매 ---
+  - id: water
+    summary: 로션의 가장 큰 비중을 차지하는 수상(水相) 베이스
+    what: 정제수(Aqua). 이온·불순물을 제거한 물로, 화장품엔 수돗물이 아니라 정제수를 쓴다.
+    why: 보습·기능 성분을 녹이는 용매이자 로션 부피의 대부분(예 70~80%)을 차지한다. 전성분표 맨 앞에 오는 원료.
+    feel: 그 자체로는 사용감이 없고, 함량이 높을수록 가볍고 산뜻해진다.
+    typical_percent: "잔량(100%에서 나머지). 로션은 보통 65~80%"
+    phase: 수상(A). 다른 수용성 원료를 여기에 녹인다
+    pairs_with:
+      - 글리세린·히알루론산 등 수용성 보습제
+    avoid_with: []
+    cautions: 물이 들어가면 미생물이 반드시 번식하므로 보존제(phenoxyethanol 등)가 필수다. 정제수/멸균 관리가 위생의 출발점.
+    substitutes:
+      - 정제수 대신 꽃수(하이드로솔)를 일부 대체하기도 함(보존 부담↑)
+    newbie_tip: 처방을 짤 때 물은 '100%에서 나머지를 채우는 값'으로 마지막에 계산한다.
+    needs_verification: true
+    sources: []
+
+  # --- 보습제 ---
+  - id: panthenol
+    summary: 보습에 '진정' 축을 더하는 프로비타민B5
+    what: 판테놀. 체내에서 판토텐산(비타민B5)으로 전환되는 수용성 활성 원료.
+    why: 수분 보습과 함께 진정·장벽 케어를 더해, '보습 하나'가 아닌 다축(多軸) 소구점을 만든다. 이 처방의 USP 축.
+    feel: 매끈하고 촉촉. 사용감 부담이 적다.
+    typical_percent: "0.5~5%"
+    phase: 수상(A). 물에 녹여 사용
+    pairs_with:
+      - 히알루론산(sodium-hyaluronate)
+      - 알란토인(allantoin)
+    avoid_with: []
+    cautions: 수용성이라 수상에 투입. 고온 장시간 가열은 피하는 편이 좋다.
+    substitutes:
+      - 알란토인(allantoin)
+      - 베타글루칸(beta-glucan)
+    newbie_tip: "'보습+진정'처럼 축을 하나 더 얹고 싶을 때 1% 안팎으로 넣기 좋은 무난한 원료."
+    needs_verification: true
+    sources: []
+
+  - id: hexanediol
+    summary: 보습 겸 방부력을 보강하는 다가알코올(1,2-헥산다이올)
+    what: 1,2-헥산다이올. 보습성이 있는 글라이콜류로, 자체 항균 보조 효과가 있어 보존 설계에 자주 쓰인다.
+    why: 페녹시에탄올 같은 주 보존제와 함께 넣어 방부력을 높이고, 동시에 보습감을 준다. '보존 보조'로 이해하면 된다.
+    feel: 가볍고 매끈. 소량은 사용감 영향이 적다.
+    typical_percent: "1~3%"
+    phase: 냉각 첨가(C)가 무난. 수상에도 섞임
+    pairs_with:
+      - 페녹시에탄올(phenoxyethanol)과 병용해 방부 스펙트럼 보강
+    avoid_with: []
+    cautions: 단독으로 완전한 방부를 보장하지는 않는다. 보존 설계는 챌린지 테스트로 검증하는 게 원칙.
+    substitutes:
+      - 펜틸렌글라이콜(pentylene-glycol)
+      - 카프릴릴글라이콜
+    newbie_tip: "'보존제를 세게 안 쓰고 싶다'면 이런 다가알코올로 보조하되, 물 든 제형엔 주 보존제도 함께."
+    needs_verification: true
+    sources: []
+
+  # --- 에몰리언트 (오일) ---
+  - id: jojoba-oil
+    summary: 피지와 닮아 겉돌지 않는 안정성 높은 액체 왁스
+    what: 호호바오일. 엄밀히는 오일이 아니라 왁스 에스테르 구조라 산화 안정성이 높다.
+    why: 사람 피지와 구조가 비슷해 흡수감이 자연스럽고 번들거림이 적다. 로션·페이스오일의 인기 유상.
+    feel: 가볍고 매끈, 유분감이 과하지 않다.
+    typical_percent: "2~10%"
+    phase: 유상(B). 가열해 유화
+    pairs_with:
+      - MCT(mct)
+      - 스쿠알란(squalane)
+    avoid_with: []
+    cautions: 상대적으로 산패에 강하지만 고온·직사광 보관은 피한다.
+    substitutes:
+      - 스쿠알란(squalane)
+      - MCT(mct)
+    newbie_tip: "'피부에 겉돌지 않는 오일감'을 원할 때 3% 안팎으로 넣기 좋은 무난한 선택."
+    needs_verification: true
+    sources: []
+
+  - id: squalane
+    summary: 무색·무취에 산화 안정성이 뛰어난 고급 에몰리언트
+    what: 스쿠알란. 피부에도 존재하는 스쿠알렌을 수소화해 안정화한 오일(요즘은 사탕수수 유래가 많다).
+    why: 매우 가볍고 산뜻하면서 보습감을 주고, 무취라 향 설계를 방해하지 않는다. 고급 제형의 단골 유상.
+    feel: 아주 가볍고 매끈, 번들거림이 거의 없다.
+    typical_percent: "2~10%"
+    phase: 유상(B). 가열해 유화
+    pairs_with:
+      - 호호바오일(jojoba-oil)
+      - 시어버터(shea-butter)로 리치함 보강
+    avoid_with: []
+    cautions: 단가가 오일 중 높은 편이라 원가에 유의. 스쿠알렌(en)과 혼동 주의 — 화장품엔 안정한 스쿠알란(ane).
+    substitutes:
+      - MCT(mct)
+      - 호호바오일(jojoba-oil)
+    newbie_tip: "'가벼운데 촉촉'을 원하면 1순위. MCT로 감 잡은 뒤 업그레이드 원료로 흔히 쓴다."
+    needs_verification: true
+    sources: []
+
+  # --- 버터 ---
+  - id: shea-butter
+    summary: 리치한 보습감과 바디를 주는 대표 식물성 버터
+    what: 시어버터. 시어나무 씨앗에서 얻는 상온 고체 유지. 여러 지방산·비타민을 함유.
+    why: 도톰하고 감싸는 보습감(오클루시브 성향)을 주고 제형에 바디를 더한다. 겨울·건성 제형의 단골.
+    feel: 풍부하고 부드럽지만 과하면 무겁고 답답할 수 있다.
+    typical_percent: "1~5% (로션), 크림은 더 높게"
+    phase: 유상(B). 가열해 완전히 녹여 유화
+    pairs_with:
+      - 스쿠알란(squalane)으로 무거움 상쇄
+      - 세틸알코올(cetyl-alcohol)
+    avoid_with: []
+    cautions: 과량 시 유화 안정성·발림성이 나빠질 수 있다. 정제/미정제에 따라 향·색이 다르다.
+    substitutes:
+      - 코코아버터(cocoa-butter)
+      - 망고버터
+    newbie_tip: "'산뜻'이 콘셉트면 소량(1~1.5%)만. 리치하게 가려면 늘리되 무거움을 오일로 조절."
+    needs_verification: true
+    sources: []
+
+  # --- 산화방지제 ---
+  - id: tocopherol
+    summary: 오일의 산패를 늦추는 천연 비타민E 산화방지제
+    what: 토코페롤(비타민E). 유상에 녹는 항산화 원료로, 제형의 오일이 산화(산패)되는 것을 늦춘다.
+    why: 피부 효능보다 '제형 보호(오일 산패 지연)' 목적이 크다. 오일·버터가 많은 처방일수록 유용.
+    feel: 사용감 영향은 거의 없다.
+    typical_percent: "0.1~1%"
+    phase: 냉각 첨가(C). 열·빛에 약하므로 식은 뒤 투입
+    pairs_with:
+      - 로즈마리추출물(rosemary-extract) 등 항산화 병용
+    avoid_with: []
+    cautions: 산화방지제(제형 산패 방지)와 보존제(미생물 방지)는 역할이 다르다 — 혼동 금지. 토코페롤은 방부가 아니다.
+    substitutes:
+      - 토코페릴아세테이트(vitamin-e-acetate)
+    newbie_tip: 오일이 들어간 처방이면 0.2~0.5% 넣어 산패를 늦추는 '보험' 정도로 생각.
+    needs_verification: true
+    sources: []
+
+  # --- 에센셜오일 (향) ---
+  - id: lavender-eo
+    summary: 은은한 향을 주는 대표 에센셜오일(향료·알러젠 주의)
+    what: 라벤더오일. 라벤더에서 얻는 정유로 향과 이미지(릴랙스)를 준다. 착향제(fragrance)로 분류.
+    why: 합성향 없이 자연스러운 향 콘셉트를 만들 때 쓴다. 다만 '천연=무조건 순함'은 아니다.
+    feel: 향 자체가 사용 경험을 좌우. 과하면 자극·두통 유발 가능.
+    typical_percent: "0.1~0.5% (얼굴·리브온은 낮게)"
+    phase: 냉각 첨가(C). 휘발·변질 방지를 위해 식은 뒤 투입
+    pairs_with:
+      - 소량으로 다른 향과 블렌딩
+    avoid_with:
+      - 고농도 사용(자극·감작 위험)
+    cautions: 리날룰·리모넨 등 표시대상 알러젠을 함유해 함량에 따라 라벨 표기 의무가 생긴다. 임산부·영유아·민감성은 특히 주의. 함량은 공급처 GC 성적서로 확인.
+    substitutes:
+      - 알러젠 프리 향료(합성 조합향)
+      - 무향 설계
+    newbie_tip: "'천연이라 안심'이 아니라 '천연도 알러젠·자극이 있다'가 정답. 리브온은 0.2% 안팎부터 보수적으로."
+    needs_verification: true
+    sources: []
