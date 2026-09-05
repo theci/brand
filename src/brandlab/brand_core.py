@@ -149,6 +149,8 @@ def asset_text(core: BrandCore, *, regulatory_forbidden: list[str] | None = None
         f"⑦ 비주얼: {' / '.join(visual_bits) or '(미작성)'}",
         f"⑧ 애용어: {', '.join(core.vocabulary) or '(없음)'}",
         f"⑧ 금지어(브랜드): {', '.join(core.forbidden_words) or '(없음)'}",
+        f"⑩ 차별점(우리 비법): {core.differentiation_note or '(미작성)'}",
+        f"   차별화 층: {', '.join(core.differentiators) or '(미선택)'}",
     ]
     if regulatory_forbidden:
         lines.append(f"⑧ 금지어(화장품법 규제): {', '.join(regulatory_forbidden)}")

@@ -1040,6 +1040,10 @@ class BrandCore(BaseModel):
     vocabulary: list[str] = Field(default_factory=list)  # ⑧ 애용어
     visual: BrandVisual = Field(default_factory=BrandVisual)  # ⑦
     one_liner: str | None = None  # ⑨ 한 줄 소개
+    # ⑩ 차별점 — 우리 제품의 문제해결 '비법'이 어느 층에 사는가.
+    #   신소재가 아니라 문제정의·처방설계·브랜드·니치 실행에서 차별화된다는 관점.
+    differentiators: list[str] = Field(default_factory=list)  # 선택한 차별화 층
+    differentiation_note: str | None = None  # 한 줄 요약("우리 비법은 ~")
 
 
 # ---------------------------------------------------------------------------

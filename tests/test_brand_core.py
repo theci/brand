@@ -59,13 +59,40 @@ def test_asset_text_sections():
     assert "미백" in txt  # 규제 금지어
 
 
+def test_asset_text_differentiation():
+    core = BrandCore(
+        brand_name="오브제",
+        differentiators=["처방 설계 — 같은 원료, 다른 사용감·컨셉 조합"],
+        differentiation_note="보습+진정 다축으로 산뜻 보습을 푼다",
+    )
+    txt = asset_text(core)
+    assert "차별점" in txt
+    assert "보습+진정 다축" in txt
+    assert "처방 설계" in txt
+
+
+def test_asset_text_differentiation_blank():
+    """차별점 미작성이어도 ⑩ 라인은 '(미작성)'으로 표시된다."""
+    txt = asset_text(BrandCore(brand_name="빈브랜드"))
+    assert "차별점" in txt
+    assert "(미선택)" in txt
+
+
 def test_save_load_roundtrip(tmp_path):
     path = tmp_path / "brand" / "core.yaml"
-    core = BrandCore(brand_name="테스트", persona="성분표 읽는 사람", evidence=["a", "b"])
+    core = BrandCore(
+        brand_name="테스트",
+        persona="성분표 읽는 사람",
+        evidence=["a", "b"],
+        differentiators=["문제 정의 — 좁은 타깃의 안 풀린 페인"],
+        differentiation_note="니치 페인 정조준",
+    )
     save_brand_core(core, path)
     loaded = load_brand_core(path)
     assert loaded.brand_name == "테스트"
     assert loaded.evidence == ["a", "b"]
+    assert loaded.differentiators == ["문제 정의 — 좁은 타깃의 안 풀린 페인"]
+    assert loaded.differentiation_note == "니치 페인 정조준"
 
 
 def test_load_missing_returns_empty(tmp_path):

@@ -126,6 +126,40 @@ evidence_text = st.text_area(
     "근거 목록 (한 줄에 하나)", key="core_evidence", height=120
 )
 
+# --- ⑩ 차별점 (문제해결 '비법'이 어느 층에 사는가) ---
+st.subheader("⑩ 차별점 — 우리의 문제해결 '비법'은 어느 층에 있나")
+st.caption(
+    "화장품 원료는 대부분 공개된 공용 팔레트라 누구나 같은 걸 산다. "
+    "1인 창업의 차별점은 신소재가 아니라 아래 네 층의 조합에서 나온다."
+)
+with st.expander("💡 왜 신소재가 아니라 '조합'인가 (읽고 고르기)"):
+    st.markdown(
+        "- **문제 정의** — 희귀 원료보다 *좁은 타깃의 안 풀린 페인*을 정확히 아는 것이 강하다.\n"
+        "- **처방 설계** — 같은 원료로 *다른 사용감·컨셉*을 만든다"
+        "(예: 글리세린 증량 대신 판테놀로 '진정' 축 추가 = 산뜻보습로션 USP).\n"
+        "- **브랜드·서사·신뢰** — 비율로 복제 안 되는 유일한 층(왜 만들었나·투명성·근거).\n"
+        "- **니치·실행·고객 친밀도** — 큰 브랜드가 무시하는 마이크로 세그먼트를 더 살뜰히.\n\n"
+        "⚠️ **함정:** '이 히어로 성분 하나면 팔린다'(마법의 원료)는 착각. "
+        "신소재는 남도 곧 사서 오래 못 가는 '양념'이지 해자가 아니다. "
+        "고른 층은 브랜드 자산 텍스트 ⑩에 담겨 마케팅 프롬프트로 이어진다."
+    )
+_DIFF_LAYERS = [
+    "문제 정의 — 좁은 타깃의 안 풀린 페인",
+    "처방 설계 — 같은 원료, 다른 사용감·컨셉 조합",
+    "브랜드·서사·신뢰 — 복제 안 되는 이유·근거",
+    "니치·실행·고객 친밀도 — 큰 브랜드가 무시하는 세그먼트",
+]
+_diff_default = [d for d in core.differentiators if d in _DIFF_LAYERS]
+differentiators = st.multiselect(
+    "✍️ 우리 차별점이 사는 층 (해당되는 것 모두 — 1~2개에 집중 권장)",
+    _DIFF_LAYERS, default=_diff_default, key="bc_diff",
+)
+differentiation_note = st.text_input(
+    "✍️ 한 줄 요약 — '우리 비법은 ~'",
+    value=core.differentiation_note or "", key="bc_diff_note",
+    placeholder="예: 산뜻 보습을 글리세린 증량이 아니라 '보습+진정 다축'으로 푼다",
+)
+
 # --- ⑥ 톤 / ⑧ 어휘 ---
 t1, t2, t3 = st.columns(3)
 tone = t1.text_input("✍️ ⑥ 톤 형용사(쉼표)", value=", ".join(core.tone_adjectives), key="bc_tone", placeholder="예: 담백한, 정직한")
@@ -170,6 +204,8 @@ current = BrandCore(
         texture=texture or None, photo_note=photo_note or None,
     ),
     one_liner=one_liner or None,
+    differentiators=differentiators,
+    differentiation_note=differentiation_note or None,
 )
 
 # --- 브랜딩 느낌 미리보기 (비용 투입 전 빠르게) ---
