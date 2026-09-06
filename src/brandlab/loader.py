@@ -49,6 +49,7 @@ from .models import (
     RegimeLabelItems,
     RestrictedList,
     StabilitySample,
+    TrialLog,
 )
 
 # 프로젝트 루트 및 주요 경로 (loader.py 기준: src/brandlab/loader.py → 루트는 3단계 위)
@@ -91,6 +92,14 @@ def load_codex(path: Path | str = DATA_DIR / "ingredient_codex.yaml") -> Ingredi
     if not p.exists():
         return IngredientCodex()
     return IngredientCodex.model_validate(_read_yaml(p))
+
+
+def load_trials(path: Path | str = EXPERIMENTS_DIR / "trials.yaml") -> TrialLog:
+    """빠른 시험 로그를 로드한다. 파일이 없으면 빈 로그(선택 데이터)."""
+    p = Path(path)
+    if not p.exists():
+        return TrialLog()
+    return TrialLog.model_validate(_read_yaml(p))
 
 
 def load_config(path: Path | str = DATA_DIR / "config.yaml") -> Config:
@@ -495,6 +504,7 @@ __all__ = [
     "load_ingredients",
     "load_packaging",
     "load_codex",
+    "load_trials",
     "load_config",
     "load_inventory",
     "load_brand_core",

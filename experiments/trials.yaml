@@ -1,0 +1,20 @@
+# 빠른 시험 로그 — 당일 판정 반복 기록 (접은 것도 데이터)
+# verdict: keeper(안정성 큐로) / 튜닝(한 축 조정) / 접기(폐기)
+trials:
+  - date: '2026-09-07'
+    base: daily-lotion v2
+    changed: 잔탄검 0.4→0.5 (점도 실험)
+    emulsion_ok: true
+    ph: 5.2
+    sensory: 약간 무거움
+    issues: 스트링잉(실 늘어짐)
+    verdict: 접기
+    next_idea: 잔탄 대신 스클레로튬검 시도
+  - date: '2026-09-07'
+    base: daily-lotion v2
+    changed: 글리세린 5→3 + 베타인 2 추가
+    emulsion_ok: true
+    ph: 5.1
+    sensory: 산뜻·덜 끈적
+    verdict: keeper
+    next_idea: 안정성 45C/RT 등록

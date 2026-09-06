@@ -219,6 +219,7 @@ SECTIONS = {
         st.Page("pages/9_배치기록.py", title="배치기록", icon="🧾"),
     ],
     "STEP 5 · 실험·검증": [
+        st.Page("pages/31_빠른시험로그.py", title="빠른 시험 로그", icon="⚡"),
         st.Page("pages/4_실험.py", title="실험", icon="🔬"),
         st.Page("pages/28_관능평가.py", title="관능·패널 평가", icon="🧪"),
         st.Page("pages/8_버전비교.py", title="버전비교", icon="🔀"),

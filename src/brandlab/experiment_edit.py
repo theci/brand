@@ -14,8 +14,15 @@ from pathlib import Path
 
 import yaml
 
-from .core.models import DoeDesign, PanelTest, StabilitySample
-from .loader import EXPERIMENTS_DIR, load_batch, load_doe, load_panel, load_stability
+from .core.models import DoeDesign, PanelTest, StabilitySample, TrialLog
+from .loader import (
+    EXPERIMENTS_DIR,
+    load_batch,
+    load_doe,
+    load_panel,
+    load_stability,
+    load_trials,
+)
 from .master_edit import save_with_backup
 
 
@@ -34,6 +41,37 @@ def _leading_comments(text: str) -> str:
             break
     joined = "\n".join(out).rstrip("\n")
     return (joined + "\n") if joined.strip() else ""
+
+
+_TRIALS_HEADER = "# 빠른 시험 로그 — 당일 판정 반복 기록 (접은 것도 데이터)\n"
+
+
+def save_trials(
+    trials: list[dict], path: Path | str = EXPERIMENTS_DIR / "trials.yaml"
+) -> Path:
+    """빠른 시험 로그를 저장한다. 완전히 빈 행은 버리고, 검증 실패 시 롤백(.bak).
+
+    trials: 화면(data_editor)에서 만든 행 목록(dict). 값이 전부 빈/None인 행은 제외.
+    """
+    path = Path(path)
+
+    def _empty(row: dict) -> bool:
+        return all(v is None or (isinstance(v, str) and not v.strip()) for v in row.values())
+
+    rows = [row for row in trials if not _empty(row)]
+    log = TrialLog.model_validate({"trials": rows})  # 스키마 검증
+    data = log.model_dump(mode="json", exclude_none=True)
+    if not data.get("trials"):
+        data = {"trials": []}
+    new_text = _TRIALS_HEADER + _dump(data)
+
+    if not path.exists():
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(new_text, encoding="utf-8")
+        load_trials(path)  # 검증(문제 시 예외)
+        return path
+    save_with_backup(path, new_text, load_trials)
+    return path
 
 
 def full_factorial_runs(factors: list[str], response_items: list[str]) -> list[dict]:
@@ -211,4 +249,5 @@ __all__ = [
     "set_stability_observations",
     "set_panel_responses",
     "set_batch_actuals",
+    "save_trials",
 ]

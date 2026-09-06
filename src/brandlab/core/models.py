@@ -561,6 +561,38 @@ class PanelTest(BaseModel):
 
 
 # ---------------------------------------------------------------------------
+# 빠른 시험 로그 (experiments/trials.yaml) — 당일 판정 반복 기록
+# ---------------------------------------------------------------------------
+class QuickTrial(BaseModel):
+    """빠른 반복 R&D의 시험 1건. 저마찰 기록이라 대부분 선택 필드.
+
+    '접은 것도 데이터'가 되도록, 당일 관찰과 판정을 한 줄로 남긴다.
+    verdict: keeper(안정성 큐로) / 튜닝(한 축만 조정) / 접기(폐기).
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    date: str | None = None  # YYYY-MM-DD
+    base: str | None = None  # 기준 처방/버전 (예: "daily-lotion v2")
+    changed: str | None = None  # 무엇을 바꿨나(한 줄)
+    emulsion_ok: bool | None = None  # 유화 성공 여부
+    ph: float | None = Field(default=None, ge=0, le=14)
+    sensory: str | None = None  # 사용감 메모
+    issues: str | None = None  # 백탁·끈적임·냄새 등
+    spin: str | None = None  # 원심 스핀테스트 결과(예: "분리 없음")
+    verdict: str | None = None  # keeper / 튜닝 / 접기
+    next_idea: str | None = None  # 다음 가설(한 줄)
+
+
+class TrialLog(BaseModel):
+    """experiments/trials.yaml 최상위 — 빠른 시험 로그 전체."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    trials: list[QuickTrial] = Field(default_factory=list)
+
+
+# ---------------------------------------------------------------------------
 # 배치 기록 (experiments/batches/*.yaml)
 # ---------------------------------------------------------------------------
 class BatchLine(BaseModel):
