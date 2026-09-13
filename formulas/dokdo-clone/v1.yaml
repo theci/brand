@@ -1,0 +1,58 @@
+product: 독도로션 역설계 재현 v1(홈랩 근사)
+slug: dokdo-clone
+version: 1
+regime: cosmetics
+product_type: leave_on
+status: 개발중
+base_batch_g: 100              # %=g 이 되도록 100g 기준(빠른 소량 배치)
+# 역설계 사례1: 라운드랩 1025 독도로션 전성분을 기능별로 재구성한 뒤,
+# 보유(주문) 원료로 같은 골격을 근사한 '만들 수 있는' 처방.
+# 원본 대비 치환: 마카다미아·폴리데센·호호바에스터→MCT+스쿠알란+다이메티콘 /
+#   글루코오스 유화제→글리세릴스테아레이트시트레이트(올리브계) /
+#   Sepinov·아이리쉬모스·카보머→잔탄검 1종(첫 배치 단순화) / HA 3종→소듐하이알루로네이트.
+# 해독·근거는 docs/커리큘럼/역설계사례_01_독도로션.md 참조.
+phases:
+  # 수상: 잔탄검을 글리세린에 먼저 개어 뭉침 방지 후 정제수에. 70~75도 가열.
+  - name: A (수상)
+    process: 잔탄검을 글리세린에 분산 후 정제수에 투입, 70~75도 가열하며 알란토인·베타글루칸 용해
+    ingredients:
+      - { id: water, percent: 71.35 }
+      - { id: glycerin, percent: 6.0 }
+      - { id: pentylene-glycol, percent: 3.0 }
+      - { id: xanthan-gum, percent: 0.3 }
+      - { id: sodium-hyaluronate, percent: 0.1 }
+      - { id: allantoin, percent: 0.2 }
+      - { id: beta-glucan, percent: 0.3 }
+  # 유상: 70~75도로 유화제·지방알코올·오일·실리콘 완전 용해(수상과 온도 맞춤).
+  - name: B (유상)
+    process: 70~75도로 가열해 유화제·세틸알코올·오일·다이메티콘·토코페롤 용해
+    ingredients:
+      - { id: glyceryl-stearate-citrate, percent: 4.0 }
+      - { id: cetyl-alcohol, percent: 1.5 }
+      - { id: mct, percent: 3.0 }
+      - { id: squalane, percent: 2.5 }
+      - { id: dimethicone, percent: 1.5 }
+      - { id: tocopherol, percent: 0.2 }
+  # 냉각 첨가: 45도 이하에서 열에 약한 활성·보습·보존 다이올 투입.
+  - name: C (냉각 첨가)
+    process: 유화 후 45도 이하로 냉각, 활성(나이아신·판테놀·센텔라)과 다이올 투입
+    ingredients:
+      - { id: niacinamide, percent: 3.0 }
+      - { id: panthenol, percent: 1.0 }
+      - { id: centella-extract, percent: 0.5 }
+      - { id: hexanediol, percent: 1.5 }
+  # pH 조정: 목표 pH 5~6. 시트릭애씨드로 미세 하향 조정(소량).
+  - name: D (pH 조정)
+    process: pH 측정 후 시트릭애씨드 소량으로 5~6 맞춤
+    ingredients:
+      - { id: citric-acid, percent: 0.05 }
+packaging:
+  - { id: jar-50ml, qty_per_unit: 1 }
+fill_volume_ml: 50
+notes: >
+  ⚠️ 원본(독도로션)은 페녹시에탄올 없는 '다이올 허들' 방부(1,2-헥산다이올+펜틸렌글라이콜
+  +카프릴릴글라이콜+에틸헥실글리세린)로 저자극을 구현했다. 이 근사판은 hexanediol+
+  pentylene-glycol 다이올만 사용하므로 방부력이 약하다 → 소량·단기 R&D용이며,
+  판매/장기 보관 전 반드시 방부력(챌린지) 검증 필요. 유상 합 ~12.7%(가벼운 로션).
+  첫 배치가 원본보다 무거우면 다음 튜닝: 유상↓·다이메티콘 유지·냉공정 폴리머(Sepinov) 도입.
+  percent 합계 100.
