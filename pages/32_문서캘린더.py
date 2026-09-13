@@ -1,10 +1,14 @@
-"""🗓️ 문서 캘린더 — 그날 만들어지고 고쳐진 문서를 날짜별로 되짚어 복습한다.
+"""🗓️ 문서 캘린더 — 그날 만들어지고 고쳐진 문서를 '월 달력'으로 되짚어 복습한다.
 
-git 히스토리를 그대로 읽어(별도 저장 없음) 날짜별로 새 문서/수정 문서를 보여준다.
-표시만 담당하고 집계 로직은 brandlab.doc_history 에 있다.
+git 히스토리를 그대로 읽어(별도 저장 없음) 월(月) 그리드에 날짜별 활동을 표시하고,
+날짜를 누르면 그날의 새/수정 문서를 아래에 펼친다. 표시만 담당하고 집계 로직은
+brandlab.doc_history 에 있다.
 """
 
 from __future__ import annotations
+
+import calendar
+from datetime import date
 
 import streamlit as st
 
@@ -14,8 +18,8 @@ _WEEKDAY = ["월", "화", "수", "목", "금", "토", "일"]
 
 st.title("🗓️ 문서 캘린더")
 st.caption(
-    "그날 **새로 생기거나 고쳐진 문서**를 날짜별로 모아, 배운 내용을 복습하기 쉽게 합니다. "
-    "git 기록을 그대로 읽습니다(자동 최신)."
+    "그날 **새로 생기거나 고쳐진 문서**를 달력에서 되짚어 복습합니다. "
+    "git 기록을 그대로 읽습니다(자동 최신). 날짜를 누르면 아래에 그날 문서가 펼쳐져요."
 )
 
 history = load_doc_history()
@@ -27,28 +31,105 @@ if not history:
     )
     st.stop()
 
-# ── 요약 지표 ──────────────────────────────────────────────
-total_days = len(history)
-total_added = sum(len(d.added) for d in history)
-total_modified = sum(len(d.modified) + len(d.renamed) for d in history)
-m1, m2, m3 = st.columns(3)
-m1.metric("기록된 날", total_days)
-m2.metric("새 문서(누적)", total_added)
-m3.metric("수정(누적)", total_modified)
+by_day = {d.day: d for d in history}  # date -> DayLog
 
-# ── 필터 ───────────────────────────────────────────────────
-folders = sorted({folder_of(p) for d in history for p in (d.added + d.modified + d.renamed + d.deleted) if folder_of(p)})
-c1, c2 = st.columns([2, 1])
-query = c1.text_input("🔎 문서명 검색", placeholder="예: 원료, 학습, 크림").strip()
-folder_pick = c2.selectbox("폴더", ["전체", *folders])
+# ── 폴더 필터(달력 강조·집계에 반영) ─────────────────────────
+all_folders = sorted(
+    {folder_of(p) for d in history for p in (d.added + d.modified + d.renamed + d.deleted) if folder_of(p)}
+)
+folder_pick = st.selectbox("폴더 필터", ["전체", *all_folders])
 
 
 def _match(path: str) -> bool:
-    if folder_pick != "전체" and folder_of(path) != folder_pick:
-        return False
-    if query and query.lower() not in title_of(path).lower():
-        return False
-    return True
+    return folder_pick == "전체" or folder_of(path) == folder_pick
+
+
+def _counts(dl) -> tuple[int, int]:
+    """(새 문서 수, 수정+이동 수) — 폴더 필터 적용."""
+    added = sum(1 for p in dl.added if _match(p))
+    modified = sum(1 for p in dl.modified + dl.renamed if _match(p))
+    return added, modified
+
+
+# ── 월 선택 (활동이 있는 달만) ────────────────────────────────
+months = sorted({(d.day.year, d.day.month) for d in history}, reverse=True)
+if "cal_ym" not in st.session_state or tuple(st.session_state.cal_ym) not in months:
+    st.session_state.cal_ym = months[0]
+
+cur_idx = months.index(tuple(st.session_state.cal_ym))
+nav_prev, nav_lbl, nav_next = st.columns([1, 3, 1])
+# months는 최신순 → 이전달 = 인덱스 +1, 다음달 = 인덱스 -1
+if nav_prev.button("◀ 이전 달", disabled=cur_idx >= len(months) - 1, width="stretch"):
+    st.session_state.cal_ym = months[cur_idx + 1]
+    st.rerun()
+if nav_next.button("다음 달 ▶", disabled=cur_idx <= 0, width="stretch"):
+    st.session_state.cal_ym = months[cur_idx - 1]
+    st.rerun()
+year, month = st.session_state.cal_ym
+nav_lbl.markdown(f"<h3 style='text-align:center;margin:0'>{year}년 {month}월</h3>", unsafe_allow_html=True)
+
+# 이 달 요약
+month_days = [d for d in history if (d.day.year, d.day.month) == (year, month)]
+m_added = sum(_counts(d)[0] for d in month_days)
+m_mod = sum(_counts(d)[1] for d in month_days)
+active_days = sum(1 for d in month_days if sum(_counts(d)))
+s1, s2, s3 = st.columns(3)
+s1.metric("활동한 날", active_days)
+s2.metric("✨ 새 문서", m_added)
+s3.metric("✏️ 수정", m_mod)
+
+st.divider()
+
+# ── 요일 헤더 ────────────────────────────────────────────────
+head_cols = st.columns(7)
+for i, wd in enumerate(_WEEKDAY):
+    color = "#c0392b" if i == 6 else ("#2471a3" if i == 5 else "inherit")
+    head_cols[i].markdown(
+        f"<div style='text-align:center;font-weight:700;color:{color}'>{wd}</div>",
+        unsafe_allow_html=True,
+    )
+
+# ── 월 그리드 (월요일 시작) ──────────────────────────────────
+weeks = calendar.Calendar(firstweekday=0).monthdayscalendar(year, month)
+today = date.today()
+for week in weeks:
+    cols = st.columns(7)
+    for i, dnum in enumerate(week):
+        cell = cols[i]
+        if dnum == 0:
+            cell.markdown("&nbsp;", unsafe_allow_html=True)  # 빈 칸(전/다음 달)
+            continue
+        d = date(year, month, dnum)
+        dl = by_day.get(d)
+        added, modified = _counts(dl) if dl else (0, 0)
+        is_today = d == today
+        num_mark = f"**{dnum}**" + (" 🔵" if is_today else "")
+
+        if added or modified:
+            badge = " ".join(
+                x for x in [f"✨{added}" if added else "", f"✏️{modified}" if modified else ""] if x
+            )
+            if cell.button(f"{dnum}\n\n{badge}", key=f"cal_{d.isoformat()}", width="stretch"):
+                st.session_state.cal_sel = d.isoformat()
+                st.rerun()
+        else:
+            faded = "#999" if not is_today else "#111"
+            cell.markdown(
+                f"<div style='text-align:center;color:{faded};padding:6px 0'>{num_mark}</div>",
+                unsafe_allow_html=True,
+            )
+
+st.caption("✨ 새 문서 · ✏️ 수정(이동 포함) · 🔵 오늘. 숫자 버튼을 누르면 아래에 그날 문서가 열립니다.")
+
+# ── 선택한 날 상세 ───────────────────────────────────────────
+st.divider()
+sel_iso = st.session_state.get("cal_sel")
+sel = date.fromisoformat(sel_iso) if sel_iso else None
+dl = by_day.get(sel) if sel else None
+
+if dl is None:
+    st.info("위 달력에서 **활동이 있는 날짜(✨/✏️ 표시)**를 눌러 그날 문서를 확인하세요.")
+    st.stop()
 
 
 def _line(path: str) -> str:
@@ -57,51 +138,31 @@ def _line(path: str) -> str:
     return f"- {tag}**{title_of(path)}**  \n  <small>{path}</small>"
 
 
-st.divider()
+wd = _WEEKDAY[dl.day.weekday()]
+st.markdown(f"## 📅 {dl.day.isoformat()} ({wd})")
 
-shown = 0
-for day in history:
-    added = [p for p in day.added if _match(p)]
-    modified = [p for p in day.modified if _match(p)]
-    renamed = [p for p in day.renamed if _match(p)]
-    deleted = [p for p in day.deleted if _match(p)]
-    if not (added or modified or renamed or deleted):
-        continue
-    shown += 1
+added = [p for p in dl.added if _match(p)]
+renamed = [p for p in dl.renamed if _match(p)]
+modified = [p for p in dl.modified if _match(p)]
+deleted = [p for p in dl.deleted if _match(p)]
 
-    wd = _WEEKDAY[day.day.weekday()]
-    head = f"### 📅 {day.day.isoformat()} ({wd})"
-    counts = []
-    if added:
-        counts.append(f"✨ 새 {len(added)}")
-    if modified or renamed:
-        counts.append(f"✏️ 수정 {len(modified) + len(renamed)}")
-    if deleted:
-        counts.append(f"🗑️ 삭제 {len(deleted)}")
-    st.markdown(f"{head}  ·  " + " · ".join(counts))
+if dl.subjects:
+    with st.container(border=True):
+        st.caption("그날 한 일(커밋)")
+        for s in dl.subjects:
+            st.markdown(f"- {s}")
 
-    if day.subjects:
-        with st.container(border=True):
-            st.caption("그날 한 일(커밋)")
-            for s in day.subjects:
-                st.markdown(f"- {s}")
+if added:
+    st.markdown("**✨ 새 문서**")
+    st.markdown("\n".join(_line(p) for p in added), unsafe_allow_html=True)
+if renamed:
+    st.markdown("**🔀 이동·개명**")
+    st.markdown("\n".join(_line(p) for p in renamed), unsafe_allow_html=True)
+if modified:
+    st.markdown("**✏️ 수정된 문서**")
+    st.markdown("\n".join(_line(p) for p in modified), unsafe_allow_html=True)
+if deleted:
+    st.markdown("**🗑️ 삭제**")
+    st.markdown("\n".join(_line(p) for p in deleted), unsafe_allow_html=True)
 
-    if added:
-        st.markdown("**✨ 새 문서**")
-        st.markdown("\n".join(_line(p) for p in added), unsafe_allow_html=True)
-    if renamed:
-        st.markdown("**🔀 이동·개명**")
-        st.markdown("\n".join(_line(p) for p in renamed), unsafe_allow_html=True)
-    if modified:
-        st.markdown("**✏️ 수정된 문서**")
-        st.markdown("\n".join(_line(p) for p in modified), unsafe_allow_html=True)
-    if deleted:
-        st.markdown("**🗑️ 삭제**")
-        st.markdown("\n".join(_line(p) for p in deleted), unsafe_allow_html=True)
-
-    st.divider()
-
-if shown == 0:
-    st.warning("검색·필터 조건에 맞는 문서가 없습니다.")
-
-st.caption("💡 복습 팁: 그날 '새 문서'를 열어 핵심 3줄을 요약해 보세요. 이게 곧 당신의 학습 노트가 됩니다.")
+st.caption("💡 복습 팁: '새 문서'를 열어 핵심 3줄을 요약해 보세요. 그게 곧 당신의 학습 노트가 됩니다.")
