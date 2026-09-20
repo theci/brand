@@ -123,6 +123,8 @@ class Ingredient(BaseModel):
     # 식품용 등급 여부(화장품 cosmetic_grade와 대칭). 식품 처방은 True여야 한다.
     food_grade: bool = False
     supplier: str | None = None
+    # 재구매 링크(구매처 상품 URL). 장바구니 결과에 '바로 담기' 링크로 표시.
+    purchase_url: str | None = None
     notes: str | None = None
 
 

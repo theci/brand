@@ -40,6 +40,7 @@ class ShoppingIngredient:
     pack_size_g: float | None
     cost: float
     note: str | None = None
+    purchase_url: str | None = None
 
 
 @dataclass
@@ -190,6 +191,7 @@ def shopping_list(
                 pack_size_g=pack_size,
                 cost=round(cost, 2),
                 note=note,
+                purchase_url=ing.purchase_url if ing else None,
             )
         )
 

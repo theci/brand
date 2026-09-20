@@ -105,3 +105,18 @@ def test_requires_exactly_one_of_units_grams():
         shopping_list(_formula(), ingredients=IDX, packaging=PKG)
     with pytest.raises(ValueError):
         shopping_list(_formula(), ingredients=IDX, packaging=PKG, units=10, grams=10)
+
+
+def test_carries_purchase_url_from_master():
+    idx = {
+        "water": Ingredient(id="water", name="정제수", inci="Water", category="용제", density=1.0),
+        "glycerin": Ingredient(
+            id="glycerin", name="글리세린", inci="Glycerin", category="보습제",
+            density=1.0, purchase_url="https://example.com/glycerin",
+        ),
+    }
+    sl = shopping_list(_formula(), ingredients=idx, packaging=PKG, grams=100)
+    gly = next(l for l in sl.ingredients if l.id == "glycerin")
+    water = next(l for l in sl.ingredients if l.id == "water")
+    assert gly.purchase_url == "https://example.com/glycerin"
+    assert water.purchase_url is None

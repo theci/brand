@@ -52,7 +52,7 @@ def _buy(l):
     return f"{l.buy_g:g}g"
 
 
-st.table(
+st.dataframe(
     [
         {
             "원료": l.name,
@@ -61,9 +61,15 @@ st.table(
             "부족g": l.short_g,
             "구매": _buy(l),
             "비용": format_won(l.cost),
+            # 구매가 필요하고 링크가 있을 때만 '바로 담기' 링크 노출
+            "링크": l.purchase_url if (l.buy_g > 0 and l.purchase_url) else None,
         }
         for l in sl.ingredients
-    ]
+    ],
+    hide_index=True,
+    column_config={
+        "링크": st.column_config.LinkColumn("링크", display_text="바로 담기"),
+    },
 )
 for l in sl.ingredients:
     if l.note:

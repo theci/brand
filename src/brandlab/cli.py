@@ -26,11 +26,13 @@ from .batchrecord import (
     new_batch_record,
 )
 from .checks import check_formula
+from .consume import consume_batch
 from .core.models import ProductIntent
 from .diff import formula_diff
 from .dossier import build_dossier
 from .ingredient_edit import set_ingredient_fields
 from .inventory import inventory_rows, unknown_inventory_ids
+from .inventory_edit import apply_consumption
 from .pubchem import PubChemError, fetch_pubchem, http_get_json
 from .shopping import shopping_list
 from .cost import (
@@ -61,6 +63,7 @@ from .loader import (
     load_all_fragrances,
     load_all_stability,
     load_aroma_materials,
+    load_batch,
     load_doe,
     load_fragrance,
     load_ingredients,
@@ -1220,6 +1223,7 @@ def shopping_cmd(
     it.add_column("부족g", justify="right")
     it.add_column("구매", justify="right")
     it.add_column("비용", justify="right")
+    it.add_column("링크")
     for l in sl.ingredients:
         if l.buy_g <= 0:
             buy = "[green]구매 불필요[/green]"
@@ -1227,8 +1231,14 @@ def shopping_cmd(
             buy = f"{l.packs}팩({l.buy_g:g}g)"
         else:
             buy = f"{l.buy_g:g}g"
+        if l.buy_g > 0 and l.purchase_url:
+            link = f"[link={l.purchase_url}]바로 담기[/link]"
+        elif l.purchase_url:
+            link = "[dim]-[/dim]"
+        else:
+            link = "[dim]링크 없음[/dim]"
         it.add_row(
-            l.name, f"{l.need_g:g}", f"{l.on_hand_g:g}", f"{l.short_g:g}", buy, won(l.cost)
+            l.name, f"{l.need_g:g}", f"{l.on_hand_g:g}", f"{l.short_g:g}", buy, won(l.cost), link
         )
         if l.note:
             console.print(f"[yellow]  ⚠ {l.name}: {l.note}[/yellow]")
@@ -1257,6 +1267,60 @@ def shopping_cmd(
     )
     for w in sl.warnings:
         console.print(f"[dim]  · {w}[/dim]")
+
+
+@app.command("consume")
+def consume_cmd(
+    batch_file: Path = typer.Argument(..., help="배치 기록 파일 (experiments/batches/*.yaml)"),
+    dry_run: bool = typer.Option(False, "--dry-run", help="파일을 바꾸지 않고 차감 결과만 미리보기"),
+) -> None:
+    """배치가 쓴 원료만큼 data/inventory.yaml 의 보유량(on_hand_g)을 차감한다."""
+    lab = BrandLab.load()
+    inv = load_inventory()
+    try:
+        batch = load_batch(batch_file)
+    except Exception as exc:  # noqa: BLE001 — 파일/검증 오류를 사용자 메시지로
+        raise typer.BadParameter(f"배치 파일을 읽을 수 없습니다: {exc}") from exc
+
+    result = consume_batch(batch, inv, ingredient_index=lab.ingredients.index())
+
+    suffix = " [dim](미리보기)[/dim]" if dry_run else ""
+    console.print(
+        Panel.fit(f"배치 [cyan]{result.batch_id}[/cyan] → 재고 차감{suffix}", title="consume")
+    )
+    t = Table(header_style="bold")
+    t.add_column("원료")
+    t.add_column("사용g", justify="right")
+    t.add_column("보유(전)", justify="right")
+    t.add_column("→ 보유(후)", justify="right")
+    for l in result.lines:
+        before = "-" if l.before_g is None else f"{l.before_g:g}"
+        if l.after_g is None:
+            after = "[dim]미등록[/dim]"
+        elif l.after_g <= 0:
+            after = f"[red]{l.after_g:g}[/red]"
+        else:
+            after = f"{l.after_g:g}"
+        t.add_row(l.name, f"{l.used_g:g}", before, after)
+    console.print(t)
+    for w in result.warnings:
+        console.print(f"[yellow]  ⚠ {w}[/yellow]")
+
+    if not result.updates:
+        console.print("[dim]차감할 재고 등록 원료가 없습니다. data/inventory.yaml 을 먼저 채우세요.[/dim]")
+        return
+    if dry_run:
+        console.print("[dim]--dry-run: 파일을 변경하지 않았습니다.[/dim]")
+        return
+
+    inv_path = DATA_DIR / "inventory.yaml"
+    text = inv_path.read_text(encoding="utf-8")
+    new_text = apply_consumption(text, result.updates, date_cls.today())
+    inv_path.write_text(new_text, encoding="utf-8")
+    console.print(
+        f"[green]✔ inventory.yaml 갱신: {len(result.updates)}개 원료 차감, "
+        f"last_updated={date_cls.today().isoformat()}[/green]"
+    )
 
 
 @app.command("dossier")

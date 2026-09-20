@@ -426,7 +426,8 @@ ingredients:
     has_coa: true
     grade: cosmetic
     max_percent: 1.0
-    notes: 광범위 보존제. 물 든 제품 필수. 국내·EU 배합한도 1.0%.
+    purchase_url: https://www.coupang.com/vp/products/9198878921   # 후보 — 주문 전 성분(단독/블렌드)·CoA 확인
+    notes: 광범위 보존제. 물 든 제품 필수. 국내·EU 배합한도 1.0%. 조합은 Euxyl PE 9010(페녹시+에틸헥실글리세린) 권장.
 
   - id: hexanediol
     name: 1,2-헥산다이올
