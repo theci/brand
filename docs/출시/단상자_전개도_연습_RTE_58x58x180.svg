@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="247mm" height="296mm" viewBox="0 0 247 296">
+<rect x="0" y="0" width="247" height="296" fill="white"/>
+<text x="4" y="10" font-family="sans-serif" font-size="5" fill="#8A8A8A">단상자 전개도(연습) · 리버스 턱 엔드 · 내경 58x58x180mm · 병 200mL(55x174)</text>
+<text x="4" y="17" font-family="sans-serif" font-size="4" fill="#E5007E">━ 빨강=재단(Cut)</text>
+<text x="70" y="17" font-family="sans-serif" font-size="4" fill="#1B4DE4">- - 파랑점선=오시/접기(Crease)</text>
+<text x="4" y="290" font-family="sans-serif" font-size="3.5" fill="#8A8A8A">※ 전체 247x296mm → A4 초과. 1:1은 A3 출력, A4는 약 80% 축소(구조 연습용). 도련 3mm·표시사항은 업체 칼선에서 확정.</text>
+<g id="Cut" fill="none" stroke="#E5007E" stroke-width="0.6">
+  <path d="M15,58 L4,64 L4,232 L15,232"/>
+  <path d="M247,58 L247,238"/>
+  <path d="M189,58 L247,58"/>
+  <path d="M73,238 L131,238"/>
+  <path d="M15,58 L21,20 L67,20 L73,58"/>
+  <path d="M131,58 L137,20 L183,20 L189,58"/>
+  <path d="M73,58 L73,10 L83,10 L83,3 L85,1 L119,1 L121,3 L121,10 L131,10 L131,58"/>
+  <path d="M15,238 L21,276 L67,276 L73,238"/>
+  <path d="M131,238 L137,276 L183,276 L189,238"/>
+  <path d="M189,238 L189,286 L199,286 L199,293 L201,295 L235,295 L237,293 L237,286 L247,286 L247,238"/>
+</g>
+<g id="Crease" fill="none" stroke="#1B4DE4" stroke-width="0.5" stroke-dasharray="3 2">
+  <path d="M15,58 L15,238"/>
+  <path d="M73,58 L73,238"/>
+  <path d="M131,58 L131,238"/>
+  <path d="M189,58 L189,238"/>
+  <path d="M15,58 L189,58"/>
+  <path d="M15,238 L73,238"/>
+  <path d="M131,238 L247,238"/>
+  <path d="M83,10 L121,10"/>
+  <path d="M199,286 L237,286"/>
+</g>
+<g id="Labels" fill="#8A8A8A" font-family="sans-serif">
+  <text x="102" y="150" font-size="6" text-anchor="middle">앞면 FRONT</text>
+  <text x="218" y="150" font-size="6" text-anchor="middle">뒤면 BACK</text>
+  <text x="44" y="150" font-size="5" text-anchor="middle">옆 SIDE</text>
+  <text x="160" y="150" font-size="5" text-anchor="middle">옆 SIDE</text>
+  <text x="9" y="150" font-size="4" text-anchor="middle" transform="rotate(90 9 150)">풀칠 GLUE</text>
+  <text x="102" y="40" font-size="4" text-anchor="middle">뚜껑 TUCK</text>
+  <text x="218" y="262" font-size="4" text-anchor="middle">바닥 TUCK</text>
+</g>
+</svg>
