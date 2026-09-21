@@ -11,7 +11,19 @@ packaging:
     material: 유리
     unit_price: 800
     moq: 3000
-    notes: 클렌징밤용 광구병
+    notes: 클렌징밤용 광구병 · 로션 미니(50mL) 겸용 — 기존 재고 소진처
+
+  - id: pump-200ml
+    name: 200ml 에어리스 진공 펌프 보틀
+    type: bottle
+    volume_ml: 200
+    material: PP(에어리스, 반투명 무광)
+    unit_price: 1800
+    moq: 3000
+    notes: >
+      산뜻 보습 로션 본품(200mL). 에어리스 진공 = 공기 차단·산화 방지(저방부 처방 유리) + 반투명 무광 = 담백 컨셉 부합.
+      규격: 지름 55mm · 전체 높이 174mm(펌프 포함). 라벨 둘레 = π×55 ≈ 173mm.
+      단가·MOQ는 예시 — 구매페이지 실제 값으로 교체할 것.
 
   - id: lipbalm-tube-10ml
     name: 10ml 립밤 튜브

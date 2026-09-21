@@ -27,20 +27,26 @@ REALSHOT_GUARD = (
     "texture unchanged. Generate only the background and mood — never re-render the product."
 )
 
-# 품질·마감 지시어(참고 프롬프트의 공통 꼬리표)
-STUDIO_QUALITY = (
-    "8K ultra-realistic render, professional studio product photography, "
-    "photographic look — not an AI-generated feel"
+# 품질·마감 지시어(공통 꼬리표) — 브랜드 컨셉 "가공하지 않은 파운더"에 맞춘 정직한 마감.
+# 화려한 스튜디오 렌더가 아니라 자연광·실물 그대로. (구 이름 HONEST_FINISH → HONEST_FINISH)
+HONEST_FINISH = (
+    "natural-light photography, true-to-life color and real material texture, "
+    "honest and unstyled — authentic, not glossy, not an artificial studio render"
 )
-# 기본 제외(네거티브) — 과장·오염 요소 차단
-DEFAULT_EXCLUSIONS = "no added text, no logos, no watermark, no extra props, no image noise"
+# 기본 제외(네거티브) — 과장·오염 + '꾸며낸 화려함/가짜 감성'까지 차단
+DEFAULT_EXCLUSIONS = (
+    "no added text, no logos, no watermark, no extra props, no image noise, "
+    "no glossy luxury sheen, no artificial studio gloss, no fake film-grain look, "
+    "no virtual/CGI model"
+)
 
-# 레짐/무드별 레퍼런스 브랜드 톤(참고 프롬프트가 늘 브랜드를 명시하던 부분)
+# 레퍼런스 브랜드 톤(선택 옵션). 담백·자연을 앞에, 럭셔리는 뒤로 강등.
 REF_BRANDS = {
+    "담백·인디": "MUJI, Aesop, Frama — plain, honest, unbranded feel",
+    "natural": "Innisfree, Melixir, Aesop",
     "clean": "Laneige, Sulwhasoo, Hera",
-    "natural": "Innisfree, Melixir, Glow Recipe",
-    "luxury": "Dior, YSL Beauté, Tamburins",
     "editorial": "NARS, Fenty Beauty, Hince",
+    "luxury": "Dior, YSL Beauté, Tamburins",
 }
 
 # 6블록 + 프로 확장 블록 (key, 출력 라벨) — 참고 프롬프트 순서를 따른다.
@@ -82,10 +88,10 @@ def product_hints(formula: Formula, lab, core: BrandCore | None = None) -> dict[
     core = core or BrandCore()
     container = suggest_container(formula, lab) or formula.product
     subject = f"the product ({container})"
-    concept = core.one_liner or f"{formula.product} — clean premium product photography"
+    concept = core.one_liner or f"{formula.product} — honest, natural-light product photo"
     styling = core.visual.texture or ""
     colors = [c for c in (core.visual.main_color, core.visual.sub_color) if c]
-    aesthetic = (f"{', '.join(colors)} palette, " if colors else "") + "modern clean editorial"
+    aesthetic = (f"{', '.join(colors)} palette, " if colors else "") + "honest, unstyled, natural light"
     return {"subject": subject, "concept": concept, "styling": styling, "aesthetic": aesthetic}
 
 
@@ -196,7 +202,7 @@ def compose_rich(
     aes_bits = _phrases("aesthetic", aesthetic, lib)
     if ref_brands:
         aes_bits.append(f"inspired by {ref_brands}")
-    aes_bits.append(STUDIO_QUALITY)
+    aes_bits.append(HONEST_FINISH)
     aes_bits.append(DEFAULT_EXCLUSIONS)
     aesthetic_s = _join_sent(aes_bits)
 
@@ -229,30 +235,31 @@ def assemble(blocks: dict[str, str], *, real_product: bool = True) -> str:
 PRESETS: dict[str, dict[str, list[str]]] = {
     "제품 각도컷 (탑뷰)": {
         "angle": ["top-down"],
-        "lighting": ["soft diffused", "top light"],
+        "lighting": ["natural daylight", "soft diffused"],
         "composition": ["minimal centered", "negative space"],
         "color": ["neutral beige"],
-        "aesthetic": ["luxury glossy", "minimal warm beige"],
+        "texture": ["matte finish"],
+        "aesthetic": ["modern clean", "minimal warm beige"],
     },
     "원료 시각화": {
         "angle": ["top-down"],
         "lighting": ["natural daylight"],
         "composition": ["side-by-side"],
-        "texture": ["glossy shine"],
-        "color": ["pure white"],
-        "aesthetic": ["modern clean", "editorial high-end"],
+        "texture": ["matte finish"],
+        "color": ["neutral beige"],
+        "aesthetic": ["modern clean", "natural organic"],
     },
     "제형 클로즈업": {
         "angle": ["macro close-up"],
-        "lighting": ["soft diffused"],
-        "texture": ["glossy shine"],
-        "aesthetic": ["luxury glossy", "editorial high-end"],
+        "lighting": ["natural daylight", "soft diffused"],
+        "texture": ["matte finish"],
+        "aesthetic": ["modern clean", "natural organic"],
     },
-    "모델 연출컷": {
-        "lighting": ["soft diffused", "studio key light"],
+    "파운더·인물 연출컷": {
+        "lighting": ["natural daylight", "side light"],
         "composition": ["rule of thirds"],
-        "color": ["rosy pink"],
-        "aesthetic": ["soft feminine", "romantic soft glow"],
+        "color": ["warm palette"],
+        "aesthetic": ["lifestyle casual", "earth natural"],
     },
 }
 
@@ -286,7 +293,7 @@ def _scene_context(
         product = core.brand_name or "the product"
     colors = [c for c in (v.main_color, v.sub_color, v.point_color) if c]
     palette = " / ".join(colors) if colors else "soft neutral tones"
-    tone = ", ".join(core.tone_adjectives) if core.tone_adjectives else "clean, calm, premium"
+    tone = ", ".join(core.tone_adjectives) if core.tone_adjectives else "honest, plain, unpretentious"
     mood = v.texture or "soft, light, fresh"
     concept = core.one_liner or core.promise or product
     return {
@@ -298,11 +305,12 @@ def _scene_context(
         "tone": tone,
         "mood": mood,
         "concept": concept,
+        "ref_honest": REF_BRANDS["담백·인디"],
         "ref_clean": REF_BRANDS["clean"],
         "ref_natural": REF_BRANDS["natural"],
         "ref_luxury": REF_BRANDS["luxury"],
         "ref_editorial": REF_BRANDS["editorial"],
-        "quality": STUDIO_QUALITY,
+        "quality": HONEST_FINISH,
         "exclusions": DEFAULT_EXCLUSIONS,
     }
 
@@ -315,7 +323,7 @@ SCENES: dict[str, SceneRecipe] = {
         tags=["제품", "히어로"],
         blocks={
             "subject": "{product} in a {container}, viewed from directly above",
-            "concept": "modern minimalism and quiet luxury — {concept}",
+            "concept": "quiet, honest minimalism — {concept}",
             "composition": (
                 "strong top-down angle centered on the product; symmetrical, product-focused "
                 "layout with generous negative space; soft grounding shadow beneath for depth"
@@ -329,8 +337,8 @@ SCENES: dict[str, SceneRecipe] = {
             "color_scheme": "Brand palette {palette}. Clean color grading, balanced highlights",
             "camera": _CAMERA_HINTS["top-down"],
             "aesthetic": (
-                "high-end still-life aesthetic — sophisticated, minimal, editorial; {tone}; "
-                "inspired by {ref_luxury}. " + STUDIO_QUALITY + ". " + DEFAULT_EXCLUSIONS
+                "plain honest still-life — simple, minimal, unstyled; {tone}; "
+                "inspired by {ref_honest}. " + HONEST_FINISH + ". " + DEFAULT_EXCLUSIONS
             ),
         },
     ),
@@ -341,7 +349,7 @@ SCENES: dict[str, SceneRecipe] = {
         tags=["제품", "히어로"],
         blocks={
             "subject": "{product} in a {container}, viewed from a 45-degree side angle",
-            "concept": "modern sophistication and quiet luxury — {concept}",
+            "concept": "honest simplicity, nothing to hide — {concept}",
             "composition": (
                 "camera at a 45-degree diagonal, slightly above the midline, showing both the "
                 "cap and the front face while preserving depth; refined proportion and symmetry"
@@ -355,8 +363,8 @@ SCENES: dict[str, SceneRecipe] = {
             "color_scheme": "Brand palette {palette}. Warm, editorial color grading",
             "camera": _CAMERA_HINTS["45-degree"],
             "aesthetic": (
-                "minimalist yet cinematic, refined and premium; {tone}; inspired by {ref_luxury}. "
-                + STUDIO_QUALITY + ". " + DEFAULT_EXCLUSIONS
+                "minimalist and plain, honest and grounded; {tone}; inspired by {ref_honest}. "
+                + HONEST_FINISH + ". " + DEFAULT_EXCLUSIONS
             ),
         },
     ),
@@ -371,7 +379,7 @@ SCENES: dict[str, SceneRecipe] = {
                 "on a pure white background; open circular dishes, no lids, thin rim visible; "
                 "left: [ingredient_1], center: [ingredient_2], right: [ingredient_3]"
             ),
-            "concept": "scientific yet elegant ingredient story — {concept}",
+            "concept": "honest, clear ingredient story — {concept}",
             "composition": (
                 "slightly elevated top view (~20°) showing the circular rims and soft shadow "
                 "beneath each dish; identical spacing; seamless pure white, no gradient"
@@ -385,8 +393,8 @@ SCENES: dict[str, SceneRecipe] = {
             "color_scheme": "pure white base; ingredient-driven accent colors; clean color grading",
             "camera": _CAMERA_HINTS["top-down"],
             "aesthetic": (
-                "premium skincare ingredient photography; {tone}; inspired by {ref_clean}. "
-                + STUDIO_QUALITY + ". " + DEFAULT_EXCLUSIONS
+                "honest ingredient photography; {tone}; inspired by {ref_natural}. "
+                + HONEST_FINISH + ". " + DEFAULT_EXCLUSIONS
             ),
         },
     ),
@@ -417,8 +425,8 @@ SCENES: dict[str, SceneRecipe] = {
             "color_scheme": "Brand palette {palette}. Accurate formula color, even sheen",
             "camera": _CAMERA_HINTS["macro close-up"],
             "aesthetic": (
-                "macro cosmetic texture photography, luxury minimalist tone; {tone}; "
-                "inspired by {ref_editorial}. " + STUDIO_QUALITY + ". " + DEFAULT_EXCLUSIONS
+                "macro texture photography, honest minimalist tone; {tone}; "
+                "inspired by {ref_natural}. " + HONEST_FINISH + ". " + DEFAULT_EXCLUSIONS
             ),
         },
     ),
@@ -448,8 +456,8 @@ SCENES: dict[str, SceneRecipe] = {
             "color_scheme": "Brand palette {palette}; natural green + warm accents; organic tone",
             "camera": _CAMERA_HINTS["45-degree"],
             "aesthetic": (
-                "clean-beauty editorial evoking eco-luxury and natural purity; {tone}; "
-                "inspired by {ref_natural}. " + STUDIO_QUALITY + ". " + DEFAULT_EXCLUSIONS
+                "honest natural still-life evoking real botanical origin; {tone}; "
+                "inspired by {ref_natural}. " + HONEST_FINISH + ". " + DEFAULT_EXCLUSIONS
             ),
         },
     ),
@@ -478,8 +486,8 @@ SCENES: dict[str, SceneRecipe] = {
             "color_scheme": "Brand palette {palette}; cool luminous tone; airy color grading",
             "camera": _CAMERA_HINTS["low-angle"],
             "aesthetic": (
-                "high-end skincare campaign emphasizing hydration and clarity; {tone}; "
-                "inspired by {ref_clean}. " + STUDIO_QUALITY + ". " + DEFAULT_EXCLUSIONS
+                "honest skincare shot emphasizing hydration and clarity; {tone}; "
+                "inspired by {ref_natural}. " + HONEST_FINISH + ". " + DEFAULT_EXCLUSIONS
             ),
         },
     ),
@@ -505,43 +513,45 @@ SCENES: dict[str, SceneRecipe] = {
             "camera": _CAMERA_HINTS["front-facing"],
             "aesthetic": (
                 "realistic, suitable for e-commerce product detail pages; {tone}; "
-                "inspired by {ref_editorial}. " + STUDIO_QUALITY + ". " + DEFAULT_EXCLUSIONS
+                "inspired by {ref_natural}. " + HONEST_FINISH + ". " + DEFAULT_EXCLUSIONS
             ),
         },
     ),
-    "모델 연출컷 (제품 홀드)": SceneRecipe(
-        label="모델 연출컷 (제품 홀드)",
-        shot="모델이 제품을 얼굴 옆에 든 뷰티 캠페인 포트레이트",
+    "파운더 연출컷 (제품 홀드)": SceneRecipe(
+        label="파운더 연출컷 (제품 홀드)",
+        shot="파운더 본인이 제품을 든 자연광 포트레이트 — 진짜 사진 참조(가상모델 금지)",
         real_product=True,
         needs_model=True,
-        tags=["모델", "제품", "캠페인"],
+        tags=["파운더", "제품", "진정성"],
         blocks={
             "subject": (
-                "a hyper-realistic beauty model portrait; the model holds {product} close to "
-                "her cheek at a delicate, elegant hand pose so the label faces forward clearly; "
-                "use the attached model image as the subject reference"
+                "a candid, natural portrait of the REAL founder holding {product} in one hand "
+                "so the label reads clearly; use the attached real founder photo as the subject "
+                "reference and keep the real face, real skin and real proportions unchanged — "
+                "do NOT beautify, do NOT generate a virtual/idealized model"
             ),
-            "concept": "premium Korean beauty campaign, 2025 aesthetic — {concept}",
+            "concept": "founder-led, honest and personal — this is the person who made it — {concept}",
             "composition": (
-                "medium close-up, ¾ view, eyes toward the camera; product and face both in "
-                "sharp focus, filling most of the frame; no cropping of the hand or product; "
-                "product aligned near a rule-of-thirds intersection"
+                "medium close-up, relaxed ¾ view; both the face and the product in focus; "
+                "natural, slightly imperfect hand pose; a little breathing room in the frame"
             ),
             "styling": (
-                "soft dewy natural makeup, {sub_color} blush on the cheeks, glossy lips; sleek "
-                "hair tucked behind one ear; outfit in the brand palette"
+                "bare or minimal makeup, real skin texture kept; everyday clothing; "
+                "plain real setting (home workspace / desk), not a studio backdrop"
             ),
             "lighting": (
-                "soft even diffused beauty light for luminous smooth skin; seamless gradient "
-                "background in {main_color}; " + _LIGHT_TAIL
+                "soft natural window daylight from the side, gentle real shadows; "
+                "no beauty-retouch glow; " + _LIGHT_TAIL
             ),
-            "texture_detail": "porcelain luminous skin with realistic fine detail; crisp product label",
-            "color_scheme": "Brand palette {palette}; romantic feminine tone; balanced color grading",
-            "camera": "medium close-up, 85mm portrait lens, shallow depth of field",
+            "texture_detail": (
+                "real skin with natural texture and small imperfections kept; crisp product label"
+            ),
+            "color_scheme": "Brand palette {palette}; plain, muted, true-to-life color grading",
+            "camera": "medium close-up, 50mm lens, moderate depth of field, handheld feel",
             "aesthetic": (
-                "dreamy soft editorial, high-end cosmetic campaign; {tone}; inspired by "
-                "{ref_luxury}. Realistic photographic look, natural hand pose. "
-                + STUDIO_QUALITY + ". " + DEFAULT_EXCLUSIONS
+                "honest founder portrait, lifestyle-documentary tone, unretouched; {tone}; "
+                "inspired by {ref_honest}. Real photographic look, real person only. "
+                + HONEST_FINISH + ". " + DEFAULT_EXCLUSIONS
             ),
         },
     ),
@@ -600,7 +610,7 @@ def moodboard_prompt(core: BrandCore, *, kind: str = "무드보드") -> str:
 
 __all__ = [
     "REALSHOT_GUARD",
-    "STUDIO_QUALITY",
+    "HONEST_FINISH",
     "DEFAULT_EXCLUSIONS",
     "REF_BRANDS",
     "PRESETS",

@@ -34,8 +34,8 @@ phases:
       - { id: tocopherol, percent: 0.5 }
       - { id: lavender-eo, percent: 0.3 }
 packaging:
-  - { id: jar-50ml, qty_per_unit: 1 }
-fill_volume_ml: 50
+  - { id: pump-200ml, qty_per_unit: 1 }
+fill_volume_ml: 200
 notes: >
   v1 → v2 개선판. 유상(오일·유화제)은 그대로 두어 HLB 균형을 유지하고,
   수상에서만 보습 '다른 축'(판테놀)과 점도(잔탄검)를 손봤다.

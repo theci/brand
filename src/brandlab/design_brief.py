@@ -216,8 +216,8 @@ def build_brief(
         f"[Styling] Flat vector, editorial, CMYK, print-ready for Adobe Illustrator; crisp "
         f"line work, no raster effects.\n"
         f"[Color Scheme] Brand palette {palette}; limited, harmonious ink colors.\n"
-        f"[Aesthetic & Brand Context] Refined minimal Korean clean-beauty label; "
-        f"no photo of the actual product, no logos-as-noise. Avoid claims: {forbidden}."
+        f"[Aesthetic & Brand Context] Plain, honest minimal Korean indie label — unpretentious, "
+        f"not luxury; no photo of the actual product, no logos-as-noise. Avoid claims: {forbidden}."
     )
     L.append("```")
     L.append("")
@@ -235,8 +235,9 @@ def build_brief(
         f"[Color Scheme] Brand palette {palette}; clean, balanced color grading.\n"
         f"[Camera & Perspective] Eye-level three-quarter angle, 50mm lens, moderate depth of "
         f"field.\n"
-        f"[Aesthetic & Brand Context] High-end editorial product photography; "
-        f"8K ultra-realistic render, photographic — not AI-generated. Avoid claims: {forbidden}."
+        f"[Aesthetic & Brand Context] Honest, natural-light product photography — plain and "
+        f"unstyled, true-to-life, not glossy, not an artificial studio render. "
+        f"Avoid claims: {forbidden}."
     )
     L.append("```")
     L.append("")

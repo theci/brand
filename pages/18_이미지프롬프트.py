@@ -26,8 +26,8 @@ from brandlab.ui import load_lab, setup_korean_font
 setup_korean_font()
 st.title("이미지 프롬프트 빌더 🖼️")
 st.caption(
-    "나노바나나용 '프로 수준' 영어 프롬프트를 만듭니다. "
-    "제품 실물(형태·색·제형)은 실촬영 필수 — 배경·무드만 AI. '제품 변경 금지' 가드가 자동 삽입됩니다."
+    "나노바나나용 '담백·자연광' 영어 프롬프트를 만듭니다(브랜드 컨셉: 가공하지 않은 파운더). "
+    "제품 실물·인물은 실촬영 필수 — 배경·무드만 AI. '제품 변경 금지'·'가상모델 금지' 가드가 자동 삽입됩니다."
 )
 st.info(
     "표기: 🔒 **자동**(제품·브랜드 코어에서 Subject/Concept·컬러가 채워짐) · ✍️ **직접 선택/입력**"
@@ -73,7 +73,7 @@ if mode.startswith("장면"):
     badges = []
     badges.append("🟢 실촬영 참조컷" if rec.real_product else "🔵 배경/오브젝트 생성 가능")
     if rec.needs_model:
-        badges.append("👤 모델 참조 이미지 필요")
+        badges.append("👤 파운더/실제 인물 사진 필요 (가상모델 금지)")
     st.caption(" · ".join(badges))
 
     if st.button("프롬프트 생성", type="primary"):
