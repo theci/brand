@@ -1,0 +1,24 @@
+product: 스쿠알란 클렌징오일
+slug: squalane-cleansing-oil
+version: 1
+regime: cosmetics
+category: 클렌징
+line: 스쿠알란
+product_type: rinse_off
+status: 개발중
+base_batch_g: 179.5
+phases:
+- name: A (오일 혼합)
+  process: 용기에 워셔블 클렌징 리퀴드를 먼저 넣고 오일·에스테르, 향 블렌딩오일 순으로 넣어 흔들어 혼합
+  ingredients:
+  - id: washable-cleansing-liquid
+    percent: 27.86
+  - id: squalane
+    percent: 22.56
+  - id: cetyl-ethylhexanoate
+    percent: 47.91
+  - id: lemon-juice-blending-oil
+    percent: 1.67
+packaging: []
+fill_volume_ml: 200
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=288776

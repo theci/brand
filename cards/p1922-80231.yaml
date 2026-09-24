@@ -1,0 +1,15 @@
+# 포레스트 포밍워시 — 배치 수동 보정(아티팩트/수용성/일반명, branduid=80231).
+product: 포레스트 포밍워시
+slug: hn-80231
+type: leave_on
+status: 개발중
+volume_ml: 200
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=80231
+ingredients:
+  - 애플계면활성제 | 50g | 저자극 세정
+  - 편백워터 | 50g | 수상
+  - 자작나무수액 | 40g | 보습
+  - 카밍 5 솔루션 | 8g | 진정 솔루션
+  - 알란토인(분말) | 0.2g | 진정
+  - 천연한방보존제 | 2g | 방부
+  - 편백에센셜오일 | 30방울 | 착향

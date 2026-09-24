@@ -1,0 +1,24 @@
+product: 자운유 모물엔
+slug: hn-147082
+version: 1
+regime: quasi_drug
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 8.0
+phases:
+- name: A
+  ingredients:
+  - id: aroma-base-70
+    percent: 37.49
+  - id: menthol
+    percent: 6.25
+  - id: jaunggo-oil
+    percent: 37.5
+  - id: lavender-eo
+    percent: 9.38
+  - id: tea-tree-eo
+    percent: 9.38
+packaging: []
+fill_volume_ml: 10.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=147082

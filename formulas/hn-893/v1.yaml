@@ -1,0 +1,20 @@
+product: 천연 모기퇴치 스프레이
+slug: hn-893
+version: 1
+regime: biocide
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 428.88
+phases:
+- name: A
+  ingredients:
+  - id: aroma-base-70
+    percent: 92.16
+  - id: glycerin
+    percent: 5.25
+  - id: citronella-eo
+    percent: 2.59
+packaging: []
+fill_volume_ml: 500.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=893

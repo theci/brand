@@ -1,0 +1,26 @@
+product: 로즈아이밤
+slug: hn-835
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 21.15
+phases:
+- name: A
+  ingredients:
+  - id: rosehip-oil
+    percent: 37.82
+  - id: calendula-oil
+    percent: 37.83
+  - id: squalane
+    percent: 9.46
+  - id: candelilla-wax
+    percent: 14.18
+  - id: frankincense-eo
+    percent: 0.47
+  - id: rose-absolute-eo
+    percent: 0.24
+packaging: []
+fill_volume_ml: 25.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=835

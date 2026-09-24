@@ -1,0 +1,20 @@
+product: 스쿠알란 아쿠아크림
+slug: squalane-aqua-cream
+version: 1
+regime: cosmetics
+category: 로션·크림
+line: 스쿠알란
+product_type: leave_on
+status: 개발중
+base_batch_g: 100
+phases:
+- name: A (냉 혼합)
+  process: 비커에 모든 재료를 계량하고 고른 점도가 나올 때까지 혼합
+  ingredients:
+  - id: squalane
+    percent: 3.0
+  - id: marine-collagen-gel
+    percent: 97.0
+packaging: []
+fill_volume_ml: 50
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=288758

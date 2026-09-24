@@ -1,0 +1,32 @@
+product: 마더스 스크레치로션
+slug: hn-73978
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 101.1
+phases:
+- name: A
+  ingredients:
+  - id: rosehip-oil
+    percent: 9.89
+  - id: squalane
+    percent: 5.93
+  - id: olive-emulsifying-wax
+    percent: 2.97
+  - id: neroli-water
+    percent: 69.23
+  - id: niacinamide
+    percent: 4.95
+  - id: egf
+    percent: 4.95
+  - id: herbal-preservative
+    percent: 0.99
+  - id: mandarin-eo
+    percent: 0.99
+  - id: neroli-eo
+    percent: 0.1
+packaging: []
+fill_volume_ml: 101.1
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=73978

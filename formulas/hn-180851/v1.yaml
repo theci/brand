@@ -1,0 +1,24 @@
+product: 진한 커피 샴푸
+slug: hn-180851
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 1004.5
+phases:
+- name: A
+  ingredients:
+  - id: gentle-shampoo-base
+    percent: 43.8
+  - id: coffee-scrub-powder
+    percent: 2.99
+  - id: peppermint-eo
+    percent: 0.45
+  - id: gentle-shampoo-base
+    percent: 49.77
+  - id: coffee-scrub-powder
+    percent: 2.99
+packaging: []
+fill_volume_ml: 1004.5
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=180851

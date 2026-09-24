@@ -1,0 +1,26 @@
+product: 로즈아로마스킨
+slug: hn-995
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 96.4
+phases:
+- name: A
+  ingredients:
+  - id: purified-water
+    percent: 88.17
+  - id: olive-liquid
+    percent: 1.04
+  - id: rose-absolute-eo
+    percent: 0.1
+  - id: mandarin-eo
+    percent: 0.31
+  - id: glycerin
+    percent: 5.19
+  - id: plant-placenta
+    percent: 5.19
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=995

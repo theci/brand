@@ -1,0 +1,16 @@
+product: 아미노 리페어 앰플
+slug: amino-repair-ampoule
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 30.0
+phases:
+- name: A
+  ingredients:
+  - id: amino-acid-17-complex
+    percent: 100.0
+packaging: []
+fill_volume_ml: 30.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=284267

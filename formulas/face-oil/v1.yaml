@@ -2,6 +2,7 @@ product: 페이스오일
 slug: face-oil
 version: 1
 regime: cosmetics
+category: 오일·밤
 product_type: leave_on   # 피부에 남아있는 제품
 status: 개발중
 base_batch_g: 100

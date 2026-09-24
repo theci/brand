@@ -1,0 +1,20 @@
+product: 페이셜트리트먼트오일(민감베이비)
+slug: hn-108242
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 30.2
+phases:
+- name: A
+  ingredients:
+  - id: oat-oil
+    percent: 49.67
+  - id: jojoba-oil
+    percent: 49.67
+  - id: essential-oil
+    percent: 0.66
+packaging: []
+fill_volume_ml: 30.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=108242

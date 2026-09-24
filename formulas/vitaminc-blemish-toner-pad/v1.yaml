@@ -1,0 +1,32 @@
+product: 비타민C 기미 토너&실크패드
+slug: vitaminc-blemish-toner-pad
+version: 1
+regime: cosmetics
+category: 토너·미스트
+line: 비타민C
+product_type: leave_on
+status: 개발중
+base_batch_g: 100
+phases:
+- name: A (냉 혼합)
+  process: 용기에 모든 재료를 계량해 섞고, 실크/순면 패드에 부어 사용
+  ingredients:
+  - id: ethyl-ascorbyl-ether
+    percent: 2.0
+  - id: niacinamide
+    percent: 3.0
+  - id: glycerin
+    percent: 4.0
+  - id: panthenol
+    percent: 2.0
+  - id: multi-hyaluronic-acid
+    percent: 5.0
+  - id: vitamin-berry-3
+    percent: 5.0
+  - id: sea-buckthorn-water
+    percent: 77.0
+  - id: hexanediol
+    percent: 2.0
+packaging: []
+fill_volume_ml: 100
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=288745

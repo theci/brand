@@ -1,0 +1,30 @@
+product: TX 토닝 앰플
+slug: tx-toning-ampoule
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+line: TX토닝
+product_type: leave_on
+status: 개발중
+base_batch_g: 51.0
+phases:
+- name: A
+  ingredients:
+  - id: rose-flower-gel
+    percent: 47.07
+  - id: tranexamic-acid
+    percent: 5.88
+  - id: glutathione
+    percent: 23.53
+  - id: niacinamide
+    percent: 5.88
+  - id: vitamin-berry-3
+    percent: 9.8
+  - id: multi-hyaluronic-acid
+    percent: 5.88
+  - id: hexanediol
+    percent: 1.96
+packaging: []
+fill_volume_ml: 51.0
+notes: '직접 만들기(1버전) 채택. 원문 ''(펩타이드)''=트라넥삼산으로 해석. 완제 활용 대안: 화이트 퍼펙트 솔루션 앰플 20 + 트라넥삼산 2 + 글루타치온 8.'
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=287819

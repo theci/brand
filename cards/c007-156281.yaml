@@ -1,0 +1,20 @@
+# 남편전용 주방세제 — 015/007 배치 수동 보정(branduid=156281).
+product: 남편전용 주방세제
+slug: hn-156281
+type: rinse_off
+status: 개발중
+regime: chemical_safety
+volume_ml: 250
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=156281
+product_category: 세탁세제_계면활성제_함유
+ingredients:
+  - 식물성 글리세린 | 6g | 보습
+  - 쟁탄검 | 1g | 점증
+  - 편백수 | 132.5g | 수상
+  - 코코글루코사이드 | 60g | 세정
+  - 데실글루코사이드 | 30g | 세정
+  - 라우릴글루코사이드 | 15g | 세정
+  - 헥산디올 | 5g | 방부
+  - 레몬쥬스블렌딩오일 | 0.5g | 착향
+  - 에센셜오일 | 4g | 착향
+  - 구연산수(10%) | 7g | pH

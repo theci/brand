@@ -1,0 +1,9 @@
+# 보르피린100 동안앰플 — 배치 수동 보정(단일/수용성/아티팩트, branduid=109908).
+product: 보르피린100 동안앰플
+slug: hn-109908
+type: leave_on
+status: 개발중
+volume_ml: 10
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=109908
+ingredients:
+  - 보르피린 | 10ml | 원액 100%

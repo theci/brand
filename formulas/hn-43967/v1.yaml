@@ -1,0 +1,26 @@
+product: 타마누만능연고
+slug: hn-43967
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 25.8
+phases:
+- name: A
+  ingredients:
+  - id: tamanu-oil
+    percent: 31.0
+  - id: hemp-seed-oil
+    percent: 31.01
+  - id: shea-butter
+    percent: 7.75
+  - id: beeswax
+    percent: 27.13
+  - id: lavender-eo
+    percent: 2.33
+  - id: german-chamomile-eo
+    percent: 0.78
+packaging: []
+fill_volume_ml: 30.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=43967

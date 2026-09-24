@@ -1,0 +1,14 @@
+# 알부틴 미백 앰플 — sample.txt(이미지 레시피) 기반(branduid=1180).
+product: 알부틴 미백 앰플
+slug: hn-1180
+type: leave_on
+status: 개발중
+volume_ml: 30
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=1180
+ingredients:
+  - 화이텐스 | 7g | 미백 복합
+  - 감초추출물 | 6g | 미백·진정
+  - 리피듀어 | 5g | 고보습
+  - 알부틴 | 1g | 미백 고시
+  - 알로에베라겔 | 10g | 진정·희석
+  - 한방보존제 | 1g | 방부

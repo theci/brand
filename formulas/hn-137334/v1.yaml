@@ -1,0 +1,28 @@
+product: 멀티밤 bb
+slug: hn-137334
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 31.0
+phases:
+- name: A
+  ingredients:
+  - id: multibalm-oil-base
+    percent: 38.71
+  - id: cupuacu-butter
+    percent: 22.58
+  - id: candelilla-wax
+    percent: 16.13
+  - id: foundation-color-base
+    percent: 12.9
+  - id: borfirin
+    percent: 6.45
+  - id: alpha-bisabolol
+    percent: 0.97
+  - id: bergamot-fcf-eo
+    percent: 2.26
+packaging: []
+fill_volume_ml: 31.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=137334

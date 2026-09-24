@@ -1,0 +1,23 @@
+product: 11 히아루론산 수분크림
+slug: ha11-moisture-cream
+version: 1
+regime: cosmetics
+category: 로션·크림
+line: 히아루론산
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: water-jojoba
+    percent: 3.0
+  - id: hyaluronic-acid-11
+    percent: 10.0
+  - id: rose-flower-gel
+    percent: 85.0
+  - id: hexanediol
+    percent: 2.0
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=288162

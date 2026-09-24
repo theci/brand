@@ -1,0 +1,17 @@
+# 참깨영양크림 — sample.txt(이미지 레시피) 기반(branduid=20447).
+product: 참깨영양크림
+slug: hn-20447
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=20447
+ingredients:
+  - 참깨오일 | 20g | 유상
+  - 달맞이오일 | 5g | 유상
+  - 올리브유화왁스 | 5g | 유화제
+  - 네롤리워터 | 45g | 수상
+  - 천연한방보존제 | 2g | 방부
+  - 판테놀 | 5g | 보습
+  - 아데노신 | 5g | 주름개선
+  - 석류추출물 | 10g | 항산화
+  - 로즈제라늄 | 5방울 | 착향

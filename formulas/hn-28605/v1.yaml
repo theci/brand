@@ -1,0 +1,18 @@
+product: 버가못 바디오일
+slug: hn-28605
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 88.0
+phases:
+- name: A
+  ingredients:
+  - id: jojoba-oil
+    percent: 98.86
+  - id: bergamot-fcf-eo
+    percent: 1.14
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=28605

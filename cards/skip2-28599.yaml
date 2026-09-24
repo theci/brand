@@ -1,0 +1,14 @@
+# 트러블 잠잠 스팟젤 — sample.txt(이미지 레시피) 기반(branduid=28599).
+product: 트러블 잠잠 스팟젤
+slug: hn-28599
+type: leave_on
+status: 개발중
+volume_ml: 50
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=28599
+ingredients:
+  - 티트리에센셜오일 | 20방울 | 항균
+  - 올리브리퀴드 | 1g | 가용화
+  - 라벤더워터 | 14g | 진정
+  - 알로에베라겔 | 25g | 수분
+  - 어성초추출물 | 8g | 항균·진정
+  - 한방보존제 | 1g | 방부

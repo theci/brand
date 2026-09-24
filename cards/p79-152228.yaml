@@ -1,0 +1,11 @@
+# 병풀 수분크림 — 배치에서 아티팩트/일반명으로 잡혀 수동 보정(branduid=152228).
+product: 병풀 수분크림
+slug: hn-152228
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=152228
+ingredients:
+  - 병풀추출물 | 10g | 진정
+  - 화이트 촉촉 수분크림베이스 | 80g | 미백 완제 베이스
+  - 브라이트닝 블렌딩에센셜오일 | 5방울 | 착향

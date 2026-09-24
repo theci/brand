@@ -1,0 +1,13 @@
+# 캐모마일 베이비워시 — 015/004 배치 수동 보정(branduid=1165).
+product: 캐모마일 베이비워시
+slug: hn-1165
+type: rinse_off
+status: 개발중
+volume_ml: 130
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=1165
+ingredients:
+  - 애플계면활성제 | 40g | 저자극 세정
+  - 캐모마일워터 | 75g | 수상
+  - 캐모마일추출물 | 20g | 진정
+  - 세라마이드(수용성) | 15g | 장벽
+  - 만다린에센셜오일 | 20방울 | 착향

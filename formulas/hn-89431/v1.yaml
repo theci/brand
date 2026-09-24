@@ -1,0 +1,32 @@
+product: 뱀독 볼륨 에센스(젤)
+slug: hn-89431
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 106.4
+phases:
+- name: A
+  ingredients:
+  - id: camellia-oil
+    percent: 3.76
+  - id: olive-liquid
+    percent: 2.82
+  - id: organic-7-solution
+    percent: 4.7
+  - id: peptide-complex
+    percent: 3.76
+  - id: niacinamide
+    percent: 2.82
+  - id: herbal-preservative
+    percent: 0.94
+  - id: sodium-hyaluronate
+    percent: 5.64
+  - id: rosewood-eo
+    percent: 0.38
+  - id: aloe-vera-gel
+    percent: 75.18
+packaging: []
+fill_volume_ml: 106.4
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=89431

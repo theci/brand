@@ -1,0 +1,16 @@
+# 벌레퇴치 소이캔들 — 015/007 배치 수동 보정(branduid=78611).
+product: 벌레퇴치 소이캔들
+slug: hn-78611
+type: leave_on
+status: 개발중
+regime: biocide
+volume_ml: 90
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=78611
+category: 기타
+ingredients:
+  - 에코소이왁스 | 72g | 캔들 왁스
+  - 만다린EO | 3g | 착향
+  - 레몬EO | 2g | 착향
+  - 로즈제라늄EO | 2.8g | 착향
+  - 로즈우드EO | 2.1g | 착향
+  - 에센셜오일 | 5g | 방충 블렌딩

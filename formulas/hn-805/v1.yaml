@@ -1,0 +1,32 @@
+product: 코엔자임 큐텐 아이크림
+slug: hn-805
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 67.25
+phases:
+- name: A
+  ingredients:
+  - id: argan-oil
+    percent: 7.43
+  - id: jojoba-oil
+    percent: 4.46
+  - id: coenzyme-q10
+    percent: 13.38
+  - id: olive-emulsifying-wax
+    percent: 5.95
+  - id: neroli-water
+    percent: 53.54
+  - id: herbal-preservative
+    percent: 1.49
+  - id: lipidure
+    percent: 7.43
+  - id: glycerin
+    percent: 5.95
+  - id: essential-oil
+    percent: 0.37
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=805

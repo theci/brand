@@ -1,0 +1,14 @@
+# 체리립밤 — sample.txt(이미지 레시피 붙여넣기) 기반(branduid=844).
+product: 체리립밤
+slug: hn-844
+type: leave_on
+status: 개발중
+volume_ml: 90
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=844
+ingredients:
+  - 자초인퓨즈오일 | 40g | 자초 침출 유상
+  - 로즈힙오일 | 15g | 유상
+  - 천연비타민E | 5g | 산화방지
+  - 시어버터 | 15g | 버터
+  - 칸데릴라왁스 | 12g | 경화제
+  - 체리플레이버오일 | 6방울 | 착향

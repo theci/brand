@@ -1,0 +1,14 @@
+# 슬림ON 자몽 바디워시 — 015/005 배치 수동 보정(branduid=150226).
+product: 슬림ON 자몽 바디워시
+slug: hn-150226
+type: rinse_off
+status: 개발중
+volume_ml: 500
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=150226
+ingredients:
+  - 바디워시 베이스 | 430g | 세정 베이스
+  - 허니 추출물 | 30g | 보습
+  - 바다포도 추출물 | 30g | 보습
+  - 그레이프프룻 | 10ml | 착향
+  - 레몬 EO | 10ml | 착향
+  - 쥬니퍼베리 EO | 5ml | 착향

@@ -1,0 +1,11 @@
+# 레드와인스킨 — sample.txt(이미지 레시피) 기반(branduid=816).
+product: 레드와인스킨
+slug: hn-816
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=816
+ingredients:
+  - 레드와인 | 20g | 항산화(알콜)
+  - 로즈워터 | 70g | 수상
+  - 히아루론산 | 30g | 보습

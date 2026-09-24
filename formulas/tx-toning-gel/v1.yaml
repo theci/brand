@@ -1,0 +1,33 @@
+product: TX 토닝 젤
+slug: tx-toning-gel
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+line: TX토닝
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: rose-flower-gel
+    percent: 50.0
+  - id: rose-water
+    percent: 22.0
+  - id: super-cica-4
+    percent: 5.0
+  - id: niacinamide
+    percent: 3.0
+  - id: probiotics-complex
+    percent: 5.0
+  - id: panthenol
+    percent: 1.0
+  - id: tranexamic-acid
+    percent: 2.0
+  - id: glutathione
+    percent: 10.0
+  - id: hexanediol
+    percent: 2.0
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=287825

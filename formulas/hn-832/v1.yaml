@@ -1,0 +1,28 @@
+product: 로즈 스킨
+slug: hn-832
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 107.4
+phases:
+- name: A
+  ingredients:
+  - id: purified-water
+    percent: 93.11
+  - id: olive-liquid
+    percent: 0.84
+  - id: mandarin-eo
+    percent: 0.23
+  - id: rose-geranium-eo
+    percent: 0.19
+  - id: rose-absolute-eo
+    percent: 0.05
+  - id: sodium-hyaluronate
+    percent: 2.79
+  - id: acacia-collagen
+    percent: 2.79
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=832

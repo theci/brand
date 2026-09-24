@@ -1,0 +1,16 @@
+# 허브두피샴푸 — sample.txt(이미지 레시피) 기반(branduid=881).
+product: 허브두피샴푸
+slug: hn-881
+type: rinse_off
+status: 개발중
+volume_ml: 200
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=881
+ingredients:
+  - 고급물비누베이스 | 150g | 액상비누 베이스
+  - 에스피노질리아 추출물 | 10g | 두피
+  - 네틀추출물 | 10g | 두피 진정
+  - EM 발효액 | 10g | 발효
+  - 판테놀 | 2g | 보습
+  - 라벤더에센셜오일 | 1ml | 착향
+  - 로즈마리에센셜오일 | 2ml | 착향
+  - 레몬글라스에센셜오일 | 1ml | 착향

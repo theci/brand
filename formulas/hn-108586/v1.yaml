@@ -1,0 +1,24 @@
+product: 그린티 샴푸
+slug: hn-108586
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 508.9
+phases:
+- name: A
+  ingredients:
+  - id: gentle-shampoo-base
+    percent: 78.59
+  - id: green-tea-extract
+    percent: 11.79
+  - id: licorice-root
+    percent: 5.9
+  - id: panthenol
+    percent: 1.97
+  - id: lavender-eo
+    percent: 1.75
+packaging: []
+fill_volume_ml: 508.9
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=108586

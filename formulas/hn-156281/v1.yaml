@@ -1,0 +1,35 @@
+product: 남편전용 주방세제
+slug: hn-156281
+version: 1
+regime: chemical_safety
+category: 생활화학
+product_type: rinse_off
+status: 개발중
+base_batch_g: 261.0
+phases:
+- name: A
+  ingredients:
+  - id: glycerin
+    percent: 2.3
+  - id: xanthan-gum
+    percent: 0.38
+  - id: hinoki-water
+    percent: 50.77
+  - id: coco-glucoside
+    percent: 22.99
+  - id: decyl-glucoside
+    percent: 11.49
+  - id: lauryl-glucoside
+    percent: 5.75
+  - id: hexanediol
+    percent: 1.92
+  - id: lemon-juice-blending-oil
+    percent: 0.19
+  - id: essential-oil
+    percent: 1.53
+  - id: citric-acid-food
+    percent: 2.68
+packaging: []
+fill_volume_ml: 250.0
+product_category: 세탁세제_계면활성제_함유
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=156281

@@ -1,0 +1,20 @@
+product: 7 오가닉  베이비 샴푸
+slug: hn-147078
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 310.0
+phases:
+- name: A
+  ingredients:
+  - id: baby-shampoo-base
+    percent: 77.42
+  - id: organic-7-solution
+    percent: 19.35
+  - id: orange-flower-water
+    percent: 3.23
+packaging: []
+fill_volume_ml: 310.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=147078

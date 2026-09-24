@@ -1,0 +1,12 @@
+# 매끄니 발크림 — sample.txt(이미지 레시피 붙여넣기) 기반(branduid=151443).
+product: 매끄니 발크림
+slug: hn-151443
+type: leave_on
+status: 개발중
+volume_ml: 50
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=151443
+ingredients:
+  - 에코 바세린 | 6g | 젤리크림 베이스(비율2)
+  - 율무 | 3g | 천연분말(비율1)
+  - 식물성 오일 | 1.5g | 캐리어 오일(비율0.5)
+  - 페파민트오일 | 2방울 | 착향·발 피로

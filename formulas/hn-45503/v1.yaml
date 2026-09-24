@@ -1,0 +1,30 @@
+product: 시어버터 수분핸드&풋크림
+slug: hn-45503
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 117.0
+phases:
+- name: A
+  ingredients:
+  - id: shea-butter
+    percent: 8.55
+  - id: sweet-almond-oil
+    percent: 3.42
+  - id: olive-emulsifying-wax
+    percent: 2.56
+  - id: aloe-vera-gel
+    percent: 74.37
+  - id: ceramide-complex
+    percent: 4.27
+  - id: glycerin
+    percent: 5.13
+  - id: herbal-preservative
+    percent: 0.85
+  - id: bergamot-fcf-eo
+    percent: 0.85
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=45503

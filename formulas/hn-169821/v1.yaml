@@ -1,0 +1,24 @@
+product: 상큼 손소독제(젤)
+slug: hn-169821
+version: 1
+regime: biocide
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.1
+phases:
+- name: A
+  ingredients:
+  - id: aroma-base-95
+    percent: 65.92
+  - id: carbomer-pregel
+    percent: 24.98
+  - id: allantoin
+    percent: 5.0
+  - id: multi-hyaluronic-acid
+    percent: 3.0
+  - id: lemon-juice-blending-oil
+    percent: 1.1
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=169821

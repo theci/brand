@@ -1,0 +1,20 @@
+product: 살구씨딥클렌징오일
+slug: hn-59732
+version: 1
+regime: cosmetics
+category: 클렌징
+product_type: rinse_off
+status: 개발중
+base_batch_g: 188.5
+phases:
+- name: A
+  ingredients:
+  - id: apricot-kernel-oil
+    percent: 72.41
+  - id: cleansing-liquid
+    percent: 26.53
+  - id: lemon-eo
+    percent: 1.06
+packaging: []
+fill_volume_ml: 188.5
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=59732

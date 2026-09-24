@@ -1,0 +1,22 @@
+product: 트러블 잠잠 롤볼
+slug: hn-95903
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 10.14
+phases:
+- name: A
+  ingredients:
+  - id: jojoba-oil
+    percent: 84.81
+  - id: salicylic-acid
+    percent: 0.39
+  - id: lavender-eo
+    percent: 7.4
+  - id: tea-tree-eo
+    percent: 7.4
+packaging: []
+fill_volume_ml: 10.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=95903

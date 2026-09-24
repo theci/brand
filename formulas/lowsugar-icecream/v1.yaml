@@ -2,6 +2,7 @@ product: 저당 바닐라 아이스크림
 slug: lowsugar-icecream
 version: 1
 regime: food                 # ★ 식품위생법(일반식품). 아이스크림류/빙과.
+category: 식품
 product_category: 빙과류_아이스크림
 # product_type은 화장품 개념이라 식품엔 의미 없지만 코어 필수 필드라 placeholder.
 product_type: leave_on

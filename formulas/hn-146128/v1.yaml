@@ -1,0 +1,19 @@
+product: 땡큐 카네이션 디퓨저
+slug: hn-146128
+version: 1
+regime: chemical_safety
+category: 생활화학
+product_type: leave_on
+status: 개발중
+base_batch_g: 90.0
+phases:
+- name: A
+  ingredients:
+  - id: fragrance-oil
+    percent: 24.44
+  - id: diffuser-base
+    percent: 75.56
+packaging: []
+fill_volume_ml: 90.0
+product_category: 방향제_지속방출형
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=146128

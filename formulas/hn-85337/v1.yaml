@@ -1,0 +1,26 @@
+product: 비피다 리페어에센스
+slug: hn-85337
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: bifida-ferment
+    percent: 45.0
+  - id: aloe-vera-gel
+    percent: 37.0
+  - id: organic-7-solution
+    percent: 10.0
+  - id: trehalose
+    percent: 2.0
+  - id: niacinamide
+    percent: 5.0
+  - id: herbal-preservative
+    percent: 1.0
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=85337

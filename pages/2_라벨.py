@@ -17,7 +17,7 @@ from brandlab.food import nutrition_facts
 from brandlab.labeling import screen
 from brandlab.regimes import UnsupportedRegimeError, regime_for
 from brandlab.regimes.registry import UnknownRegimeError
-from brandlab.ui import load_lab, setup_korean_font
+from brandlab.ui import load_lab, product_picker, setup_korean_font
 
 setup_korean_font()
 st.title("라벨 스크리닝")
@@ -168,9 +168,7 @@ if not lab.formulas:
     st.info("처방이 없습니다.")
     st.stop()
 
-options = {f"{f.slug} v{f.version} — {f.product}": f for f in lab.formulas}
-label = st.selectbox("처방 선택", list(options))
-formula = options[label]
+formula = product_picker(lab, key="label", label="처방 선택")
 
 regime_code = getattr(formula, "regime", "cosmetics")
 

@@ -1,0 +1,23 @@
+product: EM 버블주방세제
+slug: hn-1002
+version: 1
+regime: chemical_safety
+category: 생활화학
+product_type: rinse_off
+status: 개발중
+base_batch_g: 289.6
+phases:
+- name: A
+  ingredients:
+  - id: apple-surfactant
+    percent: 20.72
+  - id: capb
+    percent: 28.31
+  - id: em-active
+    percent: 49.73
+  - id: lemon-eo
+    percent: 1.24
+packaging: []
+fill_volume_ml: 300.0
+product_category: 세탁세제_계면활성제_함유
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=1002

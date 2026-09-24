@@ -1,0 +1,18 @@
+product: 멀티오일
+slug: hn-148881
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 18.1
+phases:
+- name: A
+  ingredients:
+  - id: multibalm-oil-base
+    percent: 99.45
+  - id: brightening-blending-oil
+    percent: 0.55
+packaging: []
+fill_volume_ml: 18.1
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=148881

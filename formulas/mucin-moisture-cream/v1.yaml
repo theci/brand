@@ -1,0 +1,27 @@
+product: 뮤신 수분크림
+slug: mucin-moisture-cream
+version: 1
+regime: cosmetics
+category: 로션·크림
+line: 뮤신·블랙스네일
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.1
+phases:
+- name: A
+  ingredients:
+  - id: water-argan
+    percent: 5.0
+  - id: rose-flower-gel
+    percent: 84.9
+  - id: snail-mucin
+    percent: 5.0
+  - id: collagen-7-complex
+    percent: 3.0
+  - id: hexanediol
+    percent: 2.0
+  - id: brightening-blending-oil
+    percent: 0.1
+packaging: []
+fill_volume_ml: 100.1
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=287123

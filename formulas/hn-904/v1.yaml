@@ -1,0 +1,30 @@
+product: 귤베이비오일
+slug: hn-904
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 99.3
+phases:
+- name: A
+  ingredients:
+  - id: jojoba-oil
+    percent: 50.36
+  - id: evening-primrose-oil
+    percent: 25.18
+  - id: camellia-oil
+    percent: 20.14
+  - id: tocopherol
+    percent: 2.01
+  - id: ceramide-complex
+    percent: 2.01
+  - id: lavender-eo
+    percent: 0.1
+  - id: mandarin-eo
+    percent: 0.1
+  - id: german-chamomile-eo
+    percent: 0.1
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=904

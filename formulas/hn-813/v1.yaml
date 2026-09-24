@@ -1,0 +1,24 @@
+product: 겁나 촉촉 립밤
+slug: hn-813
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 83.0
+phases:
+- name: A
+  ingredients:
+  - id: jojoba-oil
+    percent: 36.14
+  - id: apricot-kernel-oil
+    percent: 24.1
+  - id: avocado-oil
+    percent: 12.05
+  - id: shea-butter
+    percent: 18.07
+  - id: candelilla-wax
+    percent: 9.64
+packaging: []
+fill_volume_ml: 90.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=813

@@ -1,0 +1,27 @@
+product: 크리스탈볼방향제
+slug: hn-50381
+version: 1
+regime: chemical_safety
+category: 생활화학
+product_type: leave_on
+status: 개발중
+base_batch_g: 105.5
+phases:
+- name: A
+  ingredients:
+  - id: crystal-ball
+    percent: 0.95
+  - id: purified-water
+    percent: 80.56
+  - id: ethanol
+    percent: 9.48
+  - id: soap-colorant
+    percent: 1.9
+  - id: essential-oil
+    percent: 4.27
+  - id: fragrance-oil
+    percent: 2.84
+packaging: []
+fill_volume_ml: 106.0
+product_category: 방향제_비분사형
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=50381

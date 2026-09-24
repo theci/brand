@@ -1,0 +1,18 @@
+product: 리치 플로럴 향수
+slug: hn-146548
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 27.2
+phases:
+- name: A
+  ingredients:
+  - id: perfume-base
+    percent: 92.65
+  - id: fragrance-oil
+    percent: 7.35
+packaging: []
+fill_volume_ml: 30.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=146548

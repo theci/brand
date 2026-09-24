@@ -1,0 +1,28 @@
+product: 클렌징워터
+slug: hn-901
+version: 1
+regime: cosmetics
+category: 클렌징
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.5
+phases:
+- name: A
+  ingredients:
+  - id: lavender-water
+    percent: 74.61
+  - id: green-tea-extract
+    percent: 4.98
+  - id: jojoba-oil
+    percent: 4.98
+  - id: evening-primrose-oil
+    percent: 4.98
+  - id: olive-liquid
+    percent: 9.95
+  - id: lemon-eo
+    percent: 0.25
+  - id: lavender-eo
+    percent: 0.25
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=901

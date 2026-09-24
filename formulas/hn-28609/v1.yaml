@@ -1,0 +1,34 @@
+product: 7가지 한방샴푸(직접)
+slug: hn-28609
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 511.64
+phases:
+- name: A
+  ingredients:
+  - id: herbal-7-complex
+    percent: 48.87
+  - id: polyquaternium
+    percent: 0.39
+  - id: glucamate
+    percent: 2.74
+  - id: les
+    percent: 23.45
+  - id: capb
+    percent: 15.64
+  - id: silk-amino-acid
+    percent: 2.93
+  - id: marine-elastin
+    percent: 1.95
+  - id: panthenol
+    percent: 1.95
+  - id: herbal-preservative
+    percent: 0.98
+  - id: cedarwood-eo
+    percent: 1.1
+packaging: []
+fill_volume_ml: 500.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=28609

@@ -1,0 +1,24 @@
+product: 암라 리페어 샴푸바
+slug: hn-288751
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 561.04
+phases:
+- name: A
+  ingredients:
+  - id: weak-acid-soap-base
+    percent: 89.12
+  - id: msm
+    percent: 1.43
+  - id: amla-powder
+    percent: 1.78
+  - id: glycerin
+    percent: 6.42
+  - id: bergamot-fcf-eo
+    percent: 1.25
+packaging: []
+fill_volume_ml: 561.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=288751

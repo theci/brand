@@ -1,0 +1,24 @@
+product: AC 클리어 앰플
+slug: hn-149621
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 19.45
+phases:
+- name: A
+  ingredients:
+  - id: peptide-complex
+    percent: 25.71
+  - id: purslane-extract
+    percent: 20.57
+  - id: aloe-vera-gel
+    percent: 51.4
+  - id: herbal-preservative
+    percent: 1.03
+  - id: tea-tree-eo
+    percent: 1.29
+packaging: []
+fill_volume_ml: 19.4
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=149621

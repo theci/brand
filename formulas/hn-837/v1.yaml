@@ -1,0 +1,30 @@
+product: 호호바필링제
+slug: hn-837
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 99.5
+phases:
+- name: A
+  ingredients:
+  - id: jojoba-oil
+    percent: 10.05
+  - id: olive-emulsifying-wax
+    percent: 3.02
+  - id: rose-water
+    percent: 70.34
+  - id: cellulose
+    percent: 10.05
+  - id: glycerin
+    percent: 5.03
+  - id: pink-clay
+    percent: 1.01
+  - id: lavender-eo
+    percent: 0.25
+  - id: tea-tree-eo
+    percent: 0.25
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=837

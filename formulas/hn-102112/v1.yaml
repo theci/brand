@@ -1,0 +1,20 @@
+product: 진정 자운살브(밤)
+slug: hn-102112
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 24.3
+phases:
+- name: A
+  ingredients:
+  - id: cupuacu-butter
+    percent: 82.31
+  - id: jaunggo-oil
+    percent: 16.46
+  - id: lavender-eo
+    percent: 1.23
+packaging: []
+fill_volume_ml: 24.3
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=102112

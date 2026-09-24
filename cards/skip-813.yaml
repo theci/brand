@@ -1,0 +1,13 @@
+# 겁나 촉촉 립밤 — sample.txt(이미지 레시피 붙여넣기) 기반(branduid=813).
+product: 겁나 촉촉 립밤
+slug: hn-813
+type: leave_on
+status: 개발중
+volume_ml: 90
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=813
+ingredients:
+  - 호호바 오일 | 30g | 유상
+  - 살구씨오일 | 20g | 유상
+  - 아보카도오일 | 10g | 유상
+  - 시어버터 | 15g | 버터
+  - 칸데릴라 왁스 | 8g | 경화제

@@ -1,0 +1,20 @@
+product: 로얄진생골드크림(24k)
+slug: hn-149677
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 10.02
+phases:
+- name: A
+  ingredients:
+  - id: royal-jelly-extract
+    percent: 49.9
+  - id: stem-cell-culture
+    percent: 49.9
+  - id: gold-24k
+    percent: 0.2
+packaging: []
+fill_volume_ml: 10.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=149677

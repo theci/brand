@@ -1,0 +1,20 @@
+product: 로즈마리 스칼프 토닉
+slug: hn-283407
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: rosemary-water
+    percent: 96.0
+  - id: panthenol
+    percent: 2.0
+  - id: hexanediol
+    percent: 2.0
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=283407

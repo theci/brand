@@ -1,0 +1,22 @@
+product: 아로마 손소독제젤타입
+slug: hn-128904
+version: 1
+regime: biocide
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 634.75
+phases:
+- name: A
+  ingredients:
+  - id: aroma-base-95
+    percent: 64.28
+  - id: carbomer-pregel
+    percent: 31.51
+  - id: glycerin
+    percent: 3.54
+  - id: lemon-eo
+    percent: 0.67
+packaging: []
+fill_volume_ml: 630.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=128904

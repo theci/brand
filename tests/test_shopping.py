@@ -41,7 +41,7 @@ def _formula():
 
 IDX = {
     "water": Ingredient(id="water", name="정제수", inci="Water", category="용제", price_per_kg=500, density=1.0),
-    "glycerin": Ingredient(id="glycerin", name="글리세린", inci="Glycerin", category="보습제", price_per_kg=4000, density=1.0),
+    "glycerin": Ingredient(id="glycerin", name="글리세린", inci="Glycerin", category="보습", price_per_kg=4000, density=1.0),
 }
 PKG = {"jar": Packaging(id="jar", name="병", type="jar", unit_price=800, moq=3000)}
 
@@ -111,7 +111,7 @@ def test_carries_purchase_url_from_master():
     idx = {
         "water": Ingredient(id="water", name="정제수", inci="Water", category="용제", density=1.0),
         "glycerin": Ingredient(
-            id="glycerin", name="글리세린", inci="Glycerin", category="보습제",
+            id="glycerin", name="글리세린", inci="Glycerin", category="보습",
             density=1.0, purchase_url="https://example.com/glycerin",
         ),
     }

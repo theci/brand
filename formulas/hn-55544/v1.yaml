@@ -1,0 +1,24 @@
+product: 달팽이수딩토너
+slug: hn-55544
+version: 1
+regime: cosmetics
+category: 토너·미스트
+product_type: leave_on
+status: 개발중
+base_batch_g: 102.0
+phases:
+- name: A
+  ingredients:
+  - id: lavender-water
+    percent: 49.02
+  - id: hinoki-water
+    percent: 30.39
+  - id: snail-mucin
+    percent: 14.71
+  - id: herbal-preservative
+    percent: 0.98
+  - id: sodium-hyaluronate
+    percent: 4.9
+packaging: []
+fill_volume_ml: 102.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=55544

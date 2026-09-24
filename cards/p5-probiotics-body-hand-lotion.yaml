@@ -1,0 +1,12 @@
+# 프로바이오틱스 바디&핸드 로션 — 크롤러가 베이스만 잡아 활성행 수동 보강.
+product: 프로바이오틱스 바디&핸드 로션
+slug: probiotics-body-hand-lotion
+type: leave_on
+status: 개발중
+volume_ml: 300
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=173225
+ingredients:
+  - 바디&핸드 로션베이스 | 240g | 슈퍼시카4·판테놀·내추럴바세린
+  - 프로바이오틱스3 | 30g | 3종 유산균 복합
+  - 어성초추출물 | 30g | 진정, 트러블 개선
+  - 베베보블렌딩오일 | 30방울 | 민감피부용 블렌딩

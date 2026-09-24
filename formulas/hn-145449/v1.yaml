@@ -1,0 +1,22 @@
+product: 허니 촉촉 바디워시
+slug: hn-145449
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 500.0
+phases:
+- name: A
+  ingredients:
+  - id: body-wash-base
+    percent: 86.0
+  - id: honey-extract
+    percent: 6.0
+  - id: organic-7-solution
+    percent: 6.0
+  - id: blending-oil
+    percent: 2.0
+packaging: []
+fill_volume_ml: 500.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=145449

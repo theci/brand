@@ -1,0 +1,29 @@
+product: 녹차 클렌징밤
+slug: green-tea-cleansing-balm
+version: 1
+regime: cosmetics
+category: 클렌징
+line: 클렌징·오일
+product_type: rinse_off
+status: 개발중
+base_batch_g: 100
+phases:
+- name: A (오일/경화제)
+  process: 오일·에스테르·가용화제·왁스를 함께 계량 후 가열해 칸데릴라왁스를 완전 용해
+  ingredients:
+  - id: green-tea-seed-oil
+    percent: 42.0
+  - id: cetyl-ethylhexanoate
+    percent: 36.0
+  - id: olive-liquid
+    percent: 15.0
+  - id: candelilla-wax
+    percent: 5.0
+- name: B (향료)
+  process: 40도 이하로 식힌 뒤 향을 넣고 골고루 섞어 용기에 부어 굳힘
+  ingredients:
+  - id: lemon-eo
+    percent: 2.0
+packaging: []
+net_weight_g: 100
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=288777

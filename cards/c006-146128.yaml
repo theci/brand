@@ -1,0 +1,12 @@
+# 땡큐 카네이션 디퓨저 — 015/006002 배치 수동 보정(branduid=146128).
+product: 땡큐 카네이션 디퓨저
+slug: hn-146128
+type: leave_on
+status: 개발중
+regime: chemical_safety
+volume_ml: 90
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=146128
+product_category: 방향제_지속방출형
+ingredients:
+  - 카네이션향 | 22ml | 조합향료
+  - 디퓨저 베이스 | 68ml | 확산 베이스

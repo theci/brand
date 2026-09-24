@@ -1,0 +1,9 @@
+# 피테 오리지널 100앰플 — 배치 수동 보정(단일/수용성/아티팩트, branduid=80120).
+product: 피테 오리지널 100앰플
+slug: hn-80120
+type: leave_on
+status: 개발중
+volume_ml: 30
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=80120
+ingredients:
+  - 발효여과물 | 30g | 갈락토미세스 원액 100%

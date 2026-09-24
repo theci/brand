@@ -1,0 +1,29 @@
+product: 11 히아루론산 앰플
+slug: ha11-ampoule
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+line: 히아루론산
+product_type: leave_on
+status: 개발중
+base_batch_g: 120.0
+phases:
+- name: A
+  ingredients:
+  - id: hyaluronic-acid-11
+    percent: 25.0
+  - id: whitening-perfect-solution-ampoule
+    percent: 16.67
+  - id: hyaluronic-acid-11
+    percent: 8.33
+  - id: antiwrinkle-perfect-solution-ampoule
+    percent: 16.67
+  - id: hyaluronic-acid-11
+    percent: 8.33
+  - id: acclear-perfect-solution-ampoule
+    percent: 16.67
+  - id: hyaluronic-acid-11
+    percent: 8.33
+packaging: []
+fill_volume_ml: 120.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=288148

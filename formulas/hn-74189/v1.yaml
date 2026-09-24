@@ -1,0 +1,24 @@
+product: 사르르 녹차클렌징밤
+slug: hn-74189
+version: 1
+regime: cosmetics
+category: 클렌징
+product_type: rinse_off
+status: 개발중
+base_batch_g: 130.0
+phases:
+- name: A
+  ingredients:
+  - id: green-tea-seed-oil
+    percent: 50.01
+  - id: sunflower-oil
+    percent: 27.69
+  - id: olive-liquid
+    percent: 15.38
+  - id: candelilla-wax
+    percent: 5.38
+  - id: orange-eo
+    percent: 1.54
+packaging: []
+fill_volume_ml: 130.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=74189

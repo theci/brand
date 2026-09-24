@@ -1,0 +1,26 @@
+product: 낫또(청국장)에센스
+slug: hn-108274
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: ylang-ylang-water
+    percent: 34.0
+  - id: aloe-vera-gel
+    percent: 40.0
+  - id: natto-moist
+    percent: 20.0
+  - id: niacinamide
+    percent: 3.0
+  - id: adenosine-liposome
+    percent: 2.0
+  - id: herbal-preservative
+    percent: 1.0
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=108274

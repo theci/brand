@@ -1,0 +1,26 @@
+product: 울트라 이데베논 앰플
+slug: hn-151662
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 39.5
+phases:
+- name: A
+  ingredients:
+  - id: idebenone
+    percent: 30.38
+  - id: niacinamide
+    percent: 5.06
+  - id: adenosine
+    percent: 2.53
+  - id: multi-hyaluronic-acid
+    percent: 60.77
+  - id: herbal-preservative
+    percent: 1.01
+  - id: brightening-blending-oil
+    percent: 0.25
+packaging: []
+fill_volume_ml: 39.5
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=151662

@@ -1,0 +1,36 @@
+product: 캐모마일썬크림
+slug: hn-49633
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 108.5
+phases:
+- name: A
+  ingredients:
+  - id: chamomile-infused-oil
+    percent: 13.82
+  - id: olive-ester-oil
+    percent: 4.61
+  - id: olive-emulsifying-wax
+    percent: 4.61
+  - id: roman-chamomile-water
+    percent: 50.69
+  - id: herbal-preservative
+    percent: 0.92
+  - id: sodium-hyaluronate
+    percent: 4.61
+  - id: chamomile-extract
+    percent: 4.61
+  - id: allantoin
+    percent: 4.61
+  - id: lavender-eo
+    percent: 0.46
+  - id: titanium-dioxide
+    percent: 6.45
+  - id: zinc-oxide
+    percent: 4.61
+packaging: []
+fill_volume_ml: 108.5
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=49633

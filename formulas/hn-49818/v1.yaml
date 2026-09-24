@@ -1,0 +1,28 @@
+product: 셰이크바디오일(모든 피부)
+slug: hn-49818
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 127.55
+phases:
+- name: A
+  ingredients:
+  - id: rose-water
+    percent: 61.15
+  - id: glycerin
+    percent: 7.84
+  - id: herbal-preservative
+    percent: 1.57
+  - id: avocado-oil
+    percent: 14.11
+  - id: green-tea-seed-oil
+    percent: 7.84
+  - id: olive-ester-oil
+    percent: 5.49
+  - id: mandarin-eo
+    percent: 2.0
+packaging: []
+fill_volume_ml: 127.5
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=49818

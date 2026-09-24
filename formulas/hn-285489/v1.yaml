@@ -1,0 +1,26 @@
+product: 소금샴푸
+slug: hn-285489
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 568.0
+phases:
+- name: A
+  ingredients:
+  - id: cica-panthenol-shampoo-base
+    percent: 14.08
+  - id: dead-sea-salt
+    percent: 35.22
+  - id: rosemary-eo
+    percent: 0.35
+  - id: peppermint-eo
+    percent: 0.35
+  - id: gentle-shampoo-base
+    percent: 14.79
+  - id: dead-sea-salt
+    percent: 35.21
+packaging: []
+fill_volume_ml: 568.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=285489

@@ -35,7 +35,7 @@ def test_flags_none_for_clean_ingredient():
 
 def test_flags_candle_grade_and_no_coa():
     ing = Ingredient(
-        id="c", name="캔들향", inci="Fragrance", category="착향제",
+        id="c", name="캔들향", inci="Fragrance", category="착향",
         has_coa=False, cosmetic_grade=False,
     )
     flags = ingredient_flags(ing)

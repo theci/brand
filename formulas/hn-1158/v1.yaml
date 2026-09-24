@@ -1,0 +1,26 @@
+product: 초코 버블바스붐 레시피
+slug: hn-1158
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 877.6
+phases:
+- name: A
+  ingredients:
+  - id: sodium-bicarbonate
+    percent: 45.57
+  - id: citric-acid-food
+    percent: 22.79
+  - id: corn-starch
+    percent: 22.79
+  - id: cacao-scrub-powder
+    percent: 4.56
+  - id: fragrance-generic
+    percent: 0.87
+  - id: apple-surfactant
+    percent: 3.42
+packaging: []
+fill_volume_ml: 877.6
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=1158

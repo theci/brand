@@ -1,0 +1,20 @@
+product: 레몬민트바쓰솔트
+slug: hn-910
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 505.31
+phases:
+- name: A
+  ingredients:
+  - id: himalayan-pink-salt
+    percent: 98.95
+  - id: lemon-eo
+    percent: 0.5
+  - id: spearmint-eo
+    percent: 0.55
+packaging: []
+fill_volume_ml: 500.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=910

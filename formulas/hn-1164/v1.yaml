@@ -1,0 +1,34 @@
+product: 코엔자임큐텐 에센스
+slug: hn-1164
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 202.4
+phases:
+- name: A
+  ingredients:
+  - id: rosehip-oil
+    percent: 4.94
+  - id: evening-primrose-oil
+    percent: 4.94
+  - id: olive-emulsifying-wax
+    percent: 1.98
+  - id: ylang-ylang-water
+    percent: 74.11
+  - id: ceramide-water-soluble
+    percent: 2.47
+  - id: tomato-extract
+    percent: 2.47
+  - id: coenzyme-q10
+    percent: 4.94
+  - id: water-soluble-preservative
+    percent: 0.99
+  - id: glycerin
+    percent: 2.96
+  - id: rose-geranium-eo
+    percent: 0.2
+packaging: []
+fill_volume_ml: 200.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=1164

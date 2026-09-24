@@ -2,6 +2,7 @@ product: 라벤더 리드 디퓨저
 slug: reed-diffuser
 version: 1
 regime: chemical_safety        # ★화장품 아님! 화학제품안전법(생활화학제품)
+category: 생활화학
 product_category: 방향제_지속방출형   # fees.yaml 품목 코드 (리드=지속 방출)
 # product_type은 화장품 개념(씻어냄/안씻어냄)이라 방향제엔 의미 없지만 코어 필수 필드라 placeholder.
 product_type: leave_on

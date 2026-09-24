@@ -1,0 +1,19 @@
+product: 어라운드 디퓨저(땡큐)
+slug: hn-148592
+version: 1
+regime: chemical_safety
+category: 생활화학
+product_type: leave_on
+status: 개발중
+base_batch_g: 200.0
+phases:
+- name: A
+  ingredients:
+  - id: diffuser-base
+    percent: 75.0
+  - id: fragrance-oil
+    percent: 25.0
+packaging: []
+fill_volume_ml: 200.0
+product_category: 방향제_지속방출형
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=148592

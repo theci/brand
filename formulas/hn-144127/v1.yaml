@@ -1,0 +1,26 @@
+product: 꽃보다 볼륨립밤
+slug: hn-144127
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 30.5
+phases:
+- name: A
+  ingredients:
+  - id: jacho-oil
+    percent: 39.34
+  - id: fermented-camellia-oil
+    percent: 22.95
+  - id: candelilla-wax
+    percent: 19.67
+  - id: beeswax
+    percent: 6.56
+  - id: borfirin
+    percent: 9.84
+  - id: strawberry-flavor-oil
+    percent: 1.64
+packaging: []
+fill_volume_ml: 30.5
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=144127

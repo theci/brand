@@ -1,0 +1,18 @@
+product: 스타일링 향수
+slug: hn-136216
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 45.2
+phases:
+- name: A
+  ingredients:
+  - id: perfume-base
+    percent: 91.59
+  - id: cherry-blossom-fragrance
+    percent: 8.41
+packaging: []
+fill_volume_ml: 50.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=136216

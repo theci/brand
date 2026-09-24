@@ -1,0 +1,14 @@
+# EM 버블주방세제 — 015/007 배치 수동 보정(branduid=1002).
+product: EM 버블주방세제
+slug: hn-1002
+type: rinse_off
+status: 개발중
+regime: chemical_safety
+volume_ml: 300
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=1002
+product_category: 세탁세제_계면활성제_함유
+ingredients:
+  - 애플계면활성제 | 60g | 세정
+  - 코코베타인 | 82g | 세정
+  - 맑은 EM | 144g | 발효
+  - 레몬에센셜오일 | 72방울 | 착향

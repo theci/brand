@@ -1,0 +1,20 @@
+product: 로즈마리 구연산린스
+slug: hn-885
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 290.0
+phases:
+- name: A
+  ingredients:
+  - id: rosemary-water
+    percent: 68.97
+  - id: citric-acid-food
+    percent: 17.24
+  - id: glycerin
+    percent: 13.79
+packaging: []
+fill_volume_ml: 290.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=885

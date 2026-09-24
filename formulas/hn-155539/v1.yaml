@@ -1,0 +1,22 @@
+product: 벚꽃 썸띵 립스틱
+slug: hn-155539
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 5.5
+phases:
+- name: A
+  ingredients:
+  - id: lipstick-base
+    percent: 72.73
+  - id: cherry-blossom-lip-color
+    percent: 18.18
+  - id: lip-color-red-27
+    percent: 5.45
+  - id: lemon-juice-blending-oil
+    percent: 3.64
+packaging: []
+fill_volume_ml: 5.5
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=155539

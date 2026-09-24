@@ -1,0 +1,24 @@
+product: 망고립버터
+slug: hn-1028
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 46.4
+phases:
+- name: A
+  ingredients:
+  - id: avocado-oil
+    percent: 21.55
+  - id: castor-oil
+    percent: 43.11
+  - id: mango-butter
+    percent: 17.24
+  - id: candelilla-wax
+    percent: 17.24
+  - id: strawberry-flavor-oil
+    percent: 0.86
+packaging: []
+fill_volume_ml: 50.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=1028

@@ -1,0 +1,30 @@
+product: 키스 멀티밤
+slug: kiss-multi-balm
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 58.8
+phases:
+- name: A
+  ingredients:
+  - id: lip-color-red-7
+    percent: 0.34
+  - id: lip-color-red-27
+    percent: 0.51
+  - id: lip-color-white
+    percent: 0.17
+  - id: lip-color-21
+    percent: 0.34
+  - id: multibalm-oil-base
+    percent: 73.13
+  - id: multibalm-wax
+    percent: 16.16
+  - id: borfirin
+    percent: 8.5
+  - id: brightening-blending-oil
+    percent: 0.85
+packaging: []
+fill_volume_ml: 15.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=284085

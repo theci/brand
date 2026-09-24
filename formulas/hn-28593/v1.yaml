@@ -1,0 +1,24 @@
+product: 순한 베이비용벌레퇴치제
+slug: hn-28593
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 101.0
+phases:
+- name: A
+  ingredients:
+  - id: olive-liquid
+    percent: 0.99
+  - id: essential-oil
+    percent: 0.99
+  - id: citronella-eo
+    percent: 1.98
+  - id: lavender-water
+    percent: 95.05
+  - id: herbal-preservative
+    percent: 0.99
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=28593

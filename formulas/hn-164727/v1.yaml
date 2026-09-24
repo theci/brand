@@ -1,0 +1,18 @@
+product: 4GF 퍼펙트 앰플 (안티 링클)
+slug: hn-164727
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 30.0
+phases:
+- name: A
+  ingredients:
+  - id: antiwrinkle-perfect-solution-ampoule
+    percent: 66.67
+  - id: 4gf
+    percent: 33.33
+packaging: []
+fill_volume_ml: 30.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=164727

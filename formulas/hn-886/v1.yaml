@@ -1,0 +1,38 @@
+product: 엘라스틴 헤어트리트먼트
+slug: hn-886
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 126.25
+phases:
+- name: A
+  ingredients:
+  - id: camellia-oil
+    percent: 7.92
+  - id: jojoba-oil
+    percent: 11.88
+  - id: tocopherol
+    percent: 2.38
+  - id: olive-emulsifying-wax
+    percent: 3.96
+  - id: emulsifying-wax
+    percent: 2.38
+  - id: rosemary-water
+    percent: 39.6
+  - id: panthenol
+    percent: 4.75
+  - id: marine-elastin
+    percent: 7.92
+  - id: silk-amino-acid
+    percent: 6.34
+  - id: capb
+    percent: 11.88
+  - id: ylang-ylang-eo
+    percent: 0.79
+  - id: peppermint-eo
+    percent: 0.2
+packaging: []
+fill_volume_ml: 120.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=886

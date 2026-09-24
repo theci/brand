@@ -1,0 +1,24 @@
+product: 백지 연고
+slug: baekji-ointment
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 58.0
+phases:
+- name: A
+  ingredients:
+  - id: angelica-oil
+    percent: 74.14
+  - id: multibalm-wax
+    percent: 16.38
+  - id: borfirin
+    percent: 8.62
+  - id: alpha-bisabolol
+    percent: 0.52
+  - id: brightening-blending-oil
+    percent: 0.34
+packaging: []
+fill_volume_ml: 30.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=283499

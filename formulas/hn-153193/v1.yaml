@@ -1,0 +1,28 @@
+product: 콜라겐 드림 스킨
+slug: hn-153193
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: collagen-peptide
+    percent: 5.0
+  - id: soothing-4-complex
+    percent: 5.0
+  - id: trehalose
+    percent: 1.0
+  - id: panthenol
+    percent: 3.0
+  - id: lemon-balm-water
+    percent: 34.0
+  - id: rose-water
+    percent: 50.0
+  - id: hexanediol
+    percent: 2.0
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=153193

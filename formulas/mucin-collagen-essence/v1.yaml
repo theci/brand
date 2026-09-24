@@ -1,0 +1,33 @@
+product: 뮤신 콜라겐 에센스
+slug: mucin-collagen-essence
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+line: 뮤신·블랙스네일
+product_type: leave_on
+status: 개발중
+base_batch_g: 99.9
+phases:
+- name: A
+  ingredients:
+  - id: glycerin
+    percent: 3.0
+  - id: xanthan-gum
+    percent: 0.3
+  - id: snail-mucin
+    percent: 10.01
+  - id: water-argan
+    percent: 3.0
+  - id: neroli-water
+    percent: 66.57
+  - id: collagen-7-complex
+    percent: 10.01
+  - id: niacinamide
+    percent: 5.01
+  - id: hexanediol
+    percent: 2.0
+  - id: brightening-blending-oil
+    percent: 0.1
+packaging: []
+fill_volume_ml: 99.9
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=287124

@@ -1,0 +1,22 @@
+product: 마데카소사이드 마일드샴푸
+slug: hn-151671
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 502.73
+phases:
+- name: A
+  ingredients:
+  - id: gentle-shampoo-base
+    percent: 87.52
+  - id: madecassoside
+    percent: 5.97
+  - id: purslane-extract
+    percent: 5.97
+  - id: bebe-bo-blending-oil
+    percent: 0.54
+packaging: []
+fill_volume_ml: 500.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=151671

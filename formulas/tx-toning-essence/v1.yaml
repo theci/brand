@@ -1,0 +1,35 @@
+product: TX 토닝 에센스
+slug: tx-toning-essence
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+line: TX토닝
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: rose-flower-gel
+    percent: 50.0
+  - id: rose-water
+    percent: 20.0
+  - id: tranexamic-acid
+    percent: 3.0
+  - id: niacinamide
+    percent: 2.0
+  - id: glutathione
+    percent: 10.0
+  - id: water-jojoba
+    percent: 5.0
+  - id: super-cica-4
+    percent: 6.0
+  - id: panthenol
+    percent: 2.0
+  - id: hexanediol
+    percent: 2.0
+packaging: []
+fill_volume_ml: 100.0
+notes: '직접 만들기(1버전) 채택. 원문 ''(펩타이드)''=트라넥삼산, ''나이아신아마아드''=나이아신아마이드(오타). 완제 활용 대안: 시카 판테놀 에센스 베이스 80 +
+  트라넥삼산 2 + 글루타치온 18.'
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=287818

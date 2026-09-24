@@ -1,0 +1,18 @@
+product: 커피헤나염색
+slug: hn-179926
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 170.0
+phases:
+- name: A
+  ingredients:
+  - id: henna-powder
+    percent: 23.53
+  - id: purified-water
+    percent: 76.47
+packaging: []
+fill_volume_ml: 170.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=179926

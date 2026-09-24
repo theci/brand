@@ -1,0 +1,16 @@
+# 크리스탈볼방향제 — 015/006002 배치 수동 보정(branduid=50381).
+product: 크리스탈볼방향제
+slug: hn-50381
+type: leave_on
+status: 개발중
+regime: chemical_safety
+volume_ml: 106
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=50381
+product_category: 방향제_비분사형
+ingredients:
+  - 크리스탈방향볼 | 1g | 향 담체
+  - 정제수 | 85g | 수상(따뜻한 물)
+  - 에탄올 | 10g | 용제
+  - 비누용 색소 | 2g | 착색
+  - 에센셜오일 | 5ml | 착향
+  - 프러그런스오일 | 3ml | 조합향료

@@ -1,0 +1,20 @@
+product: 코 시원한 연고(비염)
+slug: hn-149907
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 24.0
+phases:
+- name: A
+  ingredients:
+  - id: calendula-oil
+    percent: 41.67
+  - id: tamanu-oil
+    percent: 37.5
+  - id: beeswax
+    percent: 20.83
+packaging: []
+fill_volume_ml: 24.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=149907

@@ -1,0 +1,14 @@
+# 바스붐 — sample.txt(이미지 레시피) 기반(branduid=903).
+product: 바스붐
+slug: hn-903
+type: rinse_off
+status: 개발중
+volume_ml: 900
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=903
+ingredients:
+  - 탄산수소나트륨 | 500g | 발포
+  - 구연산 | 250g | 발포
+  - 옥수수전분 | 80g | 완충
+  - 로즈워터 | 40g | 수상
+  - 라벤더에센셜오일 | 10ml | 착향
+  - 유노하나 | 40g | 온천 미네랄

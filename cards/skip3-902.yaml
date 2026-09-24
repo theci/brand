@@ -1,0 +1,10 @@
+# 어성초팅크처 — sample.txt(이미지 레시피) 기반(branduid=902).
+product: 어성초팅크처
+slug: hn-902
+type: leave_on
+status: 개발중
+volume_ml: 540
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=902
+ingredients:
+  - 어성초건초 | 40g | 침출 원재료
+  - 식물성발효주정 | 500g | 추출 용제(에탄올)

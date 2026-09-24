@@ -1,0 +1,11 @@
+# 리치 플로럴 향수 — 015/006002 배치 수동 보정(branduid=146548).
+product: 리치 플로럴 향수
+slug: hn-146548
+type: leave_on
+status: 개발중
+regime: cosmetics
+volume_ml: 30
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=146548
+ingredients:
+  - 향수 베이스 | 28ml | 향수 베이스
+  - 로즈 듀에 | 2ml | 조합향료

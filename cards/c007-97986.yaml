@@ -1,0 +1,12 @@
+# 데일리 스마트폰 소독제 — 015/007 배치 수동 보정(branduid=97986).
+product: 데일리 스마트폰 소독제
+slug: hn-97986
+type: leave_on
+status: 개발중
+regime: biocide
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=97986
+category: 기타
+ingredients:
+  - 레몬에센셜오일 | 20방울 | 착향
+  - 아로마베이스70 | 87g | 에탄올 베이스

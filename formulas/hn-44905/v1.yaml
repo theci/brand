@@ -1,0 +1,24 @@
+product: 자초딸기립글로스(솔타입)
+slug: hn-44905
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 27.5
+phases:
+- name: A
+  ingredients:
+  - id: jojoba-oil
+    percent: 29.09
+  - id: castor-oil
+    percent: 50.9
+  - id: shea-butter
+    percent: 14.55
+  - id: candelilla-wax
+    percent: 3.64
+  - id: strawberry-flavor-oil
+    percent: 1.82
+packaging: []
+fill_volume_ml: 15.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=44905

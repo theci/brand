@@ -1,0 +1,24 @@
+product: 파워~ 비타민 바디워시
+slug: hn-150203
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 513.0
+phases:
+- name: A
+  ingredients:
+  - id: body-wash-base
+    percent: 83.82
+  - id: tocopherol
+    percent: 0.97
+  - id: organic-7-solution
+    percent: 5.85
+  - id: panthenol
+    percent: 5.85
+  - id: blending-oil
+    percent: 3.51
+packaging: []
+fill_volume_ml: 513.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=150203

@@ -1,0 +1,20 @@
+product: 아로마솔트
+slug: hn-891
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 706.88
+phases:
+- name: A
+  ingredients:
+  - id: himalayan-pink-salt
+    percent: 99.03
+  - id: juniper-eo
+    percent: 0.49
+  - id: lemon-eo
+    percent: 0.48
+packaging: []
+fill_volume_ml: 700.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=891

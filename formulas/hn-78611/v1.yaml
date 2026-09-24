@@ -1,0 +1,26 @@
+product: 벌레퇴치 소이캔들
+slug: hn-78611
+version: 1
+regime: biocide
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 86.9
+phases:
+- name: A
+  ingredients:
+  - id: soy-wax
+    percent: 82.86
+  - id: mandarin-eo
+    percent: 3.45
+  - id: lemon-eo
+    percent: 2.3
+  - id: rose-geranium-eo
+    percent: 3.22
+  - id: rosewood-eo
+    percent: 2.42
+  - id: essential-oil
+    percent: 5.75
+packaging: []
+fill_volume_ml: 90.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=78611

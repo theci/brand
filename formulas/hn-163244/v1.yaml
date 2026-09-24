@@ -1,0 +1,18 @@
+product: 핑크솔트 바쓰붐(완전 딱딱!)
+slug: hn-163244
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 250.0
+phases:
+- name: A
+  ingredients:
+  - id: citric-acid-food
+    percent: 50.0
+  - id: corn-starch
+    percent: 50.0
+packaging: []
+fill_volume_ml: 250.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=163244

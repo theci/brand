@@ -9,8 +9,11 @@ from __future__ import annotations
 import pandas as pd
 import streamlit as st
 
-from brandlab.core.models import Ingredient
+from brandlab.core.models import Ingredient, IngredientCategory, IngredientEffect
 from brandlab.loader import DATA_DIR, load_ingredients
+
+_CATS = [c.value for c in IngredientCategory]
+_EFFECTS = [e.value for e in IngredientEffect]
 from brandlab.master_edit import (
     append_item,
     delete_item,
@@ -117,7 +120,8 @@ with st.expander("➕ 새 원료 등록"):
         new_name = c2.text_input("원료명(한글)", placeholder="예: 판테놀(프로비타민B5)")
         c3, c4 = st.columns(2)
         new_inci = c3.text_input("INCI 표준명", placeholder="예: Panthenol")
-        new_category = c4.text_input("분류", placeholder="예: 보습제 / 에몰리언트 / 유화제 / 방부제")
+        new_category = c4.selectbox("분류(대분류)", _CATS, key="new_cat")
+        new_effects = st.multiselect("효능 태그(활성 계열, 선택)", _EFFECTS, key="new_eff")
 
         c5, c6, c7 = st.columns(3)
         new_price = c5.text_input("단가(원/kg)")
@@ -146,7 +150,8 @@ with st.expander("➕ 새 원료 등록"):
                 "id": new_id.strip(),
                 "name": new_name.strip(),
                 "inci": new_inci.strip(),
-                "category": new_category.strip(),
+                "category": new_category,
+                "effects": new_effects,
                 "max_percent": _num(new_max),
                 "price_per_kg": _num(new_price),
                 "density": _num(new_density),
@@ -189,7 +194,12 @@ with st.expander("✏️ 원료 수정"):
         c1, c2 = st.columns(2)
         e_name = c1.text_input("원료명(한글)", value=ei.name, key=f"e_name_{k}")
         e_inci = c2.text_input("INCI", value=ei.inci, key=f"e_inci_{k}")
-        e_category = st.text_input("분류", value=ei.category, key=f"e_cat_{k}")
+        e_category = st.selectbox(
+            "분류(대분류)", _CATS, index=_CATS.index(ei.category.value), key=f"e_cat_{k}"
+        )
+        e_effects = st.multiselect(
+            "효능 태그", _EFFECTS, default=[e.value for e in ei.effects], key=f"e_eff_{k}"
+        )
         c3, c4, c5 = st.columns(3)
         e_price = c3.text_input("단가(원/kg)", value=_s(ei.price_per_kg), key=f"e_price_{k}")
         e_density = c4.text_input("밀도(g/ml)", value=_s(ei.density), key=f"e_density_{k}")
@@ -215,7 +225,8 @@ with st.expander("✏️ 원료 수정"):
                 base.update({
                     "name": e_name.strip(),
                     "inci": e_inci.strip(),
-                    "category": e_category.strip(),
+                    "category": e_category,
+                    "effects": e_effects,
                 })
                 opt = {
                     "max_percent": _num(e_max), "price_per_kg": _num(e_price),
@@ -275,14 +286,21 @@ with st.expander("🗑️ 원료 삭제"):
                 except Exception as exc:  # noqa: BLE001
                     st.error(f"삭제 실패: {exc}")
 
+fc1, fc2 = st.columns(2)
+cat_sel = fc1.multiselect("분류 필터", _CATS, key="list_cat_filter")
+eff_sel = fc2.multiselect("효능 태그 필터", _EFFECTS, key="list_eff_filter")
 query = st.text_input("검색 (원료명 / INCI / id / 분류)", "").strip().lower()
 
 
 def _matches(ing) -> bool:
+    if cat_sel and ing.category.value not in cat_sel:
+        return False
+    if eff_sel and not (set(eff_sel) & {e.value for e in ing.effects}):
+        return False
     if not query:
         return True
     hay = " ".join(
-        [ing.id, ing.name, ing.inci, ing.category, ing.grade or ""]
+        [ing.id, ing.name, ing.inci, ing.category.value, ing.grade or ""]
     ).lower()
     return query in hay
 
@@ -303,7 +321,8 @@ for ing in filtered:
         {
             "원료명": ing.name,
             "INCI": ing.inci,
-            "분류": ing.category,
+            "분류": ing.category.value,
+            "효능": ", ".join(e.value for e in ing.effects) or "-",
             "등급": ing.grade or "-",
             "단가(원/kg)": f"{ing.price_per_kg:,.0f}" if ing.price_per_kg is not None else "-",
             "CoA": "O" if ing.has_coa else "✗ 없음",

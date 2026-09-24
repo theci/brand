@@ -1,0 +1,15 @@
+# 라놀린 핸드앤풋밤 — sample.txt(이미지 레시피 붙여넣기) 기반(branduid=836).
+product: 라놀린 핸드앤풋밤
+slug: hn-836
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=836
+ingredients:
+  - 시어버터 | 20g | 버터
+  - 라놀린오일 | 25g | 유상
+  - 비타민E | 2g | 산화방지
+  - 아보카도오일 | 20g | 유상
+  - 밀랍 | 15g | 경화제
+  - 마조람에센셜오일 | 6방울 | 착향
+  - 레몬에센셜오일 | 12방울 | 착향

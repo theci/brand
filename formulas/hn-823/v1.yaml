@@ -1,0 +1,38 @@
+product: 라놀린 핸드&바디로션
+slug: hn-823
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 182.75
+phases:
+- name: A
+  ingredients:
+  - id: avocado-oil
+    percent: 4.38
+  - id: lanolin
+    percent: 5.47
+  - id: shea-butter
+    percent: 5.47
+  - id: olive-emulsifying-wax
+    percent: 2.74
+  - id: cetyl-alcohol
+    percent: 0.55
+  - id: roman-chamomile-water
+    percent: 54.7
+  - id: aloe-vera-gel
+    percent: 16.42
+  - id: squalane
+    percent: 2.74
+  - id: glycerin
+    percent: 4.38
+  - id: herbal-preservative
+    percent: 2.74
+  - id: mandarin-eo
+    percent: 0.27
+  - id: lavender-eo
+    percent: 0.14
+packaging: []
+fill_volume_ml: 200.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=823

@@ -1,0 +1,12 @@
+# 녹소초(어성초) 한방샴푸 — 015/005 배치 수동 보정(branduid=113566).
+product: 녹소초(어성초) 한방샴푸
+slug: hn-113566
+type: rinse_off
+status: 개발중
+volume_ml: 500
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=113566
+ingredients:
+  - 허브누리의 아주 순한 샴푸베이스 | 400g | 샴푸 베이스
+  - 녹소초 추출물 | 90g | 두피 진정
+  - 디판테놀 | 10g | 보습
+  - 민트 쿨 컴플렉스블렌딩오일 | 5g | 착향

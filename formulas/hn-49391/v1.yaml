@@ -1,0 +1,20 @@
+product: 네일촉촉에센스
+slug: hn-49391
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 12.1
+phases:
+- name: A
+  ingredients:
+  - id: rosehip-oil
+    percent: 49.58
+  - id: jojoba-oil
+    percent: 49.59
+  - id: ylang-ylang-eo
+    percent: 0.83
+packaging: []
+fill_volume_ml: 12.1
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=49391

@@ -28,7 +28,7 @@ ingredients:
   - id: glycerin
     name: 글리세린
     inci: Glycerin
-    category: 보습제
+    category: 보습
 """
 
 PKG_YAML = """\
@@ -112,7 +112,7 @@ def test_replace_item_keeps_position_and_others(tmp_path):
 def test_replace_preserves_advanced_fields_via_render():
     # render_block은 order에 없는 필드(allergens 등)를 뒤에 붙여 보존한다.
     block = render_ingredient_block(
-        {"id": "x", "name": "향료", "inci": "Parfum", "category": "착향제",
+        {"id": "x", "name": "향료", "inci": "Parfum", "category": "착향",
          "fragrance": True, "allergens": [{"id": "limonene", "percent": 2.0}]}
     )
     parsed = yaml.safe_load(block)[0]
@@ -153,7 +153,7 @@ def test_save_with_backup_rolls_back_on_invalid(tmp_path):
     path.write_text(ING_YAML, encoding="utf-8")
     # 중복 id를 추가 → 전체 검증(unique id)에서 실패해야 하고, 원문으로 롤백되어야 한다.
     dup = render_ingredient_block(
-        {"id": "mct", "name": "중복", "inci": "X", "category": "테스트"}
+        {"id": "mct", "name": "중복", "inci": "X", "category": "에몰리언트"}
     )
     with pytest.raises(Exception):
         save_with_backup(path, append_item(ING_YAML, dup), load_ingredients)

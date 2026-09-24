@@ -1,0 +1,18 @@
+product: 수분폭탄 동전마스크팩
+slug: hn-148462
+version: 1
+regime: cosmetics
+category: 팩·패드
+product_type: leave_on
+status: 개발중
+base_batch_g: 20.0
+phases:
+- name: A
+  ingredients:
+  - id: rose-water
+    percent: 50.0
+  - id: essence-base
+    percent: 50.0
+packaging: []
+fill_volume_ml: 20.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=148462

@@ -1,0 +1,39 @@
+product: 블랙 스네일 아이크림
+slug: black-snail-eye-cream
+version: 1
+regime: cosmetics
+category: 로션·크림
+line: 뮤신·블랙스네일
+product_type: leave_on
+status: 개발중
+base_batch_g: 98.4
+phases:
+- name: A
+  ingredients:
+  - id: argan-oil
+    percent: 5.08
+  - id: squalane
+    percent: 5.08
+  - id: olive-emulsifying-wax
+    percent: 5.08
+  - id: oliwax-lc
+    percent: 2.03
+  - id: glycerin
+    percent: 3.05
+  - id: xanthan-gum
+    percent: 0.3
+  - id: neroli-water
+    percent: 52.86
+  - id: snail-mucin
+    percent: 10.16
+  - id: collagen-7-complex
+    percent: 10.16
+  - id: niacinamide
+    percent: 4.07
+  - id: hexanediol
+    percent: 2.03
+  - id: brightening-blending-oil
+    percent: 0.1
+packaging: []
+fill_volume_ml: 98.4
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=287385

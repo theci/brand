@@ -1,0 +1,24 @@
+product: 보르피린10 바디볼륨크림
+slug: hn-109909
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.75
+phases:
+- name: A
+  ingredients:
+  - id: borfirin
+    percent: 9.93
+  - id: olive-liquid
+    percent: 3.97
+  - id: essential-oil
+    percent: 0.74
+  - id: herbal-preservative
+    percent: 0.99
+  - id: aloe-vera-gel
+    percent: 84.37
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=109909

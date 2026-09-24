@@ -1,0 +1,22 @@
+product: 녹차 딥클렌징오일
+slug: hn-897
+version: 1
+regime: cosmetics
+category: 클렌징
+product_type: leave_on
+status: 개발중
+base_batch_g: 195.0
+phases:
+- name: A
+  ingredients:
+  - id: green-tea-seed-oil
+    percent: 82.05
+  - id: olive-liquid
+    percent: 13.33
+  - id: tocopherol
+    percent: 3.59
+  - id: cedarwood-eo
+    percent: 1.03
+packaging: []
+fill_volume_ml: 200.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=897

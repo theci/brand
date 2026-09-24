@@ -1,0 +1,18 @@
+# 코엔자임큐텐 에센스 — sample.txt(이미지 레시피) 기반(branduid=1164).
+product: 코엔자임큐텐 에센스
+slug: hn-1164
+type: leave_on
+status: 개발중
+volume_ml: 200
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=1164
+ingredients:
+  - 로즈힙오일 | 10g | 유상
+  - 달맞이종자유 | 10g | 유상
+  - 올리브유화왁스 | 4g | 유화제
+  - 일랑일랑워터 | 150g | 수상
+  - 세라마이드리퀴드 | 5g | 장벽
+  - 토마토추출물 | 5g | 항산화
+  - 코엔자임큐텐 | 10g | 항산화
+  - 수용성한방보존제 | 2g | 방부
+  - 식물성 글리세린 | 6g | 보습
+  - 로즈 제라늄에센셜오일 | 8방울 | 착향

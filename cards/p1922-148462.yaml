@@ -1,0 +1,10 @@
+# 수분폭탄 동전마스크팩 — 배치 수동 보정(아티팩트/수용성/일반명, branduid=148462).
+product: 수분폭탄 동전마스크팩
+slug: hn-148462
+type: leave_on
+status: 개발중
+volume_ml: 20
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=148462
+ingredients:
+  - 로즈워터 | 10g | 수상
+  - 에센스베이스 | 10g | 완제 에센스 베이스

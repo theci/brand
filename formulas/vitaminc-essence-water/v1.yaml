@@ -1,0 +1,28 @@
+product: 비타민C 에센스(워터)
+slug: vitaminc-essence-water
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+line: 비타민C
+product_type: leave_on
+status: 개발중
+base_batch_g: 100
+phases:
+- name: A (냉 혼합)
+  process: 비커에 모든 재료를 계량하고 고른 점도가 나올 때까지 혼합
+  ingredients:
+  - id: vitamin-berry-3
+    percent: 5.0
+  - id: marine-collagen-gel
+    percent: 50.0
+  - id: neroli-water
+    percent: 40.0
+  - id: ethyl-ascorbyl-ether
+    percent: 2.0
+  - id: panthenol
+    percent: 1.0
+  - id: hexanediol
+    percent: 2.0
+packaging: []
+fill_volume_ml: 100
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=288747

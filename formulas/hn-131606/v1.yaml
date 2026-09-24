@@ -1,0 +1,22 @@
+product: 올인원 쉐이빙 폼
+slug: hn-131606
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 300.0
+phases:
+- name: A
+  ingredients:
+  - id: gentle-foam-cleanser-base
+    percent: 76.67
+  - id: bubble-5-solution
+    percent: 10.0
+  - id: nokchoco-extract
+    percent: 10.0
+  - id: aroma-water
+    percent: 3.33
+packaging: []
+fill_volume_ml: 300.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=131606

@@ -1,0 +1,18 @@
+product: 진정 어성초 샴푸
+slug: hn-176129
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 449.0
+phases:
+- name: A
+  ingredients:
+  - id: cica-panthenol-shampoo-base
+    percent: 98.0
+  - id: ac-clear-blending-oil
+    percent: 2.0
+packaging: []
+fill_volume_ml: 449.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=176129

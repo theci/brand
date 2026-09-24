@@ -1,0 +1,38 @@
+product: 수딩썬로션
+slug: hn-152428
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.25
+phases:
+- name: A
+  ingredients:
+  - id: calendula-oil
+    percent: 11.97
+  - id: olive-ester-oil
+    percent: 4.99
+  - id: olive-emulsifying-wax
+    percent: 3.99
+  - id: oliwax-lc
+    percent: 2.0
+  - id: purified-water
+    percent: 31.9
+  - id: rose-flower-gel
+    percent: 14.96
+  - id: multi-hyaluronic-acid
+    percent: 3.99
+  - id: soothing-4-complex
+    percent: 9.98
+  - id: herbal-preservative
+    percent: 1.0
+  - id: zinc-oxide
+    percent: 9.98
+  - id: titanium-dioxide
+    percent: 4.99
+  - id: bebe-bo-blending-oil
+    percent: 0.25
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=152428

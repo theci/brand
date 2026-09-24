@@ -1,0 +1,32 @@
+product: 버블바스붐
+slug: hn-149956
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 635.0
+phases:
+- name: A
+  ingredients:
+  - id: cochineal
+    percent: 0.16
+  - id: indigo-dye
+    percent: 0.16
+  - id: sodium-bicarbonate
+    percent: 39.36
+  - id: tartaric-acid
+    percent: 19.69
+  - id: corn-starch
+    percent: 9.92
+  - id: slsa
+    percent: 13.07
+  - id: capb
+    percent: 12.6
+  - id: avocado-oil
+    percent: 3.15
+  - id: lavender-eo
+    percent: 1.89
+packaging: []
+fill_volume_ml: 580.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=149956

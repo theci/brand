@@ -1,0 +1,37 @@
+product: 블랙 스네일 로션
+slug: black-snail-lotion
+version: 1
+regime: cosmetics
+category: 로션·크림
+line: 뮤신·블랙스네일
+product_type: leave_on
+status: 개발중
+base_batch_g: 95.3
+phases:
+- name: A
+  ingredients:
+  - id: argan-oil
+    percent: 5.25
+  - id: olive-emulsifying-wax
+    percent: 3.15
+  - id: oliwax-lc
+    percent: 1.05
+  - id: glycerin
+    percent: 3.15
+  - id: xanthan-gum
+    percent: 0.21
+  - id: neroli-water
+    percent: 71.34
+  - id: snail-mucin
+    percent: 5.25
+  - id: collagen-7-complex
+    percent: 5.25
+  - id: niacinamide
+    percent: 3.15
+  - id: hexanediol
+    percent: 2.1
+  - id: brightening-blending-oil
+    percent: 0.1
+packaging: []
+fill_volume_ml: 95.3
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=287125

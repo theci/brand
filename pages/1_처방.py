@@ -15,7 +15,7 @@ from brandlab.formula_edit import (
 )
 from brandlab.regimes import available
 from brandlab.templates import TEMPLATES, instantiate, list_templates
-from brandlab.ui import load_lab, setup_korean_font
+from brandlab.ui import load_lab, product_picker, setup_korean_font
 
 setup_korean_font()
 st.title("처방")
@@ -220,8 +220,7 @@ with st.expander("✏️ 처방 수정"):
     if not lab.formulas:
         st.info("수정할 처방이 없습니다.")
     else:
-        edit_opts = {f"{f.slug} v{f.version} — {f.product}": f for f in lab.formulas}
-        ef = edit_opts[st.selectbox("수정할 처방", list(edit_opts), key="edit_sel")]
+        ef = product_picker(lab, key="edit", label="수정할 처방")
         sv = f"{ef.slug}_v{ef.version}"  # 선택이 바뀌면 위젯 키가 바뀌어 값이 새로 채워짐
         st.caption(f"현재: {ef.slug} v{ef.version} · 레짐 {ef.regime}")
 
@@ -356,9 +355,7 @@ if not lab.formulas:
     st.info("처방이 없습니다. 위 '➕ 새 처방 생성'에서 시작하세요.")
     st.stop()
 
-options = {f"{f.slug} v{f.version} — {f.product}": f for f in lab.formulas}
-label = st.selectbox("처방 선택", list(options))
-formula = options[label]
+formula = product_picker(lab, key="rx", label="처방 선택")
 
 c1, c2, c3 = st.columns(3)
 c1.metric("제품 형태", formula.product_type.value)

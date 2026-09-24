@@ -1,0 +1,17 @@
+product: 허브배개속/방향낭
+slug: hn-49770
+version: 1
+regime: chemical_safety
+category: 생활화학
+product_type: leave_on
+status: 개발중
+base_batch_g: 30.0
+phases:
+- name: A
+  ingredients:
+  - id: dried-botanical
+    percent: 100.0
+packaging: []
+fill_volume_ml: 30.0
+product_category: 방향제_비분사형
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=49770

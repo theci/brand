@@ -1,0 +1,20 @@
+# 오렌지플라워데이크림 — sample.txt(이미지 레시피) 기반(branduid=1025).
+product: 오렌지플라워데이크림
+slug: hn-1025
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=1025
+ingredients:
+  - 참깨오일 | 18g | 유상
+  - 로즈힙오일 | 10g | 유상
+  - 올리브유화왁스 | 5g | 유화제
+  - 세틸알콜 | 1g | 점증·유화보조
+  - 네롤리워터 | 55g | 수상
+  - 천연한방보존제 | 3g | 방부
+  - 히아루론산 | 5g | 보습
+  - 식물성플라센타 | 5g | 재생
+  - EGF | 4g | 재생
+  - 세라마이드리퀴드(수용성) | 4g | 장벽
+  - 스윗오렌지에센셜오일 | 6방울 | 착향
+  - 네롤리에센셜오일 | 2방울 | 착향

@@ -1,0 +1,24 @@
+product: 링클펩타이드수딩토너
+slug: hn-50910
+version: 1
+regime: cosmetics
+category: 토너·미스트
+product_type: leave_on
+status: 개발중
+base_batch_g: 99.0
+phases:
+- name: A
+  ingredients:
+  - id: rose-water
+    percent: 55.56
+  - id: roman-chamomile-water
+    percent: 25.25
+  - id: acetyl-hexapeptide
+    percent: 8.08
+  - id: herbal-preservative
+    percent: 1.01
+  - id: sodium-hyaluronate
+    percent: 10.1
+packaging: []
+fill_volume_ml: 99.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=50910

@@ -1,0 +1,29 @@
+product: TX 토닝 크림
+slug: tx-toning-cream
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=287828
+notes: >
+  원문 '(펩타이드)'=트라넥삼산. 올리브 상온유화제로 비가열 제조 가능.
+  ※ 원문 표가 글루타치온까지 확인됨(98g). 마무리 1,2-헥산디올 2g은 동일 라인 관행으로 보정—원문 재확인 권장.
+phases:
+  - name: A (수상/유화제)
+    process: 로즈워터에 올리브 상온유화제를 넣고 블렌더로 섞음(비가열)
+    items:
+      - 로즈워터 | 55g
+      - 올리브상온유화제 | 2g
+  - name: B (유상)
+    process: 유상 오일을 계량해 A에 넣고 유화
+    items:
+      - 스쿠알란 | 7g
+      - 로즈힙오일 | 7g
+  - name: C (첨가물)
+    process: 점도가 나오면 첨가물 투입
+    items:
+      - 슈퍼시카4 | 5g
+      - 덱스판테놀 | 3g
+      - 트라넥삼산 | 3g
+      - 나이아신아마이드 | 2g
+      - 글루타치온 | 14g
+      - 1,2-헥산디올 | 2g

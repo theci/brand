@@ -1,0 +1,18 @@
+product: 립스틱/글로스 컬러베이스
+slug: hn-148572
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 9.0
+phases:
+- name: A
+  ingredients:
+  - id: jojoba-oil
+    percent: 88.89
+  - id: lip-color-base
+    percent: 11.11
+packaging: []
+fill_volume_ml: 9.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=148572

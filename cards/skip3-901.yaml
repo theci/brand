@@ -1,0 +1,15 @@
+# 클렌징워터 — sample.txt(이미지 레시피) 기반(branduid=901).
+product: 클렌징워터
+slug: hn-901
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=901
+ingredients:
+  - 라벤더워터 | 75g | 수상
+  - 녹차추출물 | 5g | 항산화
+  - 호호바오일 | 5g | 유상
+  - 달맞이종자유 | 5g | 유상
+  - 올리브리퀴드 | 10g | 가용화
+  - 레몬에센셜오일 | 5방울 | 착향
+  - 라벤더 에센셜오일 | 5방울 | 착향

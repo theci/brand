@@ -1,0 +1,44 @@
+product: 블루밍 CC크림
+slug: hn-97022
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 70.85
+phases:
+- name: A
+  ingredients:
+  - id: olive-ester-oil
+    percent: 9.88
+  - id: olive-emulsifying-wax
+    percent: 5.65
+  - id: color-mix
+    percent: 9.88
+  - id: silver-pearl
+    percent: 0.71
+  - id: titanium-dioxide
+    percent: 4.23
+  - id: zinc-oxide
+    percent: 2.82
+  - id: rose-water
+    percent: 42.36
+  - id: herbal-preservative
+    percent: 1.41
+  - id: niacinamide
+    percent: 2.82
+  - id: adenosine
+    percent: 1.41
+  - id: organic-7-solution
+    percent: 4.23
+  - id: ethylhexyl-methoxycinnamate
+    percent: 4.23
+  - id: lipidure
+    percent: 2.82
+  - id: sodium-hyaluronate
+    percent: 7.06
+  - id: ylang-ylang-eo
+    percent: 0.49
+packaging: []
+fill_volume_ml: 70.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=97022

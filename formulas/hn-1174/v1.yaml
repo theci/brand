@@ -1,0 +1,19 @@
+product: 라벤더 페브리즈
+slug: hn-1174
+version: 1
+regime: chemical_safety
+category: 생활화학
+product_type: leave_on
+status: 개발중
+base_batch_g: 221.4
+phases:
+- name: A
+  ingredients:
+  - id: aroma-base-70
+    percent: 95.98
+  - id: lavender-eo
+    percent: 4.02
+packaging: []
+fill_volume_ml: 250.0
+product_category: 탈취제_분사형_액상
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=1174

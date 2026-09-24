@@ -1,0 +1,18 @@
+# 고체 멀티치약 — 015/007 배치 수동 보정(branduid=288768).
+product: 고체 멀티치약
+slug: hn-288768
+type: rinse_off
+status: 개발중
+regime: quasi_drug
+volume_ml: 130
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=288768
+category: 기타
+ingredients:
+  - 덴탈 실리카(연마용) | 40g | 연마
+  - 베이킹소다 | 20g | 세정
+  - 자일리톨 | 25g | 감미·항균
+  - SLSA | 5g | 기포
+  - 옥수수전분 | 8g | 점도
+  - 글리세린 | 17g | 보습
+  - 정제수 | 17g | 수상
+  - 레몬에센셜오일 | 10방울 | 착향

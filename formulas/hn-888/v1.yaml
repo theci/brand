@@ -1,0 +1,32 @@
+product: 자운고 인퓨즈 오일
+slug: hn-888
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 580.0
+phases:
+- name: A
+  ingredients:
+  - id: licorice-root
+    percent: 1.72
+  - id: scutellaria-root
+    percent: 1.72
+  - id: elm-bark
+    percent: 1.72
+  - id: honeysuckle
+    percent: 1.72
+  - id: chrysanthemum
+    percent: 1.72
+  - id: tangerine-peel
+    percent: 1.72
+  - id: gromwell-root
+    percent: 1.72
+  - id: angelica-gigas
+    percent: 1.72
+  - id: jojoba-oil
+    percent: 86.24
+packaging: []
+fill_volume_ml: 600.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=888

@@ -1,0 +1,13 @@
+# 백지 연고 — 원본은 기본판/볼륨·미백 업그레이드판 2가지. 여기선 업그레이드판.
+product: 백지 연고
+slug: baekji-ointment
+type: leave_on
+status: 개발중
+volume_ml: 30
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=283499
+ingredients:
+  - 구릿대(백지)오일 | 43g | 침출 오일, 얼굴 맑게
+  - 멀티밤 왁스 | 9.5g | 경화제(밀랍+칸데릴라)
+  - 보르피린 | 5g | 볼륨업(지모추출)
+  - 알파 비사보롤 | 0.3g | 식약처 미백고시·진정
+  - 브라이트닝 블렌딩 오일 | 0.2g | 칙칙함 관리

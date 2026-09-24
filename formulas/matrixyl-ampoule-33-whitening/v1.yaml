@@ -1,0 +1,19 @@
+product: 매트릭실 앰플 33 (화이트닝)
+slug: matrixyl-ampoule-33-whitening
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+line: 매트릭실
+product_type: leave_on
+status: 개발중
+base_batch_g: 30.0
+phases:
+- name: A
+  ingredients:
+  - id: whitening-perfect-solution-ampoule
+    percent: 66.67
+  - id: matrixyl-3000
+    percent: 33.33
+packaging: []
+fill_volume_ml: 30.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=288657

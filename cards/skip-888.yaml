@@ -1,0 +1,17 @@
+# 자운고 인퓨즈 오일 — sample.txt(이미지 레시피 붙여넣기) 기반(branduid=888).
+product: 자운고 인퓨즈 오일
+slug: hn-888
+type: leave_on
+status: 개발중
+volume_ml: 600
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=888
+ingredients:
+  - 감초 | 10g | 침출 한방재
+  - 황금 | 10g | 침출 한방재
+  - 유근피 | 10g | 침출 한방재
+  - 금은화 | 10g | 침출 한방재
+  - 감국 | 10g | 침출 한방재
+  - 진피 | 10g | 침출 한방재
+  - 자초 | 10g | 침출 한방재
+  - 당귀 | 10g | 침출 한방재
+  - 골덴호호바오일 | 500g | 베이스 오일

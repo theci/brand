@@ -1,0 +1,11 @@
+# 아토 캐모마일 세럼 — sample.txt(이미지 레시피) 기반(branduid=1169).
+product: 아토 캐모마일 세럼
+slug: hn-1169
+type: leave_on
+status: 개발중
+volume_ml: 50
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=1169
+ingredients:
+  - 캐모마일오일 | 40g | 진정 인퓨즈유
+  - 올리브유화왁스 | 8g | 유화제
+  - 로먼카모마일 | 7방울 | 착향·진정

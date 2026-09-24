@@ -1,0 +1,32 @@
+product: 로즈 플라워 로션
+slug: hn-73364
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 105.1
+phases:
+- name: A
+  ingredients:
+  - id: rosehip-oil
+    percent: 9.51
+  - id: mango-butter
+    percent: 4.76
+  - id: olive-emulsifying-wax
+    percent: 2.85
+  - id: rose-water
+    percent: 61.85
+  - id: herbal-preservative
+    percent: 1.9
+  - id: ceramide-water-soluble
+    percent: 9.51
+  - id: coenzyme-q10
+    percent: 4.76
+  - id: sodium-hyaluronate
+    percent: 4.76
+  - id: rose-absolute-eo
+    percent: 0.1
+packaging: []
+fill_volume_ml: 105.1
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=73364

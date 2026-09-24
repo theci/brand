@@ -1,0 +1,32 @@
+product: 남성용 로즈마리로션
+slug: hn-1023
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 104.2
+phases:
+- name: A
+  ingredients:
+  - id: sweet-almond-oil
+    percent: 4.8
+  - id: macadamia-oil
+    percent: 4.8
+  - id: olive-emulsifying-wax
+    percent: 2.88
+  - id: rosemary-water
+    percent: 77.73
+  - id: herbal-preservative
+    percent: 0.96
+  - id: sodium-hyaluronate
+    percent: 3.84
+  - id: chlorella-extract
+    percent: 4.8
+  - id: essential-oil
+    percent: 0.14
+  - id: essential-oil
+    percent: 0.05
+packaging: []
+fill_volume_ml: 104.2
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=1023

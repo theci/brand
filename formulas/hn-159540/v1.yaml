@@ -1,0 +1,24 @@
+product: 호호바 만능밤
+slug: hn-159540
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 28.25
+phases:
+- name: A
+  ingredients:
+  - id: jojoba-oil
+    percent: 60.18
+  - id: cupuacu-butter
+    percent: 21.24
+  - id: candelilla-wax
+    percent: 10.62
+  - id: beeswax
+    percent: 7.08
+  - id: bebe-bo-blending-oil
+    percent: 0.88
+packaging: []
+fill_volume_ml: 28.2
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=159540

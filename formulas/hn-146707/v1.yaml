@@ -1,0 +1,26 @@
+product: 쿨링 바디워시
+slug: hn-146707
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 68.81
+phases:
+- name: A
+  ingredients:
+  - id: cucumber-extract
+    percent: 43.61
+  - id: sea-grape-extract
+    percent: 43.6
+  - id: peppermint-eo
+    percent: 3.92
+  - id: spearmint-eo
+    percent: 2.67
+  - id: lemon-eo
+    percent: 4.94
+  - id: rosewood-eo
+    percent: 1.26
+packaging: []
+fill_volume_ml: 68.8
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=146707

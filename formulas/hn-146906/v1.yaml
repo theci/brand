@@ -1,0 +1,26 @@
+product: 카렌듈라 썬밤
+slug: hn-146906
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 29.75
+phases:
+- name: A
+  ingredients:
+  - id: jojoba-oil
+    percent: 23.53
+  - id: calendula-oil
+    percent: 23.53
+  - id: tocopherol
+    percent: 1.01
+  - id: beeswax
+    percent: 26.89
+  - id: zinc-oxide
+    percent: 23.53
+  - id: lavender-eo
+    percent: 1.51
+packaging: []
+fill_volume_ml: 29.8
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=146906

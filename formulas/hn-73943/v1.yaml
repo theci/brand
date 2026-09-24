@@ -1,0 +1,30 @@
+product: 마더스 스크레치크림
+slug: hn-73943
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 102.1
+phases:
+- name: A
+  ingredients:
+  - id: rosehip-oil
+    percent: 7.84
+  - id: squalane
+    percent: 4.9
+  - id: olive-emulsifying-wax
+    percent: 4.9
+  - id: aloe-vera-gel
+    percent: 71.48
+  - id: niacinamide
+    percent: 4.9
+  - id: egf
+    percent: 4.9
+  - id: herbal-preservative
+    percent: 0.98
+  - id: neroli-eo
+    percent: 0.1
+packaging: []
+fill_volume_ml: 102.1
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=73943

@@ -1,0 +1,24 @@
+product: 모기 퇴치 밴드
+slug: hn-129821
+version: 1
+regime: biocide
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 31.0
+phases:
+- name: A
+  ingredients:
+  - id: olive-liquid
+    percent: 3.23
+  - id: blending-oil
+    percent: 3.23
+  - id: fragrance-oil
+    percent: 6.45
+  - id: purified-water
+    percent: 22.58
+  - id: eco-gypsum
+    percent: 64.51
+packaging: []
+fill_volume_ml: 30.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=129821

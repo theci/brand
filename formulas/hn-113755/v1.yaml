@@ -1,0 +1,34 @@
+product: 보르피린 동안크림
+slug: hn-113755
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.15
+phases:
+- name: A
+  ingredients:
+  - id: macadamia-oil
+    percent: 17.97
+  - id: borfirin
+    percent: 4.99
+  - id: olive-emulsifying-wax
+    percent: 3.99
+  - id: oliwax-lc
+    percent: 1.0
+  - id: rose-water
+    percent: 44.93
+  - id: natto-moist
+    percent: 3.0
+  - id: herbal-preservative
+    percent: 1.0
+  - id: niacinamide
+    percent: 3.0
+  - id: aloe-vera-gel
+    percent: 19.97
+  - id: rose-geranium-eo
+    percent: 0.15
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=113755

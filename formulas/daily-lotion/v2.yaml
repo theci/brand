@@ -2,6 +2,7 @@ product: 데일리 수분 로션
 slug: daily-lotion
 version: 2
 regime: cosmetics
+category: 로션·크림
 product_type: leave_on
 status: 개발중
 base_batch_g: 200

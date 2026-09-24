@@ -1,0 +1,32 @@
+product: EGF아이크림
+slug: hn-964
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 99.15
+phases:
+- name: A
+  ingredients:
+  - id: rosehip-oil
+    percent: 10.09
+  - id: camellia-oil
+    percent: 18.15
+  - id: olive-emulsifying-wax
+    percent: 5.04
+  - id: rose-water
+    percent: 50.44
+  - id: herbal-preservative
+    percent: 1.01
+  - id: egf
+    percent: 6.05
+  - id: plant-placenta
+    percent: 5.04
+  - id: sodium-hyaluronate
+    percent: 4.03
+  - id: rosewood-eo
+    percent: 0.15
+packaging: []
+fill_volume_ml: 99.2
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=964

@@ -1,0 +1,28 @@
+product: 로즈 매직 아이밤
+slug: hn-149939
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 28.5
+phases:
+- name: A
+  ingredients:
+  - id: rosehip-oil
+    percent: 45.62
+  - id: calendula-oil
+    percent: 24.56
+  - id: candelilla-wax
+    percent: 17.54
+  - id: alpha-bisabolol
+    percent: 0.7
+  - id: borfirin
+    percent: 10.53
+  - id: rose-absolute-eo
+    percent: 0.7
+  - id: frankincense-eo
+    percent: 0.35
+packaging: []
+fill_volume_ml: 28.5
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=149939

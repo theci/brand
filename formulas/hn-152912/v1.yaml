@@ -1,0 +1,32 @@
+product: 시어버터 핸드크림
+slug: hn-152912
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 101.5
+phases:
+- name: A
+  ingredients:
+  - id: shea-butter
+    percent: 9.85
+  - id: macadamia-oil
+    percent: 9.85
+  - id: olive-emulsifying-wax
+    percent: 3.94
+  - id: purified-water
+    percent: 39.4
+  - id: panthenol
+    percent: 4.93
+  - id: ceramide-complex
+    percent: 4.93
+  - id: aloe-vera-gel
+    percent: 24.63
+  - id: herbal-preservative
+    percent: 0.99
+  - id: blending-oil
+    percent: 1.48
+packaging: []
+fill_volume_ml: 101.5
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=152912

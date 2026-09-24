@@ -71,12 +71,12 @@ def ing_master() -> IngredientMaster:
         ingredients=[
             Ingredient(id="oilA", name="오일A", inci="Oil A", category="에몰리언트"),
             Ingredient(id="oilB", name="오일B", inci="Oil B", category="에몰리언트"),
-            Ingredient(id="thickener", name="점증제", inci="Thickener", category="점증제"),
+            Ingredient(id="thickener", name="점증제", inci="Thickener", category="점증"),
             Ingredient(
                 id="fragrance",
                 name="향료",
                 inci="Parfum",
-                category="에센셜오일",
+                category="착향",
                 fragrance=True,
                 allergens=[AllergenContent(id="limonene", percent=5.0)],
             ),

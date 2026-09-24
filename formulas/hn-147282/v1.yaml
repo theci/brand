@@ -1,0 +1,26 @@
+product: 베이비 카밍샴푸
+slug: hn-147282
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 303.3
+phases:
+- name: A
+  ingredients:
+  - id: baby-shampoo-base
+    percent: 79.13
+  - id: honey-extract
+    percent: 9.89
+  - id: calming-5-solution
+    percent: 9.89
+  - id: argan-oil
+    percent: 0.66
+  - id: mandarin-eo
+    percent: 0.28
+  - id: roman-chamomile-eo
+    percent: 0.15
+packaging: []
+fill_volume_ml: 300.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=147282

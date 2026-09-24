@@ -1,0 +1,20 @@
+product: 비타민C 집중 앰플
+slug: vitaminc-focus-ampoule
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+line: 비타민C
+product_type: leave_on
+status: 개발중
+base_batch_g: 32
+phases:
+- name: A (냉 혼합)
+  process: 기능성 첨가물(30g) 속뚜껑을 열고 분량의 비타민C를 넣어 흔들어 혼합
+  ingredients:
+  - id: hyaluronic-acid-11
+    percent: 93.75
+  - id: ethyl-ascorbyl-ether
+    percent: 6.25
+packaging: []
+fill_volume_ml: 32
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=288686

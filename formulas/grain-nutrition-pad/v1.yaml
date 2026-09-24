@@ -1,0 +1,22 @@
+product: 곡물 영양 윤패드
+slug: grain-nutrition-pad
+version: 1
+regime: cosmetics
+category: 토너·미스트
+product_type: leave_on
+status: 개발중
+base_batch_g: 50.0
+phases:
+- name: A
+  ingredients:
+  - id: grain-protein-extract
+    percent: 60.0
+  - id: biotin
+    percent: 30.0
+  - id: panthenol
+    percent: 6.0
+  - id: hexanediol
+    percent: 4.0
+packaging: []
+fill_volume_ml: 50.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=285975

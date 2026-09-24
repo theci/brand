@@ -1,0 +1,30 @@
+product: 로즈여성세정제
+slug: hn-45430
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 99.1
+phases:
+- name: A
+  ingredients:
+  - id: purified-water
+    percent: 40.37
+  - id: rose-water
+    percent: 40.36
+  - id: hycell
+    percent: 1.01
+  - id: menthol
+    percent: 0.1
+  - id: olive-liquid
+    percent: 1.01
+  - id: mugwort-extract
+    percent: 8.07
+  - id: licorice-root
+    percent: 7.06
+  - id: hexanediol
+    percent: 2.02
+packaging: []
+fill_volume_ml: 99.1
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=45430

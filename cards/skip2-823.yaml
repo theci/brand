@@ -1,0 +1,20 @@
+# 라놀린 핸드&바디로션 — sample.txt(이미지 레시피) 기반(branduid=823).
+product: 라놀린 핸드&바디로션
+slug: hn-823
+type: leave_on
+status: 개발중
+volume_ml: 200
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=823
+ingredients:
+  - 아보카도오일 | 8g | 유상
+  - 라놀린 | 10g | 유상
+  - 시어버터 | 10g | 버터
+  - 올리브유화왁스 | 5g | 유화제
+  - 세틸알콜 | 1g | 유화보조
+  - 캐모마일워터 | 100g | 수상
+  - 알로에모이스처 | 30g | 진정
+  - 식물성스쿠알렌 | 5g | 유상
+  - 식물성 글리세린 | 8g | 보습
+  - 한방보존제 | 5g | 방부
+  - 만다린 | 10방울 | 착향
+  - 라벤더 | 5방울 | 착향

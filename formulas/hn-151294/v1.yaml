@@ -1,0 +1,34 @@
+product: 집중! 두피앰플
+slug: hn-151294
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 190.4
+phases:
+- name: A
+  ingredients:
+  - id: xanthan-gum
+    percent: 0.11
+  - id: glycerin
+    percent: 2.1
+  - id: nokchoco-extract
+    percent: 21.01
+  - id: copper-peptide
+    percent: 26.24
+  - id: herbal-preservative
+    percent: 0.53
+  - id: xanthan-gum
+    percent: 0.11
+  - id: glycerin
+    percent: 2.1
+  - id: rosemary-water
+    percent: 21.01
+  - id: copper-peptide
+    percent: 26.26
+  - id: herbal-preservative
+    percent: 0.53
+packaging: []
+fill_volume_ml: 190.4
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=151294

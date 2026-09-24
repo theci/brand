@@ -1,0 +1,34 @@
+product: 호호바 만능로션
+slug: hn-159613
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: jojoba-oil
+    percent: 10.0
+  - id: shea-butter
+    percent: 5.0
+  - id: olive-emulsifying-wax
+    percent: 4.0
+  - id: oliwax-lc
+    percent: 2.0
+  - id: neroli-water
+    percent: 34.0
+  - id: rose-flower-gel
+    percent: 23.0
+  - id: organic-7-solution
+    percent: 10.0
+  - id: allantoin
+    percent: 5.0
+  - id: panthenol
+    percent: 5.0
+  - id: hexanediol
+    percent: 2.0
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=159613

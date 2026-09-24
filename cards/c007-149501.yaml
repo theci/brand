@@ -1,0 +1,14 @@
+# EM세탁세제(가루) — 015/007 배치 수동 보정(branduid=149501).
+product: EM세탁세제(가루)
+slug: hn-149501
+type: rinse_off
+status: 개발중
+regime: chemical_safety
+volume_ml: 1000
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=149501
+product_category: 세탁세제_계면활성제_함유
+ingredients:
+  - 베이킹소다 | 450g | 세정
+  - 과탄산나트륨 | 450g | 산소표백
+  - LES | 80g | 세정
+  - EM활성액 | 20g | 발효

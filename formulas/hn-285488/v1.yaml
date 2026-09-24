@@ -1,0 +1,36 @@
+product: 로즈마리 트리트먼트
+slug: hn-285488
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 252.5
+phases:
+- name: A
+  ingredients:
+  - id: cetiol-ester-oil
+    percent: 9.11
+  - id: cetyl-alcohol
+    percent: 2.38
+  - id: btms
+    percent: 5.15
+  - id: guar-chloride
+    percent: 1.19
+  - id: glycerin
+    percent: 3.96
+  - id: rosemary-water
+    percent: 57.41
+  - id: grain-protein-extract
+    percent: 7.92
+  - id: amino-acid-17-complex
+    percent: 9.9
+  - id: hexanediol
+    percent: 1.98
+  - id: rosemary-eo
+    percent: 0.5
+  - id: ylang-ylang-eo
+    percent: 0.5
+packaging: []
+fill_volume_ml: 252.5
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=285488

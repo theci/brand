@@ -1,0 +1,19 @@
+product: 카네이션 디퓨저
+slug: hn-145802
+version: 1
+regime: chemical_safety
+category: 생활화학
+product_type: leave_on
+status: 개발중
+base_batch_g: 180.0
+phases:
+- name: A
+  ingredients:
+  - id: fragrance-oil
+    percent: 25.0
+  - id: diffuser-base
+    percent: 75.0
+packaging: []
+fill_volume_ml: 180.0
+product_category: 방향제_지속방출형
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=145802

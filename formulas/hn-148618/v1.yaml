@@ -1,0 +1,34 @@
+product: 생기수분 부활초크림
+slug: hn-148618
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: rosehip-oil
+    percent: 10.0
+  - id: olive-emulsifying-wax
+    percent: 5.0
+  - id: neroli-water
+    percent: 39.0
+  - id: aloe-vera-gel
+    percent: 35.0
+  - id: alpha-bisabolol
+    percent: 0.5
+  - id: niacinamide
+    percent: 3.0
+  - id: stem-cell-culture
+    percent: 5.0
+  - id: lipidure
+    percent: 1.0
+  - id: herbal-preservative
+    percent: 1.0
+  - id: essential-oil
+    percent: 0.5
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=148618

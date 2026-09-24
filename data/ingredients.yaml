@@ -14,6 +14,7 @@ ingredients:
     name: 카프릴릭/카프릭 트리글리세라이드
     inci: Caprylic/Capric Triglyceride
     category: 에몰리언트
+    effects: []
     price_per_kg: 15000
     density: 0.95
     has_coa: true
@@ -26,6 +27,7 @@ ingredients:
     name: 호호바오일
     inci: Simmondsia Chinensis (Jojoba) Seed Oil
     category: 에몰리언트
+    effects: []
     price_per_kg: 45000
     density: 0.87
     has_coa: true
@@ -38,6 +40,7 @@ ingredients:
     name: 피마자오일
     inci: Ricinus Communis (Castor) Seed Oil
     category: 에몰리언트
+    effects: []
     price_per_kg: 8000
     density: 0.96
     has_coa: true
@@ -49,6 +52,7 @@ ingredients:
     name: 올리브오일
     inci: Olea Europaea (Olive) Fruit Oil
     category: 에몰리언트
+    effects: []
     price_per_kg: 12000
     density: 0.91
     has_coa: true
@@ -60,6 +64,7 @@ ingredients:
     name: 코코넛오일
     inci: Cocos Nucifera (Coconut) Oil
     category: 에몰리언트
+    effects: []
     price_per_kg: 9000
     density: 0.92
     has_coa: true
@@ -71,6 +76,7 @@ ingredients:
     name: 스위트아몬드오일
     inci: Prunus Amygdalus Dulcis (Sweet Almond) Oil
     category: 에몰리언트
+    effects: []
     price_per_kg: 20000
     density: 0.91
     has_coa: true
@@ -81,6 +87,7 @@ ingredients:
     name: 해바라기씨오일
     inci: Helianthus Annuus (Sunflower) Seed Oil
     category: 에몰리언트
+    effects: []
     price_per_kg: 6000
     density: 0.92
     has_coa: false   # 성적서 미확보 — UI에서 경고
@@ -91,6 +98,7 @@ ingredients:
     name: 스쿠알란
     inci: Squalane
     category: 에몰리언트
+    effects: []
     price_per_kg: 90000
     density: 0.81
     has_coa: true
@@ -104,6 +112,7 @@ ingredients:
     name: 시어버터
     inci: Butyrospermum Parkii (Shea) Butter
     category: 버터
+    effects: []
     price_per_kg: 18000
     density: 0.90
     has_coa: true
@@ -115,6 +124,7 @@ ingredients:
     name: 코코아버터
     inci: Theobroma Cacao (Cocoa) Seed Butter
     category: 버터
+    effects: []
     price_per_kg: 22000
     density: 0.90
     has_coa: true
@@ -127,6 +137,7 @@ ingredients:
     name: 비즈왁스
     inci: Cera Alba (Beeswax)
     category: 왁스
+    effects: []
     price_per_kg: 25000
     density: 0.96
     has_coa: true
@@ -137,6 +148,7 @@ ingredients:
     name: 칸데릴라왁스
     inci: Euphorbia Cerifera (Candelilla) Wax
     category: 왁스
+    effects: []
     price_per_kg: 40000
     density: 0.95
     has_coa: true
@@ -148,6 +160,7 @@ ingredients:
     name: 카르나우바왁스
     inci: Copernicia Cerifera (Carnauba) Wax
     category: 왁스
+    effects: []
     price_per_kg: 35000
     density: 0.97
     has_coa: true
@@ -159,7 +172,8 @@ ingredients:
   - id: cetyl-alcohol
     name: 세틸알코올
     inci: Cetyl Alcohol
-    category: 점증제
+    category: 점증
+    effects: []
     price_per_kg: 12000
     density: 0.81
     has_coa: true
@@ -170,7 +184,8 @@ ingredients:
   - id: stearic-acid
     name: 스테아릭애씨드
     inci: Stearic Acid
-    category: 점증제
+    category: 점증
+    effects: []
     price_per_kg: 8000
     density: 0.85
     has_coa: true
@@ -182,6 +197,7 @@ ingredients:
     name: 라놀린
     inci: Lanolin
     category: 에몰리언트
+    effects: []
     price_per_kg: 30000
     density: 0.94
     has_coa: true
@@ -194,6 +210,7 @@ ingredients:
     name: 폴리소르베이트80
     inci: Polysorbate 80
     category: 계면활성제
+    effects: []
     price_per_kg: 15000
     density: 1.06
     has_coa: true
@@ -207,6 +224,7 @@ ingredients:
     name: 올리브리퀴드
     inci: PEG-7 Glyceryl Cocoate
     category: 계면활성제
+    effects: []
     price_per_kg: 20000
     density: 1.03
     has_coa: true
@@ -219,6 +237,7 @@ ingredients:
     name: 소듐코코일이세티오네이트
     inci: Sodium Cocoyl Isethionate
     category: 계면활성제
+    effects: []
     price_per_kg: 12000
     density: 1.0
     has_coa: true
@@ -230,6 +249,7 @@ ingredients:
     name: 코카미도프로필베타인
     inci: Cocamidopropyl Betaine
     category: 계면활성제
+    effects: []
     price_per_kg: 5000
     density: 1.05
     has_coa: true
@@ -240,7 +260,8 @@ ingredients:
   - id: citric-acid
     name: 시트릭애씨드
     inci: Citric Acid
-    category: pH조절제
+    category: pH조절
+    effects: []
     price_per_kg: 3000
     density: 1.05
     has_coa: true
@@ -252,7 +273,8 @@ ingredients:
   - id: glycerin
     name: 글리세린
     inci: Glycerin
-    category: 보습제
+    category: 보습
+    effects: []
     price_per_kg: 4000
     density: 1.26
     has_coa: true
@@ -262,7 +284,8 @@ ingredients:
   - id: water
     name: 정제수
     inci: Aqua
-    category: 용매
+    category: 용제
+    effects: []
     price_per_kg: 500
     density: 1.00
     has_coa: true
@@ -273,7 +296,8 @@ ingredients:
   - id: ethanol
     name: 에탄올(변성)
     inci: Alcohol Denat.
-    category: 용매
+    category: 용제
+    effects: []
     price_per_kg: 3500
     density: 0.79
     has_coa: true
@@ -286,6 +310,7 @@ ingredients:
     name: 수산화나트륨
     inci: Sodium Hydroxide
     category: 비누화제
+    effects: []
     price_per_kg: 3000
     density: 2.13
     has_coa: true
@@ -297,7 +322,8 @@ ingredients:
   - id: tocopherol
     name: 토코페롤
     inci: Tocopherol
-    category: 산화방지제
+    category: 산화방지
+    effects: []
     price_per_kg: 60000
     density: 0.95
     has_coa: true
@@ -308,7 +334,8 @@ ingredients:
   - id: vitamin-e-acetate
     name: 토코페릴아세테이트
     inci: Tocopheryl Acetate
-    category: 산화방지제
+    category: 산화방지
+    effects: []
     price_per_kg: 50000
     density: 0.95
     has_coa: true
@@ -320,7 +347,8 @@ ingredients:
   - id: lavender-eo
     name: 라벤더오일
     inci: Lavandula Angustifolia (Lavender) Oil
-    category: 에센셜오일
+    category: 착향
+    effects: []
     price_per_kg: 120000
     density: 0.89
     has_coa: true
@@ -338,7 +366,8 @@ ingredients:
   - id: peppermint-eo
     name: 페퍼민트오일
     inci: Mentha Piperita (Peppermint) Oil
-    category: 에센셜오일
+    category: 착향
+    effects: []
     price_per_kg: 80000
     density: 0.90
     has_coa: true
@@ -352,7 +381,8 @@ ingredients:
   - id: rosemary-extract
     name: 로즈마리추출물
     inci: Rosmarinus Officinalis (Rosemary) Leaf Extract
-    category: 산화방지제
+    category: 산화방지
+    effects: []
     price_per_kg: 100000
     density: 0.95
     has_coa: false   # 성적서 미확보 — UI에서 경고
@@ -364,7 +394,8 @@ ingredients:
   - id: candle-fragrance
     name: 캔들용 프래그런스 오일
     inci: Fragrance (candle grade)
-    category: 착향제
+    category: 착향
+    effects: []
     price_per_kg: 25000
     density: 0.95
     has_coa: false
@@ -378,6 +409,7 @@ ingredients:
     name: 글리세릴스테아레이트시트레이트
     inci: Glyceryl Stearate Citrate
     category: 유화제
+    effects: []
     price_per_kg: 25000
     density: 0.9
     has_coa: true
@@ -388,7 +420,8 @@ ingredients:
   - id: sodium-hyaluronate
     name: 소듐하이알루로네이트(히알루론산)
     inci: Sodium Hyaluronate
-    category: 보습제
+    category: 보습
+    effects: []
     price_per_kg: 200000
     density: 1.0
     has_coa: true
@@ -398,7 +431,8 @@ ingredients:
   - id: panthenol
     name: 판테놀(프로비타민B5)
     inci: Panthenol
-    category: 보습제
+    category: 보습
+    effects: []
     price_per_kg: 30000
     density: 1.2
     has_coa: true
@@ -409,7 +443,8 @@ ingredients:
   - id: xanthan-gum
     name: 잔탄검
     inci: Xanthan Gum
-    category: 점증제
+    category: 점증
+    effects: []
     price_per_kg: 18000
     density: 0.9
     has_coa: true
@@ -420,7 +455,8 @@ ingredients:
     cas: "122-99-6"
     name: 페녹시에탄올
     inci: Phenoxyethanol
-    category: 보존제
+    category: 보존
+    effects: []
     price_per_kg: 9000
     density: 1.1
     has_coa: true
@@ -432,7 +468,8 @@ ingredients:
   - id: hexanediol
     name: 1,2-헥산다이올
     inci: 1,2-Hexanediol
-    category: 보습제
+    category: 보습
+    effects: []
     price_per_kg: 13000
     density: 0.95
     has_coa: true
@@ -444,6 +481,7 @@ ingredients:
     name: 디프로필렌글라이콜
     inci: Dipropylene Glycol
     category: 용제
+    effects: []
     price_per_kg: 4000
     density: 1.02
     has_coa: true
@@ -455,6 +493,7 @@ ingredients:
     name: 이소프로필미리스테이트
     inci: Isopropyl Myristate
     category: 용제
+    effects: []
     price_per_kg: 6000
     density: 0.85
     has_coa: true
@@ -466,7 +505,8 @@ ingredients:
   - id: cyclodextrin
     name: 하이드록시프로필사이클로덱스트린
     inci: Hydroxypropyl Cyclodextrin
-    category: 소취제
+    category: 활성
+    effects: [소취]
     price_per_kg: 45000
     density: 1.0
     has_coa: true
@@ -482,7 +522,8 @@ ingredients:
   - id: purified-water
     name: 정제수
     inci: Water
-    category: 용제(식품)
+    category: 식품원료
+    effects: []
     price_per_kg: 200
     density: 1.0
     has_coa: true
@@ -495,7 +536,8 @@ ingredients:
   - id: allulose
     name: 알룰로스
     inci: Allulose
-    category: 감미료(식품)
+    category: 식품원료
+    effects: []
     price_per_kg: 4500
     density: 1.3
     has_coa: true
@@ -508,7 +550,8 @@ ingredients:
   - id: gelatin
     name: 젤라틴
     inci: Gelatin
-    category: 겔화제(식품)
+    category: 식품원료
+    effects: []
     price_per_kg: 12000
     density: 1.3
     has_coa: true
@@ -521,7 +564,8 @@ ingredients:
   - id: apple-juice-concentrate
     name: 사과농축과즙
     inci: Apple Juice Concentrate
-    category: 과즙(식품)
+    category: 식품원료
+    effects: []
     price_per_kg: 3500
     density: 1.2
     has_coa: true
@@ -534,7 +578,8 @@ ingredients:
   - id: citric-acid-food
     name: 구연산(식품용)
     inci: Citric Acid
-    category: 산미료(식품)
+    category: 식품원료
+    effects: []
     price_per_kg: 3000
     density: 1.05
     has_coa: true
@@ -547,7 +592,8 @@ ingredients:
   - id: grape-flavor-food
     name: 포도착향료(식품용)
     inci: Grape Flavor
-    category: 착향료(식품)
+    category: 식품원료
+    effects: []
     price_per_kg: 25000
     density: 1.0
     has_coa: true
@@ -560,7 +606,8 @@ ingredients:
   - id: whey-protein-isolate
     name: 분리유청단백
     inci: Whey Protein Isolate
-    category: 단백질원(식품)
+    category: 식품원료
+    effects: []
     price_per_kg: 30000
     density: 1.1
     has_coa: true
@@ -574,7 +621,8 @@ ingredients:
   - id: milk
     name: 우유
     inci: Milk
-    category: 유제품(식품)
+    category: 식품원료
+    effects: []
     price_per_kg: 2000
     density: 1.03
     has_coa: true
@@ -587,7 +635,8 @@ ingredients:
   - id: cream
     name: 생크림
     inci: Cream
-    category: 유지방(식품)
+    category: 식품원료
+    effects: []
     price_per_kg: 9000
     density: 0.99
     has_coa: true
@@ -600,7 +649,8 @@ ingredients:
   - id: skim-milk-powder
     name: 탈지분유
     inci: Skim Milk Powder
-    category: 유고형분(식품)
+    category: 식품원료
+    effects: []
     price_per_kg: 8000
     density: 0.5
     has_coa: true
@@ -613,7 +663,8 @@ ingredients:
   - id: erythritol
     name: 에리스리톨
     inci: Erythritol
-    category: 감미료(식품)
+    category: 식품원료
+    effects: []
     price_per_kg: 5000
     density: 1.2
     has_coa: true
@@ -626,7 +677,8 @@ ingredients:
   - id: soy-lecithin
     name: 대두레시틴
     inci: Soy Lecithin
-    category: 유화제(식품)
+    category: 식품원료
+    effects: []
     price_per_kg: 12000
     density: 1.0
     has_coa: true
@@ -639,7 +691,8 @@ ingredients:
   - id: stabilizer-blend
     name: 안정제(구아검·로커스트빈검)
     inci: Guar Gum, Locust Bean Gum
-    category: 안정제(식품)
+    category: 식품원료
+    effects: []
     price_per_kg: 20000
     density: 0.8
     has_coa: true
@@ -652,7 +705,8 @@ ingredients:
   - id: vanilla-flavor-food
     name: 바닐라착향료(식품용)
     inci: Vanilla Flavor
-    category: 착향료(식품)
+    category: 식품원료
+    effects: []
     price_per_kg: 30000
     density: 1.0
     has_coa: true
@@ -666,7 +720,8 @@ ingredients:
   - id: roasted-almond
     name: 아몬드(로스팅)
     inci: Roasted Almond
-    category: 견과류(식품)
+    category: 식품원료
+    effects: []
     price_per_kg: 14000
     density: 0.55
     has_coa: true
@@ -679,7 +734,8 @@ ingredients:
   - id: sugar
     name: 설탕
     inci: Sugar
-    category: 감미료(식품)
+    category: 식품원료
+    effects: []
     price_per_kg: 1500
     density: 0.85
     has_coa: true
@@ -692,7 +748,8 @@ ingredients:
   - id: honey-powder
     name: 꿀분말
     inci: Honey Powder
-    category: 감미료(식품)
+    category: 식품원료
+    effects: []
     price_per_kg: 12000
     density: 0.6
     has_coa: true
@@ -705,7 +762,8 @@ ingredients:
   - id: butter-powder
     name: 버터파우더
     inci: Butter Powder
-    category: 유가공(식품)
+    category: 식품원료
+    effects: []
     price_per_kg: 18000
     density: 0.5
     has_coa: true
@@ -718,7 +776,8 @@ ingredients:
   - id: coating-oil
     name: 해바라기유(코팅유)
     inci: Sunflower Oil
-    category: 유지(식품)
+    category: 식품원료
+    effects: []
     price_per_kg: 6000
     density: 0.92
     has_coa: true
@@ -731,7 +790,8 @@ ingredients:
   - id: refined-salt
     name: 정제염
     inci: Refined Salt
-    category: 정제염(식품)
+    category: 식품원료
+    effects: []
     price_per_kg: 800
     density: 1.2
     has_coa: true
@@ -744,7 +804,8 @@ ingredients:
   - id: yeast-extract
     name: 효모추출물
     inci: Yeast Extract
-    category: 향미증진(식품)
+    category: 식품원료
+    effects: []
     price_per_kg: 15000
     density: 0.7
     has_coa: true
@@ -758,7 +819,8 @@ ingredients:
   - id: niacinamide
     name: 나이아신아마이드
     inci: Niacinamide
-    category: 진정
+    category: 활성
+    effects: [진정]
     price_per_kg: 25000
     density: 1.0
     has_coa: true
@@ -768,7 +830,8 @@ ingredients:
   - id: allantoin
     name: 알란토인
     inci: Allantoin
-    category: 진정
+    category: 활성
+    effects: [진정]
     price_per_kg: 30000
     density: 1.0
     has_coa: true
@@ -779,7 +842,8 @@ ingredients:
   - id: centella-extract
     name: 센텔라아시아티카추출물
     inci: Centella Asiatica Extract
-    category: 진정
+    category: 활성
+    effects: [진정]
     price_per_kg: 60000
     density: 1.0
     has_coa: true
@@ -788,7 +852,8 @@ ingredients:
   - id: beta-glucan
     name: 베타글루칸
     inci: Beta-Glucan
-    category: 진정
+    category: 활성
+    effects: [진정]
     price_per_kg: 45000
     density: 1.0
     has_coa: true
@@ -797,7 +862,8 @@ ingredients:
   - id: zinc-pca
     name: 징크피씨에이
     inci: Zinc PCA
-    category: 피지조절
+    category: 활성
+    effects: [피지조절]
     price_per_kg: 40000
     density: 1.0
     has_coa: true
@@ -808,6 +874,7 @@ ingredients:
     name: 펜틸렌글라이콜
     inci: Pentylene Glycol
     category: 보습
+    effects: []
     price_per_kg: 15000
     density: 1.0
     has_coa: true
@@ -820,6 +887,7 @@ ingredients:
     name: 디메치콘
     inci: Dimethicone
     category: 에몰리언트
+    effects: []
     price_per_kg: 12000
     density: 0.97
     has_coa: true
@@ -828,3 +896,3113 @@ ingredients:
     required_hlb: 5.0
     moisture_role: occlusive   # 실리콘 = 수분 잠금(보호막)막 형성
     notes: 실리콘 에몰리언트(발림성·보호막). 지방산이 아니라 말라세지아 먹이 아님 → 안전.
+
+  # =========================================================================
+  # 허브누리 레시피(herbnoori.com) 기반으로 추가한 원료 (2026-09 임포트).
+  # ※ INCI·category·상한·CAS는 공개 레시피 기준의 추정값 — 집행 전 공급처
+  #   CoA/식약처 원문으로 반드시 검증할 것. has_coa=false, 단가는 미입력(예시 아님).
+  # =========================================================================
+  # --- 워터/하이드로졸 ---
+  - id: sea-buckthorn-water
+    name: 비타민나무 워터
+    inci: Hippophae Rhamnoides Water
+    category: 워터
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 비타민나무(산자나무) 열매 수증기 증류수. 클렌징워터 베이스. INCI 추정—검증 필요.
+  - id: neroli-water
+    name: 네롤리워터
+    inci: Citrus Aurantium Amara (Bitter Orange) Flower Water
+    category: 워터
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 오렌지꽃수. 수상 베이스. INCI 추정—검증 필요.
+  - id: rose-flower-gel
+    name: 로즈플라워겔
+    inci: Rosa Damascena Flower Water (and) 점증제 블렌드
+    category: 점증
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 다마스크 장미수 함유 점증겔(점증·수분·진정). 정확 INCI 블렌드 미확인—검증 필요.
+  # --- 가용화제 / 유화제 / 세정보조 ---
+  - id: polysorbate-20
+    name: 폴리소르베이트 20
+    inci: Polysorbate 20
+    category: 계면활성제
+    effects: []
+    density: 1.1
+    has_coa: false
+    grade: cosmetic
+    cas: "9005-64-5"
+    hlb: 16.7
+    notes: 향·오일 가용화제(수상). HLB 16.7.
+  - id: olive-emulsifying-wax
+    name: 올리브유화왁스
+    inci: Cetearyl Olivate (and) Sorbitan Olivate
+    category: 유화제
+    effects: []
+    density: 0.95
+    has_coa: false
+    grade: cosmetic
+    notes: 올리브 유래 O/W 유화왁스(Olivem 1000 계열). required/HLB 추정 생략—검증 필요.
+  - id: washable-cleansing-liquid
+    name: 워셔블 클렌징 리퀴드
+    inci: 세정 계면활성 블렌드 (INCI 미확인)
+    category: 계면활성제
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 클렌징오일이 물에 씻기도록 돕는 유화·세정 블렌드. 정확 INCI 공급처 확인 필요.
+  # --- 오일/에스테르 ---
+  - id: green-tea-seed-oil
+    name: 녹차씨오일
+    inci: Camellia Sinensis Seed Oil
+    category: 에몰리언트
+    effects: []
+    density: 0.91
+    has_coa: false
+    grade: cosmetic
+    required_hlb: 7.0
+    moisture_role: emollient
+    notes: 녹차씨 추출 오일. required_hlb 추정—검증 필요.
+  - id: cetyl-ethylhexanoate
+    name: 세틸에틸헥사노에이트
+    inci: Cetyl Ethylhexanoate
+    category: 에몰리언트
+    effects: []
+    density: 0.86
+    has_coa: false
+    grade: cosmetic
+    cas: "59130-69-7"
+    required_hlb: 10.0
+    moisture_role: emollient
+    notes: 가벼운 에스테르 오일(끈적임 없음). required_hlb 추정—검증 필요.
+  # --- 착향(에센셜오일/블렌드) ---
+  - id: lemon-eo
+    name: 레몬 에센셜오일
+    inci: Citrus Limon (Lemon) Peel Oil
+    category: 착향
+    effects: []
+    density: 0.85
+    has_coa: false
+    grade: cosmetic
+    fragrance: true
+    notes: 레몬껍질 추출 향료. 광독성(푸로쿠마린) 주의—알러젠·상한 검증 필요.
+  - id: lemon-juice-blending-oil
+    name: 레몬쥬스 블렌딩오일
+    inci: Citrus 계열 에센셜오일 블렌드 (레몬/레몬그라스/로즈우드)
+    category: 착향
+    effects: []
+    density: 0.86
+    has_coa: false
+    grade: cosmetic
+    fragrance: true
+    notes: 레몬·레몬그라스·로즈우드 블렌딩 향료. 알러젠 함량 미확인—검증 필요.
+  # --- 활성 성분(추정) ---
+  - id: adenosine-liposome
+    name: 아데노신리포좀
+    inci: Adenosine (and) Lecithin
+    category: 활성
+    effects: [주름]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 식약처 주름개선 고시원료 아데노신의 리포좀 제형. 함량·INCI 검증 필요.
+  - id: volume-peptide-6
+    name: 볼륨 펩타이드6
+    inci: 6종 펩타이드 복합 블렌드 (INCI 미확인)
+    category: 활성
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 6가지 복합 펩타이드. 정확 INCI 블렌드 공급처 확인 필요.
+  - id: ceramide-complex
+    name: 세라마이드5 컴플렉스
+    inci: Ceramide 5종 복합 (INCI 미확인)
+    category: 활성
+    effects: [장벽]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 5종 세라마이드 복합(장벽 강화). 정확 INCI·함량 검증 필요.
+  - id: marine-collagen-gel
+    name: 어린콜라겐겔
+    inci: Hydrolyzed Collagen 함유 겔 블렌드 (INCI 미확인)
+    category: 활성
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 마린 콜라겐 펩타이드+나이아신아마이드+로즈워터 함유 겔. INCI 블렌드 검증 필요.
+  - id: probiotics-complex
+    name: 프로바이오틱스 3
+    inci: Lactobacillus/Bifida/Lactococcus Ferment Lysate 블렌드
+    category: 활성
+    effects: [발효]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 3종 유산균 복합 발효물. 정확 INCI·함량 검증 필요.
+  - id: cica-exosome
+    name: 시카엑소좀
+    inci: 병풀 유래 엑소좀 블렌드 (INCI 미확인)
+    category: 활성
+    effects: [재생]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 세포간 신호전달 메신저(재생·탄력). INCI·규제성 미확인—검증 필요.
+  - id: glutathione
+    name: 글루타치온
+    inci: Glutathione
+    category: 활성
+    effects: [항산화]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    cas: "70-18-8"
+    notes: 항산화·미백 보조. 화장품 표시·상한 검증 필요.
+
+  # --- 허브누리 페이지1 나머지 15종 임포트(2차) ---
+  # --- 워터/하이드로졸 ---
+  - id: rose-water
+    name: 로즈워터
+    inci: Rosa Damascena Flower Water
+    category: 워터
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 불가리아 다마스크 장미수. INCI 추정—검증 필요.
+  # --- 보습 ---
+  - id: multi-hyaluronic-acid
+    name: 다중 히아루론산
+    inci: Sodium Hyaluronate (고·중·저분자 복합)
+    category: 보습
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 고·중·저분자 복합 히알루론산(촘촘 보습). 정확 조성 검증 필요.
+  - id: hyaluronic-acid-11
+    name: 11 히아루론산
+    inci: 11종 히알루론산 복합 (Sodium Hyaluronate 외)
+    category: 보습
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 11종 히알루론산 복합. 정확 INCI 조성 검증 필요.
+  - id: water-jojoba
+    name: 워터 호호바
+    inci: Hydrogenated Jojoba Oil 리포좀 워터 (INCI 미확인)
+    category: 보습
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 호호바오일 리포좀 워터(수분산 에몰리언트). INCI 블렌드 확인 필요.
+  # --- 착향(에센셜오일/블렌드) ---
+  - id: rose-power-blending-oil
+    name: 로즈파워 블렌딩오일
+    inci: 로즈앱솔루트/로즈제라늄/로즈우드/프랑킨센스 블렌드
+    category: 착향
+    effects: []
+    density: 0.9
+    has_coa: false
+    grade: cosmetic
+    fragrance: true
+    notes: 로즈 계열 블렌딩 향료. 알러젠 함량 미확인—검증 필요.
+  - id: bergamot-fcf-eo
+    name: 버가못 에센셜오일(FCF)
+    inci: Citrus Aurantium Bergamia (Bergamot) Fruit Oil
+    category: 착향
+    effects: []
+    density: 0.88
+    has_coa: false
+    grade: cosmetic
+    fragrance: true
+    notes: FCF(푸로쿠마린 제거)로 광독성 낮음. 리모넨·리날룰 등 알러젠 검증 필요.
+  # --- 활성 성분(추정) ---
+  - id: ethyl-ascorbyl-ether
+    name: 프리미엄 비타민C(에칠아스코빌에텔)
+    inci: Ethyl Ascorbyl Ether
+    category: 활성
+    effects: [미백]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 식약처 미백 고시 비타민C 유도체(EAA). 안정성 우수. 배합상한·pH 검증 필요.
+  - id: alpha-bisabolol
+    name: 알파비사보롤
+    inci: Bisabolol
+    category: 활성
+    effects: [진정]
+    density: 0.92
+    has_coa: false
+    grade: cosmetic
+    cas: "23089-26-1"
+    notes: 카모마일 유래 진정·미백 보조. 식약처 표시성 검증 필요.
+  - id: borfirin
+    name: 보르피린
+    inci: Anemarrhena Asphodeloides Root Extract
+    category: 활성
+    effects: [볼륨]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 지모추출물(지방증식 볼륨업 소구). INCI·효능 표시성 검증 필요.
+  - id: galactomyces-ferment
+    name: 갈락토미세스발효여과물
+    inci: Galactomyces Ferment Filtrate
+    category: 활성
+    effects: [발효]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 누룩(효모) 발효여과물(보습·탄력·미네랄). 함량 검증 필요.
+  - id: collagen-7-complex
+    name: 콜라겐7 컴플렉스
+    inci: 7종 콜라겐 복합 (INCI 미확인)
+    category: 활성
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 7가지 콜라겐 복합원료. 정확 INCI 조성 확인 필요.
+  - id: ceramide-water-soluble
+    name: 세라마이드(수용성)
+    inci: 수용성 세라마이드 블렌드 (INCI 미확인)
+    category: 활성
+    effects: [장벽]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 수용성 세라마이드(장벽 강화). 정확 INCI·함량 검증 필요.
+  - id: vitamin-berry-3
+    name: 비타민열매3
+    inci: 비타민나무열매/유자/오미자 추출 복합 (INCI 미확인)
+    category: 활성
+    effects: [미백]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 비타민나무열매·유자·오미자 3종 복합(맑은 피부). INCI 조성 검증 필요.
+  - id: super-cica-4
+    name: 슈퍼시카4
+    inci: 병풀(Centella) 4종 복합 (INCI 미확인)
+    category: 활성
+    effects: [진정]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 병풀 4종 복합(진정). 마데카소사이드 등 조성 검증 필요.
+  - id: matrixyl-3000
+    name: 매트릭실3000
+    inci: Palmitoyl Tripeptide-1 (and) Palmitoyl Tetrapeptide-7
+    category: 활성
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 콜라겐 생성 신호 메신저 펩타이드. 함량·표시성 검증 필요.
+  - id: pdrn
+    name: PDRN
+    inci: 식물 유래 DNA 단편(PDRN) 블렌드
+    category: 활성
+    effects: [재생]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 어성초/장미/병풀/율무/연어 등 소스별 상이. 규제 표시성·연어 유래 여부 검증 필요.
+  - id: grain-protein-extract
+    name: 슈퍼곡물 단백질 추출물
+    inci: 곡물 단백질 추출 블렌드 (INCI 미확인)
+    category: 활성
+    effects: [영양]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 곡물 단백질 추출(피부 영양). 정확 INCI 조성 확인 필요.
+  # --- 완제 베이스(반제품) ---
+  - id: whitening-moisture-cream-base
+    name: 화이트닝 수분크림 베이스
+    inci: 완제 수분크림 에멀전 베이스 (전성분 공급처 확인)
+    category: 완제베이스
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: >
+      식약처 미백기능성·24h 수분 완제 크림 베이스(나이아신아마이드·워터호호바 함유 소구).
+      단일 원료가 아닌 완제 에멀전 — 전성분·기능성 근거는 공급처 문서로 확인 필요.
+
+  # --- 허브누리 페이지2 임포트(매트릭실 라인) ---
+  - id: rosehip-oil
+    name: 로즈힙오일
+    inci: Rosa Canina Fruit Oil
+    category: 에몰리언트
+    effects: []
+    density: 0.92
+    has_coa: false
+    grade: cosmetic
+    required_hlb: 7.0
+    moisture_role: emollient
+    notes: 들장미 씨앗 오일(비타민 풍부). 산패 주의. required_hlb 추정—검증 필요. 대체는 마카다미아넛오일.
+  - id: oliwax-lc
+    name: 올리왁스LC
+    inci: Cetearyl Olivate 계열 유화보조 (INCI 미확인)
+    category: 유화제
+    effects: []
+    density: 0.95
+    has_coa: false
+    grade: cosmetic
+    notes: 백탁 완화용 유화 보조제. 정확 INCI 공급처 확인 필요.
+  - id: whitening-perfect-solution-ampoule
+    name: 화이트닝 퍼펙트 솔루션 앰플
+    inci: 비타민나무열매/유자/오미자 추출 등 미백 완제 앰플 (INCI 미확인)
+    category: 완제베이스
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 식약처 미백 기능성 완제 앰플(비타민나무열매·유자·오미자추출물 등). 전성분 공급처 확인 필요.
+  - id: antiwrinkle-perfect-solution-ampoule
+    name: 안티 링클 퍼펙트 솔루션 앰플
+    inci: 아데노신/동백꽃/히비스커스/샤프란 추출 등 주름개선 완제 앰플 (INCI 미확인)
+    category: 완제베이스
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 식약처 주름개선 인증(아데노신) 완제 앰플. 전성분 공급처 확인 필요.
+  - id: acclear-perfect-solution-ampoule
+    name: AC클리어 퍼펙트 솔루션 앰플
+    inci: 병풀/녹차/로즈마리 추출 등 진정 완제 앰플 (INCI 미확인)
+    category: 완제베이스
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 트러블 진정 완제 앰플(병풀·녹차·로즈마리추출물 등). 전성분 공급처 확인 필요.
+
+  # --- 허브누리 페이지2 나머지 임포트 ---
+  - id: macadamia-oil
+    name: 마카다미아넛오일
+    inci: Macadamia Ternifolia Seed Oil
+    category: 에몰리언트
+    effects: []
+    density: 0.91
+    has_coa: false
+    grade: cosmetic
+    required_hlb: 7.0
+    moisture_role: emollient
+    notes: 팔미톨레산 풍부한 에몰리언트. required_hlb 추정—검증 필요.
+  - id: camellia-oil
+    name: 동백오일
+    inci: Camellia Japonica Seed Oil
+    category: 에몰리언트
+    effects: []
+    density: 0.91
+    has_coa: false
+    grade: cosmetic
+    required_hlb: 7.0
+    moisture_role: emollient
+    notes: 동백 씨 오일(올레산 풍부). required_hlb 추정—검증 필요.
+  - id: fermented-camellia-oil
+    name: 발효 동백오일
+    inci: 발효 동백 오일 (INCI 미확인)
+    category: 에몰리언트
+    effects: []
+    density: 0.91
+    has_coa: false
+    grade: cosmetic
+    moisture_role: emollient
+    notes: 발효 처리 동백오일. 정확 INCI 공급처 확인 필요.
+  - id: olive-cold-emulsifier
+    name: 올리브 상온유화제
+    inci: Cetearyl Olivate (and) Sorbitan Olivate 계열 상온유화 (INCI 미확인)
+    category: 유화제
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 비가열(상온) O/W 유화제(올리브 유래). 사용 전 충분히 섞을 것. INCI 검증 필요.
+  - id: water-argan
+    name: 워터 아르간
+    inci: Hydrogenated Argan Oil 리포좀 워터 (INCI 미확인)
+    category: 보습
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 아르간 리포좀 워터(수분산 에몰리언트). INCI 블렌드 확인 필요.
+  - id: jobs-tears-extract
+    name: 율무추출물
+    inci: Coix Lacryma-Jobi Ma-Yuen Seed Extract
+    category: 활성
+    effects: [미백]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 율무 추출(밝고 매끈 소구). 미백 표시성 검증 필요.
+  - id: alpha-arbutin
+    name: 알파알부틴
+    inci: Alpha-Arbutin
+    category: 활성
+    effects: [미백]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    cas: "84380-01-8"
+    notes: 식약처 미백 고시(티로시나아제 억제). 배합상한·표시성 검증 필요.
+  - id: amino-acid-17-complex
+    name: 아미노산 17 컴플렉스
+    inci: 17종 아미노산 복합 (INCI 미확인)
+    category: 활성
+    effects: [보습]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 17종 아미노산 복합(피부결·보습). 정확 INCI 조성 확인 필요.
+  - id: eco-humectant
+    name: 에코 보습제
+    inci: 에코 보습 블렌드 (INCI 미확인)
+    category: 보습
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 친환경 보습 블렌드. 정확 INCI 공급처 확인 필요.
+  - id: lavender-deep-blending-oil
+    name: 라벤더 딥 블렌딩오일
+    inci: 라벤더 계열 블렌딩 향료 (INCI 미확인)
+    category: 착향
+    effects: []
+    density: 0.89
+    has_coa: false
+    grade: cosmetic
+    fragrance: true
+    notes: 라벤더 블렌딩 향료. 리날룰 등 알러젠 함량 검증 필요.
+  - id: dissolving-thread-collagen
+    name: 녹는 실 콜라겐
+    inci: 녹는 실(PDO 계열)·콜라겐 성분 (INCI 미확인)
+    category: 활성
+    effects: [탄력]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: '녹는 실 리프팅 소구 성분. 효능·규제 표시성 검증 필요(의약품적 소구 주의).'
+  - id: minimum-cream-base
+    name: 미니멈 크림베이스
+    inci: 완제 미니멀 크림 베이스 (INCI 미확인)
+    category: 완제베이스
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 완제 크림 베이스(반제품). 전성분 공급처 확인 필요.
+
+  # --- 허브누리 페이지3 임포트 ---
+  - id: tranexamic-acid
+    name: 트라넥삼산
+    inci: Tranexamic Acid
+    category: 활성
+    effects: [미백]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    cas: "1197-18-8"
+    notes: 기미·색소·미백 소구 성분. 화장품 표시·배합상한 검증 필요.
+  - id: snail-mucin
+    name: 뮤신(블랙 스네일)
+    inci: Snail Secretion Filtrate
+    category: 활성
+    effects: [재생]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 블랙 스네일 점액 여과물(재생·보습). 함량·표시성 검증 필요.
+  - id: argan-oil
+    name: 아르간오일
+    inci: Argania Spinosa Kernel Oil
+    category: 에몰리언트
+    effects: []
+    density: 0.91
+    has_coa: false
+    grade: cosmetic
+    required_hlb: 7.0
+    moisture_role: emollient
+    notes: 아르간 커널 오일(비타민E 풍부). required_hlb 추정—검증 필요.
+  - id: caffeine
+    name: 카페인
+    inci: Caffeine
+    category: 활성
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    cas: "58-08-2"
+    notes: 순환·탄력·부종 완화 소구. 배합상한·표시성 검증 필요.
+  - id: brightening-blending-oil
+    name: 브라이트닝 블렌딩오일
+    inci: 브라이트닝 블렌딩 향료 (INCI 미확인)
+    category: 착향
+    effects: []
+    density: 0.9
+    has_coa: false
+    grade: cosmetic
+    fragrance: true
+    notes: 브라이트닝 소구 블렌딩 향료. 알러젠 함량 검증 필요.
+  - id: multibalm-oil-base
+    name: 멀티밤오일베이스
+    inci: 완제 밤(balm) 오일 베이스 (INCI 미확인)
+    category: 완제베이스
+    effects: []
+    density: 0.9
+    has_coa: false
+    grade: cosmetic
+    notes: 립·멀티밤용 완제 오일 베이스(반제품). 전성분 공급처 확인 필요.
+  - id: multibalm-wax
+    name: 멀티밤왁스
+    inci: 밤 경화 왁스 블렌드 (INCI 미확인)
+    category: 왁스
+    effects: []
+    density: 0.95
+    has_coa: false
+    grade: cosmetic
+    notes: 밤 타입 경화용 왁스 블렌드. 정확 INCI 공급처 확인 필요.
+
+  # --- 페이지3 니들/에센스 수동정리용 ---
+  - id: essence-base
+    name: 에센스베이스
+    inci: 완제 에센스 베이스 (INCI 미확인)
+    category: 완제베이스
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 니들·앰플 레시피용 완제 에센스 베이스(반제품). 전성분 공급처 확인 필요.
+  - id: cream-base
+    name: 크림베이스
+    inci: 완제 크림 베이스 (INCI 미확인)
+    category: 완제베이스
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 완제 크림 베이스(반제품). 전성분 공급처 확인 필요.
+  - id: collagen-peptide
+    name: 콜라겐 펩타이드
+    inci: Hydrolyzed Collagen
+    category: 활성
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 가수분해 콜라겐 펩타이드. 함량·표시성 검증 필요.
+  - id: egf
+    name: EGF
+    inci: sh-Oligopeptide-1
+    category: 활성
+    effects: [재생]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: '상피세포성장인자(EGF) 소구. 화장품 표시성·효능 표현 검증 필요(의약품적 소구 주의).'
+  - id: fgf
+    name: FGF
+    inci: sh-Polypeptide-1
+    category: 활성
+    effects: [재생]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: '섬유아세포성장인자(FGF) 소구. 화장품 표시성·효능 표현 검증 필요(의약품적 소구 주의).'
+
+  # --- 허브누리 페이지4 신규(007/002) — INCI·함량 모두 검증 필요 ---
+  - id: sweet-wormwood-extract
+    name: 개똥쑥추출물
+    inci: Artemisia Annua Extract
+    category: 활성
+    effects: [진정, 항산화]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 개똥쑥(Artemisia Annua) 추출물. 진정 소구. 함량·INCI 검증 필요.
+  - id: roman-chamomile-water
+    name: 로먼캐모마일워터
+    inci: Anthemis Nobilis Flower Water
+    category: 워터
+    effects: [진정]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 로먼캐모마일 플로럴 워터. 함량·INCI 검증 필요.
+  - id: herbal-preservative
+    name: 천연한방보존제
+    inci: 한방 복합 보존 성분 (INCI 미확인)
+    category: 보존
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 천연 한방 복합 보존제. 방부력·전성분 공급처 확인 필요.
+  - id: white-complex-6
+    name: 화이트 컴플렉스 6
+    inci: 미백 복합물 (INCI 미확인)
+    category: 활성
+    effects: [미백]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 미백 복합 원료. 전성분·고시원료 여부 공급처 확인 필요.
+  - id: clean-cotton-fragrance
+    name: 클린 코튼향
+    inci: Fragrance
+    category: 착향
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    fragrance: true
+    notes: 향료(클린 코튼). 알러젠 성분 표시 확인 필요.
+  - id: kombucha-ferment
+    name: 콤부차 발효여과물
+    inci: Saccharomyces/Xylinum Black Tea Ferment
+    category: 활성
+    effects: [발효, 항산화]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 콤부차(홍차버섯) 발효여과물. 함량·INCI 검증 필요.
+  - id: arbutin-liposome
+    name: 알부틴 리포좀
+    inci: Arbutin (and) Lecithin
+    category: 활성
+    effects: [미백]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 알부틴 리포좀 제형. 미백 고시원료(알부틴) 함량·표시성 검증 필요.
+  - id: ahabhapha-complex
+    name: 아하바하파하 컴플렉스
+    inci: AHA/BHA/PHA 복합 (INCI 미확인)
+    category: 활성
+    effects: [피지조절]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: AHA·BHA·PHA 각질 복합물. 산도·사용 한도 검증 필요.
+  - id: adenosine
+    name: 아데노신
+    inci: Adenosine
+    category: 활성
+    effects: [주름]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 식약처 주름개선 고시원료 아데노신(원말). 고시 함량(0.04%) 준수 확인 필요.
+  - id: biotin
+    name: 비오틴
+    inci: Biotin
+    category: 활성
+    effects: [영양]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 비오틴(비타민 B7). 함량·INCI 검증 필요.
+  - id: bebe-bo-blending-oil
+    name: 베베보블렌딩오일
+    inci: 베베보 블렌딩 오일 (INCI 미확인)
+    category: 에몰리언트
+    effects: [진정]
+    density: 0.91
+    has_coa: false
+    grade: cosmetic
+    notes: 베베보 진정 블렌딩 오일(복합). 전성분 공급처 확인 필요.
+  - id: medi-7-solution
+    name: 메디 7솔루션
+    inci: 복합 솔루션 (INCI 미확인)
+    category: 활성
+    effects: [재생]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 메디 7 복합 솔루션. 전성분 공급처 확인 필요.
+  - id: lipidure
+    name: 리피듀어
+    inci: Polyquaternium-51
+    category: 보습
+    effects: [보습, 장벽]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 리피듀어(포스포릴콜린 폴리머). 보습·장벽 소구. 함량·INCI 검증 필요.
+  - id: rosemary-water
+    name: 로즈마리워터
+    inci: Rosmarinus Officinalis (Rosemary) Leaf Water
+    category: 워터
+    effects: [진정]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 로즈마리 플로럴 워터. 함량·INCI 검증 필요.
+  - id: green-tea-extract
+    name: 녹차추출물
+    inci: Camellia Sinensis Leaf Extract
+    category: 활성
+    effects: [항산화, 피지조절]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 녹차잎 추출물. 함량·INCI 검증 필요.
+  - id: betaine
+    name: 내추럴베타인
+    inci: Betaine
+    category: 보습
+    effects: [보습]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 천연 베타인(사탕무 유래) 보습제. 함량·INCI 검증 필요.
+  - id: glyceryl-stearate
+    name: GMS
+    inci: Glyceryl Stearate
+    category: 유화제
+    effects: []
+    density: 0.97
+    has_coa: false
+    grade: cosmetic
+    notes: 글리세릴 스테아레이트(GMS). W/O·O/W 보조 유화제. 함량 검증 필요.
+  - id: neroli-eo
+    name: 네롤리 에센셜오일
+    inci: Citrus Aurantium Amara Flower Oil
+    category: 착향
+    effects: []
+    density: 0.87
+    has_coa: false
+    grade: cosmetic
+    fragrance: true
+    notes: 네롤리(오렌지 꽃) 에센셜오일. 알러젠 성분 표시·사용 한도 확인 필요.
+  - id: angelica-oil
+    name: 구릿대(백지)오일
+    inci: Angelica Dahurica Root Extract (in oil)
+    category: 에몰리언트
+    effects: [미백]
+    density: 0.91
+    has_coa: false
+    grade: cosmetic
+    notes: 구릿대(백지) 침출 오일. 광독성·사용 한도 검증 필요.
+  # --- 색조(착색) — CI 색소 번호·사용 한도 검증 필요 ---
+  - id: lip-color-red-7
+    name: 립컬러 레드 7
+    inci: CI 15850 (Red 7)
+    category: 착색
+    effects: []
+    colorant: true
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 립·색조용 적색 색소(Red 7). 화장품 색소 고시·사용 한도 확인 필요.
+  - id: lip-color-red-27
+    name: 립컬러 레드27
+    inci: CI 45410 (Red 27)
+    category: 착색
+    effects: []
+    colorant: true
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 립·색조용 적색 색소(Red 27). 화장품 색소 고시·사용 한도 확인 필요.
+  - id: lip-color-white
+    name: 립컬러 화이트
+    inci: CI 77891 (Titanium Dioxide)
+    category: 착색
+    effects: []
+    colorant: true
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 백색 색소(이산화티탄). 사용 한도·분진 주의. 검증 필요.
+  - id: lip-color-21
+    name: 립컬러21
+    inci: CI 45380 (Red 21)
+    category: 착색
+    effects: []
+    colorant: true
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 립·색조용 적색 색소(Red 21). 화장품 색소 고시·사용 한도 확인 필요.
+  - id: lip-color-base
+    name: 립컬러 베이스
+    inci: 색소 혼합 베이스 (INCI 미확인)
+    category: 착색
+    effects: []
+    colorant: true
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 립스틱용 색소 혼합 베이스(레드6·아이론옐로우·레드27·화이트 등). 전성분 공급처 확인 필요.
+  - id: rosewood-eo
+    name: 로즈우드 에센셜오일
+    inci: Aniba Rosaeodora Wood Oil
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 0.87
+    has_coa: false
+    grade: cosmetic
+    notes: 로즈우드(볼리비아자단) 에센셜오일. 알러젠 표시·사용 한도 확인 필요.
+  - id: lip-balm-base
+    name: (겁나게 촉촉) 립밤
+    inci: 멀티밤오일 + 멀티밤왁스 완제 베이스 (INCI 미확인)
+    category: 완제베이스
+    effects: []
+    density: 0.95
+    has_coa: false
+    grade: cosmetic
+    notes: 립스틱용 완제 립밤 베이스(멀티밤오일+왁스). 전성분 공급처 확인 필요.
+
+  # --- 허브누리 페이지5 신규(007/002) — INCI·함량 모두 검증 필요 ---
+  - id: eucalyptus-eo
+    name: 유칼립튜스에센셜오일
+    inci: Eucalyptus Globulus Leaf Oil
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 0.92
+    has_coa: false
+    grade: cosmetic
+    notes: 유칼립투스 에센셜오일. 사용 한도·연령 주의(호흡기). 검증 필요.
+  - id: blending-oil
+    name: 블렌딩오일
+    inci: 아로마 블렌딩 오일(선택) (INCI 미확인)
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 0.9
+    has_coa: false
+    grade: cosmetic
+    notes: 취향 선택형 아로마 블렌딩 오일(로즈앱솔루트·네롤리 등). 실제 사용 오일로 대체·검증.
+  - id: ac-clear-blending-oil
+    name: AC클리어 블렌딩오일
+    inci: AC클리어 블렌딩 오일 (INCI 미확인)
+    category: 에몰리언트
+    effects: [피지조절]
+    density: 0.9
+    has_coa: false
+    grade: cosmetic
+    notes: 트러블 케어 블렌딩 오일(복합). 전성분 공급처 확인 필요.
+  - id: cica-panthenol-soothing-gel-base
+    name: 시카 판테놀 수딩젤 베이스
+    inci: 시카·판테놀 수딩젤 완제 베이스 (INCI 미확인)
+    category: 완제베이스
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 수딩젤 완제 베이스(시카·판테놀). 전성분 공급처 확인 필요.
+  - id: cica-panthenol-cream-base
+    name: 시카 판테놀 크림 베이스
+    inci: 시카·판테놀 크림 완제 베이스 (INCI 미확인)
+    category: 완제베이스
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 크림 완제 베이스(시카·판테놀). 전성분 공급처 확인 필요.
+  - id: body-hand-lotion-base
+    name: 바디&핸드 로션베이스
+    inci: 바디·핸드 로션 완제 베이스 (INCI 미확인)
+    category: 완제베이스
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 바디·핸드 로션 완제 베이스(슈퍼시카4·판테놀 등). 전성분 공급처 확인 필요.
+  - id: marine-collagen
+    name: 마린콜라겐
+    inci: Hydrolyzed Collagen (Marine)
+    category: 활성
+    effects: [재생]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 마린(어류 유래) 가수분해 콜라겐. 함량·표시성 검증 필요.
+  - id: houttuynia-extract
+    name: 어성초추출물
+    inci: Houttuynia Cordata Extract
+    category: 활성
+    effects: [진정]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 어성초 추출물. 진정 소구. 함량·INCI 검증 필요.
+  - id: organic-7-solution
+    name: 오가닉7 솔루션
+    inci: 유기농 복합 솔루션 (INCI 미확인)
+    category: 활성
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 오가닉7 복합 솔루션. 전성분 공급처 확인 필요.
+  - id: white-peptide
+    name: 화이트펩타이드
+    inci: 미백 펩타이드 복합 (INCI 미확인)
+    category: 활성
+    effects: [미백]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 미백 펩타이드 복합물. 전성분·표시성 검증 필요.
+  - id: honey-extract
+    name: 허니추출물
+    inci: Honey Extract (Mel)
+    category: 활성
+    effects: [보습]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 꿀 추출물. 보습 소구. 함량·INCI 검증 필요.
+  - id: propolis-extract
+    name: 프로폴리스추출물
+    inci: Propolis Extract
+    category: 활성
+    effects: [진정]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 프로폴리스 추출물. 알러지(봉독) 주의. 함량·INCI 검증 필요.
+  - id: aloe-vera-gel
+    name: 알로에베라겔
+    inci: Aloe Barbadensis Leaf Juice
+    category: 보습
+    effects: [진정, 보습]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 알로에베라 겔(잎즙). 함량·방부 균형 검증 필요.
+  - id: cleansing-liquid
+    name: 클렌징리퀴드
+    inci: 가용화 클렌징 리퀴드 (INCI 미확인)
+    category: 계면활성제
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 클렌징오일 세정력 부여용 가용화 리퀴드. 전성분 공급처 확인 필요.
+  - id: 4gf
+    name: 4GF
+    inci: sh-Oligopeptide/sh-Polypeptide 복합 (INCI 미확인)
+    category: 활성
+    effects: [재생]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 4종 성장인자(EGF·FGF·IGF·TGF 계열) 복합. 화장품 표시성·효능 표현 검증 필요(의약품적 소구 주의).
+  - id: chamomile-extract
+    name: 캐모마일추출물
+    inci: Chamomilla Recutita (Matricaria) Flower Extract
+    category: 활성
+    effects: [진정]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 캐모마일 꽃 추출물. 민감피부 진정 소구. 함량·INCI 검증 필요.
+
+  # --- 허브누리 페이지6 신규(007/002) — INCI·함량 모두 검증 필요 ---
+  - id: gentle-foam-cleanser-base
+    name: 아주 순한 폼클렌징베이스
+    inci: 저자극 폼클렌징 완제 베이스 (INCI 미확인)
+    category: 완제베이스
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 저자극 폼클렌징 완제 베이스. 계면활성제 조성·전성분 공급처 확인 필요.
+  - id: calendula-extract
+    name: 카렌듈라추출물
+    inci: Calendula Officinalis Flower Extract
+    category: 활성
+    effects: [진정]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 카렌듈라(금잔화) 꽃 추출물. 진정 소구. 함량·INCI 검증 필요.
+  - id: calendula-oil
+    name: 카렌듈라오일
+    inci: Calendula Officinalis Flower Oil (infused)
+    category: 에몰리언트
+    effects: [진정]
+    density: 0.91
+    has_coa: false
+    grade: cosmetic
+    notes: 카렌듈라 침출 오일. 진정·재생 소구. 함량·INCI 검증 필요.
+  - id: orange-flower-water
+    name: 오렌지꽃 아로마수
+    inci: Citrus Aurantium Amara (Bitter Orange) Flower Water
+    category: 워터
+    effects: [진정]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 오렌지꽃(네롤리 계열) 플로럴 워터. 함량·INCI 검증 필요.
+  - id: tamanu-oil
+    name: 타마누오일
+    inci: Calophyllum Inophyllum Seed Oil
+    category: 에몰리언트
+    effects: [재생]
+    density: 0.94
+    has_coa: false
+    grade: cosmetic
+    notes: 타마누(칼로필럼) 오일. 재생 소구. 산패·향 주의. 검증 필요.
+  - id: chamomile-infused-oil
+    name: 캐모마일인퓨즈오일
+    inci: Chamomilla Recutita Flower Oil (infused)
+    category: 에몰리언트
+    effects: [진정]
+    density: 0.91
+    has_coa: false
+    grade: cosmetic
+    notes: 캐모마일 침출 오일. 진정 소구. 함량·INCI 검증 필요.
+  - id: olive-ester-oil
+    name: 올리브에스터오일
+    inci: Ethylhexyl Olivate
+    category: 에몰리언트
+    effects: []
+    density: 0.9
+    has_coa: false
+    grade: cosmetic
+    notes: 올리브 유래 에스터 오일(가벼운 유상). 함량·INCI 검증 필요.
+  - id: cupuacu-butter
+    name: 코포아수버터
+    inci: Theobroma Grandiflorum Seed Butter
+    category: 버터
+    effects: [보습]
+    density: 0.92
+    has_coa: false
+    grade: cosmetic
+    notes: 쿠푸아수(코포아수) 버터. 고보습. 함량·INCI 검증 필요.
+  - id: natural-vaseline
+    name: 내추럴 바세린
+    inci: 식물성 바세린 대체 완제 (INCI 미확인)
+    category: 에몰리언트
+    effects: [보습]
+    density: 0.9
+    has_coa: false
+    grade: cosmetic
+    notes: 순식물성 바세린 대체 밤상 유상. 전성분 공급처 확인 필요.
+  - id: lavender-water
+    name: 라벤더워터
+    inci: Lavandula Angustifolia (Lavender) Flower Water
+    category: 워터
+    effects: [진정]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 라벤더 플로럴 워터. 함량·INCI 검증 필요.
+  - id: vita-11
+    name: 비타11
+    inci: 비타민 복합(11종) (INCI 미확인)
+    category: 활성
+    effects: [항산화]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 비타민 11종 복합 소구. 전성분·표시성 공급처 확인 필요.
+  - id: ac-clear-peptide
+    name: AC클리어펩타이드
+    inci: 트러블 케어 펩타이드 복합 (INCI 미확인)
+    category: 활성
+    effects: [피지조절]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 여드름·트러블 케어 펩타이드 복합. 전성분·표시성 검증 필요.
+  - id: salicylic-acid
+    name: 살리실산
+    inci: Salicylic Acid
+    category: 활성
+    effects: [피지조절]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 살리실산(BHA). 사용 한도(0.5%)·영유아 금지 등 규제 확인 필요.
+  - id: menthol
+    name: 멘톨
+    inci: Menthol
+    category: 활성
+    effects: []
+    density: 0.9
+    has_coa: false
+    grade: cosmetic
+    notes: 멘톨(쿨링). 사용 한도·자극 주의. 검증 필요.
+  - id: cica-panthenol-essence-base
+    name: 시카 판테놀 에센스베이스
+    inci: 시카·판테놀 에센스 완제 베이스 (INCI 미확인)
+    category: 완제베이스
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 에센스 완제 베이스(시카·판테놀). 전성분 공급처 확인 필요.
+  - id: clear-sunstick-base
+    name: 투명썬스틱 베이스
+    inci: 투명 썬스틱 완제 베이스 (INCI 미확인)
+    category: 완제베이스
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 투명 썬스틱 완제 베이스. 자외선차단지수·고시 확인 필요.
+  - id: essential-oil
+    name: 에센셜오일
+    inci: 아로마 에센셜오일(선택) (INCI 미확인)
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 0.9
+    has_coa: false
+    grade: cosmetic
+    notes: 취향 선택형 에센셜오일. 실제 사용 오일로 대체·알러젠 표시 검증.
+  - id: zinc-oxide
+    name: 산화아연
+    inci: CI 77947 (Zinc Oxide)
+    category: 착색
+    effects: []
+    colorant: true
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 산화아연(무기 자외선차단·백색안료). 분말·분산액 형태. 자외선차단 고시·분진 주의.
+  - id: titanium-dioxide
+    name: 티타늄디옥사이드
+    inci: CI 77891 (Titanium Dioxide)
+    category: 착색
+    effects: []
+    colorant: true
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 이산화티탄(무기 자외선차단·백색안료). 분산액 형태. 자외선차단 고시·분진 주의.
+
+  # --- 허브누리 페이지7~9 신규(007/002) — INCI·함량 모두 검증 필요 ---
+  - id: madecassoside
+    name: 마데카소사이드
+    inci: Madecassoside
+    category: 활성
+    effects: [진정, 재생]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 병풀 유래 마데카소사이드. 진정·재생 소구. 함량·INCI 검증 필요.
+  - id: mango-butter
+    name: 망고버터
+    inci: Mangifera Indica (Mango) Seed Butter
+    category: 버터
+    effects: [보습]
+    density: 0.92
+    has_coa: false
+    grade: cosmetic
+    notes: 망고씨 버터. 고보습. 함량·INCI 검증 필요.
+  - id: moringa-oil
+    name: 모링가오일
+    inci: Moringa Oleifera Seed Oil
+    category: 에몰리언트
+    effects: [영양]
+    density: 0.91
+    has_coa: false
+    grade: cosmetic
+    notes: 모링가 오일. 영양 소구. 함량·INCI 검증 필요.
+  - id: rice-bran-oil
+    name: 현미유
+    inci: Oryza Sativa (Rice) Bran Oil
+    category: 에몰리언트
+    effects: [영양]
+    density: 0.92
+    has_coa: false
+    grade: cosmetic
+    notes: 현미(쌀겨) 오일. 영양·보습. 함량·INCI 검증 필요.
+  - id: noni-extract
+    name: 노니추출물
+    inci: Morinda Citrifolia Fruit Extract
+    category: 활성
+    effects: [항산화]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 노니 열매 추출물. 항산화 소구. 함량·INCI 검증 필요.
+  - id: noni-powder
+    name: 노니분말
+    inci: Morinda Citrifolia Fruit Powder
+    category: 활성
+    effects: [항산화]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 노니 열매 분말(팩용). 함량·INCI 검증 필요.
+  - id: oatmeal-powder
+    name: 오트밀분말
+    inci: Avena Sativa (Oat) Kernel Flour
+    category: 활성
+    effects: [진정]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 오트밀(귀리) 분말. 진정·각질 소구. 함량·INCI 검증 필요.
+  - id: urea
+    name: 우레아
+    inci: Urea
+    category: 보습
+    effects: [보습]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 우레아(요소). 보습·각질. 사용 한도·안정성(pH) 검증 필요.
+  - id: idebenone
+    name: 이데베논
+    inci: Idebenone
+    category: 활성
+    effects: [항산화]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 이데베논(강력 항산화). 함량·안정성·변색 주의. 검증 필요.
+  - id: trehalose
+    name: 트레할로스
+    inci: Trehalose
+    category: 보습
+    effects: [보습]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 트레할로스(당류 보습제). 함량·INCI 검증 필요.
+  - id: phellinus-extract
+    name: 상황버섯추출물
+    inci: Phellinus Linteus Extract
+    category: 활성
+    effects: [항산화]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 상황버섯 추출물. 항산화 소구. 함량·INCI 검증 필요.
+  - id: royal-jelly-extract
+    name: 로얄젤리추출물
+    inci: Royal Jelly Extract
+    category: 활성
+    effects: [영양]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 로얄젤리 추출물. 영양 소구. 봉독 알러지 주의. 검증 필요.
+  - id: soothing-4-complex
+    name: 수딩4 컴플렉스
+    inci: 진정 4종 복합 (INCI 미확인)
+    category: 활성
+    effects: [진정]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 진정 4종 복합물. 전성분 공급처 확인 필요.
+  - id: ato-7-solution
+    name: 아토7 솔루션
+    inci: 장벽 케어 복합 솔루션 (INCI 미확인)
+    category: 활성
+    effects: [장벽, 진정]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 아토(장벽) 케어 복합 솔루션. 전성분 공급처 확인 필요.
+  - id: ac-clear-ampoule
+    name: AC클리어앰플
+    inci: 트러블 케어 완제 앰플 (INCI 미확인)
+    category: 활성
+    effects: [피지조절]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 여드름·트러블 케어 완제 앰플. 전성분 공급처 확인 필요.
+  - id: lemon-balm-water
+    name: 레몬밤워터
+    inci: Melissa Officinalis (Lemon Balm) Leaf Water
+    category: 워터
+    effects: [진정]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 레몬밤(멜리사) 플로럴 워터. 함량·INCI 검증 필요.
+  - id: tea-tree-water
+    name: 티트리워터
+    inci: Melaleuca Alternifolia (Tea Tree) Leaf Water
+    category: 워터
+    effects: [진정]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 티트리 플로럴 워터. 트러블 소구. 함량·INCI 검증 필요.
+  - id: roman-chamomile-eo
+    name: 로먼 캐모마일EO
+    inci: Anthemis Nobilis Flower Oil
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 0.9
+    has_coa: false
+    grade: cosmetic
+    notes: 로먼캐모마일 에센셜오일. 알러젠 표시·사용 한도 확인 필요.
+  - id: cherry-blossom-fragrance
+    name: 체리블라썸향
+    inci: Fragrance
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 0.95
+    has_coa: false
+    grade: cosmetic
+    notes: 향료(체리블라썸/벚꽃). 알러젠 성분 표시 확인 필요.
+  - id: lipstick-base
+    name: 립스틱베이스
+    inci: 립스틱 완제 베이스 (INCI 미확인)
+    category: 완제베이스
+    effects: []
+    density: 0.95
+    has_coa: false
+    grade: cosmetic
+    notes: 립스틱 완제 베이스(오일·왁스). 전성분 공급처 확인 필요.
+  - id: red-lip-color
+    name: 레드 립 컬러
+    inci: 적색 립 색소 베이스 (INCI 미확인)
+    category: 착색
+    effects: []
+    colorant: true
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 적색 립 색소 베이스. 화장품 색소 고시·사용 한도 확인 필요.
+  - id: cherry-blossom-lip-color
+    name: 벚꽃 립 컬러
+    inci: 핑크 립 색소 베이스 (INCI 미확인)
+    category: 착색
+    effects: []
+    colorant: true
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 벚꽃(핑크) 립 색소 베이스. 화장품 색소 고시·사용 한도 확인 필요.
+  - id: peach-coral-lip-color
+    name: 피치코랄 립 컬러
+    inci: 피치코랄 립 색소 베이스 (INCI 미확인)
+    category: 착색
+    effects: []
+    colorant: true
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 피치코랄 립 색소 베이스. 화장품 색소 고시·사용 한도 확인 필요.
+  - id: lip-color-generic
+    name: 립 컬러
+    inci: 립 색소 베이스(선택) (INCI 미확인)
+    category: 착색
+    effects: []
+    colorant: true
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 선택형 립 색소 베이스. 실제 사용 색소로 대체·고시 확인.
+  - id: bio-detox
+    name: 바이오 디톡스
+    inci: 디톡스 복합 추출물 (INCI 미확인)
+    category: 활성
+    effects: [항산화]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 바이오 디톡스 복합물. 전성분 공급처 확인 필요.
+  - id: peptide-complex
+    name: 펩타이드
+    inci: 펩타이드 복합(선택) (INCI 미확인)
+    category: 활성
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 선택형 펩타이드 복합(제품별 상이). 실제 사용 펩타이드로 대체·검증.
+  - id: avocado-oil
+    name: 아보카도오일
+    inci: Persea Gratissima (Avocado) Oil
+    category: 에몰리언트
+    effects: [영양]
+    density: 0.91
+    has_coa: false
+    grade: cosmetic
+    notes: 아보카도 오일. 비타민 풍부·고보습. 함량·INCI 검증 필요.
+  - id: hydroxyethyl-urea
+    name: 하이드로에칠우레아
+    inci: Hydroxyethyl Urea
+    category: 보습
+    effects: [보습]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 하이드록시에틸 우레아(NMF 보습제). 함량·INCI 검증 필요.
+  - id: color-mix
+    name: 칼라믹스
+    inci: 색조 컬러 파우더 믹스 (INCI 미확인)
+    category: 착색
+    effects: []
+    colorant: true
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 피부톤용 컬러 파우더 믹스(색소 복합). 화장품 색소 고시·사용 한도 확인 필요.
+  - id: silver-pearl
+    name: 실버펄
+    inci: Mica (and) CI 77891 (Titanium Dioxide)
+    category: 착색
+    effects: []
+    colorant: true
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 실버 펄(마이카 기반 진주광택 안료). 사용 한도·분진 주의. 검증 필요.
+  - id: ethylhexyl-methoxycinnamate
+    name: 시너메이트
+    inci: Ethylhexyl Methoxycinnamate
+    category: 활성
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 유기 자외선흡수제(옥티노세이트). 사용 한도(7.5%)·자외선차단 고시 확인 필요.
+  - id: ylang-ylang-eo
+    name: 일랑일랑EO
+    inci: Cananga Odorata Flower Oil
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 0.92
+    has_coa: false
+    grade: cosmetic
+    notes: 일랑일랑 에센셜오일. 알러젠 표시·사용 한도 확인 필요.
+
+  # --- 허브누리 페이지10~12 신규(007/002) — INCI·함량 모두 검증 필요 ---
+  - id: rose-geranium-eo
+    name: 로즈제라늄EO
+    inci: Pelargonium Graveolens Flower Oil
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 0.89
+    has_coa: false
+    grade: cosmetic
+    notes: 로즈제라늄 에센셜오일. 알러젠 표시·사용 한도 확인 필요.
+  - id: frankincense-eo
+    name: 프랑킨센스EO
+    inci: Boswellia Carterii Oil
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 0.87
+    has_coa: false
+    grade: cosmetic
+    notes: 프랑킨센스(유향) 에센셜오일. 알러젠 표시·사용 한도 확인 필요.
+  - id: rose-absolute-eo
+    name: 로즈앱솔루트EO
+    inci: Rosa Damascena Flower Oil
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 0.9
+    has_coa: false
+    grade: cosmetic
+    notes: 로즈 앱솔루트. 알러젠 표시·사용 한도 확인 필요.
+  - id: mandarin-eo
+    name: 만다린EO
+    inci: Citrus Reticulata (Mandarin) Peel Oil
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 0.85
+    has_coa: false
+    grade: cosmetic
+    notes: 만다린 에센셜오일. 광독성·사용 한도 확인 필요.
+  - id: tea-tree-eo
+    name: 티트리EO
+    inci: Melaleuca Alternifolia (Tea Tree) Leaf Oil
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 0.9
+    has_coa: false
+    grade: cosmetic
+    notes: 티트리 에센셜오일. 트러블 소구. 사용 한도·자극 주의. 검증 필요.
+  - id: german-chamomile-eo
+    name: 저먼캐모마일EO
+    inci: Chamomilla Recutita (Matricaria) Flower Oil
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 0.92
+    has_coa: false
+    grade: cosmetic
+    notes: 저먼캐모마일 에센셜오일(블루). 알러젠 표시·사용 한도 확인 필요.
+  - id: fermented-horse-oil
+    name: 발효 마유
+    inci: Fermented Horse Fat (Mayu)
+    category: 에몰리언트
+    effects: [영양, 장벽]
+    density: 0.92
+    has_coa: false
+    grade: cosmetic
+    notes: 발효 마유(말기름). 피부 친화 유상. 함량·INCI 검증 필요.
+  - id: schisandra-seed-oil
+    name: 오미자씨 오일
+    inci: Schisandra Chinensis Seed Oil
+    category: 에몰리언트
+    effects: [항산화]
+    density: 0.92
+    has_coa: false
+    grade: cosmetic
+    notes: 오미자씨 오일. 항산화 소구. 함량·INCI 검증 필요.
+  - id: oat-oil
+    name: 오트밀오일
+    inci: Avena Sativa (Oat) Kernel Oil
+    category: 에몰리언트
+    effects: [진정]
+    density: 0.92
+    has_coa: false
+    grade: cosmetic
+    notes: 오트(귀리) 오일. 진정 소구. 함량·INCI 검증 필요.
+  - id: hemp-seed-oil
+    name: 햄프씨드오일
+    inci: Cannabis Sativa Seed Oil
+    category: 에몰리언트
+    effects: [장벽]
+    density: 0.92
+    has_coa: false
+    grade: cosmetic
+    notes: 헴프씨드(대마씨) 오일. 오메가 지방산. 함량·INCI 검증 필요.
+  - id: sacha-inchi-oil
+    name: 비정제 사카잉키오일
+    inci: Plukenetia Volubilis Seed Oil
+    category: 에몰리언트
+    effects: [장벽]
+    density: 0.92
+    has_coa: false
+    grade: cosmetic
+    notes: 사차인치 오일(오메가 풍부). 산패 주의. 함량·INCI 검증 필요.
+  - id: jacho-oil
+    name: 자초인퓨즈오일
+    inci: Lithospermum Erythrorhizon Root Extract (in oil)
+    category: 에몰리언트
+    effects: [진정]
+    density: 0.91
+    has_coa: false
+    grade: cosmetic
+    notes: 자초(지치뿌리) 침출 오일(자주빛). 립·연고용. 함량·INCI 검증 필요.
+  - id: jaunggo-oil
+    name: 자운유
+    inci: 자운고(자초·당귀 등) 침출 오일 (INCI 미확인)
+    category: 에몰리언트
+    effects: [진정, 재생]
+    density: 0.91
+    has_coa: false
+    grade: cosmetic
+    notes: 자운고 한방 침출 오일(자초·당귀 등). 전성분 공급처 확인 필요.
+  - id: foundation-color-base
+    name: 파운데이션
+    inci: 파운데이션 색조 완제 베이스 (INCI 미확인)
+    category: 착색
+    effects: []
+    colorant: true
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: BB·파운데이션 색조 완제 베이스. 색소·자외선차단 고시 확인 필요.
+  - id: lip-color-red-40
+    name: 립베이스 레드 40
+    inci: CI 16035 (Red 40)
+    category: 착색
+    effects: []
+    colorant: true
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 립용 적색 색소(Red 40). 화장품 색소 고시·사용 한도 확인 필요.
+  - id: strawberry-flavor-oil
+    name: 딸기플레이버오일
+    inci: Flavor (Aroma)
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 0.9
+    has_coa: false
+    grade: cosmetic
+    notes: 립용 딸기 플레이버 오일(향미). 식품/화장품 등급·알러젠 확인 필요.
+  - id: pearl-powder
+    name: 진주분말
+    inci: Pearl Powder (Hydrolyzed Conchiolin Protein)
+    category: 착색
+    effects: []
+    colorant: true
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 진주 분말(광택·미네랄). 분진 주의. 함량·INCI 검증 필요.
+  - id: corn-starch
+    name: 옥수수전분
+    inci: Zea Mays (Corn) Starch
+    category: 점증
+    effects: [피지조절]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 옥수수 전분(흡유·매트). 파우더용. 함량·INCI 검증 필요.
+  - id: kaolin-clay
+    name: 카오링클레이
+    inci: Kaolin
+    category: 점증
+    effects: [피지조절]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 카올린 클레이(흡착·피지). 분진 주의. 함량·INCI 검증 필요.
+  - id: whitens-complex
+    name: 화이텐스
+    inci: 미백 복합(선번트 계열) (INCI 미확인)
+    category: 활성
+    effects: [미백]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 화이텐스(미백 복합). 전성분·고시 여부 공급처 확인 필요.
+  - id: water-soluble-preservative
+    name: 수용성보존제
+    inci: 수용성 복합 보존 성분 (INCI 미확인)
+    category: 보존
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 수용성 복합 보존제. 방부력·전성분 공급처 확인 필요.
+  - id: coenzyme-q10
+    name: 코엔자임Q10
+    inci: Ubiquinone
+    category: 활성
+    effects: [항산화]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 코엔자임Q10(유비퀴논, 지용성). 항산화 소구. 함량·INCI 검증 필요.
+  - id: callus-culture
+    name: 캘러스 배양액
+    inci: Plant Callus Culture Extract (INCI 미확인)
+    category: 활성
+    effects: [재생]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 식물 캘러스(부활초 등) 배양액. 재생 소구. 전성분·표시성 검증 필요.
+
+  # --- 허브누리 페이지13~15 신규(007/002) — INCI·함량 모두 검증 필요 ---
+  - id: acetyl-hexapeptide
+    name: 아세틸헥사펩타이드
+    inci: Acetyl Hexapeptide-8
+    category: 활성
+    effects: [주름]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 아세틸헥사펩타이드-8(아르지렐린 계열). 주름 소구. 함량·표시성 검증 필요.
+  - id: copper-peptide
+    name: 쿠퍼 펩타이드
+    inci: Copper Tripeptide-1
+    category: 활성
+    effects: [재생]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 구리 펩타이드(GHK-Cu). 재생 소구. 함량·안정성(변색)·표시성 검증 필요.
+  - id: hinoki-eo
+    name: 편백에센셜오일
+    inci: Chamaecyparis Obtusa Oil
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 0.9
+    has_coa: false
+    grade: cosmetic
+    notes: 편백(히노키) 에센셜오일. 알러젠 표시·사용 한도 확인 필요.
+  - id: rosemary-eo
+    name: 로즈마리EO
+    inci: Rosmarinus Officinalis (Rosemary) Leaf Oil
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 0.9
+    has_coa: false
+    grade: cosmetic
+    notes: 로즈마리 에센셜오일. 알러젠 표시·사용 한도 확인 필요.
+  - id: tomato-extract
+    name: 토마토추출물
+    inci: Solanum Lycopersicum (Tomato) Fruit Extract
+    category: 활성
+    effects: [항산화]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 토마토(라이코펜) 추출물. 항산화 소구. 함량·INCI 검증 필요.
+  - id: broccoli-extract
+    name: 브로콜리추출물
+    inci: Brassica Oleracea Italica (Broccoli) Extract
+    category: 활성
+    effects: [항산화]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 브로콜리 추출물. 항산화 소구. 함량·INCI 검증 필요.
+  - id: mulberry-extract
+    name: 상백피추출물
+    inci: Morus Alba Bark Extract
+    category: 활성
+    effects: [미백]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 상백피(뽕나무 뿌리껍질) 추출물. 미백 소구. 함량·INCI 검증 필요.
+  - id: lavender-extract
+    name: 라벤더추출물
+    inci: Lavandula Angustifolia (Lavender) Extract
+    category: 활성
+    effects: [진정]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 라벤더 추출물. 진정 소구. 함량·INCI 검증 필요.
+  - id: sea-grape-extract
+    name: 바다포도 추출물
+    inci: Caulerpa Lentillifera Extract
+    category: 활성
+    effects: [보습]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 바다포도(해조) 추출물. 보습 소구. 함량·INCI 검증 필요.
+  - id: plant-placenta
+    name: 식물성 플라센타
+    inci: Plant Placenta Extract (INCI 미확인)
+    category: 활성
+    effects: [재생]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 식물성 플라센타(태반 대체) 추출물. 전성분·표시성 검증 필요.
+  - id: stem-cell-culture
+    name: 줄기세포배양액
+    inci: Plant Stem Cell Culture Extract (INCI 미확인)
+    category: 활성
+    effects: [재생]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 식물 줄기세포 배양액(일반). 전성분·표시성(줄기세포 표현) 검증 필요.
+  - id: ginseng-stem-cell-culture
+    name: 인삼줄기세포배양액
+    inci: Panax Ginseng Callus Culture Extract
+    category: 활성
+    effects: [재생]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 인삼 줄기세포(캘러스) 배양액. 전성분·표시성 검증 필요.
+  - id: rose-stem-cell-culture
+    name: 장미줄기세포배양 추출물
+    inci: Rosa Callus Culture Extract
+    category: 활성
+    effects: [재생]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 장미 줄기세포(캘러스) 배양 추출물. 전성분·표시성 검증 필요.
+  - id: bee-venom
+    name: 봉독
+    inci: Bee Venom
+    category: 활성
+    effects: [재생]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 봉독(정제). 알러지(벌독) 주의. 함량·표시성·안전성 검증 필요.
+  - id: natto-moist
+    name: 낫또모이스트
+    inci: Sodium Polyglutamate (Natto Gum)
+    category: 보습
+    effects: [보습]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 낫또(폴리글루탐산) 보습제. 함량·INCI 검증 필요.
+  - id: moistin
+    name: 모이스틴
+    inci: 보습 복합 (INCI 미확인)
+    category: 보습
+    effects: [보습]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 모이스틴 보습 복합. 전성분 공급처 확인 필요.
+  - id: evening-primrose-oil
+    name: 달맞이종자오일
+    inci: Oenothera Biennis (Evening Primrose) Oil
+    category: 에몰리언트
+    effects: [장벽]
+    density: 0.92
+    has_coa: false
+    grade: cosmetic
+    notes: 달맞이꽃 종자유(감마리놀렌산). 산패 주의. 함량·INCI 검증 필요.
+  - id: sea-buckthorn-oil
+    name: 씨벅턴오일
+    inci: Hippophae Rhamnoides Oil
+    category: 에몰리언트
+    effects: [재생]
+    density: 0.92
+    has_coa: false
+    grade: cosmetic
+    notes: 씨벅턴(비타민나무) 오일. 재생 소구·강한 착색. 함량·INCI 검증 필요.
+  - id: helichrysum-water
+    name: 헬리크리섬워터
+    inci: Helichrysum Italicum Flower Water
+    category: 워터
+    effects: [진정]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 헬리크리섬(불멸화초) 플로럴 워터. 함량·INCI 검증 필요.
+  - id: hinoki-water
+    name: 편백워터
+    inci: Chamaecyparis Obtusa Water
+    category: 워터
+    effects: [진정]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 편백(히노키) 워터. 함량·INCI 검증 필요.
+  - id: olive-soft-wax
+    name: 올리브 소프트왁스
+    inci: Olive Oil Derived Wax (INCI 미확인)
+    category: 왁스
+    effects: []
+    density: 0.95
+    has_coa: false
+    grade: cosmetic
+    notes: 올리브 유래 소프트 왁스(점증·경화). 전성분 공급처 확인 필요.
+  - id: gold-24k
+    name: 24k 금설
+    inci: CI 77480 (Gold)
+    category: 착색
+    effects: []
+    colorant: true
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 24K 금박·금설(광채 안료). 사용 한도·분진 주의. 검증 필요.
+  - id: calming-5-solution
+    name: 카밍 5 솔루션
+    inci: 진정 5종 복합 솔루션 (INCI 미확인)
+    category: 활성
+    effects: [진정]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 유기농 카밍 5종 복합 솔루션. 전성분 공급처 확인 필요.
+  - id: fresh-5-solution
+    name: 프레쉬 5 솔루션
+    inci: 유기농 5종 복합 솔루션 (INCI 미확인)
+    category: 활성
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 유기농 프레쉬 5종 복합 솔루션. 전성분 공급처 확인 필요.
+  - id: natrotics
+    name: 나트로틱스
+    inci: 복합 활성 (INCI 미확인)
+    category: 활성
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 나트로틱스 복합 활성(공급처 표기). 전성분 공급처 확인 필요.
+
+  # --- 허브누리 skip 보강(sample.txt) 신규 — INCI·함량 검증 필요 ---
+  - id: apricot-kernel-oil
+    name: 살구씨오일
+    inci: Prunus Armeniaca (Apricot) Kernel Oil
+    category: 에몰리언트
+    effects: [영양]
+    density: 0.91
+    has_coa: false
+    grade: cosmetic
+    notes: 살구씨 오일. 가벼운 유상. 함량·INCI 검증 필요.
+  - id: marjoram-eo
+    name: 마조람에센셜오일
+    inci: Origanum Majorana Leaf Oil
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 0.9
+    has_coa: false
+    grade: cosmetic
+    notes: 마조람 에센셜오일. 알러젠 표시·사용 한도 확인 필요.
+  - id: vegetable-oil
+    name: 식물성오일
+    inci: Vegetable Oil (선택) (INCI 미확인)
+    category: 에몰리언트
+    effects: []
+    density: 0.92
+    has_coa: false
+    grade: cosmetic
+    notes: 선택형 식물성 캐리어 오일(해바라기 등). 실제 사용 오일로 대체·검증.
+  - id: cherry-flavor-oil
+    name: 체리플레이버오일
+    inci: Flavor (Cherry)
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 0.9
+    has_coa: false
+    grade: cosmetic
+    notes: 립용 체리 플레이버 오일(향미). 식품/화장품 등급·알러젠 확인 필요.
+  - id: gromwell-root
+    name: 자초
+    inci: Lithospermum Erythrorhizon Root
+    category: 활성
+    effects: [진정]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 자초(지치) 뿌리 원재료(침출용). 함량·INCI 검증 필요.
+  - id: licorice-root
+    name: 감초
+    inci: Glycyrrhiza Uralensis (Licorice) Root
+    category: 활성
+    effects: [미백, 진정]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 감초 뿌리 원재료(침출용). 미백·진정 소구. 함량·INCI 검증 필요.
+  - id: scutellaria-root
+    name: 황금
+    inci: Scutellaria Baicalensis Root
+    category: 활성
+    effects: [진정, 항산화]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 황금(속썩은풀) 뿌리 원재료(침출용). 함량·INCI 검증 필요.
+  - id: elm-bark
+    name: 유근피
+    inci: Ulmus Davidiana Root Bark
+    category: 활성
+    effects: [진정]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 유근피(느릅나무 뿌리껍질) 원재료(침출용). 함량·INCI 검증 필요.
+  - id: honeysuckle
+    name: 금은화
+    inci: Lonicera Japonica (Honeysuckle) Flower
+    category: 활성
+    effects: [진정]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 금은화(인동꽃) 원재료(침출용). 함량·INCI 검증 필요.
+  - id: chrysanthemum
+    name: 감국
+    inci: Chrysanthemum Indicum Flower
+    category: 활성
+    effects: [진정, 항산화]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 감국(들국화) 원재료(침출용). 함량·INCI 검증 필요.
+  - id: tangerine-peel
+    name: 진피
+    inci: Citrus Reticulata (Tangerine) Peel
+    category: 활성
+    effects: [항산화]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 진피(귤껍질) 원재료(침출용). 함량·INCI 검증 필요.
+  - id: angelica-gigas
+    name: 당귀
+    inci: Angelica Gigas Root
+    category: 활성
+    effects: [재생]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 당귀 뿌리 원재료(침출용). 함량·INCI 검증 필요.
+
+  # --- 허브누리 페이지16~18 신규(007/002) — INCI·함량 검증 필요 ---
+  - id: palmarosa-eo
+    name: 팔마로사 에센셜오일
+    inci: Cymbopogon Martini Oil
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 0.89
+    has_coa: false
+    grade: cosmetic
+    notes: 팔마로사 에센셜오일. 알러젠 표시·사용 한도 확인 필요.
+  - id: orange-eo
+    name: 오렌지 에센셜오일
+    inci: Citrus Aurantium Dulcis (Orange) Peel Oil
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 0.85
+    has_coa: false
+    grade: cosmetic
+    notes: 스윗오렌지 에센셜오일. 광독성·사용 한도 확인 필요.
+  - id: jasmine-eo
+    name: 자스민 EO
+    inci: Jasminum Officinale (Jasmine) Oil
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 0.94
+    has_coa: false
+    grade: cosmetic
+    notes: 자스민 에센셜오일(앱솔루트). 알러젠 표시·사용 한도 확인 필요.
+  - id: acacia-collagen
+    name: 아카시아콜라겐
+    inci: 아카시아 유래 식물성 콜라겐 대체 (INCI 미확인)
+    category: 활성
+    effects: [보습]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 아카시아 유래 비건 콜라겐 소구. 전성분·표시성 검증 필요.
+  - id: chlorella-extract
+    name: 클로렐라추출물
+    inci: Chlorella Vulgaris Extract
+    category: 활성
+    effects: [재생]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 클로렐라(녹조류) 추출물. 재생 소구. 함량·INCI 검증 필요.
+  - id: silk-amino-acid
+    name: 실크아미노산
+    inci: Hydrolyzed Silk
+    category: 활성
+    effects: [보습]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 실크 아미노산(가수분해 실크). 보습 소구. 함량·INCI 검증 필요.
+  - id: pomegranate-extract
+    name: 석류추출물
+    inci: Punica Granatum (Pomegranate) Fruit Extract
+    category: 활성
+    effects: [항산화]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 석류 추출물. 항산화 소구. 함량·INCI 검증 필요.
+  - id: purslane-extract
+    name: 마치현추출물
+    inci: Portulaca Oleracea (Purslane) Extract
+    category: 활성
+    effects: [진정]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 마치현(쇠비름) 추출물. 진정 소구. 함량·INCI 검증 필요.
+  - id: bifida-ferment
+    name: 비피다발효여과물
+    inci: Bifida Ferment Lysate
+    category: 활성
+    effects: [발효, 장벽]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 비피다 발효여과물(프로바이오틱 유래). 장벽 소구. 함량·INCI 검증 필요.
+  - id: ylang-ylang-water
+    name: 일랑일랑워터
+    inci: Cananga Odorata Flower Water
+    category: 워터
+    effects: [진정]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 일랑일랑 플로럴 워터. 함량·INCI 검증 필요.
+  - id: hycell
+    name: 하이셀
+    inci: 보습 복합(하이셀) (INCI 미확인)
+    category: 보습
+    effects: [보습]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 하이셀 보습 복합(공급처 표기). 전성분 공급처 확인 필요.
+  - id: brightening-5-solution
+    name: 브라이트닝 5솔루션
+    inci: 미백 5종 복합 솔루션 (INCI 미확인)
+    category: 활성
+    effects: [미백]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 유기농 브라이트닝 5종 복합 솔루션. 전성분 공급처 확인 필요.
+
+  # --- 허브누리 skip 보강 2차(sample.txt) 신규 — INCI·함량 검증 필요 ---
+  - id: sesame-oil
+    name: 참깨오일
+    inci: Sesamum Indicum (Sesame) Seed Oil
+    category: 에몰리언트
+    effects: [영양]
+    density: 0.92
+    has_coa: false
+    grade: cosmetic
+    notes: 참깨 오일. 영양 소구. 함량·INCI 검증 필요.
+  - id: pueraria-oil
+    name: 푸에라리아오일
+    inci: Pueraria Lobata Root Extract (in oil)
+    category: 에몰리언트
+    effects: []
+    density: 0.91
+    has_coa: false
+    grade: cosmetic
+    notes: 푸에라리아 뿌리 침출 오일(피토에스트로겐 소구). 표시성·안전성 검증 필요.
+  - id: pueraria-extract
+    name: 푸에라리아추출물
+    inci: Pueraria Lobata Root Extract
+    category: 활성
+    effects: [영양]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 푸에라리아 뿌리 추출물(피토에스트로겐 소구). 표시성·안전성 검증 필요.
+  - id: isopropyl-myristate
+    name: IPM
+    inci: Isopropyl Myristate
+    category: 에몰리언트
+    effects: []
+    density: 0.85
+    has_coa: false
+    grade: cosmetic
+    notes: 이소프로필 미리스테이트(IPM). 발림성·용해. 함량·INCI 검증 필요.
+  - id: face-powder-21
+    name: 페이스파우더 21호
+    inci: 색조 파우더(21호, 색소 복합) (INCI 미확인)
+    category: 착색
+    effects: []
+    colorant: true
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 페이스 파우더(21호 색조). 색소·자외선차단 고시 확인 필요.
+
+  # --- 허브누리 페이지19~22 신규(007/002) — INCI·함량 검증 필요 ---
+  - id: cucumber-extract
+    name: 오이추출물
+    inci: Cucumis Sativus (Cucumber) Fruit Extract
+    category: 활성
+    effects: [진정, 보습]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 오이 추출물. 진정·보습 소구. 함량·INCI 검증 필요.
+  - id: birch-sap
+    name: 자작나무수액
+    inci: Betula Alba (Birch) Juice
+    category: 워터
+    effects: [보습]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 자작나무 수액. 보습 소구. 함량·INCI 검증 필요.
+  - id: witch-hazel-water
+    name: 위치헤이즐워터
+    inci: Hamamelis Virginiana (Witch Hazel) Water
+    category: 워터
+    effects: [피지조절, 진정]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 위치헤이즐(하마멜리스) 워터. 모공·피지 소구. 함량·INCI 검증 필요.
+  - id: peppermint-water
+    name: 페파민트워터
+    inci: Mentha Piperita (Peppermint) Water
+    category: 워터
+    effects: [진정]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 페퍼민트 플로럴 워터(쿨링). 함량·INCI 검증 필요.
+  - id: aroma-water
+    name: 아로마수
+    inci: 아로마 워터(선택) (INCI 미확인)
+    category: 워터
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 선택형 아로마 워터(그린프레쉬·로즈·레몬 등). 실제 사용 워터로 대체·검증.
+  - id: grapeseed-oil
+    name: 포도씨유
+    inci: Vitis Vinifera (Grape) Seed Oil
+    category: 에몰리언트
+    effects: [항산화]
+    density: 0.92
+    has_coa: false
+    grade: cosmetic
+    notes: 포도씨 오일. 가벼운 유상·항산화. 함량·INCI 검증 필요.
+  - id: apple-surfactant
+    name: 애플계면활성제
+    inci: Sodium Cocoyl Apple Amino Acids (INCI 미확인)
+    category: 계면활성제
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 사과 유래 아미노산계 계면활성제(저자극). 전성분 공급처 확인 필요.
+  - id: scrub-base
+    name: 스크럽 베이스
+    inci: 스크럽 완제 베이스 (INCI 미확인)
+    category: 완제베이스
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 스크럽 완제 베이스(멀티). 전성분 공급처 확인 필요.
+  - id: cacao-scrub-powder
+    name: 카카오 스크럽 파우더
+    inci: Theobroma Cacao (Cacao) Powder
+    category: 활성
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 카카오 스크럽 파우더(물리적 각질). 함량·INCI 검증 필요.
+  - id: volcanic-ash-powder
+    name: 제주 화산송이분말
+    inci: Volcanic Ash (Scoria) Powder
+    category: 점증
+    effects: [피지조절]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 제주 화산송이(스코리아) 분말. 흡착·피지. 분진 주의. 검증 필요.
+  - id: cellulose
+    name: 셀룰로오즈
+    inci: Cellulose
+    category: 점증
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 셀룰로오스(천연 스크럽 비드·점증). 함량·INCI 검증 필요.
+  - id: bubble-5-solution
+    name: 내추럴 버블5 솔루션
+    inci: 저자극 기포 복합 솔루션 (INCI 미확인)
+    category: 계면활성제
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 내추럴 버블 5종 복합(기포·세정). 전성분 공급처 확인 필요.
+  - id: nokchoco-extract
+    name: 녹소초 추출물
+    inci: 녹소초(약용식물) 추출물 (INCI 미확인)
+    category: 활성
+    effects: [진정]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 녹소초 추출물. 전성분 공급처 확인 필요.
+  - id: sodium-bicarbonate
+    name: 소다
+    inci: Sodium Bicarbonate
+    category: pH조절
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 베이킹소다(중탄산나트륨). 각질·세정·pH. 자극 주의. 검증 필요.
+  - id: coffee-scrub-powder
+    name: 커피 스크럽 파우더
+    inci: Coffea Arabica (Coffee) Seed Powder
+    category: 활성
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 곱게 간 커피 분말(물리적 스크럽). 함량·INCI 검증 필요.
+
+  # --- 허브누리 skip 보강 3차(sample.txt) 신규 — INCI·함량 검증 필요 ---
+  - id: polyphenol
+    name: 폴리페놀
+    inci: Polyphenols (INCI 미확인)
+    category: 활성
+    effects: [항산화]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 폴리페놀 복합(항산화). 전성분·함량 공급처 확인 필요.
+  - id: ginseng-extract
+    name: 인삼추출물
+    inci: Panax Ginseng Root Extract
+    category: 활성
+    effects: [재생, 영양]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 인삼 추출물(팅크처 포함). 재생 소구. 함량·INCI 검증 필요.
+  - id: red-wine
+    name: 레드와인
+    inci: Vitis Vinifera (Wine) Extract
+    category: 활성
+    effects: [항산화]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 레드와인(레스베라트롤·폴리페놀) 추출. 알콜 함유. 함량·INCI 검증 필요.
+  - id: herbal-tincture
+    name: 팅크처
+    inci: Herbal Tincture (선택) (INCI 미확인)
+    category: 활성
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 선택형 한방 팅크처(알콜 추출). 실제 사용 팅크처로 대체·검증.
+  - id: hibiscus-extract
+    name: 히비스커스팅크처
+    inci: Hibiscus Sabdariffa Flower Extract
+    category: 활성
+    effects: [항산화]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 히비스커스 팅크처. 항산화 소구. 함량·INCI 검증 필요.
+  - id: pink-clay
+    name: 핑크클레이
+    inci: Kaolin (and) CI 77491 (Pink Clay)
+    category: 점증
+    effects: [피지조절]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 핑크 클레이(흡착·필링). 분진 주의. 함량·INCI 검증 필요.
+  - id: les
+    name: LES
+    inci: Sodium Laureth Sulfate
+    category: 계면활성제
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: LES(소듐라우레스설페이트) 세정 계면활성제. 사용 한도·자극 검증 필요.
+  - id: cedarwood-eo
+    name: 시더우드에센셜오일
+    inci: Cedrus Atlantica (Cedarwood) Bark Oil
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 0.94
+    has_coa: false
+    grade: cosmetic
+    notes: 시더우드 에센셜오일. 알러젠 표시·사용 한도 확인 필요.
+  - id: apricot-powder
+    name: 살구분말
+    inci: Prunus Armeniaca (Apricot) Seed Powder
+    category: 활성
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 살구씨 분말(물리적 스크럽). 함량·INCI 검증 필요.
+  - id: aloe-water
+    name: 알로에워터
+    inci: Aloe Barbadensis Leaf Water
+    category: 워터
+    effects: [진정]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 알로에 워터(수분산). 진정 소구. 함량·INCI 검증 필요.
+
+  # --- 허브누리 skip 보강 4차(sample.txt) 신규 EO — INCI·사용한도 검증 필요 ---
+  - id: spearmint-eo
+    name: 스피아민트EO
+    inci: Mentha Spicata (Spearmint) Oil
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 0.92
+    has_coa: false
+    grade: cosmetic
+    notes: 스피어민트 에센셜오일. 사용 한도·자극 주의. 검증 필요.
+  - id: juniper-eo
+    name: 주니퍼베리EO
+    inci: Juniperus Communis Fruit Oil
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 0.87
+    has_coa: false
+    grade: cosmetic
+    notes: 주니퍼베리 에센셜오일. 사용 한도·임부 주의. 검증 필요.
+  - id: pine-eo
+    name: 파인EO
+    inci: Pinus Sylvestris Leaf Oil
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 0.87
+    has_coa: false
+    grade: cosmetic
+    notes: 파인(소나무) 에센셜오일. 알러젠 표시·사용 한도 확인 필요.
+  - id: clove-eo
+    name: 클로브버드EO
+    inci: Eugenia Caryophyllus (Clove) Flower Oil
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 1.04
+    has_coa: false
+    grade: cosmetic
+    notes: 클로브(정향) 에센셜오일. 오이게놀 자극 주의·사용 한도 확인 필요.
+
+  # --- 허브누리 015/004(아토·베이비·여드름) 신규 — INCI·함량 검증 필요 ---
+  - id: citronella-eo
+    name: 시트로넬라
+    inci: Cymbopogon Nardus (Citronella) Oil
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 0.89
+    has_coa: false
+    grade: cosmetic
+    notes: 시트로넬라 에센셜오일(방충). 알러젠 표시·사용 한도 확인 필요.
+  - id: lemongrass-eo
+    name: 레몬글라스
+    inci: Cymbopogon Schoenanthus (Lemongrass) Oil
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 0.89
+    has_coa: false
+    grade: cosmetic
+    notes: 레몬그라스 에센셜오일. 알러젠 표시·사용 한도 확인 필요.
+  - id: decyl-glucoside
+    name: 데실글루코사이드
+    inci: Decyl Glucoside
+    category: 계면활성제
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 데실글루코사이드(저자극 비이온 계면활성제). 사용 한도 검증 필요.
+  - id: glucamate
+    name: 글루카메이트
+    inci: PEG-120 Methyl Glucose Dioleate
+    category: 점증
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 글루카메이트(점증·증점). 워시류 점도 부여. 함량·INCI 검증 필요.
+  - id: inflacin
+    name: 인플라신
+    inci: 항염 복합 활성 (INCI 미확인)
+    category: 활성
+    effects: [진정]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 인플라신(진정·항염 복합). 전성분·표시성 공급처 확인 필요.
+  - id: neroli-flower-gel
+    name: 네롤리플라워겔
+    inci: 네롤리 워터 기반 겔 완제 베이스 (INCI 미확인)
+    category: 완제베이스
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 네롤리 플라워 겔(완제 겔 베이스). 전성분 공급처 확인 필요.
+  - id: baby-shampoo-base
+    name: 베이비 샴푸 베이스
+    inci: 저자극 베이비 샴푸 완제 베이스 (INCI 미확인)
+    category: 완제베이스
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 저자극 베이비 샴푸 완제 베이스(계면활성제 조성). 전성분 공급처 확인 필요.
+  - id: aloe-soap-base
+    name: 알로에물비누베이스
+    inci: 알로에 액상비누 완제 베이스 (INCI 미확인)
+    category: 완제베이스
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 알로에 물비누(액상비누) 완제 베이스. 전성분 공급처 확인 필요.
+
+  # --- 허브누리 015/005(헤어·두피·바디) 신규 — INCI·함량 검증 필요 ---
+  - id: cica-panthenol-shampoo-base
+    name: 시카 판테놀 샴푸베이스
+    inci: 시카·판테놀 샴푸 완제 베이스 (INCI 미확인)
+    category: 완제베이스
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 시카·판테놀 샴푸 완제 베이스. 전성분 공급처 확인 필요.
+  - id: gentle-shampoo-base
+    name: 순한 샴푸베이스
+    inci: 저자극 샴푸 완제 베이스 (INCI 미확인)
+    category: 완제베이스
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 저자극 순한 샴푸 완제 베이스. 전성분 공급처 확인 필요.
+  - id: body-wash-base
+    name: 바디워시 베이스
+    inci: 바디워시 완제 베이스 (INCI 미확인)
+    category: 완제베이스
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 바디워시 완제 베이스. 전성분 공급처 확인 필요.
+  - id: weak-acid-soap-base
+    name: 병풀 약산성 비누베이스
+    inci: 약산성 액상비누 완제 베이스 (INCI 미확인)
+    category: 완제베이스
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 병풀 약산성 비누 완제 베이스. 전성분 공급처 확인 필요.
+  - id: slsa
+    name: SLSA
+    inci: Sodium Lauryl Sulfoacetate
+    category: 계면활성제
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: SLSA(저자극 기포 계면활성제, 분말). 분진 주의. 함량 검증 필요.
+  - id: btms
+    name: 베헨트리모늄설페이트
+    inci: Behentrimonium Methosulfate (and) Cetearyl Alcohol
+    category: 유화제
+    effects: []
+    density: 0.97
+    has_coa: false
+    grade: cosmetic
+    notes: BTMS(컨디셔닝 유화제). 헤어·린스 유연·대전방지. 함량 검증 필요.
+  - id: guar-chloride
+    name: 구아클로라이드
+    inci: Guar Hydroxypropyltrimonium Chloride
+    category: 점증
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 구아 하이드록시프로필트리모늄 클로라이드(천연 컨디셔닝). 함량 검증 필요.
+  - id: polyquaternium
+    name: 폴리쿼터
+    inci: Polyquaternium-10
+    category: 점증
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 폴리쿼터늄(컨디셔닝 폴리머). 헤어 코팅·대전방지. 함량 검증 필요.
+  - id: msm
+    name: MSM
+    inci: Dimethyl Sulfone (MSM)
+    category: 활성
+    effects: [재생]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: MSM(식이/유기 유황). 모발·피부 소구. 함량·INCI 검증 필요.
+  - id: zinc-pyrithione
+    name: 징크피리치온
+    inci: Zinc Pyrithione
+    category: 활성
+    effects: [피지조절]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 징크피리치온(비듬·두피). 사용 한도·기능성 고시 확인 필요.
+  - id: fo-ti-extract
+    name: 하수오추출물
+    inci: Polygonum Multiflorum Root Extract
+    category: 활성
+    effects: [영양]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 하수오(적하수오) 뿌리 추출물(모발). 함량·INCI 검증 필요.
+  - id: yunmo-extract
+    name: 윤모생기추출물
+    inci: 모발 복합 추출물 (INCI 미확인)
+    category: 활성
+    effects: [영양]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 윤모생기(모발 복합) 추출물. 전성분·표시성 공급처 확인 필요.
+  - id: mugwort-extract
+    name: 약쑥추출물
+    inci: Artemisia Princeps Leaf Extract
+    category: 활성
+    effects: [진정]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 약쑥(참쑥) 추출물. 진정 소구. 함량·INCI 검증 필요.
+  - id: silk-elastin
+    name: 실크엘라스틴
+    inci: Hydrolyzed Silk (and) Hydrolyzed Elastin
+    category: 활성
+    effects: [보습]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 실크·엘라스틴 복합(모발·피부 보습). 함량·INCI 검증 필요.
+  - id: marine-elastin
+    name: 마린엘라스틴
+    inci: Hydrolyzed Elastin (Marine)
+    category: 활성
+    effects: [탄력]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 마린 엘라스틴(가수분해). 탄력 소구. 함량·INCI 검증 필요.
+  - id: em-active
+    name: EM 활성액
+    inci: 유용미생물 발효액(EM) (INCI 미확인)
+    category: 활성
+    effects: [발효]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: EM(유용미생물) 발효 활성액. 전성분·표시성 공급처 확인 필요.
+  - id: herbal-7-complex
+    name: 7가지한방약재
+    inci: 7종 한방 추출 복합 (INCI 미확인)
+    category: 활성
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 7종 한방 약재 침출·추출 복합(두피). 전성분 공급처 확인 필요.
+  - id: cetiol-ester-oil
+    name: 세티올 에스터오일
+    inci: Dicaprylyl Ether (Cetiol)
+    category: 에몰리언트
+    effects: []
+    density: 0.85
+    has_coa: false
+    grade: cosmetic
+    notes: 세티올(에스터 오일, 가벼운 유상). 함량·INCI 검증 필요.
+  - id: dead-sea-salt
+    name: 사해소금
+    inci: Maris Sal (Dead Sea Salt)
+    category: 활성
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 사해 소금(미네랄·스크럽). 자극 주의. 함량 검증 필요.
+  - id: himalayan-pink-salt
+    name: 히말라야 핑크소금
+    inci: Sodium Chloride (Himalayan Pink Salt)
+    category: 활성
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 히말라야 핑크소금(미네랄·스크럽). 함량 검증 필요.
+  - id: amla-powder
+    name: 암라분말
+    inci: Emblica Officinalis Fruit Powder
+    category: 활성
+    effects: [영양]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 암라(인도구스베리) 분말(모발). 함량·INCI 검증 필요.
+  - id: rosemary-powder
+    name: 로즈마리 분말
+    inci: Rosmarinus Officinalis Leaf Powder
+    category: 활성
+    effects: [항산화]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 로즈마리 분말(두피·모발). 함량·INCI 검증 필요.
+  - id: henna-powder
+    name: 헤나분말
+    inci: Lawsonia Inermis (Henna) Leaf Powder
+    category: 착색
+    effects: []
+    colorant: true
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 헤나 분말(천연 염모). 알러지·패치테스트 필요. 검증 필요.
+  - id: cochineal
+    name: 코치닐
+    inci: CI 75470 (Carmine)
+    category: 착색
+    effects: []
+    colorant: true
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 코치닐(카민, 적색 천연색소). 알러지 주의. 사용 한도 확인 필요.
+  - id: indigo-dye
+    name: 청대
+    inci: Indigofera Tinctoria Leaf Powder
+    category: 착색
+    effects: []
+    colorant: true
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 청대(인디고, 천연 청색 염모). 함량·INCI 검증 필요.
+  - id: tartaric-acid
+    name: 주석산
+    inci: Tartaric Acid
+    category: pH조절
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 주석산(pH 조절·킬레이트). 함량 검증 필요.
+  - id: pcg
+    name: PCG
+    inci: 두피 복합 활성(PCG) (INCI 미확인)
+    category: 활성
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: PCG 두피 복합 활성(공급처 표기). 전성분 공급처 확인 필요.
+  - id: fragrance-generic
+    name: 향
+    inci: Fragrance (선택)
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 0.95
+    has_coa: false
+    grade: cosmetic
+    notes: 선택형 향(초코·히아신스·아로마 등). 알러젠 성분 표시 확인 필요.
+  - id: grapefruit-eo
+    name: 그레이프프룻EO
+    inci: Citrus Grandis (Grapefruit) Peel Oil
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 0.85
+    has_coa: false
+    grade: cosmetic
+    notes: 자몽(그레이프프룻) 에센셜오일. 광독성·사용 한도 확인 필요.
+
+  # --- 허브누리 015 skip 보강(sample.txt) 신규 — INCI·함량 검증 필요 ---
+  - id: green-clay
+    name: 그린 클레이
+    inci: Illite (Green Clay)
+    category: 점증
+    effects: [피지조절]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 그린 클레이(흡착·필링). 분진 주의. 함량·INCI 검증 필요.
+  - id: cypress-eo
+    name: 싸이프러스
+    inci: Cupressus Sempervirens (Cypress) Oil
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 0.89
+    has_coa: false
+    grade: cosmetic
+    notes: 싸이프러스 에센셜오일. 알러젠 표시·사용 한도 확인 필요.
+  - id: espinosilla-extract
+    name: 에스피노질리아 추출물
+    inci: Loeselia Mexicana Extract
+    category: 활성
+    effects: [영양]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 에스피노질리아(두피·모발) 추출물. 전성분·표시성 공급처 확인 필요.
+  - id: nettle-extract
+    name: 네틀추출물
+    inci: Urtica Dioica (Nettle) Leaf Extract
+    category: 활성
+    effects: [진정]
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 네틀(쐐기풀) 추출물(두피). 함량·INCI 검증 필요.
+  - id: premium-soap-base
+    name: 고급물비누베이스
+    inci: 액상비누(고급) 완제 베이스 (INCI 미확인)
+    category: 완제베이스
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 고급 물비누(액상비누) 완제 베이스. 전성분 공급처 확인 필요.
+  - id: emulsifying-wax
+    name: 이멀시파잉왁스
+    inci: Emulsifying Wax NF (Cetearyl Alcohol / Polysorbate 60)
+    category: 유화제
+    effects: []
+    density: 0.95
+    has_coa: false
+    grade: cosmetic
+    notes: 이멀시파잉 왁스(범용 유화제). 함량·INCI 검증 필요.
+  - id: yunohana-powder
+    name: 유노하나
+    inci: 온천 미네랄 분말(유노하나) (INCI 미확인)
+    category: 활성
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 유노하나(온천 침전 미네랄) 분말(입욕제). 전성분 공급처 확인 필요.
+
+  # --- 허브누리 015/006002(향수·디퓨저) 신규 — 생활화학/향 소재 ---
+  - id: diffuser-base
+    name: 디퓨저 베이스
+    inci: Dipropylene Glycol (and) Alcohol (디퓨저 확산 베이스)
+    category: 완제베이스
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 디퓨저 확산 완제 베이스(DPG·에탄올계). 화학제품안전법 방향제 전성분 확인 필요.
+  - id: perfume-base
+    name: 향수 베이스
+    inci: Alcohol Denat. (and) Aqua (향수 베이스)
+    category: 완제베이스
+    effects: []
+    density: 0.9
+    has_coa: false
+    grade: cosmetic
+    notes: 향수 완제 베이스(변성알코올계). 화장품 전성분 공급처 확인 필요.
+  - id: aroma-base-95
+    name: 아로마베이스95
+    inci: Alcohol Denat. 95%
+    category: 용제
+    effects: []
+    density: 0.81
+    has_coa: false
+    grade: cosmetic
+    notes: 아로마 베이스(에탄올 95%, 코롱·향수용). 사용 한도·자극 검증 필요.
+  - id: sachet-stone
+    name: 천연 사쉐 스톤
+    inci: Diatomaceous Earth / Ceramic Stone (사쉐 흡수체)
+    category: 완제베이스
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 향낭(사쉐) 흡수 스톤. 향 담체. 전성분 공급처 확인 필요.
+  - id: eco-gypsum
+    name: 친환경 석고
+    inci: Calcium Sulfate (Gypsum)
+    category: 완제베이스
+    effects: []
+    density: 1.2
+    has_coa: false
+    grade: cosmetic
+    notes: 친환경 석고(방향제 담체). 분진 주의. 전성분 공급처 확인 필요.
+  - id: fragrance-oil
+    name: 프러그런스오일
+    inci: Fragrance (Parfum)
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 조합 향료(프래그런스, 제품별 향 상이). 알러젠 성분 표시·IFRA 확인 필요.
+  - id: lime-eo
+    name: 라임에센셜오일
+    inci: Citrus Aurantifolia (Lime) Oil
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 0.88
+    has_coa: false
+    grade: cosmetic
+    notes: 라임 에센셜오일. 광독성·사용 한도 확인 필요.
+  - id: dried-botanical
+    name: 건조 허브·꽃
+    inci: Dried Botanicals (건초·꽃잎)
+    category: 활성
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 방향낭용 건조 허브·꽃(라벤더·캐모마일·장미 등). 향낭 담체.
+  - id: crystal-ball
+    name: 크리스탈방향볼
+    inci: Superabsorbent Polymer Beads (방향볼)
+    category: 완제베이스
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 크리스탈(고흡수성) 방향볼. 향 담체. 전성분 공급처 확인 필요.
+  - id: soap-colorant
+    name: 비누용 색소
+    inci: 색소(선택) (INCI 미확인)
+    category: 착색
+    effects: []
+    colorant: true
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 비누·방향제 착색용 색소(선택). 화장품/공산품 색소 고시 확인 필요.
+
+  # --- 허브누리 015/007(생활용품) 신규 — 세제·치약·소독·방충 소재 ---
+  - id: aroma-base-70
+    name: 아로마베이스70
+    inci: Alcohol Denat. 70%
+    category: 용제
+    effects: []
+    density: 0.85
+    has_coa: false
+    grade: cosmetic
+    notes: 아로마 베이스(에탄올 70%, 소독·스프레이용). 사용 한도·자극 검증 필요.
+  - id: carbomer-pregel
+    name: 카보머 프리젤
+    inci: Carbomer (and) Water (pre-neutralized)
+    category: 점증
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 카보머 중화 프리젤(겔 점증). 함량·INCI 검증 필요.
+  - id: xylitol
+    name: 자일리톨
+    inci: Xylitol
+    category: 활성
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 자일리톨(치약 감미·항균). 함량·INCI 검증 필요.
+  - id: dental-silica
+    name: 덴탈 실리카
+    inci: Hydrated Silica
+    category: 활성
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 치약용 실리카(연마·점도). 함량·INCI 검증 필요.
+  - id: soy-wax
+    name: 에코소이왁스
+    inci: Hydrogenated Soybean Oil (Soy Wax)
+    category: 왁스
+    effects: []
+    density: 0.9
+    has_coa: false
+    grade: cosmetic
+    notes: 에코 소이(대두) 왁스(캔들). 함량·INCI 검증 필요.
+  - id: sodium-percarbonate
+    name: 과탄산나트륨
+    inci: Sodium Percarbonate
+    category: pH조절
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 과탄산나트륨(산소계 표백·세탁). 자극·취급 주의. 검증 필요.
+  - id: lauryl-glucoside
+    name: 라우릴글루코사이드
+    inci: Lauryl Glucoside
+    category: 계면활성제
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 라우릴글루코사이드(저자극 비이온 계면활성제). 검증 필요.
+  - id: coco-glucoside
+    name: 코코글루코사이드
+    inci: Coco-Glucoside
+    category: 계면활성제
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 코코글루코사이드(저자극 비이온 계면활성제). 검증 필요.
+  - id: niaouli-eo
+    name: 니아울리에센셜오일
+    inci: Melaleuca Quinquenervia (Niaouli) Oil
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 0.9
+    has_coa: false
+    grade: cosmetic
+    notes: 니아울리 에센셜오일. 알러젠 표시·사용 한도 확인 필요.
+  - id: cinnamon-eo
+    name: 시나몬오일
+    inci: Cinnamomum Cassia (Cinnamon) Bark Oil
+    category: 착향
+    effects: []
+    fragrance: true
+    density: 1.05
+    has_coa: false
+    grade: cosmetic
+    notes: 계피(시나몬) 에센셜오일. 강한 피부자극·사용 한도 주의. 검증 필요.
+  - id: white-soap-base
+    name: 화이트비누베이스
+    inci: 백색 비누 완제 베이스 (INCI 미확인)
+    category: 완제베이스
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 화이트 비누 완제 베이스(MP soap). 전성분 공급처 확인 필요.
+  - id: dehumidifier-base
+    name: 에코 제습제
+    inci: Calcium Chloride (제습)
+    category: 활성
+    effects: []
+    density: 1.0
+    has_coa: false
+    grade: cosmetic
+    notes: 에코 제습제(염화칼슘계 흡습). 화학제품안전법 품목 확인 필요.

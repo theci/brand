@@ -1,0 +1,46 @@
+product: 비타민C 에센스(로션)
+slug: vitaminc-essence-lotion
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+line: 비타민C
+product_type: leave_on
+status: 개발중
+base_batch_g: 100
+phases:
+- name: 'A (유상: 오일/유화제)'
+  process: 유상을 70~80도로 가열해 세틸알코올·올리브유화왁스를 완전 용해
+  ingredients:
+  - id: squalane
+    percent: 5.0
+  - id: mct
+    percent: 3.0
+  - id: cetyl-alcohol
+    percent: 1.0
+  - id: olive-emulsifying-wax
+    percent: 3.0
+- name: B (수상)
+  process: 수상을 70~80도로 가열, 유상과 같은 온도로 맞춤
+  ingredients:
+  - id: sea-buckthorn-water
+    percent: 46.0
+  - id: glycerin
+    percent: 4.0
+- name: C (첨가물)
+  process: 유화 후 점도가 나오면 40도 이하로 식혀 첨가물 투입
+  ingredients:
+  - id: marine-collagen-gel
+    percent: 20.0
+  - id: ceramide-water-soluble
+    percent: 5.0
+  - id: vitamin-berry-3
+    percent: 5.0
+  - id: ethyl-ascorbyl-ether
+    percent: 1.0
+  - id: glutathione
+    percent: 5.0
+  - id: hexanediol
+    percent: 2.0
+packaging: []
+fill_volume_ml: 100
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=288748

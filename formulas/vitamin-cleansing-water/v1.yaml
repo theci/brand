@@ -1,0 +1,29 @@
+product: 비타민 클렌징 워터
+slug: vitamin-cleansing-water
+version: 1
+regime: cosmetics
+category: 클렌징
+product_type: rinse_off
+status: 개발중
+base_batch_g: 100
+phases:
+- name: A (냉수 혼합)
+  process: 용기에 모든 재료를 계량하고 나이아신아마이드가 완전히 녹을 때까지 저어 혼합
+  ingredients:
+  - id: sea-buckthorn-water
+    percent: 83.0
+  - id: glycerin
+    percent: 3.0
+  - id: panthenol
+    percent: 1.0
+  - id: polysorbate-20
+    percent: 4.0
+  - id: niacinamide
+    percent: 2.0
+  - id: allantoin
+    percent: 5.0
+  - id: hexanediol
+    percent: 2.0
+packaging: []
+fill_volume_ml: 100
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=288778

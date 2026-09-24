@@ -1,0 +1,24 @@
+product: 멘톨 쿨 샴푸바
+slug: hn-181004
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 400.0
+phases:
+- name: A
+  ingredients:
+  - id: weak-acid-soap-base
+    percent: 92.5
+  - id: menthol
+    percent: 2.0
+  - id: msm
+    percent: 2.0
+  - id: panthenol
+    percent: 1.5
+  - id: lemon-eo
+    percent: 2.0
+packaging: []
+fill_volume_ml: 400.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=181004

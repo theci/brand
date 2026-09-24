@@ -1,0 +1,22 @@
+product: 발효로션&크림
+slug: hn-151134
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 160.1
+phases:
+- name: A
+  ingredients:
+  - id: galactomyces-ferment
+    percent: 6.25
+  - id: cream-base
+    percent: 56.21
+  - id: lavender-eo
+    percent: 0.06
+  - id: galactomyces-ferment
+    percent: 37.48
+packaging: []
+fill_volume_ml: 160.1
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=151134

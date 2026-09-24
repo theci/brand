@@ -1,0 +1,20 @@
+product: 퍼퓸 손소독제
+slug: hn-180067
+version: 1
+regime: biocide
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 420.75
+phases:
+- name: A
+  ingredients:
+  - id: aroma-base-70
+    percent: 93.94
+  - id: glycerin
+    percent: 5.35
+  - id: fragrance-oil
+    percent: 0.71
+packaging: []
+fill_volume_ml: 500.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=180067

@@ -1,0 +1,34 @@
+product: 비타11 에너지 크림
+slug: hn-169918
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 69.15
+phases:
+- name: A
+  ingredients:
+  - id: fermented-camellia-oil
+    percent: 7.23
+  - id: jojoba-oil
+    percent: 7.23
+  - id: olive-emulsifying-wax
+    percent: 5.78
+  - id: glyceryl-stearate
+    percent: 2.89
+  - id: multi-hyaluronic-acid
+    percent: 4.34
+  - id: rose-flower-gel
+    percent: 52.07
+  - id: organic-7-solution
+    percent: 7.23
+  - id: vita-11
+    percent: 10.12
+  - id: hexanediol
+    percent: 2.89
+  - id: blending-oil
+    percent: 0.22
+packaging: []
+fill_volume_ml: 69.2
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=169918

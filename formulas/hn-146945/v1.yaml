@@ -1,0 +1,23 @@
+product: 홈메이드 에코 제습제
+slug: hn-146945
+version: 1
+regime: chemical_safety
+category: 생활화학
+product_type: leave_on
+status: 개발중
+base_batch_g: 172.0
+phases:
+- name: A
+  ingredients:
+  - id: dehumidifier-base
+    percent: 81.4
+  - id: sodium-bicarbonate
+    percent: 17.44
+  - id: lemon-eo
+    percent: 0.58
+  - id: lemongrass-eo
+    percent: 0.58
+packaging: []
+fill_volume_ml: 170.0
+product_category: 탈취제_비분사형_액상
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=146945

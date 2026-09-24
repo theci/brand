@@ -1,0 +1,26 @@
+product: 로즈마리근육통연고
+slug: hn-811
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 119.5
+phases:
+- name: A
+  ingredients:
+  - id: jojoba-oil
+    percent: 83.67
+  - id: beeswax
+    percent: 12.55
+  - id: rosemary-eo
+    percent: 1.05
+  - id: lavender-eo
+    percent: 0.84
+  - id: marjoram-eo
+    percent: 1.05
+  - id: spearmint-eo
+    percent: 0.84
+packaging: []
+fill_volume_ml: 120.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=811

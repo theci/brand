@@ -1,0 +1,12 @@
+# 캐모마일 바디&핸드 로션 — 크롤러가 베이스만 잡아 활성행 수동 보강.
+product: 캐모마일 바디&핸드 로션
+slug: chamomile-body-hand-lotion
+type: leave_on
+status: 개발중
+volume_ml: 300
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=173282
+ingredients:
+  - 바디&핸드 로션베이스 | 240g | 슈퍼시카4·판테놀·내추럴바세린
+  - 캐모마일추출물 | 30g | 민감피부, 진정
+  - 세라마이드 | 30g | 보습, 피부장벽강화
+  - 버가못FCF 에센셜오일 | 30방울 | 착향(광독성 없는 FCF)

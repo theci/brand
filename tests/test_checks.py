@@ -70,7 +70,7 @@ def test_hlb_mismatch_is_risky():
 def test_hlb_skipped_when_no_emulsifier():
     ings = _idx(
         Ingredient(id="water", name="w", inci="w", category="용제"),
-        Ingredient(id="gly", name="g", inci="g", category="보습제"),
+        Ingredient(id="gly", name="g", inci="g", category="보습"),
     )
     f = _formula([("water", 95.0), ("gly", 5.0)])
     r = check_formula(f, ingredients=ings)
@@ -81,7 +81,7 @@ def test_hlb_skipped_when_no_emulsifier():
 def test_limit_over_from_ingredient_max_percent():
     ings = _idx(
         Ingredient(id="water", name="w", inci="w", category="용제"),
-        Ingredient(id="pres", name="보존제", inci="p", category="보존제", max_percent=1.0),
+        Ingredient(id="pres", name="보존", inci="p", category="보존", max_percent=1.0),
     )
     f = _formula([("water", 98.0), ("pres", 2.0)])
     r = check_formula(f, ingredients=ings)
@@ -93,7 +93,7 @@ def test_limit_over_from_ingredient_max_percent():
 def test_limit_from_regulatory_list_respects_product_type():
     ings = _idx(
         Ingredient(id="water", name="w", inci="w", category="용제"),
-        Ingredient(id="x", name="x", inci="x", category="기타"),
+        Ingredient(id="x", name="x", inci="x", category="활성"),
     )
     limits = LimitList(
         limits=[IngredientLimit(ingredient_id="x", max_percent=0.5, product_type="leave_on")]
@@ -119,7 +119,7 @@ def _bing(id_, category, **kw):
 def test_formulation_balance_cream():
     ings = _idx(
         _bing("water", "용제"),
-        _bing("glycerin", "보습제"),
+        _bing("glycerin", "보습"),
         _bing("squalane", "에몰리언트", required_hlb=12),
         _bing("beeswax", "왁스"),
         _bing("emul", "계면활성제", hlb=10),
@@ -146,7 +146,7 @@ def test_moisture_role_override_and_occlusive_axis():
 
 
 def test_formulation_balance_anhydrous_or_waterless_comment():
-    ings = _idx(_bing("water", "용제"), _bing("glycerin", "보습제"))
+    ings = _idx(_bing("water", "용제"), _bing("glycerin", "보습"))
     f = _formula([("water", 95.0), ("glycerin", 5.0)])
     b = formulation_balance(f, ingredients=ings)
     assert b.oil_pct == 0.0
@@ -154,7 +154,7 @@ def test_formulation_balance_anhydrous_or_waterless_comment():
 
 
 def test_humectant_without_occlusive_warns():
-    ings = _idx(_bing("water", "용제"), _bing("glycerin", "보습제"), _bing("emul", "계면활성제", hlb=10))
+    ings = _idx(_bing("water", "용제"), _bing("glycerin", "보습"), _bing("emul", "계면활성제", hlb=10))
     f = _formula([("water", 88.0), ("glycerin", 10.0), ("emul", 2.0)])
     b = formulation_balance(f, ingredients=ings)
     assert any("잠금" in c for c in b.comments)  # 휴멕턴트↑ 옥클루시브↓ 경고
@@ -164,14 +164,14 @@ def test_humectant_without_occlusive_warns():
 # 보존 시스템 점검
 # ---------------------------------------------------------------------------
 def test_preservation_good():
-    ings = _idx(_bing("water", "용제"), _bing("phenoxy", "보존제"), _bing("hexanediol", "보습제"), _bing("gly", "보습제"))
+    ings = _idx(_bing("water", "용제"), _bing("phenoxy", "보존"), _bing("hexanediol", "보습"), _bing("gly", "보습"))
     f = _formula([("water", 90.0), ("phenoxy", 1.0), ("hexanediol", 2.0), ("gly", 7.0)])
     r = preservation_check(f, ingredients=ings)
     assert r.is_water_based and r.verdict == "양호" and r.ok
 
 
 def test_preservation_missing_is_danger():
-    ings = _idx(_bing("water", "용제"), _bing("gly", "보습제"))
+    ings = _idx(_bing("water", "용제"), _bing("gly", "보습"))
     f = _formula([("water", 95.0), ("gly", 5.0)])
     r = preservation_check(f, ingredients=ings)
     assert r.verdict == "위험" and not r.ok
@@ -185,14 +185,14 @@ def test_preservation_anhydrous_na():
 
 
 def test_preservation_single_warns():
-    ings = _idx(_bing("water", "용제"), _bing("phenoxy", "보존제"), _bing("gly", "보습제"))
+    ings = _idx(_bing("water", "용제"), _bing("phenoxy", "보존"), _bing("gly", "보습"))
     f = _formula([("water", 90.0), ("phenoxy", 1.0), ("gly", 9.0)])
     r = preservation_check(f, ingredients=ings)
     assert r.verdict == "주의"  # 단일 보존제·보조 없음
 
 
 def test_preservation_booster_only_danger():
-    ings = _idx(_bing("water", "용제"), _bing("hexanediol", "보습제"), _bing("gly", "보습제"))
+    ings = _idx(_bing("water", "용제"), _bing("hexanediol", "보습"), _bing("gly", "보습"))
     f = _formula([("water", 90.0), ("hexanediol", 2.0), ("gly", 8.0)])
     r = preservation_check(f, ingredients=ings)
     assert r.verdict == "위험" and r.boosters
@@ -215,8 +215,8 @@ _NIAC_VITC = IncompatibilityRules(rules=[
 def test_compat_conflict_fires():
     ings = _idx(
         _bing("water", "용제"),
-        _bing("niacinamide", "진정"),
-        Ingredient(id="vitc", name="비타민C", inci="Ascorbic Acid", category="항산화"),
+        _bing("niacinamide", "활성"),
+        Ingredient(id="vitc", name="비타민C", inci="Ascorbic Acid", category="산화방지"),
     )
     f = _formula([("water", 90.0), ("niacinamide", 5.0), ("vitc", 5.0)])
     res = compatibility_check(f, ingredients=ings, rules=_NIAC_VITC)
@@ -226,7 +226,7 @@ def test_compat_conflict_fires():
 
 
 def test_compat_no_conflict_when_one_side_absent():
-    ings = _idx(_bing("water", "용제"), _bing("niacinamide", "진정"))
+    ings = _idx(_bing("water", "용제"), _bing("niacinamide", "활성"))
     f = _formula([("water", 95.0), ("niacinamide", 5.0)])
     assert compatibility_check(f, ingredients=ings, rules=_NIAC_VITC) == []
 

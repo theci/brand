@@ -1,0 +1,22 @@
+product: TX 멜라 클리어 수크림
+slug: hn-152151
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.2
+phases:
+- name: A
+  ingredients:
+  - id: cream-base
+    percent: 79.84
+  - id: peptide-complex
+    percent: 9.98
+  - id: 4gf
+    percent: 9.98
+  - id: essential-oil
+    percent: 0.2
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=152151

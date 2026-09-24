@@ -1,0 +1,22 @@
+product: 맑아지는 노니팩
+slug: hn-152453
+version: 1
+regime: cosmetics
+category: 팩·패드
+product_type: leave_on
+status: 개발중
+base_batch_g: 15.1
+phases:
+- name: A
+  ingredients:
+  - id: noni-powder
+    percent: 13.25
+  - id: oatmeal-powder
+    percent: 19.87
+  - id: noni-extract
+    percent: 66.22
+  - id: essential-oil
+    percent: 0.66
+packaging: []
+fill_volume_ml: 15.1
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=152453

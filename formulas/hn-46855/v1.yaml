@@ -1,0 +1,30 @@
+product: 푸에라리아 가슴마사지로션
+slug: hn-46855
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 132.0
+phases:
+- name: A
+  ingredients:
+  - id: pueraria-oil
+    percent: 11.36
+  - id: olive-emulsifying-wax
+    percent: 2.27
+  - id: neroli-water
+    percent: 60.6
+  - id: pueraria-extract
+    percent: 15.15
+  - id: plant-placenta
+    percent: 3.79
+  - id: glycerin
+    percent: 4.55
+  - id: herbal-preservative
+    percent: 1.52
+  - id: essential-oil
+    percent: 0.76
+packaging: []
+fill_volume_ml: 132.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=46855

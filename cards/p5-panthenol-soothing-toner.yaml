@@ -1,0 +1,13 @@
+# 판테놀 진정토너 — 크롤러가 옵션 '용량'을 먼저 잡아 건너뛴 건. 원본 표 그대로.
+product: 판테놀 진정토너
+slug: panthenol-soothing-toner
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=172491
+ingredients:
+  - 로즈워터 | 50g | 불가리아 장미수
+  - 네롤리워터 | 40g | 오렌지꽃워터
+  - 병풀추출물 | 7g | 호랑이풀, 피부진정
+  - 덱스판테놀 | 2g | 식물성 보습제
+  - 천연한방보존제 | 1g | 균번식 억제

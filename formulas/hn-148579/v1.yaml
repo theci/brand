@@ -1,0 +1,28 @@
+product: 블루밍 립글로스
+slug: hn-148579
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 23.85
+phases:
+- name: A
+  ingredients:
+  - id: fermented-horse-oil
+    percent: 8.39
+  - id: castor-oil
+    percent: 20.96
+  - id: tocopherol
+    percent: 0.42
+  - id: candelilla-wax
+    percent: 4.19
+  - id: beeswax
+    percent: 8.39
+  - id: lip-color-generic
+    percent: 56.6
+  - id: rosewood-eo
+    percent: 1.05
+packaging: []
+fill_volume_ml: 30.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=148579

@@ -1,0 +1,20 @@
+product: 커피스크럽
+slug: hn-948
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 270.0
+phases:
+- name: A
+  ingredients:
+  - id: scrub-base
+    percent: 37.04
+  - id: coffee-scrub-powder
+    percent: 7.41
+  - id: sugar
+    percent: 55.55
+packaging: []
+fill_volume_ml: 270.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=948

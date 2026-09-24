@@ -1,0 +1,13 @@
+# 고체 향수 — 015/006002 배치 수동 보정(branduid=141208).
+product: 고체 향수
+slug: hn-141208
+type: leave_on
+status: 개발중
+regime: cosmetics
+volume_ml: 30
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=141208
+ingredients:
+  - 유기농 호호바오일(골든) | 5g | 유상
+  - 유기농 코포아수버터 | 12g | 버터
+  - (정제) 밀랍 | 11g | 경화제
+  - 끌로에 우먼 | 2g | 조합향료

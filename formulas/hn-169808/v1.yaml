@@ -1,0 +1,22 @@
+product: 셀프백신 손소독제(젤)
+slug: hn-169808
+version: 1
+regime: biocide
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: aroma-base-95
+    percent: 66.0
+  - id: carbomer-pregel
+    percent: 30.0
+  - id: multi-hyaluronic-acid
+    percent: 3.0
+  - id: niaouli-eo
+    percent: 1.0
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=169808

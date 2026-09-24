@@ -1,0 +1,28 @@
+product: 허니 촉촉 바디젤
+slug: hn-144545
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 99.65
+phases:
+- name: A
+  ingredients:
+  - id: aloe-vera-gel
+    percent: 68.23
+  - id: cupuacu-butter
+    percent: 10.04
+  - id: ceramide-complex
+    percent: 10.04
+  - id: honey-extract
+    percent: 10.04
+  - id: herbal-preservative
+    percent: 1.0
+  - id: orange-eo
+    percent: 0.5
+  - id: neroli-eo
+    percent: 0.15
+packaging: []
+fill_volume_ml: 99.7
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=144545

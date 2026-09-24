@@ -38,7 +38,7 @@ if not codex.entries:
 def _cat(e: CodexEntry) -> str:
     ing = master.get(e.id)
     if ing:
-        return ing.category
+        return ing.category.value
     return e.category or "(기타)"
 
 
@@ -189,5 +189,5 @@ with st.expander(f"📝 아직 백과가 없는 원료 {len(missing)}종 (채우
         st.write("모든 마스터 원료에 백과가 있습니다. 👍")
     else:
         st.caption("`data/ingredient_codex.yaml`에 id로 항목을 추가하면 이 화면에 바로 나타납니다.")
-        for i in sorted(missing, key=lambda x: (x.category, x.id)):
-            st.markdown(f"- **{i.name}** (`{i.id}`) · {i.category}")
+        for i in sorted(missing, key=lambda x: (x.category.value, x.id)):
+            st.markdown(f"- **{i.name}** (`{i.id}`) · {i.category.value}")

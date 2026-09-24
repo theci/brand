@@ -1,0 +1,37 @@
+product: 율무 미백 아이크림
+slug: jobstears-whitening-eye-cream
+version: 1
+regime: cosmetics
+category: 로션·크림
+line: 율무미백
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: neroli-water
+    percent: 33.0
+  - id: jobs-tears-extract
+    percent: 33.0
+  - id: olive-cold-emulsifier
+    percent: 2.0
+  - id: macadamia-oil
+    percent: 5.0
+  - id: squalane
+    percent: 5.0
+  - id: ceramide-water-soluble
+    percent: 5.0
+  - id: vitamin-berry-3
+    percent: 5.0
+  - id: alpha-arbutin
+    percent: 2.0
+  - id: glycerin
+    percent: 5.0
+  - id: beta-glucan
+    percent: 3.0
+  - id: hexanediol
+    percent: 2.0
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=288453

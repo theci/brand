@@ -1,0 +1,20 @@
+product: 레몬쥬스 립밤
+slug: hn-152846
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 54.0
+phases:
+- name: A
+  ingredients:
+  - id: multibalm-oil-base
+    percent: 79.63
+  - id: candelilla-wax
+    percent: 17.59
+  - id: blending-oil
+    percent: 2.78
+packaging: []
+fill_volume_ml: 55.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=152846

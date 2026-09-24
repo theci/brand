@@ -1,0 +1,18 @@
+product: 다마스크 로즈 향수
+slug: hn-148383
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 50.0
+phases:
+- name: A
+  ingredients:
+  - id: perfume-base
+    percent: 98.0
+  - id: fragrance-oil
+    percent: 2.0
+packaging: []
+fill_volume_ml: 50.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=148383

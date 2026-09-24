@@ -1,0 +1,34 @@
+product: 라벤더 썬크림
+slug: hn-28603
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.25
+phases:
+- name: A
+  ingredients:
+  - id: olive-ester-oil
+    percent: 6.98
+  - id: macadamia-oil
+    percent: 13.97
+  - id: olive-emulsifying-wax
+    percent: 4.99
+  - id: lavender-water
+    percent: 49.86
+  - id: panthenol
+    percent: 3.99
+  - id: whitens-complex
+    percent: 4.99
+  - id: titanium-dioxide
+    percent: 5.99
+  - id: zinc-oxide
+    percent: 7.98
+  - id: herbal-preservative
+    percent: 1.0
+  - id: lavender-eo
+    percent: 0.25
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=28603

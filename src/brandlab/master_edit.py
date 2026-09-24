@@ -26,7 +26,7 @@ _ID_RE = re.compile(r"^(\s*)-\s*id:\s*(.+?)\s*$")
 # ---------------------------------------------------------------------------
 # ingredients.yaml 필드 표기 순서 (파일 관례와 일치)
 _INGREDIENT_ORDER = [
-    "id", "name", "inci", "category",
+    "id", "name", "inci", "category", "effects",
     "max_percent", "price_per_kg", "density", "hlb", "required_hlb",
     "has_coa", "cosmetic_grade", "grade", "cas",
     "fragrance", "colorant", "food_grade", "supplier", "notes",

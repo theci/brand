@@ -1,0 +1,24 @@
+product: 라벤더연고
+slug: hn-27227
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 44.1
+phases:
+- name: A
+  ingredients:
+  - id: calendula-oil
+    percent: 36.28
+  - id: chamomile-infused-oil
+    percent: 36.28
+  - id: beeswax
+    percent: 22.68
+  - id: lavender-eo
+    percent: 3.17
+  - id: frankincense-eo
+    percent: 1.59
+packaging: []
+fill_volume_ml: 50.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=27227

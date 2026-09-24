@@ -1,0 +1,16 @@
+# 호호바필링제 — sample.txt(이미지 레시피) 기반(branduid=837).
+product: 호호바필링제
+slug: hn-837
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=837
+ingredients:
+  - 호호바오일 | 10g | 유상
+  - 올리브유화왁스 | 3g | 유화제
+  - 로즈워터 | 70g | 수상
+  - 셀룰로오즈 | 10g | 스크럽 비드
+  - 글리세린 | 5g | 보습
+  - 핑크클레이 | 1g | 흡착
+  - 라벤더 | 5방울 | 착향
+  - 티트리 | 5방울 | 착향

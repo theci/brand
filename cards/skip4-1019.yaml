@@ -1,0 +1,13 @@
+# 감기롤포인트 — sample.txt(이미지 레시피) 기반(branduid=1019).
+product: 감기롤포인트
+slug: hn-1019
+type: leave_on
+status: 개발중
+volume_ml: 10
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=1019
+ingredients:
+  - 골덴호호바오일 | 5g | 캐리어 오일
+  - 유칼립투스에센셜오일 | 4방울 | 착향
+  - 페파민트에센셜오일 | 2방울 | 착향
+  - 편백에센셜오일 | 2방울 | 착향
+  - 레몬에센셜오일 | 2방울 | 착향

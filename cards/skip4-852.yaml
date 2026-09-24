@@ -1,0 +1,12 @@
+# 캐모마일 아토베이비 오일 — sample.txt(이미지 레시피) 기반(branduid=852).
+product: 캐모마일 아토베이비 오일
+slug: hn-852
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=852
+ingredients:
+  - 카렌듈라인퓨즈오일 | 40g | 진정 유상
+  - 골덴호호바오일 | 55g | 유상
+  - 버가못에센셜오일 | 6방울 | 착향
+  - 로만카모마일 | 4방울 | 착향

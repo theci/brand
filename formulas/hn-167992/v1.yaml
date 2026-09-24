@@ -1,0 +1,22 @@
+product: 유칼립투스 립밤(코밤)
+slug: hn-167992
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 54.5
+phases:
+- name: A
+  ingredients:
+  - id: multibalm-oil-base
+    percent: 78.91
+  - id: multibalm-wax
+    percent: 17.43
+  - id: eucalyptus-eo
+    percent: 1.83
+  - id: lemon-eo
+    percent: 1.83
+packaging: []
+fill_volume_ml: 54.5
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=167992

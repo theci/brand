@@ -1,0 +1,10 @@
+# 자초 호호바 인퓨즈오일 — sample.txt(이미지 레시피 붙여넣기) 기반(branduid=906).
+product: 자초 호호바 인퓨즈오일
+slug: hn-906
+type: leave_on
+status: 개발중
+volume_ml: 600
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=906
+ingredients:
+  - 자초 | 100g | 침출 원재료
+  - 호호바오일 | 500ml | 베이스 오일

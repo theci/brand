@@ -1,0 +1,11 @@
+# 아르간페이셜세럼 — sample.txt(이미지 레시피) 기반(branduid=1162).
+product: 아르간페이셜세럼
+slug: hn-1162
+type: leave_on
+status: 개발중
+volume_ml: 50
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=1162
+ingredients:
+  - 아르간오일 | 40g | 유상
+  - 올리브유화왁스 | 8g | 유화제
+  - 네롤리에센셜오일 | 5방울 | 착향

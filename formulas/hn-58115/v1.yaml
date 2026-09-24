@@ -1,0 +1,28 @@
+product: 피부타입별 아로마토너
+slug: hn-58115
+version: 1
+regime: cosmetics
+category: 토너·미스트
+product_type: leave_on
+status: 개발중
+base_batch_g: 105.45
+phases:
+- name: A
+  ingredients:
+  - id: purified-water
+    percent: 81.55
+  - id: olive-liquid
+    percent: 1.9
+  - id: tocopherol
+    percent: 0.95
+  - id: essential-oil
+    percent: 0.43
+  - id: herbal-preservative
+    percent: 0.95
+  - id: glycerin
+    percent: 4.74
+  - id: rosemary-extract
+    percent: 9.48
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=58115

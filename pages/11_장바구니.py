@@ -6,7 +6,7 @@ import streamlit as st
 
 from brandlab.loader import load_inventory
 from brandlab.shopping import shopping_list
-from brandlab.ui import format_won, load_lab, setup_korean_font
+from brandlab.ui import format_won, load_lab, product_picker, setup_korean_font
 
 setup_korean_font()
 st.title("장바구니 (shopping)")
@@ -17,8 +17,7 @@ if not lab.formulas:
     st.info("처방이 없습니다.")
     st.stop()
 
-options = {f"{f.slug} v{f.version} — {f.product}": f for f in lab.formulas}
-formula = options[st.selectbox("처방 선택", list(options))]
+formula = product_picker(lab, key="cart", label="처방 선택")
 
 mode = st.radio("구매 기준", ["생산 수량(개)", "배치 크기(g)"], horizontal=True)
 if mode.startswith("생산"):

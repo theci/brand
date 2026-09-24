@@ -16,7 +16,7 @@ from brandlab.touchpoints import (
     review_request,
     reviews_to_evidence,
 )
-from brandlab.ui import load_lab, setup_korean_font
+from brandlab.ui import load_lab, product_picker, setup_korean_font
 
 setup_korean_font()
 st.title("고객 접점 · 후기 💬")
@@ -31,9 +31,8 @@ core = load_brand_core()
 
 product_name = "제품"
 if lab.formulas:
-    opts = {f"{f.product} ({f.slug} v{f.version})": f for f in lab.formulas}
-    sel = st.selectbox("제품 선택", list(opts))
-    product_name = opts[sel].product
+    _picked = product_picker(lab, key="touch", label="제품 선택")
+    product_name = _picked.product if _picked else None
 
 
 def _gate(text: str) -> None:

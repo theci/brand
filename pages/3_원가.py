@@ -11,7 +11,7 @@ from brandlab.cost import (
     price_simulator,
     unit_cost,
 )
-from brandlab.ui import format_won, load_lab, setup_korean_font
+from brandlab.ui import format_won, load_lab, product_picker, setup_korean_font
 
 setup_korean_font()
 st.title("원가 · 손익")
@@ -22,9 +22,7 @@ if not lab.formulas:
     st.info("처방이 없습니다.")
     st.stop()
 
-options = {f"{f.slug} v{f.version} — {f.product}": f for f in lab.formulas}
-label = st.selectbox("처방 선택", list(options))
-formula = options[label]
+formula = product_picker(lab, key="cost", label="처방 선택")
 
 c1, c2 = st.columns(2)
 units = c1.number_input("주문 수량", min_value=1, value=1000, step=100)

@@ -1,0 +1,22 @@
+product: 퍼퓸 롤온
+slug: hn-143067
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 10.5
+phases:
+- name: A
+  ingredients:
+  - id: jojoba-oil
+    percent: 85.72
+  - id: neroli-eo
+    percent: 1.9
+  - id: bergamot-fcf-eo
+    percent: 9.52
+  - id: rosewood-eo
+    percent: 2.86
+packaging: []
+fill_volume_ml: 10.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=143067

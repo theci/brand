@@ -1,0 +1,22 @@
+product: 자운고 (한방연고)
+slug: hn-846
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 28.8
+phases:
+- name: A
+  ingredients:
+  - id: jaunggo-oil
+    percent: 62.5
+  - id: beeswax
+    percent: 34.72
+  - id: lavender-eo
+    percent: 1.39
+  - id: tea-tree-eo
+    percent: 1.39
+packaging: []
+fill_volume_ml: 30.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=846

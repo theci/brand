@@ -10,7 +10,7 @@ import streamlit as st
 
 from brandlab.design_brief import build_brief
 from brandlab.loader import load_brand_core, load_discovery
-from brandlab.ui import load_lab, setup_korean_font
+from brandlab.ui import load_lab, product_picker, setup_korean_font
 
 setup_korean_font()
 st.title("디자인 브리프 🎨")
@@ -21,8 +21,7 @@ if not lab.formulas:
     st.info("처방이 없습니다.")
     st.stop()
 
-options = {f"{f.slug} v{f.version} — {f.product}": f for f in lab.formulas}
-formula = options[st.selectbox("처방 선택", list(options))]
+formula = product_picker(lab, key="brief", label="처방 선택")
 
 core = load_brand_core()
 disc = load_discovery()

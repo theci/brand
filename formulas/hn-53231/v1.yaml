@@ -1,0 +1,32 @@
+product: 민트 풋로션
+slug: hn-53231
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 111.3
+phases:
+- name: A
+  ingredients:
+  - id: sweet-almond-oil
+    percent: 2.7
+  - id: shea-butter
+    percent: 2.7
+  - id: olive-emulsifying-wax
+    percent: 3.59
+  - id: lavender-water
+    percent: 62.89
+  - id: aloe-vera-gel
+    percent: 17.97
+  - id: menthol
+    percent: 0.27
+  - id: herbal-preservative
+    percent: 0.9
+  - id: glycerin
+    percent: 4.49
+  - id: silk-amino-acid
+    percent: 4.49
+packaging: []
+fill_volume_ml: 111.3
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=53231

@@ -1,0 +1,22 @@
+product: 녹소초(어성초) 한방샴푸
+slug: hn-113566
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 505.0
+phases:
+- name: A
+  ingredients:
+  - id: gentle-shampoo-base
+    percent: 79.21
+  - id: nokchoco-extract
+    percent: 17.82
+  - id: panthenol
+    percent: 1.98
+  - id: blending-oil
+    percent: 0.99
+packaging: []
+fill_volume_ml: 500.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=113566

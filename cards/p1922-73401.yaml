@@ -1,0 +1,13 @@
+# 로즈플라워토너 — 배치 수동 보정(아티팩트/수용성/일반명, branduid=73401).
+product: 로즈플라워토너
+slug: hn-73401
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=73401
+ingredients:
+  - 로즈워터 | 70g | 수상
+  - 로먼캐모마일워터 | 20g | 수상
+  - 세라마이드(수용성) | 5g | 장벽
+  - 천연한방보존제 | 1g | 방부
+  - 식물성 글리세린 | 4g | 보습

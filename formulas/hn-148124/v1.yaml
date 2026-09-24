@@ -1,0 +1,16 @@
+product: 버진코코넛 오일 폴링
+slug: hn-148124
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 90.0
+phases:
+- name: A
+  ingredients:
+  - id: coconut-oil
+    percent: 100.0
+packaging: []
+fill_volume_ml: 90.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=148124

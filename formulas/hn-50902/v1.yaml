@@ -1,0 +1,26 @@
+product: 슈퍼아쿠아 에센스/마스크팩(화이트)
+slug: hn-50902
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: aloe-vera-gel
+    percent: 50.0
+  - id: neroli-water
+    percent: 16.0
+  - id: whitens-complex
+    percent: 15.0
+  - id: mulberry-extract
+    percent: 10.0
+  - id: sodium-hyaluronate
+    percent: 8.0
+  - id: herbal-preservative
+    percent: 1.0
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=50902

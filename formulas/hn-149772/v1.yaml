@@ -1,0 +1,22 @@
+product: 7스킨 (로즈사카로)
+slug: hn-149772
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 260.0
+phases:
+- name: A
+  ingredients:
+  - id: galactomyces-ferment
+    percent: 28.85
+  - id: rose-water
+    percent: 66.34
+  - id: panthenol
+    percent: 3.85
+  - id: herbal-preservative
+    percent: 0.96
+packaging: []
+fill_volume_ml: 250.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=149772

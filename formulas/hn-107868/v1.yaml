@@ -1,0 +1,26 @@
+product: 동백실크샴푸
+slug: hn-107868
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 504.5
+phases:
+- name: A
+  ingredients:
+  - id: gentle-shampoo-base
+    percent: 79.29
+  - id: aloe-vera-gel
+    percent: 9.91
+  - id: calming-5-solution
+    percent: 5.95
+  - id: silk-elastin
+    percent: 2.97
+  - id: camellia-oil
+    percent: 0.99
+  - id: essential-oil
+    percent: 0.89
+packaging: []
+fill_volume_ml: 500.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=107868

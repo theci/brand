@@ -1,0 +1,12 @@
+# 자운고 (한방연고) — 배치 아티팩트/일반명 수동 보정(branduid=846).
+product: 자운고 (한방연고)
+slug: hn-846
+type: leave_on
+status: 개발중
+volume_ml: 30
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=846
+ingredients:
+  - 자운고 인퓨즈오일 | 18g | 자운고 침출 오일
+  - 밀랍 | 10g | 경화제(스틱타입)
+  - 라벤더에센셜오일 | 8방울 | 착향
+  - 티트리에센셜오일 | 8방울 | 착향

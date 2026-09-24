@@ -1,0 +1,15 @@
+# 로즈 스킨 — sample.txt(이미지 레시피) 기반(branduid=832).
+product: 로즈 스킨
+slug: hn-832
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=832
+ingredients:
+  - 증류수 | 100g | 수상
+  - 올리브리퀴드 | 18방울 | 가용화
+  - 만다린 | 5방울 | 착향
+  - 제라늄 | 4방울 | 착향
+  - 로즈앱솔루트 | 1방울 | 착향
+  - 히아루론산 | 3g | 보습
+  - 아카시아콜라겐 | 3g | 보습

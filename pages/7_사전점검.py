@@ -11,7 +11,7 @@ from brandlab.checks import (
     preservation_check,
 )
 from brandlab.loader import load_incompatibilities
-from brandlab.ui import load_lab, setup_korean_font
+from brandlab.ui import load_lab, product_picker, setup_korean_font
 
 setup_korean_font()
 st.title("처방 사전점검 · HLB · 배합한도 · 유수분")
@@ -22,8 +22,7 @@ if not lab.formulas:
     st.info("처방이 없습니다.")
     st.stop()
 
-options = {f"{f.slug} v{f.version} — {f.product}": f for f in lab.formulas}
-formula = options[st.selectbox("처방 선택", list(options))]
+formula = product_picker(lab, key="precheck", label="처방 선택")
 
 result = check_formula(formula, ingredients=lab.ingredients, limits=lab.limits)
 

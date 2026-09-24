@@ -1,0 +1,26 @@
+product: 아이참 땀띠스프레이
+slug: hn-80420
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 99.2
+phases:
+- name: A
+  ingredients:
+  - id: lavender-water
+    percent: 50.41
+  - id: hinoki-water
+    percent: 35.28
+  - id: allantoin
+    percent: 0.2
+  - id: chamomile-extract
+    percent: 8.06
+  - id: centella-extract
+    percent: 5.04
+  - id: herbal-preservative
+    percent: 1.01
+packaging: []
+fill_volume_ml: 99.2
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=80420

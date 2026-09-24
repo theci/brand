@@ -1,0 +1,12 @@
+# 아로마 디퓨저 리드스틱 — 015/006002 배치 수동 보정(branduid=90920).
+product: 아로마 디퓨저 리드스틱
+slug: hn-90920
+type: leave_on
+status: 개발중
+regime: chemical_safety
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=90920
+product_category: 방향제_지속방출형
+ingredients:
+  - 디퓨저 전용 베이스 | 97ml | 확산 베이스
+  - 에센셜오일 | 3ml | 착향

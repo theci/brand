@@ -1,0 +1,29 @@
+product: 행운의 열쇠 방향제(마블)
+slug: hn-134016
+version: 1
+regime: chemical_safety
+category: 생활화학
+product_type: leave_on
+status: 개발중
+base_batch_g: 278.0
+phases:
+- name: A
+  ingredients:
+  - id: olive-liquid
+    percent: 3.24
+  - id: corn-starch
+    percent: 3.24
+  - id: fragrance-oil
+    percent: 0.72
+  - id: purified-water
+    percent: 23.74
+  - id: eco-gypsum
+    percent: 64.02
+  - id: eco-gypsum
+    percent: 1.44
+  - id: soap-colorant
+    percent: 3.6
+packaging: []
+fill_volume_ml: 270.0
+product_category: 방향제_비분사형
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=134016

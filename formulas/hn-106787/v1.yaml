@@ -1,0 +1,24 @@
+product: 더 퍼스트 발효에센스
+slug: hn-106787
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: galactomyces-ferment
+    percent: 60.0
+  - id: bifida-ferment
+    percent: 20.0
+  - id: natto-moist
+    percent: 10.0
+  - id: brightening-5-solution
+    percent: 9.0
+  - id: herbal-preservative
+    percent: 1.0
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=106787

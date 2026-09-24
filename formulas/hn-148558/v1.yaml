@@ -1,0 +1,24 @@
+product: 진생애 샴푸
+slug: hn-148558
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 315.0
+phases:
+- name: A
+  ingredients:
+  - id: gentle-shampoo-base
+    percent: 76.2
+  - id: herbal-7-complex
+    percent: 9.52
+  - id: ginseng-extract
+    percent: 9.52
+  - id: ginseng-stem-cell-culture
+    percent: 3.17
+  - id: blending-oil
+    percent: 1.59
+packaging: []
+fill_volume_ml: 315.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=148558

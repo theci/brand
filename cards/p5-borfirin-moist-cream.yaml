@@ -1,0 +1,10 @@
+# 보르피린 수분크림 — 원본은 베이직/프리미엄 2변형. 여기선 프리미엄판(수딩젤 베이스).
+product: 보르피린 수분크림
+slug: borfirin-moist-cream
+type: leave_on
+status: 개발중
+volume_ml: 300
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=180802
+ingredients:
+  - 보르피린 | 20g | 볼륨업(지모뿌리, 프랑스 세더마) 5~7%
+  - 시카 판테놀 수딩젤 베이스 | 270g | 미백인증·비건 수딩젤 베이스

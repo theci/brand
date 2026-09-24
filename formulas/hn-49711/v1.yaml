@@ -1,0 +1,32 @@
+product: 링클펩타이드 에센스로션
+slug: hn-49711
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 124.25
+phases:
+- name: A
+  ingredients:
+  - id: calendula-oil
+    percent: 9.66
+  - id: macadamia-oil
+    percent: 3.22
+  - id: olive-emulsifying-wax
+    percent: 2.41
+  - id: rose-water
+    percent: 70.03
+  - id: herbal-preservative
+    percent: 0.8
+  - id: tomato-extract
+    percent: 4.02
+  - id: acetyl-hexapeptide
+    percent: 4.83
+  - id: sodium-hyaluronate
+    percent: 4.83
+  - id: rosewood-eo
+    percent: 0.2
+packaging: []
+fill_volume_ml: 124.2
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=49711

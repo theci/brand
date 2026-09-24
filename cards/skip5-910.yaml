@@ -1,0 +1,11 @@
+# 레몬민트바쓰솔트 — sample.txt(이미지 레시피) 기반(branduid=910).
+product: 레몬민트바쓰솔트
+slug: hn-910
+type: rinse_off
+status: 개발중
+volume_ml: 500
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=910
+ingredients:
+  - 크리스탈소금 | 500g | 미네랄 입욕
+  - 레몬에센셜오일 | 3ml | 착향
+  - 스피아민트에센셜오일 | 3ml | 착향

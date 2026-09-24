@@ -1,0 +1,38 @@
+product: 콜라겐 드림 크림(수분)
+slug: hn-153210
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.15
+phases:
+- name: A
+  ingredients:
+  - id: moringa-oil
+    percent: 9.99
+  - id: mango-butter
+    percent: 4.99
+  - id: olive-emulsifying-wax
+    percent: 4.99
+  - id: oliwax-lc
+    percent: 2.0
+  - id: lemon-balm-water
+    percent: 22.97
+  - id: panthenol
+    percent: 4.99
+  - id: phellinus-extract
+    percent: 4.99
+  - id: collagen-peptide
+    percent: 9.99
+  - id: niacinamide
+    percent: 3.0
+  - id: rose-flower-gel
+    percent: 29.94
+  - id: hexanediol
+    percent: 2.0
+  - id: blending-oil
+    percent: 0.15
+packaging: []
+fill_volume_ml: 100.2
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=153210

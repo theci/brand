@@ -1,0 +1,20 @@
+# 마일드 프레쉬 치약 — 015/007 배치 수동 보정(branduid=147665).
+product: 마일드 프레쉬 치약
+slug: hn-147665
+type: rinse_off
+status: 개발중
+regime: quasi_drug
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=147665
+category: 기타
+ingredients:
+  - 베이킹소다 | 6g | 세정
+  - 자일리톨 | 4g | 감미
+  - 식물성 글리세린 | 35g | 보습
+  - 쟁탄검 | 0.5g | 점증
+  - 정제수 | 33g | 수상
+  - 프로폴리스추출물 | 10g | 진정
+  - 애플계면활성제 | 10g | 세정
+  - 천연한방보존제 | 1g | 방부
+  - 스피아민트에센셜오일 | 6방울 | 착향
+  - 레몬에센셜오일 | 4방울 | 착향

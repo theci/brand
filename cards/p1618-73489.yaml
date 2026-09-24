@@ -1,0 +1,17 @@
+# 로즈 플라워 크림 — 배치 수동 보정(단일/수용성/아티팩트, branduid=73489).
+product: 로즈 플라워 크림
+slug: hn-73489
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=73489
+ingredients:
+  - 로즈힙오일 | 18g | 유상
+  - 망고버터 | 10g | 버터
+  - 올리브유화왁스 | 5g | 유화제
+  - 로즈워터 | 56g | 수상
+  - 천연한방보존제 | 1g | 방부
+  - 세라마이드(수용성) | 5g | 장벽
+  - 코엔자임Q10 | 5g | 항산화
+  - 히아루론산 | 5g | 보습
+  - 로즈제라늄EO | 3방울 | 착향

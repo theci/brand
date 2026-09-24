@@ -1,0 +1,13 @@
+# 슈퍼아쿠아 에센스/마스크팩(트러블용) — 배치 수동 보정(단일/수용성/아티팩트, branduid=50899).
+product: 슈퍼아쿠아 에센스/마스크팩(트러블용)
+slug: hn-50899
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=50899
+ingredients:
+  - 알로에베라겔 | 60g | 진정 겔
+  - 편백워터 | 10g | 수상
+  - 어성초추출물 | 18g | 진정
+  - 녹차추출물 | 10g | 항산화
+  - 천연한방보존제 | 1g | 방부

@@ -1,0 +1,13 @@
+# 퍼퓸 손소독제 — 015/007 배치 수동 보정(branduid=180067).
+product: 퍼퓸 손소독제
+slug: hn-180067
+type: leave_on
+status: 개발중
+regime: biocide
+volume_ml: 500
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=180067
+category: 기타
+ingredients:
+  - 아로마베이스70 | 465ml | 에탄올 베이스
+  - 식물성 글리세린 | 22.5g | 보습
+  - 클린코튼 | 3ml | 조합향료

@@ -1,0 +1,30 @@
+product: 살구씨클렌징&마사지크림
+slug: hn-59952
+version: 1
+regime: cosmetics
+category: 클렌징
+product_type: rinse_off
+status: 개발중
+base_batch_g: 120.5
+phases:
+- name: A
+  ingredients:
+  - id: apricot-kernel-oil
+    percent: 23.24
+  - id: olive-emulsifying-wax
+    percent: 4.15
+  - id: lavender-water
+    percent: 45.64
+  - id: herbal-preservative
+    percent: 1.66
+  - id: cucumber-extract
+    percent: 8.3
+  - id: allantoin
+    percent: 8.3
+  - id: glycerin
+    percent: 8.3
+  - id: orange-eo
+    percent: 0.41
+packaging: []
+fill_volume_ml: 120.5
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=59952

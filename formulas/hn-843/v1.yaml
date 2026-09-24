@@ -1,0 +1,18 @@
+product: 카카오 팩&스크럽
+slug: hn-843
+version: 1
+regime: cosmetics
+category: 팩·패드
+product_type: leave_on
+status: 개발중
+base_batch_g: 210.0
+phases:
+- name: A
+  ingredients:
+  - id: scrub-base
+    percent: 47.62
+  - id: cacao-scrub-powder
+    percent: 52.38
+packaging: []
+fill_volume_ml: 210.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=843

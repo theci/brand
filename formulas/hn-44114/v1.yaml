@@ -1,0 +1,24 @@
+product: 리치아이밤
+slug: hn-44114
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 21.1
+phases:
+- name: A
+  ingredients:
+  - id: argan-oil
+    percent: 47.39
+  - id: camellia-oil
+    percent: 28.44
+  - id: shea-butter
+    percent: 9.48
+  - id: candelilla-wax
+    percent: 14.22
+  - id: essential-oil
+    percent: 0.47
+packaging: []
+fill_volume_ml: 21.1
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=44114

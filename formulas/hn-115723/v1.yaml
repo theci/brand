@@ -1,0 +1,26 @@
+product: 보르피린 동안 밤
+slug: hn-115723
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 30.15
+phases:
+- name: A
+  ingredients:
+  - id: argan-oil
+    percent: 33.17
+  - id: macadamia-oil
+    percent: 33.17
+  - id: borfirin
+    percent: 9.95
+  - id: candelilla-wax
+    percent: 16.58
+  - id: beeswax
+    percent: 6.63
+  - id: neroli-eo
+    percent: 0.5
+packaging: []
+fill_volume_ml: 30.1
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=115723

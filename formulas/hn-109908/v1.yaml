@@ -1,0 +1,16 @@
+product: 보르피린100 동안앰플
+slug: hn-109908
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 10.0
+phases:
+- name: A
+  ingredients:
+  - id: borfirin
+    percent: 100.0
+packaging: []
+fill_volume_ml: 10.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=109908

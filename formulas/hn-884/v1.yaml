@@ -1,0 +1,24 @@
+product: 로즈마리 헤어트리트먼트오일
+slug: hn-884
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 96.0
+phases:
+- name: A
+  ingredients:
+  - id: jojoba-oil
+    percent: 52.08
+  - id: camellia-oil
+    percent: 41.67
+  - id: tocopherol
+    percent: 5.21
+  - id: rosemary-eo
+    percent: 0.52
+  - id: ylang-ylang-eo
+    percent: 0.52
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=884

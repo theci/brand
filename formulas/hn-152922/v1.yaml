@@ -1,0 +1,36 @@
+product: 뽀얀 쌀크림
+slug: hn-152922
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 98.7
+phases:
+- name: A
+  ingredients:
+  - id: jojoba-oil
+    percent: 10.13
+  - id: rice-bran-oil
+    percent: 15.2
+  - id: olive-emulsifying-wax
+    percent: 5.07
+  - id: oliwax-lc
+    percent: 2.03
+  - id: neroli-water
+    percent: 47.61
+  - id: panthenol
+    percent: 5.07
+  - id: grain-protein-extract
+    percent: 10.13
+  - id: alpha-bisabolol
+    percent: 0.51
+  - id: niacinamide
+    percent: 3.04
+  - id: herbal-preservative
+    percent: 1.01
+  - id: blending-oil
+    percent: 0.2
+packaging: []
+fill_volume_ml: 98.7
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=152922

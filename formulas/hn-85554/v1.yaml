@@ -1,0 +1,18 @@
+product: 퍼퓸살브(로즈/자스민)
+slug: hn-85554
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 24.0
+phases:
+- name: A
+  ingredients:
+  - id: cupuacu-butter
+    percent: 83.33
+  - id: jojoba-oil
+    percent: 16.67
+packaging: []
+fill_volume_ml: 30.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=85554

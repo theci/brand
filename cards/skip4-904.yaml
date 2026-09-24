@@ -1,0 +1,16 @@
+# 귤베이비오일 — sample.txt(이미지 레시피) 기반(branduid=904).
+product: 귤베이비오일
+slug: hn-904
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=904
+ingredients:
+  - 골덴호호바오일 | 50g | 유상
+  - 달맞이종자유 | 25g | 유상
+  - 동백오일 | 20g | 유상
+  - 천연비타민E | 2g | 산화방지
+  - 세라마이드 | 2g | 장벽
+  - 라벤더EO | 2방울 | 착향
+  - 만다린EO | 2방울 | 착향
+  - 저먼 카모마일EO | 2방울 | 착향

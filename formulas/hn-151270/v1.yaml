@@ -1,0 +1,22 @@
+product: 만능 내추럴 바세린
+slug: hn-151270
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 52.5
+phases:
+- name: A
+  ingredients:
+  - id: jojoba-oil
+    percent: 9.52
+  - id: mango-butter
+    percent: 9.52
+  - id: natural-vaseline
+    percent: 76.2
+  - id: bergamot-fcf-eo
+    percent: 4.76
+packaging: []
+fill_volume_ml: 52.5
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=151270

@@ -1,0 +1,28 @@
+product: 포레스트 포밍워시
+slug: hn-80231
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 151.7
+phases:
+- name: A
+  ingredients:
+  - id: apple-surfactant
+    percent: 32.96
+  - id: hinoki-water
+    percent: 32.96
+  - id: birch-sap
+    percent: 26.37
+  - id: calming-5-solution
+    percent: 5.27
+  - id: allantoin
+    percent: 0.13
+  - id: herbal-preservative
+    percent: 1.32
+  - id: hinoki-eo
+    percent: 0.99
+packaging: []
+fill_volume_ml: 200.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=80231

@@ -1,0 +1,24 @@
+product: 자초 립에센스(스무디)
+slug: hn-151031
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 29.6
+phases:
+- name: A
+  ingredients:
+  - id: jacho-oil
+    percent: 10.14
+  - id: cupuacu-butter
+    percent: 10.14
+  - id: natural-vaseline
+    percent: 77.7
+  - id: tocopherol
+    percent: 1.01
+  - id: strawberry-flavor-oil
+    percent: 1.01
+packaging: []
+fill_volume_ml: 30.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=151031

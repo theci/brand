@@ -1,0 +1,24 @@
+product: 숙면을위한 롤포인트
+slug: hn-1020
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 5.5
+phases:
+- name: A
+  ingredients:
+  - id: jojoba-oil
+    percent: 90.9
+  - id: lavender-eo
+    percent: 2.73
+  - id: marjoram-eo
+    percent: 0.91
+  - id: roman-chamomile-eo
+    percent: 1.82
+  - id: orange-eo
+    percent: 3.64
+packaging: []
+fill_volume_ml: 10.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=1020

@@ -1,0 +1,13 @@
+# 숙면을위한 롤포인트 — sample.txt(이미지 레시피) 기반(branduid=1020).
+product: 숙면을위한 롤포인트
+slug: hn-1020
+type: leave_on
+status: 개발중
+volume_ml: 10
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=1020
+ingredients:
+  - 골덴호호바오일 | 5g | 캐리어 오일
+  - 라벤더에센셜오일 | 3방울 | 착향
+  - 마조람에센셜오일 | 1방울 | 착향
+  - 로먼카모마일에센셜오일 | 2방울 | 착향
+  - 스윗오렌지에센셜오일 | 4방울 | 착향

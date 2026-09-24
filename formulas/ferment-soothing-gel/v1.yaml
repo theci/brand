@@ -1,0 +1,18 @@
+product: 발효 수딩젤
+slug: ferment-soothing-gel
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 270.5
+phases:
+- name: A
+  ingredients:
+  - id: cica-panthenol-soothing-gel-base
+    percent: 99.82
+  - id: rose-power-blending-oil
+    percent: 0.18
+packaging: []
+fill_volume_ml: 270.5
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=176189

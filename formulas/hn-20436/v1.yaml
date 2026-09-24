@@ -1,0 +1,20 @@
+product: 포도씨유 딥클렌징오일 레시피
+slug: hn-20436
+version: 1
+regime: cosmetics
+category: 클렌징
+product_type: rinse_off
+status: 개발중
+base_batch_g: 190.0
+phases:
+- name: A
+  ingredients:
+  - id: grapeseed-oil
+    percent: 72.63
+  - id: cleansing-liquid
+    percent: 26.32
+  - id: lemon-eo
+    percent: 1.05
+packaging: []
+fill_volume_ml: 190.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=20436

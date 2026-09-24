@@ -1,0 +1,24 @@
+product: 아로마 바스붐
+slug: hn-128335
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 424.0
+phases:
+- name: A
+  ingredients:
+  - id: sodium-bicarbonate
+    percent: 47.18
+  - id: citric-acid-food
+    percent: 23.58
+  - id: corn-starch
+    percent: 23.58
+  - id: glycerin
+    percent: 4.72
+  - id: lavender-eo
+    percent: 0.94
+packaging: []
+fill_volume_ml: 424.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=128335

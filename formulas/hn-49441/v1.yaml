@@ -1,0 +1,24 @@
+product: 링클펩타이드앰플
+slug: hn-49441
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 30.0
+phases:
+- name: A
+  ingredients:
+  - id: sodium-hyaluronate
+    percent: 33.33
+  - id: rose-water
+    percent: 20.0
+  - id: lipidure
+    percent: 16.67
+  - id: acetyl-hexapeptide
+    percent: 26.67
+  - id: herbal-preservative
+    percent: 3.33
+packaging: []
+fill_volume_ml: 30.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=49441

@@ -1,0 +1,19 @@
+product: 퍼퓸 디퓨저
+slug: hn-112810
+version: 1
+regime: chemical_safety
+category: 생활화학
+product_type: leave_on
+status: 개발중
+base_batch_g: 208.0
+phases:
+- name: A
+  ingredients:
+  - id: diffuser-base
+    percent: 96.15
+  - id: fragrance-oil
+    percent: 3.85
+packaging: []
+fill_volume_ml: 210.0
+product_category: 방향제_지속방출형
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=112810

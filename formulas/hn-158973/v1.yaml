@@ -1,0 +1,38 @@
+product: 결광 호호바 스킨&미스트
+slug: hn-158973
+version: 1
+regime: cosmetics
+category: 토너·미스트
+product_type: leave_on
+status: 개발중
+base_batch_g: 300.0
+phases:
+- name: A
+  ingredients:
+  - id: water-jojoba
+    percent: 2.0
+  - id: rose-water
+    percent: 16.67
+  - id: neroli-water
+    percent: 14.0
+  - id: hexanediol
+    percent: 0.67
+  - id: water-jojoba
+    percent: 1.67
+  - id: roman-chamomile-water
+    percent: 10.0
+  - id: neroli-water
+    percent: 20.98
+  - id: hexanediol
+    percent: 0.67
+  - id: water-jojoba
+    percent: 1.33
+  - id: rosemary-water
+    percent: 16.67
+  - id: neroli-water
+    percent: 14.67
+  - id: hexanediol
+    percent: 0.67
+packaging: []
+fill_volume_ml: 300.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=158973

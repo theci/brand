@@ -1,0 +1,28 @@
+product: 로즈콜라겐 폼클렌징
+slug: hn-887
+version: 1
+regime: cosmetics
+category: 클렌징
+product_type: leave_on
+status: 개발중
+base_batch_g: 271.78
+phases:
+- name: A
+  ingredients:
+  - id: capb
+    percent: 18.4
+  - id: les
+    percent: 7.36
+  - id: rose-water
+    percent: 55.19
+  - id: tomato-extract
+    percent: 3.68
+  - id: marine-collagen
+    percent: 3.68
+  - id: glycerin
+    percent: 11.04
+  - id: palmarosa-eo
+    percent: 0.65
+packaging: []
+fill_volume_ml: 300.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=887

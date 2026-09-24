@@ -1,0 +1,27 @@
+product: 친환경 EM주방세제
+slug: hn-150242
+version: 1
+regime: chemical_safety
+category: 생활화학
+product_type: rinse_off
+status: 개발중
+base_batch_g: 247.55
+phases:
+- name: A
+  ingredients:
+  - id: glycerin
+    percent: 2.42
+  - id: xanthan-gum
+    percent: 0.4
+  - id: apple-surfactant
+    percent: 20.2
+  - id: capb
+    percent: 27.47
+  - id: em-active
+    percent: 48.48
+  - id: lemon-eo
+    percent: 1.03
+packaging: []
+fill_volume_ml: 250.0
+product_category: 세탁세제_계면활성제_함유
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=150242

@@ -1,0 +1,22 @@
+product: 비타민미스트
+slug: hn-64104
+version: 1
+regime: cosmetics
+category: 토너·미스트
+product_type: leave_on
+status: 개발중
+base_batch_g: 57.0
+phases:
+- name: A
+  ingredients:
+  - id: rose-water
+    percent: 78.96
+  - id: niacinamide
+    percent: 1.75
+  - id: herbal-preservative
+    percent: 1.75
+  - id: lipidure
+    percent: 17.54
+packaging: []
+fill_volume_ml: 57.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=64104

@@ -1,0 +1,24 @@
+product: 코엔자임큐텐 보습밤
+slug: hn-128206
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 30.2
+phases:
+- name: A
+  ingredients:
+  - id: argan-oil
+    percent: 66.23
+  - id: coenzyme-q10
+    percent: 9.93
+  - id: beeswax
+    percent: 16.56
+  - id: candelilla-wax
+    percent: 6.62
+  - id: essential-oil
+    percent: 0.66
+packaging: []
+fill_volume_ml: 30.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=128206

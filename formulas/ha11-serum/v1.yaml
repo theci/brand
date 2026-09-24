@@ -1,0 +1,29 @@
+product: 11 히아루론산 세럼
+slug: ha11-serum
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+line: 히아루론산
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: hyaluronic-acid-11
+    percent: 30.0
+  - id: collagen-7-complex
+    percent: 19.0
+  - id: niacinamide
+    percent: 2.0
+  - id: adenosine-liposome
+    percent: 2.0
+  - id: rose-flower-gel
+    percent: 40.0
+  - id: eco-humectant
+    percent: 5.0
+  - id: hexanediol
+    percent: 2.0
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=288161

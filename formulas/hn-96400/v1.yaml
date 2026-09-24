@@ -1,0 +1,18 @@
+product: 아임레알 제주화산송이팩
+slug: hn-96400
+version: 1
+regime: cosmetics
+category: 팩·패드
+product_type: leave_on
+status: 개발중
+base_batch_g: 13.0
+phases:
+- name: A
+  ingredients:
+  - id: volcanic-ash-powder
+    percent: 76.92
+  - id: hinoki-water
+    percent: 23.08
+packaging: []
+fill_volume_ml: 13.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=96400

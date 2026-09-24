@@ -1,0 +1,19 @@
+product: 힐링 아로마 사쉐(향낭)
+slug: hn-150268
+version: 1
+regime: chemical_safety
+category: 생활화학
+product_type: leave_on
+status: 개발중
+base_batch_g: 20.0
+phases:
+- name: A
+  ingredients:
+  - id: sachet-stone
+    percent: 50.0
+  - id: lavender-eo
+    percent: 50.0
+packaging: []
+fill_volume_ml: 20.0
+product_category: 방향제_비분사형
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=150268

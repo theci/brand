@@ -1,0 +1,12 @@
+# 녹차폴리페놀스킨 — sample.txt(이미지 레시피) 기반(branduid=809).
+product: 녹차폴리페놀스킨
+slug: hn-809
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=809
+ingredients:
+  - 녹차추출물 | 10g | 항산화
+  - 라벤더워터 | 80g | 수상
+  - 폴리페놀 | 5g | 항산화
+  - 히아루론산 | 6g | 보습

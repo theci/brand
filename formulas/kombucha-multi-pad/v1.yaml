@@ -1,0 +1,23 @@
+product: 콤부차 멀티 패드
+slug: kombucha-multi-pad
+version: 1
+regime: cosmetics
+category: 토너·미스트
+line: 히아루론산
+product_type: leave_on
+status: 개발중
+base_batch_g: 130.0
+phases:
+- name: A
+  ingredients:
+  - id: kombucha-ferment
+    percent: 89.99
+  - id: niacinamide
+    percent: 4.62
+  - id: white-complex-6
+    percent: 3.85
+  - id: herbal-preservative
+    percent: 1.54
+packaging: []
+fill_volume_ml: 130.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=283238

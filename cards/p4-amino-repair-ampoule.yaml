@@ -1,0 +1,9 @@
+# 아미노 리페어 앰플 — 원재료(아미노산17 컴플렉스) 100% 그대로 사용하는 단일 원료 앰플.
+product: 아미노 리페어 앰플
+slug: amino-repair-ampoule
+type: leave_on
+status: 개발중
+volume_ml: 30
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=284267
+ingredients:
+  - 아미노산17 컴플렉스 | 30g | 원액 100%, 보습·턴오버·재생·톤업

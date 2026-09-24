@@ -1,0 +1,18 @@
+product: 어성초팅크처
+slug: hn-902
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 540.0
+phases:
+- name: A
+  ingredients:
+  - id: houttuynia-extract
+    percent: 7.41
+  - id: ethanol
+    percent: 92.59
+packaging: []
+fill_volume_ml: 540.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=902

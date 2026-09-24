@@ -1,0 +1,16 @@
+# 라벤더 베이비스킨(고보습) — sample.txt(이미지 레시피) 기반(branduid=1049).
+product: 라벤더 베이비스킨(고보습)
+slug: hn-1049
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=1049
+ingredients:
+  - 정제수 | 86g | 수상
+  - 올리브리퀴드 | 2g | 가용화
+  - 비타민E | 1g | 산화방지·보습
+  - 라벤더에센셜오일 | 5방울 | 착향
+  - 만다린에센셜오일 | 5방울 | 착향
+  - 식물성 글리세린 | 5g | 보습
+  - 감초추출물 | 10g | 진정
+  - 천연한방보존제 | 1g | 방부

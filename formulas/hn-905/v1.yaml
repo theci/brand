@@ -1,0 +1,34 @@
+product: 아토피 상비연고
+slug: hn-905
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 74.25
+phases:
+- name: A
+  ingredients:
+  - id: jojoba-oil
+    percent: 13.47
+  - id: calendula-oil
+    percent: 13.47
+  - id: evening-primrose-oil
+    percent: 26.93
+  - id: camellia-oil
+    percent: 13.47
+  - id: shea-butter
+    percent: 13.47
+  - id: candelilla-wax
+    percent: 16.16
+  - id: lavender-eo
+    percent: 0.67
+  - id: tea-tree-eo
+    percent: 0.67
+  - id: orange-eo
+    percent: 0.34
+  - id: german-chamomile-eo
+    percent: 1.35
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=905

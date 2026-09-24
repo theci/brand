@@ -1,0 +1,22 @@
+product: 매끄니 발크림
+slug: hn-151443
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 10.6
+phases:
+- name: A
+  ingredients:
+  - id: natural-vaseline
+    percent: 56.61
+  - id: jobs-tears-extract
+    percent: 28.3
+  - id: vegetable-oil
+    percent: 14.15
+  - id: peppermint-eo
+    percent: 0.94
+packaging: []
+fill_volume_ml: 50.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=151443

@@ -1,0 +1,20 @@
+product: (핑크) 솔트 스크럽
+slug: hn-282361
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 252.0
+phases:
+- name: A
+  ingredients:
+  - id: himalayan-pink-salt
+    percent: 59.53
+  - id: scrub-base
+    percent: 39.68
+  - id: fragrance-generic
+    percent: 0.79
+packaging: []
+fill_volume_ml: 252.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=282361

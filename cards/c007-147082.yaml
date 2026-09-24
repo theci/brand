@@ -1,0 +1,15 @@
+# 자운유 모물엔 — 015/007 배치 수동 보정(branduid=147082).
+product: 자운유 모물엔
+slug: hn-147082
+type: leave_on
+status: 개발중
+regime: quasi_drug
+volume_ml: 10
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=147082
+category: 기타
+ingredients:
+  - 아로마베이스70 | 3g | 용제
+  - 멘톨 | 0.5g | 쿨링
+  - 자운고 인퓨즈오일 | 3g | 한방 침출유
+  - 라벤더에센셜오일 | 15방울 | 착향
+  - 티트리에센셜오일 | 15방울 | 항균

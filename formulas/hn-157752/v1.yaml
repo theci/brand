@@ -1,0 +1,26 @@
+product: 24K 이데베논세럼
+slug: hn-157752
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: galactomyces-ferment
+    percent: 23.0
+  - id: royal-jelly-extract
+    percent: 10.0
+  - id: idebenone
+    percent: 10.0
+  - id: rose-flower-gel
+    percent: 50.0
+  - id: 4gf
+    percent: 5.0
+  - id: hexanediol
+    percent: 2.0
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=157752

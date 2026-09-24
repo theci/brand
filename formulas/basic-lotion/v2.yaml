@@ -3,6 +3,7 @@ slug: basic-lotion
 version: 2
 parent_version: 1           # v1에서 개선(HLB 위험 → 적합)
 regime: cosmetics
+category: 로션·크림
 product_type: leave_on
 status: 개발중
 base_batch_g: 200

@@ -1,0 +1,26 @@
+product: 코엔자임 큐텐 앰플
+slug: hn-128437
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 39.5
+phases:
+- name: A
+  ingredients:
+  - id: coenzyme-q10
+    percent: 30.38
+  - id: niacinamide
+    percent: 5.06
+  - id: adenosine-liposome
+    percent: 2.53
+  - id: aloe-vera-gel
+    percent: 60.77
+  - id: herbal-preservative
+    percent: 1.01
+  - id: jasmine-eo
+    percent: 0.25
+packaging: []
+fill_volume_ml: 40.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=128437

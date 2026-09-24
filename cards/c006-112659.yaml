@@ -1,0 +1,12 @@
+# 모기퇴치 디퓨저 — 015/006002 배치 수동 보정(branduid=112659).
+product: 모기퇴치 디퓨저
+slug: hn-112659
+type: leave_on
+status: 개발중
+regime: biocide
+volume_ml: 210
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=112659
+category: 기타
+ingredients:
+  - 디퓨저 베이스 | 200ml | 확산 베이스
+  - 블랜딩오일 | 8ml | 방충 블렌딩

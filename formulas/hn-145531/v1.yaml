@@ -1,0 +1,23 @@
+product: 포레스트 룸스프레이
+slug: hn-145531
+version: 1
+regime: chemical_safety
+category: 생활화학
+product_type: leave_on
+status: 개발중
+base_batch_g: 200.5
+phases:
+- name: A
+  ingredients:
+  - id: ethanol
+    percent: 98.51
+  - id: cypress-eo
+    percent: 0.45
+  - id: lemongrass-eo
+    percent: 0.17
+  - id: lemon-eo
+    percent: 0.87
+packaging: []
+fill_volume_ml: 250.0
+product_category: 방향제_분사형
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=145531

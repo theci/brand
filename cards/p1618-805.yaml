@@ -1,0 +1,17 @@
+# 코엔자임 큐텐 아이크림 — 배치 수동 보정(단일/수용성/아티팩트, branduid=805).
+product: 코엔자임 큐텐 아이크림
+slug: hn-805
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=805
+ingredients:
+  - 아르간오일 | 5g | 유상
+  - 골든호호바오일 | 3g | 유상
+  - 코엔자임Q10 | 9g | 항산화(지용+수용)
+  - 올리브유화왁스 | 4g | 유화제
+  - 네롤리워터 | 36g | 수상
+  - 천연한방보존제 | 1g | 방부
+  - 리피듀어 | 5g | 보습
+  - 글리세린 | 4g | 보습
+  - 에센셜오일 | 5방울 | 착향

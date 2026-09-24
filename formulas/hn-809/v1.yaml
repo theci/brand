@@ -1,0 +1,22 @@
+product: 녹차폴리페놀스킨
+slug: hn-809
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 101.0
+phases:
+- name: A
+  ingredients:
+  - id: green-tea-extract
+    percent: 9.9
+  - id: lavender-water
+    percent: 79.21
+  - id: polyphenol
+    percent: 4.95
+  - id: sodium-hyaluronate
+    percent: 5.94
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=809

@@ -1,0 +1,26 @@
+product: 포레스트 토너(프레쉬)
+slug: hn-80040
+version: 1
+regime: cosmetics
+category: 토너·미스트
+product_type: leave_on
+status: 개발중
+base_batch_g: 106.0
+phases:
+- name: A
+  ingredients:
+  - id: hinoki-water
+    percent: 61.33
+  - id: birch-sap
+    percent: 23.58
+  - id: fresh-5-solution
+    percent: 4.72
+  - id: niacinamide
+    percent: 3.77
+  - id: herbal-preservative
+    percent: 0.94
+  - id: glycerin
+    percent: 5.66
+packaging: []
+fill_volume_ml: 106.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=80040

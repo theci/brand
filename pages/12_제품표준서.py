@@ -7,7 +7,7 @@ import streamlit as st
 from brandlab.dossier import build_dossier
 from brandlab.factory_package import build_package, zip_package
 from brandlab.loader import load_all_batches, load_all_stability
-from brandlab.ui import load_lab, setup_korean_font
+from brandlab.ui import load_lab, product_picker, setup_korean_font
 
 setup_korean_font()
 st.title("제품표준서 (dossier)")
@@ -18,8 +18,7 @@ if not lab.formulas:
     st.info("처방이 없습니다.")
     st.stop()
 
-options = {f"{f.slug} v{f.version} — {f.product}": f for f in lab.formulas}
-formula = options[st.selectbox("처방 선택", list(options))]
+formula = product_picker(lab, key="std", label="처방 선택")
 
 c1, c2 = st.columns(2)
 include_cost = c1.checkbox("원가 요약 포함", value=True)

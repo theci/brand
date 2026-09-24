@@ -1,0 +1,20 @@
+product: 생기ON~ 립스틱
+slug: hn-151244
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 56.5
+phases:
+- name: A
+  ingredients:
+  - id: multibalm-oil-base
+    percent: 76.11
+  - id: candelilla-wax
+    percent: 16.81
+  - id: lip-balm-base
+    percent: 7.08
+packaging: []
+fill_volume_ml: 56.5
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=151244

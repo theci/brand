@@ -1,0 +1,26 @@
+product: 딱딱 모물엔
+slug: hn-95918
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 9.8
+phases:
+- name: A
+  ingredients:
+  - id: calendula-oil
+    percent: 61.23
+  - id: beeswax
+    percent: 30.61
+  - id: salicylic-acid
+    percent: 2.04
+  - id: menthol
+    percent: 2.04
+  - id: essential-oil
+    percent: 2.04
+  - id: essential-oil
+    percent: 2.04
+packaging: []
+fill_volume_ml: 9.8
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=95918

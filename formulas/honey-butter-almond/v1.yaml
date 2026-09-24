@@ -2,6 +2,7 @@ product: 허니버터 시즈닝 아몬드
 slug: honey-butter-almond
 version: 1
 regime: food                 # ★ 식품위생법(일반식품). 견과류가공품.
+category: 식품
 product_category: 견과류가공품
 # product_type은 화장품 개념이라 식품엔 의미 없지만 코어 필수 필드라 placeholder.
 product_type: leave_on

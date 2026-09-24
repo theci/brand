@@ -1,0 +1,26 @@
+product: 칙앤립 베이비수딩밤
+slug: hn-84963
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 28.2
+phases:
+- name: A
+  ingredients:
+  - id: argan-oil
+    percent: 42.55
+  - id: cupuacu-butter
+    percent: 21.28
+  - id: tocopherol
+    percent: 7.09
+  - id: candelilla-wax
+    percent: 21.28
+  - id: beeswax
+    percent: 7.09
+  - id: lavender-eo
+    percent: 0.71
+packaging: []
+fill_volume_ml: 30.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=84963

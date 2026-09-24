@@ -1,0 +1,30 @@
+product: 포레스트 로션
+slug: hn-80039
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 101.25
+phases:
+- name: A
+  ingredients:
+  - id: argan-oil
+    percent: 7.9
+  - id: olive-emulsifying-wax
+    percent: 2.96
+  - id: hinoki-water
+    percent: 73.08
+  - id: niacinamide
+    percent: 4.94
+  - id: herbal-preservative
+    percent: 0.99
+  - id: moistin
+    percent: 4.94
+  - id: fresh-5-solution
+    percent: 4.94
+  - id: hinoki-eo
+    percent: 0.25
+packaging: []
+fill_volume_ml: 101.2
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=80039

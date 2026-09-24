@@ -1,0 +1,30 @@
+product: 링클펩타이드 모이스처토너
+slug: hn-49690
+version: 1
+regime: cosmetics
+category: 토너·미스트
+product_type: leave_on
+status: 개발중
+base_batch_g: 101.25
+phases:
+- name: A
+  ingredients:
+  - id: argan-oil
+    percent: 1.98
+  - id: frankincense-eo
+    percent: 0.25
+  - id: olive-liquid
+    percent: 2.96
+  - id: rose-water
+    percent: 79.0
+  - id: acetyl-hexapeptide
+    percent: 4.94
+  - id: tomato-extract
+    percent: 4.94
+  - id: glycerin
+    percent: 4.94
+  - id: herbal-preservative
+    percent: 0.99
+packaging: []
+fill_volume_ml: 101.2
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=49690

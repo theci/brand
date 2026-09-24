@@ -1,0 +1,34 @@
+product: 오렌지 로션
+slug: hn-831
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 177.6
+phases:
+- name: A
+  ingredients:
+  - id: jojoba-oil
+    percent: 2.82
+  - id: evening-primrose-oil
+    percent: 2.82
+  - id: olive-emulsifying-wax
+    percent: 1.69
+  - id: cetyl-alcohol
+    percent: 0.56
+  - id: lavender-water
+    percent: 85.57
+  - id: ceramide-complex
+    percent: 2.82
+  - id: herbal-preservative
+    percent: 1.13
+  - id: sodium-hyaluronate
+    percent: 2.25
+  - id: orange-eo
+    percent: 0.17
+  - id: lavender-eo
+    percent: 0.17
+packaging: []
+fill_volume_ml: 177.6
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=831

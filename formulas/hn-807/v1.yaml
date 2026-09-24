@@ -1,0 +1,36 @@
+product: 녹차에센스로션 레시피
+slug: hn-807
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.35
+phases:
+- name: A
+  ingredients:
+  - id: green-tea-seed-oil
+    percent: 7.97
+  - id: avocado-oil
+    percent: 3.99
+  - id: olive-emulsifying-wax
+    percent: 2.99
+  - id: oliwax-lc
+    percent: 1.0
+  - id: purified-water
+    percent: 51.81
+  - id: sodium-hyaluronate
+    percent: 2.99
+  - id: green-tea-extract
+    percent: 4.98
+  - id: aloe-vera-gel
+    percent: 20.93
+  - id: adenosine-liposome
+    percent: 1.99
+  - id: herbal-preservative
+    percent: 1.0
+  - id: essential-oil
+    percent: 0.35
+packaging: []
+fill_volume_ml: 100.3
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=807

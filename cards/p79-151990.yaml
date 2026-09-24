@@ -1,0 +1,12 @@
+# AC클리어 수분크림 — 배치에서 아티팩트/일반명으로 잡혀 수동 보정(branduid=151990).
+product: AC클리어 수분크림
+slug: hn-151990
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=151990
+ingredients:
+  - 로즈 플라워젤 | 89g | 겔 베이스
+  - AC클리어펩타이드 | 10g | 트러블 케어
+  - 천연한방보존제 | 1g | 방부
+  - 블렌딩오일 | 3방울 | 착향

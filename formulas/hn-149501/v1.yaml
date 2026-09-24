@@ -1,0 +1,23 @@
+product: EM세탁세제(가루)
+slug: hn-149501
+version: 1
+regime: chemical_safety
+category: 생활화학
+product_type: rinse_off
+status: 개발중
+base_batch_g: 1000.0
+phases:
+- name: A
+  ingredients:
+  - id: sodium-bicarbonate
+    percent: 45.0
+  - id: sodium-percarbonate
+    percent: 45.0
+  - id: les
+    percent: 8.0
+  - id: em-active
+    percent: 2.0
+packaging: []
+fill_volume_ml: 1000.0
+product_category: 세탁세제_계면활성제_함유
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=149501

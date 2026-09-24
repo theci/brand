@@ -1,0 +1,19 @@
+# EM 개운한 치약 — 015/007 배치 수동 보정(branduid=111181).
+product: EM 개운한 치약
+slug: hn-111181
+type: rinse_off
+status: 개발중
+regime: quasi_drug
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=111181
+category: 기타
+ingredients:
+  - 베이킹소다 | 24g | 세정
+  - 자일리톨 | 16g | 감미
+  - 식물성글리세린 | 5g | 보습
+  - 쟁탄검 | 0.4g | 점증
+  - 애플계면활성제 | 10g | 세정
+  - EM활성액 | 18g | 발효
+  - 정제수 | 26g | 수상
+  - 천연한방보존제 | 1g | 방부
+  - 에센셜오일 | 10방울 | 착향

@@ -1,0 +1,10 @@
+# 살구감초 스크럽 — sample.txt(이미지 레시피) 기반(branduid=898).
+product: 살구감초 스크럽
+slug: hn-898
+type: leave_on
+status: 개발중
+volume_ml: 180
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=898
+ingredients:
+  - 살구분말 | 90g | 물리 스크럽
+  - 감초분말 | 90g | 미백·진정

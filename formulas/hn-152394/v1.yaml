@@ -1,0 +1,24 @@
+product: 땀띠엔 수딩젤
+slug: hn-152394
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: neroli-flower-gel
+    percent: 50.0
+  - id: roman-chamomile-water
+    percent: 36.0
+  - id: soothing-4-complex
+    percent: 10.0
+  - id: panthenol
+    percent: 3.0
+  - id: herbal-preservative
+    percent: 1.0
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=152394

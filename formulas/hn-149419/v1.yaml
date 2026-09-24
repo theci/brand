@@ -1,0 +1,30 @@
+product: 아르간 셰이크 딥오일
+slug: hn-149419
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 92.0
+phases:
+- name: A
+  ingredients:
+  - id: argan-oil
+    percent: 13.04
+  - id: jojoba-oil
+    percent: 7.61
+  - id: jojoba-oil
+    percent: 4.35
+  - id: rose-water
+    percent: 30.43
+  - id: neroli-water
+    percent: 34.79
+  - id: panthenol
+    percent: 6.52
+  - id: herbal-preservative
+    percent: 1.09
+  - id: lemon-juice-blending-oil
+    percent: 2.17
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=149419

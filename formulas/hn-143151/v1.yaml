@@ -1,0 +1,36 @@
+product: 발효 마유 미니멈 로션
+slug: hn-143151
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 101.15
+phases:
+- name: A
+  ingredients:
+  - id: fermented-horse-oil
+    percent: 9.89
+  - id: olive-emulsifying-wax
+    percent: 2.97
+  - id: oliwax-lc
+    percent: 0.99
+  - id: purified-water
+    percent: 79.07
+  - id: glycerin
+    percent: 4.94
+  - id: xanthan-gum
+    percent: 0.05
+  - id: water-soluble-preservative
+    percent: 0.99
+  - id: lavender-eo
+    percent: 0.4
+  - id: neroli-eo
+    percent: 0.15
+  - id: rose-absolute-eo
+    percent: 0.15
+  - id: rose-geranium-eo
+    percent: 0.4
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=143151

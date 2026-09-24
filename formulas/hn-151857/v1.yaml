@@ -1,0 +1,32 @@
+product: 이데베논 울트라 앰플
+slug: hn-151857
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 40.1
+phases:
+- name: A
+  ingredients:
+  - id: glycerin
+    percent: 2.49
+  - id: xanthan-gum
+    percent: 0.25
+  - id: idebenone
+    percent: 19.95
+  - id: niacinamide
+    percent: 4.99
+  - id: adenosine
+    percent: 2.49
+  - id: galactomyces-ferment
+    percent: 24.94
+  - id: neroli-water
+    percent: 43.64
+  - id: herbal-preservative
+    percent: 1.0
+  - id: brightening-blending-oil
+    percent: 0.25
+packaging: []
+fill_volume_ml: 40.1
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=151857

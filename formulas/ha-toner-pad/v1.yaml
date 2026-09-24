@@ -1,0 +1,27 @@
+product: 히아루론산 토너 & 패드
+slug: ha-toner-pad
+version: 1
+regime: cosmetics
+category: 토너·미스트
+line: 히아루론산
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: hyaluronic-acid-11
+    percent: 15.0
+  - id: amino-acid-17-complex
+    percent: 10.0
+  - id: niacinamide
+    percent: 2.0
+  - id: neroli-water
+    percent: 66.0
+  - id: eco-humectant
+    percent: 5.0
+  - id: hexanediol
+    percent: 2.0
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=288147

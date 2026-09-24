@@ -1,0 +1,26 @@
+product: 호호바 수분크림
+slug: hn-158972
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.15
+phases:
+- name: A
+  ingredients:
+  - id: water-jojoba
+    percent: 3.99
+  - id: rose-flower-gel
+    percent: 84.88
+  - id: white-peptide
+    percent: 4.99
+  - id: soothing-4-complex
+    percent: 3.99
+  - id: hexanediol
+    percent: 2.0
+  - id: bergamot-fcf-eo
+    percent: 0.15
+packaging: []
+fill_volume_ml: 100.2
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=158972

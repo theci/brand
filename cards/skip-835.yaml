@@ -1,0 +1,14 @@
+# 로즈아이밤 — sample.txt(이미지 레시피 붙여넣기) 기반(branduid=835).
+product: 로즈아이밤
+slug: hn-835
+type: leave_on
+status: 개발중
+volume_ml: 25
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=835
+ingredients:
+  - 로즈힙오일 | 8g | 유상
+  - 카렌듈라오일 | 8g | 진정 유상(호호바 인퓨즈)
+  - 스쿠알렌 | 2g | 유상
+  - 칸데릴라왁스 | 3g | 경화제
+  - 프랑킨센스 | 2방울 | 착향
+  - 로즈에센셜오일 | 1방울 | 착향

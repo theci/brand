@@ -1,0 +1,10 @@
+# 코코넛 만능밤 — 코코넛오일 + 밀랍 2원료 밤(총 55g, 30g×2 분량).
+product: 코코넛 만능밤
+slug: coconut-multi-balm
+type: leave_on
+status: 개발중
+volume_ml: 30
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=184621
+ingredients:
+  - 코코넛오일 | 43g | 유기농 엑스트라버진, 유상
+  - 밀랍 | 12g | 경화제(밀랍), 계절 따라 조절

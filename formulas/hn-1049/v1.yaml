@@ -1,0 +1,30 @@
+product: 라벤더 베이비스킨(고보습)
+slug: hn-1049
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 105.5
+phases:
+- name: A
+  ingredients:
+  - id: purified-water
+    percent: 81.5
+  - id: olive-liquid
+    percent: 1.9
+  - id: tocopherol
+    percent: 0.95
+  - id: lavender-eo
+    percent: 0.24
+  - id: mandarin-eo
+    percent: 0.24
+  - id: glycerin
+    percent: 4.74
+  - id: licorice-root
+    percent: 9.48
+  - id: herbal-preservative
+    percent: 0.95
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=1049

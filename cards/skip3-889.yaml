@@ -1,0 +1,14 @@
+# 카렌듈라 폼클렌징 — sample.txt(이미지 레시피) 기반(branduid=889).
+product: 카렌듈라 폼클렌징
+slug: hn-889
+type: leave_on
+status: 개발중
+volume_ml: 250
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=889
+ingredients:
+  - 코코베타인 | 50g | 세정
+  - LES | 30g | 세정
+  - 위치헤이즐 | 120g | 수상
+  - 카렌듈라추출물 | 20g | 진정
+  - 글리세린 | 30g | 보습
+  - 레몬에센셜오일 | 3ml | 착향

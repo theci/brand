@@ -1,0 +1,32 @@
+product: 푸에라리아 가슴크림
+slug: hn-1053
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 111.75
+phases:
+- name: A
+  ingredients:
+  - id: pueraria-oil
+    percent: 13.42
+  - id: rosehip-oil
+    percent: 11.63
+  - id: olive-emulsifying-wax
+    percent: 5.37
+  - id: rose-water
+    percent: 49.23
+  - id: herbal-preservative
+    percent: 1.79
+  - id: glycerin
+    percent: 4.47
+  - id: pueraria-extract
+    percent: 8.95
+  - id: plant-placenta
+    percent: 4.47
+  - id: rose-geranium-eo
+    percent: 0.67
+packaging: []
+fill_volume_ml: 111.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=1053

@@ -1,0 +1,14 @@
+# 베이비 카밍샴푸 — 015/004 배치 수동 보정(branduid=147282).
+product: 베이비 카밍샴푸
+slug: hn-147282
+type: rinse_off
+status: 개발중
+volume_ml: 300
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=147282
+ingredients:
+  - 베이비 샴푸베이스 | 240g | 저자극 샴푸 베이스
+  - 허니추출물 | 30g | 보습
+  - 카밍 5 솔루션 | 30g | 진정
+  - 아르간오일 | 2g | 유상
+  - 만다린EO | 1ml | 착향
+  - 로먼캐모마일EO | 0.5ml | 착향

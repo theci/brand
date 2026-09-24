@@ -12,7 +12,7 @@ from brandlab.adcopy import highlight_html
 from brandlab.compliance import compliance_check
 from brandlab.listing import build_listing, listing_markdown, save_listing
 from brandlab.loader import load_all_stability, load_brand_core
-from brandlab.ui import load_lab, setup_korean_font
+from brandlab.ui import load_lab, product_picker, setup_korean_font
 
 setup_korean_font()
 st.title("상품 등록 자료 📝")
@@ -31,8 +31,7 @@ if not lab.formulas:
     st.stop()
 
 core = load_brand_core()
-options = {f"{f.slug} v{f.version} — {f.product}": f for f in lab.formulas}
-formula = options[st.selectbox("제품 선택", list(options))]
+formula = product_picker(lab, key="listing", label="제품 선택")
 mask = st.checkbox("근거의 처방 % 가리기(영업비밀 보호)", value=True)
 
 L = build_listing(formula, lab, core, stability=load_all_stability(), mask_percent=mask)

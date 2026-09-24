@@ -1,0 +1,28 @@
+product: 관절염마사지밤
+slug: hn-849
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 66.7
+phases:
+- name: A
+  ingredients:
+  - id: evening-primrose-oil
+    percent: 44.98
+  - id: jojoba-oil
+    percent: 37.48
+  - id: beeswax
+    percent: 14.99
+  - id: juniper-eo
+    percent: 0.6
+  - id: pine-eo
+    percent: 0.75
+  - id: german-chamomile-eo
+    percent: 0.75
+  - id: clove-eo
+    percent: 0.45
+packaging: []
+fill_volume_ml: 70.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=849

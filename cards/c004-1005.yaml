@@ -1,0 +1,14 @@
+# 알로에베이비워시 — 015/004 배치 수동 보정(branduid=1005).
+product: 알로에베이비워시
+slug: hn-1005
+type: rinse_off
+status: 개발중
+volume_ml: 300
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=1005
+ingredients:
+  - 알로에물비누베이스 | 250g | 액상비누 베이스
+  - 세라마이드 | 10g | 장벽
+  - 캐모마일추출물 | 20g | 진정
+  - 판테놀 | 20g | 보습
+  - 만다린에센셜오일 | 2ml | 착향
+  - 로즈앱솔루트 | 2ml | 착향(불가리아)

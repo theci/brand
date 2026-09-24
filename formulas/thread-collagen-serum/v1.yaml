@@ -1,0 +1,29 @@
+product: 녹는 실 콜라겐 세럼
+slug: thread-collagen-serum
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+line: 콜라겐
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: niacinamide
+    percent: 3.0
+  - id: dissolving-thread-collagen
+    percent: 4.0
+  - id: rose-flower-gel
+    percent: 66.0
+  - id: hyaluronic-acid-11
+    percent: 10.0
+  - id: amino-acid-17-complex
+    percent: 10.0
+  - id: eco-humectant
+    percent: 5.0
+  - id: hexanediol
+    percent: 2.0
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=288145

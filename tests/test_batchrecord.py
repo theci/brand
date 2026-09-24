@@ -37,7 +37,7 @@ def _formula():
 
 IDX = {
     "water": Ingredient(id="water", name="정제수", inci="Water", category="용제"),
-    "glycerin": Ingredient(id="glycerin", name="글리세린", inci="Glycerin", category="보습제"),
+    "glycerin": Ingredient(id="glycerin", name="글리세린", inci="Glycerin", category="보습"),
 }
 
 

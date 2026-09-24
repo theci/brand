@@ -1,0 +1,42 @@
+product: 매트릭실 집중크림
+slug: matrixyl-focus-cream
+version: 1
+regime: cosmetics
+category: 로션·크림
+line: 매트릭실
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: 'A (유상: 오일/유화제)'
+  ingredients:
+  - id: rosehip-oil
+    percent: 6.0
+  - id: squalane
+    percent: 6.0
+  - id: olive-emulsifying-wax
+    percent: 4.0
+  - id: oliwax-lc
+    percent: 1.0
+  process: 유상을 70~80도로 가열해 유화왁스를 완전 용해
+- name: B (수상)
+  ingredients:
+  - id: neroli-water
+    percent: 42.0
+  - id: glycerin
+    percent: 5.0
+  process: 수상을 70~80도로 가열, 유상과 온도 맞춤
+- name: C (첨가물)
+  ingredients:
+  - id: rose-flower-gel
+    percent: 20.0
+  - id: matrixyl-3000
+    percent: 10.0
+  - id: niacinamide
+    percent: 4.0
+  - id: hexanediol
+    percent: 2.0
+  process: 유화 후 40도 이하로 식혀 첨가물 투입
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=288656

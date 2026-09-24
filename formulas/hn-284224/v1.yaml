@@ -1,0 +1,24 @@
+product: 티트리 비듬 샴푸
+slug: hn-284224
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 498.0
+phases:
+- name: A
+  ingredients:
+  - id: tea-tree-water
+    percent: 8.03
+  - id: zinc-pyrithione
+    percent: 2.01
+  - id: cica-panthenol-shampoo-base
+    percent: 86.34
+  - id: tea-tree-eo
+    percent: 1.81
+  - id: peppermint-eo
+    percent: 1.81
+packaging: []
+fill_volume_ml: 498.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=284224

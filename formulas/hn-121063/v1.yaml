@@ -1,0 +1,24 @@
+product: 그린티 프레쉬 토너
+slug: hn-121063
+version: 1
+regime: cosmetics
+category: 토너·미스트
+product_type: leave_on
+status: 개발중
+base_batch_g: 102.0
+phases:
+- name: A
+  ingredients:
+  - id: rosemary-water
+    percent: 61.77
+  - id: peppermint-water
+    percent: 29.41
+  - id: niacinamide
+    percent: 2.94
+  - id: eco-humectant
+    percent: 4.9
+  - id: herbal-preservative
+    percent: 0.98
+packaging: []
+fill_volume_ml: 102.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=121063

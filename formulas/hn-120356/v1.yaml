@@ -1,0 +1,22 @@
+product: 그린티 밸런싱 토너
+slug: hn-120356
+version: 1
+regime: cosmetics
+category: 토너·미스트
+product_type: leave_on
+status: 개발중
+base_batch_g: 97.0
+phases:
+- name: A
+  ingredients:
+  - id: rosemary-water
+    percent: 64.95
+  - id: rose-water
+    percent: 30.93
+  - id: niacinamide
+    percent: 3.09
+  - id: herbal-preservative
+    percent: 1.03
+packaging: []
+fill_volume_ml: 97.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=120356

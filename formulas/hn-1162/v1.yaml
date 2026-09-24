@@ -1,0 +1,20 @@
+product: 아르간페이셜세럼
+slug: hn-1162
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 48.25
+phases:
+- name: A
+  ingredients:
+  - id: argan-oil
+    percent: 82.9
+  - id: olive-emulsifying-wax
+    percent: 16.58
+  - id: neroli-eo
+    percent: 0.52
+packaging: []
+fill_volume_ml: 50.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=1162

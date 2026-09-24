@@ -1,0 +1,18 @@
+# 7가지 한방샴푸(직접) — 015/005 배치 수동 보정(branduid=28609).
+product: 7가지 한방샴푸(직접)
+slug: hn-28609
+type: rinse_off
+status: 개발중
+volume_ml: 500
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=28609
+ingredients:
+  - 달인 물 | 250g | 한방 달인물
+  - 폴리쿼터 | 2g | 컨디셔닝
+  - 글루카메이트 | 14g | 점증
+  - LES | 120g | 세정
+  - 코코-베타인 | 80g | 세정
+  - 실크아미노산(액상) | 15g | 모발 보습
+  - 마린엘라스틴 | 10g | 탄력
+  - 판테놀 | 10g | 보습
+  - 천연한방보존제 | 5g | 방부
+  - 시더우드에센셜오일 | 6ml | 착향

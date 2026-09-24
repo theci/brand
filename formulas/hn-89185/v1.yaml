@@ -1,0 +1,36 @@
+product: 뱀독볼륨로션
+slug: hn-89185
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.2
+phases:
+- name: A
+  ingredients:
+  - id: camellia-oil
+    percent: 14.97
+  - id: olive-emulsifying-wax
+    percent: 2.99
+  - id: oliwax-lc
+    percent: 1.0
+  - id: rose-water
+    percent: 44.91
+  - id: aloe-vera-gel
+    percent: 19.96
+  - id: organic-7-solution
+    percent: 4.99
+  - id: peptide-complex
+    percent: 3.99
+  - id: adenosine-liposome
+    percent: 2.0
+  - id: sodium-hyaluronate
+    percent: 3.99
+  - id: herbal-preservative
+    percent: 1.0
+  - id: essential-oil
+    percent: 0.2
+packaging: []
+fill_volume_ml: 100.2
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=89185

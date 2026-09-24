@@ -1,0 +1,20 @@
+product: 진정 어성초 수딩젤
+slug: houttuynia-soothing-gel
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 300.5
+phases:
+- name: A
+  ingredients:
+  - id: cica-panthenol-soothing-gel-base
+    percent: 89.85
+  - id: houttuynia-extract
+    percent: 9.98
+  - id: ac-clear-blending-oil
+    percent: 0.17
+packaging: []
+fill_volume_ml: 300.5
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=176188

@@ -1,0 +1,22 @@
+product: 리얼 로즈 수분크림
+slug: hn-147280
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.15
+phases:
+- name: A
+  ingredients:
+  - id: cream-base
+    percent: 79.87
+  - id: rose-stem-cell-culture
+    percent: 9.99
+  - id: white-peptide
+    percent: 9.99
+  - id: rose-absolute-eo
+    percent: 0.15
+packaging: []
+fill_volume_ml: 100.2
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=147280

@@ -1,0 +1,26 @@
+product: 코엔자임큐텐 클렌징오일
+slug: hn-130362
+version: 1
+regime: cosmetics
+category: 클렌징
+product_type: rinse_off
+status: 개발중
+base_batch_g: 202.0
+phases:
+- name: A
+  ingredients:
+  - id: macadamia-oil
+    percent: 44.06
+  - id: sweet-almond-oil
+    percent: 39.11
+  - id: tocopherol
+    percent: 0.99
+  - id: coenzyme-q10
+    percent: 4.95
+  - id: olive-liquid
+    percent: 9.9
+  - id: mandarin-eo
+    percent: 0.99
+packaging: []
+fill_volume_ml: 202.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=130362

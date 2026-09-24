@@ -1,0 +1,22 @@
+product: 퍼퓸 바디워시
+slug: hn-150152
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 490.5
+phases:
+- name: A
+  ingredients:
+  - id: body-wash-base
+    percent: 87.66
+  - id: silk-elastin
+    percent: 6.12
+  - id: sea-grape-extract
+    percent: 6.12
+  - id: fragrance-generic
+    percent: 0.1
+packaging: []
+fill_volume_ml: 490.5
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=150152

@@ -1,0 +1,38 @@
+product: 오렌지플라워데이크림
+slug: hn-1025
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 110.4
+phases:
+- name: A
+  ingredients:
+  - id: sesame-oil
+    percent: 16.3
+  - id: rosehip-oil
+    percent: 9.06
+  - id: olive-emulsifying-wax
+    percent: 4.53
+  - id: cetyl-alcohol
+    percent: 0.91
+  - id: neroli-water
+    percent: 49.82
+  - id: herbal-preservative
+    percent: 2.72
+  - id: sodium-hyaluronate
+    percent: 4.53
+  - id: plant-placenta
+    percent: 4.53
+  - id: egf
+    percent: 3.62
+  - id: ceramide-water-soluble
+    percent: 3.62
+  - id: orange-eo
+    percent: 0.27
+  - id: neroli-eo
+    percent: 0.09
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=1025

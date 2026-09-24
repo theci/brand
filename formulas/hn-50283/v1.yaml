@@ -1,0 +1,18 @@
+product: 시어버터수딩밤
+slug: hn-50283
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 20.1
+phases:
+- name: A
+  ingredients:
+  - id: shea-butter
+    percent: 99.5
+  - id: lavender-eo
+    percent: 0.5
+packaging: []
+fill_volume_ml: 20.1
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=50283

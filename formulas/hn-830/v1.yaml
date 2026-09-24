@@ -1,0 +1,36 @@
+product: 탄력아이크림 레시피
+slug: hn-830
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.4
+phases:
+- name: A
+  ingredients:
+  - id: jojoba-oil
+    percent: 9.96
+  - id: rosehip-oil
+    percent: 17.93
+  - id: olive-emulsifying-wax
+    percent: 4.98
+  - id: cetyl-alcohol
+    percent: 1.0
+  - id: lavender-water
+    percent: 55.76
+  - id: acacia-collagen
+    percent: 2.99
+  - id: herbal-preservative
+    percent: 1.0
+  - id: sodium-hyaluronate
+    percent: 2.99
+  - id: coenzyme-q10
+    percent: 2.99
+  - id: rose-geranium-eo
+    percent: 0.2
+  - id: palmarosa-eo
+    percent: 0.2
+packaging: []
+fill_volume_ml: 100.4
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=830

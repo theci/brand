@@ -1,0 +1,26 @@
+product: 봉독AC수분크림
+slug: hn-96475
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.25
+phases:
+- name: A
+  ingredients:
+  - id: whitening-moisture-cream-base
+    percent: 79.79
+  - id: houttuynia-extract
+    percent: 4.99
+  - id: propolis-extract
+    percent: 9.98
+  - id: bee-venom
+    percent: 4.99
+  - id: lavender-eo
+    percent: 0.15
+  - id: tea-tree-eo
+    percent: 0.1
+packaging: []
+fill_volume_ml: 100.2
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=96475

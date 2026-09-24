@@ -1,0 +1,12 @@
+# 벌레퇴치 캠핑캔들 — 015/007 배치 수동 보정(branduid=150214).
+product: 벌레퇴치 캠핑캔들
+slug: hn-150214
+type: leave_on
+status: 개발중
+regime: biocide
+volume_ml: 250
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=150214
+category: 기타
+ingredients:
+  - 에코소이왁스 | 230g | 캔들 왁스
+  - 블랜딩오일 | 20g | 방충 착향

@@ -1,0 +1,34 @@
+product: 아르간 딥로션(페이셜&바디겸용)
+slug: hn-149420
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: argan-oil
+    percent: 10.0
+  - id: shea-butter
+    percent: 4.0
+  - id: beeswax
+    percent: 1.0
+  - id: olive-emulsifying-wax
+    percent: 5.0
+  - id: rose-water
+    percent: 30.0
+  - id: neroli-water
+    percent: 23.0
+  - id: panthenol
+    percent: 5.0
+  - id: aloe-vera-gel
+    percent: 20.0
+  - id: herbal-preservative
+    percent: 1.0
+  - id: lemon-juice-blending-oil
+    percent: 1.0
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=149420

@@ -1,0 +1,22 @@
+product: 개똥쑥 핸드워시
+slug: hn-166539
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 71.25
+phases:
+- name: A
+  ingredients:
+  - id: pcg
+    percent: 56.14
+  - id: sweet-wormwood-extract
+    percent: 28.07
+  - id: allantoin
+    percent: 14.04
+  - id: fragrance-generic
+    percent: 1.75
+packaging: []
+fill_volume_ml: 71.2
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=166539

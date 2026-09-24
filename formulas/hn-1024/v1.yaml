@@ -1,0 +1,34 @@
+product: 라벤더고보습크림 레시피
+slug: hn-1024
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 110.5
+phases:
+- name: A
+  ingredients:
+  - id: jojoba-oil
+    percent: 16.29
+  - id: shea-butter
+    percent: 9.05
+  - id: olive-emulsifying-wax
+    percent: 4.52
+  - id: cetyl-alcohol
+    percent: 0.9
+  - id: lavender-water
+    percent: 54.32
+  - id: herbal-preservative
+    percent: 0.9
+  - id: centella-extract
+    percent: 4.52
+  - id: glycerin
+    percent: 5.43
+  - id: allantoin
+    percent: 3.62
+  - id: lavender-eo
+    percent: 0.45
+packaging: []
+fill_volume_ml: 110.5
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=1024

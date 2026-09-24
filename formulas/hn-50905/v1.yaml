@@ -1,0 +1,24 @@
+product: 슈퍼아쿠아 에센스/마스크팩(건성노화)
+slug: hn-50905
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: sodium-hyaluronate
+    percent: 30.0
+  - id: rose-water
+    percent: 51.0
+  - id: acacia-collagen
+    percent: 10.0
+  - id: adenosine
+    percent: 8.0
+  - id: herbal-preservative
+    percent: 1.0
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=50905

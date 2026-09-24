@@ -1,0 +1,32 @@
+product: EM 개운한 치약
+slug: hn-111181
+version: 1
+regime: quasi_drug
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 100.9
+phases:
+- name: A
+  ingredients:
+  - id: sodium-bicarbonate
+    percent: 23.79
+  - id: xylitol
+    percent: 15.86
+  - id: glycerin
+    percent: 4.96
+  - id: xanthan-gum
+    percent: 0.4
+  - id: apple-surfactant
+    percent: 9.91
+  - id: em-active
+    percent: 17.84
+  - id: purified-water
+    percent: 25.75
+  - id: herbal-preservative
+    percent: 0.99
+  - id: essential-oil
+    percent: 0.5
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=111181

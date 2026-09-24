@@ -1,0 +1,24 @@
+product: 베이비 카밍 바디워시
+slug: hn-150310
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 496.03
+phases:
+- name: A
+  ingredients:
+  - id: body-wash-base
+    percent: 86.68
+  - id: organic-7-solution
+    percent: 6.05
+  - id: ceramide-complex
+    percent: 6.05
+  - id: mandarin-eo
+    percent: 0.86
+  - id: lavender-eo
+    percent: 0.36
+packaging: []
+fill_volume_ml: 500.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=150310

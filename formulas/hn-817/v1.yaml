@@ -1,0 +1,50 @@
+product: 라벤더비비크림
+slug: hn-817
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 136.75
+phases:
+- name: A
+  ingredients:
+  - id: rosehip-oil
+    percent: 3.66
+  - id: avocado-oil
+    percent: 3.66
+  - id: tocopherol
+    percent: 1.46
+  - id: olive-emulsifying-wax
+    percent: 3.66
+  - id: cetyl-alcohol
+    percent: 0.73
+  - id: ethylhexyl-methoxycinnamate
+    percent: 3.66
+  - id: dimethicone
+    percent: 0.73
+  - id: isopropyl-myristate
+    percent: 0.73
+  - id: face-powder-21
+    percent: 11.7
+  - id: silver-pearl
+    percent: 0.73
+  - id: titanium-dioxide
+    percent: 3.66
+  - id: roman-chamomile-water
+    percent: 51.16
+  - id: herbal-preservative
+    percent: 2.93
+  - id: sodium-hyaluronate
+    percent: 4.39
+  - id: silk-amino-acid
+    percent: 2.93
+  - id: allantoin
+    percent: 3.66
+  - id: orange-eo
+    percent: 0.37
+  - id: lavender-eo
+    percent: 0.18
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=817

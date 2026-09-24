@@ -1,0 +1,36 @@
+product: 개똥쑥 진정 아이크림
+slug: wormwood-soothing-eye-cream
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.2
+phases:
+- name: A
+  ingredients:
+  - id: roman-chamomile-water
+    percent: 26.95
+  - id: sweet-wormwood-extract
+    percent: 39.9
+  - id: olive-cold-emulsifier
+    percent: 2.0
+  - id: jojoba-oil
+    percent: 6.99
+  - id: squalane
+    percent: 6.99
+  - id: ceramide-water-soluble
+    percent: 4.99
+  - id: multi-hyaluronic-acid
+    percent: 4.99
+  - id: niacinamide
+    percent: 2.99
+  - id: adenosine-liposome
+    percent: 2.0
+  - id: hexanediol
+    percent: 2.0
+  - id: bebe-bo-blending-oil
+    percent: 0.2
+packaging: []
+fill_volume_ml: 100.2
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=285486

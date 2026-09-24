@@ -1,0 +1,9 @@
+# 아로마 바스솔트 — 015/005 배치 수동 보정(branduid=150236).
+product: 아로마 바스솔트
+slug: hn-150236
+type: rinse_off
+status: 개발중
+volume_ml: 500
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=150236
+ingredients:
+  - 사해소금 | 500g | 미네랄 입욕 100%

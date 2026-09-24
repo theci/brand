@@ -1,0 +1,18 @@
+# 카페인 리프팅크림 — 원본은 정식판/완제베이스판 2가지. 여기선 정식(from-scratch)판만.
+product: 카페인 리프팅크림
+slug: caffeine-lifting-cream
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=283212
+ingredients:
+  - (유)마카다미아넛오일 | 5g | 유상 보습 오일
+  - 올리브유화왁스 | 4g | 유화왁스
+  - GMS | 2g | 보조 유화제
+  - 정제수 | 48g | 수상
+  - (다중) 히아루론산 | 3g | 보습
+  - 로즈 플라워겔 | 20g | 로즈 겔 베이스
+  - 카페인 | 7g | 탄력·리프팅 소구
+  - 콜라겐 7 컴플렉스 | 5g | 탄력 소구
+  - 천연한방보존제 | 1g | 방부
+  - 버가못 에센셜오일(FCF) | 3방울 | 착향(FCF)

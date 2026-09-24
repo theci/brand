@@ -1,0 +1,24 @@
+product: 인삼발효수분크림
+slug: hn-147334
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.25
+phases:
+- name: A
+  ingredients:
+  - id: cream-base
+    percent: 79.79
+  - id: stem-cell-culture
+    percent: 9.98
+  - id: galactomyces-ferment
+    percent: 9.98
+  - id: neroli-eo
+    percent: 0.15
+  - id: bergamot-fcf-eo
+    percent: 0.1
+packaging: []
+fill_volume_ml: 100.2
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=147334

@@ -1,0 +1,20 @@
+product: 시카 판테놀 크림(4GF, 탄탄)
+slug: cica-panthenol-cream-4gf
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.15
+phases:
+- name: A
+  ingredients:
+  - id: cica-panthenol-cream-base
+    percent: 89.86
+  - id: 4gf
+    percent: 9.99
+  - id: rose-power-blending-oil
+    percent: 0.15
+packaging: []
+fill_volume_ml: 100.2
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=171707

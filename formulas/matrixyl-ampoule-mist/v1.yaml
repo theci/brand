@@ -1,0 +1,19 @@
+product: 매트릭실 앰플 미스트
+slug: matrixyl-ampoule-mist
+version: 1
+regime: cosmetics
+category: 토너·미스트
+line: 매트릭실
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: rose-water
+    percent: 99.0
+  - id: matrixyl-3000
+    percent: 1.0
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=288654

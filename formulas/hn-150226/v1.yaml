@@ -1,0 +1,26 @@
+product: 슬림ON 자몽 바디워시
+slug: hn-150226
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 511.35
+phases:
+- name: A
+  ingredients:
+  - id: body-wash-base
+    percent: 84.09
+  - id: honey-extract
+    percent: 5.87
+  - id: sea-grape-extract
+    percent: 5.87
+  - id: grapefruit-eo
+    percent: 1.66
+  - id: lemon-eo
+    percent: 1.66
+  - id: juniper-eo
+    percent: 0.85
+packaging: []
+fill_volume_ml: 500.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=150226

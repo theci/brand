@@ -1,0 +1,32 @@
+product: 화산송이 마스크팩
+slug: hn-96802
+version: 1
+regime: cosmetics
+category: 팩·패드
+product_type: leave_on
+status: 개발중
+base_batch_g: 106.25
+phases:
+- name: A
+  ingredients:
+  - id: jojoba-oil
+    percent: 9.41
+  - id: olive-emulsifying-wax
+    percent: 4.71
+  - id: rose-water
+    percent: 22.59
+  - id: aloe-vera-gel
+    percent: 18.82
+  - id: bio-detox
+    percent: 4.71
+  - id: herbal-preservative
+    percent: 0.94
+  - id: essential-oil
+    percent: 0.24
+  - id: volcanic-ash-powder
+    percent: 37.64
+  - id: allantoin
+    percent: 0.94
+packaging: []
+fill_volume_ml: 106.2
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=96802

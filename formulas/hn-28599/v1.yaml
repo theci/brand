@@ -1,0 +1,26 @@
+product: 트러블 잠잠 스팟젤
+slug: hn-28599
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 50.0
+phases:
+- name: A
+  ingredients:
+  - id: tea-tree-eo
+    percent: 2.0
+  - id: olive-liquid
+    percent: 2.0
+  - id: lavender-water
+    percent: 28.0
+  - id: aloe-vera-gel
+    percent: 50.0
+  - id: houttuynia-extract
+    percent: 16.0
+  - id: herbal-preservative
+    percent: 2.0
+packaging: []
+fill_volume_ml: 50.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=28599

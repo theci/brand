@@ -1,0 +1,30 @@
+product: 피테 슈퍼아쿠아크림
+slug: hn-80419
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 106.25
+phases:
+- name: A
+  ingredients:
+  - id: hemp-seed-oil
+    percent: 7.53
+  - id: olive-emulsifying-wax
+    percent: 2.82
+  - id: aloe-vera-gel
+    percent: 60.23
+  - id: galactomyces-ferment
+    percent: 18.82
+  - id: white-complex-6
+    percent: 4.71
+  - id: niacinamide
+    percent: 4.71
+  - id: herbal-preservative
+    percent: 0.94
+  - id: rose-geranium-eo
+    percent: 0.24
+packaging: []
+fill_volume_ml: 106.2
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=80419

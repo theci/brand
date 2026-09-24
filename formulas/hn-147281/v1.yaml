@@ -1,0 +1,24 @@
+product: 바다포도 수분가득 크림
+slug: hn-147281
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.3
+phases:
+- name: A
+  ingredients:
+  - id: cream-base
+    percent: 79.76
+  - id: sea-grape-extract
+    percent: 9.97
+  - id: copper-peptide
+    percent: 9.97
+  - id: rose-geranium-eo
+    percent: 0.2
+  - id: rosemary-eo
+    percent: 0.1
+packaging: []
+fill_volume_ml: 100.3
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=147281

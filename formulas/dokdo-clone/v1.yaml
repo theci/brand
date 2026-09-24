@@ -2,6 +2,7 @@ product: 독도로션 역설계 재현 v1(홈랩 근사)
 slug: dokdo-clone
 version: 1
 regime: cosmetics
+category: 로션·크림
 product_type: leave_on
 status: 개발중
 base_batch_g: 100              # %=g 이 되도록 100g 기준(빠른 소량 배치)

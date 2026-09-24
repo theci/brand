@@ -1,0 +1,22 @@
+product: 겁나게 촉촉 호랑이립밤
+slug: moist-tiger-lip-balm
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 54.0
+phases:
+- name: A
+  ingredients:
+  - id: multibalm-oil-base
+    percent: 79.63
+  - id: multibalm-wax
+    percent: 17.59
+  - id: lemon-eo
+    percent: 1.39
+  - id: eucalyptus-eo
+    percent: 1.39
+packaging: []
+fill_volume_ml: 54.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=178577

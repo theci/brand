@@ -1,0 +1,20 @@
+# 호랑이풀 치약 — 015/007 배치 수동 보정(branduid=152421).
+product: 호랑이풀 치약
+slug: hn-152421
+type: rinse_off
+status: 개발중
+regime: quasi_drug
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=152421
+category: 기타
+ingredients:
+  - 덴탈 실리카 | 13g | 연마·점도
+  - 자일리톨 | 10g | 감미
+  - 정제수 | 32g | 수상
+  - 알란토인 분말 | 0.2g | 진정
+  - 병풀추출물 | 10g | 진정
+  - 애플워시 | 5g | 세정
+  - 천연한방보존제 | 1g | 방부
+  - 식물성 글리세린 | 26g | 보습
+  - 쟁탄검 | 0.5g | 점증
+  - 에센셜오일 | 6방울 | 착향

@@ -1,0 +1,22 @@
+product: 보양진 실크샴푸
+slug: hn-148565
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 305.0
+phases:
+- name: A
+  ingredients:
+  - id: gentle-shampoo-base
+    percent: 78.68
+  - id: yunmo-extract
+    percent: 9.84
+  - id: silk-elastin
+    percent: 9.84
+  - id: blending-oil
+    percent: 1.64
+packaging: []
+fill_volume_ml: 305.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=148565

@@ -1,0 +1,30 @@
+product: 맘앤베이비 버블워시
+slug: hn-96639
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 149.0
+phases:
+- name: A
+  ingredients:
+  - id: neroli-water
+    percent: 46.97
+  - id: glucamate
+    percent: 4.03
+  - id: decyl-glucoside
+    percent: 16.78
+  - id: apple-surfactant
+    percent: 16.78
+  - id: organic-7-solution
+    percent: 10.07
+  - id: glycerin
+    percent: 3.36
+  - id: water-soluble-preservative
+    percent: 1.34
+  - id: mandarin-eo
+    percent: 0.67
+packaging: []
+fill_volume_ml: 200.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=96639

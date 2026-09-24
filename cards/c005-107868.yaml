@@ -1,0 +1,14 @@
+# 동백실크샴푸 — 015/005 배치 수동 보정(branduid=107868).
+product: 동백실크샴푸
+slug: hn-107868
+type: rinse_off
+status: 개발중
+volume_ml: 500
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=107868
+ingredients:
+  - 순한 샴푸베이스 | 400g | 샴푸 베이스
+  - 천연알로에원액 | 50g | 진정
+  - 카밍5솔루션 | 30g | 진정
+  - 실크엘라스틴 | 15g | 모발 보습
+  - 동백오일 | 5g | 유상
+  - 에센셜오일 | 5ml | 착향

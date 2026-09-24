@@ -1,0 +1,15 @@
+# 올리브클렌징크림 — sample.txt(이미지 레시피) 기반(branduid=815).
+product: 올리브클렌징크림
+slug: hn-815
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=815
+ingredients:
+  - 엑스트라버진올리브오일 | 28g | 유상
+  - 올리브유화왁스 | 5g | 유화제
+  - 로즈워터 | 70g | 수상
+  - 오이추출물 | 5g | 진정
+  - 한방보존제 | 4g | 방부
+  - 식물성글리세린 | 4g | 보습
+  - 오렌지에센셜오일 | 15방울 | 착향

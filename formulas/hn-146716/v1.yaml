@@ -1,0 +1,22 @@
+product: 벌레 퇴치 귀요미 밴드
+slug: hn-146716
+version: 1
+regime: biocide
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 70.0
+phases:
+- name: A
+  ingredients:
+  - id: olive-liquid
+    percent: 2.86
+  - id: blending-oil
+    percent: 4.29
+  - id: purified-water
+    percent: 21.43
+  - id: eco-gypsum
+    percent: 71.42
+packaging: []
+fill_volume_ml: 70.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=146716

@@ -1,0 +1,26 @@
+product: 스쿠알란 바디오일
+slug: squalane-body-oil
+version: 1
+regime: cosmetics
+category: 오일·밤
+line: 스쿠알란
+product_type: leave_on
+status: 개발중
+base_batch_g: 100
+phases:
+- name: A (오일 혼합)
+  process: 용기에 모든 재료를 계량하고 뚜껑을 닫아 흔들어 혼합
+  ingredients:
+  - id: squalane
+    percent: 45.0
+  - id: mct
+    percent: 35.0
+  - id: jojoba-oil
+    percent: 19.2
+  - id: tocopherol
+    percent: 0.5
+  - id: bergamot-fcf-eo
+    percent: 0.3
+packaging: []
+fill_volume_ml: 100
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=288759

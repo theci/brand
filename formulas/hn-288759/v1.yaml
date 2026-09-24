@@ -1,0 +1,24 @@
+product: 스쿠알란 바디오일
+slug: hn-288759
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: squalane
+    percent: 45.0
+  - id: mct
+    percent: 35.0
+  - id: jojoba-oil
+    percent: 19.2
+  - id: tocopherol
+    percent: 0.5
+  - id: bergamot-fcf-eo
+    percent: 0.3
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=288759

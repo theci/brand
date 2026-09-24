@@ -1,0 +1,18 @@
+product: 자초인퓨즈오일 (골든호호바)
+slug: hn-44920
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 135.0
+phases:
+- name: A
+  ingredients:
+  - id: jacho-oil
+    percent: 37.04
+  - id: jojoba-oil
+    percent: 62.96
+packaging: []
+fill_volume_ml: 135.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=44920

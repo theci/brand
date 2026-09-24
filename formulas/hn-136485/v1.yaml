@@ -1,0 +1,20 @@
+product: 발효 미스트
+slug: hn-136485
+version: 1
+regime: cosmetics
+category: 토너·미스트
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: galactomyces-ferment
+    percent: 40.0
+  - id: rose-water
+    percent: 59.0
+  - id: herbal-preservative
+    percent: 1.0
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=136485

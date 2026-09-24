@@ -1,0 +1,26 @@
+product: 허니 촉촉 바디 미스트
+slug: hn-144546
+version: 1
+regime: cosmetics
+category: 토너·미스트
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.5
+phases:
+- name: A
+  ingredients:
+  - id: neroli-water
+    percent: 78.59
+  - id: cupuacu-butter
+    percent: 4.98
+  - id: ceramide-complex
+    percent: 4.98
+  - id: honey-extract
+    percent: 9.95
+  - id: herbal-preservative
+    percent: 1.0
+  - id: orange-eo
+    percent: 0.5
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=144546

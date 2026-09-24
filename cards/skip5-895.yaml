@@ -1,0 +1,12 @@
+# 일랑일랑 버블바스붐 — sample.txt(이미지 레시피) 기반(branduid=895).
+product: 일랑일랑 버블바스붐
+slug: hn-895
+type: rinse_off
+status: 개발중
+volume_ml: 700
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=895
+ingredients:
+  - 베이킹소다 | 300g | 발포
+  - 구연산 | 150g | 발포
+  - 사해소금 | 150g | 미네랄
+  - 옥수수전분 | 100g | 완충

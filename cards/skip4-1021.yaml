@@ -1,0 +1,12 @@
+# 공부/스트레스해소 롤포인트 — sample.txt(이미지 레시피) 기반(branduid=1021).
+product: 공부/스트레스해소 롤포인트
+slug: hn-1021
+type: leave_on
+status: 개발중
+volume_ml: 10
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=1021
+ingredients:
+  - 골덴호호바오일 | 5g | 캐리어 오일
+  - 로즈마리에센셜오일 | 3방울 | 착향
+  - 페파민트에센셜오일 | 3방울 | 착향
+  - 레몬에센셜오일 | 4방울 | 착향

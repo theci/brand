@@ -1,0 +1,32 @@
+product: 카렌듈라모이스처크림
+slug: hn-820
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 105.25
+phases:
+- name: A
+  ingredients:
+  - id: calendula-oil
+    percent: 14.25
+  - id: hemp-seed-oil
+    percent: 12.35
+  - id: olive-emulsifying-wax
+    percent: 4.75
+  - id: roman-chamomile-water
+    percent: 50.36
+  - id: sodium-hyaluronate
+    percent: 2.85
+  - id: herbal-preservative
+    percent: 0.95
+  - id: calming-5-solution
+    percent: 4.75
+  - id: ceramide-complex
+    percent: 9.5
+  - id: essential-oil
+    percent: 0.24
+packaging: []
+fill_volume_ml: 105.2
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=820

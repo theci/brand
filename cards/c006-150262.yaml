@@ -1,0 +1,12 @@
+# 모기퇴치 사쉐(향낭) — 015/006002 배치 수동 보정(branduid=150262).
+product: 모기퇴치 사쉐(향낭)
+slug: hn-150262
+type: leave_on
+status: 개발중
+regime: biocide
+volume_ml: 20
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=150262
+category: 기타
+ingredients:
+  - 천연 사쉐 스톤 | 10g | 향 담체
+  - 블랜딩오일 | 10g | 방충 블렌딩

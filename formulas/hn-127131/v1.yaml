@@ -1,0 +1,27 @@
+product: 한송이 카네이션 방향제
+slug: hn-127131
+version: 1
+regime: chemical_safety
+category: 생활화학
+product_type: leave_on
+status: 개발중
+base_batch_g: 92.0
+phases:
+- name: A
+  ingredients:
+  - id: olive-liquid
+    percent: 3.26
+  - id: fragrance-oil
+    percent: 3.26
+  - id: blending-oil
+    percent: 2.17
+  - id: purified-water
+    percent: 22.83
+  - id: purified-water
+    percent: 3.26
+  - id: eco-gypsum
+    percent: 65.22
+packaging: []
+fill_volume_ml: 90.0
+product_category: 방향제_비분사형
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=127131

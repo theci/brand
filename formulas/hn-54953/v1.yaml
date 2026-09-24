@@ -1,0 +1,24 @@
+product: 릴렉스 샤워코롱
+slug: hn-54953
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 86.5
+phases:
+- name: A
+  ingredients:
+  - id: aroma-base-95
+    percent: 75.14
+  - id: lavender-water
+    percent: 17.34
+  - id: glycerin
+    percent: 5.78
+  - id: orange-eo
+    percent: 0.58
+  - id: lavender-eo
+    percent: 1.16
+packaging: []
+fill_volume_ml: 90.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=54953

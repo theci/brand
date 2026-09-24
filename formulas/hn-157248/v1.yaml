@@ -1,0 +1,24 @@
+product: 피치코랄 립스틱
+slug: hn-157248
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 5.6
+phases:
+- name: A
+  ingredients:
+  - id: lipstick-base
+    percent: 71.43
+  - id: peach-coral-lip-color
+    percent: 17.86
+  - id: lip-color-red-27
+    percent: 3.57
+  - id: lip-color-white
+    percent: 3.57
+  - id: blending-oil
+    percent: 3.57
+packaging: []
+fill_volume_ml: 6.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=157248

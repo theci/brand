@@ -17,7 +17,7 @@ from brandlab.certification import (
 )
 from brandlab.core.models import CertStatusEntry
 from brandlab.loader import load_cert_checklist, load_cert_status
-from brandlab.ui import load_lab, setup_korean_font
+from brandlab.ui import load_lab, product_picker, setup_korean_font
 
 setup_korean_font()
 st.title("인증·시험 추적 ✅ (출시 준비)")
@@ -35,8 +35,7 @@ if not lab.formulas:
     st.info("처방이 없습니다.")
     st.stop()
 
-options = {f"{f.slug} v{f.version} — {f.product}": f for f in lab.formulas}
-formula = options[st.selectbox("제품 선택", list(options))]
+formula = product_picker(lab, key="cert", label="제품 선택")
 pref = f"{formula.slug} v{formula.version}"
 
 checklist = load_cert_checklist(formula.regime)

@@ -1,0 +1,15 @@
+# 모기 퇴치 밴드 — 015/007 배치 수동 보정(branduid=129821).
+product: 모기 퇴치 밴드
+slug: hn-129821
+type: leave_on
+status: 개발중
+regime: biocide
+volume_ml: 30
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=129821
+category: 기타
+ingredients:
+  - 올리브리퀴드 | 1g | 가용화
+  - 블랜딩오일 | 1g | 방충
+  - 원하는 향료 | 2g | 조합향료
+  - 정제수 | 7g | 수상
+  - 친환경 석고 | 20g | 담체

@@ -1,0 +1,20 @@
+product: 헤어 컨디셔너바(코코넛)
+slug: hn-176143
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 200.0
+phases:
+- name: A
+  ingredients:
+  - id: coconut-oil
+    percent: 40.0
+  - id: btms
+    percent: 45.0
+  - id: cetyl-alcohol
+    percent: 15.0
+packaging: []
+fill_volume_ml: 200.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=176143

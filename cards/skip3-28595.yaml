@@ -1,0 +1,12 @@
+# 티트리 편백토너 — sample.txt(이미지 레시피) 기반(branduid=28595).
+product: 티트리 편백토너
+slug: hn-28595
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=28595
+ingredients:
+  - 티트리워터 | 45g | 수상
+  - 편백워터 | 50g | 수상
+  - 식물성글리세린 | 3g | 보습
+  - 한방보존제 | 2g | 방부

@@ -1,0 +1,28 @@
+product: 생기수분 부활초세럼
+slug: hn-144893
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: olive-emulsifying-wax
+    percent: 4.0
+  - id: neroli-water
+    percent: 85.0
+  - id: callus-culture
+    percent: 5.0
+  - id: trehalose
+    percent: 4.0
+  - id: alpha-bisabolol
+    percent: 0.5
+  - id: herbal-preservative
+    percent: 1.0
+  - id: bergamot-fcf-eo
+    percent: 0.5
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=144893

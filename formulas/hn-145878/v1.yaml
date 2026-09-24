@@ -1,0 +1,32 @@
+product: 생기수분 부활초 수면팩
+slug: hn-145878
+version: 1
+regime: cosmetics
+category: 팩·패드
+product_type: leave_on
+status: 개발중
+base_batch_g: 98.25
+phases:
+- name: A
+  ingredients:
+  - id: rosehip-oil
+    percent: 5.09
+  - id: jojoba-oil
+    percent: 5.09
+  - id: olive-emulsifying-wax
+    percent: 4.07
+  - id: aloe-vera-gel
+    percent: 69.21
+  - id: callus-culture
+    percent: 10.18
+  - id: trehalose
+    percent: 4.07
+  - id: alpha-bisabolol
+    percent: 1.02
+  - id: water-soluble-preservative
+    percent: 1.02
+  - id: mandarin-eo
+    percent: 0.25
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=145878

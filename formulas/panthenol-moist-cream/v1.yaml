@@ -1,0 +1,22 @@
+product: 판테놀 수분크림
+slug: panthenol-moist-cream
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 96.0
+phases:
+- name: A
+  ingredients:
+  - id: water-jojoba
+    percent: 2.08
+  - id: collagen-peptide
+    percent: 5.21
+  - id: aloe-vera-gel
+    percent: 91.67
+  - id: herbal-preservative
+    percent: 1.04
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=172675

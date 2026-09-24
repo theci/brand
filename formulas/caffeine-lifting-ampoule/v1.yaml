@@ -1,0 +1,28 @@
+product: 카페인 리프팅 앰플
+slug: caffeine-lifting-ampoule
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 30.05
+phases:
+- name: A
+  ingredients:
+  - id: caffeine
+    percent: 16.64
+  - id: collagen-7-complex
+    percent: 16.64
+  - id: adenosine
+    percent: 2.0
+  - id: hexanediol
+    percent: 2.0
+  - id: rose-flower-gel
+    percent: 16.64
+  - id: rose-water
+    percent: 45.91
+  - id: neroli-eo
+    percent: 0.17
+packaging: []
+fill_volume_ml: 30.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=182505

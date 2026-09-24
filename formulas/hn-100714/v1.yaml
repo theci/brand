@@ -1,0 +1,26 @@
+product: 쿠퍼모근튼튼에센스&팩
+slug: hn-100714
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 101.0
+phases:
+- name: A
+  ingredients:
+  - id: hinoki-water
+    percent: 29.7
+  - id: aloe-vera-gel
+    percent: 44.56
+  - id: niacinamide
+    percent: 4.95
+  - id: yunmo-extract
+    percent: 9.9
+  - id: copper-peptide
+    percent: 9.9
+  - id: herbal-preservative
+    percent: 0.99
+packaging: []
+fill_volume_ml: 101.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=100714

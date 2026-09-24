@@ -1,0 +1,12 @@
+# 퍼퓸 디퓨저 — 015/006002 배치 수동 보정(branduid=112810).
+product: 퍼퓸 디퓨저
+slug: hn-112810
+type: leave_on
+status: 개발중
+regime: chemical_safety
+volume_ml: 210
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=112810
+product_category: 방향제_지속방출형
+ingredients:
+  - 디퓨저 베이스 | 200ml | 확산 베이스
+  - 무화과향 | 8ml | 조합향료

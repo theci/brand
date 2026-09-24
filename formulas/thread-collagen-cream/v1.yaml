@@ -1,0 +1,43 @@
+product: 녹는 실 콜라겐 크림
+slug: thread-collagen-cream
+version: 1
+regime: cosmetics
+category: 로션·크림
+line: 콜라겐
+product_type: leave_on
+status: 개발중
+base_batch_g: 200.0
+phases:
+- name: A
+  ingredients:
+  - id: fermented-camellia-oil
+    percent: 2.0
+  - id: squalane
+    percent: 3.0
+  - id: olive-emulsifying-wax
+    percent: 1.0
+  - id: cetyl-alcohol
+    percent: 1.0
+  - id: neroli-water
+    percent: 26.5
+  - id: glycerin
+    percent: 1.5
+  - id: amino-acid-17-complex
+    percent: 2.5
+  - id: dissolving-thread-collagen
+    percent: 2.0
+  - id: niacinamide
+    percent: 1.5
+  - id: hexanediol
+    percent: 1.0
+  - id: rose-flower-gel
+    percent: 8.0
+  - id: minimum-cream-base
+    percent: 45.0
+  - id: dissolving-thread-collagen
+    percent: 2.0
+  - id: amino-acid-17-complex
+    percent: 3.0
+packaging: []
+fill_volume_ml: 200.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=288146

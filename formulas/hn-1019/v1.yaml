@@ -1,0 +1,24 @@
+product: 감기롤포인트
+slug: hn-1019
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 5.5
+phases:
+- name: A
+  ingredients:
+  - id: jojoba-oil
+    percent: 90.9
+  - id: eucalyptus-eo
+    percent: 3.64
+  - id: peppermint-eo
+    percent: 1.82
+  - id: hinoki-eo
+    percent: 1.82
+  - id: lemon-eo
+    percent: 1.82
+packaging: []
+fill_volume_ml: 10.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=1019

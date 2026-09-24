@@ -1,0 +1,26 @@
+product: 개똥쑥 진정 에센스
+slug: wormwood-soothing-essence
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: sweet-wormwood-extract
+    percent: 40.0
+  - id: water-jojoba
+    percent: 5.0
+  - id: rose-flower-gel
+    percent: 40.0
+  - id: probiotics-complex
+    percent: 10.0
+  - id: niacinamide
+    percent: 3.0
+  - id: hexanediol
+    percent: 2.0
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=285483

@@ -1,0 +1,23 @@
+product: EGF 니들 세럼
+slug: egf-needle-serum
+version: 1
+regime: cosmetics
+category: 니들
+line: PDRN·니들
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: essence-base
+    percent: 80.0
+  - id: egf
+    percent: 10.0
+  - id: fgf
+    percent: 10.0
+packaging: []
+fill_volume_ml: 100.0
+notes: '''니들 세럼&크림'' 중 세럼. 미세니들 키트 — 액상부만 처방화. 사용 키트: 시카에센스 ~49.9g + 스피큘 0.1~0.6g(95만 샷급, 또는 시카 EGF크림)
+  혼합 도포. 스피큘/샷 제외. EGF/FGF 효능 표현은 화장품 표시 규정 검증 필요(의약품적 소구 주의).'
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=286876

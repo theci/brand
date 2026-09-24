@@ -2,6 +2,7 @@ product: 시크 진정 밸런스 크림
 slug: sebum-calm-cream
 version: 1
 regime: cosmetics
+category: 로션·크림
 product_type: leave_on      # 안 씻어냄 → 알러젠 임계 0.001%(엄격), 무향 지향
 status: 개발중
 base_batch_g: 200

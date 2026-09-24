@@ -1,0 +1,24 @@
+product: 어성초 폼클렌징
+slug: hn-1166
+version: 1
+regime: cosmetics
+category: 클렌징
+product_type: rinse_off
+status: 개발중
+base_batch_g: 302.0
+phases:
+- name: A
+  ingredients:
+  - id: apple-surfactant
+    percent: 33.11
+  - id: lavender-water
+    percent: 46.36
+  - id: houttuynia-extract
+    percent: 13.25
+  - id: calendula-extract
+    percent: 6.62
+  - id: bergamot-fcf-eo
+    percent: 0.66
+packaging: []
+fill_volume_ml: 302.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=1166

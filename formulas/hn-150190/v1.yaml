@@ -1,0 +1,30 @@
+product: 4GF 리페어 앰플
+slug: hn-150190
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 49.6
+phases:
+- name: A
+  ingredients:
+  - id: glycerin
+    percent: 4.03
+  - id: xanthan-gum
+    percent: 0.2
+  - id: neroli-water
+    percent: 50.41
+  - id: 4gf
+    percent: 20.16
+  - id: natto-moist
+    percent: 10.08
+  - id: niacinamide
+    percent: 4.03
+  - id: sea-grape-extract
+    percent: 10.08
+  - id: herbal-preservative
+    percent: 1.01
+packaging: []
+fill_volume_ml: 49.6
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=150190

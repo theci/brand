@@ -1,0 +1,20 @@
+product: 레드와인스킨
+slug: hn-816
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 120.0
+phases:
+- name: A
+  ingredients:
+  - id: red-wine
+    percent: 16.67
+  - id: rose-water
+    percent: 58.33
+  - id: sodium-hyaluronate
+    percent: 25.0
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=816

@@ -1,0 +1,22 @@
+product: 레드 립스틱
+slug: hn-154022
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 5.7
+phases:
+- name: A
+  ingredients:
+  - id: lipstick-base
+    percent: 70.18
+  - id: red-lip-color
+    percent: 17.54
+  - id: lip-color-21
+    percent: 8.77
+  - id: brightening-blending-oil
+    percent: 3.51
+packaging: []
+fill_volume_ml: 6.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=154022

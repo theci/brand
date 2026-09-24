@@ -1,0 +1,22 @@
+product: 우레아 수딩스킨
+slug: hn-153008
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: rose-water
+    percent: 88.0
+  - id: soothing-4-complex
+    percent: 5.0
+  - id: urea
+    percent: 5.0
+  - id: hexanediol
+    percent: 2.0
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=153008

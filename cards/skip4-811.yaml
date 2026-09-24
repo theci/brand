@@ -1,0 +1,14 @@
+# 로즈마리근육통연고 — sample.txt(이미지 레시피) 기반(branduid=811).
+product: 로즈마리근육통연고
+slug: hn-811
+type: leave_on
+status: 개발중
+volume_ml: 120
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=811
+ingredients:
+  - 골덴호호바 | 100g | 유상
+  - 밀랍 | 15g | 경화제
+  - 로즈마리EO | 25방울 | 착향
+  - 라벤더EO | 20방울 | 착향
+  - 스위마조람EO | 25방울 | 착향
+  - 스피아민트EO | 20방울 | 착향

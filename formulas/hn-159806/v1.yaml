@@ -1,0 +1,22 @@
+product: 호호바 딥클렌징오일
+slug: hn-159806
+version: 1
+regime: cosmetics
+category: 클렌징
+product_type: rinse_off
+status: 개발중
+base_batch_g: 184.22
+phases:
+- name: A
+  ingredients:
+  - id: jojoba-oil
+    percent: 47.23
+  - id: green-tea-seed-oil
+    percent: 24.7
+  - id: washable-cleansing-liquid
+    percent: 27.14
+  - id: lemon-juice-blending-oil
+    percent: 0.93
+packaging: []
+fill_volume_ml: 184.2
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=159806

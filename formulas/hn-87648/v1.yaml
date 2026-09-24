@@ -1,0 +1,32 @@
+product: 뱀독볼륨앰플(4주)
+slug: hn-87648
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 52.0
+phases:
+- name: A
+  ingredients:
+  - id: peptide-complex
+    percent: 3.85
+  - id: adenosine-liposome
+    percent: 1.92
+  - id: marine-collagen
+    percent: 9.62
+  - id: egf
+    percent: 9.62
+  - id: lipidure
+    percent: 5.77
+  - id: niacinamide
+    percent: 3.85
+  - id: herbal-preservative
+    percent: 1.92
+  - id: water-soluble-preservative
+    percent: 3.85
+  - id: aloe-vera-gel
+    percent: 59.6
+packaging: []
+fill_volume_ml: 52.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=87648

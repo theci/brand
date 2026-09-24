@@ -13,6 +13,7 @@
 - **로직 = `src/brandlab/`**, **UI = `pages/`(Streamlit, 표시만)**, **데이터 = YAML**.
 - 모든 모델은 **pydantic v2 `extra="forbid"`** → YAML에 오타/미정의 키 있으면 로드 실패.
 - 모델 정본 = **`src/brandlab/core/models.py`**. 최상위 `src/brandlab/models.py`는 P9 레짐 리팩터링 이후 **하위호환 shim**(새 코드는 `from brandlab.core.models import ...`).
+- **분류 체계(통제 어휘, enum 강제)**: 원료는 `category`(대분류 `IngredientCategory`, 착색 포함) + `effects`(효능 태그 `IngredientEffect`, 활성 세부). 제품(Formula)은 `category`(종류 `ProductCategory`) + `line`(라인/시리즈, 자유 문자열). 자유 문자열로 늘리지 말 것 — 새 값은 enum에 추가. 일괄 재분류는 `uv run python -m brandlab.migrate_taxonomy [--dry]`. UI는 `ui.product_picker(lab, key)`로 종류→라인→제품 3단 선택(플랫 드롭다운 금지). `labeling.REACTIVE_CATEGORIES`·`checks._PRESERVATIVE_CATEGORIES` 등 category 값에 의존하는 코드가 있으니 어휘 변경 시 동반 수정.
 - LLM은 프롬프트 생성 후 붙여넣기(자동 호출 아님). 규제·실촬영은 코드로 강제. **처방 % = 영업비밀.**
 - **커머스 운영(주문·결제·배송·CS)은 스코프 밖** — 플랫폼 정체성 = "증거·서사·포지셔닝의 원천"(`docs/플랫폼/플랫폼_확장_사업화_설계.md` §6).
 

@@ -1,0 +1,29 @@
+product: 뮤신 콜라겐 토너 & 멀티패드
+slug: snail-collagen-toner-pad
+version: 1
+regime: cosmetics
+category: 토너·미스트
+line: 뮤신·블랙스네일
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: glycerin
+    percent: 3.0
+  - id: xanthan-gum
+    percent: 0.3
+  - id: neroli-water
+    percent: 74.7
+  - id: snail-mucin
+    percent: 5.0
+  - id: collagen-7-complex
+    percent: 5.0
+  - id: allantoin
+    percent: 10.0
+  - id: hexanediol
+    percent: 2.0
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=287126

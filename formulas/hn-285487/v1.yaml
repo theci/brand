@@ -1,0 +1,30 @@
+product: 개똥쑥 여성 청결제
+slug: hn-285487
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 150.5
+phases:
+- name: A
+  ingredients:
+  - id: apple-surfactant
+    percent: 15.28
+  - id: capb
+    percent: 14.62
+  - id: sweet-wormwood-extract
+    percent: 45.18
+  - id: probiotics-complex
+    percent: 9.97
+  - id: glycerin
+    percent: 2.66
+  - id: hexanediol
+    percent: 1.99
+  - id: rose-geranium-eo
+    percent: 0.33
+  - id: citric-acid-food
+    percent: 9.97
+packaging: []
+fill_volume_ml: 150.5
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=285487

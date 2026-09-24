@@ -1,0 +1,26 @@
+product: 글루타치온 미백 패드
+slug: glutathione-whitening-pad
+version: 1
+regime: cosmetics
+category: 토너·미스트
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: glutathione
+    percent: 30.0
+  - id: arbutin-liposome
+    percent: 20.0
+  - id: niacinamide
+    percent: 5.0
+  - id: neroli-water
+    percent: 38.0
+  - id: multi-hyaluronic-acid
+    percent: 5.0
+  - id: hexanediol
+    percent: 2.0
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=284791

@@ -1,0 +1,24 @@
+product: 블랙헤드 매끈  파우더
+slug: hn-147063
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 310.59
+phases:
+- name: A
+  ingredients:
+  - id: sodium-bicarbonate
+    percent: 96.59
+  - id: orange-eo
+    percent: 0.82
+  - id: tea-tree-eo
+    percent: 0.87
+  - id: lavender-eo
+    percent: 0.86
+  - id: rose-geranium-eo
+    percent: 0.86
+packaging: []
+fill_volume_ml: 310.6
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=147063

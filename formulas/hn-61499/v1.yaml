@@ -1,0 +1,26 @@
+product: 코코넛 만능크림
+slug: hn-61499
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 102.0
+phases:
+- name: A
+  ingredients:
+  - id: coconut-oil
+    percent: 24.51
+  - id: olive-emulsifying-wax
+    percent: 4.9
+  - id: roman-chamomile-water
+    percent: 53.93
+  - id: herbal-preservative
+    percent: 0.98
+  - id: ceramide-complex
+    percent: 9.8
+  - id: glycerin
+    percent: 5.88
+packaging: []
+fill_volume_ml: 102.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=61499

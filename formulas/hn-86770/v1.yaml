@@ -1,0 +1,32 @@
+product: 동백윤모린스(팩겸용)
+slug: hn-86770
+version: 1
+regime: cosmetics
+category: 팩·패드
+product_type: leave_on
+status: 개발중
+base_batch_g: 299.67
+phases:
+- name: A
+  ingredients:
+  - id: fermented-camellia-oil
+    percent: 5.01
+  - id: olive-emulsifying-wax
+    percent: 2.0
+  - id: cetyl-alcohol
+    percent: 6.01
+  - id: purified-water
+    percent: 65.06
+  - id: marine-elastin
+    percent: 5.01
+  - id: silk-amino-acid
+    percent: 5.01
+  - id: panthenol
+    percent: 10.01
+  - id: herbal-preservative
+    percent: 1.0
+  - id: rose-geranium-eo
+    percent: 0.89
+packaging: []
+fill_volume_ml: 299.7
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=86770

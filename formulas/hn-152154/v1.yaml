@@ -1,0 +1,32 @@
+product: TX 멜라 토닝 로션
+slug: hn-152154
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.25
+phases:
+- name: A
+  ingredients:
+  - id: rosehip-oil
+    percent: 9.98
+  - id: olive-emulsifying-wax
+    percent: 2.99
+  - id: oliwax-lc
+    percent: 2.0
+  - id: rose-water
+    percent: 63.82
+  - id: rose-flower-gel
+    percent: 9.98
+  - id: peptide-complex
+    percent: 4.99
+  - id: fgf
+    percent: 4.99
+  - id: essential-oil
+    percent: 0.25
+  - id: herbal-preservative
+    percent: 1.0
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=152154

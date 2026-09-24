@@ -1,0 +1,28 @@
+product: 스쿠알란 아쿠아 에센스
+slug: squalane-aqua-essence
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+line: 스쿠알란
+product_type: leave_on
+status: 개발중
+base_batch_g: 100
+phases:
+- name: A (냉 혼합)
+  process: 용기에 전 재료를 계량하고 겔 덩어리가 고르게 풀리도록 으깨듯이 혼합
+  ingredients:
+  - id: marine-collagen-gel
+    percent: 70.0
+  - id: probiotics-complex
+    percent: 10.0
+  - id: cica-exosome
+    percent: 10.0
+  - id: glutathione
+    percent: 5.0
+  - id: squalane
+    percent: 3.0
+  - id: hexanediol
+    percent: 2.0
+packaging: []
+fill_volume_ml: 100
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=288773

@@ -1,0 +1,32 @@
+product: 종합비타민크림
+slug: hn-69503
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.25
+phases:
+- name: A
+  ingredients:
+  - id: tocopherol
+    percent: 4.99
+  - id: rosehip-oil
+    percent: 16.96
+  - id: olive-emulsifying-wax
+    percent: 4.99
+  - id: rose-water
+    percent: 50.86
+  - id: panthenol
+    percent: 7.98
+  - id: niacinamide
+    percent: 4.99
+  - id: whitens-complex
+    percent: 7.98
+  - id: herbal-preservative
+    percent: 1.0
+  - id: ylang-ylang-eo
+    percent: 0.25
+packaging: []
+fill_volume_ml: 100.2
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=69503

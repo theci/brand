@@ -1,0 +1,20 @@
+product: 픽미업 립스틱
+slug: hn-150676
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 4.7
+phases:
+- name: A
+  ingredients:
+  - id: lipstick-base
+    percent: 85.1
+  - id: lip-color-generic
+    percent: 10.64
+  - id: rose-geranium-eo
+    percent: 4.26
+packaging: []
+fill_volume_ml: 6.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=150676

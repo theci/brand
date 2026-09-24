@@ -1,0 +1,16 @@
+# 예시 카드 — 실제로 변환되는 완성 예시(비타민 클렌징 워터).
+# uv run python -m brandlab.herbnoori_import cards/_예시_비타민클렌징워터.yaml --stdout
+product: 비타민 클렌징 워터
+slug: vitamin-cleansing-water
+type: rinse_off
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=288778
+ingredients:
+  - 비타민나무워터 | 83g | 비타민나무 열매 증류수 | 티트리, 로즈워터
+  - (유기농) 글리세린 | 3g | 보습 | 히아루론산
+  - 덱스판테놀 | 1g | 비타민B5 보습·재생
+  - 폴리소르베이트 20 | 4g | 가용화제
+  - 나이아신아마이드 | 2g | 식약처 미백 고시
+  - 알란토인(액상) | 5g | 진정
+  - 1,2-헥산디올 | 2g | 방부·보습

@@ -1,0 +1,36 @@
+product: 자운유 고운결 윤크림
+slug: hn-136793
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.3
+phases:
+- name: A
+  ingredients:
+  - id: jaunggo-oil
+    percent: 23.93
+  - id: olive-emulsifying-wax
+    percent: 4.99
+  - id: oliwax-lc
+    percent: 1.99
+  - id: rose-water
+    percent: 44.85
+  - id: panthenol
+    percent: 4.99
+  - id: aloe-vera-gel
+    percent: 9.97
+  - id: white-peptide
+    percent: 4.99
+  - id: niacinamide
+    percent: 2.99
+  - id: herbal-preservative
+    percent: 1.0
+  - id: neroli-eo
+    percent: 0.1
+  - id: bergamot-fcf-eo
+    percent: 0.2
+packaging: []
+fill_volume_ml: 100.3
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=136793

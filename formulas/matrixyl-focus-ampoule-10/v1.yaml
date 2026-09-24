@@ -1,0 +1,19 @@
+product: 매트릭실 집중 앰플 10
+slug: matrixyl-focus-ampoule-10
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+line: 매트릭실
+product_type: leave_on
+status: 개발중
+base_batch_g: 33.5
+phases:
+- name: A
+  ingredients:
+  - id: hyaluronic-acid-11
+    percent: 89.55
+  - id: matrixyl-3000
+    percent: 10.45
+packaging: []
+fill_volume_ml: 33.5
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=288658

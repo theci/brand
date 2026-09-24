@@ -1,0 +1,30 @@
+product: 귤 비타수분크림
+slug: hn-75845
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.35
+phases:
+- name: A
+  ingredients:
+  - id: macadamia-oil
+    percent: 4.98
+  - id: olive-emulsifying-wax
+    percent: 2.99
+  - id: aloe-vera-gel
+    percent: 74.74
+  - id: niacinamide
+    percent: 4.98
+  - id: ethyl-ascorbyl-ether
+    percent: 2.99
+  - id: mulberry-extract
+    percent: 7.97
+  - id: herbal-preservative
+    percent: 1.0
+  - id: mandarin-eo
+    percent: 0.35
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=75845

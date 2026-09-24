@@ -1,0 +1,30 @@
+product: 고체 멀티치약
+slug: hn-288768
+version: 1
+regime: quasi_drug
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 132.5
+phases:
+- name: A
+  ingredients:
+  - id: dental-silica
+    percent: 30.19
+  - id: sodium-bicarbonate
+    percent: 15.09
+  - id: xylitol
+    percent: 18.87
+  - id: slsa
+    percent: 3.77
+  - id: corn-starch
+    percent: 6.04
+  - id: glycerin
+    percent: 12.83
+  - id: purified-water
+    percent: 12.83
+  - id: lemon-eo
+    percent: 0.38
+packaging: []
+fill_volume_ml: 130.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=288768

@@ -1,0 +1,26 @@
+product: 레드(펄)립글로스
+slug: hn-50335
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 17.75
+phases:
+- name: A
+  ingredients:
+  - id: argan-oil
+    percent: 28.17
+  - id: castor-oil
+    percent: 50.7
+  - id: cocoa-butter
+    percent: 11.27
+  - id: candelilla-wax
+    percent: 5.63
+  - id: strawberry-flavor-oil
+    percent: 2.54
+  - id: silver-pearl
+    percent: 1.69
+packaging: []
+fill_volume_ml: 17.8
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=50335

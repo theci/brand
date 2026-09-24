@@ -1,0 +1,24 @@
+product: 워터리 립글로스
+slug: hn-168283
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 13.8
+phases:
+- name: A
+  ingredients:
+  - id: lip-balm-base
+    percent: 33.33
+  - id: lip-color-generic
+    percent: 7.25
+  - id: jojoba-oil
+    percent: 21.74
+  - id: castor-oil
+    percent: 36.23
+  - id: blending-oil
+    percent: 1.45
+packaging: []
+fill_volume_ml: 13.8
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=168283

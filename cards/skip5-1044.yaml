@@ -1,0 +1,11 @@
+# 편백헤어토너 — sample.txt(이미지 레시피) 기반(branduid=1044).
+product: 편백헤어토너
+slug: hn-1044
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=1044
+ingredients:
+  - 편백워터 | 80g | 수상
+  - 하수오추출물 | 17g | 모발
+  - 천연한방보존제 | 1g | 방부

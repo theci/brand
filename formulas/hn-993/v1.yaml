@@ -1,0 +1,20 @@
+product: 아로마 손소독제스프레이
+slug: hn-993
+version: 1
+regime: biocide
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 420.3
+phases:
+- name: A
+  ingredients:
+  - id: aroma-base-70
+    percent: 94.04
+  - id: glycerin
+    percent: 5.35
+  - id: lemon-eo
+    percent: 0.61
+packaging: []
+fill_volume_ml: 500.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=993

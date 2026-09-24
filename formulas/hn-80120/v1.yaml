@@ -1,0 +1,16 @@
+product: 피테 오리지널 100앰플
+slug: hn-80120
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 30.0
+phases:
+- name: A
+  ingredients:
+  - id: galactomyces-ferment
+    percent: 100.0
+packaging: []
+fill_volume_ml: 30.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=80120

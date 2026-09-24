@@ -1,0 +1,20 @@
+product: 촉촉 글로우 립스틱
+slug: glow-lipstick
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 9.15
+phases:
+- name: A
+  ingredients:
+  - id: lip-balm-base
+    percent: 87.43
+  - id: rosewood-eo
+    percent: 1.64
+  - id: lip-color-base
+    percent: 10.93
+packaging: []
+fill_volume_ml: 5.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=283256

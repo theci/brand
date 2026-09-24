@@ -1,0 +1,16 @@
+# 콜라겐 에센스팩 — sample.txt(이미지 레시피) 기반(branduid=839).
+product: 콜라겐 에센스팩
+slug: hn-839
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=839
+ingredients:
+  - 알로에겔 | 40g | 진정
+  - 로즈워터 | 40g | 수상
+  - 만다린 | 5방울 | 착향
+  - 자스민 | 2방울 | 착향
+  - 코엔자임큐텐 | 3g | 항산화
+  - 아카시아콜라겐 | 4g | 보습
+  - 한방보존제 | 2g | 방부
+  - 천연비타민E | 2g | 산화방지

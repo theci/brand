@@ -2,6 +2,7 @@ product: 오후 진정 배리어 크림
 slug: barrier-cream
 version: 1
 regime: cosmetics
+category: 로션·크림
 product_type: leave_on       # 안 씻어냄 → 알러젠 임계 0.001%(엄격)
 status: 개발중
 base_batch_g: 200

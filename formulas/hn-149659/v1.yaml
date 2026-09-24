@@ -1,0 +1,28 @@
+product: 로얄진생골드세럼(24K)
+slug: hn-149659
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 30.16
+phases:
+- name: A
+  ingredients:
+  - id: galactomyces-ferment
+    percent: 42.11
+  - id: royal-jelly-extract
+    percent: 9.95
+  - id: gold-24k
+    percent: 0.03
+  - id: aloe-vera-gel
+    percent: 39.79
+  - id: stem-cell-culture
+    percent: 6.63
+  - id: herbal-preservative
+    percent: 0.99
+  - id: sea-buckthorn-oil
+    percent: 0.5
+packaging: []
+fill_volume_ml: 30.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=149659

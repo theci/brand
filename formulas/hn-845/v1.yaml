@@ -1,0 +1,24 @@
+product: 안티 셀룰라이트 바디팩
+slug: hn-845
+version: 1
+regime: cosmetics
+category: 팩·패드
+product_type: rinse_off
+status: 개발중
+base_batch_g: 92.0
+phases:
+- name: A
+  ingredients:
+  - id: green-clay
+    percent: 54.35
+  - id: purified-water
+    percent: 43.48
+  - id: grapefruit-eo
+    percent: 1.09
+  - id: rose-geranium-eo
+    percent: 0.54
+  - id: cypress-eo
+    percent: 0.54
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=845

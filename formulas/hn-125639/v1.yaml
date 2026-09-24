@@ -1,0 +1,42 @@
+product: 발효BB크림
+slug: hn-125639
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 68.2
+phases:
+- name: A
+  ingredients:
+  - id: jojoba-oil
+    percent: 8.8
+  - id: olive-emulsifying-wax
+    percent: 4.4
+  - id: oliwax-lc
+    percent: 1.47
+  - id: foundation-color-base
+    percent: 13.2
+  - id: zinc-oxide
+    percent: 4.4
+  - id: rose-water
+    percent: 19.06
+  - id: sodium-hyaluronate
+    percent: 5.87
+  - id: lipidure
+    percent: 2.93
+  - id: galactomyces-ferment
+    percent: 29.32
+  - id: herbal-preservative
+    percent: 1.47
+  - id: niacinamide
+    percent: 2.93
+  - id: adenosine
+    percent: 2.93
+  - id: ethylhexyl-methoxycinnamate
+    percent: 2.93
+  - id: rose-geranium-eo
+    percent: 0.29
+packaging: []
+fill_volume_ml: 68.2
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=125639

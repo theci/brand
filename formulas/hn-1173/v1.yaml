@@ -1,0 +1,21 @@
+product: 편백 페브리즈
+slug: hn-1173
+version: 1
+regime: chemical_safety
+category: 생활화학
+product_type: leave_on
+status: 개발중
+base_batch_g: 223.0
+phases:
+- name: A
+  ingredients:
+  - id: aroma-base-70
+    percent: 95.29
+  - id: hinoki-eo
+    percent: 2.42
+  - id: lemon-eo
+    percent: 2.29
+packaging: []
+fill_volume_ml: 250.0
+product_category: 탈취제_분사형_액상
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=1173

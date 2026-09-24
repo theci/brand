@@ -1,0 +1,22 @@
+product: 로즈 콜라겐 폼클렌징
+slug: hn-142625
+version: 1
+regime: cosmetics
+category: 클렌징
+product_type: rinse_off
+status: 개발중
+base_batch_g: 300.0
+phases:
+- name: A
+  ingredients:
+  - id: gentle-foam-cleanser-base
+    percent: 76.67
+  - id: rose-water
+    percent: 16.67
+  - id: acacia-collagen
+    percent: 3.33
+  - id: aroma-water
+    percent: 3.33
+packaging: []
+fill_volume_ml: 300.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=142625

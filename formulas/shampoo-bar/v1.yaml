@@ -2,6 +2,7 @@ product: 라벤더 고체 샴푸바
 slug: shampoo-bar
 version: 1
 regime: cosmetics            # 인체 세정용 화장품 → 화장품법(등록 1회, SKU 추가 0원)
+category: 기타
 product_type: rinse_off      # 씻어내는 제품 → 알러젠 임계값 0.01% 초과 시 표기
 status: 개발중
 base_batch_g: 300            # 홈 개발 배치 300g

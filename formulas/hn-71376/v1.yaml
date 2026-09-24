@@ -1,0 +1,26 @@
+product: 진정! 비타민오이세럼
+slug: hn-71376
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 106.0
+phases:
+- name: A
+  ingredients:
+  - id: aloe-vera-gel
+    percent: 43.4
+  - id: ylang-ylang-water
+    percent: 35.85
+  - id: cucumber-extract
+    percent: 9.43
+  - id: niacinamide
+    percent: 4.72
+  - id: herbal-preservative
+    percent: 0.94
+  - id: glycerin
+    percent: 5.66
+packaging: []
+fill_volume_ml: 106.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=71376

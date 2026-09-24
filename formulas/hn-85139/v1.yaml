@@ -1,0 +1,30 @@
+product: 피테리치크림
+slug: hn-85139
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 106.25
+phases:
+- name: A
+  ingredients:
+  - id: cupuacu-butter
+    percent: 28.24
+  - id: olive-emulsifying-wax
+    percent: 4.71
+  - id: rose-water
+    percent: 37.63
+  - id: galactomyces-ferment
+    percent: 18.82
+  - id: adenosine-liposome
+    percent: 4.71
+  - id: niacinamide
+    percent: 4.71
+  - id: water-soluble-preservative
+    percent: 0.94
+  - id: rosewood-eo
+    percent: 0.24
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=85139

@@ -1,0 +1,14 @@
+# 24K 이데베논세럼 — 배치에서 아티팩트/일반명으로 잡혀 수동 보정(branduid=157752).
+product: 24K 이데베논세럼
+slug: hn-157752
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=157752
+ingredients:
+  - 발효여과물 | 23g | 갈락토미세스
+  - 로얄젤리추출물 | 10g | 영양
+  - 이데베논 | 10g | 항산화
+  - 로즈플라워겔 | 50g | 겔 베이스
+  - 4GF | 5g | 성장인자
+  - 1,2 헥산디올 | 2g | 방부·보습

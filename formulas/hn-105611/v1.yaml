@@ -1,0 +1,32 @@
+product: 카렌듈라모이스처로션
+slug: hn-105611
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 104.0
+phases:
+- name: A
+  ingredients:
+  - id: calendula-oil
+    percent: 9.62
+  - id: hemp-seed-oil
+    percent: 4.81
+  - id: olive-emulsifying-wax
+    percent: 2.88
+  - id: roman-chamomile-water
+    percent: 57.68
+  - id: herbal-preservative
+    percent: 0.96
+  - id: sodium-hyaluronate
+    percent: 4.81
+  - id: calming-5-solution
+    percent: 9.62
+  - id: ceramide-complex
+    percent: 4.81
+  - id: roman-chamomile-eo
+    percent: 4.81
+packaging: []
+fill_volume_ml: 104.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=105611

@@ -1,0 +1,27 @@
+product: PDRN 카페인 앰플
+slug: pdrn-caffeine-ampoule
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+line: PDRN·니들
+product_type: leave_on
+status: 개발중
+base_batch_g: 50.0
+phases:
+- name: A
+  ingredients:
+  - id: rose-flower-gel
+    percent: 40.0
+  - id: caffeine
+    percent: 32.0
+  - id: pdrn
+    percent: 20.0
+  - id: niacinamide
+    percent: 4.0
+  - id: adenosine-liposome
+    percent: 2.0
+  - id: hexanediol
+    percent: 2.0
+packaging: []
+fill_volume_ml: 50.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=286903

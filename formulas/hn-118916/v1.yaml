@@ -1,0 +1,34 @@
+product: 타마누 수딩 크림
+slug: hn-118916
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.35
+phases:
+- name: A
+  ingredients:
+  - id: tamanu-oil
+    percent: 19.93
+  - id: shea-butter
+    percent: 7.97
+  - id: olive-emulsifying-wax
+    percent: 4.98
+  - id: oliwax-lc
+    percent: 1.0
+  - id: lavender-water
+    percent: 43.85
+  - id: panthenol
+    percent: 4.98
+  - id: natrotics
+    percent: 1.99
+  - id: centella-extract
+    percent: 9.97
+  - id: ceramide-complex
+    percent: 4.98
+  - id: essential-oil
+    percent: 0.35
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=118916

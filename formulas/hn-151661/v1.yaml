@@ -1,0 +1,28 @@
+product: 마데카소사이드  수분크림
+slug: hn-151661
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.2
+phases:
+- name: A
+  ingredients:
+  - id: water-argan
+    percent: 2.99
+  - id: madecassoside
+    percent: 4.99
+  - id: aloe-vera-gel
+    percent: 82.84
+  - id: niacinamide
+    percent: 2.99
+  - id: multi-hyaluronic-acid
+    percent: 4.99
+  - id: herbal-preservative
+    percent: 1.0
+  - id: bebe-bo-blending-oil
+    percent: 0.2
+packaging: []
+fill_volume_ml: 100.2
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=151661

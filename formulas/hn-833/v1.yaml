@@ -1,0 +1,36 @@
+product: 석류영양크림
+slug: hn-833
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 94.35
+phases:
+- name: A
+  ingredients:
+  - id: hemp-seed-oil
+    percent: 10.6
+  - id: rosehip-oil
+    percent: 19.08
+  - id: olive-emulsifying-wax
+    percent: 3.18
+  - id: cetyl-alcohol
+    percent: 1.06
+  - id: lavender-water
+    percent: 52.99
+  - id: pomegranate-extract
+    percent: 4.24
+  - id: herbal-preservative
+    percent: 2.12
+  - id: sodium-hyaluronate
+    percent: 3.18
+  - id: coenzyme-q10
+    percent: 3.18
+  - id: neroli-eo
+    percent: 0.16
+  - id: orange-eo
+    percent: 0.21
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=833

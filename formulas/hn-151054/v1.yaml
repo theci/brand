@@ -1,0 +1,24 @@
+product: 브로콜리 크림
+slug: hn-151054
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 96.25
+phases:
+- name: A
+  ingredients:
+  - id: broccoli-extract
+    percent: 10.39
+  - id: cream-base
+    percent: 83.12
+  - id: 4gf
+    percent: 5.19
+  - id: bergamot-fcf-eo
+    percent: 0.26
+  - id: tamanu-oil
+    percent: 1.04
+packaging: []
+fill_volume_ml: 96.2
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=151054

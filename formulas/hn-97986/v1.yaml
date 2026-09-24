@@ -1,0 +1,18 @@
+product: 데일리 스마트폰 소독제
+slug: hn-97986
+version: 1
+regime: biocide
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 88.0
+phases:
+- name: A
+  ingredients:
+  - id: lemon-eo
+    percent: 1.14
+  - id: aroma-base-70
+    percent: 98.86
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=97986

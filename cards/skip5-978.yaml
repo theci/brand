@@ -1,0 +1,13 @@
+# 튼살예방오일 — sample.txt(이미지 레시피) 기반(branduid=978).
+product: 튼살예방오일
+slug: hn-978
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=978
+ingredients:
+  - 마카데미아넛오일 | 50g | 유상
+  - 로즈힙오일 | 40g | 유상
+  - 천연비타민E | 5g | 산화방지
+  - 네롤리 | 2방울 | 착향
+  - 만다린 | 8방울 | 착향

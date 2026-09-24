@@ -1,0 +1,28 @@
+product: 로즈마리 트리트먼트 미스트
+slug: hn-285881
+version: 1
+regime: cosmetics
+category: 토너·미스트
+product_type: leave_on
+status: 개발중
+base_batch_g: 190.0
+phases:
+- name: A
+  ingredients:
+  - id: cetiol-ester-oil
+    percent: 7.37
+  - id: rosemary-water
+    percent: 57.88
+  - id: silk-elastin
+    percent: 10.53
+  - id: grain-protein-extract
+    percent: 10.53
+  - id: amino-acid-17-complex
+    percent: 10.53
+  - id: hexanediol
+    percent: 2.11
+  - id: ylang-ylang-eo
+    percent: 1.05
+packaging: []
+fill_volume_ml: 190.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=285881

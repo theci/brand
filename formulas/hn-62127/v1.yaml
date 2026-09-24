@@ -1,0 +1,22 @@
+product: 코코넛베이직립밤
+slug: hn-62127
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 25.1
+phases:
+- name: A
+  ingredients:
+  - id: coconut-oil
+    percent: 59.76
+  - id: cocoa-butter
+    percent: 19.92
+  - id: candelilla-wax
+    percent: 19.92
+  - id: strawberry-flavor-oil
+    percent: 0.4
+packaging: []
+fill_volume_ml: 25.1
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=62127

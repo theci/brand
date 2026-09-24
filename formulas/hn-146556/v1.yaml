@@ -1,0 +1,36 @@
+product: 코엔자임큐텐 리치크림
+slug: hn-146556
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.15
+phases:
+- name: A
+  ingredients:
+  - id: macadamia-oil
+    percent: 19.97
+  - id: cupuacu-butter
+    percent: 4.99
+  - id: olive-emulsifying-wax
+    percent: 4.99
+  - id: oliwax-lc
+    percent: 2.0
+  - id: rose-water
+    percent: 47.92
+  - id: sodium-hyaluronate
+    percent: 4.99
+  - id: coenzyme-q10
+    percent: 9.99
+  - id: niacinamide
+    percent: 3.0
+  - id: lipidure
+    percent: 1.0
+  - id: herbal-preservative
+    percent: 1.0
+  - id: rose-geranium-eo
+    percent: 0.15
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=146556

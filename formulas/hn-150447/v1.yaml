@@ -1,0 +1,20 @@
+product: 투명 썬스틱(미백)
+slug: hn-150447
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 28.5
+phases:
+- name: A
+  ingredients:
+  - id: clear-sunstick-base
+    percent: 98.25
+  - id: alpha-bisabolol
+    percent: 0.7
+  - id: lavender-eo
+    percent: 1.05
+packaging: []
+fill_volume_ml: 30.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=150447

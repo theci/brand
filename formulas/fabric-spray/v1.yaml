@@ -2,6 +2,7 @@ product: 섬유 탈취 스프레이(라벤더)
 slug: fabric-spray
 version: 1
 regime: chemical_safety        # 화학제품안전법(생활화학제품)
+category: 생활화학
 product_category: 탈취제_분사형_액상   # ★분사형(스프레이) — 비분사형보다 시험비 비쌈
 # product_type은 방향/탈취제엔 의미 없지만 코어 필수 필드라 placeholder.
 product_type: leave_on

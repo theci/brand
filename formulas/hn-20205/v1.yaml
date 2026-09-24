@@ -1,0 +1,22 @@
+product: Pure 가루바스붐 레시피
+slug: hn-20205
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 423.56
+phases:
+- name: A
+  ingredients:
+  - id: sodium-bicarbonate
+    percent: 47.22
+  - id: citric-acid-food
+    percent: 23.61
+  - id: corn-starch
+    percent: 28.33
+  - id: lavender-eo
+    percent: 0.84
+packaging: []
+fill_volume_ml: 423.6
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=20205

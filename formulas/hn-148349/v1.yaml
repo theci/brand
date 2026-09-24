@@ -1,0 +1,20 @@
+product: 4GF 탄탄크림
+slug: hn-148349
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.1
+phases:
+- name: A
+  ingredients:
+  - id: cream-base
+    percent: 89.91
+  - id: 4gf
+    percent: 9.99
+  - id: neroli-eo
+    percent: 0.1
+packaging: []
+fill_volume_ml: 100.1
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=148349

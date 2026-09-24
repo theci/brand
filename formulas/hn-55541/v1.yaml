@@ -1,0 +1,24 @@
+product: 달팽이 토너
+slug: hn-55541
+version: 1
+regime: cosmetics
+category: 토너·미스트
+product_type: leave_on
+status: 개발중
+base_batch_g: 107.0
+phases:
+- name: A
+  ingredients:
+  - id: rose-water
+    percent: 46.73
+  - id: neroli-water
+    percent: 28.97
+  - id: snail-mucin
+    percent: 14.02
+  - id: herbal-preservative
+    percent: 0.93
+  - id: sodium-hyaluronate
+    percent: 9.35
+packaging: []
+fill_volume_ml: 107.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=55541

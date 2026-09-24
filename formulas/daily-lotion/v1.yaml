@@ -2,6 +2,7 @@ product: 데일리 수분 로션
 slug: daily-lotion
 version: 1
 regime: cosmetics
+category: 로션·크림
 product_type: leave_on       # 안 씻어냄 → 알러젠 임계값 0.001% (엄격)
 status: 개발중
 base_batch_g: 200

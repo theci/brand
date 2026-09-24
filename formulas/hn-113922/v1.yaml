@@ -1,0 +1,32 @@
+product: 보르피린 동안 스프레이 로션
+slug: hn-113922
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.2
+phases:
+- name: A
+  ingredients:
+  - id: macadamia-oil
+    percent: 9.98
+  - id: borfirin
+    percent: 4.99
+  - id: olive-emulsifying-wax
+    percent: 3.99
+  - id: oliwax-lc
+    percent: 1.0
+  - id: rose-water
+    percent: 72.86
+  - id: natto-moist
+    percent: 2.99
+  - id: herbal-preservative
+    percent: 1.0
+  - id: niacinamide
+    percent: 2.99
+  - id: ylang-ylang-eo
+    percent: 0.2
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=113922

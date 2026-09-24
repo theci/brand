@@ -1,0 +1,12 @@
+# 마데카소사이드 마일드샴푸 — 015/005 배치 수동 보정(branduid=151671).
+product: 마데카소사이드 마일드샴푸
+slug: hn-151671
+type: rinse_off
+status: 개발중
+volume_ml: 500
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=151671
+ingredients:
+  - 샴푸 베이스 | 440g | 샴푸 베이스
+  - 마데카소사이드 | 30g | 진정
+  - 마치현 추출물 | 30g | 진정
+  - 베베보 블렌딩EO | 3ml | 착향

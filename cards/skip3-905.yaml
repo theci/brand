@@ -1,0 +1,18 @@
+# 아토피 상비연고 — sample.txt(이미지 레시피) 기반(branduid=905).
+product: 아토피 상비연고
+slug: hn-905
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=905
+ingredients:
+  - 호호바오일 | 10g | 유상
+  - 카렌듈라인퓨즈오일 | 10g | 진정 유상
+  - 달맞이종자유 | 20g | 유상
+  - 동백오일 | 10g | 유상
+  - 시어버터 | 10g | 버터
+  - 칸데릴라왁스 | 12g | 경화제
+  - 라벤더 EO | 10방울 | 착향
+  - 티트리 EO | 10방울 | 항균
+  - 오렌지 | 5방울 | 착향
+  - 저먼캐모마일 | 20방울 | 진정

@@ -1,0 +1,26 @@
+product: 체리립밤
+slug: hn-844
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 87.3
+phases:
+- name: A
+  ingredients:
+  - id: jacho-oil
+    percent: 45.82
+  - id: rosehip-oil
+    percent: 17.18
+  - id: tocopherol
+    percent: 5.73
+  - id: shea-butter
+    percent: 17.18
+  - id: candelilla-wax
+    percent: 13.75
+  - id: cherry-flavor-oil
+    percent: 0.34
+packaging: []
+fill_volume_ml: 90.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=844

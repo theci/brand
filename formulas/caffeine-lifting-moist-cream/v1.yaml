@@ -1,0 +1,26 @@
+product: 카페인 리프팅 수분크림
+slug: caffeine-lifting-moist-cream
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: water-jojoba
+    percent: 3.0
+  - id: rose-flower-gel
+    percent: 84.0
+  - id: caffeine
+    percent: 5.0
+  - id: collagen-7-complex
+    percent: 5.0
+  - id: niacinamide
+    percent: 2.0
+  - id: herbal-preservative
+    percent: 1.0
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=186452

@@ -120,3 +120,30 @@ def ingredient_flags(ing: Ingredient) -> list[str]:
 
 def format_won(x: float) -> str:
     return f"{x:,.0f}원"
+
+
+def product_picker(lab: BrandLab, key: str, label: str = "처방 선택"):
+    """제품 종류→라인→제품 3단 선택 위젯. 선택된 Formula(없으면 None) 반환.
+
+    수백 개 처방을 한 드롭다운에 붓지 않도록, category(종류)·line(라인)으로
+    먼저 좁힌다. 페이지들이 복붙하던 flat selectbox를 이걸로 통일한다.
+    """
+    formulas = lab.formulas
+    if not formulas:
+        st.info("처방이 없습니다. STEP 1에서 먼저 등록하세요.")
+        return None
+    cats = sorted({f.category.value for f in formulas})
+    cat = st.selectbox(f"{label} · 종류", ["(전체)", *cats], key=f"{key}_cat")
+    pool = [f for f in formulas if cat == "(전체)" or f.category.value == cat]
+    lines = sorted({f.line for f in pool if f.line})
+    if lines:
+        ln = st.selectbox("라인", ["(전체)", *lines], key=f"{key}_line")
+        if ln != "(전체)":
+            pool = [f for f in pool if f.line == ln]
+    opts = {f"{f.slug} v{f.version} — {f.product}": f for f in pool}
+    if not opts:
+        return None
+    picked = opts[st.selectbox(label, list(opts), key=f"{key}_sel")]
+    if picked.source_url:
+        st.caption(f"🔗 원본 레시피: [{picked.source_url}]({picked.source_url})")
+    return picked

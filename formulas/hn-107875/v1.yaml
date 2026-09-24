@@ -1,0 +1,22 @@
+product: 7가지 한방샴푸
+slug: hn-107875
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 495.0
+phases:
+- name: A
+  ingredients:
+  - id: gentle-shampoo-base
+    percent: 80.81
+  - id: herbal-7-complex
+    percent: 12.12
+  - id: silk-elastin
+    percent: 6.06
+  - id: blending-oil
+    percent: 1.01
+packaging: []
+fill_volume_ml: 500.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=107875

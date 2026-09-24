@@ -1,0 +1,34 @@
+product: 자운유 굳세라 크림
+slug: hn-151372
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.25
+phases:
+- name: A
+  ingredients:
+  - id: jaunggo-oil
+    percent: 13.97
+  - id: natural-vaseline
+    percent: 9.98
+  - id: olive-emulsifying-wax
+    percent: 4.99
+  - id: oliwax-lc
+    percent: 2.0
+  - id: roman-chamomile-water
+    percent: 48.85
+  - id: sodium-hyaluronate
+    percent: 3.99
+  - id: ceramide-water-soluble
+    percent: 9.98
+  - id: centella-extract
+    percent: 4.99
+  - id: herbal-preservative
+    percent: 1.0
+  - id: bergamot-fcf-eo
+    percent: 0.25
+packaging: []
+fill_volume_ml: 100.2
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=151372

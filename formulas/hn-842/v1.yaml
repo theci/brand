@@ -1,0 +1,22 @@
+product: 레몬 클렌징밤레시피
+slug: hn-842
+version: 1
+regime: cosmetics
+category: 클렌징
+product_type: rinse_off
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: grapeseed-oil
+    percent: 78.0
+  - id: olive-liquid
+    percent: 15.0
+  - id: candelilla-wax
+    percent: 5.0
+  - id: lemon-eo
+    percent: 2.0
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=842

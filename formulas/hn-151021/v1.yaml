@@ -1,0 +1,26 @@
+product: 보톡스 앰플
+slug: hn-151021
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 43.5
+phases:
+- name: A
+  ingredients:
+  - id: rose-water
+    percent: 45.97
+  - id: aloe-vera-gel
+    percent: 45.98
+  - id: marine-collagen
+    percent: 2.3
+  - id: peptide-complex
+    percent: 2.3
+  - id: tocopherol
+    percent: 2.3
+  - id: herbal-preservative
+    percent: 1.15
+packaging: []
+fill_volume_ml: 43.5
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=151021

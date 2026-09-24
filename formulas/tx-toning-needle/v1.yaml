@@ -1,0 +1,23 @@
+product: TX 토닝 니들
+slug: tx-toning-needle
+version: 1
+regime: cosmetics
+category: 니들
+line: TX토닝
+product_type: leave_on
+status: 개발중
+base_batch_g: 90.0
+phases:
+- name: A
+  ingredients:
+  - id: essence-base
+    percent: 88.89
+  - id: tranexamic-acid
+    percent: 2.22
+  - id: glutathione
+    percent: 8.89
+packaging: []
+fill_volume_ml: 90.0
+notes: '미세니들 키트 — 처방화한 것은 ''토닝 에센스'' 액상부(에센스베이스+유효성분)뿐. 사용 키트: 토닝에센스 ~49.9g + 스피큘 0.1~0.6g(95만 샷급)을 섞어
+  도포. 스피큘은 무게가 아닌 미세침 성분이라 % 처방에서 제외. 원문 ''(펩타이드)''=트라넥삼산.'
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=287829

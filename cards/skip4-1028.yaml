@@ -1,0 +1,13 @@
+# 망고립버터 — sample.txt(이미지 레시피) 기반(branduid=1028).
+product: 망고립버터
+slug: hn-1028
+type: leave_on
+status: 개발중
+volume_ml: 50
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=1028
+ingredients:
+  - 아보카도오일 | 10g | 유상
+  - 피마자오일 | 20g | 광택 유상
+  - 망고버터 | 8g | 버터
+  - 칸데릴라왁스 | 8g | 경화제
+  - 딸기플레이버오일 | 8방울 | 착향

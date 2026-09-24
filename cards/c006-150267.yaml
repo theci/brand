@@ -1,0 +1,12 @@
+# 리프레쉬 사쉐(향낭) — 015/006002 배치 수동 보정(branduid=150267).
+product: 리프레쉬 사쉐(향낭)
+slug: hn-150267
+type: leave_on
+status: 개발중
+regime: chemical_safety
+volume_ml: 20
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=150267
+product_category: 방향제_비분사형
+ingredients:
+  - 천연 사쉐 스톤 | 10g | 향 담체
+  - 레몬쥬스 | 10g | 착향

@@ -1,0 +1,13 @@
+# 진주 스킨 — sample.txt(이미지 레시피) 기반(branduid=829).
+product: 진주 스킨
+slug: hn-829
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=829
+ingredients:
+  - 인삼팅크처 | 10g | 재생
+  - 라벤더워터 | 75g | 수상
+  - 히아루론산 | 2g | 보습
+  - 진주가루 | 1g | 광채
+  - 알부틴 | 2g | 미백

@@ -1,0 +1,12 @@
+# 피어나 카네이션 디퓨저 — 015/006002 배치 수동 보정(branduid=149807).
+product: 피어나 카네이션 디퓨저
+slug: hn-149807
+type: leave_on
+status: 개발중
+regime: chemical_safety
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=149807
+product_category: 방향제_지속방출형
+ingredients:
+  - 디퓨저 베이스 | 75ml | 확산 베이스
+  - 카네이션향 | 25ml | 조합향료

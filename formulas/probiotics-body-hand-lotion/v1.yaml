@@ -1,0 +1,22 @@
+product: 프로바이오틱스 바디&핸드 로션
+slug: probiotics-body-hand-lotion
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 301.5
+phases:
+- name: A
+  ingredients:
+  - id: body-hand-lotion-base
+    percent: 79.6
+  - id: probiotics-complex
+    percent: 9.95
+  - id: houttuynia-extract
+    percent: 9.95
+  - id: bebe-bo-blending-oil
+    percent: 0.5
+packaging: []
+fill_volume_ml: 300.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=173225

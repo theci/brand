@@ -1,0 +1,23 @@
+product: 동백 딥클렌징오일
+slug: camellia-deep-cleansing-oil
+version: 1
+regime: cosmetics
+category: 클렌징
+line: 클렌징·오일
+product_type: rinse_off
+status: 개발중
+base_batch_g: 184.5
+phases:
+- name: A
+  ingredients:
+  - id: camellia-oil
+    percent: 24.66
+  - id: cetyl-ethylhexanoate
+    percent: 46.61
+  - id: washable-cleansing-liquid
+    percent: 27.1
+  - id: lemon-juice-blending-oil
+    percent: 1.63
+packaging: []
+fill_volume_ml: 184.5
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=288646

@@ -256,17 +256,17 @@ def moisture_role(ing: Ingredient | None) -> str:
         return "occlusive"
     if cat == "에몰리언트":
         return "emollient"
-    if cat == "보습제":
+    if cat == "보습":
         return "humectant"
     if cat in {"계면활성제", "유화제"}:
         return "emulsifier"
-    if cat in {"에센셜오일", "향료"} or ing.fragrance:
+    if cat in {"착향", "향료"} or ing.fragrance:
         return "fragrance"
-    if cat == "산화방지제":
+    if cat == "산화방지":
         return "antioxidant"
     if cat in {"용제", "용매"}:
         return "solvent"
-    if cat == "점증제":  # 지방알코올(required_hlb 보유)=유상, 잔탄검 등=수상
+    if cat == "점증":  # 지방알코올(required_hlb 보유)=유상, 잔탄검 등=수상
         return "emollient" if ing.required_hlb is not None else "thickener_water"
     return "other"
 
@@ -343,7 +343,7 @@ def formulation_balance(
 # ---------------------------------------------------------------------------
 # 보존 시스템 점검 (물 든 제형의 미생물 방어)
 # ---------------------------------------------------------------------------
-_PRESERVATIVE_CATEGORIES = {"보존제"}
+_PRESERVATIVE_CATEGORIES = {"보존"}
 # 다기능 항균보조 — 단독으로는 광범위 보존제가 아님(보존 부담을 낮추는 보조).
 _BOOSTER_IDS = {"pentylene-glycol", "hexanediol", "caprylyl-glycol", "ethylhexylglycerin"}
 _WATER_INCI = {"water", "aqua"}

@@ -1,0 +1,22 @@
+product: 남성용 로즈마리스킨
+slug: hn-1022
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 102.0
+phases:
+- name: A
+  ingredients:
+  - id: rosemary-water
+    percent: 84.32
+  - id: herbal-preservative
+    percent: 0.98
+  - id: glycerin
+    percent: 4.9
+  - id: chlorella-extract
+    percent: 9.8
+packaging: []
+fill_volume_ml: 102.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=1022

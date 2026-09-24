@@ -1,0 +1,28 @@
+product: 레몬 손소독제(젤)
+slug: hn-890
+version: 1
+regime: biocide
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 130.4
+phases:
+- name: A
+  ingredients:
+  - id: purified-water
+    percent: 21.47
+  - id: carbomer-pregel
+    percent: 21.47
+  - id: hycell
+    percent: 0.38
+  - id: xanthan-gum
+    percent: 1.53
+  - id: glycerin
+    percent: 3.83
+  - id: aroma-base-95
+    percent: 50.63
+  - id: lemon-eo
+    percent: 0.69
+packaging: []
+fill_volume_ml: 130.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=890

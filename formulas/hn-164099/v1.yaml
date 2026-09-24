@@ -1,0 +1,38 @@
+product: 프로바이오틱스 장벽 크림
+slug: hn-164099
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.25
+phases:
+- name: A
+  ingredients:
+  - id: rosehip-oil
+    percent: 9.98
+  - id: jojoba-oil
+    percent: 4.99
+  - id: cetyl-alcohol
+    percent: 1.0
+  - id: olive-emulsifying-wax
+    percent: 3.99
+  - id: glyceryl-stearate
+    percent: 2.0
+  - id: neroli-water
+    percent: 27.93
+  - id: panthenol
+    percent: 2.99
+  - id: rose-flower-gel
+    percent: 29.9
+  - id: ceramide-complex
+    percent: 4.99
+  - id: probiotics-complex
+    percent: 9.98
+  - id: hexanediol
+    percent: 2.0
+  - id: blending-oil
+    percent: 0.25
+packaging: []
+fill_volume_ml: 100.2
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=164099

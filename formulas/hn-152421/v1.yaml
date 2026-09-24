@@ -1,0 +1,34 @@
+product: 호랑이풀 치약
+slug: hn-152421
+version: 1
+regime: quasi_drug
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 98.0
+phases:
+- name: A
+  ingredients:
+  - id: dental-silica
+    percent: 13.27
+  - id: xylitol
+    percent: 10.2
+  - id: purified-water
+    percent: 32.66
+  - id: allantoin
+    percent: 0.2
+  - id: centella-extract
+    percent: 10.2
+  - id: apple-surfactant
+    percent: 5.1
+  - id: herbal-preservative
+    percent: 1.02
+  - id: glycerin
+    percent: 26.53
+  - id: xanthan-gum
+    percent: 0.51
+  - id: essential-oil
+    percent: 0.31
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=152421

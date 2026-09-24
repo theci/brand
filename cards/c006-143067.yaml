@@ -1,0 +1,13 @@
+# 퍼퓸 롤온 — 015/006002 배치 수동 보정(branduid=143067).
+product: 퍼퓸 롤온
+slug: hn-143067
+type: leave_on
+status: 개발중
+regime: cosmetics
+volume_ml: 10
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=143067
+ingredients:
+  - 정제 호호바 | 9g | 유상
+  - 네롤리 에센셜오일 | 4방울 | 착향
+  - 버가못 에센셜오일(FCF) | 20방울 | 착향
+  - 로즈우드 에센셜오일 | 6방울 | 착향

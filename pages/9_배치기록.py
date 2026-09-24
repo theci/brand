@@ -16,7 +16,7 @@ from brandlab.batchrecord import (
 )
 from brandlab.experiment_edit import set_batch_actuals
 from brandlab.loader import EXPERIMENTS_DIR, iter_batch_paths, load_all_batches, load_batch
-from brandlab.ui import load_lab, setup_korean_font
+from brandlab.ui import load_lab, product_picker, setup_korean_font
 
 
 def _s(x) -> str:
@@ -122,8 +122,7 @@ with tab_new:
     if not lab.formulas:
         st.info("처방이 없습니다.")
         st.stop()
-    options = {f"{f.slug} v{f.version} — {f.product}": f for f in lab.formulas}
-    formula = options[st.selectbox("처방 선택", list(options))]
+    formula = product_picker(lab, key="batch", label="처방 선택")
     grams = st.number_input("목표 배치 크기(g)", min_value=1.0, value=100.0, step=10.0)
 
     today = date.today()

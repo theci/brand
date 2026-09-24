@@ -1,0 +1,16 @@
+product: 오미자 래핑오일
+slug: hn-114898
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 18.4
+phases:
+- name: A
+  ingredients:
+  - id: schisandra-seed-oil
+    percent: 100.0
+packaging: []
+fill_volume_ml: 20.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=114898

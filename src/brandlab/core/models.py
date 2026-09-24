@@ -41,6 +41,62 @@ class FormulaStatus(str, Enum):
     CONFIRMED = "확정"
 
 
+class IngredientCategory(str, Enum):
+    """원료 대분류(통제 어휘). 세부 효능은 Ingredient.effects로 분리한다."""
+
+    EMOLLIENT = "에몰리언트"
+    BUTTER = "버터"
+    WAX = "왁스"
+    EMULSIFIER = "유화제"
+    SURFACTANT = "계면활성제"
+    HUMECTANT = "보습"
+    ACTIVE = "활성"
+    FRAGRANCE = "착향"
+    THICKENER = "점증"
+    ANTIOXIDANT = "산화방지"
+    PRESERVATIVE = "보존"
+    SOLVENT = "용제"
+    PH = "pH조절"
+    SAPONIFIER = "비누화제"  # 반응성(비누화) — 라벨 반응공정 경고에 사용, pH조절과 구분
+    WATER = "워터"
+    FINISHED_BASE = "완제베이스"
+    FOOD = "식품원료"
+    COLORANT = "착색"  # 색소(립컬러·CI 색소 등) — 색조 처방용
+
+
+class IngredientEffect(str, Enum):
+    """원료 효능 태그(활성 계열의 세부). 여러 개 가질 수 있다."""
+
+    WHITENING = "미백"
+    REGEN = "재생"
+    SOOTHING = "진정"
+    BARRIER = "장벽"
+    FERMENT = "발효"
+    ANTIOX = "항산화"
+    ELASTICITY = "탄력"
+    WRINKLE = "주름"
+    NUTRITION = "영양"
+    VOLUME = "볼륨"
+    MOISTURE = "보습"
+    SEBUM = "피지조절"
+    DEODOR = "소취"
+
+
+class ProductCategory(str, Enum):
+    """제품 종류(통제 어휘). 제품 라인/시리즈는 Formula.line로 분리한다."""
+
+    CLEANSING = "클렌징"
+    TONER_MIST = "토너·미스트"
+    ESSENCE_SERUM_AMPOULE = "에센스·세럼·앰플"
+    LOTION_CREAM = "로션·크림"
+    OIL_BALM = "오일·밤"
+    PACK_PAD = "팩·패드"
+    NEEDLE = "니들"
+    FOOD = "식품"
+    HOUSEHOLD = "생활화학"
+    ETC = "기타"
+
+
 # ---------------------------------------------------------------------------
 # 원료 마스터 (data/ingredients.yaml)
 # ---------------------------------------------------------------------------
@@ -91,7 +147,8 @@ class Ingredient(BaseModel):
     id: str = Field(min_length=1)
     name: str = Field(min_length=1)
     inci: str = Field(min_length=1)
-    category: str = Field(min_length=1)
+    category: IngredientCategory  # 통제 대분류(enum)
+    effects: list[IngredientEffect] = Field(default_factory=list)  # 효능 태그(활성 세부)
     # 안전사용 권장 상한(%) — 있으면 참고용. 강제 검증은 하지 않는다(다음 단계).
     max_percent: float | None = Field(default=None, gt=0, le=100)
     # 원료 단가(원/kg). 원가 계산에 사용.
@@ -434,6 +491,10 @@ class Formula(BaseModel):
     # 규제 레짐 코드(brandlab.regimes.registry에 등록된 코드). 기본은 화장품법.
     # 실제 유효성은 레짐 레이어에서 확인한다(모델은 레짐 무관 유지).
     regime: str = "cosmetics"
+    # 제품 종류(통제 어휘, UI 그룹핑/필터의 1차 축). 제품 라인/시리즈는 line.
+    category: ProductCategory = ProductCategory.ETC
+    # 제품 라인/시리즈(예: 스쿠알란/비타민C/매트릭실). 열린 집합이라 자유 문자열.
+    line: str | None = None
     # 요구사항 4: 알러젠 표시 기준에 쓰이므로 반드시 필수 필드.
     product_type: ProductType
     status: FormulaStatus
@@ -447,6 +508,8 @@ class Formula(BaseModel):
     product_category: str | None = None
     notes: str | None = None
     parent_version: int | None = Field(default=None, gt=0)
+    # 처방 출처 URL(허브누리 등 레시피 원본 링크). 자체 개발 처방은 비움.
+    source_url: str | None = None
 
     @property
     def total_percent(self) -> float:

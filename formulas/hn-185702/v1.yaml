@@ -1,0 +1,26 @@
+product: 로즈마리 샴푸바
+slug: hn-185702
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 550.0
+phases:
+- name: A
+  ingredients:
+  - id: weak-acid-soap-base
+    percent: 90.91
+  - id: rosemary-powder
+    percent: 1.09
+  - id: rosemary-eo
+    percent: 0.91
+  - id: niacinamide
+    percent: 2.73
+  - id: panthenol
+    percent: 3.27
+  - id: menthol
+    percent: 1.09
+packaging: []
+fill_volume_ml: 550.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=185702

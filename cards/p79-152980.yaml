@@ -1,0 +1,11 @@
+# 우레아 크림 — 배치에서 아티팩트/일반명으로 잡혀 수동 보정(branduid=152980).
+product: 우레아 크림
+slug: hn-152980
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=152980
+ingredients:
+  - 우레아 | 10g | 보습·각질
+  - 수분크림베이스 | 80g | 완제 베이스
+  - 블렌딩오일 | 3방울 | 착향

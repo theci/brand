@@ -1,0 +1,18 @@
+product: 모기퇴치 사쉐(향낭)
+slug: hn-150262
+version: 1
+regime: biocide
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 20.0
+phases:
+- name: A
+  ingredients:
+  - id: sachet-stone
+    percent: 50.0
+  - id: blending-oil
+    percent: 50.0
+packaging: []
+fill_volume_ml: 20.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=150262

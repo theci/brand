@@ -1,0 +1,22 @@
+product: EGF 니들 크림
+slug: egf-needle-cream
+version: 1
+regime: cosmetics
+category: 니들
+line: PDRN·니들
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: cream-base
+    percent: 90.0
+  - id: egf
+    percent: 5.0
+  - id: fgf
+    percent: 5.0
+packaging: []
+fill_volume_ml: 100.0
+notes: '''니들 세럼&크림'' 중 크림. 완제 크림베이스 활용. 미세니들 키트의 크림부. EGF/FGF 효능 표현은 화장품 표시 규정 검증 필요(의약품적 소구 주의).'
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=286876

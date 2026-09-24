@@ -1,0 +1,22 @@
+product: 쿠퍼스칼프세럼
+slug: hn-71140
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: rosemary-water
+    percent: 84.0
+  - id: copper-peptide
+    percent: 10.0
+  - id: yunmo-extract
+    percent: 5.0
+  - id: herbal-preservative
+    percent: 1.0
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=71140

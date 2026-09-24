@@ -1,0 +1,15 @@
+# 우레아 수딩크림 — 배치에서 아티팩트/일반명으로 잡혀 수동 보정(branduid=153016).
+product: 우레아 수딩크림
+slug: hn-153016
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=153016
+ingredients:
+  - 아보카도오일 | 5g | 비타민 보습
+  - 호호바오일 | 8g | 유상
+  - 올리브유화왁스 | 5g | 유화제
+  - 로즈워터 | 30g | 수상
+  - 식물성 글리세린 | 45g | 보습제
+  - 하이드로에칠우레아 | 5g | NMF 보습
+  - 브라이트닝 블렌딩에센셜오일 | 4방울 | 착향

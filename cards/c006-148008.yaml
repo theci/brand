@@ -1,0 +1,12 @@
+# 상큼 차량 미니 방향제 — 015/006002 배치 수동 보정(branduid=148008).
+product: 상큼 차량 미니 방향제
+slug: hn-148008
+type: leave_on
+status: 개발중
+regime: chemical_safety
+volume_ml: 6
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=148008
+product_category: 방향제_지속방출형
+ingredients:
+  - 디퓨저 베이스 | 4g | 확산 베이스
+  - 레몬쥬스에센셜오일 | 35방울 | 착향

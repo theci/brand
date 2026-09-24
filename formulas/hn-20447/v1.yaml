@@ -1,0 +1,32 @@
+product: 참깨영양크림
+slug: hn-20447
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 97.25
+phases:
+- name: A
+  ingredients:
+  - id: sesame-oil
+    percent: 20.57
+  - id: evening-primrose-oil
+    percent: 5.14
+  - id: olive-emulsifying-wax
+    percent: 5.14
+  - id: neroli-water
+    percent: 46.27
+  - id: herbal-preservative
+    percent: 2.06
+  - id: panthenol
+    percent: 5.14
+  - id: adenosine
+    percent: 5.14
+  - id: pomegranate-extract
+    percent: 10.28
+  - id: rose-geranium-eo
+    percent: 0.26
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=20447

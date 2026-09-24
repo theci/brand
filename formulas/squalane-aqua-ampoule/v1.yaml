@@ -1,0 +1,32 @@
+product: 스쿠알란 아쿠아 앰플
+slug: squalane-aqua-ampoule
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+line: 스쿠알란
+product_type: leave_on
+status: 개발중
+base_batch_g: 100
+phases:
+- name: A (냉 혼합)
+  process: 용기에 모든 재료를 계량해 혼합. 오일층·세럼층이 분리되므로 사용 전 흔들어 사용
+  ingredients:
+  - id: squalane
+    percent: 3.0
+  - id: neroli-water
+    percent: 40.0
+  - id: rose-water
+    percent: 30.0
+  - id: collagen-7-complex
+    percent: 10.0
+  - id: probiotics-complex
+    percent: 10.0
+  - id: niacinamide
+    percent: 3.0
+  - id: glycerin
+    percent: 2.0
+  - id: hexanediol
+    percent: 2.0
+packaging: []
+fill_volume_ml: 100
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=288772

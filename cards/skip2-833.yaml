@@ -1,0 +1,19 @@
+# 석류영양크림 — sample.txt(이미지 레시피) 기반(branduid=833).
+product: 석류영양크림
+slug: hn-833
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=833
+ingredients:
+  - 햄프씨드오일 | 10g | 유상
+  - 로즈힙오일 | 18g | 유상
+  - 올리브유화왁스 | 3g | 유화제
+  - 세틸알콜 | 1g | 유화보조
+  - 라벤더워터 | 50g | 수상
+  - 석류추출물 | 4g | 항산화
+  - 천연한방보존제 | 2g | 방부
+  - 히아루론산 | 3g | 보습
+  - 코엔자임큐텐(수용성) | 3g | 항산화
+  - 네롤리 | 3방울 | 착향
+  - 오렌지 | 4방울 | 착향

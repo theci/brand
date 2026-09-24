@@ -1,0 +1,34 @@
+product: 아로마 물파스
+slug: hn-947
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 105.0
+phases:
+- name: A
+  ingredients:
+  - id: witch-hazel-water
+    percent: 47.62
+  - id: aloe-vera-gel
+    percent: 19.05
+  - id: hycell
+    percent: 0.95
+  - id: menthol
+    percent: 3.81
+  - id: ethanol
+    percent: 15.24
+  - id: inflacin
+    percent: 9.52
+  - id: olive-liquid
+    percent: 1.9
+  - id: lavender-eo
+    percent: 0.48
+  - id: tea-tree-eo
+    percent: 0.48
+  - id: rosemary-eo
+    percent: 0.95
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=947

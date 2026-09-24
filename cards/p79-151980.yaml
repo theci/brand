@@ -1,0 +1,12 @@
+# 마데카소사이드 폼클렌저 — 배치에서 아티팩트/일반명으로 잡혀 수동 보정(branduid=151980).
+product: 마데카소사이드 폼클렌저
+slug: hn-151980
+type: leave_on
+status: 개발중
+volume_ml: 300
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=151980
+ingredients:
+  - 폼클렌징 베이스 | 230g | 저자극 폼베이스
+  - 마데카소사이드 | 30g | 진정·재생
+  - 바이오 디톡스 | 30g | 디톡스 복합
+  - 블렌딩오일 | 3ml | 착향

@@ -1,0 +1,26 @@
+product: 코엔자임Q10 수분크림
+slug: hn-127948
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 103.25
+phases:
+- name: A
+  ingredients:
+  - id: water-argan
+    percent: 4.84
+  - id: coenzyme-q10
+    percent: 9.69
+  - id: herbal-preservative
+    percent: 0.97
+  - id: aloe-vera-gel
+    percent: 81.35
+  - id: bergamot-fcf-eo
+    percent: 0.24
+  - id: lipidure
+    percent: 2.91
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=127948

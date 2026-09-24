@@ -1,0 +1,26 @@
+product: 비타11 에너지 토너
+slug: hn-169897
+version: 1
+regime: cosmetics
+category: 토너·미스트
+product_type: leave_on
+status: 개발중
+base_batch_g: 103.0
+phases:
+- name: A
+  ingredients:
+  - id: water-jojoba
+    percent: 4.85
+  - id: rose-water
+    percent: 29.13
+  - id: neroli-water
+    percent: 56.32
+  - id: multi-hyaluronic-acid
+    percent: 2.91
+  - id: vita-11
+    percent: 4.85
+  - id: hexanediol
+    percent: 1.94
+packaging: []
+fill_volume_ml: 103.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=169897

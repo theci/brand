@@ -1,0 +1,11 @@
+# 레몬쥬스 립밤 — 배치에서 아티팩트/일반명으로 잡혀 수동 보정(branduid=152846).
+product: 레몬쥬스 립밤
+slug: hn-152846
+type: leave_on
+status: 개발중
+volume_ml: 55
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=152846
+ingredients:
+  - 멀티밤오일베이스 | 43g | 립밤 오일 베이스
+  - 칸데릴라왁스 | 9.5g | 경화제
+  - 블렌딩오일 | 30방울 | 착향(레몬)

@@ -1,0 +1,30 @@
+product: 콜라겐 에센스팩
+slug: hn-839
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 91.35
+phases:
+- name: A
+  ingredients:
+  - id: aloe-vera-gel
+    percent: 43.79
+  - id: rose-water
+    percent: 43.79
+  - id: mandarin-eo
+    percent: 0.27
+  - id: jasmine-eo
+    percent: 0.11
+  - id: coenzyme-q10
+    percent: 3.28
+  - id: acacia-collagen
+    percent: 4.38
+  - id: herbal-preservative
+    percent: 2.19
+  - id: tocopherol
+    percent: 2.19
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=839

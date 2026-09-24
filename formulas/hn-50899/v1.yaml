@@ -1,0 +1,24 @@
+product: 슈퍼아쿠아 에센스/마스크팩(트러블용)
+slug: hn-50899
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 99.0
+phases:
+- name: A
+  ingredients:
+  - id: aloe-vera-gel
+    percent: 60.61
+  - id: hinoki-water
+    percent: 10.1
+  - id: houttuynia-extract
+    percent: 18.18
+  - id: green-tea-extract
+    percent: 10.1
+  - id: herbal-preservative
+    percent: 1.01
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=50899

@@ -1,0 +1,28 @@
+product: 개똥쑥 진정 앰플
+slug: wormwood-soothing-ampoule
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: sweet-wormwood-extract
+    percent: 75.0
+  - id: probiotics-complex
+    percent: 14.0
+  - id: multi-hyaluronic-acid
+    percent: 2.0
+  - id: niacinamide
+    percent: 4.0
+  - id: adenosine-liposome
+    percent: 2.0
+  - id: lipidure
+    percent: 1.0
+  - id: hexanediol
+    percent: 2.0
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=285484

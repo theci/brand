@@ -1,0 +1,29 @@
+product: 벚꽃 리드 디퓨저
+slug: hn-144233
+version: 1
+regime: chemical_safety
+category: 생활화학
+product_type: leave_on
+status: 개발중
+base_batch_g: 116.0
+phases:
+- name: A
+  ingredients:
+  - id: olive-liquid
+    percent: 1.72
+  - id: fragrance-oil
+    percent: 2.59
+  - id: fragrance-oil
+    percent: 1.72
+  - id: purified-water
+    percent: 14.66
+  - id: eco-gypsum
+    percent: 43.1
+  - id: eco-gypsum
+    percent: 3.45
+  - id: diffuser-base
+    percent: 32.76
+packaging: []
+fill_volume_ml: 100.0
+product_category: 방향제_비분사형
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=144233

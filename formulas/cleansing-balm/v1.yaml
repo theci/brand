@@ -2,6 +2,7 @@ product: 클렌징밤
 slug: cleansing-balm
 version: 1
 regime: cosmetics
+category: 클렌징
 product_type: rinse_off   # 물에 유화되어 씻겨나가는 워터오프 밤
 status: 개발중
 base_batch_g: 100

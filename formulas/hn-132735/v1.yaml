@@ -1,0 +1,22 @@
+product: E.FGF 울트라 크림
+slug: hn-132735
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.25
+phases:
+- name: A
+  ingredients:
+  - id: cream-base
+    percent: 89.77
+  - id: egf
+    percent: 4.99
+  - id: fgf
+    percent: 4.99
+  - id: roman-chamomile-eo
+    percent: 0.25
+packaging: []
+fill_volume_ml: 100.2
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=132735

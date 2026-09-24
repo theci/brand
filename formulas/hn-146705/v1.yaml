@@ -1,0 +1,24 @@
+product: 어성초 티트리 바디워시
+slug: hn-146705
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 507.5
+phases:
+- name: A
+  ingredients:
+  - id: body-wash-base
+    percent: 84.74
+  - id: houttuynia-extract
+    percent: 5.91
+  - id: calendula-extract
+    percent: 5.91
+  - id: tea-tree-eo
+    percent: 1.77
+  - id: lemon-eo
+    percent: 1.67
+packaging: []
+fill_volume_ml: 507.5
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=146705

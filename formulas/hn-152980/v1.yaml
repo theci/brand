@@ -1,0 +1,20 @@
+product: 우레아 크림
+slug: hn-152980
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 90.15
+phases:
+- name: A
+  ingredients:
+  - id: urea
+    percent: 11.09
+  - id: cream-base
+    percent: 88.74
+  - id: blending-oil
+    percent: 0.17
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=152980

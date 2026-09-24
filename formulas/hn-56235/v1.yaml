@@ -1,0 +1,32 @@
+product: 동백에브리데이 로션/크림
+slug: hn-56235
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 108.4
+phases:
+- name: A
+  ingredients:
+  - id: camellia-oil
+    percent: 6.46
+  - id: shea-butter
+    percent: 2.77
+  - id: olive-emulsifying-wax
+    percent: 2.77
+  - id: lavender-water
+    percent: 73.8
+  - id: herbal-preservative
+    percent: 0.92
+  - id: centella-extract
+    percent: 4.61
+  - id: ceramide-complex
+    percent: 3.69
+  - id: glycerin
+    percent: 4.61
+  - id: lavender-eo
+    percent: 0.37
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=56235

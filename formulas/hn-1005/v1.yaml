@@ -1,0 +1,26 @@
+product: 알로에베이비워시
+slug: hn-1005
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 303.5
+phases:
+- name: A
+  ingredients:
+  - id: aloe-soap-base
+    percent: 82.38
+  - id: ceramide-complex
+    percent: 3.29
+  - id: chamomile-extract
+    percent: 6.59
+  - id: panthenol
+    percent: 6.59
+  - id: mandarin-eo
+    percent: 0.56
+  - id: rose-absolute-eo
+    percent: 0.59
+packaging: []
+fill_volume_ml: 300.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=1005

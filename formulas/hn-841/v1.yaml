@@ -1,0 +1,20 @@
+product: 흑설탕 스크럽
+slug: hn-841
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 87.0
+phases:
+- name: A
+  ingredients:
+  - id: avocado-oil
+    percent: 72.42
+  - id: shea-butter
+    percent: 13.79
+  - id: olive-emulsifying-wax
+    percent: 13.79
+packaging: []
+fill_volume_ml: 87.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=841

@@ -1,0 +1,30 @@
+product: 자초로션 레시피
+slug: hn-818
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 99.5
+phases:
+- name: A
+  ingredients:
+  - id: jacho-oil
+    percent: 18.09
+  - id: olive-emulsifying-wax
+    percent: 3.02
+  - id: oliwax-lc
+    percent: 1.01
+  - id: roman-chamomile-water
+    percent: 70.33
+  - id: panthenol
+    percent: 3.02
+  - id: herbal-preservative
+    percent: 1.01
+  - id: allantoin
+    percent: 3.02
+  - id: mandarin-eo
+    percent: 0.5
+packaging: []
+fill_volume_ml: 99.5
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=818

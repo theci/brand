@@ -8,7 +8,7 @@ from brandlab.diff import formula_diff
 
 def _ing(id_, price=10000, density=1.0):
     return Ingredient(
-        id=id_, name=id_, inci=id_, category="test", price_per_kg=price, density=density
+        id=id_, name=id_, inci=id_, category="보습", price_per_kg=price, density=density
     )
 
 

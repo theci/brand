@@ -1,0 +1,27 @@
+product: 율무 미백 토너&패드
+slug: jobstears-whitening-toner-pad
+version: 1
+regime: cosmetics
+category: 토너·미스트
+line: 율무미백
+product_type: leave_on
+status: 개발중
+base_batch_g: 95.0
+phases:
+- name: A
+  ingredients:
+  - id: neroli-water
+    percent: 44.2
+  - id: jobs-tears-extract
+    percent: 34.74
+  - id: vitamin-berry-3
+    percent: 5.26
+  - id: beta-glucan
+    percent: 10.53
+  - id: glycerin
+    percent: 3.16
+  - id: hexanediol
+    percent: 2.11
+packaging: []
+fill_volume_ml: 95.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=288454

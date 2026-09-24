@@ -1,0 +1,24 @@
+product: 하수오 쿨 샴푸
+slug: hn-883
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 515.0
+phases:
+- name: A
+  ingredients:
+  - id: gentle-shampoo-base
+    percent: 77.67
+  - id: em-active
+    percent: 7.77
+  - id: fo-ti-extract
+    percent: 11.65
+  - id: panthenol
+    percent: 1.94
+  - id: blending-oil
+    percent: 0.97
+packaging: []
+fill_volume_ml: 500.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=883

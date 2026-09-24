@@ -1,0 +1,16 @@
+# 시어버터 수분핸드&풋크림 — 배치 수동 보정(단일/수용성/아티팩트, branduid=45503).
+product: 시어버터 수분핸드&풋크림
+slug: hn-45503
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=45503
+ingredients:
+  - 시어버터 | 10g | 버터
+  - 스윗아몬드오일 | 4g | 유상
+  - 올리브유화왁스 | 3g | 유화제
+  - 알로에베라겔 | 87g | 진정
+  - 세라마이드(수용성) | 5g | 장벽
+  - 식물성 글리세린 | 6g | 보습
+  - 천연한방보존제 | 1g | 방부
+  - 버가못 에센셜오일 | 20방울 | 착향

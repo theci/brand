@@ -20,7 +20,7 @@ rules:
     advice: 보존제 계를 재설계하거나 보존 보조를 추가하고 방부력 시험으로 확인하세요.
 
   - id: cationic-anionic
-    a: { inci_contains: [cetrimonium, behentrimonium, quaternium] }   # 양이온 컨디셔너
+    a: { inci_contains: [cetrimonium, behentrimonium, steartrimonium] }   # 단량체 양이온 컨디셔너(폴리쿼터늄은 음이온 호환이라 제외)
     b: { inci_contains: ["lauryl sulfate", "laureth sulfate", "cocoyl isethionate"] }  # 음이온 계면활성제
     severity: high
     reason: 양이온(컨디셔너)과 음이온(세정) 계면활성제가 만나면 서로 중화·침전할 수 있음.

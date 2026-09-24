@@ -1,0 +1,30 @@
+product: 허브두피샴푸
+slug: hn-881
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 185.58
+phases:
+- name: A
+  ingredients:
+  - id: premium-soap-base
+    percent: 80.82
+  - id: espinosilla-extract
+    percent: 5.39
+  - id: nettle-extract
+    percent: 5.39
+  - id: em-active
+    percent: 5.39
+  - id: panthenol
+    percent: 1.08
+  - id: lavender-eo
+    percent: 0.48
+  - id: rosemary-eo
+    percent: 0.97
+  - id: lemongrass-eo
+    percent: 0.48
+packaging: []
+fill_volume_ml: 200.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=881

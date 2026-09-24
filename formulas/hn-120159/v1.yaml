@@ -1,0 +1,34 @@
+product: 캐모마일아토로션(로먼)
+slug: hn-120159
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.25
+phases:
+- name: A
+  ingredients:
+  - id: chamomile-infused-oil
+    percent: 7.98
+  - id: cupuacu-butter
+    percent: 3.99
+  - id: olive-emulsifying-wax
+    percent: 2.99
+  - id: oliwax-lc
+    percent: 1.0
+  - id: roman-chamomile-water
+    percent: 65.83
+  - id: panthenol
+    percent: 3.99
+  - id: herbal-preservative
+    percent: 1.0
+  - id: lavender-extract
+    percent: 7.98
+  - id: plant-placenta
+    percent: 4.99
+  - id: essential-oil
+    percent: 0.25
+packaging: []
+fill_volume_ml: 100.2
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=120159

@@ -1,0 +1,28 @@
+product: 스쿠알란 슬로우 앰플(오일)
+slug: hn-288775
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: squalane
+    percent: 40.0
+  - id: mct
+    percent: 35.0
+  - id: borfirin
+    percent: 5.0
+  - id: jojoba-oil
+    percent: 19.0
+  - id: alpha-bisabolol
+    percent: 0.2
+  - id: tocopherol
+    percent: 0.5
+  - id: rose-power-blending-oil
+    percent: 0.3
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=288775

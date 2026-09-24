@@ -1,0 +1,26 @@
+product: 냥이 거품 입욕제
+slug: hn-287846
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 590.0
+phases:
+- name: A
+  ingredients:
+  - id: sodium-bicarbonate
+    percent: 50.86
+  - id: citric-acid-food
+    percent: 25.42
+  - id: corn-starch
+    percent: 12.71
+  - id: slsa
+    percent: 5.93
+  - id: blending-oil
+    percent: 1.69
+  - id: purified-water
+    percent: 3.39
+packaging: []
+fill_volume_ml: 580.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=287846

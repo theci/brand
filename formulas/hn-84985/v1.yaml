@@ -1,0 +1,26 @@
+product: 쿠퍼거품샴푸
+slug: hn-84985
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 255.35
+phases:
+- name: A
+  ingredients:
+  - id: roman-chamomile-water
+    percent: 37.2
+  - id: apple-surfactant
+    percent: 48.96
+  - id: yunmo-extract
+    percent: 7.83
+  - id: copper-peptide
+    percent: 3.92
+  - id: herbal-preservative
+    percent: 1.17
+  - id: cedarwood-eo
+    percent: 0.92
+packaging: []
+fill_volume_ml: 255.3
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=84985

@@ -1,0 +1,34 @@
+product: EFGF 리뉴 수분크림
+slug: hn-109240
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 105.1
+phases:
+- name: A
+  ingredients:
+  - id: sea-buckthorn-oil
+    percent: 0.48
+  - id: herbal-preservative
+    percent: 0.95
+  - id: egf
+    percent: 4.76
+  - id: fgf
+    percent: 4.76
+  - id: niacinamide
+    percent: 2.85
+  - id: lipidure
+    percent: 3.81
+  - id: rose-absolute-eo
+    percent: 0.1
+  - id: rose-absolute-eo
+    percent: 0.48
+  - id: essential-oil
+    percent: 1.9
+  - id: aloe-vera-gel
+    percent: 79.91
+packaging: []
+fill_volume_ml: 105.1
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=109240

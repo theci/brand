@@ -1,0 +1,19 @@
+product: 상큼 차량 미니 방향제
+slug: hn-148008
+version: 1
+regime: chemical_safety
+category: 생활화학
+product_type: leave_on
+status: 개발중
+base_batch_g: 5.75
+phases:
+- name: A
+  ingredients:
+  - id: diffuser-base
+    percent: 69.57
+  - id: lemon-juice-blending-oil
+    percent: 30.43
+packaging: []
+fill_volume_ml: 6.0
+product_category: 방향제_지속방출형
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=148008

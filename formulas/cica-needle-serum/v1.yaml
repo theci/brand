@@ -1,0 +1,20 @@
+product: 시카 니들 세럼
+slug: cica-needle-serum
+version: 1
+regime: cosmetics
+category: 니들
+line: PDRN·니들
+product_type: leave_on
+status: 개발중
+base_batch_g: 90.0
+phases:
+- name: A
+  ingredients:
+  - id: essence-base
+    percent: 88.89
+  - id: amino-acid-17-complex
+    percent: 11.11
+packaging: []
+fill_volume_ml: 90.0
+notes: '미세니들 키트 — 액상부(에센스)만 처방화. 사용 키트: 시카에센스 ~49.9g + 스피큘 0.1~0.3g(95만 샷급)을 섞어 도포. 스피큘/샷은 % 처방에서 제외.'
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=286292

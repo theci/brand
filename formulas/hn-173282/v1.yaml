@@ -1,0 +1,22 @@
+product: 캐모마일 바디&핸드 로션
+slug: hn-173282
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 301.5
+phases:
+- name: A
+  ingredients:
+  - id: body-hand-lotion-base
+    percent: 79.6
+  - id: chamomile-extract
+    percent: 9.95
+  - id: ceramide-complex
+    percent: 9.95
+  - id: essential-oil
+    percent: 0.5
+packaging: []
+fill_volume_ml: 301.5
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=173282

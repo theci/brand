@@ -1,0 +1,13 @@
+# 천연스킨 — sample.txt(이미지 레시피) 기반(branduid=827).
+product: 천연스킨
+slug: hn-827
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=827
+ingredients:
+  - 팅크처 | 10g | 한방 팅크처
+  - 라벤더워터 | 65g | 수상
+  - 히아루론산 | 5g | 보습
+  - 알부틴 | 1g | 미백
+  - 아카시아콜라겐 | 5g | 보습

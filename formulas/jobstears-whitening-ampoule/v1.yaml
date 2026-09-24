@@ -1,0 +1,27 @@
+product: 율무 미백 앰플
+slug: jobstears-whitening-ampoule
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+line: 율무미백
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: jobs-tears-extract
+    percent: 75.0
+  - id: vitamin-berry-3
+    percent: 14.0
+  - id: glycerin
+    percent: 2.0
+  - id: beta-glucan
+    percent: 4.0
+  - id: alpha-arbutin
+    percent: 3.0
+  - id: hexanediol
+    percent: 2.0
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=288457

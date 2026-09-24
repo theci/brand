@@ -1,0 +1,11 @@
+# 로즈마리 구연산린스 — sample.txt(이미지 레시피) 기반(branduid=885).
+product: 로즈마리 구연산린스
+slug: hn-885
+type: rinse_off
+status: 개발중
+volume_ml: 290
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=885
+ingredients:
+  - 로즈마리워터 | 200g | 수상
+  - 구연산 | 50g | pH 조절
+  - 식물성 글리세린 | 40g | 보습

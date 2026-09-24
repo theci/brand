@@ -1,0 +1,20 @@
+product: 낫또(청국장)스킨
+slug: hn-108546
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: ylang-ylang-water
+    percent: 79.0
+  - id: natto-moist
+    percent: 20.0
+  - id: herbal-preservative
+    percent: 1.0
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=108546

@@ -1,0 +1,20 @@
+product: 아토 캐모마일 세럼
+slug: hn-1169
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 48.35
+phases:
+- name: A
+  ingredients:
+  - id: chamomile-infused-oil
+    percent: 82.73
+  - id: olive-emulsifying-wax
+    percent: 16.55
+  - id: roman-chamomile-eo
+    percent: 0.72
+packaging: []
+fill_volume_ml: 50.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=1169

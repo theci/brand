@@ -1,0 +1,34 @@
+product: 벚꽃 썸띵 핸드&바디로션
+slug: hn-157027
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 300.3
+phases:
+- name: A
+  ingredients:
+  - id: macadamia-oil
+    percent: 14.99
+  - id: mango-butter
+    percent: 5.0
+  - id: olive-emulsifying-wax
+    percent: 4.0
+  - id: oliwax-lc
+    percent: 2.0
+  - id: purified-water
+    percent: 41.93
+  - id: ceramide-complex
+    percent: 5.0
+  - id: soothing-4-complex
+    percent: 5.0
+  - id: aloe-vera-gel
+    percent: 19.98
+  - id: hexanediol
+    percent: 2.0
+  - id: cherry-blossom-fragrance
+    percent: 0.1
+packaging: []
+fill_volume_ml: 300.3
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=157027

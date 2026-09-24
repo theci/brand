@@ -1,0 +1,26 @@
+product: 아데노신탄력보습에센스
+slug: hn-61410
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: rose-water
+    percent: 80.0
+  - id: hycell
+    percent: 1.0
+  - id: herbal-preservative
+    percent: 1.0
+  - id: pomegranate-extract
+    percent: 10.0
+  - id: adenosine
+    percent: 5.0
+  - id: sodium-hyaluronate
+    percent: 3.0
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=61410

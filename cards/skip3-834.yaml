@@ -1,0 +1,11 @@
+# 히비스커스 스킨 — sample.txt(이미지 레시피) 기반(branduid=834).
+product: 히비스커스 스킨
+slug: hn-834
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=834
+ingredients:
+  - 히비스커스팅크처 | 15g | 항산화
+  - 로즈워터 | 85g | 수상
+  - 히아루론산 | 3g | 보습

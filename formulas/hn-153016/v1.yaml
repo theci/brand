@@ -1,0 +1,28 @@
+product: 우레아 수딩크림
+slug: hn-153016
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 98.2
+phases:
+- name: A
+  ingredients:
+  - id: avocado-oil
+    percent: 5.09
+  - id: jojoba-oil
+    percent: 8.15
+  - id: olive-emulsifying-wax
+    percent: 5.09
+  - id: rose-water
+    percent: 30.55
+  - id: glycerin
+    percent: 45.83
+  - id: hydroxyethyl-urea
+    percent: 5.09
+  - id: blending-oil
+    percent: 0.2
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=153016

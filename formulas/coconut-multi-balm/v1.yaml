@@ -1,0 +1,18 @@
+product: 코코넛 만능밤
+slug: coconut-multi-balm
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 55.0
+phases:
+- name: A
+  ingredients:
+  - id: coconut-oil
+    percent: 78.18
+  - id: beeswax
+    percent: 21.82
+packaging: []
+fill_volume_ml: 30.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=184621

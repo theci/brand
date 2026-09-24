@@ -1,0 +1,14 @@
+# 로즈아로마스킨 — sample.txt(이미지 레시피) 기반(branduid=995).
+product: 로즈아로마스킨
+slug: hn-995
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=995
+ingredients:
+  - 정제수 | 85g | 수상
+  - 올리브리퀴드 | 1g | 가용화
+  - 로즈앱솔루트에센셜오일 | 2방울 | 착향
+  - 만다린에센셜오일 | 6방울 | 착향
+  - 식물성글리세린 | 5g | 보습
+  - 식물성플라센타 | 5g | 재생

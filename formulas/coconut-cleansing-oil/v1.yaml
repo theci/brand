@@ -1,0 +1,18 @@
+product: 코코넛 클렌징오일
+slug: coconut-cleansing-oil
+version: 1
+regime: cosmetics
+category: 클렌징
+product_type: rinse_off
+status: 개발중
+base_batch_g: 188.0
+phases:
+- name: A
+  ingredients:
+  - id: coconut-oil
+    percent: 73.4
+  - id: cleansing-liquid
+    percent: 26.6
+packaging: []
+fill_volume_ml: 188.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=176172

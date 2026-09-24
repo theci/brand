@@ -1,0 +1,22 @@
+product: 티트리 편백토너
+slug: hn-28595
+version: 1
+regime: cosmetics
+category: 토너·미스트
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A
+  ingredients:
+  - id: tea-tree-water
+    percent: 45.0
+  - id: hinoki-water
+    percent: 50.0
+  - id: glycerin
+    percent: 3.0
+  - id: herbal-preservative
+    percent: 2.0
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=28595

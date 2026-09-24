@@ -1,0 +1,28 @@
+product: 라놀린 핸드앤풋밤
+slug: hn-836
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 82.9
+phases:
+- name: A
+  ingredients:
+  - id: shea-butter
+    percent: 24.13
+  - id: lanolin
+    percent: 30.16
+  - id: tocopherol
+    percent: 2.41
+  - id: avocado-oil
+    percent: 24.13
+  - id: beeswax
+    percent: 18.09
+  - id: marjoram-eo
+    percent: 0.36
+  - id: lemon-eo
+    percent: 0.72
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=836

@@ -1,0 +1,18 @@
+# 페이셜&바디 라벤더 로션 — 배치 수동 보정(단일/수용성/아티팩트, branduid=28606).
+product: 페이셜&바디 라벤더 로션
+slug: hn-28606
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=28606
+ingredients:
+  - 동백오일 | 18g | 유상
+  - 녹차씨오일 | 10g | 유상
+  - 올리브유화왁스 | 5g | 유화제
+  - 라벤더워터 | 120g | 수상
+  - 알로에베라겔 | 50g | 진정
+  - 천연한방보존제 | 2g | 방부
+  - 식물성글리세린 | 10g | 보습
+  - 캐모마일추출물 | 5g | 진정
+  - 세라마이드(수용성) | 10g | 장벽
+  - 라벤더에센셜오일 | 15방울 | 착향

@@ -1,0 +1,12 @@
+# TX 멜라 클리어 수크림 — 배치에서 아티팩트/일반명으로 잡혀 수동 보정(branduid=152151).
+product: TX 멜라 클리어 수크림
+slug: hn-152151
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=152151
+ingredients:
+  - 수분크림베이스 | 80g | 완제 베이스
+  - 펩타이드 | 10g | 멜라 케어 펩타이드
+  - 4GF | 10g | 성장인자 복합
+  - 에센셜오일 | 4방울 | 착향

@@ -1,0 +1,36 @@
+product: 시어버터 바디크림
+slug: hn-821
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 101.25
+phases:
+- name: A
+  ingredients:
+  - id: avocado-oil
+    percent: 9.88
+  - id: shea-butter
+    percent: 17.78
+  - id: olive-emulsifying-wax
+    percent: 2.96
+  - id: cetyl-alcohol
+    percent: 0.99
+  - id: lavender-water
+    percent: 49.38
+  - id: sodium-hyaluronate
+    percent: 7.9
+  - id: green-tea-extract
+    percent: 4.94
+  - id: allantoin
+    percent: 3.95
+  - id: herbal-preservative
+    percent: 0.99
+  - id: essential-oil
+    percent: 0.49
+  - id: essential-oil
+    percent: 0.74
+packaging: []
+fill_volume_ml: 101.2
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=821

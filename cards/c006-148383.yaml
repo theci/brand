@@ -1,0 +1,11 @@
+# 다마스크 로즈 향수 — 015/006002 배치 수동 보정(branduid=148383).
+product: 다마스크 로즈 향수
+slug: hn-148383
+type: leave_on
+status: 개발중
+regime: cosmetics
+volume_ml: 50
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=148383
+ingredients:
+  - 향수베이스 | 49g | 향수 베이스
+  - 레드 로지스 | 1g | 조합향료

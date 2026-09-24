@@ -1,0 +1,12 @@
+# 7가지 한방샴푸 — 015/005 배치 수동 보정(branduid=107875).
+product: 7가지 한방샴푸
+slug: hn-107875
+type: rinse_off
+status: 개발중
+volume_ml: 500
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=107875
+ingredients:
+  - 순한 샴푸베이스 | 400g | 샴푸 베이스
+  - 7가지한방약재 | 60g | 한방 복합
+  - 실크엘라스틴 | 30g | 모발 보습
+  - 컴플렉스 블랜딩 에센셜오일 | 5g | 착향

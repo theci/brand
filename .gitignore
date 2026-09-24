@@ -25,3 +25,6 @@ data/brand/progress.yaml
 
 # 마이그레이션 백업
 *.bak
+
+# Excel 임시 잠금파일(열어둘 때 생성)
+~$*.xlsx

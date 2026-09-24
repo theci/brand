@@ -1,0 +1,44 @@
+product: TX 토닝 크림
+slug: tx-toning-cream
+version: 1
+regime: cosmetics
+category: 로션·크림
+line: TX토닝
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.0
+phases:
+- name: A (수상/유화제)
+  ingredients:
+  - id: rose-water
+    percent: 55.0
+  - id: olive-cold-emulsifier
+    percent: 2.0
+  process: 로즈워터에 올리브 상온유화제를 넣고 블렌더로 섞음(비가열)
+- name: B (유상)
+  ingredients:
+  - id: squalane
+    percent: 7.0
+  - id: rosehip-oil
+    percent: 7.0
+  process: 유상 오일을 계량해 A에 넣고 유화
+- name: C (첨가물)
+  ingredients:
+  - id: super-cica-4
+    percent: 5.0
+  - id: panthenol
+    percent: 3.0
+  - id: tranexamic-acid
+    percent: 3.0
+  - id: niacinamide
+    percent: 2.0
+  - id: glutathione
+    percent: 14.0
+  - id: hexanediol
+    percent: 2.0
+  process: 점도가 나오면 첨가물 투입
+packaging: []
+fill_volume_ml: 100.0
+notes: 원문 '(펩타이드)'=트라넥삼산. 올리브 상온유화제로 비가열 제조 가능. ※ 원문 표가 글루타치온까지 확인됨(98g). 마무리 1,2-헥산디올 2g은 동일 라인 관행으로
+  보정—원문 재확인 권장.
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=287828

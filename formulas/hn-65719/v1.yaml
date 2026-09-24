@@ -1,0 +1,32 @@
+product: 오렌지플라워로션
+slug: hn-65719
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 101.1
+phases:
+- name: A
+  ingredients:
+  - id: chamomile-infused-oil
+    percent: 7.91
+  - id: calendula-oil
+    percent: 5.93
+  - id: olive-emulsifying-wax
+    percent: 2.97
+  - id: neroli-water
+    percent: 66.26
+  - id: adenosine
+    percent: 4.95
+  - id: herbal-preservative
+    percent: 1.98
+  - id: sodium-hyaluronate
+    percent: 4.95
+  - id: acacia-collagen
+    percent: 4.95
+  - id: neroli-eo
+    percent: 0.1
+packaging: []
+fill_volume_ml: 101.1
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=65719

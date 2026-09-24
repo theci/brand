@@ -1,0 +1,26 @@
+product: 바스붐
+slug: hn-903
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 918.9
+phases:
+- name: A
+  ingredients:
+  - id: sodium-bicarbonate
+    percent: 54.41
+  - id: citric-acid-food
+    percent: 27.21
+  - id: corn-starch
+    percent: 8.71
+  - id: rose-water
+    percent: 4.35
+  - id: lavender-eo
+    percent: 0.97
+  - id: yunohana-powder
+    percent: 4.35
+packaging: []
+fill_volume_ml: 900.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=903

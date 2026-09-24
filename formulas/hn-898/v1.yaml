@@ -1,0 +1,18 @@
+product: 살구감초 스크럽
+slug: hn-898
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 180.0
+phases:
+- name: A
+  ingredients:
+  - id: apricot-powder
+    percent: 50.0
+  - id: licorice-root
+    percent: 50.0
+packaging: []
+fill_volume_ml: 180.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=898

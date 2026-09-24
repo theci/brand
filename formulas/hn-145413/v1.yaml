@@ -1,0 +1,30 @@
+product: 프로폴리스 파워 앰플
+slug: hn-145413
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 29.5
+phases:
+- name: A
+  ingredients:
+  - id: glycerin
+    percent: 3.39
+  - id: xanthan-gum
+    percent: 0.34
+  - id: propolis-extract
+    percent: 33.89
+  - id: honey-extract
+    percent: 27.12
+  - id: egf
+    percent: 16.95
+  - id: fgf
+    percent: 16.95
+  - id: herbal-preservative
+    percent: 1.02
+  - id: rose-geranium-eo
+    percent: 0.34
+packaging: []
+fill_volume_ml: 29.5
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=145413

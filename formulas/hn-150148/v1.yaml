@@ -1,0 +1,24 @@
+product: 사카로 발효 워터풀 에센스
+slug: hn-150148
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 99.75
+phases:
+- name: A
+  ingredients:
+  - id: cream-base
+    percent: 40.1
+  - id: galactomyces-ferment
+    percent: 10.03
+  - id: neroli-water
+    percent: 49.12
+  - id: herbal-preservative
+    percent: 0.5
+  - id: bergamot-fcf-eo
+    percent: 0.25
+packaging: []
+fill_volume_ml: 99.8
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=150148

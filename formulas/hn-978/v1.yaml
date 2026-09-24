@@ -1,0 +1,24 @@
+product: 튼살예방오일
+slug: hn-978
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 95.5
+phases:
+- name: A
+  ingredients:
+  - id: macadamia-oil
+    percent: 52.36
+  - id: rosehip-oil
+    percent: 41.88
+  - id: tocopherol
+    percent: 5.24
+  - id: neroli-eo
+    percent: 0.1
+  - id: mandarin-eo
+    percent: 0.42
+packaging: []
+fill_volume_ml: 100.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=978

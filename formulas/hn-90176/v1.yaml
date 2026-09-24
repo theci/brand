@@ -1,0 +1,24 @@
+product: 봉독AC미스트
+slug: hn-90176
+version: 1
+regime: cosmetics
+category: 토너·미스트
+product_type: leave_on
+status: 개발중
+base_batch_g: 107.0
+phases:
+- name: A
+  ingredients:
+  - id: witch-hazel-water
+    percent: 88.8
+  - id: bee-venom
+    percent: 2.8
+  - id: houttuynia-extract
+    percent: 4.67
+  - id: herbal-preservative
+    percent: 0.93
+  - id: lipidure
+    percent: 2.8
+packaging: []
+fill_volume_ml: 107.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=90176

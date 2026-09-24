@@ -1,0 +1,13 @@
+# 하수오 쿨 샴푸 — 015/005 배치 수동 보정(branduid=883).
+product: 하수오 쿨 샴푸
+slug: hn-883
+type: rinse_off
+status: 개발중
+volume_ml: 500
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=883
+ingredients:
+  - 샴푸베이스 | 400g | 샴푸 베이스
+  - EM 활성액 | 40g | 발효
+  - 하수오추출물 | 60g | 모발
+  - 판테놀 | 10g | 보습
+  - 블랜딩오일 (샴푸용) | 5g | 착향

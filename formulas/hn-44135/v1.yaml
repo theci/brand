@@ -1,0 +1,22 @@
+product: 캐모마일수딩토너
+slug: hn-44135
+version: 1
+regime: cosmetics
+category: 토너·미스트
+product_type: leave_on
+status: 개발중
+base_batch_g: 91.0
+phases:
+- name: A
+  ingredients:
+  - id: roman-chamomile-water
+    percent: 21.98
+  - id: neroli-water
+    percent: 32.97
+  - id: lavender-water
+    percent: 43.95
+  - id: herbal-preservative
+    percent: 1.1
+packaging: []
+fill_volume_ml: 91.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=44135

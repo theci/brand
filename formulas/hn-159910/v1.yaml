@@ -1,0 +1,30 @@
+product: 호호바 만능오일
+slug: hn-159910
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 176.0
+phases:
+- name: A
+  ingredients:
+  - id: jojoba-oil
+    percent: 24.72
+  - id: blending-oil
+    percent: 0.28
+  - id: jojoba-oil
+    percent: 24.72
+  - id: blending-oil
+    percent: 0.28
+  - id: jojoba-oil
+    percent: 24.72
+  - id: blending-oil
+    percent: 0.28
+  - id: jojoba-oil
+    percent: 24.72
+  - id: blending-oil
+    percent: 0.28
+packaging: []
+fill_volume_ml: 176.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=159910

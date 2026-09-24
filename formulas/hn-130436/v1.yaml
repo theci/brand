@@ -1,0 +1,22 @@
+product: 어성 진정 폼클
+slug: hn-130436
+version: 1
+regime: cosmetics
+category: 기타
+product_type: leave_on
+status: 개발중
+base_batch_g: 300.0
+phases:
+- name: A
+  ingredients:
+  - id: gentle-foam-cleanser-base
+    percent: 76.67
+  - id: houttuynia-extract
+    percent: 10.0
+  - id: calendula-extract
+    percent: 10.0
+  - id: orange-flower-water
+    percent: 3.33
+packaging: []
+fill_volume_ml: 300.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=130436

@@ -1,0 +1,20 @@
+product: 시카바이옴 샴푸
+slug: hn-176130
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 478.9
+phases:
+- name: A
+  ingredients:
+  - id: cica-panthenol-shampoo-base
+    percent: 91.88
+  - id: probiotics-complex
+    percent: 6.26
+  - id: lavender-eo
+    percent: 1.86
+packaging: []
+fill_volume_ml: 478.9
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=176130

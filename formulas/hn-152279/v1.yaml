@@ -1,0 +1,38 @@
+product: 아토7 모이스춰 크림
+slug: hn-152279
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 100.15
+phases:
+- name: A
+  ingredients:
+  - id: camellia-oil
+    percent: 14.98
+  - id: shea-butter
+    percent: 4.99
+  - id: olive-emulsifying-wax
+    percent: 4.99
+  - id: oliwax-lc
+    percent: 2.0
+  - id: glycerin
+    percent: 4.99
+  - id: xanthan-gum
+    percent: 0.05
+  - id: roman-chamomile-water
+    percent: 51.93
+  - id: ato-7-solution
+    percent: 4.99
+  - id: ceramide-complex
+    percent: 4.99
+  - id: egf
+    percent: 4.99
+  - id: herbal-preservative
+    percent: 1.0
+  - id: bebe-bo-blending-oil
+    percent: 0.1
+packaging: []
+fill_volume_ml: 100.2
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=152279

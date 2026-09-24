@@ -1,0 +1,22 @@
+product: 맥주샴푸(비어12)
+slug: hn-157432
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 508.6
+phases:
+- name: A
+  ingredients:
+  - id: cica-panthenol-shampoo-base
+    percent: 86.51
+  - id: yeast-extract
+    percent: 5.9
+  - id: grain-protein-extract
+    percent: 5.9
+  - id: lemon-juice-blending-oil
+    percent: 1.69
+packaging: []
+fill_volume_ml: 508.6
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=157432

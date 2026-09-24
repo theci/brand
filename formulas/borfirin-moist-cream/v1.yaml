@@ -1,0 +1,19 @@
+product: 보르피린 수분크림
+slug: borfirin-moist-cream
+version: 1
+regime: cosmetics
+category: 로션·크림
+line: 스쿠알란
+product_type: leave_on
+status: 개발중
+base_batch_g: 290.0
+phases:
+- name: A
+  ingredients:
+  - id: borfirin
+    percent: 6.9
+  - id: cica-panthenol-soothing-gel-base
+    percent: 93.1
+packaging: []
+fill_volume_ml: 300.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=180802

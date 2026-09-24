@@ -1,0 +1,16 @@
+# 친환경 EM주방세제 — 015/007 배치 수동 보정(branduid=150242).
+product: 친환경 EM주방세제
+slug: hn-150242
+type: rinse_off
+status: 개발중
+regime: chemical_safety
+volume_ml: 250
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=150242
+product_category: 세탁세제_계면활성제_함유
+ingredients:
+  - 식물성 글리세린 | 6g | 보습
+  - 쟁탄검 | 1g | 점증
+  - 애플계면활성제 | 50g | 세정
+  - 코코베타인 | 68g | 세정
+  - EM활성액 | 120g | 발효
+  - 레몬EO | 3ml | 착향

@@ -1,0 +1,24 @@
+product: 코코넛 헤어팩
+slug: hn-172291
+version: 1
+regime: cosmetics
+category: 팩·패드
+product_type: leave_on
+status: 개발중
+base_batch_g: 231.0
+phases:
+- name: A
+  ingredients:
+  - id: coconut-oil
+    percent: 9.96
+  - id: cetyl-alcohol
+    percent: 2.16
+  - id: btms
+    percent: 6.49
+  - id: guar-chloride
+    percent: 0.43
+  - id: purified-water
+    percent: 80.96
+packaging: []
+fill_volume_ml: 231.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=172291

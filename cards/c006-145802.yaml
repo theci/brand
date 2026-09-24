@@ -1,0 +1,12 @@
+# 카네이션 디퓨저 — 015/006002 배치 수동 보정(branduid=145802).
+product: 카네이션 디퓨저
+slug: hn-145802
+type: leave_on
+status: 개발중
+regime: chemical_safety
+volume_ml: 180
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=145802
+product_category: 방향제_지속방출형
+ingredients:
+  - 카네이션 향 | 45ml | 조합향료
+  - 디퓨저 베이스 | 135ml | 확산 베이스

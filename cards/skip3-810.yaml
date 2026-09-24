@@ -1,0 +1,12 @@
+# 인삼콜라겐고보습스킨 — sample.txt(이미지 레시피) 기반(branduid=810).
+product: 인삼콜라겐고보습스킨
+slug: hn-810
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=810
+ingredients:
+  - 인삼추출물 | 20g | 재생
+  - 로즈워터 | 75g | 수상
+  - 아카시아콜라겐 | 10g | 보습
+  - 히아루론산 | 5g | 보습

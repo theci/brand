@@ -1,0 +1,13 @@
+# 라벤더썬번스프레이 — sample.txt(이미지 레시피) 기반(branduid=20192).
+product: 라벤더썬번스프레이
+slug: hn-20192
+type: leave_on
+status: 개발중
+volume_ml: 100
+source: https://www.herbnoori.com/shop/shopdetail.html?branduid=20192
+ingredients:
+  - 알로에워터 | 86g | 수상·진정
+  - 올리브리퀴드 | 2g | 가용화
+  - 라벤더에센셜오일 | 20방울 | 착향
+  - 감초추출물 | 10g | 진정
+  - 천연한방보존제 | 1g | 방부

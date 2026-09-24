@@ -1,0 +1,24 @@
+product: 발효 마유 밤
+slug: hn-141698
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 30.25
+phases:
+- name: A
+  ingredients:
+  - id: fermented-horse-oil
+    percent: 56.2
+  - id: cupuacu-butter
+    percent: 19.83
+  - id: candelilla-wax
+    percent: 16.53
+  - id: beeswax
+    percent: 6.61
+  - id: rose-geranium-eo
+    percent: 0.83
+packaging: []
+fill_volume_ml: 30.2
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=141698

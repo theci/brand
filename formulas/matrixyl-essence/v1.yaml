@@ -1,0 +1,28 @@
+product: 매트릭실 에센스
+slug: matrixyl-essence
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+line: 매트릭실
+product_type: leave_on
+status: 개발중
+base_batch_g: 100
+phases:
+- name: A (냉 혼합)
+  process: 비커에 모든 재료를 계량하고 고른 점도가 나올 때까지 혼합
+  ingredients:
+  - id: matrixyl-3000
+    percent: 5.0
+  - id: marine-collagen-gel
+    percent: 40.0
+  - id: neroli-water
+    percent: 43.0
+  - id: glycerin
+    percent: 5.0
+  - id: pdrn
+    percent: 5.0
+  - id: hexanediol
+    percent: 2.0
+packaging: []
+fill_volume_ml: 100
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=288660

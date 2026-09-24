@@ -2,6 +2,7 @@ product: 룸 스프레이(라벤더)
 slug: room-spray
 version: 1
 regime: chemical_safety
+category: 생활화학
 product_category: 방향제_비분사형   # fees.yaml 품목 코드
 # product_type은 화장품 개념이라 화학제품안전법에선 사용하지 않지만 코어 필수 필드라 넣어둠.
 product_type: leave_on

@@ -1,0 +1,28 @@
+product: 딸기 자초 립밤 (라이트)
+slug: hn-148494
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on
+status: 개발중
+base_batch_g: 52.0
+phases:
+- name: A
+  ingredients:
+  - id: jacho-oil
+    percent: 23.08
+  - id: castor-oil
+    percent: 38.45
+  - id: sweet-almond-oil
+    percent: 14.81
+  - id: tocopherol
+    percent: 0.58
+  - id: candelilla-wax
+    percent: 17.31
+  - id: beeswax
+    percent: 3.85
+  - id: strawberry-flavor-oil
+    percent: 1.92
+packaging: []
+fill_volume_ml: 52.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=148494

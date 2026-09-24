@@ -1,0 +1,30 @@
+product: 트러블 SSG~필링젤
+slug: hn-149592
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 97.25
+phases:
+- name: A
+  ingredients:
+  - id: cellulose
+    percent: 10.28
+  - id: tea-tree-water
+    percent: 38.05
+  - id: aloe-vera-gel
+    percent: 41.12
+  - id: allantoin
+    percent: 0.21
+  - id: purslane-extract
+    percent: 5.14
+  - id: glycerin
+    percent: 3.91
+  - id: herbal-preservative
+    percent: 1.03
+  - id: lemon-eo
+    percent: 0.26
+packaging: []
+fill_volume_ml: 97.2
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=149592

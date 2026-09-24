@@ -1,0 +1,24 @@
+product: 캐모마일 베이비워시
+slug: hn-1165
+version: 1
+regime: cosmetics
+category: 기타
+product_type: rinse_off
+status: 개발중
+base_batch_g: 151.0
+phases:
+- name: A
+  ingredients:
+  - id: apple-surfactant
+    percent: 26.49
+  - id: roman-chamomile-water
+    percent: 49.67
+  - id: chamomile-extract
+    percent: 13.25
+  - id: ceramide-complex
+    percent: 9.93
+  - id: mandarin-eo
+    percent: 0.66
+packaging: []
+fill_volume_ml: 130.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=1165

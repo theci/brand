@@ -1,0 +1,34 @@
+product: 일랑일랑진주크림
+slug: hn-49754
+version: 1
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on
+status: 개발중
+base_batch_g: 101.1
+phases:
+- name: A
+  ingredients:
+  - id: hemp-seed-oil
+    percent: 13.85
+  - id: rosehip-oil
+    percent: 13.85
+  - id: olive-emulsifying-wax
+    percent: 4.95
+  - id: oliwax-lc
+    percent: 0.99
+  - id: rose-water
+    percent: 49.44
+  - id: lipidure
+    percent: 4.95
+  - id: herbal-preservative
+    percent: 0.99
+  - id: whitens-complex
+    percent: 9.89
+  - id: pearl-powder
+    percent: 0.99
+  - id: ylang-ylang-eo
+    percent: 0.1
+packaging: []
+fill_volume_ml: 101.1
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=49754

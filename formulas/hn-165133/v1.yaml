@@ -1,0 +1,18 @@
+product: 퍼펙트 AC클리어 앰플
+slug: hn-165133
+version: 1
+regime: cosmetics
+category: 에센스·세럼·앰플
+product_type: leave_on
+status: 개발중
+base_batch_g: 30.0
+phases:
+- name: A
+  ingredients:
+  - id: acclear-perfect-solution-ampoule
+    percent: 66.67
+  - id: ac-clear-peptide
+    percent: 33.33
+packaging: []
+fill_volume_ml: 30.0
+source_url: https://www.herbnoori.com/shop/shopdetail.html?branduid=165133
