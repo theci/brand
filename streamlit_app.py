@@ -193,6 +193,7 @@ SECTIONS = {
     "시작": [
         st.Page(home, title="홈", icon="🏠", default=True),
         st.Page("pages/29_진행.py", title="오늘·진행", icon="🎯"),
+        st.Page("pages/33_제형마스터리.py", title="제형 마스터리", icon="🧑‍🍳"),
         st.Page("pages/32_문서캘린더.py", title="문서 캘린더", icon="🗓️"),
     ],
     "STEP 0 · 기획·전략": [
