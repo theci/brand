@@ -151,6 +151,103 @@ def extract_recipe(branduid: str) -> tuple[str, list[str]] | None:
     return name, rows
 
 
+# ── 표 구조 기반 정밀 추출(특징·대체재료 컬럼까지) ──────────────────────
+# extract_recipe는 재료+용량만 뽑는다(임포트 파이프라인용). 특징·대체재료가
+# 필요하면 아래 extract_recipe_full로 <table>의 셀 컬럼을 그대로 읽는다.
+
+def _cell_text(cell_html: str, joiner: str = " / ") -> str:
+    """셀 HTML → 텍스트. <br>는 줄 구분, '.'만 있는 조각·빈 조각은 버린다."""
+    c = re.sub(r"(?i)<br\s*/?>", "\n", cell_html)
+    c = re.sub(r"(?s)<[^>]+>", "", c)
+    c = html.unescape(c)
+    parts = [re.sub(r"[ \t ]+", " ", p).strip() for p in c.split("\n")]
+    parts = [p for p in parts if p and p != "."]
+    return joiner.join(parts)
+
+
+def _col_tag(header_cell: str) -> str | None:
+    """헤더 셀 텍스트 → 컬럼 종류 태그(cat/name/amt/feat/subst)."""
+    h = header_cell.replace(" ", "")
+    if "대체" in h:
+        return "subst"
+    if "특징" in h or "효능" in h or "역할" in h:
+        return "feat"
+    if h in ("용량", "양", "총양") or "용량" in h:
+        return "amt"
+    if "재료" in h or "원료" in h:
+        return "name"
+    if "분류" in h or "구분" in h or "순서" in h:
+        return "cat"
+    return None
+
+
+_CELL_RE = re.compile(r"(?is)<t[dh][^>]*>(.*?)</t[dh]>")
+_ROW_RE = re.compile(r"(?is)<tr[^>]*>(.*?)</tr>")
+_TABLE_OPEN = re.compile(r"(?i)<table\b")
+_TABLE_CLOSE = re.compile(r"(?i)</table>")
+
+
+def _iter_tables(h: str):
+    """중첩 포함 모든 <table>의 내부 HTML을 balanced 매칭으로 산출(안쪽부터).
+
+    허브누리는 레시피 표를 레이아웃 표 안에 중첩한다. 단순 `<table.*?</table>`
+    는 span이 깨져 레시피 표를 놓치고 엉뚱한 표(후기·문의 게시판)를 잡는다.
+    여는/닫는 태그를 스택으로 맞춰 각 표의 내부를 정확히 잘라낸다.
+    """
+    toks = sorted(
+        [(m.end(), "o") for m in _TABLE_OPEN.finditer(h)]
+        + [(m.start(), "c") for m in _TABLE_CLOSE.finditer(h)])
+    stack: list[int] = []
+    for pos, kind in toks:
+        if kind == "o":
+            stack.append(pos)
+        elif stack:
+            yield h[stack.pop():pos]
+
+
+def extract_recipe_full(branduid: str) -> list[dict] | None:
+    """상세페이지 표 → [{cat,name,amount,feature,substitute}, ...] 또는 None.
+
+    헤더행(재료+특징/효능 포함)으로 컬럼 의미를 잡고, 데이터행은 셀 수가
+    적으면(분류가 rowspan으로 병합) 오른쪽 정렬로 매핑한다. 용량이 금액
+    형태가 아닌 안내행은 건너뛴다.
+    """
+    h = fetch(f"{BASE}/shop/shopdetail.html?branduid={branduid}")
+    for table in _iter_tables(h):
+        if "재료" not in table or not any(k in table for k in ("특징", "효능", "역할")):
+            continue
+        rows = _ROW_RE.findall(table)
+        hdr_i = hdr_tags = None
+        for ri, r in enumerate(rows):
+            txts = [_cell_text(c, " ") for c in _CELL_RE.findall(r)]
+            if any("재료" in x or "원료" in x for x in txts) and any(
+                    ("특징" in x or "효능" in x or "역할" in x) for x in txts):
+                hdr_i, hdr_tags = ri, [_col_tag(x) for x in txts]
+                break
+        if hdr_i is None:
+            continue
+        out: list[dict] = []
+        for r in rows[hdr_i + 1:]:
+            vals = [_cell_text(c) for c in _CELL_RE.findall(r)]
+            if not vals:
+                continue
+            tags = hdr_tags[-len(vals):]  # 오른쪽 정렬(좌측 분류 병합 대응)
+            row = dict(zip(tags, vals[-len(tags):]))
+            name = row.get("name", "")
+            amt = row.get("amt", "")
+            if not name:
+                continue
+            a0 = amt.split(" / ")[0].strip()
+            if not (_AMOUNT_LINE.match(a0) or _BARE_NUM.match(a0)):
+                continue
+            out.append({"cat": row.get("cat", ""), "name": name, "amount": amt,
+                        "feature": row.get("feat", ""),
+                        "substitute": row.get("subst", "")})
+        if out:
+            return out
+    return None
+
+
 def write_raw(out_dir: Path, branduid: str, name: str, block: list[str]) -> Path:
     out_dir.mkdir(parents=True, exist_ok=True)
     url = f"{BASE}/shop/shopdetail.html?branduid={branduid}"
