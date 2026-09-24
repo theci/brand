@@ -1,0 +1,29 @@
+product: 동백·오미자 페이스오일
+slug: camellia-schisandra-face-oil
+version: 1
+regime: cosmetics
+category: 오일·밤
+product_type: leave_on   # 피부에 남는 제품
+status: 개발중
+base_batch_g: 100
+phases:
+  - name: A            # 베이스 오일: 상온 혼합
+    process: 상온에서 베이스 오일 4종을 계량해 맑게 균일 혼합
+    ingredients:
+      - { id: camellia-oil, percent: 40.0 }        # 올레인산 리치·장벽, 한국 동백 서사
+      - { id: jojoba-oil, percent: 30.0 }          # 피지 유사·안정, 끈적임 없는 캐리어
+      - { id: squalane, percent: 20.0 }            # 가벼운 마감(무게를 덜어 산뜻)
+      - { id: schisandra-seed-oil, percent: 9.2 }  # 오미자씨 항산화 시그니처
+  - name: B            # 첨가: 산화방지제 + 은은한 향
+    process: 산화방지제와 에센셜오일을 넣고 저어 마무리
+    ingredients:
+      - { id: tocopherol, percent: 0.5 }           # 산패 방지(권장상한 1% 이내)
+      - { id: neroli-eo, percent: 0.3 }            # 은은한 자연 향(꾸밈 최소)
+packaging:
+  - { id: dropper-30ml, qty_per_unit: 1 }
+fill_volume_ml: 30
+notes: >-
+  percent 합계 100.0. 무수 제형이라 방부제 불필요(토코페롤로 산패만 관리).
+  1주차 무수 기초 실습작 — 동백(올레인산)+호호바(안정)+스쿠알란(경량)로
+  '리치하되 무겁지 않은' 균형, 오미자씨로 항산화 시그니처. 네롤리 알러젠
+  (리모넨·리날룰 등) 표기 필요. 규제·전성분은 labeling으로 확인.
