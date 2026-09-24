@@ -2,6 +2,23 @@
 # 모든 칸 선택(부분 저장). pains[].source_ref 는 research.yaml sources[].id 를 가리킨다.
 # pains 점수 = severity(심각도) × frequency(빈도) → 우선순위 랭킹.
 personas:
+  # ★ 히어로(sebum-calm-cream) 핵심 페르소나 — 파운더 본인 = 세그먼트 원형(N=1 실화)
+  - id: sensitive-oily-recurring
+    name: 성분 깐깐한 예민·지성 30대 (파운더 본인)
+    one_line: 얼굴·두피 경계가 붉고 번들·각질이 반복돼, 발라도 더 올라올까 봐 성분을 깐깐히 따지는 30대
+    context: 피부과 연고는 쓸 때만 좋아지고 끊으면 재발. 여러 크림을 사봤지만 어떤 건 오히려 상태가 나빠짐 — 파운더 본인의 실경험.
+    jobs:
+      - 번들거림 없이 진정되는 무향 보습
+      - "'더 올라오지 않는다'는 안심(자극·유분 배제)"
+      - 무엇을 왜 뺐는지 믿을 수 있는 투명성
+    current_solution: 피부과 처방 연고 + 시판 진정크림 여러 개
+    dissatisfaction: 재발 반복 · 유분·향료로 오히려 악화 · 성분 근거 불투명
+    priority: 5
+    pains:
+      - { desc: 발라도 번들거리고 어떤 크림은 오히려 더 올라온다, severity: 5, frequency: 4, source_ref: src-founder }
+      - { desc: 향료·자극 성분에 붉어지고 따갑다, severity: 4, frequency: 4, source_ref: src-community }
+      - { desc: "'순한'이라 해도 뭐가 들었는지 못 믿겠다", severity: 3, frequency: 5, source_ref: src-founder }
+
   - id: dry-office-30s
     name: 건조한 사무직 30대
     one_line: 냉난방 사무실에서 하루 종일 당김을 느끼는 30대 직장인
@@ -11,7 +28,7 @@ personas:
       - 메이크업 위에도 덧바를 수 있는 산뜻함
     current_solution: 대형 브랜드 수분크림
     dissatisfaction: 끈적이고 흡수가 느려 화장이 밀림
-    priority: 5
+    priority: 2   # 히어로 전환 전 daily-lotion 세그먼트(참고용)
     pains:
       - { desc: 오후만 되면 볼이 당기고 각질이 인다, severity: 4, frequency: 5, source_ref: src-review-oy }
       - { desc: 수분크림이 끈적여 덧바르기 싫다, severity: 3, frequency: 4, source_ref: src-review-oy }

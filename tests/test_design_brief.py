@@ -50,7 +50,7 @@ def test_brief_pulls_concept_from_discovery_and_core(lab):
     )
     md = build_brief(f, lab, core=core, discovery=disc)
     # 기획(페르소나)·브랜드(약속·톤·금지어·비주얼)가 브리프에 반영
-    assert "냉난방 사무실" in md  # primary persona one_line
+    assert "성분을 깐깐히 따지는" in md  # primary persona one_line(히어로=예민·지성)
     assert "산뜻하게 오후까지" in md
     assert "담백한" in md
     assert "완벽" in md  # 금지어 명시

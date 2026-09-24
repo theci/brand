@@ -18,6 +18,11 @@ sources:
     kind: 규정
     researched_on: 2026-01-01
     reliability: 5
+  - id: src-founder
+    title: 파운더 자가경험 — 예민·지성(지루성 피부염 경향) 피부, 크림 사용 이력
+    kind: 자가관찰
+    researched_on: 2026-09-25
+    reliability: 3
 
 market_notes:
   - topic: 수분크림 시장 트렌드
