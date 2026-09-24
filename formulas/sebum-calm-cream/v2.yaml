@@ -1,0 +1,52 @@
+product: 시크 진정 밸런스 크림
+slug: sebum-calm-cream
+version: 2
+regime: cosmetics
+category: 로션·크림
+product_type: leave_on      # 안 씻어냄 → 알러젠 임계 0.001%(엄격), 무향 지향
+status: 개발중
+base_batch_g: 200
+parent_version: 1           # v1 개선. 허브누리 진정계열 참고 + 말라세지아-세이프 유지.
+phases:
+  # 수상: 수용성 진정·장벽 활성 + 폴리올(말라세지아가 먹지 않는 보습)
+  # v2: 다중 히아루론산 신규(지성용 무유분 보습 = v1의 빈틈), 물로 100 맞춤(66.5→63.5)
+  - name: A (수상)
+    process: 70~75도로 가열하며 잔탄검을 글리세린에 개어 넣고, 수용성 활성·히알루론산을 완전 용해
+    ingredients:
+      - { id: water, percent: 63.5 }
+      - { id: glycerin, percent: 5.0 }
+      - { id: niacinamide, percent: 2.0 }
+      - { id: allantoin, percent: 0.5 }
+      - { id: beta-glucan, percent: 1.0 }
+      - { id: zinc-pca, percent: 1.0 }
+      - { id: pentylene-glycol, percent: 3.0 }
+      - { id: xanthan-gum, percent: 0.3 }
+      - { id: multi-hyaluronic-acid, percent: 1.0 }   # v2 신규: 고·중·저분자 층별 보습(유분 없이 수분↑)
+  # 유상: ★말라세지아-세이프 에몰리언트만 (C11~24 지방산 오일 배제)
+  - name: B (유상)
+    process: 70~75도로 가열해 유화제·지방알코올·실리콘·경질오일 용해
+    ingredients:
+      - { id: glyceryl-stearate-citrate, percent: 4.0 }
+      - { id: cetyl-alcohol, percent: 2.0 }
+      - { id: squalane, percent: 5.0 }
+      - { id: mct, percent: 3.0 }
+      - { id: dimethicone, percent: 3.0 }
+  # 냉각: 열에 약한 병풀·판테놀·녹차 폴리페놀 + 보존제 (무향 — 향료 자극 배제)
+  - name: C (냉각 첨가)
+    process: 40도 이하로 냉각 후 병풀·판테놀·녹차추출물·보존제 투입
+    ingredients:
+      - { id: centella-extract, percent: 1.0 }
+      - { id: panthenol, percent: 1.0 }
+      - { id: green-tea-extract, percent: 2.0 }        # v2 신규: 녹차 폴리페놀(EGCG) 피지·항산화·진정
+      - { id: phenoxyethanol, percent: 0.7 }
+      - { id: hexanediol, percent: 1.0 }
+packaging:
+  - { id: jar-50ml, qty_per_unit: 1 }
+fill_volume_ml: 50
+notes: >
+  예민·지성(지루성 피부염 경향) 피부용 진정 밸런스 크림. ★화장품이므로 '치료·완화' 표방 금지.
+  v2 개선(허브누리 진정계열 참고): (1) 다중 히아루론산 1% 신규 — 지성 피부에 유분 없이 층별 수분
+  보충(v1의 빈틈: HA 부재). (2) 녹차추출물 2% 신규(냉각 첨가) — 폴리페놀 EGCG로 피지·항산화·진정,
+  허브누리 진정 처방 단골이며 수용성이라 말라세지아-세이프. 물 66.5→63.5로 100 맞춤.
+  ★유지 원칙: 말라세지아가 대사하는 C11~24 지방산 오일 전면 배제 · 무향(향료 자극 배제).
+  두 신규 성분 모두 수용성이라 무향·세이프 원칙과 충돌 없음. 신규 원료 INCI·함량 검증 필요.
