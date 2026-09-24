@@ -10,6 +10,7 @@ from brandlab.curriculum import (
     add_report,
     current_position,
     days_since_report,
+    load_mastery,
     milestone_status,
     next_quests,
     prefill_next,
@@ -17,6 +18,7 @@ from brandlab.curriculum import (
     set_start_date,
     streak,
     toggle_quest,
+    weekly_focus,
 )
 from brandlab.loader import load_curriculum, load_progress
 
@@ -125,3 +127,43 @@ def test_save_progress_roundtrip(tmp_path: Path):
     assert reloaded.start_date == date(2026, 1, 1)
     assert reloaded.done == ["a1-d1"]
     assert reloaded.reports[0].did == "첫 보고"
+
+
+# --- 제형 마스터리 트랙 ---
+def test_mastery_curriculum_loads_and_is_consistent():
+    c = load_mastery()
+    assert len(c.acts) == 6
+    assert len(c.quests) >= 24
+    assert {q.kind for q in c.quests} == {"desk", "lab"}
+    act_ids = {a.id for a in c.acts}
+    assert all(q.act in act_ids for q in c.quests)  # 모든 퀘스트가 유효 막 참조
+    assert all(q.week for q in c.quests)  # 주차 필수
+
+
+def test_weekly_focus_starts_at_first_act_and_splits_kinds():
+    c = load_mastery()
+    wf = weekly_focus(c, Progress())
+    assert wf is not None
+    assert wf.act.id == "m1" and wf.week == 1
+    assert wf.desk and wf.lab  # 읽기·제조 모두 존재
+    assert wf.done_in_week == 0 and not wf.all_done
+
+
+def test_weekly_focus_advances_after_week_complete():
+    c = load_mastery()
+    p = Progress()
+    w1 = [q for q in c.quests if q.act == "m1" and q.week == 1]
+    for q in w1:  # 1주차 전부 완료
+        p = toggle_quest(p, q.id, True)
+    wf = weekly_focus(c, p)
+    assert wf.week == 2  # 다음 주차로 이동
+    assert all(q.id not in set(p.done) for q in wf.desk + wf.lab)
+
+
+def test_weekly_focus_all_done_flag():
+    c = load_mastery()
+    p = Progress()
+    for q in c.quests:
+        p = toggle_quest(p, q.id, True)
+    wf = weekly_focus(c, p)
+    assert wf.all_done and not wf.desk and not wf.lab

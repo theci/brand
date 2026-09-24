@@ -14,10 +14,14 @@ from pathlib import Path
 import yaml
 
 from .core.models import Act, Curriculum, DailyReport, Progress, Quest
-from .loader import DATA_DIR, load_progress
+from .loader import DATA_DIR, load_curriculum, load_progress
 from .master_edit import save_with_backup
 
 PROGRESS_PATH = DATA_DIR / "brand" / "progress.yaml"
+
+# 제형 마스터리 트랙(아키타입 지도+원료 팔레트 기반). 데일리 루틴과 별개 진행.
+MASTERY_PATH = DATA_DIR / "curriculum_mastery.yaml"
+MASTERY_PROGRESS_PATH = DATA_DIR / "brand" / "progress_mastery.yaml"
 
 
 @dataclass
@@ -108,6 +112,56 @@ def prefill_next(cur: Curriculum, prog: Progress, *, kind: str | None = None) ->
 
 
 # ---------------------------------------------------------------------------
+# 제형 마스터리 트랙 — 아키타입 지도/원료 팔레트를 커리큘럼 엔진에 연결
+# ---------------------------------------------------------------------------
+def load_mastery(path: Path | str = MASTERY_PATH) -> Curriculum:
+    """제형 마스터리 커리큘럼(data/curriculum_mastery.yaml)을 로드."""
+    return load_curriculum(path)
+
+
+@dataclass
+class WeeklyFocus:
+    """'이번 주 익힐 제형·원료' — 플랫폼이 던져주는 주간 포커스."""
+
+    act: Act  # 현재 막(제형 단계)
+    week: int | None  # 현재 주차
+    desk: list[Quest]  # 이번 주 남은 desk(읽기·설계) 퀘스트
+    lab: list[Quest]  # 이번 주 남은 lab(제조·일지) 퀘스트
+    done_in_week: int  # 이번 주 완료 수
+    total_in_week: int  # 이번 주 총 퀘스트 수
+    all_done: bool  # 커리큘럼 전체 완료 여부
+
+
+def weekly_focus(cur: Curriculum, prog: Progress) -> WeeklyFocus | None:
+    """현재 막·주차의 남은 퀘스트를 desk/lab로 나눠 돌려준다. 없으면 None.
+
+    current_position(첫 미완료 퀘스트 기준)으로 '지금 있어야 할 주'를 잡고,
+    그 주의 미완료 퀘스트를 종류별로 모은다. 진도 강제 없이 다음 할 일을 짚어주는
+    '주 1 사이클'의 구현.
+    """
+    pos = current_position(cur, prog)
+    if pos.act is None:
+        return None
+    all_done = _first_incomplete(cur, prog) is None
+    if all_done:  # 전부 완료 — 마지막 막에 빈 주간으로 종료 신호
+        return WeeklyFocus(pos.act, pos.week, [], [], 0, 0, True)
+    done = set(prog.done)
+    week_qs = [q for q in cur.quests if q.act == pos.act.id and q.week == pos.week]
+    if not week_qs:  # 방어(데이터 이상)
+        return None
+    d = sum(1 for q in week_qs if q.id in done)
+    return WeeklyFocus(
+        act=pos.act,
+        week=pos.week,
+        desk=[q for q in week_qs if q.kind == "desk" and q.id not in done],
+        lab=[q for q in week_qs if q.kind == "lab" and q.id not in done],
+        done_in_week=d,
+        total_in_week=len(week_qs),
+        all_done=all_done,
+    )
+
+
+# ---------------------------------------------------------------------------
 # 편집 (순수 함수로 새 Progress를 만들고, save_progress로 저장)
 # ---------------------------------------------------------------------------
 def set_start_date(prog: Progress, d: date) -> Progress:
@@ -154,6 +208,11 @@ __all__ = [
     "days_since_report",
     "milestone_status",
     "prefill_next",
+    "load_mastery",
+    "WeeklyFocus",
+    "weekly_focus",
+    "MASTERY_PATH",
+    "MASTERY_PROGRESS_PATH",
     "set_start_date",
     "toggle_quest",
     "add_report",
