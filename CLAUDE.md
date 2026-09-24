@@ -18,7 +18,7 @@
 - **커머스 운영(주문·결제·배송·CS)은 스코프 밖** — 플랫폼 정체성 = "증거·서사·포지셔닝의 원천"(`docs/플랫폼/플랫폼_확장_사업화_설계.md` §6).
 
 ## 데이터 위치
-- **처방(제품): `formulas/<slug>/vN.yaml`** — 18종. `fill_volume_ml`/`net_weight_g`, `packaging:[{id,qty_per_unit}]` 참조.
+- **처방(제품): `formulas/<slug>/vN.yaml`** — 600여종(대부분 herbnoori 임포트, 자체 개발 ~18종). `fill_volume_ml`/`net_weight_g`, `packaging:[{id,qty_per_unit}]`, `source_url`(허브누리 원본) 참조. 임포트 처방 슬러그 = `hn-<branduid>`.
 - **브랜드 레벨(싱글턴): `data/brand/`** — `core.yaml`(BrandCore), `personas.yaml`·`problem.yaml`·`research.yaml`(Discovery 3종), `budget.yaml`, `reviews.yaml`, `progress.yaml`.
   - ⇒ **구조 = 멀티 처방 + 싱글 브랜드**(파운더 1명). 별도 브랜드 추가하려면 `data/brand/` 경로 하드코딩부터 리팩터 필요.
 - **공용 마스터: `data/`** — `packaging.yaml`, `inventory.yaml`, `curriculum.yaml`, `regulatory/<레짐>/`.
@@ -31,21 +31,31 @@
 - 이미지 프롬프트: `prompt_builder.py` — `SCENES`(장면 레시피), `PRESETS`, `REF_BRANDS`, `HONEST_FINISH`(마감 지시어), `REALSHOT_GUARD`(제품 실촬영 강제).
 - 디자인 브리프: `design_brief.py` (`build_brief` → 규제표기+톤+비주얼+§6 이미지 프롬프트 컴파일).
 - 마케팅 자산: `narrative.py`(개발서사), `listing.py`(상품등록), `touchpoints.py`(고객접점), `adcopy.py`/`checks.py`(문구검사), `positioning.py`, `brand_core.py`.
-- 기타: `discovery.py`, `doe.py`/`doe_optimize.py`, `stability.py`, `panel.py`, `batchrecord.py`, `certification.py`, `shopping.py`, `dashboard.py`, `curriculum.py`.
+- 기타: `discovery.py`, `advisor.py`(규제판정), `doe.py`/`doe_optimize.py`, `stability.py`, `panel.py`, `batchrecord.py`, `certification.py`, `shopping.py`, `dashboard.py`.
+- 학습 트랙: `curriculum.py` — 데일리 루틴 + **제형 마스터리**(`load_mastery`/`weekly_focus`, 데이터 `data/curriculum_mastery.yaml`, 진행 `progress_mastery.yaml`, 페이지 `pages/33_제형마스터리.py`).
+- 허브누리 크롤·임포트(`herbnoori_crawl.py`·`herbnoori_import.py`·`herbnoori_batch.py`): 레시피 크롤→처방 YAML. `extract_recipe_full`은 중첩표까지 특징/대체재료 추출. 대량 임포트에 사용.
 - 페이지↔STEP 매핑: `streamlit_app.py`의 `SECTIONS`(STEP 0~11).
 
 ## 브랜드 컨셉 (현재)
 - **"가공하지 않은 파운더"** — 완성도가 아니라 정직함이 무기. 화려·인공(가상모델/렌더/스톡) 배제, 파운더 실물·과정 실촬영. `data/brand/core.yaml`에 톤·비주얼·금지어로 인코딩됨.
 - 이미지 프롬프트 기본값도 이 컨셉에 맞춰 **자연광·정직**으로 재정의(럭셔리는 옵션 강등). AI는 배경·무드만, 제품·인물은 실촬영.
 
-## 히어로 제품
-- **`daily-lotion`**(오후 산뜻 보습 로션), 근거 기준 버전 = **v2**. **본품 200mL 펌프(`pump-200ml`)**, 미니 50mL은 기존 `jar-50ml` 재고 소진.
+## 히어로 제품 (2026-09 전환)
+- **브랜드 = 다도기(Dadogi)** — '다독이다'에서 온 조어. `data/brand/core.yaml` brand_name.
+- **히어로 = `sebum-calm-cream`("시크 진정 밸런스 크림", 50mL 무향, `jar-50ml`)**, 최신 = **v2**.
+  - 파운더 본인이 **예민·지성(지루성 피부염 경향)** 으로 고생 → 자기 문제를 푸는 제품이 히어로(진정성=실화).
+  - **전문 앵글 = 말라세지아-세이프**: 효모가 대사하는 **C11~24 지방산 오일 전면 배제**(올리브·코코넛·호호바·버터류 금지), 스쿠알란·MCT(C8/C10)·디메치콘 등 '먹이 아닌' 에몰리언트만. 무향.
+  - ⚠️ **화장품이라 병명·치료·항염·살균 표방 금지** — "예민·지성용 무향 진정 보습"으로 사실 기반 포지셔닝(문구검사가 지킴).
+- (구 히어로 `daily-lotion`은 참고 세그먼트로 강등. 브랜드 discovery(personas/problem/core)는 새 히어로 기준으로 재작성됨.)
 - SKU 전략: 새 SKU 남발 금지, **처방 하나 → 옵션·세트·구독 5줄**(`docs/출시/SKU_전략_히어로_옵션구성.md`).
+- **정본 = `docs/정본_히어로_파이프라인.md`** — "여기서 시작". STEP 0~11을 지휘하고 나머지 문서를 참고 서랍으로 규정.
 
 ## 문서 맵 (`docs/`)
+- **`정본_히어로_파이프라인.md` — 시작점(정본).** 헷갈리면 이것부터. 나머지는 참고 서랍.
 - `플랫폼/` — 확장 설계(사업화·마케팅·식품·규제레짐), 사용/데이터 가이드.
 - `출시/` — SKU 전략, 운영 자동화 플레이북, 브랜딩·마케팅 가이드, 판매전 등록 체크리스트, OEM 발주.
-- `사업/` — 팬베이스·피드백 루프 전략, 제품별 사업 시나리오.
+- `사업/` — 팬베이스·피드백 루프 전략, 제품별 사업 시나리오(**히어로 = `사업_시나리오_지성진정크림.md`**, STEP 0~11 허브).
+- `커리큘럼/` — 학습 자산(정본 STEP 3 참고 서랍): 제형 아키타입 지도(14제형)·원료 팔레트(60종)·실습 워크드예제 + 처방 전문성 로드맵.
 
 ## 컨벤션
 - **규제·단가·MOQ 수치는 예시(검증 필요)** — 집행 전 식약처·환경부·공정위 원문 대조. `data/packaging.yaml` 단가/MOQ도 예시값.
