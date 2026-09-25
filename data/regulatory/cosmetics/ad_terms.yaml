@@ -6,7 +6,7 @@
 #
 # ※ 초기 데이터는 예시 몇 개뿐입니다. 나머지는 직접 채우세요.
 # ※ 여러 단어 표현은 띄어쓰기 변형까지 잡도록 공백을 넣어 두세요(예: "주름 개선").
-last_updated: 2026-08-19
+last_updated: 2026-09-25
 source: "화장품법·기능성화장품 고시·표시광고 실증 가이드 (사용자 확인분, 원문 대조 필요)"
 source_url: "https://www.mfds.go.kr/  # 표시광고 실증 가이드 — 실제 URL로 교체"
 
@@ -68,3 +68,88 @@ terms:
     risk: low
     suggestion: "꾸준히 사용 시"
     reference: "기간 한정 효과 표현은 실증 필요."
+
+  # ===== 지성·진정 히어로(다도기) 특화 위험어 (2026-09 추가) =====
+  # ※ 아래 분류·근거는 예시 — 집행 전 화장품법 §13(표시·광고)·표시광고 실증제 원문 대조 필요.
+  # --- 병명·질환 표방(의약품 오인, 최고위험) ---
+  - expression: 지루성 피부염
+    category: drug_claim
+    risk: high
+    pattern: "지루성\\s*피부염"
+    suggestion: "예민·지성 피부 / 유분이 신경 쓰이는 피부"
+    reference: "특정 질환명 표방 = 의약품 오인. 화장품은 병명·치료 소구 불가."
+  - expression: 아토피
+    category: drug_claim
+    risk: high
+    suggestion: "건조하고 예민한 피부"
+    reference: "아토피는 질환명 — 표방 시 의약품 오인."
+  - expression: 여드름
+    category: drug_claim
+    risk: high
+    suggestion: "트러블이 잘 나는 피부(사실 서술) / 피지가 많은 피부"
+    reference: "여드름 완화는 기능성/의약외품 영역 — 일반 화장품 소구 주의."
+  # --- 항염·항균·살균(의약품/의약외품 영역) ---
+  - expression: 염증
+    category: drug_claim
+    risk: high
+    suggestion: "진정 케어(붉은기 완화 등 사실 서술로 대체는 어려움 — 삭제 권장)"
+    reference: "염증(완화·억제 등) 언급은 의약품 오인. 조사 낀 형태도 사람이 재검토."
+  - expression: 항염
+    category: drug_claim
+    risk: high
+    suggestion: "진정 성분 함유(성분 사실만)"
+    reference: "항염은 의약품 효능 표현."
+  - expression: 살균
+    category: drug_claim
+    risk: high
+    suggestion: "(삭제) — 세정/청결 정도만"
+    reference: "살균·멸균은 의약외품/의약품 영역."
+  - expression: 멸균
+    category: drug_claim
+    risk: high
+    suggestion: "(삭제)"
+    reference: "멸균 표방 불가(화장품)."
+  - expression: 항균
+    category: drug_claim
+    risk: high
+    suggestion: "(삭제) — 필요 시 '보존 처리' 등 사실"
+    reference: "항균 소구는 의약외품 영역(인체 대상)."
+  - expression: 억제
+    category: drug_claim
+    risk: medium
+    suggestion: "케어 / 관리(피지가 많은 피부 결 정돈 등 사실)"
+    reference: "균·피지 '억제'는 기능성/의약품 오인 소지 — 사실 서술로."
+  - expression: 말라세지아
+    category: drug_claim
+    risk: high
+    pattern: "말라세지아|말라쎄지아|말라세치아|malassezia"
+    suggestion: "성분 설계 설명은 '먹이가 되는 유분(C11~24 지방산)을 넣지 않았다'는 사실만"
+    reference: "특정 미생물 억제·표적 암시 = 의약품 오인. 균 이름으로 효능 소구 금지."
+  # --- 재발·부작용·안전성 단정 ---
+  - expression: 재발
+    category: drug_claim
+    risk: high
+    suggestion: "(삭제) — 질환 재발 방지는 의약품 소구"
+    reference: "재발 방지·예방은 질병 예방 = 의약품 오인."
+  - expression: 부작용
+    category: unverified_claim
+    risk: medium
+    suggestion: "(삭제) — '부작용 없는' 등 안전성 단정 금지"
+    reference: "무부작용·안전 단정은 실증 없으면 과장."
+  - expression: 무자극
+    category: unverified_claim
+    risk: medium
+    pattern: "무자극|저자극"
+    suggestion: "향료·색소를 넣지 않았다는 사실 서술 / '자극 테스트 완료'는 실증 자료 있을 때만"
+    reference: "무자극·저자극은 실증(인체적용시험 등) 필요."
+  # --- 의료 연상·과장 ---
+  - expression: 피부과
+    category: unverified_claim
+    risk: medium
+    suggestion: "(삭제) — 의료기관·시술 비교 연상 지양"
+    reference: "피부과 시술 비교·대체 암시는 의약품/의료 오인 소지."
+  - expression: 놀라운
+    category: absolute_claim
+    risk: medium
+    suggestion: "(삭제) 또는 담백한 사실 서술"
+    reference: "과장·감탄 표현은 실증 없으면 과장광고 소지."
