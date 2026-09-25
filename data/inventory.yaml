@@ -5,7 +5,7 @@
 #   pack_price  1팩 가격(원). 없으면 ingredients.yaml의 price_per_kg로 환산
 #   expiry      유통기한(미개봉) / opened+pao_months = 개봉 후 사용기한
 # 포장: on_hand 보유 개수(구매 단위 MOQ는 packaging.yaml을 따름)
-last_updated: 2026-09-02
+last_updated: 2026-09-25
 
 ingredients:
   - id: glycerin
@@ -33,6 +33,27 @@ ingredients:
     pack_price: 4500
     opened: 2026-01-10          # 개봉 후 6개월 → 2026-07-10 = 이미 만료
     pao_months: 6
+    notes: ★만료(2026-07-10) — 폐기·재구매 예정. 원료장터 'Euxyl PE 9010', CoA 요청. 물 크림 필수
+
+  # ── v2(sebum-calm-cream) 첫 배치용 구매예정 (2026-09-25). on_hand_g:0 = 아직 없음 ──
+  - id: water
+    on_hand_g: 0
+    notes: 구매예정 — 정제수 2~4L, 실온 보관. 소분몰/약국
+  - id: beta-glucan
+    on_hand_g: 0
+    notes: 구매예정 — 허브누리. 진정·장벽 활성. CoA 요청
+  - id: green-tea-extract
+    on_hand_g: 0
+    notes: 구매예정 — 허브누리. v2 신규 활성(수용성). CoA 요청
+  - id: glyceryl-stearate-citrate
+    on_hand_g: 0
+    notes: 구매예정 — 허브누리(없으면 유화/uhwa). ★'올리브유화왁스'와 다른 상품. v2 설계 유화제
+  - id: multi-hyaluronic-acid
+    on_hand_g: 0
+    notes: 구매예정 — 원료장터. 가능하면 저·고분자 복합. CoA 요청
+  - id: zinc-pca
+    on_hand_g: 0
+    notes: 구매예정 — 원료장터. 피지 밸런스 활성. CoA 요청
 
 packaging:
   - id: jar-50ml
