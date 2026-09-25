@@ -17,6 +17,10 @@ experiments/doe/*-interaction.png
 제품표준서*.md
 dossiers/
 
+# 디자인 브리프·리스팅 등 재생성 가능한 산출물(입력 데이터만 버전관리)
+디자인브리프*.md
+리스팅*.md
+
 # 상품 등록 자료 산출물 (화면에서 생성/저장)
 listings/
 

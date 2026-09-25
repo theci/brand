@@ -12,7 +12,7 @@
 # ── 브랜드 식별 ──
 brand_name: 다도기              # '다독이다'에서 온 조어(Dadogi). 지친 예민 피부를 다독인다.
 # ⚠️ 확정 전 체크(TODO): [ ] KIPRIS 상표(제3류 화장품) [ ] 인스타/스레드 @dadogi [ ] 도메인 dadogi.co.kr/.kr/.com
-product_ref: "sebum-calm-cream v1"  # 히어로 = 시크 진정 밸런스 크림
+product_ref: "sebum-calm-cream v2"  # 히어로 = 시크 진정 밸런스 크림(최신 v2)
 
 # ── ① 카테고리 진입점 / ② 타깃 / ③ 적 / ④ 약속 ──
 entry_points:
