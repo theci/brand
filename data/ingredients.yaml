@@ -1089,14 +1089,16 @@ ingredients:
   # --- 보습 ---
   - id: multi-hyaluronic-acid
     name: 다중 히아루론산
-    inci: Sodium Hyaluronate (고·중·저분자 복합)
+    inci: Sodium Hyaluronate        # 전성분 표기는 INCI만 — '복합' 설명은 notes로
     category: 보습
     effects: []
     density: 1.0
     price_per_kg: 300000    # 예시값 — 프리미엄 다분자 복합(sodium-hyaluronate 20만 대비 상향). 견적으로 교체.
     has_coa: false
     grade: cosmetic
-    notes: 고·중·저분자 복합 히알루론산(촘촘 보습). 정확 조성 검증 필요. 단가 예시(견적 필요).
+    notes: >-
+      고·중·저분자 복합 히알루론산(촘촘 보습). 전성분 표기는 Sodium Hyaluronate 단일명이나
+      실제는 분자량 복합 블렌드 — 정확 조성·INCI(추가 성분 여부) COA로 검증. 단가 예시(견적 필요).
   - id: hyaluronic-acid-11
     name: 11 히아루론산
     inci: 11종 히알루론산 복합 (Sodium Hyaluronate 외)

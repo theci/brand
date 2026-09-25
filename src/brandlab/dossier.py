@@ -116,7 +116,7 @@ def build_dossier(
         name = ing.name if ing else ing_id
         inci = ing.inci if ing else "―"
         cas = (ing.cas if ing and ing.cas else "―")
-        cat = ing.category if ing else "―"
+        cat = ing.category.value if ing else "―"
         L.append(f"| {n} | {name} | {inci} | {cas} | {cat} | {pct:g} |")
     if scr.inci.allergen_inci:
         L.append("")
