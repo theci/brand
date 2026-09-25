@@ -1,0 +1,7 @@
+# 안정성 — 시크 진정 밸런스 크림 v1, 45℃(레퍼런스). v2와 나란히 돌려 신규 성분(녹차·HA)이
+# 색·냄새·분리에 주는 영향 = (v2 45℃) − (v1 45℃) 차이로 귀속시키기 위한 대조.
+sample_id: SCC-v1-45C
+formula_ref: sebum-calm-cream v1
+condition: 45C
+start_date: 2026-09-25
+observations: []

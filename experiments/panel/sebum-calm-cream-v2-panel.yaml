@@ -1,0 +1,9 @@
+# 관능 평가지 — 시크 진정 밸런스 크림 v2 (블라인드 비교의 B 시료). 항목·목표는 v1과 동일해야 비교 가능.
+# ★v2 가설: 다중HA로 '당김없음' ↑, 녹차/HA로 '무거움없음'·'산뜻함'이 v1 대비 떨어지지 않는지 확인이 관건.
+test_id: sebum-calm-cream-v2-panel
+formula_ref: sebum-calm-cream v2
+sample_label: SCC-v2-LOT-2026-09-B   # 블라인드 코드 'B'
+scale_max: 5
+attributes: [산뜻함_비끈적, 흡수속도, 발림성, 무거움없음, 발림후_당김없음, 재구매의사]
+targets: {산뜻함_비끈적: 4.0, 무거움없음: 4.0, 발림후_당김없음: 4.0, 재구매의사: 4.0}
+responses: []

@@ -1,0 +1,7 @@
+# 안정성 — 시크 진정 밸런스 크림 v2, 냉동-해동 사이클. 유화 파괴(분리) 취약점 조기 검출.
+# ★유화제 glyceryl-stearate-citrate 단일계 → 저온에서 분리 위험. 여기서 깨지면 유화 설계 재검토.
+sample_id: SCC-v2-freeze-thaw
+formula_ref: sebum-calm-cream v2
+condition: freeze_thaw
+start_date: 2026-09-25
+observations: []

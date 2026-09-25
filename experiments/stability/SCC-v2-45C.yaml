@@ -1,0 +1,7 @@
+# 안정성 — 시크 진정 밸런스 크림 v2, 45℃ 가속(변질 촉진). 무향 크림이라 산패 냄새·변색이 핵심 신호.
+# ★관찰 포인트(v2 신규 리스크): 녹차추출물 2% → 갈변/녹변·특유 냄새 여부, 다중HA 1% → 물빠짐·점도변화.
+sample_id: SCC-v2-45C
+formula_ref: sebum-calm-cream v2
+condition: 45C
+start_date: 2026-09-25        # 소량 배치 제조일 = 시험 시작(예정). 실제 제조일로 갱신.
+observations: []              # 1주차부터 stability_due 알림
