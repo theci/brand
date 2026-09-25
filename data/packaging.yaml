@@ -11,7 +11,40 @@ packaging:
     material: 유리
     unit_price: 800
     moq: 3000
-    notes: 클렌징밤용 광구병 · 로션 미니(50mL) 겸용 — 기존 재고 소진처
+    notes: 클렌징밤용 광구병 · 로션 미니(50mL) 겸용 — 기존 재고 소진처. 커스텀 사양이라 MOQ 3,000(선투입·사장재고 큼).
+
+  # ── 지성 진정 크림(sebum-calm-cream) 용기 MOQ 재검토용 대안 (2026-09 추가, 단가·MOQ 예시) ──
+  - id: jar-50ml-stock
+    name: 50ml 규격(상시재고) 크림 자
+    type: jar
+    volume_ml: 50
+    material: PET/PP(무광 화이트)
+    unit_price: 1300
+    moq: 100
+    notes: >
+      국내 유통사 상시재고 규격 용기 → MOQ 100개로 초도 소량 가능(단가는 커스텀보다 높음).
+      1인 초도 검증(수십~수백개)에 최적. 단가·MOQ 예시 — 실제 견적으로 교체.
+
+  - id: airless-50ml
+    name: 50ml 에어리스 펌프
+    type: bottle
+    volume_ml: 50
+    material: PP(에어리스 진공)
+    unit_price: 1100
+    moq: 1000
+    notes: >
+      에어리스 진공 = 공기·손 접촉 차단(무향·저방부·예민피부 크림에 위생·산화방지 유리).
+      MOQ 1,000으로 중간. 단가·MOQ 예시.
+
+  - id: cream-tube-50ml
+    name: 50ml 크림 튜브
+    type: tube
+    volume_ml: 50
+    material: PE 튜브(무광)
+    unit_price: 450
+    moq: 1000
+    notes: >
+      짜서 쓰는 튜브 = 위생·경량·저가. 담백 컨셉과 부합. MOQ 1,000. 단가·MOQ 예시.
 
   - id: pump-200ml
     name: 200ml 에어리스 진공 펌프 보틀
