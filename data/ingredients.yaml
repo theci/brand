@@ -897,6 +897,18 @@ ingredients:
     cas: "5343-92-0"
     notes: 보습+항균 보조(보존 부담↓). 말라세지아 먹이(C11~24 지방산) 아님 → 안전.
 
+  - id: propanediol
+    name: 프로판다이올
+    inci: Propanediol
+    category: 보습
+    effects: []
+    price_per_kg: 12000
+    density: 1.0
+    has_coa: true
+    grade: cosmetic
+    cas: "504-63-2"
+    notes: 보습·용매(허브누리 '에코보습제'). 펜틸렌글라이콜과 유사, 항균성은 약간 덜함. 말라세지아 먹이 아님 → 안전.
+
   # --- 말라세지아-세이프 에몰리언트(실리콘) ---
   - id: dimethicone
     name: 디메치콘

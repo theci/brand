@@ -1,72 +1,125 @@
-# 재고 — 현재 보유 원료·포장. (선택 데이터: 이 파일이 없어도 도구는 동작)
+# 재고 — 보유 원료·포장 + 출처. (선택 데이터: 이 파일이 없어도 도구는 동작)
 # 원료:
-#   on_hand_g   현재 보유량(g)
+#   on_hand_g   현재 보유량(g). ml 원료는 ≈g로 기록.
 #   pack_size_g 공급사 판매 단위(g) — 장바구니는 이 배수로 올림
 #   pack_price  1팩 가격(원). 없으면 ingredients.yaml의 price_per_kg로 환산
 #   expiry      유통기한(미개봉) / opened+pao_months = 개봉 후 사용기한
+#   notes       출처(구매처)·용도. ※ 최근분(천연사랑/다인소프) + 기본주문(허브누리/GO5109) 통합.
 # 포장: on_hand 보유 개수(구매 단위 MOQ는 packaging.yaml을 따름)
 last_updated: 2026-09-25
 
 ingredients:
-  - id: glycerin
-    on_hand_g: 500
-    pack_size_g: 1000
-    pack_price: 4500
-    expiry: 2027-06-30          # 미개봉 — 신선
-
-  - id: jojoba-oil
-    on_hand_g: 200
-    pack_size_g: 500
-    pack_price: 22500
-    opened: 2026-08-01          # 개봉 후 12개월 → 2027-08-01
-    pao_months: 12
-
-  - id: shea-butter
-    on_hand_g: 300
-    pack_size_g: 1000
-    pack_price: 18000
-    expiry: 2026-09-20          # 임박(30일 이내)
-
-  - id: phenoxyethanol
-    on_hand_g: 100
-    pack_size_g: 100
-    notes: 천연사랑 액상 보존제(신규 구매, 신선분). 단독(부스터 없음)이라 hexanediol과 병용. 100g당 0.7g. 기존 개봉 만료분 대체
-
-  # ── v2(sebum-calm-cream) 첫 배치 원료 (2026-09-25 구매완료/배송중) ──
+  # ── 수상(A) 활성·보습 ──
   - id: water
     on_hand_g: 1000
     pack_price: 4400
-    notes: 천연사랑 정제수 2병 구매(정확 용량 라벨 확인). 실온. 100g당 63.5g + 세척·HA불리기·pH희석 공용
+    notes: 천연사랑 정제수 2병(정확 용량 라벨 확인). 실온. 100g당 63.5g + 세척·HA불리기·pH희석 공용
+  - id: glycerin
+    on_hand_g: 500
+    pack_size_g: 250
+    notes: 허브누리 식물성글리세린 250g×2. 셀러. 100g당 5g
+  - id: niacinamide
+    on_hand_g: 100
+    pack_size_g: 50
+    notes: 허브누리 50g×2(분말). 방습고. 100g당 2g. CoA 확인
+  - id: allantoin
+    on_hand_g: 90
+    pack_size_g: 30
+    notes: 허브누리 알란토인분말 30g×3. 방습고. 100g당 0.5g
   - id: beta-glucan
     on_hand_g: 50
     pack_size_g: 50
     pack_price: 5500
     notes: 천연사랑 50ml(액상). 100g당 1g(≈50배치). CoA 확인
-  - id: green-tea-extract
-    on_hand_g: 50
-    pack_size_g: 50
-    pack_price: 3800
-    notes: 천연사랑 '제주녹차 추출물' 50ml(수용성). 100g당 2g(≈25배치). CoA 확인
-  - id: montanov-68
-    on_hand_g: 200
-    pack_size_g: 100
-    pack_price: 10000
-    notes: 다인소프 '몬타왁스 68' 100g×2 구매(배송중). v2 유화제(글루코사이드계, 말라세지아-세이프). 100g당 4g(≈50배치)
-  - id: multi-hyaluronic-acid
-    on_hand_g: 20
-    pack_size_g: 20
-    pack_price: 39000
-    notes: 천연사랑 '히알루론산 저분자 100% 분말' 20g. ★분말(하루 불려 사용). 100g당 1g(≈20배치). CoA 확인
   - id: zinc-pca
     on_hand_g: 50
     pack_size_g: 50
     pack_price: 17700
     notes: 천연사랑 '징크 PCA' 50g(분말). 100g당 1g(≈50배치). CoA 확인
+  - id: propanediol
+    on_hand_g: 250
+    pack_size_g: 250
+    notes: 허브누리 '에코보습제(프로판디올)' 250g. 셀러. ★v2 '펜틸렌글라이콜' 대체 사용. 100g당 3g
+  - id: xanthan-gum
+    on_hand_g: 100
+    pack_size_g: 50
+    notes: 허브누리 잔탄검 50g×2(분말). 방습고. 100g당 0.3g(글리세린에 선분산)
+  - id: multi-hyaluronic-acid
+    on_hand_g: 20
+    pack_size_g: 20
+    pack_price: 39000
+    notes: 천연사랑 '히알루론산 저분자 100% 분말' 20g. ★분말(하루 불려 사용). 100g당 1g(≈20배치). CoA 확인
+
+  # ── 유상(B) 에몰리언트·유화 ──
+  - id: montanov-68
+    on_hand_g: 200
+    pack_size_g: 100
+    pack_price: 10000
+    notes: 다인소프 '몬타왁스 68' 100g×2(배송중). v2 유화제(글루코사이드계, 말라세지아-세이프). 100g당 4g(≈50배치)
+  - id: cetyl-alcohol
+    on_hand_g: 250
+    pack_size_g: 250
+    notes: 허브누리 세틸알코올 250g. 셀러. 100g당 2g
+  - id: squalane
+    on_hand_g: 100
+    pack_size_g: 50
+    notes: 허브누리 유기농 스쿠알란 50ml×2. 셀러. 100g당 5g
+  - id: mct
+    on_hand_g: 500
+    pack_size_g: 250
+    notes: 허브누리 MCT 250g×2. 셀러. 100g당 3g
+  - id: dimethicone
+    on_hand_g: 250
+    pack_size_g: 250
+    notes: GO5109 디메치콘. 셀러. 100g당 3g
+
+  # ── 냉각첨가(C) 진정·보존 ──
+  - id: madecassoside
+    on_hand_g: 30
+    pack_size_g: 30
+    notes: 허브누리 마데카소사이드 30g(액상). ★냉동 보관. v2 '센텔라추출물' 대체. 100g당 1g
+  - id: panthenol
+    on_hand_g: 90
+    pack_size_g: 30
+    notes: 허브누리 판테놀 30ml×3. 셀러. 100g당 1g
+  - id: green-tea-extract
+    on_hand_g: 50
+    pack_size_g: 50
+    pack_price: 3800
+    notes: 천연사랑 '제주녹차 추출물' 50ml(수용성). 100g당 2g(≈25배치). CoA 확인
+  - id: phenoxyethanol
+    on_hand_g: 100
+    pack_size_g: 100
+    notes: 천연사랑 액상 보존제(신규·신선분). 단독(부스터 없음)이라 hexanediol과 병용. 100g당 0.7g
   - id: hexanediol
     on_hand_g: 100
     pack_size_g: 100
-    notes: 천연사랑 액상(신규) — 방부 부스터(페녹시에탄올과 병용). 100g당 1g. v2 방부 시스템 완성
+    notes: 천연사랑 1,2-헥산다이올(액상). 방부 부스터(페녹시와 병용). 100g당 1g. v2 방부 시스템 완성
+
+  # ── pH 조절 ──
+  - id: citric-acid
+    on_hand_g: 500
+    pack_size_g: 500
+    notes: GO5109 무수구연산(고체) 500g. 방습고. pH 조절용 희석액으로 소량
+
+  # ── 보유하나 v2 미사용 (참고·타 실험용) ──
+  - id: jojoba-oil
+    on_hand_g: 200
+    notes: 허브누리 정제호호바. (v2 미사용 — 말라세지아 먹이 오일이라 히어로에서 제외)
+  - id: shea-butter
+    on_hand_g: 300
+    notes: (v2 미사용 — C11~24 지방산 버터라 히어로 제외). 타 제형·실험용
+  - id: tocopherol
+    on_hand_g: 100
+    notes: 허브누리 비타민E 50g×2. (v2 미사용). 산화취약 오일 산패 방지용
+  - id: betaine
+    on_hand_g: 100
+    notes: 허브누리 내추럴베타인 50g×2(액상, 전성분에 1,2-헥산디올 포함). 셀러. (v2 미사용)
+  - id: olive-emulsifying-wax
+    on_hand_g: 50
+    notes: 허브누리 올리브유화왁스(실수령 50g). (v2 미사용 — 올리브 유래라 말라세지아 회색지대로 제외)
 
 packaging:
   - id: jar-50ml
     on_hand: 200
+    notes: 기존 보유. ※STEP 7-1 결정 — 초도 검증은 규격재고 자, 본배치는 튜브 권장(용기 MOQ 자본 절감)
