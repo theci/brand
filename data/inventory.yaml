@@ -36,24 +36,30 @@ ingredients:
     notes: ★만료(2026-07-10) — 폐기·재구매 예정. 원료장터 'Euxyl PE 9010', CoA 요청. 물 크림 필수
 
   # ── v2(sebum-calm-cream) 첫 배치용 구매예정 (2026-09-25). on_hand_g:0 = 아직 없음 ──
+  # 형태·권장 구매량 표기. 100g 배치 기준 사용량 × 5~10회분 = 최소팩이면 충분.
   - id: water
     on_hand_g: 0
-    notes: 구매예정 — 정제수 2~4L, 실온 보관. 소분몰/약국
+    notes: 구매예정 — 액상 2~4L, 실온. 소분몰/약국. 배치·세척·희석 공용(100g당 63.5g)
   - id: beta-glucan
     on_hand_g: 0
-    notes: 구매예정 — 허브누리. 진정·장벽 활성. CoA 요청
+    pack_size_g: 100
+    notes: 구매예정 — 액상, 최소팩(50~100g). 종합 소분몰. 100g당 1g. CoA 요청
   - id: green-tea-extract
     on_hand_g: 0
-    notes: 구매예정 — 허브누리. v2 신규 활성(수용성). CoA 요청
+    pack_size_g: 100
+    notes: 구매예정 — 액상, 최소팩(50~100g). 종합 소분몰. 100g당 2g. CoA 요청
   - id: glyceryl-stearate-citrate
     on_hand_g: 0
-    notes: 구매예정 — 허브누리(없으면 유화/uhwa). ★'올리브유화왁스'와 다른 상품. v2 설계 유화제
+    pack_size_g: 100
+    notes: 구매예정 — 고체(플레이크/펠릿) 100g. 소분몰/유화(uhwa). ★올리브유화왁스 아님. 100g당 4g
   - id: multi-hyaluronic-acid
     on_hand_g: 0
-    notes: 구매예정 — 원료장터. 가능하면 저·고분자 복합. CoA 요청
+    pack_size_g: 50
+    notes: 구매예정 — 분말(★원액 아님) 30~50g. 종합 소분몰/네이버. 하루 불려 사용. 100g당 1g. CoA 요청
   - id: zinc-pca
     on_hand_g: 0
-    notes: 구매예정 — 원료장터. 피지 밸런스 활성. CoA 요청
+    pack_size_g: 50
+    notes: 구매예정 — 분말 30~50g. 네이버 스마트스토어 등. 100g당 1g. CoA 요청
 
 packaging:
   - id: jar-50ml
