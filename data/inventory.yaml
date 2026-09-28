@@ -28,16 +28,15 @@ ingredients:
     expiry: 2026-09-20          # 임박(30일 이내)
 
   - id: phenoxyethanol
-    on_hand_g: 500
-    pack_size_g: 500
-    pack_price: 4500
-    notes: 최근 재구매(신선분) — 기존 개봉 만료분 대체. 물 크림 필수 보존제. 정확 잔량·유통기한 병 라벨 확인 후 갱신
+    on_hand_g: 100
+    pack_size_g: 100
+    notes: 천연사랑 액상 보존제(신규 구매, 신선분). 단독(부스터 없음)이라 hexanediol과 병용. 100g당 0.7g. 기존 개봉 만료분 대체
 
   # ── v2(sebum-calm-cream) 첫 배치 원료 (2026-09-25 구매완료/배송중) ──
   - id: water
     on_hand_g: 1000
     pack_price: 4400
-    notes: 정제수 2병 구매(정확 용량 라벨 확인). 실온. 100g당 63.5g + 세척·HA불리기·pH희석 공용
+    notes: 천연사랑 정제수 2병 구매(정확 용량 라벨 확인). 실온. 100g당 63.5g + 세척·HA불리기·pH희석 공용
   - id: beta-glucan
     on_hand_g: 50
     pack_size_g: 50
@@ -63,6 +62,10 @@ ingredients:
     pack_size_g: 50
     pack_price: 17700
     notes: 천연사랑 '징크 PCA' 50g(분말). 100g당 1g(≈50배치). CoA 확인
+  - id: hexanediol
+    on_hand_g: 100
+    pack_size_g: 100
+    notes: 천연사랑 액상(신규) — 방부 부스터(페녹시에탄올과 병용). 100g당 1g. v2 방부 시스템 완성
 
 packaging:
   - id: jar-50ml
