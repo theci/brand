@@ -48,10 +48,10 @@ ingredients:
     on_hand_g: 0
     pack_size_g: 100
     notes: 구매예정 — 액상, 최소팩(50~100g). 종합 소분몰. 100g당 2g. CoA 요청
-  - id: glyceryl-stearate-citrate
+  - id: montanov-68
     on_hand_g: 0
     pack_size_g: 100
-    notes: 구매예정 — 고체(플레이크/펠릿) 100g. 소분몰/유화(uhwa). ★올리브유화왁스 아님. 100g당 4g
+    notes: 구매예정 — 고체 플레이크, 100~250g. 다인소프(dainsoap) '몬타왁스 68'. v2 유화제(글루코사이드계, 말라세지아-세이프). 100g당 4g
   - id: multi-hyaluronic-acid
     on_hand_g: 0
     pack_size_g: 50

@@ -417,6 +417,21 @@ ingredients:
     hlb: 10.0            # 이 유화제가 '공급'하는 HLB. check 명령이 요구 HLB와 비교.
     notes: O/W(수중유형) 유화제. 오일과 물을 섞어 유화(에멀전)를 만드는 핵심 원료.
 
+  - id: montanov-68
+    name: 몬타노브 68
+    inci: Cetearyl Alcohol (and) Cetearyl Glucoside
+    category: 유화제
+    effects: []
+    price_per_kg: 40000     # 예시값(견적으로 교체)
+    density: 0.9
+    has_coa: true
+    grade: cosmetic
+    hlb: 11.0               # 리퀴드크리스탈 O/W 유화제. HLB 매칭에 덜 민감(넓은 범위 유화)이나 대표값 ~11.
+    notes: >-
+      글루코사이드계 O/W 유화제(세테아릴알코올 & 세테아릴글루코사이드). ★말라세지아-세이프
+      — 유화 성분이 당(글루코사이드)이라 C11~24 유리지방산 없음(올리브계·GMS SE 회색지대 회피).
+      국내 DIY몰 조달 용이. glyceryl-stearate-citrate 국내 소량 조달난으로 v2 유화제 대체.
+
   - id: sodium-hyaluronate
     name: 소듐하이알루로네이트(히알루론산)
     inci: Sodium Hyaluronate

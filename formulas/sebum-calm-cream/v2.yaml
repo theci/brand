@@ -26,7 +26,7 @@ phases:
   - name: B (유상)
     process: 70~75도로 가열해 유화제·지방알코올·실리콘·경질오일 용해
     ingredients:
-      - { id: glyceryl-stearate-citrate, percent: 4.0 }
+      - { id: montanov-68, percent: 4.0 }          # 유화제: 글리세릴스테아레이트시트레이트→몬타노브68(국내 조달·말라세지아-세이프)
       - { id: cetyl-alcohol, percent: 2.0 }
       - { id: squalane, percent: 5.0 }
       - { id: mct, percent: 3.0 }
@@ -50,3 +50,6 @@ notes: >
   허브누리 진정 처방 단골이며 수용성이라 말라세지아-세이프. 물 66.5→63.5로 100 맞춤.
   ★유지 원칙: 말라세지아가 대사하는 C11~24 지방산 오일 전면 배제 · 무향(향료 자극 배제).
   두 신규 성분 모두 수용성이라 무향·세이프 원칙과 충돌 없음. 신규 원료 INCI·함량 검증 필요.
+  ★유화제 대체(2026-09): glyceryl-stearate-citrate가 국내 소량 조달난·직구 배송비 과다 →
+  montanov-68(세테아릴알코올&세테아릴글루코사이드)로 교체. 동일 4%. 글루코사이드계라
+  말라세지아-세이프 유지(올리브계·GMS SE 회색지대 회피). 사전점검 HLB 재검증 완료.
