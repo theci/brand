@@ -1,0 +1,29 @@
+product: 보르피린 바드볼륨크림
+slug: bad-volume-cream
+version: 1
+regime: cosmetics
+product_type: leave_on
+status: 개발중
+base_batch_g: 100
+phases:
+  # 가용화 젤(수성 젤크림) = 유화 아님. 알로에겔이 수상 베이스, 올리브리퀴드는
+  # 유화제가 아니라 '가용화제'로 소량 EO를 맑게 분산. 가열·유화기 불필요(냉공정).
+  - name: A (베이스)
+    process: 냉공정 — 알로에 베라겔을 비커에 계량(가열 없음)
+    ingredients:
+      - { id: aloe-vera-gel, percent: 91.5 }   # 92g → EO 자리 확보로 -0.5
+  - name: B (가용화)
+    process: 올리브 리퀴드에 로즈제라늄 EO를 '먼저' 섞어 가용화한 뒤 A에 투입해 맑게 분산
+    ingredients:
+      - { id: olive-liquid, percent: 2.0 }
+      - { id: rose-geranium-eo, percent: 0.5 } # 10~20방울 ≈ 0.3~1.0%. 0.5%로 시작
+  - name: C (활성·보존)
+    process: 마지막에 투입 후 균일 혼합(활성·보존제는 열·pH 민감)
+    ingredients:
+      - { id: borfirin, percent: 5.0 }
+      - { id: herbal-preservative, percent: 1.0 }
+fill_volume_ml: 100
+notes: >
+  가용화 젤(냉공정). 물성 대부분은 알로에겔(수상 베이스), 올리브리퀴드는 가용화제(유화제 아님)로
+  소량 EO를 맑게 분산. 물이 90%대라 보존제 필수. percent 합계 100.
+  ⚠️ 보르피린·올리브리퀴드·한방보존제의 INCI·함량·권장량은 공급처 CoA/TDS로 확정할 것(현재 잠정).
