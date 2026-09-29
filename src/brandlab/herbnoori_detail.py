@@ -631,6 +631,218 @@ def finalize_merged(xlsx: Path, out: Path | None = None, *,
     return out
 
 
+def finalize_cards(xlsx: Path, out: Path | None = None, *,
+                   link_col: str = "링크", sheet: str | None = None,
+                   thumb_px: int = 110, per_row: int | None = None, gap_px: int = 4,
+                   thumb_dir: Path = Path("cards/detail_img/_thumbs")) -> Path:
+    """제품 = '카드'. 재료·용량은 좁은 미니표로 두고, 상세내용·만들기·이미지는
+    제품 아래에 '전폭(A:D 병합) 1블록'으로 내려 넣는다(세로병합 대안).
+
+    finalize_merged와 달리 상세내용/만들기를 좁은 옆 컬럼에 세로병합하지 않아,
+    긴 산문이 표 전체 너비를 써서 줄바꿈·행높이 뻥튀기가 사라진다. 새 시트를
+    처음부터 다시 쓰는 방식이라 정렬/자동필터는 없어진다(읽기용 리포트 지향).
+
+    제품 블록 구조:
+        [제품명  [분류]]                  ← 헤더(굵게, 상단 굵은선)
+        재료 | 용량 | 특징 | 대체재료       ← 미니표 헤더
+        (재료 행들…)
+        — 상세내용 —                      ← 라벨
+        (전폭 본문)
+        — 만들기 —
+        (전폭 본문)
+        — 이미지 —
+        (전폭 썸네일 격자)
+    """
+    import openpyxl
+    from openpyxl import Workbook
+    from openpyxl.drawing.image import Image as XLImage
+    from openpyxl.drawing.spreadsheet_drawing import AnchorMarker, OneCellAnchor
+    from openpyxl.drawing.xdr import XDRPositiveSize2D
+    from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
+    from openpyxl.utils import get_column_letter
+    from openpyxl.utils.units import pixels_to_EMU
+    from PIL import Image as PILImage
+
+    COLS = ["재료", "용량", "특징", "대체재료"]      # 미니표 4열
+    WIDTHS = {1: 20, 2: 10, 3: 34, 4: 22}          # 열 너비(문자폭)
+    NC = len(COLS)
+    full_chars = sum(WIDTHS.values())               # 전폭 밴드 줄바꿈 기준(≈86)
+
+    src = openpyxl.load_workbook(xlsx)
+    ws = src[sheet] if sheet else src.worksheets[0]
+    header = [c.value for c in ws[1]]
+    idx = {name: header.index(name) for name in header}
+    link_i = idx[link_col]
+    rows = [[c.value for c in row] for row in ws.iter_rows(min_row=2)]
+
+    # 제품 그룹핑(링크 있는 행에서 새 제품 시작) — split_by_products와 동일 규칙.
+    groups: list[list[list]] = []
+    for row in rows:
+        link = row[link_i] if link_i < len(row) else None
+        if link and _BRANDUID.search(str(link)):
+            groups.append([row])
+        elif groups:
+            groups[-1].append(row)
+        else:
+            groups.append([row])
+
+    wb = Workbook()
+    dst = wb.active
+    dst.title = ws.title
+    for ci, w in WIDTHS.items():
+        dst.column_dimensions[get_column_letter(ci)].width = w
+
+    box = thumb_px + gap_px
+    total_px = int(full_chars * 7)                  # 전폭 픽셀 근사
+    if per_row is None:
+        per_row = max(1, total_px // box)
+    thumb_dir.mkdir(parents=True, exist_ok=True)
+
+    wrap_top = Alignment(wrap_text=True, vertical="top", horizontal="left")
+    thin = Side(style="thin", color="D0D5DD")
+    grid = Border(left=thin, right=thin, top=thin, bottom=thin)
+    thick = Side(style="medium", color="8A94A6")
+    name_fill = PatternFill("solid", fgColor="E8EEF7")   # 제품 헤더
+    label_fill = PatternFill("solid", fgColor="F2F4F7")  # 미니표헤더·밴드라벨
+    band_fill = PatternFill("solid", fgColor="F7FAFF")   # 짝수 제품 줄무늬
+
+    def _lines(val, width: int) -> int:
+        if val is None or str(val) == "":
+            return 1
+        n = 0
+        for ln in str(val).split("\n"):
+            w = sum(2 if ord(c) > 0x2000 else 1 for c in ln)
+            n += max(1, -(-w // width))  # ceil
+        return n
+
+    def _fill_row(r: int, fill) -> None:
+        for c in range(1, NC + 1):
+            dst.cell(r, c).fill = fill
+
+    r = 1
+    total_thumbs = 0
+    for gi, g in enumerate(groups):
+        first = g[0]
+        striped = gi % 2 == 1
+
+        def get(name, row=first):
+            return row[idx[name]] if name in idx and idx[name] < len(row) else None
+
+        # 1) 제품 헤더(A:D 병합, 굵게, 상단 굵은선). 원본 링크는 제품명에 하이퍼링크로.
+        dst.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
+        nm, cat = get("제품명") or "", get("분류") or ""
+        link = get(link_col)
+        title = f"{nm}    [{cat}]" if cat else str(nm)
+        hc = dst.cell(r, 1, (title + "    ↗ 원본") if link else title)
+        if link:
+            hc.hyperlink = str(link)
+            hc.font = Font(bold=True, size=12, color="1155CC", underline="single")
+        else:
+            hc.font = Font(bold=True, size=12)
+        hc.alignment = Alignment(vertical="center", horizontal="left", wrap_text=True)
+        for c in range(1, NC + 1):
+            dst.cell(r, c).fill = name_fill
+            dst.cell(r, c).border = Border(top=thick)
+        dst.row_dimensions[r].height = 22
+        r += 1
+
+        # 2) 미니표 헤더(재료·용량·특징·대체재료).
+        for ci, label in enumerate(COLS, start=1):
+            cc = dst.cell(r, ci, label)
+            cc.font = Font(bold=True, size=9)
+            cc.fill = label_fill
+            cc.alignment = Alignment(vertical="center", horizontal="center")
+            cc.border = grid
+        dst.row_dimensions[r].height = 15
+        r += 1
+
+        # 3) 재료 행들(빈 행은 건너뜀).
+        for row in g:
+            vals = [row[idx[n]] if n in idx and idx[n] < len(row) else None
+                    for n in COLS]
+            if all(v in (None, "") for v in vals):
+                continue
+            maxln = 1
+            for ci, v in enumerate(vals, start=1):
+                cc = dst.cell(r, ci, v)
+                cc.alignment = wrap_top
+                cc.border = grid
+                if striped:
+                    cc.fill = band_fill
+                maxln = max(maxln, _lines(v, WIDTHS[ci]))
+            dst.row_dimensions[r].height = min(300, max(15, maxln * 15))
+            r += 1
+
+        # 4) 상세내용·만들기 밴드(라벨행 + 전폭 본문행).
+        for label in ("상세내용", "만들기"):
+            txt = get(label)
+            if not txt or not str(txt).strip():
+                continue
+            dst.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
+            lc = dst.cell(r, 1, f"— {label} —")
+            lc.font = Font(bold=True, size=9, color="55606E")
+            lc.alignment = Alignment(vertical="center", horizontal="left")
+            _fill_row(r, label_fill)
+            dst.row_dimensions[r].height = 14
+            r += 1
+            dst.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
+            bc = dst.cell(r, 1, str(txt).strip())
+            bc.alignment = wrap_top
+            if striped:
+                _fill_row(r, band_fill)
+            dst.row_dimensions[r].height = min(600, max(15, _lines(txt, full_chars) * 15))
+            r += 1
+
+        # 5) 이미지 밴드(라벨행 + 전폭 썸네일 격자행).
+        paths = [p.strip() for p in str(get("이미지") or "").splitlines() if p.strip()]
+        existing = [Path(p) for p in paths if Path(p).exists()]
+        if existing:
+            dst.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
+            lc = dst.cell(r, 1, "— 이미지 —")
+            lc.font = Font(bold=True, size=9, color="55606E")
+            lc.alignment = Alignment(vertical="center", horizontal="left")
+            _fill_row(r, label_fill)
+            dst.row_dimensions[r].height = 14
+            r += 1
+            dst.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
+            if striped:
+                _fill_row(r, band_fill)
+            placed = 0
+            for sp in existing:
+                tpath = thumb_dir / (sp.parent.name + "_" + sp.name)
+                if not tpath.exists():
+                    try:
+                        im = PILImage.open(sp)
+                        im.thumbnail((thumb_px, thumb_px))
+                        im.convert("RGB").save(tpath, "JPEG", quality=70)
+                    except Exception as ex:
+                        print(f"    ⚠ 썸네일 실패 {sp}: {ex}", file=sys.stderr)
+                        continue
+                xi = XLImage(str(tpath))
+                marker = AnchorMarker(col=0,
+                                      colOff=pixels_to_EMU((placed % per_row) * box),
+                                      row=r - 1,
+                                      rowOff=pixels_to_EMU((placed // per_row) * box))
+                xi.anchor = OneCellAnchor(_from=marker, ext=XDRPositiveSize2D(
+                    pixels_to_EMU(xi.width), pixels_to_EMU(xi.height)))
+                dst.add_image(xi)
+                placed += 1
+                total_thumbs += 1
+            rows_of = -(-placed // per_row) if placed else 1  # ceil
+            dst.row_dimensions[r].height = rows_of * box * 0.75
+            r += 1
+
+        # 6) 제품 사이 여백 한 줄.
+        dst.row_dimensions[r].height = 6
+        r += 1
+
+    out = out or xlsx.with_name(xlsx.stem + "_카드.xlsx")
+    wb.save(out)
+    print(f"  {out.name}: 제품 {len(groups)}개 · 썸네일 {total_thumbs}장 (카드형)",
+          file=sys.stderr)
+    return out
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description="허브누리 상세내용(꿀팁·제조과정·캡처) 크롤러")
     ap.add_argument("--xlsx", help="레시피 목록 엑셀(링크 열의 branduid 사용)")
