@@ -710,6 +710,16 @@ class BatchRecord(BaseModel):
 # ---------------------------------------------------------------------------
 # 재고 (data/inventory.yaml)
 # ---------------------------------------------------------------------------
+class StorageCondition(str, Enum):
+    """원료 보관 조건(통제 어휘). inventory.yaml storage 필드용."""
+
+    ROOM = "실온"          # 상온 보관(안정한 액상·보존제 등)
+    COOL = "서늘"          # 서늘한 곳(셀러) — 오일·에몰리언트·유화제·버터
+    DRY = "방습"           # 방습고 — 흡습성 분말·결정
+    REFRIGERATED = "냉장"  # 냉장 — 산화·미생물 취약 수용성 활성
+    FROZEN = "냉동"        # 냉동 — 특히 불안정한 활성
+
+
 class InventoryIngredient(BaseModel):
     """원료 재고 1종.
 
@@ -719,6 +729,7 @@ class InventoryIngredient(BaseModel):
     expiry      : 유통기한(미개봉).
     opened      : 개봉일. pao_months와 함께 '개봉 후 사용기한'을 계산.
     pao_months  : 개봉 후 사용 가능 개월(Period After Opening).
+    storage     : 보관 조건(실온/서늘/방습/냉장/냉동). 없으면 미지정.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -730,6 +741,7 @@ class InventoryIngredient(BaseModel):
     expiry: date | None = None
     opened: date | None = None
     pao_months: int | None = Field(default=None, gt=0)
+    storage: StorageCondition | None = None
     notes: str | None = None
 
 

@@ -1551,3 +1551,105 @@ entries:
     newbie_tip: 반짝임·펄 소구에.
     needs_verification: true
     sources: []
+
+  # --- 가용화 젤(수성 젤크림) 계열 — 보르피린 바드볼륨크림 학습용 (2026-09-23) ---
+  - id: aloe-vera-gel
+    summary: 정제수를 대신하는 수상 베이스 겸 진정·보습 젤
+    what: 알로에 잎에서 얻은 점액질 젤(주로 물+다당류). 시판 겔은 점증제·보존제가 이미 든 형태가 많다.
+    why: 정제수 자리를 대신해 '수상 베이스'가 되면서 진정·보습을 더한다. 90% 넘게 넣으면 제품 성격 자체를 좌우한다.
+    feel: 산뜻·촉촉, 빠른 흡수.
+    typical_percent: "베이스로 50~95% (물 대체)"
+    phase: 수상 베이스. 냉공정으로 그대로 사용(가열 불필요)
+    pairs_with:
+      - 판테놀·알란토인(진정 강화)
+      - 히알루론산(sodium-hyaluronate)
+    avoid_with:
+      - 강산·강알칼리(점도가 무너질 수 있음)
+    cautions: 시판 겔의 전성분(점증제·보존제·에탄올)을 확인해 총 방부 설계를 다시 잡는다. 물이 대부분이라 방부는 필수.
+    substitutes:
+      - 정제수 + 잔탄검(xanthan-gum)
+      - 히알루론산 용액
+    newbie_tip: 알로에겔은 '물 + 진정'으로 이해. 시판 겔이면 뒷면 전성분부터 읽자.
+    needs_verification: true
+    sources: []
+
+  - id: olive-liquid
+    summary: 오일·에센셜오일을 물에 맑게 녹이는 천연 가용화제(유화제 아님!)
+    what: 올리브 유래 가용화제. 소량의 오일/향을 수상에 투명하게 분산시킨다.
+    why: 물과 EO는 안 섞여 기름방울로 뜨는데, 가용화제가 EO를 미셀로 감싸 맑게 분산시킨다. 미스트·토너·젤에 향/오일을 넣을 때 핵심.
+    feel: 소량이라 무게감 거의 없음.
+    typical_percent: "가용화할 오일의 3~5배 (EO:가용화제 ≈ 1:3~5)"
+    phase: EO/오일과 '먼저' 섞어 가용화한 뒤 수상에 투입
+    pairs_with:
+      - 에센셜오일·향(rose-geranium-eo)
+      - 소량의 오일 활성
+    avoid_with:
+      - 다량의 유상(가용화라 오일이 많으면 뿌옇거나 분리 — 그건 유화제 몫)
+    cautions: 유화제와 혼동 금지 — 크림처럼 오일 많은 제형은 못 만든다. 넣는 순서(EO에 먼저 개기)가 투명도를 좌우.
+    substitutes:
+      - 폴리소르베이트20
+      - PEG-40 하이드로제네이티드 캐스터오일
+    newbie_tip: EO를 물에 그냥 넣으면 기름방울로 뜬다 → 올리브리퀴드에 먼저 개어라. 이게 가용화의 전부.
+    needs_verification: true
+    sources: []
+
+  - id: rose-geranium-eo
+    summary: 장미향 계열 에센셜오일 — 향 부여(착향제)
+    what: 로즈제라늄 꽃/잎에서 얻은 방향유. 장미와 유사한 향.
+    why: 천연 향을 준다. 일부 밸런싱·진정 소구도 있으나 1차 목적은 향.
+    feel: 향. 원액은 자극적이라 반드시 희석해서.
+    typical_percent: "리브온 0.1~1% (IFRA·자극 한도 확인)"
+    phase: 마지막(냉각) 단계. 가용화제(olive-liquid)에 먼저 섞어 투입
+    pairs_with:
+      - 라벤더EO·팔마로사
+      - 올리브리퀴드(olive-liquid)로 가용화
+    avoid_with:
+      - 고온 투입(향이 날아감)
+      - 무희석 피부 접촉
+    cautions: 착향제 알러젠(제라니올·시트로넬롤 등) 표시 대상일 수 있음 → 전성분 표시·IFRA 한도 확인. 임신·민감성 주의.
+    substitutes:
+      - 라벤더EO(lavender-eo)
+      - 팔마로사EO
+    newbie_tip: 방울로 넣되 반드시 %로 환산해 기록. 1방울 ≈ 0.03~0.05g.
+    needs_verification: true
+    sources: []
+
+  - id: borfirin
+    summary: 볼륨·탄력을 소구하는 기능성 활성(브랜드 원료)
+    what: 보르피린이라는 상품명(브랜드) 활성. 볼륨/탄력 컨셉으로 판매되는 블렌드(정확한 조성은 공급처 TDS).
+    why: 볼륨 소구 마케팅 활성. 실제 효능·함량·근거는 공급처 자료로 확인해야 한다.
+    feel: 소량이라 사용감 영향은 적다.
+    typical_percent: "공급처 권장(대개 1~5%) — TDS 확인"
+    phase: 냉각첨가(C상) — 열·pH에 민감할 수 있어 마지막에
+    pairs_with:
+      - 보습 베이스(aloe-vera-gel)
+      - 진정 활성
+    avoid_with:
+      - 고온(활성 변성 우려)
+    cautions: 브랜드 원료라 INCI·함량·효능근거를 CoA/TDS로 반드시 확인. 효능 광고는 실증 자료가 필요(과대광고 주의).
+    substitutes:
+      - 볼루필린(Sarsasapogenin 계)
+      - 기타 볼륨 소구 활성
+    newbie_tip: 효능 소구 활성은 마케팅 표현과 규제(기능성/일반화장품 구분)를 먼저 확인하고 쓰기.
+    needs_verification: true
+    sources: []
+
+  - id: herbal-preservative
+    summary: 물 제품의 부패를 막는 천연 유래 방부 블렌드
+    what: 여러 식물 추출물/유기산을 조합한 '천연한방보존제' 상품. 조성은 공급처마다 다르다.
+    why: 물이 90%대인 제품엔 미생물이 반드시 핀다 → 방부 없으면 2주 내 오염·곰팡이. 방부는 물 제품의 생명줄.
+    feel: 무영향(소량).
+    typical_percent: "공급처 권장(대개 0.5~2%) — 반드시 TDS"
+    phase: 냉각(40℃↓)에서 투입
+    pairs_with:
+      - 낮은 pH(유기산계는 pH 5 근처에서 효과↑)
+    avoid_with:
+      - 높은 pH(효과 저하)
+      - 과신(천연계는 방부 스펙트럼이 좁을 수 있음)
+    cautions: 천연이라고 완전방부가 아니다 — 광범위 방부가 아닐 수 있어 챌린지 테스트로 검증. pH 의존형이면 pH 관리가 방부 관리.
+    substitutes:
+      - 페녹시에탄올+에틸헥실글리세린(phenoxyethanol)
+      - 1,2-헥산디올(hexanediol) 조합
+    newbie_tip: 방부는 절대 빼지 말 것. 천연계라도 pH·함량을 지키고, keeper는 오염을 오래 관찰.
+    needs_verification: true
+    sources: []
