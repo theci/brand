@@ -34,6 +34,7 @@
 - 기타: `discovery.py`, `advisor.py`(규제판정), `doe.py`/`doe_optimize.py`, `stability.py`, `panel.py`, `batchrecord.py`, `certification.py`, `shopping.py`, `dashboard.py`.
 - 학습 트랙: `curriculum.py` — 데일리 루틴 + **제형 마스터리**(`load_mastery`/`weekly_focus`, 데이터 `data/curriculum_mastery.yaml`, 진행 `progress_mastery.yaml`, 페이지 `pages/33_제형마스터리.py`).
 - 허브누리 크롤·임포트(`herbnoori_crawl.py`·`herbnoori_import.py`·`herbnoori_batch.py`): 레시피 크롤→처방 YAML. `extract_recipe_full`은 중첩표까지 특징/대체재료 추출. 대량 임포트에 사용.
+- 허브누리 상세내용(`herbnoori_detail.py`): 재료표 '밖'의 작성자 꿀팁·제조과정 텍스트 + 캡처 이미지 크롤. 재료표는 balanced 매칭으로 제거(직계셀 헤더/용량 판정), 이미지는 `cards/detail_img/hn-<branduid>/`에 저장. OCR 안 함(이미지-only 제품 ~12%는 텍스트 빈칸, 내용은 이미지에). 파이프라인: 크롤→`<원본>_상세.xlsx`(마스터, 경로버전) → `restructure_master`(상세내용에서 `split_making`으로 '만들기' 열 분리, 링크 맨끝) → `split_by_products`(제품단위 N개씩 분할) → `finalize_merged`(상세내용·만들기·이미지 세로병합+제품밴드+썸네일 격자삽입, 행높이 분산). 최종 열: 제품명·분류·재료·용량·특징·대체재료·상세내용·만들기·이미지·링크. 산출 `<원본>_상세_pKofN_썸네일.xlsx`.
 - 페이지↔STEP 매핑: `streamlit_app.py`의 `SECTIONS`(STEP 0~11).
 
 ## 브랜드 컨셉 (현재)
