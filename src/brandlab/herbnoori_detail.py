@@ -58,6 +58,91 @@ _NESTED_TABLE = re.compile(r"(?is)<table\b.*?</table>")
 _IMG_SRC = re.compile(r"""(?is)<img[^>]+src\s*=\s*["']?([^"'\s>]+)""")
 
 
+# ── 학습용: 원료 역할(제형 phase) 분류 + 용량 % 환산 ──────────────────────
+# 제형 골격을 눈에 보이게: 각 원료를 대분류 역할로 태깅한다. 키워드 규칙(위→아래
+# 우선순위)으로 재료명+특징을 훑는다. 화장품 처방의 통상 phase 어휘 기준(예시,
+# 검증 필요) — 셰프의 '기본 골격' 감각용이지 규제 분류가 아니다.
+ROLE_ORDER = ["수상", "유상", "유화", "경화", "계면", "보습",
+              "활성", "향", "색소", "방부", "점증/pH", "기타"]
+ROLE_COLORS = {  # 옅은 배경색(역할 셀)
+    "수상": "DCEBFF", "유상": "FFF0CC", "유화": "D8F5D8", "경화": "E8E0D0",
+    "계면": "E6DAF5", "보습": "CFF3F0", "활성": "EAD9F7", "향": "FBD9E8",
+    "색소": "F5D9C0", "방부": "E2E5E9", "점증/pH": "E9F0D6", "기타": "F0F0F0",
+}
+# (역할, 키워드들) — 앞선 규칙이 이기므로 향/방부/활성을 오일·왁스보다 먼저.
+_ROLE_RULES = [
+    ("향", ("에센셜오일", "essential", "에센셜", "eo", "아로마오일", "앱솔루트", "향",
+            "옵소루트", "프래그런스", "프레그런스", "향료", "플레이버", "플래이버", "부케")),
+    ("방부", ("방부", "보존제", "보존", "페녹시", "페 녹 시", "1,2-헥산", "헥산다이올",
+             "파라벤", "소르빈", "안식향", "벤조", "나파졸", "항균제", "그레이프후르츠종자")),
+    ("계면", ("계면활성", "물비누베이스", "비누베이스", "코코베타인", "베타인",
+             "글루코사이드", "les", "설페이트", "sls", "sci", "애플워시", "폼베이스",
+             "물비누", "가용화제")),
+    ("유화", ("유화왁스", "유화제", "이멀", "올리브리퀴드", "montanov", "몬타노브",
+             "올리브유화", "gms", "세테아릴올리브", "글리세릴스테아", "폴리소르베이트",
+             "세틸에틸", "이엘")),
+    ("활성", ("추출물", "팅크", "인퓨즈", "egf", "fgf", "펩타이드", "콜라겐", "엘라스틴",
+             "나이아신", "비타민", "아데노신", "알부틴", "코엔자임", "세라마이드",
+             "플라센타", "태반", "진주", "점액", "히아루론", "판테놀", "알로에겔",
+             "알로에모이스트", "알로에베라겔", "알로에원액", "천연알로에", "센텔라",
+             "병풀", "아미노산", "레티놀", "발효", "카페인", "글루타치온", "알란토인",
+             "보르피린", "낫또", "프로바이오", "리피듀어", "코직", "트라넥삼", "곡물",
+             "로즈플라워겔", "리페어")),
+    ("보습", ("글리세린", "솔비톨", "소르비톨", "프로판다이올", "베타인글리", "우레아",
+             "히알루론", "부틸렌글라이콜", "다이올", "당류", "꿀", "허니", "자일리톨",
+             "에코보습", "보습제")),
+    ("유상", ("오일", " oil", "버터", "스쿠알", "스쿠알란", "트리글리", "에스터",
+             "미네랄오일", "왁스에스터", "지방산", "세틸알콜", "세테아릴알콜",
+             "스테아릴", "실리콘", "디메치콘", "사이클로")),
+    ("경화", ("밀랍", "칸데릴라", "카나우바", "비즈왁스", "왁스", "경화제")),
+    ("색소", ("색소", "마이카", "산화철", "이산화티탄", "티타늄", "옥사이드", "피그먼트",
+             "펄", "클레이", "카올린", "시카고", "울트라마린")),
+    ("점증/pH", ("구연산", "점증", "잔탄", "쟁탄", "카보머", "하이셀", "하이드록시에틸",
+                "셀룰로", "검", "중조", "베이킹소다", "수산화", "트리에탄올", "ph")),
+    ("수상", ("정제수", "증류수", "워터", "하이드로졸", "플로럴", "수(", "물", "우린물",
+             "베라원액", "발효액")),
+]
+
+
+def classify_role(name: str, feature: str = "") -> str:
+    """원료 역할 추정: 이름으로 먼저(정확), 못 잡으면 특징으로 보조. 미스는 '기타'.
+
+    이름 우선이라 '호호바오일(특징:보습)'이 보습으로 새지 않고 유상으로 남는다.
+    """
+    nm = (name or "").lower()
+    for role, kws in _ROLE_RULES:
+        if any(k in nm for k in kws):
+            return role
+    ft = (feature or "").lower()
+    for role, kws in _ROLE_RULES:
+        if any(k in ft for k in kws):
+            return role
+    return "기타"
+
+
+_AMT = re.compile(r"(\d+(?:\.\d+)?)\s*(?:[~\-]\s*(\d+(?:\.\d+)?))?\s*"
+                  r"(kg|g|ml|mL|㎖|방울|%)")
+
+
+def amount_to_g(s: str) -> float | None:
+    """용량 문자열 → 그램 근사(범위는 중앙값, 방울≈0.05g, ml≈g). %/미상은 None."""
+    if not s:
+        return None
+    m = _AMT.search(str(s))
+    if not m:
+        return None
+    lo = float(m.group(1))
+    val = (lo + float(m.group(2))) / 2 if m.group(2) else lo
+    unit = m.group(3)
+    if unit == "%":
+        return None                      # %는 별도 취급(합산 제외)
+    if unit == "kg":
+        return val * 1000
+    if unit == "방울":
+        return val * 0.05
+    return val                            # g·ml·㎖ ≈ 그램
+
+
 def _table_spans(h: str) -> list[tuple[int, int]]:
     """중첩 포함 모든 <table>의 (시작,끝) 위치를 balanced 매칭으로 반환(안쪽부터).
 
@@ -675,10 +760,10 @@ def finalize_cards(xlsx: Path, out: Path | None = None, *,
     from openpyxl.utils.units import pixels_to_EMU
     from PIL import Image as PILImage
 
-    COLS = ["재료", "용량", "특징", "대체재료"]      # 미니표 4열
-    WIDTHS = {1: 20, 2: 10, 3: 34, 4: 22}          # 열 너비(문자폭)
+    COLS = ["재료", "용량", "%", "역할", "특징", "대체재료"]   # 미니표(공부용 6열)
+    WIDTHS = {1: 18, 2: 9, 3: 6, 4: 9, 5: 30, 6: 18}        # 열 너비(문자폭)
     NC = len(COLS)
-    full_chars = sum(WIDTHS.values())               # 전폭 밴드 줄바꿈 기준(≈86)
+    full_chars = sum(WIDTHS.values())               # 전폭 밴드 줄바꿈 기준(≈90)
 
     src = openpyxl.load_workbook(xlsx)
     ws = src[sheet] if sheet else src.worksheets[0]
@@ -763,12 +848,101 @@ def finalize_cards(xlsx: Path, out: Path | None = None, *,
             out.append(("\n".join(cur), cur_v))
         return out or [("", 1)]
 
+    from collections import Counter, defaultdict
+    role_fill = {role: PatternFill("solid", fgColor=ROLE_COLORS[role])
+                 for role in ROLE_ORDER}
+
+    def _analyze(g):
+        """그룹 → (ing_rows, role_pct).
+
+        ing_rows = [(재료, 용량, '%'문자, 역할, 특징, 대체재료), ...]
+        role_pct = {역할: 합계%} (그램 환산 가능한 원료 기준).
+        """
+        raw = []
+        for row in g:
+            name = row[idx["재료"]] if "재료" in idx and idx["재료"] < len(row) else None
+            amt = row[idx["용량"]] if "용량" in idx and idx["용량"] < len(row) else None
+            feat = row[idx["특징"]] if "특징" in idx and idx["특징"] < len(row) else None
+            alt = row[idx["대체재료"]] if "대체재료" in idx and idx["대체재료"] < len(row) else None
+            if not (name or amt):
+                continue
+            grams = amount_to_g(amt)
+            role = classify_role(str(name or ""), str(feat or ""))
+            raw.append((name, amt, grams, role, feat, alt))
+        tot = sum(x[2] for x in raw if x[2]) or 0
+        ing_rows, role_pct = [], {}
+        for name, amt, grams, role, feat, alt in raw:
+            if grams and tot:
+                p = grams / tot * 100
+                pct = "<1%" if p < 0.5 else f"{round(p)}%"
+                role_pct[role] = role_pct.get(role, 0.0) + p
+            else:
+                pct = ""
+            ing_rows.append((name, amt, pct, role, feat, alt))
+        return ing_rows, role_pct
+
+    analyzed = [_analyze(g) for g in groups]
+
+    # 아키타입 골격 집계: 역할별 % 분포(제품마다 1값) + 대표원료 빈도.
+    role_series = defaultdict(list)
+    ing_freq = Counter()
+    for ing_rows, role_pct in analyzed:
+        for role, p in role_pct.items():
+            role_series[role].append(p)
+        for name, *_ in ing_rows:
+            key = re.sub(r"\s*[\(/].*$", "", str(name or "")).strip()
+            if len(key) >= 2:
+                ing_freq[key] += 1
+
+    def _band(vals):
+        """정렬된 %들의 대표 범위(p25~p75, 반올림)."""
+        s = sorted(vals)
+        lo = s[max(0, round((len(s) - 1) * 0.25))]
+        hi = s[min(len(s) - 1, round((len(s) - 1) * 0.75))]
+        return round(lo), round(hi)
+
+    arche = re.sub(r"^\d+_", "", re.sub(r"^_tmp_", "", Path(xlsx).stem))
+    n_prod = sum(1 for g in groups if any(
+        (r[idx["재료"]] if "재료" in idx and idx["재료"] < len(r) else None) for r in g))
+    summary_fill = PatternFill("solid", fgColor="FFF6DC")   # 옅은 노랑(요약)
+    summary_key = PatternFill("solid", fgColor="FCEFBE")
+
     r = 1
     total_thumbs = 0
+
+    # ── 0) 아키타입 골격 요약(파일 맨 위, 전폭) ─────────────────────────────
+    def _summary_row(text, height, *, bold=False, fill=summary_fill, size=10,
+                     color="3A3A3A"):
+        nonlocal r
+        dst.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
+        c = dst.cell(r, 1, text)
+        c.font = Font(bold=bold, size=size, color=color)
+        c.alignment = Alignment(vertical="center", horizontal="left", wrap_text=True)
+        for cc in range(1, NC + 1):
+            dst.cell(r, cc).fill = fill
+        dst.row_dimensions[r].height = height
+        r += 1
+
+    _summary_row(f"━  {arche} 골격 치트시트  (이 파일 {n_prod}종 기준)  ━",
+                 20, bold=True, fill=summary_key, size=12, color="6B5900")
+    def _rolelabel(role):
+        lo, hi = _band(role_series[role])
+        return f"{role} 소량" if hi == 0 else f"{role} {lo}~{hi}%"
+    skel = " · ".join(_rolelabel(role) for role in ROLE_ORDER
+                      if role in role_series and len(role_series[role]) >= 2)
+    _summary_row("전형 구성(%):  " + (skel or "데이터 부족"),
+                 max(16, _lines("전형 구성(%):  " + skel, full_chars) * 15))
+    tops = " · ".join(f"{nm}×{c}" for nm, c in ing_freq.most_common(8))
+    _summary_row("자주 쓰는 원료:  " + tops,
+                 max(16, _lines("자주 쓰는 원료:  " + tops, full_chars) * 15))
+    dst.row_dimensions[r].height = 6
+    r += 1
+
     for gi, g in enumerate(groups):
         first = g[0]
         striped = gi % 2 == 1
         r0 = r  # 제품 블록 시작행(오른쪽 이미지 패널을 여기에 앵커)
+        ing_rows, role_pct = analyzed[gi]
 
         def get(name, row=first):
             return row[idx[name]] if name in idx and idx[name] < len(row) else None
@@ -801,12 +975,9 @@ def finalize_cards(xlsx: Path, out: Path | None = None, *,
         dst.row_dimensions[r].height = 15
         r += 1
 
-        # 3) 재료 행들(빈 행은 건너뜀).
-        for row in g:
-            vals = [row[idx[n]] if n in idx and idx[n] < len(row) else None
-                    for n in COLS]
-            if all(v in (None, "") for v in vals):
-                continue
+        # 3) 재료 행들: 재료 | 용량 | % | 역할(색상) | 특징 | 대체재료.
+        for name, amt, pct, role, feat, alt in ing_rows:
+            vals = [name, amt, pct, role, feat, alt]
             maxln = 1
             for ci, v in enumerate(vals, start=1):
                 cc = dst.cell(r, ci, v)
@@ -816,7 +987,25 @@ def finalize_cards(xlsx: Path, out: Path | None = None, *,
                     cc.fill = band_fill
                 # 실제 엑셀 줄바꿈이 추정보다 촘촘할 수 있어 폭을 1 줄여 여유를 준다.
                 maxln = max(maxln, _lines(v, WIDTHS[ci] - 1))
+            # %는 가운데, 역할 셀은 역할색으로 칠해 제형 골격이 한눈에.
+            dst.cell(r, 3).alignment = Alignment(vertical="top", horizontal="center")
+            rc = dst.cell(r, 4)
+            rc.fill = role_fill.get(role, role_fill["기타"])
+            rc.alignment = Alignment(vertical="top", horizontal="center")
             dst.row_dimensions[r].height = min(409, max(15, maxln * 16))
+            r += 1
+
+        # 3b) phase 합계 줄(전폭): 역할별 % 합.
+        if role_pct:
+            parts = " · ".join(f"{role} {round(role_pct[role])}"
+                               for role in ROLE_ORDER if role in role_pct)
+            dst.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
+            pc = dst.cell(r, 1, "▶ phase 합계(%):  " + parts)
+            pc.font = Font(bold=True, size=9, color="2A4A6B")
+            pc.alignment = Alignment(vertical="center", horizontal="left")
+            for cc in range(1, NC + 1):
+                dst.cell(r, cc).fill = PatternFill("solid", fgColor="EEF3F8")
+            dst.row_dimensions[r].height = 14
             r += 1
 
         # 4) 상세내용·만들기 밴드(라벨행 + 전폭 본문행).
