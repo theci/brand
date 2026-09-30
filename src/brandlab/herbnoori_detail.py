@@ -504,7 +504,7 @@ def embed_thumbnails(xlsx: Path, out: Path | None = None, *,
 
 def finalize_merged(xlsx: Path, out: Path | None = None, *,
                     link_col: str = "링크", sheet: str | None = None,
-                    thumb_px: int = 110, res_px: int = 360,
+                    thumb_px: int = 110, res_px: int = 900,
                     per_row: int = 4, gap_px: int = 4,
                     text_width: int = 42,
                     thumb_dir: Path = Path("cards/detail_img/_thumbs")) -> Path:
@@ -643,7 +643,7 @@ def finalize_merged(xlsx: Path, out: Path | None = None, *,
 
 def finalize_cards(xlsx: Path, out: Path | None = None, *,
                    link_col: str = "링크", sheet: str | None = None,
-                   thumb_px: int = 110, res_px: int = 360,
+                   thumb_px: int = 110, res_px: int = 900,
                    per_row: int | None = None, gap_px: int = 4,
                    thumb_dir: Path = Path("cards/detail_img/_thumbs")) -> Path:
     """제품 = '카드'. 재료·용량은 좁은 미니표로 두고, 상세내용·만들기·이미지는
@@ -730,6 +730,25 @@ def finalize_cards(xlsx: Path, out: Path | None = None, *,
         for c in range(1, NC + 1):
             dst.cell(r, c).fill = fill
 
+    def _wrap_chunks(text: str, width: int, max_lines: int = 24):
+        """긴 본문을 '표시 줄 수 ≤ max_lines' 조각들로 나눈다(줄 경계 유지).
+
+        엑셀 행 높이 상한(409pt) 때문에 한 셀에 다 넣으면 잘리므로, 여러 본문
+        행으로 흘려 전체가 보이게 한다. 반환: [(조각텍스트, 표시줄수), ...].
+        """
+        out, cur, cur_v = [], [], 0
+        for ln in text.split("\n"):
+            w = sum(2 if ord(c) > 0x2000 else 1 for c in ln)
+            v = max(1, -(-w // width))  # ceil
+            if cur and cur_v + v > max_lines:
+                out.append(("\n".join(cur), cur_v))
+                cur, cur_v = [], 0
+            cur.append(ln)
+            cur_v += v
+        if cur:
+            out.append(("\n".join(cur), cur_v))
+        return out or [("", 1)]
+
     r = 1
     total_thumbs = 0
     for gi, g in enumerate(groups):
@@ -780,8 +799,9 @@ def finalize_cards(xlsx: Path, out: Path | None = None, *,
                 cc.border = grid
                 if striped:
                     cc.fill = band_fill
-                maxln = max(maxln, _lines(v, WIDTHS[ci]))
-            dst.row_dimensions[r].height = min(300, max(15, maxln * 15))
+                # 실제 엑셀 줄바꿈이 추정보다 촘촘할 수 있어 폭을 1 줄여 여유를 준다.
+                maxln = max(maxln, _lines(v, WIDTHS[ci] - 1))
+            dst.row_dimensions[r].height = min(409, max(15, maxln * 16))
             r += 1
 
         # 4) 상세내용·만들기 밴드(라벨행 + 전폭 본문행).
@@ -796,13 +816,15 @@ def finalize_cards(xlsx: Path, out: Path | None = None, *,
             _fill_row(r, label_fill)
             dst.row_dimensions[r].height = 14
             r += 1
-            dst.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
-            bc = dst.cell(r, 1, str(txt).strip())
-            bc.alignment = wrap_top
-            if striped:
-                _fill_row(r, band_fill)
-            dst.row_dimensions[r].height = min(600, max(15, _lines(txt, full_chars) * 15))
-            r += 1
+            # 본문: 409pt를 넘으면 잘리므로 여러 전폭 행으로 나눠 흘린다.
+            for chunk, vlines in _wrap_chunks(str(txt).strip(), full_chars, 24):
+                dst.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
+                bc = dst.cell(r, 1, chunk)
+                bc.alignment = wrap_top
+                if striped:
+                    _fill_row(r, band_fill)
+                dst.row_dimensions[r].height = min(409, max(15, vlines * 16))
+                r += 1
 
         # 5) 이미지 밴드(라벨행 + 전폭 썸네일 격자행).
         paths = [p.strip() for p in str(get("이미지") or "").splitlines() if p.strip()]
@@ -815,9 +837,17 @@ def finalize_cards(xlsx: Path, out: Path | None = None, *,
             _fill_row(r, label_fill)
             dst.row_dimensions[r].height = 14
             r += 1
-            dst.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
-            if striped:
-                _fill_row(r, band_fill)
+            # 격자행마다 '실제 워크시트 행'을 하나씩 배정 → 한 행 높이 ≤ box*0.75pt로
+            # 409pt 상한에 절대 안 걸림(단일 행에 몰면 큰 격자가 클램프돼 이미지가
+            # 다음 제품 위로 넘쳐 겹쳤다). 각 썸네일은 자기 격자행에 rowOff=0로 앵커.
+            rows_of = -(-len(existing) // per_row)  # ceil
+            grid_top = r
+            for gr in range(rows_of):
+                rr = grid_top + gr
+                dst.merge_cells(start_row=rr, start_column=1, end_row=rr, end_column=NC)
+                if striped:
+                    _fill_row(rr, band_fill)
+                dst.row_dimensions[rr].height = box * 0.75
             placed = 0
             for sp in existing:
                 # 캐시 파일명에 해상도 태그(finalize_merged와 공유).
@@ -837,16 +867,14 @@ def finalize_cards(xlsx: Path, out: Path | None = None, *,
                 disp_h = max(1, round(xi.height * scale))
                 marker = AnchorMarker(col=0,
                                       colOff=pixels_to_EMU((placed % per_row) * box),
-                                      row=r - 1,
-                                      rowOff=pixels_to_EMU((placed // per_row) * box))
+                                      row=(grid_top + placed // per_row) - 1,
+                                      rowOff=0)
                 xi.anchor = OneCellAnchor(_from=marker, ext=XDRPositiveSize2D(
                     pixels_to_EMU(disp_w), pixels_to_EMU(disp_h)))
                 dst.add_image(xi)
                 placed += 1
                 total_thumbs += 1
-            rows_of = -(-placed // per_row) if placed else 1  # ceil
-            dst.row_dimensions[r].height = rows_of * box * 0.75
-            r += 1
+            r += rows_of
 
         # 6) 제품 사이 여백 한 줄.
         dst.row_dimensions[r].height = 6
