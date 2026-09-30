@@ -645,6 +645,7 @@ def finalize_cards(xlsx: Path, out: Path | None = None, *,
                    link_col: str = "링크", sheet: str | None = None,
                    thumb_px: int = 110, res_px: int = 900,
                    per_row: int | None = None, gap_px: int = 4,
+                   img_px: int = 190, img_per_row: int = 4,
                    thumb_dir: Path = Path("cards/detail_img/_thumbs")) -> Path:
     """제품 = '카드'. 재료·용량은 좁은 미니표로 두고, 상세내용·만들기·이미지는
     제품 아래에 '전폭(A:D 병합) 1블록'으로 내려 넣는다(세로병합 대안).
@@ -707,6 +708,10 @@ def finalize_cards(xlsx: Path, out: Path | None = None, *,
     total_px = int(full_chars * 7)                  # 전폭 픽셀 근사
     if per_row is None:
         per_row = max(1, total_px // box)
+    # 이미지는 텍스트(A:D) 오른쪽 패널에 큼직하게. E열은 여백, F열부터 격자.
+    IMG_BOX = img_px + gap_px
+    IMG_COL0 = NC + 1                               # 0-based: A~D=0..3, E=4(여백), F=5~
+    dst.column_dimensions[get_column_letter(NC + 1)].width = 2   # E 여백열
     thumb_dir.mkdir(parents=True, exist_ok=True)
 
     wrap_top = Alignment(wrap_text=True, vertical="top", horizontal="left")
@@ -754,6 +759,7 @@ def finalize_cards(xlsx: Path, out: Path | None = None, *,
     for gi, g in enumerate(groups):
         first = g[0]
         striped = gi % 2 == 1
+        r0 = r  # 제품 블록 시작행(오른쪽 이미지 패널을 여기에 앵커)
 
         def get(name, row=first):
             return row[idx[name]] if name in idx and idx[name] < len(row) else None
@@ -826,28 +832,13 @@ def finalize_cards(xlsx: Path, out: Path | None = None, *,
                 dst.row_dimensions[r].height = min(409, max(15, vlines * 16))
                 r += 1
 
-        # 5) 이미지 밴드(라벨행 + 전폭 썸네일 격자행).
+        # 5) 이미지: 텍스트(A:D) 오른쪽 패널(F열~)에 큼직하게, 블록 첫 행에 앵커.
+        #    텍스트 밴드와 세로로 안 겹치고, 이미지가 커도 A:D 레이아웃과 무관.
+        text_end = r  # A:D 텍스트가 채운 마지막 다음 행
         paths = [p.strip() for p in str(get("이미지") or "").splitlines() if p.strip()]
         existing = [Path(p) for p in paths if Path(p).exists()]
+        grid_h_px = 0
         if existing:
-            dst.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
-            lc = dst.cell(r, 1, "— 이미지 —")
-            lc.font = Font(bold=True, size=9, color="55606E")
-            lc.alignment = Alignment(vertical="center", horizontal="left")
-            _fill_row(r, label_fill)
-            dst.row_dimensions[r].height = 14
-            r += 1
-            # 격자행마다 '실제 워크시트 행'을 하나씩 배정 → 한 행 높이 ≤ box*0.75pt로
-            # 409pt 상한에 절대 안 걸림(단일 행에 몰면 큰 격자가 클램프돼 이미지가
-            # 다음 제품 위로 넘쳐 겹쳤다). 각 썸네일은 자기 격자행에 rowOff=0로 앵커.
-            rows_of = -(-len(existing) // per_row)  # ceil
-            grid_top = r
-            for gr in range(rows_of):
-                rr = grid_top + gr
-                dst.merge_cells(start_row=rr, start_column=1, end_row=rr, end_column=NC)
-                if striped:
-                    _fill_row(rr, band_fill)
-                dst.row_dimensions[rr].height = box * 0.75
             placed = 0
             for sp in existing:
                 # 캐시 파일명에 해상도 태그(finalize_merged와 공유).
@@ -861,22 +852,37 @@ def finalize_cards(xlsx: Path, out: Path | None = None, *,
                         print(f"    ⚠ 썸네일 실패 {sp}: {ex}", file=sys.stderr)
                         continue
                 xi = XLImage(str(tpath))
-                # 표시는 롱사이드 thumb_px로 축소(비율 유지), 내부 데이터는 res_px.
-                scale = min(1.0, thumb_px / max(xi.width, xi.height))
+                # 표시는 롱사이드 img_px로(큼직), 내부 데이터는 res_px → 확대해도 선명.
+                scale = min(1.0, img_px / max(xi.width, xi.height))
                 disp_w = max(1, round(xi.width * scale))
                 disp_h = max(1, round(xi.height * scale))
-                marker = AnchorMarker(col=0,
-                                      colOff=pixels_to_EMU((placed % per_row) * box),
-                                      row=(grid_top + placed // per_row) - 1,
-                                      rowOff=0)
+                marker = AnchorMarker(
+                    col=IMG_COL0,  # F열 고정, 가로 위치는 colOff(px)로
+                    colOff=pixels_to_EMU((placed % img_per_row) * IMG_BOX),
+                    row=r0 - 1,
+                    rowOff=pixels_to_EMU((placed // img_per_row) * IMG_BOX))
                 xi.anchor = OneCellAnchor(_from=marker, ext=XDRPositiveSize2D(
                     pixels_to_EMU(disp_w), pixels_to_EMU(disp_h)))
                 dst.add_image(xi)
                 placed += 1
                 total_thumbs += 1
-            r += rows_of
+            rows_img = -(-placed // img_per_row)  # ceil
+            grid_h_px = rows_img * IMG_BOX
 
-        # 6) 제품 사이 여백 한 줄.
+        # 6) 블록 높이 보정: 이미지 그리드가 텍스트보다 길면 스페이서 행으로 채워
+        #    다음 제품이 이미지 아래로 내려가게(제품 간 이미지 겹침 방지).
+        text_h_px = sum((dst.row_dimensions[rr].height or 15) / 0.75
+                        for rr in range(r0, text_end))
+        deficit = grid_h_px - text_h_px
+        while deficit > 1:
+            add_pt = min(409.0, deficit * 0.75)
+            if striped:
+                _fill_row(r, band_fill)
+            dst.row_dimensions[r].height = add_pt
+            r += 1
+            deficit -= add_pt / 0.75
+
+        # 7) 제품 사이 여백 한 줄.
         dst.row_dimensions[r].height = 6
         r += 1
 
