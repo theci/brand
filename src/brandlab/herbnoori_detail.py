@@ -183,6 +183,23 @@ _ROLE_RULES = [
 ]
 
 
+def tidy_feature(s: str) -> str:
+    """원료 특징 텍스트를 학습용으로 정돈(규칙 기반, 무료).
+
+    '/'·줄바꿈으로 흩어진 조각을 ' · '로 통일, 중복·군더더기 제거, 공백 정리.
+    """
+    if not s:
+        return ""
+    parts = re.split(r"\s*[/\n]\s*", str(s))
+    out: list[str] = []
+    for p in parts:
+        p = re.sub(r"\s+", " ", p).strip(" ,·-~")
+        p = re.sub(r"^[-·]\s*", "", p)
+        if p and p not in out:
+            out.append(p)
+    return " · ".join(out)
+
+
 def classify_role(name: str, feature: str = "") -> str:
     """원료 역할 추정: 이름으로 먼저(정확), 못 잡으면 특징으로 보조. 미스는 '기타'.
 
@@ -423,6 +440,125 @@ def split_making(text: str) -> tuple[str, str]:
     if idx is None:
         return text.strip(), ""
     return "\n".join(lines[:idx]).strip(), "\n".join(lines[idx:]).strip()
+
+
+def build_glossary(xlsx: Path, out: Path | None = None, *,
+                   link_col: str = "링크", sheet: str | None = None) -> Path:
+    """마스터 → 원료 사전(중복 제거). 원료별 역할·대표특징·대표%·대체재·등장수.
+
+    같은 원료가 여러 제품에 반복되므로 '원료 단위'로 접어 학습용 색인을 만든다.
+    - 역할 = classify_role 최빈값, 대표특징 = tidy 후 최빈 문구
+    - 대표% = 각 제품 내 비율(그램 환산)들의 중앙값, 대체재 = 합집합
+    역할(ROLE_ORDER)→등장수 순 정렬, 역할 색상. 순수 데이터 기반(창작 없음).
+    """
+    import openpyxl
+    from collections import Counter, defaultdict
+    from statistics import median
+    from openpyxl.styles import Alignment, Font, PatternFill, Side, Border
+    from openpyxl.utils import get_column_letter
+
+    wb = openpyxl.load_workbook(xlsx)
+    ws = wb[sheet] if sheet else wb.worksheets[0]
+    header = [c.value for c in ws[1]]
+    idx = {n: header.index(n) for n in header}
+    rows = [[c.value for c in row] for row in ws.iter_rows(min_row=2)]
+
+    def _norm(s):  # 중복키: 괄호/슬래시 뒤 제거 + 공백 무시(표기 변형 병합).
+        return re.sub(r"\s+", "", re.sub(r"\s*[\(/].*$", "", str(s or "")))
+
+    # 제품 그룹핑 → 그룹별 총 그램으로 각 원료 % 산출.
+    groups, cur = [], None
+    for row in rows:
+        lk = row[idx[link_col]] if idx[link_col] < len(row) else None
+        if lk and _BRANDUID.search(str(lk)):
+            cur = [row]
+            groups.append(cur)
+        elif cur is not None:
+            cur.append(row)
+
+    cnt = Counter()
+    roles = defaultdict(Counter)
+    feats = defaultdict(Counter)
+    alts = defaultdict(set)
+    pcts = defaultdict(list)
+    raw_names = {}
+    for g in groups:
+        parsed = []
+        for row in g:
+            nm = row[idx["재료"]] if idx["재료"] < len(row) else None
+            if not nm:
+                continue
+            key = _norm(nm)
+            if not key:
+                continue
+            raw_names.setdefault(key, str(nm))
+            amt = row[idx["용량"]] if "용량" in idx else None
+            feat = row[idx["특징"]] if "특징" in idx else None
+            alt = row[idx["대체재료"]] if "대체재료" in idx else None
+            grams = amount_to_g(amt)
+            cnt[key] += 1
+            roles[key][classify_role(str(nm), str(feat or ""))] += 1
+            tf = tidy_feature(feat)
+            if tf:
+                feats[key][tf] += 1
+            ta = tidy_feature(alt)
+            if ta:
+                alts[key].add(ta)
+            parsed.append((key, grams))
+        tot = sum(x[1] for x in parsed if x[1]) or 0
+        if tot:
+            for key, grams in parsed:
+                if grams:
+                    pcts[key].append(grams / tot * 100)
+
+    order = {role: i for i, role in enumerate(ROLE_ORDER)}
+    items = sorted(cnt, key=lambda k: (order.get(roles[k].most_common(1)[0][0], 99),
+                                       -cnt[k]))
+
+    gwb = openpyxl.Workbook()
+    gs = gwb.active
+    gs.title = "원료사전"
+    cols = ["역할", "원료", "등장수", "대표 사용%", "대표 특징", "대체재(모음)"]
+    widths = [8, 24, 7, 9, 46, 40]
+    for i, (c, w) in enumerate(zip(cols, widths), 1):
+        cell = gs.cell(1, i, c)
+        cell.font = Font(bold=True, size=10)
+        cell.fill = PatternFill("solid", fgColor="E8EEF7")
+        cell.alignment = Alignment(horizontal="center", vertical="center")
+        gs.column_dimensions[get_column_letter(i)].width = w
+    role_fill = {r: PatternFill("solid", fgColor=ROLE_COLORS[r]) for r in ROLE_ORDER}
+    wrap = Alignment(wrap_text=True, vertical="top")
+    thin = Side(style="thin", color="D8DCE3")
+    border = Border(left=thin, right=thin, top=thin, bottom=thin)
+    r = 2
+    for key in items:
+        role = roles[key].most_common(1)[0][0]
+        pv = f"{round(median(pcts[key]))}%" if pcts.get(key) else ""
+        feat = feats[key].most_common(1)[0][0] if feats.get(key) else ""
+        alt = " · ".join(sorted(a for a in alts[key] if a))[:300]
+        vals = [role, raw_names.get(key, key), cnt[key], pv, feat, alt]
+        for ci, v in enumerate(vals, 1):
+            cc = gs.cell(r, ci, v)
+            cc.alignment = wrap
+            cc.border = border
+        gs.cell(r, 1).fill = role_fill.get(role, role_fill["기타"])
+        gs.cell(r, 1).alignment = Alignment(horizontal="center", vertical="top")
+        gs.cell(r, 3).alignment = Alignment(horizontal="center", vertical="top")
+        gs.cell(r, 4).alignment = Alignment(horizontal="center", vertical="top")
+        n = 1
+        for ci in (5, 6):
+            v = vals[ci - 1]
+            if v:
+                n = max(n, -(-sum(2 if ord(c) > 0x2000 else 1
+                                  for c in str(v)) // (widths[ci - 1] - 1)))
+        gs.row_dimensions[r].height = min(160, max(15, n * 15))
+        r += 1
+    gs.freeze_panes = "A2"
+    gs.auto_filter.ref = f"A1:F{r - 1}"
+    out = out or xlsx.with_name("원료_사전.xlsx")
+    gwb.save(out)
+    print(f"원료 사전 → {out.name}: 고유 원료 {len(items)}종", file=sys.stderr)
+    return out
 
 
 def restructure_master(xlsx: Path, out: Path | None = None, *,
@@ -947,7 +1083,7 @@ def finalize_cards(xlsx: Path, out: Path | None = None, *,
                 continue
             grams = amount_to_g(amt)
             role = classify_role(str(name or ""), str(feat or ""))
-            raw.append((name, amt, grams, role, feat, alt))
+            raw.append((name, amt, grams, role, tidy_feature(feat), tidy_feature(alt)))
         tot = sum(x[2] for x in raw if x[2]) or 0
         ing_rows, role_pct = [], {}
         for name, amt, grams, role, feat, alt in raw:
