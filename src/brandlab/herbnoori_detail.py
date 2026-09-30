@@ -504,7 +504,8 @@ def embed_thumbnails(xlsx: Path, out: Path | None = None, *,
 
 def finalize_merged(xlsx: Path, out: Path | None = None, *,
                     link_col: str = "링크", sheet: str | None = None,
-                    thumb_px: int = 110, per_row: int = 4, gap_px: int = 4,
+                    thumb_px: int = 110, res_px: int = 360,
+                    per_row: int = 4, gap_px: int = 4,
                     text_width: int = 42,
                     thumb_dir: Path = Path("cards/detail_img/_thumbs")) -> Path:
     """제품 단위로 상세내용·이미지를 '세로 병합'하고 썸네일을 격자로 박는다.
@@ -513,6 +514,9 @@ def finalize_merged(xlsx: Path, out: Path | None = None, *,
       제품 전체 행에 분산돼, 첫 행만 비대해지는 여백 문제를 없앤다.
     - 제품별 배경 밴드(줄무늬)·제품명 굵게·상단 구분선으로 제품 경계를 뚜렷이.
     - 썸네일은 첫 행 기준 절대 오프셋으로 앵커링(행 높이와 무관하게 위치 정확).
+    - 해상도(`res_px`)와 표시 크기(`thumb_px`)를 분리: 썸네일은 롱사이드 res_px로
+      박되 격자엔 thumb_px로 작게 표시 → 엑셀에서 늘리면 res_px까지 선명(큰
+      통이미지 가독성 확보). 원본이 작으면 확대하지 않는다.
     """
     import openpyxl
     from openpyxl.drawing.image import Image as XLImage
@@ -571,22 +575,28 @@ def finalize_merged(xlsx: Path, out: Path | None = None, *,
             src = Path(p)
             if not src.exists():
                 continue
-            tpath = thumb_dir / (src.parent.name + "_" + src.name)
+            # 캐시 파일명에 해상도 태그 → 옛 110px 캐시와 충돌 방지.
+            tpath = thumb_dir / f"{src.parent.name}_{src.stem}_r{res_px}.jpg"
             if not tpath.exists():
                 try:
                     im = PILImage.open(src)
-                    im.thumbnail((thumb_px, thumb_px))
-                    im.convert("RGB").save(tpath, "JPEG", quality=70)
+                    im.thumbnail((res_px, res_px))  # 롱사이드 res_px로 박기
+                    im.convert("RGB").save(tpath, "JPEG", quality=75)
                 except Exception as ex:
                     print(f"    ⚠ 썸네일 실패 {src}: {ex}", file=sys.stderr)
                     continue
             xi = XLImage(str(tpath))
+            # 표시 크기는 롱사이드 thumb_px로 축소(비율 유지). 내부 데이터는 res_px라
+            # 엑셀에서 늘리면 선명. 원본이 thumb_px보다 작으면 그대로 표시.
+            scale = min(1.0, thumb_px / max(xi.width, xi.height))
+            disp_w = max(1, round(xi.width * scale))
+            disp_h = max(1, round(xi.height * scale))
             marker = AnchorMarker(col=img_col - 1,
                                   colOff=pixels_to_EMU((placed % per_row) * box),
                                   row=s - 1,
                                   rowOff=pixels_to_EMU((placed // per_row) * box))
             xi.anchor = OneCellAnchor(_from=marker, ext=XDRPositiveSize2D(
-                pixels_to_EMU(xi.width), pixels_to_EMU(xi.height)))
+                pixels_to_EMU(disp_w), pixels_to_EMU(disp_h)))
             ws.add_image(xi)
             placed += 1
             total += 1
