@@ -643,7 +643,8 @@ def finalize_merged(xlsx: Path, out: Path | None = None, *,
 
 def finalize_cards(xlsx: Path, out: Path | None = None, *,
                    link_col: str = "링크", sheet: str | None = None,
-                   thumb_px: int = 110, per_row: int | None = None, gap_px: int = 4,
+                   thumb_px: int = 110, res_px: int = 360,
+                   per_row: int | None = None, gap_px: int = 4,
                    thumb_dir: Path = Path("cards/detail_img/_thumbs")) -> Path:
     """제품 = '카드'. 재료·용량은 좁은 미니표로 두고, 상세내용·만들기·이미지는
     제품 아래에 '전폭(A:D 병합) 1블록'으로 내려 넣는다(세로병합 대안).
@@ -819,22 +820,27 @@ def finalize_cards(xlsx: Path, out: Path | None = None, *,
                 _fill_row(r, band_fill)
             placed = 0
             for sp in existing:
-                tpath = thumb_dir / (sp.parent.name + "_" + sp.name)
+                # 캐시 파일명에 해상도 태그(finalize_merged와 공유).
+                tpath = thumb_dir / f"{sp.parent.name}_{sp.stem}_r{res_px}.jpg"
                 if not tpath.exists():
                     try:
                         im = PILImage.open(sp)
-                        im.thumbnail((thumb_px, thumb_px))
-                        im.convert("RGB").save(tpath, "JPEG", quality=70)
+                        im.thumbnail((res_px, res_px))  # 롱사이드 res_px로 박기
+                        im.convert("RGB").save(tpath, "JPEG", quality=75)
                     except Exception as ex:
                         print(f"    ⚠ 썸네일 실패 {sp}: {ex}", file=sys.stderr)
                         continue
                 xi = XLImage(str(tpath))
+                # 표시는 롱사이드 thumb_px로 축소(비율 유지), 내부 데이터는 res_px.
+                scale = min(1.0, thumb_px / max(xi.width, xi.height))
+                disp_w = max(1, round(xi.width * scale))
+                disp_h = max(1, round(xi.height * scale))
                 marker = AnchorMarker(col=0,
                                       colOff=pixels_to_EMU((placed % per_row) * box),
                                       row=r - 1,
                                       rowOff=pixels_to_EMU((placed // per_row) * box))
                 xi.anchor = OneCellAnchor(_from=marker, ext=XDRPositiveSize2D(
-                    pixels_to_EMU(xi.width), pixels_to_EMU(xi.height)))
+                    pixels_to_EMU(disp_w), pixels_to_EMU(disp_h)))
                 dst.add_image(xi)
                 placed += 1
                 total_thumbs += 1
