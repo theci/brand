@@ -668,8 +668,8 @@ def finalize_cards(xlsx: Path, out: Path | None = None, *,
     import openpyxl
     from openpyxl import Workbook
     from openpyxl.drawing.image import Image as XLImage
-    from openpyxl.drawing.spreadsheet_drawing import AnchorMarker, OneCellAnchor
-    from openpyxl.drawing.xdr import XDRPositiveSize2D
+    from openpyxl.drawing.spreadsheet_drawing import AbsoluteAnchor
+    from openpyxl.drawing.xdr import XDRPoint2D, XDRPositiveSize2D
     from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
     from openpyxl.utils import get_column_letter
     from openpyxl.utils.units import pixels_to_EMU
@@ -708,10 +708,16 @@ def finalize_cards(xlsx: Path, out: Path | None = None, *,
     total_px = int(full_chars * 7)                  # 전폭 픽셀 근사
     if per_row is None:
         per_row = max(1, total_px // box)
-    # 이미지는 텍스트(A:D) 오른쪽 패널에 큼직하게. E열은 여백, F열부터 격자.
+    # 이미지는 텍스트(A:D) 오른쪽 패널에 큼직하게. E열은 여백, 그 오른쪽부터 격자.
+    #    Mac 엑셀은 OneCellAnchor의 큰 colOff/rowOff를 셀 크기로 클램프해 이미지가
+    #    한 자리에 겹쳐버린다. 그래서 '절대좌표(AbsoluteAnchor)'로 박는다.
     IMG_BOX = img_px + gap_px
-    IMG_COL0 = NC + 1                               # 0-based: A~D=0..3, E=4(여백), F=5~
     dst.column_dimensions[get_column_letter(NC + 1)].width = 2   # E 여백열
+
+    def _col_px(w_chars: float) -> int:             # 열 너비(문자) → 픽셀(근사)
+        return round(w_chars * 7) + 5
+    # 이미지 패널 가로 시작 x(px): A~D 텍스트 + E 여백 오른쪽.
+    img_x0_px = sum(_col_px(WIDTHS[c]) for c in range(1, NC + 1)) + _col_px(2) + 6
     thumb_dir.mkdir(parents=True, exist_ok=True)
 
     wrap_top = Alignment(wrap_text=True, vertical="top", horizontal="left")
@@ -839,6 +845,9 @@ def finalize_cards(xlsx: Path, out: Path | None = None, *,
         existing = [Path(p) for p in paths if Path(p).exists()]
         grid_h_px = 0
         if existing:
+            # 블록 세로 시작 y(px) = 앞선 모든 행 높이의 합(전 행이 명시적 높이).
+            y0_px = sum((dst.row_dimensions[rr].height or 15)
+                        for rr in range(1, r0)) / 0.75
             placed = 0
             for sp in existing:
                 # 캐시 파일명에 해상도 태그(finalize_merged와 공유).
@@ -856,13 +865,13 @@ def finalize_cards(xlsx: Path, out: Path | None = None, *,
                 scale = min(1.0, img_px / max(xi.width, xi.height))
                 disp_w = max(1, round(xi.width * scale))
                 disp_h = max(1, round(xi.height * scale))
-                marker = AnchorMarker(
-                    col=IMG_COL0,  # F열 고정, 가로 위치는 colOff(px)로
-                    colOff=pixels_to_EMU((placed % img_per_row) * IMG_BOX),
-                    row=r0 - 1,
-                    rowOff=pixels_to_EMU((placed // img_per_row) * IMG_BOX))
-                xi.anchor = OneCellAnchor(_from=marker, ext=XDRPositiveSize2D(
-                    pixels_to_EMU(disp_w), pixels_to_EMU(disp_h)))
+                # 절대좌표: 셀 오프셋 클램프를 피해 격자를 정확히 배치.
+                x_px = img_x0_px + (placed % img_per_row) * IMG_BOX
+                y_px = y0_px + (placed // img_per_row) * IMG_BOX
+                xi.anchor = AbsoluteAnchor(
+                    pos=XDRPoint2D(pixels_to_EMU(x_px), pixels_to_EMU(y_px)),
+                    ext=XDRPositiveSize2D(pixels_to_EMU(disp_w),
+                                          pixels_to_EMU(disp_h)))
                 dst.add_image(xi)
                 placed += 1
                 total_thumbs += 1
