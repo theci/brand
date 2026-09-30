@@ -712,12 +712,15 @@ def finalize_cards(xlsx: Path, out: Path | None = None, *,
     #    Mac 엑셀은 OneCellAnchor의 큰 colOff/rowOff를 셀 크기로 클램프해 이미지가
     #    한 자리에 겹쳐버린다. 그래서 '절대좌표(AbsoluteAnchor)'로 박는다.
     IMG_BOX = img_px + gap_px
-    dst.column_dimensions[get_column_letter(NC + 1)].width = 2   # E 여백열
+    GUTTER = 3                                       # E 여백열 너비(문자)
+    dst.column_dimensions[get_column_letter(NC + 1)].width = GUTTER
 
-    def _col_px(w_chars: float) -> int:             # 열 너비(문자) → 픽셀(근사)
-        return round(w_chars * 7) + 5
-    # 이미지 패널 가로 시작 x(px): A~D 텍스트 + E 여백 오른쪽.
-    img_x0_px = sum(_col_px(WIDTHS[c]) for c in range(1, NC + 1)) + _col_px(2) + 6
+    # 열 너비(문자)→픽셀은 폰트/OS(특히 Mac 엑셀)마다 달라 과소추정하면 이미지가
+    # D열을 덮는다. 넉넉히 과대추정(8px/char + 여유)해서 D를 확실히 비켜가게 한다.
+    def _col_px(w_chars: float) -> int:
+        return round(w_chars * 8) + 8
+    img_x0_px = (sum(_col_px(WIDTHS[c]) for c in range(1, NC + 1))
+                 + _col_px(GUTTER) + 24)             # A~D + E여백 + 마진
     thumb_dir.mkdir(parents=True, exist_ok=True)
 
     wrap_top = Alignment(wrap_text=True, vertical="top", horizontal="left")
