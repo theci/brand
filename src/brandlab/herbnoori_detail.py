@@ -946,6 +946,7 @@ def finalize_cards(xlsx: Path, out: Path | None = None, *,
                    thumb_px: int = 110, res_px: int = 900,
                    per_row: int | None = None, gap_px: int = 4,
                    img_px: int = 190, img_per_row: int = 4,
+                   img_big_px: int = 540, big_thresh: int = 600,
                    thumb_dir: Path = Path("cards/detail_img/_thumbs")) -> Path:
     """제품 = '카드'. 재료·용량은 좁은 미니표로 두고, 상세내용·만들기·이미지는
     제품 아래에 '전폭(A:D 병합) 1블록'으로 내려 넣는다(세로병합 대안).
@@ -1255,14 +1256,15 @@ def finalize_cards(xlsx: Path, out: Path | None = None, *,
         text_end = r  # A:D 텍스트가 채운 마지막 다음 행
         paths = [p.strip() for p in str(get("이미지") or "").splitlines() if p.strip()]
         existing = [Path(p) for p in paths if Path(p).exists()]
-        grid_h_px = 0
+        panel_h_px = 0
         if existing:
             # 블록 세로 시작 y(px) = 앞선 모든 행 높이의 합(전 행이 명시적 높이).
             y0_px = sum((dst.row_dimensions[rr].height or 15)
                         for rr in range(1, r0)) / 0.75
-            placed = 0
+            # 썸네일 로드 후 소/대 분류(내부해상도 기준). 큰 것 = 실험·제조 방법
+            # 스크린샷(통이미지) → 읽을 수 있게 자기 행에 크게, 작은 것은 격자.
+            small, big = [], []
             for sp in existing:
-                # 캐시 파일명에 해상도 태그(finalize_merged와 공유).
                 tpath = thumb_dir / f"{sp.parent.name}_{sp.stem}_r{res_px}.jpg"
                 if not tpath.exists():
                     try:
@@ -1273,28 +1275,38 @@ def finalize_cards(xlsx: Path, out: Path | None = None, *,
                         print(f"    ⚠ 썸네일 실패 {sp}: {ex}", file=sys.stderr)
                         continue
                 xi = XLImage(str(tpath))
-                # 표시는 롱사이드 img_px로(큼직), 내부 데이터는 res_px → 확대해도 선명.
-                scale = min(1.0, img_px / max(xi.width, xi.height))
-                disp_w = max(1, round(xi.width * scale))
-                disp_h = max(1, round(xi.height * scale))
-                # 절대좌표: 셀 오프셋 클램프를 피해 격자를 정확히 배치.
-                x_px = img_x0_px + (placed % img_per_row) * IMG_BOX
-                y_px = y0_px + (placed // img_per_row) * IMG_BOX
+                (big if max(xi.width, xi.height) >= big_thresh else small).append(xi)
+
+            def _place(xi, x_px, y_px, target):
+                scale = min(1.0, target / max(xi.width, xi.height))
+                dw = max(1, round(xi.width * scale))
+                dh = max(1, round(xi.height * scale))
                 xi.anchor = AbsoluteAnchor(
                     pos=XDRPoint2D(pixels_to_EMU(x_px), pixels_to_EMU(y_px)),
-                    ext=XDRPositiveSize2D(pixels_to_EMU(disp_w),
-                                          pixels_to_EMU(disp_h)))
+                    ext=XDRPositiveSize2D(pixels_to_EMU(dw), pixels_to_EMU(dh)))
                 dst.add_image(xi)
-                placed += 1
-                total_thumbs += 1
-            rows_img = -(-placed // img_per_row)  # ceil
-            grid_h_px = rows_img * IMG_BOX
+                return dw, dh
 
-        # 6) 블록 높이 보정: 이미지 그리드가 텍스트보다 길면 스페이서 행으로 채워
+            y = y0_px
+            # (a) 작은 이미지: 4열 격자(img_px).
+            for i, xi in enumerate(small):
+                _place(xi, img_x0_px + (i % img_per_row) * IMG_BOX,
+                       y + (i // img_per_row) * IMG_BOX, img_px)
+                total_thumbs += 1
+            if small:
+                y += (-(-len(small) // img_per_row)) * IMG_BOX
+            # (b) 큰 이미지: 각자 자기 행에 크게(img_big_px), 좌측정렬로 세로 적재.
+            for xi in big:
+                _, dh = _place(xi, img_x0_px, y, img_big_px)
+                y += dh + gap_px
+                total_thumbs += 1
+            panel_h_px = y - y0_px
+
+        # 6) 블록 높이 보정: 이미지 패널이 텍스트보다 길면 스페이서 행으로 채워
         #    다음 제품이 이미지 아래로 내려가게(제품 간 이미지 겹침 방지).
         text_h_px = sum((dst.row_dimensions[rr].height or 15) / 0.75
                         for rr in range(r0, text_end))
-        deficit = grid_h_px - text_h_px
+        deficit = panel_h_px - text_h_px
         while deficit > 1:
             add_pt = min(409.0, deficit * 0.75)
             if striped:
