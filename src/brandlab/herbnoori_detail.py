@@ -561,6 +561,88 @@ def build_glossary(xlsx: Path, out: Path | None = None, *,
     return out
 
 
+def enrich_glossary(glossary: Path, master: Path, *,
+                    cards_dir: Path = Path("카드_아키타입"),
+                    link_col: str = "링크") -> Path:
+    """원료 사전에 '사용% 범위'·'주 사용 제형' 열을 추가(기존 특징 편집은 보존).
+
+    - 사용% 범위 = 각 제품 내 비율(그램 환산)들의 최소~중앙~최대 → '같은 원료가
+      비율/제형 따라 다르게 발현'을 실데이터로 보여줌.
+    - 주 사용 제형 = 카드 파일(아키타입)에서 그 원료가 등장하는 제형 집합.
+    원료 매칭은 공백·괄호 무시 정규화 키. 기존 열(특징 등)은 손대지 않는다.
+    """
+    import openpyxl
+    from collections import defaultdict
+    from statistics import median
+
+    def _norm(s):
+        return re.sub(r"\s+", "", re.sub(r"\s*[\(/].*$", "", str(s or "")))
+
+    # 1) 마스터에서 원료별 사용% 수집.
+    mwb = openpyxl.load_workbook(master, read_only=True)
+    mws = mwb.worksheets[0]
+    mh = [c.value for c in next(mws.iter_rows(min_row=1, max_row=1))]
+    mi = {n: mh.index(n) for n in mh}
+    groups, cur = [], None
+    for row in mws.iter_rows(min_row=2, values_only=True):
+        lk = row[mi[link_col]] if mi[link_col] < len(row) else None
+        if lk and _BRANDUID.search(str(lk)):
+            cur = [row]
+            groups.append(cur)
+        elif cur is not None:
+            cur.append(row)
+    pcts = defaultdict(list)
+    for g in groups:
+        parsed = [(_norm(x[mi["재료"]]), amount_to_g(x[mi["용량"]]))
+                  for x in g if x[mi["재료"]]]
+        tot = sum(gr for _, gr in parsed if gr) or 0
+        if tot:
+            for k, gr in parsed:
+                if gr:
+                    pcts[k].append(gr / tot * 100)
+
+    # 2) 카드 파일에서 원료→제형(아키타입) 집합. 역할 열(4열)이 ROLE이면 재료행.
+    roleset = set(ROLE_ORDER)
+    arche_of = defaultdict(set)
+    for f in sorted(cards_dir.glob("*.xlsx")):
+        if f.name.startswith("~$"):
+            continue
+        a = re.sub(r"^\d+_", "", f.stem)
+        cw = openpyxl.load_workbook(f, read_only=True).worksheets[0]
+        for row in cw.iter_rows(min_row=2, values_only=True):
+            if len(row) >= 4 and row[3] in roleset and row[0]:
+                arche_of[_norm(row[0])].add(a)
+
+    # 3) 사전에 열 추가(기존 보존). 원료 = B열(2).
+    gwb = openpyxl.load_workbook(glossary)
+    gs = gwb.worksheets[0]
+    from openpyxl.styles import Alignment, Font, PatternFill
+    from openpyxl.utils import get_column_letter
+    ncol = gs.max_column
+    c1, c2 = ncol + 1, ncol + 2
+    for col, title, w in ((c1, "사용% 범위(최소~중앙~최대)", 18), (c2, "주 사용 제형", 34)):
+        hc = gs.cell(1, col, title)
+        hc.font = Font(bold=True, size=10)
+        hc.fill = PatternFill("solid", fgColor="E8EEF7")
+        hc.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
+        gs.column_dimensions[get_column_letter(col)].width = w
+    wrap = Alignment(wrap_text=True, vertical="top")
+    for r in range(2, gs.max_row + 1):
+        key = _norm(gs.cell(r, 2).value)
+        v = pcts.get(key)
+        if v:
+            gs.cell(r, c1, f"{min(v):.0f} ~ {median(v):.0f} ~ {max(v):.0f}%")
+        gs.cell(r, c1).alignment = Alignment(horizontal="center", vertical="top")
+        arches = arche_of.get(key)
+        if arches:
+            gs.cell(r, c2, " · ".join(sorted(arches)))
+        gs.cell(r, c2).alignment = wrap
+    gwb.save(glossary)
+    print(f"원료 사전 보강 → {glossary.name}: 사용%·제형 열 추가(특징 보존)",
+          file=sys.stderr)
+    return glossary
+
+
 def restructure_master(xlsx: Path, out: Path | None = None, *,
                        sheet: str | None = None) -> Path:
     """마스터에 '만들기' 열을 추가(상세내용에서 분리)하고 '링크'를 맨 끝으로 옮긴다.
