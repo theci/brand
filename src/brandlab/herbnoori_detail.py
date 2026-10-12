@@ -69,6 +69,53 @@ ROLE_COLORS = {  # 옅은 배경색(역할 셀)
     "계면": "E6DAF5", "보습": "CFF3F0", "활성": "EAD9F7", "향": "FBD9E8",
     "색소": "F5D9C0", "방부": "E2E5E9", "점증/pH": "E9F0D6", "기타": "F0F0F0",
 }
+# 역할(phase)이 뭔지: 정의 + 대표 원료(카드 색상 해독용). 예시·학습용.
+ROLE_GLOSSARY = {
+    "수상": ("물·수용성 베이스. 제형의 대부분을 차지하는 뼈대이고, 수용성 활성·보습제가 여기 녹는다.",
+            "정제수, 로즈워터, 알로에워터"),
+    "유상": ("오일·버터 등 지용성. 피부에 유연·보습막·영양을 주고 발림성·리치함을 결정한다.",
+            "호호바오일, 시어버터, 스쿠알란"),
+    "유화": ("안 섞이는 물과 오일을 하나로 묶는 '다리'. 없으면 분리된다. 양으로 로션↔크림 점도도 좌우.",
+            "올리브유화왁스, 몬타노브68"),
+    "경화": ("왁스·고형. 제형을 굳혀 밤·스틱 형태를 만든다. 비율로 말랑↔단단이 갈린다.",
+            "밀랍, 칸데릴라왁스"),
+    "계면": ("피지·노폐물을 물에 씻겨나가게 하는 세정 성분. 거품·세정력을 담당.",
+            "코코베타인, 데실글루코사이드"),
+    "보습": ("공기·진피의 수분을 끌어와 붙잡는 습윤제. 촉촉함을 유지.",
+            "글리세린, 프로판다이올, 솔비톨"),
+    "활성": ("특정 효능(미백·진정·탄력 등)을 노리는 기능 성분. '이 제품의 컨셉'을 만든다.",
+            "나이아신아마이드, 세라마이드, 추출물"),
+    "향": ("향·아로마(에센셜오일 등). 소량(보통 ≤1%)으로 감성·아로마테라피.",
+          "라벤더EO, 네롤리"),
+    "색소": ("색을 내는 안료·펄. 색조·틴트 제형의 핵심.",
+            "마이카, 산화철, 이산화티탄"),
+    "방부": ("세균·곰팡이 번식을 억제. 물 있는 제형엔 사실상 필수.",
+            "1,2-헥산디올, 천연한방보존제"),
+    "점증/pH": ("점도 조절(젤화)과 산도(pH) 조절. 사용감·안정성·방부 효력에 영향.",
+               "잔탄검, 카보머, 구연산"),
+    "기타": ("위 분류에 안 잡힌 것(완제 베이스·충전제 등).", "크림베이스, 옥수수전분"),
+}
+# 배합 기본원리의 '왜'(제형 공통). 업계 통용 지식(예시, 검증 필요).
+FORMULATION_PRINCIPLES = [
+    ("유화는 왜 같은 온도(65~75℃)에서?",
+     "오일상 왁스가 녹아 액체이고 수상도 같은 온도여야 미세하게 섞인다. 온도차가 크면 "
+     "닿는 순간 왁스가 굳어 알갱이·분리가 생긴다."),
+    ("왜 식으며 저어주나 / 핸드블렌더?",
+     "유화 입자를 더 잘고 고르게 쪼개면 분리가 줄고 발림·안정성이 좋아진다. 찬물에 받쳐 "
+     "식히면 유화가 빨리·안정적으로 잡힌다."),
+    ("물 있는 제형은 왜 방부 필수?",
+     "물은 세균·곰팡이의 번식 배지다. 무방부는 수일 내 변질 → 냉장·소량 제조만. 방부력은 "
+     "실제 챌린지(방부력) 테스트로 확인해야 한다."),
+    ("왜 약산성(pH 5~6)?",
+     "건강한 피부는 pH 4.5~5.5. 알칼리는 장벽을 들뜨게 하고, 적정 산성은 방부 효력과 일부 "
+     "활성(산성 영역) 안정에 유리하다."),
+    ("가루(점증·활성)는 왜 미리 분산?",
+     "가루가 물에 닿자마자 겉만 수화돼 '덩어리(fish-eye)'가 진다. 글리세린 등에 미리 적셔 "
+     "분산하거나 천천히 뿌리며 교반해야 곱게 풀린다."),
+    ("무수(오일·밤)는 왜 방부 불필요하지만 물 유입 금지?",
+     "물이 없으면 미생물이 못 큰다. 대신 사용 중 물이 들어가면 그 지점부터 상한다. 산패는 "
+     "비타민E 등 항산화와 차광·밀폐로 늦춘다."),
+]
 
 # 제형별 배합 기본원칙·주의(치트시트용). 화장품 제조의 통상 공정 지식(예시,
 # 검증 필요) — 효능·치료 표방 아님. 키 = archetype_cards의 파일명에서 번호 뗀 값.
@@ -1238,6 +1285,38 @@ def finalize_cards(xlsx: Path, out: Path | None = None, *,
         body = "⚠ 이 제형 배합 주의·기본원칙\n" + "\n".join(f"· {t}" for t in tips)
         _summary_row(body, max(28, _lines(body, full_chars) * 15),
                      fill=PatternFill("solid", fgColor="FDECE0"), color="7A4A2A")
+
+    # 역할(phase) 읽는 법: A열=역할(색), B:NC 병합=정의+대표원료. 카드 색상 해독.
+    _summary_row("🎨 역할(phase) 읽는 법 — 아래 미니표 '역할' 색상의 뜻",
+                 16, bold=True, fill=PatternFill("solid", fgColor="EFF4FB"),
+                 size=10, color="33475B")
+    for role in ROLE_ORDER:
+        if role not in ROLE_GLOSSARY:
+            continue
+        defn, ex = ROLE_GLOSSARY[role]
+        rc = dst.cell(r, 1, role)
+        rc.fill = PatternFill("solid", fgColor=ROLE_COLORS.get(role, "F0F0F0"))
+        rc.font = Font(bold=True, size=9)
+        rc.alignment = Alignment(horizontal="center", vertical="top")
+        rc.border = Border(top=thin, bottom=thin, left=thin, right=thin)
+        dst.merge_cells(start_row=r, start_column=2, end_row=r, end_column=NC)
+        txt = f"{defn}   예) {ex}"
+        bc = dst.cell(r, 2, txt)
+        bc.alignment = wrap_top
+        bc.font = Font(size=9)
+        dst.row_dimensions[r].height = max(15, _lines(txt, full_chars - 10) * 14)
+        r += 1
+
+    # 배합 기본원리의 '왜'(제형 공통 심화).
+    _summary_row("📖 배합 기본원리 — 왜 그렇게 하나",
+                 16, bold=True, fill=PatternFill("solid", fgColor="EFF4FB"),
+                 size=10, color="33475B")
+    for title, why in FORMULATION_PRINCIPLES:
+        txt = f"Q. {title}\n→ {why}"
+        _summary_row(txt, max(28, _lines(txt, full_chars) * 14),
+                     fill=PatternFill("solid", fgColor="F7FAFF"), size=9,
+                     color="3A3A3A")
+
     dst.row_dimensions[r].height = 6
     r += 1
 
