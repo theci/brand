@@ -230,6 +230,89 @@ _ROLE_RULES = [
 ]
 
 
+def design_intent(ing_rows, role_pct) -> list[str]:
+    """처방을 '역설계'로 읽어 설계 의도 줄들을 만든다(데이터 기반, 창작 아님).
+
+    ing_rows=[(재료,용량,'%'문자,역할,특징,대체)], role_pct={역할:합%}.
+    제형 판정·베이스·기능(활성)·마무리·비율 포인트를 %와 역할로 설명한다.
+    재료 '본연의 성질'은 같은 행 특징 열이 받쳐주므로 여기선 구조·비율에 집중.
+    """
+    from collections import defaultdict
+
+    def _num(p):
+        s = str(p).replace("%", "").strip()
+        if s == "<1":
+            return 0.5
+        try:
+            return float(s)
+        except ValueError:
+            return 0.0
+
+    byrole = defaultdict(list)
+    for name, _amt, pct, role, _feat, _alt in ing_rows:
+        byrole[role].append((str(name or ""), _num(pct)))
+    for role in byrole:
+        byrole[role].sort(key=lambda x: -x[1])
+
+    def _top(role):
+        return byrole[role][0] if byrole.get(role) else None
+
+    rp = role_pct
+    w = rp.get("수상", 0); o = rp.get("유상", 0); e = rp.get("유화", 0)
+    wax = rp.get("경화", 0); surf = rp.get("계면", 0); act = rp.get("활성", 0)
+    lines = []
+
+    # 1) 제형 판정 — 왜 이 구조인가.
+    if wax >= 8 and w < 5:
+        lines.append(f"제형: 무수+경화 {wax:.0f}% → 밤·스틱류. 왁스 비율이 굳기를 결정"
+                     "(늘리면 단단, 줄이면 말랑).")
+    elif surf >= 15:
+        lines.append(f"제형: 계면활성제 {surf:.0f}% → 세정 제형. 농도가 세정력·자극을 좌우"
+                     "(높을수록 강하고 건조).")
+    elif e > 0 and w > 0 and o > 0:
+        tier = "묽은 로션" if e < 3 else ("로션~크림 경계" if e < 6 else "리치한 크림")
+        lines.append(f"제형: 유화 {e:.0f}% + 유상 {o:.0f}% → {tier} 겨냥"
+                     "(유화제가 물·오일을 묶어 분리를 막음).")
+    elif o >= 55 and w < 5:
+        lines.append(f"제형: 오일 {o:.0f}%(무수) → 페이스·바디오일. 방부 불필요·물 유입 금지.")
+    elif w >= 65:
+        lines.append(f"제형: 수상 {w:.0f}% 중심 → 토너·미스트·젤 등 수상 제형"
+                     "(오일 넣으려면 가용화 필요).")
+
+    # 2) 베이스.
+    if w >= 5 and _top("수상"):
+        n, p = _top("수상")
+        lines.append(f"베이스: 수상 {w:.0f}%({n} {p:.0f}%)가 제형의 뼈대·수분 공급.")
+    elif o > 0 and _top("유상"):
+        n, p = _top("유상")
+        lines.append(f"베이스: 유상 중심, 주 오일 {n}({p:.0f}%)로 보습막·발림 설계.")
+
+    # 3) 기능(활성) — 이 제품의 컨셉.
+    if act > 0 and byrole.get("활성"):
+        s = ", ".join(f"{n} {p:.0f}%" for n, p in byrole["활성"][:3] if n)
+        lines.append(f"기능: 활성 합 {act:.0f}%({s}) → 이 제품이 노리는 효능 컨셉.")
+
+    # 4) 마무리(안정·사용감).
+    tail = []
+    for role, label in (("보습", "보습"), ("방부", "방부"),
+                        ("점증/pH", "점증·pH"), ("향", "향")):
+        if rp.get(role, 0) >= 0.5:        # 반올림 0% 노이즈 제외
+            tail.append(f"{label} {rp[role]:.0f}%")
+    if tail:
+        lines.append("마무리: " + " · ".join(tail) + " 로 안정·사용감 보완.")
+
+    # 5) 비율 포인트 — 눈여겨볼 결정.
+    if e > 0 and o > 0:
+        ratio = e / o
+        if ratio >= 0.4:
+            lines.append("포인트: 유상 대비 유화제가 넉넉 → 분리 적고 안정 중시(묵직할 수).")
+        elif ratio < 0.18:
+            lines.append("포인트: 유상 대비 유화제가 적음 → 가벼운 질감 지향(분리 주의).")
+    if act >= 20:
+        lines.append("포인트: 활성 합이 높음 → 기능성(앰플·세럼급)에 집중한 처방.")
+    return lines
+
+
 def tidy_feature(s: str) -> str:
     """원료 특징 텍스트를 학습용으로 정돈(규칙 기반, 무료).
 
@@ -1411,6 +1494,24 @@ def finalize_cards(xlsx: Path, out: Path | None = None, *,
                     _fill_row(r, band_fill)
                 dst.row_dimensions[r].height = min(409, max(15, vlines * 16))
                 r += 1
+
+        # 4b) 설계 의도(역설계): 왜 이 양·비율인가 — 데이터로 읽어줌.
+        intent = design_intent(ing_rows, role_pct)
+        if intent:
+            dst.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
+            lc = dst.cell(r, 1, "💡 설계 의도 (역설계 — 왜 이 양·비율인가)")
+            lc.font = Font(bold=True, size=9, color="5B3A7A")
+            lc.alignment = Alignment(vertical="center", horizontal="left")
+            _fill_row(r, PatternFill("solid", fgColor="F3EEFA"))
+            dst.row_dimensions[r].height = 14
+            r += 1
+            body = "\n".join(f"· {ln}" for ln in intent)
+            dst.merge_cells(start_row=r, start_column=1, end_row=r, end_column=NC)
+            bc = dst.cell(r, 1, body)
+            bc.alignment = wrap_top
+            bc.fill = PatternFill("solid", fgColor="FAF8FD")
+            dst.row_dimensions[r].height = max(28, _lines(body, full_chars) * 15)
+            r += 1
 
         # 5) 이미지: 텍스트(A:D) 오른쪽 패널(F열~)에 큼직하게, 블록 첫 행에 앵커.
         #    텍스트 밴드와 세로로 안 겹치고, 이미지가 커도 A:D 레이아웃과 무관.
