@@ -424,6 +424,37 @@ RECIPES = [
             ("hexanediol", "C", 1.0, ""),
         ],
     ),
+    dict(
+        slug="sebum-calm-cream-minimal", name="시크 진정 크림 (미니멀 3종)", type="크림(유화·리치)",
+        difficulty="⑧ 미니멀 변주 — 히어로에서 활성 3종만", method="유화",
+        concept="히어로 크림을 활성 핵심 3종으로 좁힌 미니멀 버전. 베이스(유화·보습·방부)는 히어로 v2와 동일, 활성만 나이아신아마이드·시카·베타글루칸으로 집중.",
+        features=["활성 3종 미니멀", "말라세지아-세이프", "무향", "히어로 v2 베이스 동일"],
+        design=[
+            "히어로 v2에서 활성을 '핵심 3종'으로 좁힌 미니멀 버전 — 유화·보습·방부 베이스는 그대로 둔다.",
+            "활성 3종만 남긴다: 나이아신아마이드(피지·장벽·톤) · 마데카소사이드(시카 진정) · 베타글루칸(진정+수분).",
+            "역할이 겹치던 아연PCA·알란토인·판테놀과, 갈변 리스크가 있는 녹차추출물은 뺐다.",
+            "활성이 적을수록 자극 변수·갈변 리스크가 줄고, 무엇이 효과를 냈는지 해석이 쉽다 — '정직한' 처방 훈련.",
+            "뺀 자리는 정제수로 채워 합 100% 유지(유상 ~17%·세이프 에몰리언트 구성은 히어로와 동일).",
+        ],
+        lines=[
+            ("water", "A", 64.8, "베이스(q.s. 100%)"),
+            ("glycerin", "A", 5.0, ""),
+            ("niacinamide", "A", 4.0, "핵심 활성 ①(민감 시 2%부터 시작)"),
+            ("beta-glucan", "A", 2.0, "핵심 활성 ②(진정+수분)"),
+            ("propanediol", "A", 3.0, ""),
+            ("xanthan-gum", "A", 0.3, "글리세린 선분산"),
+            ("multi-hyaluronic-acid", "A", 1.0, "미리 불려 사용"),
+            ("montanov-68", "B", 4.0, "유화제(세이프)"),
+            ("cetyl-alcohol", "B", 2.0, ""),
+            ("squalane", "B", 5.0, ""),
+            ("mct", "B", 3.0, ""),
+            ("dimethicone", "B", 3.0, ""),
+            ("madecassoside", "C", 1.0, "핵심 활성 ③(시카 진정)"),
+            ("phenoxyethanol", "C", 0.7, ""),
+            ("hexanediol", "C", 1.0, ""),
+            ("citric-acid", "pH", 0.2, "pH 5.0~5.5 q.s."),
+        ],
+    ),
 ]
 
 READ_ME: list[tuple[str, list[str]]] = [
@@ -708,6 +739,85 @@ def _read_old(sheet: str) -> list[dict] | None:
     return out
 
 
+# 생성기가 매번 다시 그리는 시트(이 집합 밖의 시트는 '수작업 자산'으로 간주해 보존).
+GENERATED_SHEETS = {"읽어보기", "레시피", "트러블슈팅", "원료", "도구", "입출고", "개발일지", "처방"}
+
+
+def _copy_cell(src, dst) -> None:
+    """값·스타일·하이퍼링크를 다른 워크북 셀로 그대로 옮긴다(스타일 객체는 복제)."""
+    from copy import copy as _cp
+    dst.value = src.value
+    if src.has_style:
+        dst.font = _cp(src.font)
+        dst.fill = _cp(src.fill)
+        dst.border = _cp(src.border)
+        dst.alignment = _cp(src.alignment)
+        dst.number_format = src.number_format
+        dst.protection = _cp(src.protection)
+    if src.hyperlink is not None:
+        dst.hyperlink = _cp(src.hyperlink)
+
+
+def _copy_sheet(src, dst) -> None:
+    """워크북 간 시트 통째 복사(값·스타일·병합·치수·고정틀·이미지). 표/수식 없는 단순 시트용."""
+    for row in src.iter_rows():
+        for cell in row:
+            if cell.value is None and not cell.has_style:
+                continue
+            _copy_cell(cell, dst.cell(row=cell.row, column=cell.column))
+    for rng in src.merged_cells.ranges:
+        dst.merge_cells(str(rng))
+    for key, dim in src.column_dimensions.items():
+        d = dst.column_dimensions[key]
+        d.width, d.hidden = dim.width, dim.hidden
+    for idx, dim in src.row_dimensions.items():
+        d = dst.row_dimensions[idx]
+        d.height, d.hidden = dim.height, dim.hidden
+    dst.freeze_panes = src.freeze_panes
+    dst.sheet_view.showGridLines = src.sheet_view.showGridLines
+    for img in list(getattr(src, "_images", [])):
+        dst.add_image(img)
+
+
+def _preserve_from_old(wb) -> list[str]:
+    """재생성으로 사라질 '수작업 자산'을 옛 파일에서 새 워크북으로 이식한다.
+
+    생성기가 안 만드는 것 두 가지: ① 레시피 공정이미지(+G열 '▶' 링크) ② 추가 시트(시험 등).
+    레시피 1~7 레이아웃은 재생성해도 동일 → 이미지(OneCellAnchor)·G열이 같은 행에 들어맞는다.
+    저장(OUT 덮어쓰기) 직전에 호출해야 옛 파일을 읽을 수 있다. 보존한 항목 요약을 돌려준다.
+    """
+    if not OUT.exists():
+        return []
+    try:
+        old = openpyxl.load_workbook(OUT)
+    except Exception:
+        return []
+    done: list[str] = []
+    # ① 레시피: 공정이미지 + 생성기가 안 쓰는 G열 이후(링크 등) 보존
+    if "레시피" in old.sheetnames and "레시피" in wb.sheetnames:
+        old_rec, new_rec = old["레시피"], wb["레시피"]
+        imgs = list(getattr(old_rec, "_images", []))
+        for img in imgs:
+            new_rec.add_image(img)
+        for row in old_rec.iter_rows(min_col=7):  # G열(7)~
+            for cell in row:
+                if cell.value is None and not cell.has_style:
+                    continue
+                _copy_cell(cell, new_rec.cell(row=cell.row, column=cell.column))
+        for key, dim in old_rec.column_dimensions.items():
+            if openpyxl.utils.column_index_from_string(key) >= 7:
+                new_rec.column_dimensions[key].width = dim.width
+        if imgs:
+            done.append(f"레시피 공정이미지 {len(imgs)}개")
+    # ② 생성기가 안 만드는 추가 시트 통째 복사(시험 시트 등)
+    for name in old.sheetnames:
+        if name in GENERATED_SHEETS or name in wb.sheetnames:
+            continue
+        _copy_sheet(old[name], wb.create_sheet(name))
+        done.append(f"시트 '{name}'")
+    return done
+
+
 def build() -> Path:
     inv = yaml.safe_load((ROOT / "data" / "inventory.yaml").read_text(encoding="utf-8"))
     inv_items = {i["id"]: i for i in inv.get("ingredients", [])}
@@ -978,16 +1088,21 @@ def build() -> Path:
     _add_table(ws, "처방표", 3, r - 1, 6)
     ws.freeze_panes = "A4"
 
+    # ── 보존: 생성기가 안 만드는 수작업 자산(레시피 공정이미지 + 추가 시트)을 저장 직전 이식 ──
+    preserved = _preserve_from_old(wb)
+
     try:
         wb.save(OUT)
     except PermissionError:
         print("⛔ 저장 실패 — 엑셀에서 '제품개발_마스터.xlsx'를 닫고 다시 실행하세요.")
         raise
-    return OUT
+    return OUT, preserved
 
 
 if __name__ == "__main__":
-    path = build()
+    path, preserved = build()
     print("✅ 생성 →", path)
     print("   시트(8): 읽어보기 · 레시피 · 트러블슈팅 · 원료 · 도구 · 입출고 · 개발일지 · 처방")
     print("   재고=최초보유+구매+조정−제조사용(자동) · 입출고/개발일지 기록은 재생성해도 보존")
+    if preserved:
+        print("   보존(이식): " + " · ".join(preserved))
