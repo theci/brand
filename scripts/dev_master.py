@@ -809,6 +809,14 @@ def _preserve_from_old(wb) -> list[str]:
                 new_rec.column_dimensions[key].width = dim.width
         if imgs:
             done.append(f"레시피 공정이미지 {len(imgs)}개")
+    # ①-b 그 외 생성 시트(트러블슈팅 등)의 수작업 이미지도 보존(레이아웃 안정 → 같은 앵커에 들어맞음)
+    for name in ("트러블슈팅",):
+        if name in old.sheetnames and name in wb.sheetnames:
+            oimgs = list(getattr(old[name], "_images", []))
+            for img in oimgs:
+                wb[name].add_image(img)
+            if oimgs:
+                done.append(f"{name} 이미지 {len(oimgs)}개")
     # ② 생성기가 안 만드는 추가 시트 통째 복사(시험 시트 등)
     for name in old.sheetnames:
         if name in GENERATED_SHEETS or name in wb.sheetnames:
@@ -906,6 +914,12 @@ def build() -> Path:
         for step in METHOD_STEPS[rec["method"]]:
             r = _band(ws, r, step, "FFFFFFFF", bold=False, indent=2)
         r += 1
+    # ── 확장 사다리 플래그 (레시피 없음 — 히어로 검증 후 착수) ──
+    r = _band(ws, r, "[⑨ (확장) 무수 밤·스틱 — 레시피는 히어로 검증·판매 후 착수]", ORANGE, bold=True)
+    r = _band(ws, r, "· 물이 없어 방부·유화 부담이 낮아 1인 제조에 현실적 — 읽어보기 '확장 로드맵'의 확장 1순위.",
+              GREY, bold=False, indent=2)
+    r = _band(ws, r, "· 지금 승부처는 히어로 크림 하나. 무수 밤은 히어로가 물리 배치·검증·판매된 뒤 설계한다(지금 벌리면 분산).",
+              GREY, bold=False, indent=2)
     ws.freeze_panes = "A3"
 
     # ── 2-b) 트러블슈팅 (이슈 → 어디를·뭘 바꾼다) ──
@@ -924,6 +938,10 @@ def build() -> Path:
             cc.alignment = CEN if j == 1 else WRAP
         r += 1
     _add_table(ws, "트러블슈팅표", 3, r - 1, len(heads))
+    # 표 아래: 불량 판정 레퍼런스 이미지 라벨(이미지는 _preserve로 행 21 앵커에 재이식)
+    _band(ws, r + 1, "▼ 불량 판정 레퍼런스 — 만든 결과를 눈으로 대조 "
+          "(①정상 ②층분리 ③오일링·크리밍 ④피시아이 ⑤이물질오염 ⑥기포)",
+          LBLUE, bold=True, span=6, height=22)
     ws.freeze_panes = "C4"
 
     # ── 3) 원료 (재고 — 현재고 자동 수식) ──
