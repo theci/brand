@@ -218,6 +218,7 @@ README_ITEMS = [
     "줘도 되는 것 = 제형·성분·용량 등 스펙(견적에 필요) / 아껴야 할 것 = 마케팅·채널·매출 계획. 진짜 해자는 상표권('다도기' 출원).",
     "견적은 항목별로(개발비·샘플비·수량별 단가·MOQ·리드타임·처방 독점·시험성적서). 뭉뚱그린 견적·구두 약속·과도한 선금은 경계 신호.",
     "시트 아래쪽에 공장 첫 문의용 이메일·카톡 템플릿 포함 — 복사해서 바로 쓴다.",
+    "브랜드 기획서 : '남에게 다도기가 뭔지' 설명하는 한 장(자사몰·입점·투자 공통 뼈대). PPT 필요하면 이 시트를 슬라이드로 옮긴다. (scripts/brand_plan.py)",
 ]
 LBLUE = "FFDCE6F1"
 CEN = Alignment(horizontal="center", vertical="center")
@@ -228,9 +229,12 @@ def _update_readme(wb) -> bool:
     if "읽어보기" not in wb.sheetnames:
         return False
     ws = wb["읽어보기"]
-    for row in ws.iter_rows(min_col=1, max_col=1):
-        if row[0].value == README_SECTION:
-            return False  # 이미 있음
+    # 이미 있으면 그 섹션(앞 빈 줄 포함)을 지우고 최신 내용으로 다시 씀
+    start = next((row[0].row for row in ws.iter_rows(min_col=1, max_col=1)
+                  if row[0].value == README_SECTION), None)
+    if start is not None:
+        gap = 1 if start > 1 and ws.cell(start - 1, 1).value is None else 0
+        ws.delete_rows(start - gap, ws.max_row - (start - gap) + 1)
     r = ws.max_row + 2
     ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=2)
     c = ws.cell(r, 1, README_SECTION)
@@ -289,7 +293,7 @@ def main() -> None:
     wb.save(XLSX)
     print(f"✅ '{SHEET}' 시트 추가 완료 → {XLSX.name}")
     print("   열: A=항목 / B=내 입력(예시) / C=작성 팁·공장이 보는 포인트")
-    print(f"   읽어보기 안내 섹션: {'추가함' if readme_added else '이미 있음(건너뜀)'}")
+    print(f"   읽어보기 안내 섹션: {'추가/갱신함' if readme_added else '건너뜀'}")
 
 
 if __name__ == "__main__":
