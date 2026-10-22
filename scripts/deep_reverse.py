@@ -426,7 +426,26 @@ def build(out: Path = Path("역설계_심화_제형별.xlsx")) -> Path:
 # ── 제품개발_마스터.xlsx에 '역설계 심화' 한 시트로 ─────────────────────────────
 SHEET = "역설계 심화"
 README_LINE = ("역설계 심화 : 제형별 대표 처방 1종(★히어로+14제형)을 '왜 이 원료·이 %인가'로 해부 — 한 줄 요약·골격·유화/활성 설계·"
-               "what-if·배우는 점. 맨 위 목차(클릭 이동)·공통교훈. 처방설계 전에 읽는 학습 시트.")
+               "what-if·배우는 점. 맨 위 목차(클릭 이동)·공통교훈·비율·제형 사다리(유화제·왁스·계면·점증·습윤·오일·향 %별 결과). 처방설계 전에 읽는 학습 시트.")
+
+
+def _read_ladder(path: Path = Path("원료_지식_확장.xlsx")) -> list[tuple[str, list[tuple[str, str, str]]]]:
+    """원료_지식_확장.xlsx '비율_제형_사다리' → [(시스템, [(구간, 결과, 팁), ...])]. 병합된 시스템 칸은 아래로 채움."""
+    if not path.exists():
+        return []
+    wb = openpyxl.load_workbook(path, read_only=True)
+    if "비율_제형_사다리" not in wb.sheetnames:
+        return []
+    rows = list(wb["비율_제형_사다리"].iter_rows(values_only=True))
+    hdr = next(i for i, row in enumerate(rows) if row and row[0] == "시스템")
+    out: list[tuple[str, list]] = []
+    for sysname, band_, result, tip in (tuple(r[:4]) for r in rows[hdr + 1:]):
+        if not band_:
+            continue
+        if sysname:
+            out.append((sysname, []))
+        out[-1][1].append((band_, result or "", tip or ""))
+    return out
 
 
 def build_into_master(master: Path | None = None) -> Path:
@@ -480,7 +499,9 @@ def build_into_master(master: Path | None = None) -> Path:
     # 블록 시작 행을 먼저 계산(목차 하이퍼링크용)
     toc_top = 4
     common_top = toc_top + 1 + len(PRODUCTS) + 1
-    r = common_top + 1 + len(COMMON) + 1
+    ladder = _read_ladder()
+    ladder_top = common_top + 1 + len(COMMON) + 1
+    r = ladder_top + (1 + sum(1 + len(items) for _s, items in ladder) + 1 if ladder else 0)
     starts = []
     for _tab, _p, _o, _s, sections in PRODUCTS:
         starts.append(r)
@@ -509,6 +530,19 @@ def build_into_master(master: Path | None = None) -> Path:
         c.border = border
         ws.row_dimensions[rr].height = max(20, -(-len(line) // 90) * 16)
 
+    # 비율·제형 사다리(원료_지식_확장) — 공통교훈 1 '비율이 제형을 정한다'의 수치판
+    if ladder:
+        band(ladder_top, "비율·제형 사다리 — 같은 원료군도 %에 따라 제형·상품성이 바뀐다 (공통교훈 1의 수치판 · 원료_지식_확장)", LBLUE)
+        rr = ladder_top + 1
+        for sysname, items in ladder:
+            band(rr, sysname, "FFF3EEFA", color="FF5B3A7A", size=10, height=20)
+            rr += 1
+            for band_, result, tip in items:
+                body = f"{result}" + (f"\n💡 {tip}" if tip else "")
+                pair(rr, band_, body, "FFEFF4FB")
+                ws.cell(rr, 1).alignment = Alignment(horizontal="center", vertical="top", wrap_text=True)
+                rr += 1
+
     for (tab, product, oneline, skel, sections), r in zip(PRODUCTS, starts):
         band(r, f"[{tab}]  {product}", "FF33475B", color="FFFFFFFF", size=12, height=26)
         r += 1
@@ -530,7 +564,7 @@ def build_into_master(master: Path | None = None) -> Path:
         wb.save(master)
     except PermissionError:
         raise SystemExit(f"⛔ 저장 실패 — 엑셀에서 '{master.name}'를 닫고 다시 실행하세요.")
-    print(f"✅ '{SHEET}' 시트 → {master.name} (제형 {len(PRODUCTS)}개 블록 + 목차·공통교훈) · 백업: {backup.name}")
+    print(f"✅ '{SHEET}' 시트 → {master.name} (제형 {len(PRODUCTS)}개 블록 + 목차·공통교훈·사다리 {len(ladder)}계통) · 백업: {backup.name}")
     return master
 
 

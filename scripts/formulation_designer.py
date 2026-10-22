@@ -259,7 +259,7 @@ def build(out: Path = Path("처방_설계_템플릿.xlsx")) -> Path:
 
 
 # ── 제품개발_마스터.xlsx에 '처방설계' 시트로 녹이기 ─────────────────────────────
-# 단일 워크북 원칙(CLAUDE.md): 3시트(설계·참고_골격·원료_고르기)를 한 시트에 위→아래로 쌓는다.
+# 단일 워크북 원칙(CLAUDE.md): 설계 캔버스 → 참고 골격 → 학습용 원료(원료_지식_확장·원료_사전)를 한 시트에 위→아래로 쌓는다.
 MASTER = Path("제품개발_마스터.xlsx")
 SHEET = "처방설계"
 NAVY = "FF1F3A5F"
@@ -268,19 +268,6 @@ LBLUE = "FFDCE6F1"
 GREEN_TAB = "FF548235"  # 🟩 ① 제품 개발 그룹
 REDFILL = PatternFill("solid", fgColor="FFFFC7CE")
 
-# 원료_사전(허브누리 빈도 상위)에 섞인 완제 베이스·소품·역할 오분류 — 설계 팔레트에서 뺀다.
-_PALETTE_DROP = {
-    "워터 호호바", "워터아르간", "워셔블클렌징리퀴드", "워셔블 / 클렌징리퀴드",  # 완제품
-    "브라이트닝 / 블렌딩오일",  # 블렌드 완제
-    "세틸에틸헥사노에이트",  # 에스터 에몰리언트(유화제 아님)
-    "허브누리 / 순한 샴푸베이스", "시카 판테놀 / 바디&핸드 로션베이스",  # 완제 베이스(활성 아님)
-    "히말라아 핑크솔트 / (굵은 소금)", "빨강 식용 색소", "비누용 색소",  # 화장품 색소 아님
-    "토코페롤",  # 항산화제(방부 아님) — 기타에 기능성으로 있음
-    "로즈플라워 아로마수", "러블리 레몬 아로마수",  # 하이드로졸(방부력 없음)
-    "허브누리의 아주 순한 샴푸베이스",
-    "물에 갠 검은 색 물감", "소다", "아하바하파하 컴플렉스",  # 점증/pH 아님
-    "옥수수전분", "친환경 석고", "천연 사쉐 스톤", "립컬러 베이스", "아르간 가득한 / 크림베이스",
-}
 # 표기 흔들림 정규화(중복 병합·보유 매칭용)
 _ALIASES = [("다이올", "디올"), ("알콜", "알코올"), ("쟁탄", "잔탄"), ("히아루론", "히알루론"),
             ("코코-베타인", "코코베타인"), ("에칠", "에틸"), ("피카", "pca"), ("다이메치콘", "디메치콘")]
@@ -295,9 +282,31 @@ def _norm(s: str) -> str:
     return re.sub(r"[\s/*.,\-&()'’·]", "", s)
 
 
-def _dedupe_key(name: str) -> str:
-    # '1,2 헥산디올'·'1.2-헥산디올'·'헥산디올' → 하나로(숫자 접두 무시)
-    return re.sub(r"^\d+", "", _norm(name.split("(")[0]))
+def _read_glossary(path: Path) -> list[tuple]:
+    """원료_사전.xlsx → (역할, 원료, 등장수, 대표%, 특징, 대체재, 범위, 주사용제형). 헤더 이름 기준."""
+    if not path.exists():
+        return []
+    ws = openpyxl.load_workbook(path, read_only=True).worksheets[0]
+    rows = list(ws.iter_rows(values_only=True))
+    idx = {str(h).strip(): i for i, h in enumerate(rows[0]) if h}
+    want = ["역할", "원료", "등장수", "대표 사용%", "대표 특징", "대체재(모음)", "사용% 범위(최소~중앙~최대)", "주 사용 제형"]
+    out = []
+    for row in rows[1:]:
+        if not row or not row[idx["원료"]]:
+            continue
+        out.append(tuple(row[idx[k]] if k in idx and idx[k] < len(row) else None for k in want))
+    return out
+
+
+def _read_knowledge(path: Path) -> list[tuple]:
+    """원료_지식_확장.xlsx '기능성원료' → (역할, 원료, 전형%, 기능·왜, 천연대안, 주의). 헤더 행 자동 탐지."""
+    if not path.exists():
+        return [(role, name, pct, "", "", "") for role, name, pct, *_ in PALETTE]
+    wb = openpyxl.load_workbook(path, read_only=True)
+    ws = wb["기능성원료"] if "기능성원료" in wb.sheetnames else wb.worksheets[0]
+    rows = list(ws.iter_rows(values_only=True))
+    hdr = next(i for i, row in enumerate(rows) if row and row[0] == "역할")
+    return [tuple(row[:6]) for row in rows[hdr + 1:] if row and row[1]]
 
 
 def _master_ingredients(wb) -> list[tuple[str, str, str]]:
@@ -491,7 +500,6 @@ def build_into_master(master: Path = MASTER) -> Path:
     backup = _backup(master)
 
     arches = _read_archetypes(Path("카드_아키타입"))
-    palette = _palette_rows(Path("원료_사전.xlsx"))
     x14 = _x14_validations(master)
     wb = openpyxl.load_workbook(master)
     owned = _master_ingredients(wb)
@@ -672,41 +680,88 @@ def build_into_master(master: Path = MASTER) -> Path:
         ws.row_dimensions[r + 1].height = 46
         r += 2
 
-    # ── 학습용 원료 참고(허브누리 빈도·기능성 팔레트) — 설계 캔버스와 무관 ──
+    # ── 📚 학습용 원료 참고 — 원료_지식_확장(기능성) + 원료_사전(허브누리 전체). 설계 캔버스와 무관 ──
+    # 열: A원료 B역할 C% D(등장수/구분) E:G H:J K:M N보유 O(대체재)
+    ws.column_dimensions["N"].width = 22
+    ws.column_dimensions["O"].width = 40
+
+    def _row(r, vals, role, mine, height):
+        # vals = (A, C, D, E:G, H:J, K:M, O)
+        a_, c_, d_, eg, hj, km, o_ = vals
+        _cell(ws, r, 1, a_, wrap=True)
+        _cell(ws, r, 2, role, fill=ROLE_COLORS.get(role, "F0F0F0"), center=True)
+        _cell(ws, r, 3, c_, center=True)
+        _cell(ws, r, 4, d_, center=True)
+        for c0, c1, v in ((5, 7, eg), (8, 10, hj), (11, 13, km)):
+            ws.merge_cells(start_row=r, start_column=c0, end_row=r, end_column=c1)
+            _cell(ws, r, c0, v, wrap=True)
+            for cc in range(c0 + 1, c1 + 1):
+                ws.cell(r, cc).border = GRID
+        _cell(ws, r, 14, mine, color="FF2E7D32" if mine else None, bold=bool(mine), wrap=True)
+        if o_ is not None:
+            _cell(ws, r, 15, o_, wrap=True)
+            ws.cell(r, 15).font = Font(size=9, color="FF55606E")
+        ws.row_dimensions[r].height = height
+
+    def _lines(text, per_line):
+        return max(1, -(-len(str(text or "")) // per_line))
+
+    def _head(r, heads):
+        cols = (1, 2, 3, 4, 5, 8, 11, 14, 15)
+        for c0, h in zip(cols, heads):
+            _cell(ws, r, c0, h, bold=True, fill=HDR_FILL.fgColor.rgb, center=True)
+        for c0, c1 in ((5, 7), (8, 10), (11, 13)):
+            ws.merge_cells(start_row=r, start_column=c0, end_row=r, end_column=c1)
+
     pr = ref_last + 2
-    ws.merge_cells(start_row=pr, start_column=1, end_row=pr, end_column=RSPAN)
-    sc = ws.cell(pr, 1, "📚 학습용 원료 참고 — 허브누리 빈도 상위·기능성 팔레트. 설계에 쓰는 목록 아님(역할도 학습 분류) · "
-                        "써보고 싶으면 사서 '원료' 시트에 행 추가 → 위 드롭다운에 등장 · ✓=이미 보유")
+    ws.merge_cells(start_row=pr, start_column=1, end_row=pr, end_column=15)
+    sc = ws.cell(pr, 1, "📚 학습용 원료 참고 — 설계 캔버스와 무관(역할도 학습 분류). 써보고 싶으면 사서 '원료' 시트에 행 추가 → 위 드롭다운에 등장 · "
+                        "N열 ✓=이미 보유(원료 시트 이름·세이프)")
     sc.font = Font(bold=True)
     sc.fill = PatternFill("solid", fgColor="FFEDE7F6")
     sc.alignment = WRAP
     ws.row_dimensions[pr].height = 32
-    hr = pr + 1
-    for i, h in enumerate(["원료", "학습 역할", "전형/대표%", "구분", "보유"], 1):
-        _cell(ws, hr, i, h, bold=True, fill=HDR_FILL.fgColor.rgb, center=True)
-    ws.merge_cells(start_row=hr, start_column=5, end_row=hr, end_column=7)
-    r = hr + 1
-    n_pal = n_owned = 0
-    for role in ROLE_ORDER:
-        seen: set[str] = set()
-        for name, _cnt, pct, kind in palette.get(role, []):
-            if name in _PALETTE_DROP:
-                continue
-            key = _dedupe_key(name)
-            if kind == "천연" and key in seen:
-                continue
-            seen.add(key)
-            mine = _match_owned(name, owned)
-            _cell(ws, r, 1, name)
-            _cell(ws, r, 2, role, fill=ROLE_COLORS.get(role, "F0F0F0"), center=True)
-            _cell(ws, r, 3, pct, center=True)
-            _cell(ws, r, 4, kind, center=True)
-            ws.merge_cells(start_row=r, start_column=5, end_row=r, end_column=7)
-            _cell(ws, r, 5, mine, color="FF2E7D32" if mine else None, bold=bool(mine))
-            n_pal += 1
-            n_owned += bool(mine)
-            r += 1
-    ws.auto_filter.ref = f"A{hr}:D{r - 1}"
+
+    # ① 기능성·합성 원료 팔레트(원료_지식_확장.xlsx '기능성원료')
+    kn = _read_knowledge(Path("원료_지식_확장.xlsx"))
+    r = pr + 2
+    ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=15)
+    k = ws.cell(r, 1, f"① 기능성·합성 원료 팔레트 {len(kn)}종 — INCI·전형%·왜 쓰나·천연 대안·주의 (원료_지식_확장)")
+    k.font = Font(bold=True)
+    k.fill = PatternFill("solid", fgColor=LBLUE)
+    r += 1
+    _head(r, ["원료 (INCI)", "역할", "전형%", "구분", "천연 대안", "기능 · 왜 쓰나", "주의", "보유"])
+    r += 1
+    n_owned = 0
+    for role, name, pct, why, alt, caution in kn:
+        mine = _match_owned(name, owned)
+        n_owned += bool(mine)
+        h = max(30, 15 * max(_lines(name, 12), _lines(why, 25), _lines(caution, 14), _lines(alt, 10)))
+        _row(r, (name, pct, "기능성", alt, why, caution, None), role, mine, min(h, 75))
+        r += 1
+
+    # ② 원료 사전(원료_사전.xlsx — 허브누리 레시피 3354행을 원료 단위로 접은 것)
+    gl = _read_glossary(Path("원료_사전.xlsx"))
+    r += 1
+    ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=15)
+    k = ws.cell(r, 1, f"② 원료 사전 {len(gl)}종 — 허브누리 레시피 통계(등장수·대표%·범위·주 사용 제형·대체재). "
+                      "역할은 이름 기반 자동 분류라 오분류가 섞여 있음 · ▼ 필터로 역할·제형별 탐색")
+    k.font = Font(bold=True)
+    k.fill = PatternFill("solid", fgColor=LBLUE)
+    k.alignment = WRAP
+    ws.row_dimensions[r].height = 30
+    r += 1
+    hr = r
+    _head(r, ["원료", "역할", "대표%", "등장수", "사용% 범위(최소~중앙~최대)", "대표 특징", "주 사용 제형", "보유", "대체재(모음)"])
+    r += 1
+    for role, name, cnt, pct, feat, alts, rng_, forms in gl:
+        mine = _match_owned(name, owned)
+        n_owned += bool(mine)
+        h = max(18, 15 * max(_lines(name, 12), _lines(feat, 25), _lines(forms, 14)))
+        _row(r, (name, pct, cnt, rng_, feat, forms, alts), role, mine, min(h, 75))
+        r += 1
+    ws.auto_filter.ref = f"A{hr}:O{r - 1}"
+    n_pal = len(kn) + len(gl)
 
     # 드롭다운: 제형(인라인 — 골격표는 2행씩이라 범위 참조 불가), 원료명(원료표 전체)
     dv_arche = DataValidation(type="list", formula1='"' + ",".join(a for a, _s, _t in arches) + '"',
@@ -728,7 +783,7 @@ def build_into_master(master: Path = MASTER) -> Path:
         wb.save(master)
     except PermissionError:
         raise SystemExit(f"⛔ 저장 실패 — 엑셀에서 '{master.name}'를 닫고 다시 실행하세요.")
-    print(f"✅ '{SHEET}' 시트 → {master.name} (보유 원료 {len(owned)}종 드롭다운 · 제형 {len(arches)}종 · 학습용 원료 {n_pal}개)")
+    print(f"✅ '{SHEET}' 시트 → {master.name} (보유 원료 {len(owned)}종 드롭다운 · 제형 {len(arches)}종 · 학습용 원료 {n_pal}개 · 보유 ✓ {n_owned})")
     print(f"   백업: {backup.name} · x14 드롭다운 복원 {restored}개 · 복구: {' / '.join(repaired) or '없음'}")
     return master
 
