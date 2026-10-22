@@ -10,8 +10,8 @@
  - 참고_골격 = 카드_아키타입/*.xlsx 치트시트(전형 구성·주의) 추출
  - 원료_고르기 = 원료_사전(천연, 역할별 상위) + ingredient_knowledge(기능성)
 
-사용: uv run python scripts/formulation_designer.py
-산출: 처방_설계_템플릿.xlsx
+사용: uv run python scripts/formulation_designer.py            → 제품개발_마스터.xlsx '처방설계' 시트
+      uv run python scripts/formulation_designer.py --standalone → 처방_설계_템플릿.xlsx(구 단독 파일)
 """
 from __future__ import annotations
 
@@ -22,6 +22,7 @@ from pathlib import Path
 import openpyxl
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.utils import get_column_letter
+from openpyxl.formatting.rule import CellIsRule
 from openpyxl.worksheet.datavalidation import DataValidation
 
 from brandlab.herbnoori_detail import ROLE_COLORS, ROLE_ORDER
@@ -257,5 +258,484 @@ def build(out: Path = Path("처방_설계_템플릿.xlsx")) -> Path:
     return out
 
 
+# ── 제품개발_마스터.xlsx에 '처방설계' 시트로 녹이기 ─────────────────────────────
+# 단일 워크북 원칙(CLAUDE.md): 3시트(설계·참고_골격·원료_고르기)를 한 시트에 위→아래로 쌓는다.
+MASTER = Path("제품개발_마스터.xlsx")
+SHEET = "처방설계"
+NAVY = "FF1F3A5F"
+GREY = "FFF2F2F2"
+LBLUE = "FFDCE6F1"
+GREEN_TAB = "FF548235"  # 🟩 ① 제품 개발 그룹
+REDFILL = PatternFill("solid", fgColor="FFFFC7CE")
+
+# 원료_사전(허브누리 빈도 상위)에 섞인 완제 베이스·소품·역할 오분류 — 설계 팔레트에서 뺀다.
+_PALETTE_DROP = {
+    "워터 호호바", "워터아르간", "워셔블클렌징리퀴드", "워셔블 / 클렌징리퀴드",  # 완제품
+    "브라이트닝 / 블렌딩오일",  # 블렌드 완제
+    "세틸에틸헥사노에이트",  # 에스터 에몰리언트(유화제 아님)
+    "허브누리 / 순한 샴푸베이스", "시카 판테놀 / 바디&핸드 로션베이스",  # 완제 베이스(활성 아님)
+    "히말라아 핑크솔트 / (굵은 소금)", "빨강 식용 색소", "비누용 색소",  # 화장품 색소 아님
+    "토코페롤",  # 항산화제(방부 아님) — 기타에 기능성으로 있음
+    "로즈플라워 아로마수", "러블리 레몬 아로마수",  # 하이드로졸(방부력 없음)
+    "허브누리의 아주 순한 샴푸베이스",
+    "물에 갠 검은 색 물감", "소다", "아하바하파하 컴플렉스",  # 점증/pH 아님
+    "옥수수전분", "친환경 석고", "천연 사쉐 스톤", "립컬러 베이스", "아르간 가득한 / 크림베이스",
+}
+# 표기 흔들림 정규화(중복 병합·보유 매칭용)
+_ALIASES = [("다이올", "디올"), ("알콜", "알코올"), ("쟁탄", "잔탄"), ("히아루론", "히알루론"),
+            ("코코-베타인", "코코베타인"), ("에칠", "에틸"), ("피카", "pca"), ("다이메치콘", "디메치콘")]
+# 이름에 보유 원료명이 '부분 문자열'로만 들어간 다른 원료(코코베타인≠베타인, 에틸헥실글리세린≠글리세린)
+_NOT_OWNED_PARTS = ("코카미도프로필베타인", "코코베타인", "에틸헥실글리세린", "폴리글리세릴")
+
+
+def _norm(s: str) -> str:
+    s = str(s).lower()
+    for a, b in _ALIASES:
+        s = s.replace(a, b)
+    return re.sub(r"[\s/*.,\-&()'’·]", "", s)
+
+
+def _dedupe_key(name: str) -> str:
+    # '1,2 헥산디올'·'1.2-헥산디올'·'헥산디올' → 하나로(숫자 접두 무시)
+    return re.sub(r"^\d+", "", _norm(name.split("(")[0]))
+
+
+def _master_ingredients(wb) -> list[tuple[str, str, str]]:
+    """원료 시트의 (원료, INCI, 세이프)."""
+    if "원료" not in wb.sheetnames:
+        return []
+    ws = wb["원료"]
+    out = []
+    for r in range(4, ws.max_row + 1):
+        ko = ws.cell(r, 1).value
+        if ko:
+            out.append((str(ko), str(ws.cell(r, 2).value or ""), str(ws.cell(r, 6).value or "")))
+    return out
+
+
+def _match_owned(name: str, owned) -> str:
+    """팔레트 원료 → 원료 시트(보유·재고판)에 있는 같은 원료 표시(가장 긴 이름 일치 우선)."""
+    n = _norm(name)
+    for part in _NOT_OWNED_PARTS:
+        n = n.replace(_norm(part), "")
+    best, best_len = "", 0
+    for ko, inci, safe in owned:
+        k = _norm(re.sub(r"\(.*?\)", "", ko))
+        keys = {k} | ({_norm(inci)} if inci else set())
+        if k.endswith("오일") and len(k) > 4:
+            keys.add(k[:-2])  # MCT오일 → mct
+        for x in keys:
+            if len(x) >= 2 and x in n and len(x) > best_len:
+                best, best_len = f"✓ {ko} (세이프 {safe or '?'})", len(x)
+    return best
+
+
+def _x14_validations(path: Path) -> dict[str, list[tuple[str, str]]]:
+    """openpyxl이 로드 시 버리는 Excel 확장(x14) 드롭다운을 미리 읽어 둔다 → {시트명: [(formula, sqref)]}."""
+    import zipfile
+    out: dict[str, list[tuple[str, str]]] = {}
+    with zipfile.ZipFile(path) as z:
+        wbx = z.read("xl/workbook.xml").decode("utf-8")
+        rels = z.read("xl/_rels/workbook.xml.rels").decode("utf-8")
+        rid2file = {m.group(1): m.group(2) for m in re.finditer(
+            r'<Relationship[^>]*Id="([^"]+)"[^>]*Target="([^"]+)"', rels)}
+        rid2file.update({m.group(2): m.group(1) for m in re.finditer(
+            r'<Relationship[^>]*Target="([^"]+)"[^>]*Id="([^"]+)"', rels)})
+        for m in re.finditer(r'<sheet [^>]*name="([^"]+)"[^>]*r:id="([^"]+)"', wbx):
+            name, rid = m.group(1), m.group(2)
+            target = rid2file.get(rid, "").lstrip("/")
+            target = target if target.startswith("xl/") else "xl/" + target
+            try:
+                xml = z.read(target).decode("utf-8")
+            except KeyError:
+                continue
+            for dv in re.finditer(r"<x14:dataValidation [^>]*type=\"list\".*?</x14:dataValidation>", xml, re.S):
+                f = re.search(r"<xm:f>(.*?)</xm:f>", dv.group(0))
+                sq = re.search(r"<xm:sqref>(.*?)</xm:sqref>", dv.group(0))
+                if f and sq:
+                    out.setdefault(name, []).append((f.group(1), sq.group(1)))
+    return out
+
+
+def _insert_row(ws, idx: int) -> None:
+    """insert_rows는 병합·행높이를 안 밀어줘서 직접 민다(읽어보기용)."""
+    from openpyxl.worksheet.cell_range import CellRange
+    merges = [CellRange(str(m)) for m in ws.merged_cells.ranges if m.min_row >= idx]
+    for m in merges:
+        ws.unmerge_cells(m.coord)
+    heights = {i: d.height for i, d in list(ws.row_dimensions.items()) if i >= idx}
+    ws.insert_rows(idx)
+    for i in sorted(heights, reverse=True):
+        ws.row_dimensions[i + 1].height = heights[i]
+    ws.row_dimensions[idx].height = None
+    for m in merges:
+        ws.merge_cells(start_row=m.min_row + 1, start_column=m.min_col,
+                       end_row=m.max_row + 1, end_column=m.max_col)
+
+
+README_LINE = ("처방설계 : 보유 원료로 내 처방을 짜는 캔버스 — 원료만 고르면 역할·상·세이프·현재고·법적한도가 원료 시트에서 따라오고, "
+               "그램·역할별 합계·점검(합계100·유화제·방부·세이프X·재고부족·한도초과) 자동. 제형 고르면 목표 골격 비교. 아래 원료 목록은 학습용 참고.")
+
+# 원료 시트 12종 역할 → 아키타입 골격의 학습 역할(허브누리 분류)로 환산
+TO_SKELETON = {
+    "수상": ["용제"], "유상": ["유상·에몰리언트", "감촉·실리콘"], "유화": ["유화제", "가용화제"],
+    "보습": ["보습"], "활성": ["활성"], "향": ["향료"], "방부": ["방부제"],
+    "점증/pH": ["점증제", "pH조절"], "기타": ["항산화제"],
+}
+ROW_FORMULAS = {  # [@열] 단축형은 Excel이 열 때 #REF!로 깨뜨림 → 정식 구조적 참조
+    "원료": {9: '=SUMIFS(입출고표[수량g],입출고표[원료],원료표[[#This Row],[원료]],입출고표[구분],"구매")',
+             10: '=SUMIFS(입출고표[수량g],입출고표[원료],원료표[[#This Row],[원료]],입출고표[구분],"조정")',
+             11: "=SUMIF(처방표[원료],원료표[[#This Row],[원료]],처방표[사용g])",
+             12: "=원료표[[#This Row],[최초보유g]]+원료표[[#This Row],[구매g]]+원료표[[#This Row],[조정g]]"
+                 "-원료표[[#This Row],[제조사용g]]"},
+    "처방": {5: "=SUMIF(개발일지표[제품],처방표[[#This Row],[제품]],개발일지표[배치량g])",
+             6: "=처방표[[#This Row],[퍼센트]]/100*처방표[[#This Row],[제조누계g]]"},
+}
+OWNED_LIST = '=INDIRECT("원료표[원료]")'  # 원료 시트에 행을 추가하면 드롭다운도 자동 확장
+
+
+def _repair_master(wb) -> list[str]:
+    """재고 연계 수식(#REF!·빈칸) 복구 + 입출고 원료 드롭다운을 원료표 전체로. 멱등."""
+    done = []
+    for sname, cols in ROW_FORMULAS.items():
+        if sname not in wb.sheetnames:
+            continue
+        ws = wb[sname]
+        tbl = next(iter(ws.tables.values()), None)
+        if tbl is None:
+            continue
+        top, bottom = (int(re.sub(r"\D", "", x)) for x in tbl.ref.split(":"))
+        n = 0
+        for r in range(top + 1, bottom + 1):
+            if not ws.cell(r, 1).value:
+                continue
+            for c, f in cols.items():
+                if ws.cell(r, c).value != f:
+                    ws.cell(r, c, f)
+                    n += 1
+        if n:
+            done.append(f"{sname} 수식 {n}칸")
+    if "입출고" in wb.sheetnames:
+        for dv in wb["입출고"].data_validations.dataValidation:
+            if dv.formula1 and "원료!" in dv.formula1:
+                dv.formula1 = OWNED_LIST
+                done.append("입출고 원료 드롭다운→원료표 전체")
+    return done
+
+
+def _update_readme(wb, key: str = SHEET, line: str = README_LINE, after: str = "처방") -> None:
+    """읽어보기 시트 지도에 '<key> : …' 한 줄을 <after> 줄 바로 아래 추가(있으면 문구만 갱신)."""
+    if "읽어보기" not in wb.sheetnames:
+        return
+    ws = wb["읽어보기"]
+    rows = {str(ws.cell(r, 2).value or "").split(" :")[0]: r for r in range(1, ws.max_row + 1)}
+    if key in rows:  # 재실행 → 문구만 갱신
+        ws.cell(rows[key], 2, line)
+        return
+    anchor = rows.get(after)
+    if anchor is None:
+        return
+    r = anchor + 1
+    _insert_row(ws, r)
+    ws.cell(r, 1, "·").alignment = Alignment(horizontal="center", vertical="center")
+    ws.cell(r, 2, line).alignment = Alignment(wrap_text=True, vertical="top")
+    ws.row_dimensions[r].height = 36
+    for rr in range(1, ws.max_row + 1):  # '시트 지도 (N개)' 숫자 +1
+        v = ws.cell(rr, 1).value
+        m = re.match(r"(시트 지도 \()(\d+)(개\).*)", str(v or ""))
+        if m:
+            ws.cell(rr, 1, f"{m.group(1)}{int(m.group(2)) + 1}{m.group(3)}")
+            break
+
+
+def _backup(master: Path) -> Path:
+    """엑셀에서 열려 있으면 중단, 아니면 타임스탬프 백업."""
+    import shutil
+    from datetime import datetime
+    if not master.exists():
+        raise SystemExit(f"없음: {master}")
+    if (master.parent / f"~${master.name}").exists():
+        raise SystemExit(f"⛔ 엑셀에서 '{master.name}'를 닫고 다시 실행하세요.")
+    backup = master.with_name(f"{master.stem}_백업_{datetime.now():%Y%m%d_%H%M%S}.xlsx")
+    shutil.copy2(master, backup)
+    return backup
+
+
+def _cell(ws, r, c, v=None, *, fill=None, bold=False, size=None, color=None, wrap=False,
+          center=False, border=True):
+    cell = ws.cell(r, c) if v is None else ws.cell(r, c, v)
+    if fill:
+        cell.fill = PatternFill("solid", fgColor=fill)
+    if bold or size or color:
+        cell.font = Font(bold=bold, size=size or 11, color=color)
+    if wrap or center:
+        cell.alignment = Alignment(wrap_text=wrap, vertical="top" if not center else "center",
+                                   horizontal="center" if center else None)
+    if border:
+        cell.border = GRID
+    return cell
+
+
+def _navy_head(ws, r, c, text):
+    cc = ws.cell(r, c, text)
+    cc.font = Font(bold=True, color="FFFFFFFF")
+    cc.fill = PatternFill("solid", fgColor=NAVY)
+    cc.border = GRID
+    cc.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
+    return cc
+
+
+def build_into_master(master: Path = MASTER) -> Path:
+    from dev_master import ROLES  # 원료 시트 12종 역할(단일 출처)
+
+    backup = _backup(master)
+
+    arches = _read_archetypes(Path("카드_아키타입"))
+    palette = _palette_rows(Path("원료_사전.xlsx"))
+    x14 = _x14_validations(master)
+    wb = openpyxl.load_workbook(master)
+    owned = _master_ingredients(wb)
+
+    # openpyxl이 버린 x14 드롭다운(예: 입출고 원료 목록) 복원
+    restored = 0
+    for sname, items in x14.items():
+        if sname not in wb.sheetnames:
+            continue
+        for f, sq in items:
+            dv = DataValidation(type="list", formula1=f if f.startswith("=") else "=" + f, allow_blank=True)
+            wb[sname].add_data_validation(dv)
+            dv.add(sq)
+            restored += 1
+    repaired = _repair_master(wb)
+
+    if SHEET in wb.sheetnames:
+        del wb[SHEET]
+    ws = wb.create_sheet(SHEET)
+    ws.sheet_properties.tabColor = GREEN_TAB
+    # A원료 B역할 C투입% D그램 E상 F세이프 G현재고g H법적한도 I경고 J메모 | K간격 | L·M 패널
+    widths = (24, 14, 8, 8, 5, 6, 9, 16, 16, 18, 2, 18, 9)
+    for j, w in enumerate(widths, 1):
+        ws.column_dimensions[get_column_letter(j)].width = w
+    SPAN = len(widths)
+    KEY = KEY_FILL.fgColor.rgb
+    NOTE = NOTE_FILL.fgColor.rgb
+
+    # 1행 제목 · 2행 설명띠(마스터 공통 머리)
+    ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=SPAN)
+    t = ws.cell(1, 1, "처방설계 — 보유 원료로 내 처방 짜기")
+    t.font = Font(bold=True, size=14, color="FFFFFFFF")
+    t.fill = PatternFill("solid", fgColor=NAVY)
+    t.alignment = Alignment(horizontal="left", vertical="center", indent=1)
+    ws.row_dimensions[1].height = 30
+    desc = ("집 테스트·개발용 설계 캔버스. 노란 칸(제형·배치량·원료명·투입%)만 입력 — 나머지는 원료 시트에서 자동으로 따라온다.   ┃ "
+            "원료명=원료 시트 드롭다운(새 원료는 원료 시트에 행 추가 → 여기 자동 등장) · 역할·상·세이프·현재고g·법적한도=원료 시트 값 · "
+            "그램=투입%×배치량 · 경고=한도초과·재고부족(이번 배치 그램 > 현재고) · 오른쪽=역할별 합계·골격 비교·자동 점검.   ┃ "
+            "확정하면 '처방' 표에 [제품·원료·상·퍼센트]로 옮겨야 재고 차감이 걸린다. 맨 아래 원료 목록은 학습용(설계 캔버스와 무관).")
+    ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=SPAN)
+    c = ws.cell(2, 1, desc)
+    c.alignment = Alignment(wrap_text=True, vertical="top", indent=1)
+    c.fill = PatternFill("solid", fgColor=GREY)
+    c.font = Font(size=10, color="FF404040")
+    ws.row_dimensions[2].height = 62
+
+    # 3~5행: 입력·골격·주의
+    _cell(ws, 3, 1, "① 제형 선택", fill=KEY, bold=True)
+    ws.merge_cells("B3:D3")
+    for cc in (2, 3, 4):
+        _cell(ws, 3, cc, fill=KEY)
+    ws.merge_cells("E3:F3")
+    _cell(ws, 3, 5, "② 배치량(g)", fill=KEY, bold=True)
+    _cell(ws, 3, 6, fill=KEY)
+    _cell(ws, 3, 7, 100, fill=KEY, bold=True)
+
+    R0, R1 = 8, 27  # 입력 행
+    rng = lambda col: f"${col}${R0}:${col}${R1}"  # noqa: E731
+    B, C, D = rng("B"), rng("C"), rng("D")
+
+    # 오른쪽 패널(L:M) 행 배치 → 그 아래로 참고 골격표
+    role_top = R0
+    skel_head = role_top + len(ROLES) + 1
+    skel_top = skel_head + 1
+    chk_head = skel_top + len(TO_SKELETON) + 1
+    checks = [
+        (f'=IF(SUM({C})=0,"→ 원료를 입력하세요",IF(ABS(SUM({C})-100)<0.5,"✓ 합계 100%",'
+         f'"⚠ 합계 "&ROUND(SUM({C}),1)&"% (100 맞추기)"))'),
+        (f'=IF(AND(SUMIF({B},"용제",{C})>0,SUM(SUMIF({B},{{"유상·에몰리언트","감촉·실리콘"}},{C}))>0,'
+         f'SUM(SUMIF({B},{{"유화제","가용화제"}},{C}))=0),"⚠ 물+오일인데 유화제 없음 → 분리","")'),
+        (f'=IF(AND(SUMIF({B},"용제",{C})>0,SUMIF({B},"방부제",{C})=0),"⚠ 물 있는데 방부제 없음 → 변질","")'),
+        (f'=IF(COUNTIFS($F${R0}:$F${R1},"X",{C},">0")>0,"⚠ 세이프 X 원료 "&COUNTIFS($F${R0}:$F${R1},"X",{C},">0")'
+         f'&"개 → 히어로(말라세지아-세이프) 계열 불가","")'),
+        (f'=IF(COUNTIF($I${R0}:$I${R1},"*재고부족*")>0,"⚠ 재고 부족 "&COUNTIF($I${R0}:$I${R1},"*재고부족*")'
+         f'&"개 → 배치량↓ 또는 구매","")'),
+        (f'=IF(COUNTIF($I${R0}:$I${R1},"*한도초과*")>0,"⛔ 법적 한도 초과 "&COUNTIF($I${R0}:$I${R1},"*한도초과*")&"개","")'),
+        (f'=IF(SUMIF({B},"향료",{C})>0,"ℹ 향료 포함 — 다도기는 무향 원칙","")'),
+    ]
+    ref_head = max(R1 + 4, chk_head + len(checks) + 2)
+    ref_first = ref_head + 2
+    ref_last = ref_first + 2 * len(arches) - 1
+    A_RNG = f"$A${ref_first}:$A${ref_last}"
+    B_RNG = f"$B${ref_first}:$B${ref_last}"
+
+    _cell(ws, 4, 1, "목표 골격(참고)", bold=True, size=9, color="55606E")
+    ws.merge_cells(f"B4:{get_column_letter(SPAN)}4")
+    _cell(ws, 4, 2, f'=IFERROR(INDEX({B_RNG},MATCH($B$3,{A_RNG},0)),"← 제형을 선택하세요 (오른쪽 「골격 비교」에 내 처방이 같은 역할로 환산돼 나온다)")',
+          wrap=True)
+    ws.row_dimensions[4].height = 32
+    _cell(ws, 5, 1, "배합 주의", bold=True, size=9, color="7A4A2A", fill=NOTE)
+    ws.merge_cells(f"B5:{get_column_letter(SPAN)}5")
+    _cell(ws, 5, 2, f'=IFERROR(INDEX({B_RNG},MATCH($B$3,{A_RNG},0)+1),"")', wrap=True, fill=NOTE)
+    ws.row_dimensions[5].height = 44
+
+    # 입력 표(7행 헤더, 8~27행)
+    heads = ["원료명 ▼", "역할", "투입%", "그램", "상", "세이프", "현재고g", "법적 한도", "경고", "메모"]
+    for i, h in enumerate(heads, 1):
+        _navy_head(ws, 7, i, h)
+    look = lambda col, r: f'=IF($A{r}="","",IFERROR(INDEX(원료표[{col}],MATCH($A{r},원료표[원료],0)),"?"))'  # noqa: E731
+    for r in range(R0, R1 + 1):
+        for ci in range(1, len(heads) + 1):
+            _cell(ws, r, ci)
+        ws.cell(r, 1).fill = PatternFill("solid", fgColor=KEY)
+        ws.cell(r, 3).fill = PatternFill("solid", fgColor=KEY)
+        ws.cell(r, 2, look("역할", r))
+        ws.cell(r, 4, f'=IF($C{r}="","",ROUND($C{r}*$G$3/100,2))')
+        ws.cell(r, 5, look("상", r))
+        ws.cell(r, 6, look("세이프", r))
+        ws.cell(r, 7, f'=IF($A{r}="","",IFERROR(ROUND(INDEX(원료표[현재고g],MATCH($A{r},원료표[원료],0)),1),""))')
+        ws.cell(r, 8, look("법적 사용한도(고시)", r).replace(',"?"))', ',""))'))
+        ws.cell(r, 9, f'=TRIM(IF(AND(ISNUMBER($C{r}),IFERROR($C{r}>VALUE(LEFT($H{r},FIND("%",$H{r})-1)),FALSE)),"⛔한도초과 ","")'
+                      f'&IF(AND(ISNUMBER($D{r}),ISNUMBER($G{r})),IF($D{r}>$G{r},"⚠재고부족 "&ROUND($D{r}-$G{r},1)&"g",""),""))')
+        for ci in (2, 5, 6):
+            ws.cell(r, ci).alignment = Alignment(horizontal="center")
+        ws.cell(r, 8).font = Font(size=9)
+        ws.cell(r, 9).font = Font(size=9, color="FFC00000", bold=True)
+    tr = R1 + 1
+    for ci in range(1, len(heads) + 1):
+        _cell(ws, tr, ci, fill=LBLUE)
+    ws.cell(tr, 1, "합계").font = Font(bold=True)
+    ws.cell(tr, 3, f"=SUM(C{R0}:C{R1})").font = Font(bold=True)
+    ws.cell(tr, 4, f"=SUM(D{R0}:D{R1})").font = Font(bold=True)
+    ws.conditional_formatting.add(f"F{R0}:F{R1}", CellIsRule(operator="equal", formula=['"X"'], fill=REDFILL))
+
+    # 오른쪽 패널 ① 역할별 합계(원료 시트 12종)
+    _navy_head(ws, 7, 12, "역할별 합계(%)")
+    _navy_head(ws, 7, 13, "%")
+    for i, role in enumerate(ROLES):
+        rr = role_top + i
+        _cell(ws, rr, 12, role, size=10)
+        _cell(ws, rr, 13, f'=IF(SUMIF({B},L{rr},{C})=0,"",ROUND(SUMIF({B},L{rr},{C}),1))', center=True)
+    # ② 골격 비교(학습 역할로 환산) — 위 '목표 골격'과 같은 이름으로 나란히 본다
+    _navy_head(ws, skel_head, 12, "골격 비교(학습 역할)")
+    _navy_head(ws, skel_head, 13, "내 %")
+    for i, (srole, mroles) in enumerate(TO_SKELETON.items()):
+        rr = skel_top + i
+        _cell(ws, rr, 12, srole, fill=ROLE_COLORS.get(srole, "F0F0F0"), size=10)
+        arr = "{" + ",".join(f'"{m}"' for m in mroles) + "}"
+        _cell(ws, rr, 13, f'=IF(SUM(SUMIF({B},{arr},{C}))=0,"",ROUND(SUM(SUMIF({B},{arr},{C})),1))', center=True)
+    # ③ 자동 점검
+    ws.merge_cells(start_row=chk_head, start_column=12, end_row=chk_head, end_column=13)
+    _cell(ws, chk_head, 12, "자동 점검", bold=True, fill=KEY)
+    for i, fml in enumerate(checks, 1):
+        rr = chk_head + i
+        ws.merge_cells(start_row=rr, start_column=12, end_row=rr, end_column=13)
+        cc = ws.cell(rr, 12, fml)
+        cc.alignment = WRAP
+        cc.font = Font(size=9, bold=True, color="FFC00000")
+        ws.row_dimensions[rr].height = 28
+
+    # 주의 문구(입력 표 아래)
+    ur = R1 + 2
+    ws.merge_cells(start_row=ur, start_column=1, end_row=ur, end_column=10)
+    gc = ws.cell(ur, 1, "⚠ 설계·연습용 — 제조 전 공급사 TDS·pH·방부력 확인. 법적 한도는 원료 시트 N열(고시) 기준이며 빈칸=미기재(한도 없음 아님). "
+                        "소량(50~100g)·라벨·1개월 내 사용.")
+    gc.alignment = WRAP
+    gc.font = Font(size=9, color="FFC00000")
+    ws.row_dimensions[ur].height = 30
+
+    # ── 참고 골격표(제형 15종): 제형행 = 골격, 다음행 = 배합 주의 ──
+    RSPAN = 10
+    ws.merge_cells(start_row=ref_head, start_column=1, end_row=ref_head, end_column=RSPAN)
+    sc = ws.cell(ref_head, 1, f"참고 골격 — 제형 {len(arches)}종 (허브누리 레시피 통계 · 역할별 전형 % p25~p75 · 학습용 참고치)")
+    sc.font = Font(bold=True)
+    sc.fill = PatternFill("solid", fgColor=LBLUE)
+    _cell(ws, ref_head + 1, 1, "제형", bold=True, fill=HDR_FILL.fgColor.rgb)
+    ws.merge_cells(start_row=ref_head + 1, start_column=2, end_row=ref_head + 1, end_column=RSPAN)
+    _cell(ws, ref_head + 1, 2, "목표 골격(전형 %) / 배합 주의", bold=True, fill=HDR_FILL.fgColor.rgb)
+    r = ref_first
+    for arche, skel, tips in arches:
+        _cell(ws, r, 1, arche, bold=True, fill=KEY)
+        ws.merge_cells(start_row=r, start_column=2, end_row=r, end_column=RSPAN)
+        _cell(ws, r, 2, skel, wrap=True)
+        ws.row_dimensions[r].height = 32
+        _cell(ws, r + 1, 1, "  └ 배합 주의", size=9, color="7A4A2A", fill=NOTE)
+        ws.merge_cells(start_row=r + 1, start_column=2, end_row=r + 1, end_column=RSPAN)
+        _cell(ws, r + 1, 2, tips, wrap=True, fill=NOTE)
+        ws.row_dimensions[r + 1].height = 46
+        r += 2
+
+    # ── 학습용 원료 참고(허브누리 빈도·기능성 팔레트) — 설계 캔버스와 무관 ──
+    pr = ref_last + 2
+    ws.merge_cells(start_row=pr, start_column=1, end_row=pr, end_column=RSPAN)
+    sc = ws.cell(pr, 1, "📚 학습용 원료 참고 — 허브누리 빈도 상위·기능성 팔레트. 설계에 쓰는 목록 아님(역할도 학습 분류) · "
+                        "써보고 싶으면 사서 '원료' 시트에 행 추가 → 위 드롭다운에 등장 · ✓=이미 보유")
+    sc.font = Font(bold=True)
+    sc.fill = PatternFill("solid", fgColor="FFEDE7F6")
+    sc.alignment = WRAP
+    ws.row_dimensions[pr].height = 32
+    hr = pr + 1
+    for i, h in enumerate(["원료", "학습 역할", "전형/대표%", "구분", "보유"], 1):
+        _cell(ws, hr, i, h, bold=True, fill=HDR_FILL.fgColor.rgb, center=True)
+    ws.merge_cells(start_row=hr, start_column=5, end_row=hr, end_column=7)
+    r = hr + 1
+    n_pal = n_owned = 0
+    for role in ROLE_ORDER:
+        seen: set[str] = set()
+        for name, _cnt, pct, kind in palette.get(role, []):
+            if name in _PALETTE_DROP:
+                continue
+            key = _dedupe_key(name)
+            if kind == "천연" and key in seen:
+                continue
+            seen.add(key)
+            mine = _match_owned(name, owned)
+            _cell(ws, r, 1, name)
+            _cell(ws, r, 2, role, fill=ROLE_COLORS.get(role, "F0F0F0"), center=True)
+            _cell(ws, r, 3, pct, center=True)
+            _cell(ws, r, 4, kind, center=True)
+            ws.merge_cells(start_row=r, start_column=5, end_row=r, end_column=7)
+            _cell(ws, r, 5, mine, color="FF2E7D32" if mine else None, bold=bool(mine))
+            n_pal += 1
+            n_owned += bool(mine)
+            r += 1
+    ws.auto_filter.ref = f"A{hr}:D{r - 1}"
+
+    # 드롭다운: 제형(인라인 — 골격표는 2행씩이라 범위 참조 불가), 원료명(원료표 전체)
+    dv_arche = DataValidation(type="list", formula1='"' + ",".join(a for a, _s, _t in arches) + '"',
+                              allow_blank=True)
+    ws.add_data_validation(dv_arche)
+    dv_arche.add("B3")
+    dv_ing = DataValidation(type="list", formula1=OWNED_LIST, allow_blank=True)
+    ws.add_data_validation(dv_ing)
+    dv_ing.add(f"A{R0}:A{R1}")
+    ws.freeze_panes = "A8"
+
+    # '처방' 바로 뒤에 배치 + 읽어보기 시트 지도 갱신
+    if "처방" in wb.sheetnames:
+        target = wb.sheetnames.index("처방") + 1
+        wb.move_sheet(SHEET, offset=target - wb.sheetnames.index(SHEET))
+    _update_readme(wb)
+
+    try:
+        wb.save(master)
+    except PermissionError:
+        raise SystemExit(f"⛔ 저장 실패 — 엑셀에서 '{master.name}'를 닫고 다시 실행하세요.")
+    print(f"✅ '{SHEET}' 시트 → {master.name} (보유 원료 {len(owned)}종 드롭다운 · 제형 {len(arches)}종 · 학습용 원료 {n_pal}개)")
+    print(f"   백업: {backup.name} · x14 드롭다운 복원 {restored}개 · 복구: {' / '.join(repaired) or '없음'}")
+    return master
+
+
 if __name__ == "__main__":
-    build()
+    import sys
+    if "--standalone" in sys.argv:
+        build()
+    else:
+        build_into_master()

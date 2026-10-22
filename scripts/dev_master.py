@@ -980,10 +980,11 @@ def build() -> Path:
         ws.cell(r, 6, "O" if m["safe"] else "X")
         ws.cell(r, 7, data.get("storage", ""))
         ws.cell(r, 8, init)
-        ws.cell(r, 9, '=SUMIFS(입출고표[수량g],입출고표[원료],[@원료],입출고표[구분],"구매")')
-        ws.cell(r, 10, '=SUMIFS(입출고표[수량g],입출고표[원료],[@원료],입출고표[구분],"조정")')
-        ws.cell(r, 11, "=SUMIF(처방표[원료],[@원료],처방표[사용g])")
-        ws.cell(r, 12, "=[@최초보유g]+[@구매g]+[@조정g]-[@제조사용g]")
+        # [@열] 단축형은 파일 포맷에 없음 → Excel이 열 때 #REF!로 깨짐(2026-10-21 사고). 정식형만 쓴다.
+        ws.cell(r, 9, '=SUMIFS(입출고표[수량g],입출고표[원료],원료표[[#This Row],[원료]],입출고표[구분],"구매")')
+        ws.cell(r, 10, '=SUMIFS(입출고표[수량g],입출고표[원료],원료표[[#This Row],[원료]],입출고표[구분],"조정")')
+        ws.cell(r, 11, "=SUMIF(처방표[원료],원료표[[#This Row],[원료]],처방표[사용g])")
+        ws.cell(r, 12, "=원료표[[#This Row],[최초보유g]]+원료표[[#This Row],[구매g]]+원료표[[#This Row],[조정g]]-원료표[[#This Row],[제조사용g]]")
         ws.cell(r, 13, note)
         for j in range(1, len(heads) + 1):
             cc = ws.cell(r, j)
@@ -1103,8 +1104,8 @@ def build() -> Path:
             ws.cell(r, 2, ing(id_)["ko"])
             ws.cell(r, 3, phase)
             ws.cell(r, 4, pct)
-            ws.cell(r, 5, "=SUMIF(개발일지표[제품],[@제품],개발일지표[배치량g])")
-            ws.cell(r, 6, "=[@퍼센트]/100*[@제조누계g]")
+            ws.cell(r, 5, "=SUMIF(개발일지표[제품],처방표[[#This Row],[제품]],개발일지표[배치량g])")
+            ws.cell(r, 6, "=처방표[[#This Row],[퍼센트]]/100*처방표[[#This Row],[제조누계g]]")
             for j in range(1, 7):
                 cc = ws.cell(r, j)
                 cc.border = BORDER

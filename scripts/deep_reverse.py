@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 """역설계 심화(제형별) → 엑셀(역설계_심화_제형별.xlsx).
 
-제형별 대표 1종(크림·로션·밤·세럼·세정)을 실제 배합 기준으로 문단 해부.
-탭 5개(제형명) + '공통교훈' 탭. 카드/원료사전/처방설계와 짝.
+제형별 대표 1종(★히어로 + 14제형)을 실제 배합 기준으로 문단 해부.
+카드/원료사전/처방설계와 짝.
 
 ⚠ 해석·학습용(예시). 효능·안전성·방부력·고시는 집행 전 식약처·TDS·챌린지 검증.
 
-사용: uv run python scripts/deep_reverse.py
+사용: uv run python scripts/deep_reverse.py              → 제품개발_마스터.xlsx '역설계 심화' 시트(목차·공통교훈·제형별 블록)
+      uv run python scripts/deep_reverse.py --standalone → 역설계_심화_제형별.xlsx(제형별 탭, 구 단독 파일)
 """
 from __future__ import annotations
 
@@ -15,6 +16,7 @@ from pathlib import Path
 import openpyxl
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.utils import get_column_letter
+from openpyxl.worksheet.hyperlink import Hyperlink
 
 # (탭명, 제품, 한줄, 골격, [(소제목, 본문), ...])
 PRODUCTS = [
@@ -343,6 +345,7 @@ COMMON = [
     "4. 원료 선택 = 보존 전략 — 호호바(산패 안정)·스쿠알란·MCT는 그 자체로 안정성·피부 적합성을 산다.",
 ]
 
+COMMON_TITLE = "제형별 처방이 공통으로 가르치는 것"
 NOTE = ("⚠ 업계 통용 배합지식 기반 해석·학습용(예시). 효능·안전성·방부력·고시 농도는 "
         "집행 전 식약처·공급사 TDS·챌린지테스트로 검증. % 는 레시피 그램 환산 근사치.")
 
@@ -404,7 +407,7 @@ def build(out: Path = Path("역설계_심화_제형별.xlsx")) -> Path:
     # 공통교훈 탭
     cs = wb.create_sheet("공통교훈")
     cs.column_dimensions["A"].width = 120
-    cs.cell(1, 1, "다섯 처방이 공통으로 가르치는 것").font = Font(bold=True, size=13, color="33475B")
+    cs.cell(1, 1, COMMON_TITLE).font = Font(bold=True, size=13, color="33475B")
     rr = 2
     for line in COMMON:
         c = cs.cell(rr, 1, line)
@@ -420,5 +423,120 @@ def build(out: Path = Path("역설계_심화_제형별.xlsx")) -> Path:
     return out
 
 
+# ── 제품개발_마스터.xlsx에 '역설계 심화' 한 시트로 ─────────────────────────────
+SHEET = "역설계 심화"
+README_LINE = ("역설계 심화 : 제형별 대표 처방 1종(★히어로+14제형)을 '왜 이 원료·이 %인가'로 해부 — 한 줄 요약·골격·유화/활성 설계·"
+               "what-if·배우는 점. 맨 위 목차(클릭 이동)·공통교훈. 처방설계 전에 읽는 학습 시트.")
+
+
+def build_into_master(master: Path | None = None) -> Path:
+    from formulation_designer import GREEN_TAB, GREY, LBLUE, MASTER, NAVY, _backup, _update_readme
+
+    master = master or MASTER
+    backup = _backup(master)
+    wb = openpyxl.load_workbook(master)
+    if SHEET in wb.sheetnames:
+        del wb[SHEET]
+    ws = wb.create_sheet(SHEET)
+    ws.sheet_properties.tabColor = GREEN_TAB
+    ws.sheet_view.showGridLines = False
+    ws.column_dimensions["A"].width = 30
+    ws.column_dimensions["B"].width = 108
+    thin = Side(style="thin", color="D8DCE3")
+    border = Border(left=thin, right=thin, top=thin, bottom=thin)
+    wrap = Alignment(wrap_text=True, vertical="top")
+
+    def band(r, text, fill, *, color="FF000000", size=11, height=24):
+        ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=2)
+        c = ws.cell(r, 1, text)
+        c.font = Font(bold=True, size=size, color=color)
+        c.fill = PatternFill("solid", fgColor=fill)
+        c.alignment = Alignment(wrap_text=True, vertical="center", indent=1)
+        ws.row_dimensions[r].height = height
+        return c
+
+    def pair(r, label, body, lfill, lcolor="FF000000"):
+        lc = ws.cell(r, 1, label)
+        lc.font = Font(bold=True, size=10, color=lcolor)
+        lc.fill = PatternFill("solid", fgColor=lfill)
+        lc.alignment = wrap
+        lc.border = border
+        bc = ws.cell(r, 2, body)
+        bc.alignment = wrap
+        bc.border = border
+        nlines = sum(max(1, -(-len(ln) // 52)) for ln in str(body).split("\n"))
+        ws.row_dimensions[r].height = max(28, nlines * 15)
+
+    # 1행 제목 · 2행 설명띠(마스터 공통 머리)
+    band(1, "역설계 심화 — 제형별 대표 처방 해부", NAVY, color="FFFFFFFF", size=14, height=30)
+    d = ws.cell(2, 1, "잘 만든(또는 아쉬운) 처방 하나를 '왜 이 원료·이 %인가'로 뜯어 읽는 학습 시트. 아래 목차에서 제형을 누르면 그 블록으로 이동.   ┃ "
+                      "블록 구성: 한 줄 요약 · 골격(%) · ①~③ 설계 이유 · ④ 바꾸면?(what-if) · ⑤ 배우는 점.   ┃ " + NOTE)
+    ws.merge_cells("A2:B2")
+    d.alignment = Alignment(wrap_text=True, vertical="top", indent=1)
+    d.fill = PatternFill("solid", fgColor=GREY)
+    d.font = Font(size=10, color="FF404040")
+    ws.row_dimensions[2].height = 48
+
+    # 블록 시작 행을 먼저 계산(목차 하이퍼링크용)
+    toc_top = 4
+    common_top = toc_top + 1 + len(PRODUCTS) + 1
+    r = common_top + 1 + len(COMMON) + 1
+    starts = []
+    for _tab, _p, _o, _s, sections in PRODUCTS:
+        starts.append(r)
+        r += 1 + 2 + len(sections) + 1  # 밴드 + 요약·골격 + 섹션 + 빈 줄
+
+    band(toc_top, "목차 — 제형을 누르면 이동", LBLUE)
+    for i, (tab, product, oneline, _s, _sec) in enumerate(PRODUCTS):
+        rr = toc_top + 1 + i
+        a = ws.cell(rr, 1, tab)
+        a.hyperlink = Hyperlink(ref=a.coordinate, location=f"'{SHEET}'!A{starts[i]}")  # 시트 내부 이동
+        a.font = Font(bold=True, color="FF0563C1", underline="single")
+        a.border = border
+        b = ws.cell(rr, 2, f"{product} — {oneline}")
+        b.alignment = wrap
+        b.border = border
+        b.font = Font(size=10)
+        ws.row_dimensions[rr].height = max(18, -(-len(b.value) // 70) * 15)
+
+    band(common_top, COMMON_TITLE, LBLUE)
+    for i, line in enumerate(COMMON):
+        rr = common_top + 1 + i
+        ws.merge_cells(start_row=rr, start_column=1, end_row=rr, end_column=2)
+        c = ws.cell(rr, 1, line)
+        c.alignment = wrap
+        c.fill = PatternFill("solid", fgColor="FFF7FAFF")
+        c.border = border
+        ws.row_dimensions[rr].height = max(20, -(-len(line) // 90) * 16)
+
+    for (tab, product, oneline, skel, sections), r in zip(PRODUCTS, starts):
+        band(r, f"[{tab}]  {product}", "FF33475B", color="FFFFFFFF", size=12, height=26)
+        r += 1
+        for label, val in (("한 줄 요약", oneline), ("골격(%)", skel)):
+            pair(r, label, val, "FFEFF4FB")
+            r += 1
+        for sub, body in sections:
+            pair(r, sub, body, "FFF3EEFA", "FF5B3A7A")
+            r += 1
+    ws.freeze_panes = "A3"
+
+    # '처방설계' 바로 뒤(없으면 '처방' 뒤)에 배치 + 읽어보기 시트 지도 갱신
+    anchor = "처방설계" if "처방설계" in wb.sheetnames else "처방"
+    if anchor in wb.sheetnames:
+        target = wb.sheetnames.index(anchor) + 1
+        wb.move_sheet(SHEET, offset=target - wb.sheetnames.index(SHEET))
+    _update_readme(wb, SHEET, README_LINE, after=anchor)
+    try:
+        wb.save(master)
+    except PermissionError:
+        raise SystemExit(f"⛔ 저장 실패 — 엑셀에서 '{master.name}'를 닫고 다시 실행하세요.")
+    print(f"✅ '{SHEET}' 시트 → {master.name} (제형 {len(PRODUCTS)}개 블록 + 목차·공통교훈) · 백업: {backup.name}")
+    return master
+
+
 if __name__ == "__main__":
-    build()
+    import sys
+    if "--standalone" in sys.argv:
+        build()
+    else:
+        build_into_master()
