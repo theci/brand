@@ -282,6 +282,60 @@ def _norm(s: str) -> str:
     return re.sub(r"[\s/*.,\-&()'’·]", "", s)
 
 
+# 원료_사전의 자동 분류(이름 키워드)가 '기타'로 떨어뜨렸거나 명백히 틀린 역할 → 학습용 세부 역할.
+# 원본 xlsx는 건드리지 않고 시트에 그릴 때만 보정한다(원료_사전 재생성에도 안전).
+_EXTRA_ROLES = {  # 학습 역할 12종에 없던 묶음
+    "항산화": "FBE9D0", "컨디셔닝": "DDE7F7", "자외선차단": "FFF2B3", "분말·스크럽": "F3E9DC",
+    "완제 베이스": "E4E4E4", "장식·건초": "EFE6D8", "생활·공예": "E8E8E8",
+    # 기능성 팔레트 역할
+    "에몰리언트": "FFF0CC", "감촉·실리콘": "FFF7E0", "분말": "F3E9DC", "가용화": "E3F7E3",
+    "킬레이트·pH": "EEF3E2", "자외선": "FFF2B3",
+}
+_ROLE_FIX = {
+    # 기타 → 세부 역할
+    **dict.fromkeys(["알파 비사보롤", "수딩 4 컴플렉스", "멘톨", "L-멘톨", "PDRN", "인삼 줄기세포배양액",
+                     "인삼줄기 / 세포배양액", "바이오 디톡스", "MSM (식이유황)", "살리실산(0.5%)", "로먼카모마일",
+                     "부활초 / 줄기세포 배양액", "재생, 항노화 / 기능성 원료", "징크피리치온", "7가지한방약재",
+                     "폴리페놀", "레드와인", "황금", "금은화", "진피", "당귀", "인플라신", "시카엑소좀"], "활성"),
+    **dict.fromkeys(["트레할로스"], "보습"),
+    **dict.fromkeys(["세틸알코올"], "경화"),
+    **dict.fromkeys(["자작나무수액", "편백수"], "수상"),
+    **dict.fromkeys(["유기농 달맞이종자유", "피마자유", "마카다미아넛", "골든호호바", "호호바 라이트", "IPM"], "유상"),
+    **dict.fromkeys(["그린티 시트러스", "끌로에 우먼", "플라워 바디 겐조"], "향"),
+    **dict.fromkeys(["천연한방존제"], "방부"),
+    **dict.fromkeys(["립컬러 베이스", "립베이스 레드27", "립 컬러베이스 7", "레드 립 컬러", "벚꽃 립 컬러",
+                     "피치코랄 립 컬러", "립 컬러", "컬러믹스파운데이션", "페이스파우더 21호", "헤나분말",
+                     "물에 갠 검은 색 물감"], "색소"),
+    **dict.fromkeys(["베이킹 파우더 / (소다)", "덴탈 점도 실리카"], "점증/pH"),
+    **dict.fromkeys(["폴리쿼터"], "컨디셔닝"),
+    **dict.fromkeys(["시너메이트", "산화아연"], "자외선차단"),
+    **dict.fromkeys(["옥수수전분", "오트밀분말", "히말라야 핑크소금", "어성초분말", "카카오분말", "노니분말",
+                     "로즈마리 분말", "핑크솔트", "핑크소금", "살구분말", "유노하나", "원두 커피 / 곱게 간 것",
+                     "설탕", "제주화산송이", "덴탈 연마 실리카", "덴탈 실리카(연마용)",
+                     "히말라아 핑크솔트 / (굵은 소금)"], "분말·스크럽"),
+    **dict.fromkeys(["아르간 가득한 / 크림베이스", "허브누리의 촉촉 / 화이트닝 수분크림베이스", "립밤 베이스",
+                     "촉촉 화이트닝 / 수분크림베이스", "투명 썬스틱베이스", "미니멈 크림베이스",
+                     "에센스 / (4GF 재생 / 에센스)", "허브누리의 촉촉 화이트닝 수분크림베이스", "아르간크림베이스",
+                     "블루밍 CC크림", "허브누리 / 순한 샴푸베이스", "시카 판테놀 / 바디&핸드 로션베이스",
+                     "허브누리의 아주 순한 샴푸베이스", "워셔블클렌징리퀴드", "워셔블 / 클렌징리퀴드"], "완제 베이스"),
+    **dict.fromkeys(["24k 금설", "금설", "24K 금설", "라벤더건초", "캐모마일꽃건초", "장미꽃봉우리", "계피"],
+                    "장식·건초"),
+    **dict.fromkeys(["친환경 석고", "천연 사쉐 스톤", "친환경 석고 분말", "에코 제습제", "과탄산나트륨",
+                     "디퓨저 전용 / 베이스"], "생활·공예"),
+    # 다른 역할에 잘못 들어간 것
+    "토코페롤": "항산화",
+    "세틸에틸헥사노에이트": "유상",
+    "로즈플라워 아로마수": "수상", "러블리 레몬 아로마수": "수상",
+    "아하바하파하 컴플렉스": "활성",
+}
+GLOSSARY_ROLE_ORDER = [r for r in ROLE_ORDER if r != "기타"] + [
+    "항산화", "컨디셔닝", "자외선차단", "분말·스크럽", "완제 베이스", "장식·건초", "생활·공예", "기타"]
+
+
+def _role_color(role: str) -> str:
+    return ROLE_COLORS.get(role) or _EXTRA_ROLES.get(role, "F0F0F0")
+
+
 def _read_glossary(path: Path) -> list[tuple]:
     """원료_사전.xlsx → (역할, 원료, 등장수, 대표%, 특징, 대체재, 범위, 주사용제형). 헤더 이름 기준."""
     if not path.exists():
@@ -294,7 +348,11 @@ def _read_glossary(path: Path) -> list[tuple]:
     for row in rows[1:]:
         if not row or not row[idx["원료"]]:
             continue
-        out.append(tuple(row[idx[k]] if k in idx and idx[k] < len(row) else None for k in want))
+        rec = [row[idx[k]] if k in idx and idx[k] < len(row) else None for k in want]
+        rec[0] = _ROLE_FIX.get(str(rec[1]).strip(), rec[0])
+        out.append(tuple(rec))
+    order = {r: i for i, r in enumerate(GLOSSARY_ROLE_ORDER)}
+    out.sort(key=lambda x: (order.get(x[0], len(order)), -int(x[2] or 0) if str(x[2] or "").isdigit() else 0))
     return out
 
 
@@ -383,7 +441,10 @@ def _insert_row(ws, idx: int) -> None:
 
 
 README_LINE = ("처방설계 : 보유 원료로 내 처방을 짜는 캔버스 — 원료만 고르면 역할·상·세이프·현재고·법적한도가 원료 시트에서 따라오고, "
-               "그램·역할별 합계·점검(합계100·유화제·방부·세이프X·재고부족·한도초과) 자동. 제형 고르면 목표 골격 비교. 아래 원료 목록은 학습용 참고.")
+               "그램·역할별 합계·점검(합계100·유화제·방부·세이프X·재고부족·한도초과) 자동. 제형 고르면 목표 골격 비교. 원료 공부는 '원료 도감'.")
+DOGAM = "원료 도감"
+DOGAM_README = ("원료 도감 : 학습용 원료 766종 한 표 — 기능성·합성 130종(INCI·전형%·왜 쓰나·천연 대안·주의) + 허브누리 원료 사전 636종"
+                "(등장수·대표%·범위·특징·주 사용 제형·대체재). ▼ 필터로 구분·역할별 탐색, ✓=보유. 설계 캔버스와 무관.")
 
 # 원료 시트 12종 역할 → 아키타입 골격의 학습 역할(허브누리 분류)로 환산
 TO_SKELETON = {
@@ -494,6 +555,70 @@ def _navy_head(ws, r, c, text):
     return cc
 
 
+def _build_dogam(wb, owned) -> tuple[int, int]:
+    """원료 도감 시트: 기능성 팔레트 + 원료 사전을 한 표로(필터 하나로 구분·역할 탐색). (원료 수, 보유 ✓ 수)."""
+    if DOGAM in wb.sheetnames:
+        del wb[DOGAM]
+    ws = wb.create_sheet(DOGAM)
+    ws.sheet_properties.tabColor = GREEN_TAB
+    heads = ["원료", "역할", "전형·대표%", "구분", "등장수", "사용% 범위(최소~중앙~최대)", "기능 · 특징",
+             "주 사용 제형 / 천연 대안", "주의", "대체재(모음)", "보유(원료 시트)"]
+    widths = [28, 12, 11, 9, 7, 16, 44, 28, 32, 30, 20]
+    for j, w in enumerate(widths, 1):
+        ws.column_dimensions[get_column_letter(j)].width = w
+    span = len(heads)
+    ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=span)
+    t = ws.cell(1, 1, "원료 도감 — 학습용 원료 한 표 (기능성·합성 + 허브누리 원료 사전)")
+    t.font = Font(bold=True, size=14, color="FFFFFFFF")
+    t.fill = PatternFill("solid", fgColor=NAVY)
+    t.alignment = Alignment(horizontal="left", vertical="center", indent=1)
+    ws.row_dimensions[1].height = 30
+
+    kn = _read_knowledge(Path("원료_지식_확장.xlsx"))
+    gl = _read_glossary(Path("원료_사전.xlsx"))
+    n_fix = sum(1 for g in gl if g[1] in _ROLE_FIX)
+    desc = (f"설계 캔버스(처방설계)와 무관한 공부용 원료 사전. 써보고 싶은 원료는 사서 '원료' 시트에 행 추가 → 처방설계 드롭다운에 등장.   ┃ "
+            f"구분: 기능성 {len(kn)}종(원료_지식_확장 — 같은 역할 안에서 '언제 이걸 고르나' 비교) · 허브누리 {len(gl)}종(원료_사전 — 레시피 통계, "
+            f"역할은 이름 자동분류 + 수동 보정 {n_fix}건). ▼ 필터로 구분·역할·제형 탐색. 보유 ✓=원료 시트 이름·세이프.   ┃ "
+            "⚠ 전형%·고시 한도는 업계 통용 예시 — 집행 전 식약처 고시·공급사 TDS로 검증.")
+    ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=span)
+    d = ws.cell(2, 1, desc)
+    d.alignment = Alignment(wrap_text=True, vertical="top", indent=1)
+    d.fill = PatternFill("solid", fgColor=GREY)
+    d.font = Font(size=10, color="FF404040")
+    ws.row_dimensions[2].height = 46
+    for j, h in enumerate(heads, 1):
+        _navy_head(ws, 3, j, h)
+    ws.row_dimensions[3].height = 30
+
+    def lines(text, per):
+        return max(1, -(-len(str(text or "")) // per))
+
+    r, n_owned = 4, 0
+    rows = [(name, role, pct, "기능성", None, None, why, f"대안: {alt}" if alt and alt != "—" else alt, caution, None)
+            for role, name, pct, why, alt, caution in kn]
+    rows += [(name, role, pct, "허브누리", cnt, rng_, feat, forms, None, alts)
+             for role, name, cnt, pct, feat, alts, rng_, forms in gl]
+    for vals in rows:
+        mine = _match_owned(vals[0], owned)
+        n_owned += bool(mine)
+        for j, v in enumerate((*vals, mine), 1):
+            c = _cell(ws, r, j, v, wrap=j in (1, 6, 7, 8, 9, 10, 11))
+            if j in (2, 3, 4, 5):
+                c.alignment = Alignment(horizontal="center", vertical="top")
+        ws.cell(r, 2).fill = PatternFill("solid", fgColor=_role_color(vals[1]))
+        ws.cell(r, 4).font = Font(size=9, bold=vals[3] == "기능성", color="FF1F3A5F" if vals[3] == "기능성" else "FF55606E")
+        ws.cell(r, 10).font = Font(size=9, color="FF55606E")
+        if mine:
+            ws.cell(r, 11).font = Font(bold=True, color="FF2E7D32")
+        h = 15 * max(lines(vals[0], 14), lines(vals[6], 22), lines(vals[7], 14), lines(vals[8], 16))
+        ws.row_dimensions[r].height = min(max(18, h), 75)
+        r += 1
+    ws.auto_filter.ref = f"A3:{get_column_letter(span)}{r - 1}"
+    ws.freeze_panes = "B4"
+    return len(rows), n_owned
+
+
 def build_into_master(master: Path = MASTER) -> Path:
     from dev_master import ROLES  # 원료 시트 12종 역할(단일 출처)
 
@@ -538,7 +663,7 @@ def build_into_master(master: Path = MASTER) -> Path:
     desc = ("집 테스트·개발용 설계 캔버스. 노란 칸(제형·배치량·원료명·투입%)만 입력 — 나머지는 원료 시트에서 자동으로 따라온다.   ┃ "
             "원료명=원료 시트 드롭다운(새 원료는 원료 시트에 행 추가 → 여기 자동 등장) · 역할·상·세이프·현재고g·법적한도=원료 시트 값 · "
             "그램=투입%×배치량 · 경고=한도초과·재고부족(이번 배치 그램 > 현재고) · 오른쪽=역할별 합계·골격 비교·자동 점검.   ┃ "
-            "확정하면 '처방' 표에 [제품·원료·상·퍼센트]로 옮겨야 재고 차감이 걸린다. 맨 아래 원료 목록은 학습용(설계 캔버스와 무관).")
+            "확정하면 '처방' 표에 [제품·원료·상·퍼센트]로 옮겨야 재고 차감이 걸린다. 새 원료를 고를 땐 '원료 도감' 시트(학습용 766종).")
     ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=SPAN)
     c = ws.cell(2, 1, desc)
     c.alignment = Alignment(wrap_text=True, vertical="top", indent=1)
@@ -680,89 +805,6 @@ def build_into_master(master: Path = MASTER) -> Path:
         ws.row_dimensions[r + 1].height = 46
         r += 2
 
-    # ── 📚 학습용 원료 참고 — 원료_지식_확장(기능성) + 원료_사전(허브누리 전체). 설계 캔버스와 무관 ──
-    # 열: A원료 B역할 C% D(등장수/구분) E:G H:J K:M N보유 O(대체재)
-    ws.column_dimensions["N"].width = 22
-    ws.column_dimensions["O"].width = 40
-
-    def _row(r, vals, role, mine, height):
-        # vals = (A, C, D, E:G, H:J, K:M, O)
-        a_, c_, d_, eg, hj, km, o_ = vals
-        _cell(ws, r, 1, a_, wrap=True)
-        _cell(ws, r, 2, role, fill=ROLE_COLORS.get(role, "F0F0F0"), center=True)
-        _cell(ws, r, 3, c_, center=True)
-        _cell(ws, r, 4, d_, center=True)
-        for c0, c1, v in ((5, 7, eg), (8, 10, hj), (11, 13, km)):
-            ws.merge_cells(start_row=r, start_column=c0, end_row=r, end_column=c1)
-            _cell(ws, r, c0, v, wrap=True)
-            for cc in range(c0 + 1, c1 + 1):
-                ws.cell(r, cc).border = GRID
-        _cell(ws, r, 14, mine, color="FF2E7D32" if mine else None, bold=bool(mine), wrap=True)
-        if o_ is not None:
-            _cell(ws, r, 15, o_, wrap=True)
-            ws.cell(r, 15).font = Font(size=9, color="FF55606E")
-        ws.row_dimensions[r].height = height
-
-    def _lines(text, per_line):
-        return max(1, -(-len(str(text or "")) // per_line))
-
-    def _head(r, heads):
-        cols = (1, 2, 3, 4, 5, 8, 11, 14, 15)
-        for c0, h in zip(cols, heads):
-            _cell(ws, r, c0, h, bold=True, fill=HDR_FILL.fgColor.rgb, center=True)
-        for c0, c1 in ((5, 7), (8, 10), (11, 13)):
-            ws.merge_cells(start_row=r, start_column=c0, end_row=r, end_column=c1)
-
-    pr = ref_last + 2
-    ws.merge_cells(start_row=pr, start_column=1, end_row=pr, end_column=15)
-    sc = ws.cell(pr, 1, "📚 학습용 원료 참고 — 설계 캔버스와 무관(역할도 학습 분류). 써보고 싶으면 사서 '원료' 시트에 행 추가 → 위 드롭다운에 등장 · "
-                        "N열 ✓=이미 보유(원료 시트 이름·세이프)")
-    sc.font = Font(bold=True)
-    sc.fill = PatternFill("solid", fgColor="FFEDE7F6")
-    sc.alignment = WRAP
-    ws.row_dimensions[pr].height = 32
-
-    # ① 기능성·합성 원료 팔레트(원료_지식_확장.xlsx '기능성원료')
-    kn = _read_knowledge(Path("원료_지식_확장.xlsx"))
-    r = pr + 2
-    ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=15)
-    k = ws.cell(r, 1, f"① 기능성·합성 원료 팔레트 {len(kn)}종 — INCI·전형%·왜 쓰나·천연 대안·주의 (원료_지식_확장)")
-    k.font = Font(bold=True)
-    k.fill = PatternFill("solid", fgColor=LBLUE)
-    r += 1
-    _head(r, ["원료 (INCI)", "역할", "전형%", "구분", "천연 대안", "기능 · 왜 쓰나", "주의", "보유"])
-    r += 1
-    n_owned = 0
-    for role, name, pct, why, alt, caution in kn:
-        mine = _match_owned(name, owned)
-        n_owned += bool(mine)
-        h = max(30, 15 * max(_lines(name, 12), _lines(why, 25), _lines(caution, 14), _lines(alt, 10)))
-        _row(r, (name, pct, "기능성", alt, why, caution, None), role, mine, min(h, 75))
-        r += 1
-
-    # ② 원료 사전(원료_사전.xlsx — 허브누리 레시피 3354행을 원료 단위로 접은 것)
-    gl = _read_glossary(Path("원료_사전.xlsx"))
-    r += 1
-    ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=15)
-    k = ws.cell(r, 1, f"② 원료 사전 {len(gl)}종 — 허브누리 레시피 통계(등장수·대표%·범위·주 사용 제형·대체재). "
-                      "역할은 이름 기반 자동 분류라 오분류가 섞여 있음 · ▼ 필터로 역할·제형별 탐색")
-    k.font = Font(bold=True)
-    k.fill = PatternFill("solid", fgColor=LBLUE)
-    k.alignment = WRAP
-    ws.row_dimensions[r].height = 30
-    r += 1
-    hr = r
-    _head(r, ["원료", "역할", "대표%", "등장수", "사용% 범위(최소~중앙~최대)", "대표 특징", "주 사용 제형", "보유", "대체재(모음)"])
-    r += 1
-    for role, name, cnt, pct, feat, alts, rng_, forms in gl:
-        mine = _match_owned(name, owned)
-        n_owned += bool(mine)
-        h = max(18, 15 * max(_lines(name, 12), _lines(feat, 25), _lines(forms, 14)))
-        _row(r, (name, pct, cnt, rng_, feat, forms, alts), role, mine, min(h, 75))
-        r += 1
-    ws.auto_filter.ref = f"A{hr}:O{r - 1}"
-    n_pal = len(kn) + len(gl)
-
     # 드롭다운: 제형(인라인 — 골격표는 2행씩이라 범위 참조 불가), 원료명(원료표 전체)
     dv_arche = DataValidation(type="list", formula1='"' + ",".join(a for a, _s, _t in arches) + '"',
                               allow_blank=True)
@@ -773,17 +815,21 @@ def build_into_master(master: Path = MASTER) -> Path:
     dv_ing.add(f"A{R0}:A{R1}")
     ws.freeze_panes = "A8"
 
-    # '처방' 바로 뒤에 배치 + 읽어보기 시트 지도 갱신
+    # '처방' 바로 뒤에 배치 + 원료 도감(역설계 심화 뒤, 없으면 처방설계 뒤) + 읽어보기 시트 지도 갱신
     if "처방" in wb.sheetnames:
         target = wb.sheetnames.index("처방") + 1
         wb.move_sheet(SHEET, offset=target - wb.sheetnames.index(SHEET))
+    n_pal, n_owned = _build_dogam(wb, owned)
+    after = "역설계 심화" if "역설계 심화" in wb.sheetnames else SHEET
+    wb.move_sheet(DOGAM, offset=wb.sheetnames.index(after) + 1 - wb.sheetnames.index(DOGAM))
     _update_readme(wb)
+    _update_readme(wb, DOGAM, DOGAM_README, after=after)
 
     try:
         wb.save(master)
     except PermissionError:
         raise SystemExit(f"⛔ 저장 실패 — 엑셀에서 '{master.name}'를 닫고 다시 실행하세요.")
-    print(f"✅ '{SHEET}' 시트 → {master.name} (보유 원료 {len(owned)}종 드롭다운 · 제형 {len(arches)}종 · 학습용 원료 {n_pal}개 · 보유 ✓ {n_owned})")
+    print(f"✅ '{SHEET}' 시트 → {master.name} (보유 원료 {len(owned)}종 드롭다운 · 제형 {len(arches)}종 · '{DOGAM}' {n_pal}종 · 보유 ✓ {n_owned})")
     print(f"   백업: {backup.name} · x14 드롭다운 복원 {restored}개 · 복구: {' / '.join(repaired) or '없음'}")
     return master
 
