@@ -25,7 +25,7 @@ from openpyxl.utils import get_column_letter
 from openpyxl.formatting.rule import CellIsRule
 from openpyxl.worksheet.datavalidation import DataValidation
 
-from brandlab.herbnoori_detail import ROLE_COLORS, ROLE_ORDER
+from brandlab.herbnoori_detail import ROLE_COLORS, ROLE_ORDER, glossary_key
 
 try:
     from ingredient_knowledge import PALETTE  # type: ignore
@@ -301,11 +301,11 @@ _ROLE_FIX = {
     **dict.fromkeys(["세틸알코올"], "경화"),
     **dict.fromkeys(["자작나무수액", "편백수"], "수상"),
     **dict.fromkeys(["유기농 달맞이종자유", "피마자유", "마카다미아넛", "골든호호바", "호호바 라이트", "IPM"], "유상"),
-    **dict.fromkeys(["그린티 시트러스", "끌로에 우먼", "플라워 바디 겐조"], "향"),
+    **dict.fromkeys(["그린티 시트러스", "끌로에 우먼", "플라워 바디 겐조", "버가못FCF", "로즈제라늄"], "향"),
     **dict.fromkeys(["천연한방존제"], "방부"),
     **dict.fromkeys(["립컬러 베이스", "립베이스 레드27", "립 컬러베이스 7", "레드 립 컬러", "벚꽃 립 컬러",
                      "피치코랄 립 컬러", "립 컬러", "컬러믹스파운데이션", "페이스파우더 21호", "헤나분말",
-                     "물에 갠 검은 색 물감"], "색소"),
+                     "물에 갠 검은 색 물감", "칼라믹스"], "색소"),
     **dict.fromkeys(["베이킹 파우더 / (소다)", "덴탈 점도 실리카"], "점증/pH"),
     **dict.fromkeys(["폴리쿼터"], "컨디셔닝"),
     **dict.fromkeys(["시너메이트", "산화아연"], "자외선차단"),
@@ -337,19 +337,21 @@ def _role_color(role: str) -> str:
 
 
 def _read_glossary(path: Path) -> list[tuple]:
-    """원료_사전.xlsx → (역할, 원료, 등장수, 대표%, 특징, 대체재, 범위, 주사용제형). 헤더 이름 기준."""
+    """원료_사전.xlsx → (역할, 원료, 등장수, 대표%, 특징, 대체재, 범위, 주사용제형, 다른 표기). 헤더 이름 기준."""
     if not path.exists():
         return []
     ws = openpyxl.load_workbook(path, read_only=True).worksheets[0]
     rows = list(ws.iter_rows(values_only=True))
     idx = {str(h).strip(): i for i, h in enumerate(rows[0]) if h}
-    want = ["역할", "원료", "등장수", "대표 사용%", "대표 특징", "대체재(모음)", "사용% 범위(최소~중앙~최대)", "주 사용 제형"]
+    want = ["역할", "원료", "등장수", "대표 사용%", "대표 특징", "대체재(모음)", "사용% 범위(최소~중앙~최대)", "주 사용 제형",
+            "다른 표기"]
+    fix = {glossary_key(k): v for k, v in _ROLE_FIX.items()}  # 표기 변형이 합쳐져도 같은 키로 보정
     out = []
     for row in rows[1:]:
         if not row or not row[idx["원료"]]:
             continue
         rec = [row[idx[k]] if k in idx and idx[k] < len(row) else None for k in want]
-        rec[0] = _ROLE_FIX.get(str(rec[1]).strip(), rec[0])
+        rec[0] = fix.get(glossary_key(rec[1]), rec[0])
         out.append(tuple(rec))
     order = {r: i for i, r in enumerate(GLOSSARY_ROLE_ORDER)}
     out.sort(key=lambda x: (order.get(x[0], len(order)), -int(x[2] or 0) if str(x[2] or "").isdigit() else 0))
@@ -576,7 +578,8 @@ def _build_dogam(wb, owned) -> tuple[int, int]:
 
     kn = _read_knowledge(Path("원료_지식_확장.xlsx"))
     gl = _read_glossary(Path("원료_사전.xlsx"))
-    n_fix = sum(1 for g in gl if g[1] in _ROLE_FIX)
+    fixkeys = {glossary_key(k) for k in _ROLE_FIX}
+    n_fix = sum(1 for g in gl if glossary_key(g[1]) in fixkeys)
     desc = (f"설계 캔버스(처방설계)와 무관한 공부용 원료 사전. 써보고 싶은 원료는 사서 '원료' 시트에 행 추가 → 처방설계 드롭다운에 등장.   ┃ "
             f"구분: 기능성 {len(kn)}종(원료_지식_확장 — 같은 역할 안에서 '언제 이걸 고르나' 비교) · 허브누리 {len(gl)}종(원료_사전 — 레시피 통계, "
             f"역할은 이름 자동분류 + 수동 보정 {n_fix}건). ▼ 필터로 구분·역할·제형 탐색. 보유 ✓=원료 시트 이름·세이프.   ┃ "
@@ -597,10 +600,10 @@ def _build_dogam(wb, owned) -> tuple[int, int]:
     r, n_owned = 4, 0
     rows = [(name, role, pct, "기능성", None, None, why, f"대안: {alt}" if alt and alt != "—" else alt, caution, None)
             for role, name, pct, why, alt, caution in kn]
-    rows += [(name, role, pct, "허브누리", cnt, rng_, feat, forms, None, alts)
-             for role, name, cnt, pct, feat, alts, rng_, forms in gl]
+    rows += [(f"{name}\n(= {others})" if others else name, role, pct, "허브누리", cnt, rng_, feat, forms, None, alts)
+             for role, name, cnt, pct, feat, alts, rng_, forms, others in gl]
     for vals in rows:
-        mine = _match_owned(vals[0], owned)
+        mine = _match_owned(str(vals[0]).split("\n")[0], owned)
         n_owned += bool(mine)
         for j, v in enumerate((*vals, mine), 1):
             c = _cell(ws, r, j, v, wrap=j in (1, 6, 7, 8, 9, 10, 11))

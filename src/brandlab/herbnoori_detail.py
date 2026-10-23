@@ -572,6 +572,35 @@ def split_making(text: str) -> tuple[str, str]:
     return "\n".join(lines[:idx]).strip(), "\n".join(lines[idx:]).strip()
 
 
+_GKEY_ALIASES = [("에센셜오일", "eo"), ("에센셜 오일", "eo"), ("다이올", "디올"), ("알콜", "알코올"),
+                 ("블랜딩", "블렌딩"), ("쟁탄", "잔탄"), ("히아루론", "히알루론"), ("골덴", "골든")]
+_GKEY_SAME = {"골든호호바": "골든호호바오일", "정제호호바": "호호바오일"}  # 키로 못 잡는 개별 동의어
+
+
+def glossary_key(name) -> str:
+    """원료 사전 중복키 — 표기 변형을 한 원료로 접는다.
+
+    구 키는 '(' 나 '/' 뒤를 잘라내서, 셀 줄바꿈이 ' / '로 들어온 이름('라벤더 / 에센셜오일')이
+    '라벤더'로 잘리고(과병합) '라벤더에센셜오일'과는 갈라졌다(중복). 새 키:
+    괄호 '안'만 지움 · '/'·공백·구두점 무시 · 1,2-/1.2- 접두 무시 · 표기 별칭(EO·다이올·알콜…)
+    · 등급 접두(유기농·비정제·엑스트라버진·정제[수 제외]) 무시. '11 히아루론산' 같은 상품명 숫자는 유지.
+    """
+    s = str(name or "").lower()
+    s = re.sub(r"\(.*?\)", "", s)
+    s = re.sub(r"^\s*1\s*[,.]?\s*2\s*-?\s*", "", s)  # 1,2-헥산디올 → 헥산디올
+    s = re.sub(r"^\s*100\s*%\s*/?", "", s)             # 100% 갈락토미세스 → 갈락토미세스
+    for a, b in _GKEY_ALIASES:
+        s = s.replace(a, b)
+    s = re.sub(r"[\s/*.,\-·'’&]+", "", s)
+    s = re.sub(r"^(유기농|비정제|엑스트라버진|정제(?!수))+", "", s)
+    return _GKEY_SAME.get(s, s)
+
+
+def _display_name(raw: str) -> str:
+    """사전 표시용 이름: 셀 줄바꿈 흔적(' / ')을 공백으로."""
+    return re.sub(r"\s+", " ", re.sub(r"\s*/\s*", " ", str(raw or ""))).strip(" *")
+
+
 def build_glossary(xlsx: Path, out: Path | None = None, *,
                    link_col: str = "링크", sheet: str | None = None) -> Path:
     """마스터 → 원료 사전(중복 제거). 원료별 역할·대표특징·대표%·대체재·등장수.
@@ -593,8 +622,7 @@ def build_glossary(xlsx: Path, out: Path | None = None, *,
     idx = {n: header.index(n) for n in header}
     rows = [[c.value for c in row] for row in ws.iter_rows(min_row=2)]
 
-    def _norm(s):  # 중복키: 괄호/슬래시 뒤 제거 + 공백 무시(표기 변형 병합).
-        return re.sub(r"\s+", "", re.sub(r"\s*[\(/].*$", "", str(s or "")))
+    _norm = glossary_key  # 중복키: 표기 변형 병합(glossary_key 참고)
 
     # 제품 그룹핑 → 그룹별 총 그램으로 각 원료 % 산출.
     groups, cur = [], None
@@ -611,7 +639,7 @@ def build_glossary(xlsx: Path, out: Path | None = None, *,
     feats = defaultdict(Counter)
     alts = defaultdict(set)
     pcts = defaultdict(list)
-    raw_names = {}
+    raw_names = defaultdict(Counter)  # 키 → 원래 표기 빈도(최빈 = 대표 이름, 나머지 = 다른 표기)
     for g in groups:
         parsed = []
         for row in g:
@@ -621,7 +649,7 @@ def build_glossary(xlsx: Path, out: Path | None = None, *,
             key = _norm(nm)
             if not key:
                 continue
-            raw_names.setdefault(key, str(nm))
+            raw_names[key][_display_name(nm)] += 1
             amt = row[idx["용량"]] if "용량" in idx else None
             feat = row[idx["특징"]] if "특징" in idx else None
             alt = row[idx["대체재료"]] if "대체재료" in idx else None
@@ -648,8 +676,8 @@ def build_glossary(xlsx: Path, out: Path | None = None, *,
     gwb = openpyxl.Workbook()
     gs = gwb.active
     gs.title = "원료사전"
-    cols = ["역할", "원료", "등장수", "대표 사용%", "대표 특징", "대체재(모음)"]
-    widths = [8, 24, 7, 9, 46, 40]
+    cols = ["역할", "원료", "등장수", "대표 사용%", "대표 특징", "대체재(모음)", "다른 표기"]
+    widths = [8, 24, 7, 9, 46, 40, 24]
     for i, (c, w) in enumerate(zip(cols, widths), 1):
         cell = gs.cell(1, i, c)
         cell.font = Font(bold=True, size=10)
@@ -666,7 +694,8 @@ def build_glossary(xlsx: Path, out: Path | None = None, *,
         pv = f"{round(median(pcts[key]))}%" if pcts.get(key) else ""
         feat = feats[key].most_common(1)[0][0] if feats.get(key) else ""
         alt = " · ".join(sorted(a for a in alts[key] if a))[:300]
-        vals = [role, raw_names.get(key, key), cnt[key], pv, feat, alt]
+        names = [n for n, _ in raw_names[key].most_common()] or [key]
+        vals = [role, names[0], cnt[key], pv, feat, alt, " · ".join(names[1:])]
         for ci, v in enumerate(vals, 1):
             cc = gs.cell(r, ci, v)
             cc.alignment = wrap
@@ -676,7 +705,7 @@ def build_glossary(xlsx: Path, out: Path | None = None, *,
         gs.cell(r, 3).alignment = Alignment(horizontal="center", vertical="top")
         gs.cell(r, 4).alignment = Alignment(horizontal="center", vertical="top")
         n = 1
-        for ci in (5, 6):
+        for ci in (5, 6, 7):
             v = vals[ci - 1]
             if v:
                 n = max(n, -(-sum(2 if ord(c) > 0x2000 else 1
@@ -684,7 +713,7 @@ def build_glossary(xlsx: Path, out: Path | None = None, *,
         gs.row_dimensions[r].height = min(160, max(15, n * 15))
         r += 1
     gs.freeze_panes = "A2"
-    gs.auto_filter.ref = f"A1:F{r - 1}"
+    gs.auto_filter.ref = f"A1:G{r - 1}"
     out = out or xlsx.with_name("원료_사전.xlsx")
     gwb.save(out)
     print(f"원료 사전 → {out.name}: 고유 원료 {len(items)}종", file=sys.stderr)
@@ -705,8 +734,7 @@ def enrich_glossary(glossary: Path, master: Path, *,
     from collections import defaultdict
     from statistics import median
 
-    def _norm(s):
-        return re.sub(r"\s+", "", re.sub(r"\s*[\(/].*$", "", str(s or "")))
+    _norm = glossary_key  # build_glossary와 같은 키여야 사용%·제형이 붙는다
 
     # 1) 마스터에서 원료별 사용% 수집.
     mwb = openpyxl.load_workbook(master, read_only=True)
@@ -771,6 +799,42 @@ def enrich_glossary(glossary: Path, master: Path, *,
     print(f"원료 사전 보강 → {glossary.name}: 사용%·제형 열 추가(특징 보존)",
           file=sys.stderr)
     return glossary
+
+
+def carry_glossary_features(glossary: Path, old: Path) -> tuple[int, int]:
+    """재생성한 사전에 옛 사전의 '대표 특징'(손으로 다듬은 문장)을 이식한다.
+
+    옛 행 이름을 새 키로 묶어, 묶음마다 등장수가 가장 큰 옛 행의 특징을 쓴다(병합된 표기 변형도 커버).
+    옛 행이 없는 새 원료(구 키 과병합에서 풀려난 것)는 생성 문구 그대로. (이식 수, 미이식 수)
+    """
+    import openpyxl
+
+    ows = openpyxl.load_workbook(old, read_only=True).worksheets[0]
+    orows = list(ows.iter_rows(values_only=True))
+    oi = {str(h): i for i, h in enumerate(orows[0]) if h}
+    best: dict[str, tuple[int, str]] = {}
+    for row in orows[1:]:
+        nm, feat = row[oi["원료"]], row[oi["대표 특징"]]
+        if not nm or not feat:
+            continue
+        n = int(row[oi["등장수"]] or 0)
+        k = glossary_key(nm)
+        if k not in best or n > best[k][0]:
+            best[k] = (n, str(feat))
+    gwb = openpyxl.load_workbook(glossary)
+    gs = gwb.worksheets[0]
+    hi = {str(c.value): c.column for c in gs[1] if c.value}
+    done = miss = 0
+    for r in range(2, gs.max_row + 1):
+        k = glossary_key(gs.cell(r, hi["원료"]).value)
+        if k in best:
+            gs.cell(r, hi["대표 특징"], best[k][1])
+            done += 1
+        else:
+            miss += 1
+    gwb.save(glossary)
+    print(f"특징 이식 → {glossary.name}: {done}행 이식 · {miss}행 생성 문구 유지", file=sys.stderr)
+    return done, miss
 
 
 def restructure_master(xlsx: Path, out: Path | None = None, *,
