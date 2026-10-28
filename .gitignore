@@ -49,3 +49,8 @@ docs/img/**/detail_img.zip
 # 교재 PDF 원본(대용량, 수백MB) — 버전관리 제외
 핵심이론_*.pdf
 화장품조제관리사.pdf
+
+# 인쇄본 산출물(PDF·HTML)과 폰트(재다운로드 가능) — 생성기 scripts/print_book.py 와 book.css 만 버전관리
+인쇄본/*.pdf
+인쇄본/*.html
+인쇄본/assets/fonts/
