@@ -1,0 +1,712 @@
+# 원료 추가노트 데이터 — 실제 제품 전성분 사진을 해부하며 쌓는 '1권 원료 마스터' 증보.
+# 생성: uv run python scripts/ingredient_addendum.py  → 원료_추가노트.xlsx
+#
+# 쌓는 법 (제품 사진 1장 = 아래 3곳 갱신)
+#   1) products 에 제품 1개 추가: 전성분을 라벨 순서대로 "전성분 표기 | 참조 | 한 줄 메모"
+#        ⚠ 한 줄 전체를 큰따옴표로 감쌀 것 (안 감싸면 YAML이 ' #13'을 주석으로 버림)
+#        참조 = "#번호"(1권 원료 카드 No) 또는 "N번호"(이 파일의 신규 카드)
+#   2) 1권에 없던 원료는 new_cards 에 N번호를 이어서 추가 (first_seen = 제품 id)
+#   3) 1권 카드가 전성분에선 다른 이름으로 나오면 aliases 에 추가 (다음 매칭이 빨라짐)
+# ⚠ %·규제 수치는 교육용 정리(추정 포함) — 판매 전 식약처 고시·공급사 TDS로 재확인.
+
+# 1권 원료 카드 No → 전성분(식약처 표준명)에서 실제로 보이는 표기
+aliases:
+  14: [프로판다이올]
+  16: [소듐하이알루로네이트, 하이알루로닉애씨드]
+  17: [부틸렌글라이콜]
+  24: [꿀추출물, 꿀]
+  52: [호호바씨오일]
+  55: [동백나무씨오일]
+  72: [코코넛야자오일]
+  103: [녹차추출물, 차잎추출물]
+  116: [알로에베라잎즙, 알로에베라잎추출물]
+  154: [쇠비름추출물]
+  156: [포트마리골드꽃추출물]
+  189: [시트릭애씨드]
+  195: [다이소듐이디티에이]
+
+# 1권에 없던 원료. role 은 1권 카드 역할 어휘를 그대로 쓴다(+ 부산물).
+new_cards:
+  # ── 세정 베이스 ─────────────────────────────────────────
+  - id: N01
+    name: 소듐C14-16올레핀설포네이트
+    inci: Sodium C14-16 Olefin Sulfonate
+    role: 계면
+    sub: 주세정제(음이온) · AOS
+    what: 석유/식물 유래 알파올레핀(C14~16)을 술폰화한 음이온 계면활성제. 보통 35~40% 수용액으로 유통.
+    feel: 거품이 많고 빨리 일어남, 세정력 강함, 헹굼 후 뽀득.
+    pct: 바디워시 활성분 기준 8~15% (원료 그대로면 20~40%)
+    why: 저렴하고 기포·세정력이 좋아 대용량 바디워시의 주세정제. '설페이트(SLS/SLES) 프리'를 표방하면서 비슷한 세정감을 낼 때 자주 쓴다.
+    caution: 단독이면 자극·건조 → 마일드 보조세정제(N02·글루타메이트·베타인)와 섞어 완화. 씻어내는 제품 전용.
+    malassezia: ○ 씻어내는 계면활성제라 우려 낮음
+    related: "#208 SLES(대체 관계) · #211 SLSA"
+    first_seen: P001
+  - id: N02
+    name: 다이소듐라우레스설포석시네이트
+    inci: Disodium Laureth Sulfosuccinate
+    role: 계면
+    sub: 보조세정제(음이온, 마일드)
+    what: 라우릴 알코올 에톡실레이트 + 말레산(설포석시네이트) 구조의 순한 음이온 계면활성제. 30~40% 액상.
+    feel: 크리미한 거품, 자극 적음.
+    pct: 활성분 2~8%
+    why: 강한 주세정제(N01)의 자극을 줄이면서 거품 질을 부드럽게. 베이비·마일드 샴푸에도 쓰인다.
+    caution: 에톡시화 원료(이름의 '레스') → 1,4-다이옥산 잔류 관리 원료. 공급사 CoA 확인.
+    malassezia: ○ 씻어내는 제품
+    related: "#201 CAPB · #206 소듐코코일글루타메이트(같은 '자극 완화' 역할)"
+    first_seen: P001
+  - id: N03
+    name: 소듐클로라이드
+    inci: Sodium Chloride
+    role: 점증
+    sub: 계면 시스템 점도 조절(소금 점증)
+    what: 소금. 음이온 계면활성제 용액에 넣으면 미셀이 길게 자라 점도가 오른다.
+    feel: 그 자체로 감촉 없음.
+    pct: 0.5~2% (제품마다 '소금 곡선' 정점이 다름)
+    why: 세정제를 걸쭉하게 만드는 가장 싸고 흔한 방법. 이 제품에서 3번째로 많다 = 점도의 주역.
+    caution: 정점을 넘기면 점도가 다시 뚝 떨어진다 → 0.2%씩 나눠 넣으며 확인. 스크럽용 소금(#217)과 역할이 다름.
+    malassezia: ○
+    related: "#217 사해소금/핑크소금(분말·스크럽용) · #25 잔탄검(다른 점증 방식)"
+    first_seen: P001
+  - id: N04
+    name: 프로필렌글라이콜라우레이트
+    inci: Propylene Glycol Laurate
+    role: 에몰리언트
+    sub: 점도·거품 보조, 세정 후 촉촉함
+    what: 프로필렌글라이콜 + 라우르산(C12) 에스터. 비이온성 액상.
+    feel: 가벼운 오일감, 세정 후 당김 완화.
+    pct: 1~3%
+    why: 세정제 안에서 점도를 돕고(소금과 함께) 헹군 뒤 피부에 얇은 막을 남겨 '건조하지 않은 바디워시' 느낌을 준다.
+    caution: 바르고 두는 제품이면 라우르산 에스터라 말라세지아 회색지대.
+    malassezia: △ C12 지방산 에스터 — 히어로 크림엔 쓰지 않음
+    related: "#50 MCT오일(C8/C10 에스터, 세이프 쪽)"
+    first_seen: P001
+  - id: N05
+    name: 헥사데센 · 테트라데센
+    inci: Hexadecene · Tetradecene
+    role: 부산물
+    sub: 원료 동반 잔류물 (일부러 넣지 않음)
+    what: 탄소 16개·14개 알파올레핀. N01(올레핀설포네이트)을 만들 때 반응하지 않고 남은 출발물질.
+    feel: —
+    pct: 극미량
+    why: 넣은 게 아니라 N01을 쓰면 따라 들어온 것. 식약처 전성분 표시 기준상 일정 이상이면 적는다.
+    caution: 전성분 읽기 교훈 — 전성분 = '넣은 원료'가 아니라 '들어 있는 성분'. 원료 1개가 성분 여러 개로 적히기도 한다.
+    malassezia: —
+    related: "N01"
+    first_seen: P001
+  - id: N06
+    name: 마카다미아씨추출물
+    inci: Macadamia Integrifolia/Ternifolia Seed Extract
+    role: 활성
+    sub: 컨셉 원료(제품명 원료)
+    what: 마카다미아 씨를 용매(물·BG 등)로 추출한 액. 오일(#76)이 아니라 수용성 추출물.
+    feel: 감촉 영향 거의 없음.
+    pct: 0.1~1% (이 제품 3,000ppm = 0.3%)
+    why: 제품명에 들어간 원료라 함량(ppm)을 일부러 적었다. 함량 표기는 마케팅용 강조 성분일 때 흔하다.
+    caution: 마카다미아 '오일 함유'와 다르다 — 이름만 보고 오일감을 기대하면 안 됨.
+    malassezia: ○ 추출물(수용성)
+    related: "#76 마카다미아넛오일(오일 형태)"
+    first_seen: P001
+  - id: N07
+    name: 말토덱스트린
+    inci: Maltodextrin
+    role: 기타
+    sub: 부형제(분말 추출물 캐리어)·필름 형성
+    what: 옥수수·감자 전분을 분해한 짧은 다당류 분말.
+    feel: 수용성, 감촉 영향 적음.
+    pct: 0.1~1%
+    why: 분말 추출물·향 캡슐을 만들 때 받침(캐리어)으로 쓰여 함께 들어오는 경우가 많다.
+    caution: 단독 기능을 기대하는 원료가 아님 — 대개 다른 원료의 동반 성분.
+    malassezia: ○
+    related: "#218 옥수수전분"
+    first_seen: P001
+  - id: N08
+    name: 티이에이-코코일글루타메이트
+    inci: TEA-Cocoyl Glutamate
+    role: 계면
+    sub: 아미노산계 보조세정제
+    what: 코코넛 지방산 + 글루탐산을 트라이에탄올아민(TEA)으로 중화한 염. #206은 소듐(Na) 염.
+    feel: 마일드, 거품 부드러움.
+    pct: 활성분 1~5%
+    why: 아미노산 세정 표방 + 자극 완화. 이 제품엔 TEA염·소듐염 둘 다 들어 있다(소량 마일드 블렌드).
+    caution: TEA는 니트로사민 생성 우려로 기피하는 브랜드도 있음 → 소듐·포타슘염이 '클린' 포지셔닝에 유리.
+    malassezia: ○ 씻어내는 제품
+    related: "#206 소듐코코일글루타메이트(같은 계열, 염만 다름)"
+    first_seen: P001
+  - id: N09
+    name: 다이프로필렌글라이콜
+    inci: Dipropylene Glycol
+    role: 용제
+    sub: 향료 희석 용제
+    what: 프로필렌글라이콜 2분자가 결합한 무색 액체.
+    feel: 산뜻, 약한 보습.
+    pct: 0.1~2%
+    why: 조합향(향료)을 희석하는 대표 용제 — 향료와 함께 들어왔을 가능성이 크다. 디퓨저·향수 베이스에도 쓰임.
+    caution: 향료 원료를 살 때 '희석 용제 포함 여부'를 확인해야 전성분을 정확히 쓴다.
+    malassezia: ○
+    related: "#17 부틸렌글라이콜 · N39 향료"
+    first_seen: P001
+  # ── 발효물 ──────────────────────────────────────────────
+  - id: N10
+    name: 락토바실러스/콩발효추출물
+    inci: Lactobacillus/Soybean Ferment Extract
+    role: 활성
+    sub: 발효 컨셉(보습·피부 컨디셔닝)
+    what: 콩을 유산균(락토바실러스)으로 발효시킨 뒤 추출. '이소플라본 아글리콘' 등을 강조하는 경우가 많다.
+    feel: 감촉 영향 없음.
+    pct: 0.01~1%
+    why: 발효 컨셉 원료. 슬래시(/)는 '균/발효시킨 재료' 표기법.
+    caution: 이 제품 같은 꼬리 성분은 대부분 극미량 — 효능보다 스토리.
+    malassezia: △ 발효물은 원료별 확인
+    related: "#136 락토바실러스 발효용해물(균 자체 용해물 — 다른 원료)"
+    first_seen: P001
+  - id: N11
+    name: 락토바실러스/배즙발효여과물
+    inci: Lactobacillus/Pyrus Communis (Pear) Juice Ferment Filtrate
+    role: 활성
+    sub: 발효 컨셉(보습)
+    what: 배즙을 유산균으로 발효 후 걸러낸 액('여과물'=거른 액, '추출물'=다시 추출).
+    feel: 감촉 영향 없음.
+    pct: 0.01~1%
+    why: 발효 컨셉 + 과일 스토리.
+    caution: —
+    malassezia: △ 원료별 확인
+    related: "#136 · N10"
+    first_seen: P001
+  - id: N12
+    name: 락토바실러스/석류발효추출물
+    inci: Lactobacillus/Punica Granatum Fruit Ferment Extract
+    role: 활성
+    sub: 발효 컨셉(항산화 스토리)
+    what: 석류를 유산균으로 발효시킨 뒤 추출.
+    feel: 감촉 영향 없음.
+    pct: 0.01~1%
+    why: 발효 + 석류(항산화) 스토리.
+    caution: —
+    malassezia: △ 원료별 확인
+    related: "#159 석류추출물(비발효)"
+    first_seen: P001
+  - id: N13
+    name: 효모/보리씨발효여과물
+    inci: Yeast/Barley Seed Ferment Filtrate
+    role: 활성
+    sub: 발효 컨셉(보습·윤기)
+    what: 보리씨를 효모로 발효 후 거른 액.
+    feel: 감촉 영향 없음.
+    pct: 0.01~1%
+    why: 발효 컨셉.
+    caution: 효모 발효물 — 말라세지아(효모) 관점에선 성분 구성 확인 필요.
+    malassezia: △ 원료별 확인
+    related: "#164 사카로미세스 발효여과물(효모 종 명시형)"
+    first_seen: P001
+  - id: N14
+    name: 효모/쌀발효여과물
+    inci: Yeast/Rice Ferment Filtrate
+    role: 활성
+    sub: 발효 컨셉(미백·결 스토리 — 표방은 불가)
+    what: 쌀을 효모로 발효 후 거른 액. '사케 성분' 마케팅으로 유명.
+    feel: 감촉 영향 없음.
+    pct: 0.01~1% (스킨케어 주력 제품은 수십 %까지)
+    why: 발효 컨셉. 일반화장품은 '미백' 표방 불가 — '맑은 결' 정도로 표현.
+    caution: —
+    malassezia: △ 원료별 확인
+    related: "#164 사카로미세스 발효여과물 · #135 갈락토미세스"
+    first_seen: P001
+  # ── 식물 추출물 (꼬리 성분 — 대부분 극미량, '멀티 추출물 블렌드'로 들어오는 경우가 많음) ──
+  - id: "N15"
+    name: "얼룩파인애플추출물"
+    inci: "Ananas 속 열매 추출물 (정확한 INCI는 공급사 확인)"
+    role: "활성"
+    sub: "과일 추출물(각질·결 스토리)"
+    what: "파인애플 계열 열매 추출물. 파인애플엔 단백질 분해효소 브로멜라인이 있다."
+    pct: "0.001~0.1%"
+    why: "과일 스토리. 함량이 극미량이면 효소 작용은 기대 어려움."
+    caution: "—"
+    malassezia: "○"
+    related: ""
+    first_seen: "P001"
+  - id: "N16"
+    name: "참당귀뿌리추출물"
+    inci: "Angelica Gigas Root Extract"
+    role: "활성"
+    sub: "한방 추출물(진정·컨디셔닝 스토리)"
+    what: "한국 참당귀 뿌리 추출물. 데커신 등 쿠마린류 함유."
+    pct: "0.001~0.5%"
+    why: "한방 스토리."
+    caution: "—"
+    malassezia: "○"
+    related: ""
+    first_seen: "P001"
+  - id: "N17"
+    name: "귀리커넬추출물"
+    inci: "Avena Sativa (Oat) Kernel Extract"
+    role: "활성"
+    sub: "진정·보습 스토리"
+    what: "귀리 알곡 추출물. 콜로이달오트밀(#133)은 '가루', 이건 '추출액'."
+    pct: "0.01~1%"
+    why: "예민 피부 진정 스토리의 대표 식물."
+    caution: "—"
+    malassezia: "○"
+    related: "#133 콜로이달오트밀"
+    first_seen: "P001"
+  - id: "N18"
+    name: "몰로키아잎추출물"
+    inci: "Corchorus Olitorius Leaf Extract"
+    role: "활성"
+    sub: "보습 스토리(점액질)"
+    what: "이집트 채소 몰로키아 잎 추출물. 끈적한 점액 다당이 특징."
+    pct: "0.001~0.5%"
+    why: "보습·슈퍼푸드 스토리."
+    caution: "—"
+    malassezia: "○"
+    related: ""
+    first_seen: "P001"
+  - id: "N19"
+    name: "비타민나무열매추출물"
+    inci: "Hippophae Rhamnoides Fruit Extract"
+    role: "활성"
+    sub: "항산화 스토리"
+    what: "씨벅턴(비타민나무) 열매의 수용성 추출물."
+    pct: "0.001~0.5%"
+    why: "비타민 스토리."
+    caution: "—"
+    malassezia: "○ 추출물(오일 #85는 별개)"
+    related: "#12 비타민나무 워터 · #85 씨벅턴오일"
+    first_seen: "P001"
+  - id: "N20"
+    name: "당근추출물"
+    inci: "Daucus Carota Sativa (Carrot) Root Extract"
+    role: "활성"
+    sub: "컨디셔닝 스토리"
+    what: "당근 뿌리 추출물(카로티노이드)."
+    pct: "0.001~0.5%"
+    why: "채소 스토리."
+    caution: "—"
+    malassezia: "○"
+    related: ""
+    first_seen: "P001"
+  - id: "N21"
+    name: "서양고추나물추출물"
+    inci: "Hypericum Perforatum Extract"
+    role: "활성"
+    sub: "진정 스토리"
+    what: "세인트존스워트(성 요한의 풀) 추출물. 하이퍼리신 함유."
+    pct: "0.001~0.5%"
+    why: "유럽 전통 진정 허브 스토리."
+    caution: "고농도 오일(침출유)은 광과민 이슈가 알려짐 — 바르는 제품 고함량 주의."
+    malassezia: "○"
+    related: ""
+    first_seen: "P001"
+  - id: "N22"
+    name: "버지니아풍년화추출물"
+    inci: "Hamamelis Virginiana (Witch Hazel) Extract"
+    role: "활성"
+    sub: "수렴·피지 스토리"
+    what: "위치하젤 잎·껍질 추출물. 탄닌이 많아 수렴감."
+    pct: "0.01~5%"
+    why: "피지·모공 스토리(지성용 단골)."
+    caution: "고농도는 건조·따가움 가능."
+    malassezia: "○"
+    related: "#9 위치하젤워터(증류수 형태)"
+    first_seen: "P001"
+  - id: "N23"
+    name: "복령추출물"
+    inci: "Poria Cocos Extract"
+    role: "활성"
+    sub: "한방 추출물(보습·맑은 결 스토리)"
+    what: "소나무 뿌리에 자라는 균핵(복령) 추출물. 다당류 함유."
+    pct: "0.001~0.5%"
+    why: "한방 스토리."
+    caution: "—"
+    malassezia: "○"
+    related: ""
+    first_seen: "P001"
+  - id: "N24"
+    name: "레몬밤잎추출물"
+    inci: "Melissa Officinalis Leaf Extract"
+    role: "활성"
+    sub: "진정·항산화 스토리"
+    what: "레몬밤 잎 추출물(로즈마린산)."
+    pct: "0.001~0.5%"
+    why: "허브 스토리."
+    caution: "—"
+    malassezia: "○"
+    related: "#11 레몬밤워터(증류수 형태)"
+    first_seen: "P001"
+  - id: "N25"
+    name: "고삼뿌리추출물"
+    inci: "Sophora Flavescens Root Extract"
+    role: "활성"
+    sub: "한방 추출물(피지·진정 스토리)"
+    what: "고삼(쓴너삼) 뿌리 추출물. 마트린 등 알칼로이드."
+    pct: "0.001~0.5%"
+    why: "두피·트러블 한방 스토리에 단골."
+    caution: "트러블 '개선'은 표방 불가."
+    malassezia: "○"
+    related: ""
+    first_seen: "P001"
+  - id: "N26"
+    name: "소엽잎추출물"
+    inci: "Perilla Frutescens Leaf Extract"
+    role: "활성"
+    sub: "진정 스토리"
+    what: "차조기(자소엽) 잎 추출물."
+    pct: "0.001~0.5%"
+    why: "한방 스토리."
+    caution: "—"
+    malassezia: "○"
+    related: ""
+    first_seen: "P001"
+  - id: "N27"
+    name: "인디안구스베리열매추출물"
+    inci: "Phyllanthus Emblica Fruit Extract"
+    role: "활성"
+    sub: "항산화 스토리"
+    what: "암라(인도 구스베리) 열매 추출물. 아유르베다 원료."
+    pct: "0.001~0.5%"
+    why: "항산화·헤어 스토리."
+    caution: "—"
+    malassezia: "○"
+    related: ""
+    first_seen: "P001"
+  - id: "N28"
+    name: "황금추출물"
+    inci: "Scutellaria Baicalensis Root Extract"
+    role: "활성"
+    sub: "한방 추출물(진정 스토리)"
+    what: "황금(속썩은풀) 뿌리 추출물 — 바이칼린 함유, 노란색."
+    pct: "0.001~0.5%"
+    why: "진정 한방 스토리."
+    caution: "고함량이면 노란 착색."
+    malassezia: "○"
+    related: ""
+    first_seen: "P001"
+  - id: "N29"
+    name: "치커리뿌리추출물"
+    inci: "Cichorium Intybus (Chicory) Root Extract"
+    role: "활성"
+    sub: "프리바이오틱 스토리"
+    what: "치커리 뿌리 추출물(이눌린 다당)."
+    pct: "0.001~0.5%"
+    why: "프리바이오틱(피부 미생물) 스토리."
+    caution: "—"
+    malassezia: "○"
+    related: ""
+    first_seen: "P001"
+  - id: "N30"
+    name: "유칼립투스잎추출물"
+    inci: "Eucalyptus Globulus Leaf Extract"
+    role: "활성"
+    sub: "청량 스토리"
+    what: "유칼립투스 잎의 수용성 추출물(에센셜오일 #240과 다름)."
+    pct: "0.001~0.5%"
+    why: "상쾌함 스토리."
+    caution: "—"
+    malassezia: "○"
+    related: "#240 유칼립투스에센셜오일"
+    first_seen: "P001"
+  - id: "N31"
+    name: "지치뿌리추출물"
+    inci: "Lithospermum Erythrorhizon Root Extract"
+    role: "활성"
+    sub: "진정 스토리(자초)"
+    what: "지치(자초) 뿌리 추출물 — 시코닌, 붉은 보라색."
+    pct: "0.001~0.5%"
+    why: "한방 진정 스토리."
+    caution: "고함량이면 보라색 착색."
+    malassezia: "○ 추출물"
+    related: "#87 자초 인퓨즈드오일(같은 식물, 오일 침출)"
+    first_seen: "P001"
+  - id: "N32"
+    name: "참마뿌리추출물"
+    inci: "Dioscorea Japonica Root Extract"
+    role: "활성"
+    sub: "보습 스토리(점액질)"
+    what: "마 뿌리 추출물. 뮤신 같은 점액 다당."
+    pct: "0.001~0.5%"
+    why: "보습 스토리."
+    caution: "—"
+    malassezia: "○"
+    related: ""
+    first_seen: "P001"
+  - id: "N33"
+    name: "무화과추출물"
+    inci: "Ficus Carica (Fig) Fruit Extract"
+    role: "활성"
+    sub: "과일 추출물(결 스토리)"
+    what: "무화과 열매 추출물."
+    pct: "0.001~0.5%"
+    why: "과일 스토리."
+    caution: "—"
+    malassezia: "○"
+    related: ""
+    first_seen: "P001"
+  - id: "N34"
+    name: "라벤더꽃추출물"
+    inci: "Lavandula Angustifolia (Lavender) Flower Extract"
+    role: "활성"
+    sub: "진정 스토리"
+    what: "라벤더 꽃의 수용성 추출물 — 향은 약함(워터 #4·오일 #226과 다른 형태)."
+    pct: "0.001~0.5%"
+    why: "진정 스토리."
+    caution: "—"
+    malassezia: "○"
+    related: "#4 라벤더워터 · #226 라벤더에센셜오일"
+    first_seen: "P001"
+  - id: "N35"
+    name: "스피룰리나플라텐시스추출물"
+    inci: "Spirulina Platensis Extract"
+    role: "활성"
+    sub: "해양·영양 스토리"
+    what: "남조류 스피룰리나 추출물(단백질·피코시아닌 청색 색소)."
+    pct: "0.001~0.5%"
+    why: "슈퍼푸드 스토리."
+    caution: "고함량이면 청록 착색."
+    malassezia: "○"
+    related: ""
+    first_seen: "P001"
+  - id: "N36"
+    name: "메도우스위트꽃추출물"
+    inci: "Filipendula Ulmaria Flower Extract"
+    role: "활성"
+    sub: "진정·피지 스토리"
+    what: "메도우스위트(조팝나물) 꽃 추출물. 천연 살리실산 유도체를 함유한 식물로 유명."
+    pct: "0.001~0.5%"
+    why: "식물성 BHA 스토리."
+    caution: "—"
+    malassezia: "○"
+    related: "#114 살리실산(BHA)"
+    first_seen: "P001"
+  - id: "N37"
+    name: "흰목이버섯추출물"
+    inci: "Tremella Fuciformis (Mushroom) Extract"
+    role: "보습"
+    sub: "다당 보습(식물성 히알루론산 스토리)"
+    what: "흰목이버섯 다당류 추출물. 수분을 많이 붙잡는 다당이라 '식물성 히알루론산'으로 마케팅."
+    pct: "0.01~1%"
+    why: "보습 스토리."
+    caution: "—"
+    malassezia: "○"
+    related: "#16 다중 히알루론산"
+    first_seen: "P001"
+  - id: "N38"
+    name: "옥촉서예추출물"
+    inci: "Zea Mays (Corn) Silk Extract"
+    role: "활성"
+    sub: "한방 추출물(진정 스토리)"
+    what: "옥수수수염(玉蜀黍蕊, 옥촉서예) 추출물."
+    pct: "0.001~0.5%"
+    why: "한방 스토리."
+    caution: "—"
+    malassezia: "○"
+    related: "#218 옥수수전분(같은 식물, 다른 부위·형태)"
+    first_seen: "P001"
+  # ── 향료와 착향제 알레르기 유발성분 ──────────────────────────
+  - id: N39
+    name: 향료
+    inci: Fragrance (Parfum)
+    role: 향
+    sub: 조합향(프래그런스) — 수십 가지 향 원료 혼합물
+    what: 조향사가 합성·천연 향 원료를 섞어 만든 완성 향. 전성분에는 '향료' 한 단어로 적고 내용은 영업비밀.
+    feel: 제품의 첫인상과 재구매를 좌우.
+    pct: 씻어내는 제품 0.5~1.5% · 바르는 제품 0.1~0.5%
+    why: 이 제품은 '향이 좋다'가 판매 이유. 아래 알레르기 성분(N40~48)으로 베이비파우더 향의 뼈대(쿠마린·아이오논·플로럴·시트러스)를 읽을 수 있다.
+    caution: 살 때 IFRA 인증서 + 알레르기 성분 함량표를 받아야 전성분 표시를 계산할 수 있다. 다도기 히어로(무향)엔 해당 없음.
+    malassezia: — (무향 원칙과 별개)
+    related: "#226~247 에센셜오일(천연 단일 향) · N09 다이프로필렌글라이콜(희석 용제)"
+    first_seen: P001
+  - id: "N40"
+    name: "알파-아이소메틸아이오논"
+    inci: "Alpha-Isomethyl Ionone"
+    role: "향"
+    sub: "착향제 알레르기 유발성분"
+    what: "합성 향 원료. 붓꽃·제비꽃 같은 '분내(파우더리)'."
+    pct: "향료 속 성분 — 제품 내 0.01% 초과(씻어내는 제품) 시 표시"
+    why: "베이비파우더 향의 핵심 축."
+    caution: "표시 기준: 씻어내는 제품 0.01% 초과, 바르는 제품 0.001% 초과 (식약처 착향제 알레르기 유발성분 25종, 교육용 정리)."
+    malassezia: "—"
+    related: "N39"
+    first_seen: "P001"
+  - id: "N41"
+    name: "벤질살리실레이트"
+    inci: "Benzyl Salicylate"
+    role: "향"
+    sub: "착향제 알레르기 유발성분 · 고정제"
+    what: "아주 약한 꽃·발삼 향. 다른 향을 오래 붙잡아 두는 고정제로 많이 쓴다."
+    pct: "N40과 같은 표시 기준"
+    why: "잔향 유지."
+    caution: "—"
+    malassezia: "—"
+    related: "N39"
+    first_seen: "P001"
+  - id: "N42"
+    name: "시트로넬올"
+    inci: "Citronellol"
+    role: "향"
+    sub: "착향제 알레르기 유발성분"
+    what: "장미·제라늄 향. 로즈제라늄(#232) 등 천연 오일에도 들어 있다."
+    pct: "N40과 같은 표시 기준"
+    why: "부드러운 플로럴."
+    caution: "천연 에센셜오일을 써도 이 성분은 표시 대상."
+    malassezia: "—"
+    related: "N39 · #232 로즈제라늄"
+    first_seen: "P001"
+  - id: "N43"
+    name: "쿠마린"
+    inci: "Coumarin"
+    role: "향"
+    sub: "착향제 알레르기 유발성분"
+    what: "통카빈·건초의 달콤한 바닐라 같은 향."
+    pct: "N40과 같은 표시 기준"
+    why: "파우더 향의 포근하고 달콤한 바탕."
+    caution: "—"
+    malassezia: "—"
+    related: "N39"
+    first_seen: "P001"
+  - id: "N44"
+    name: "리모넨"
+    inci: "Limonene"
+    role: "향"
+    sub: "착향제 알레르기 유발성분"
+    what: "감귤 껍질 향. 레몬·오렌지 등 시트러스 오일(#227~230)의 주성분."
+    pct: "N40과 같은 표시 기준"
+    why: "첫 향의 상쾌함."
+    caution: "공기 중 산화되면 감작성↑ — 시트러스 오일은 항산화·밀봉 보관."
+    malassezia: "—"
+    related: "N39 · #227 레몬 · #230 스윗오렌지"
+    first_seen: "P001"
+  - id: "N45"
+    name: "제라니올"
+    inci: "Geraniol"
+    role: "향"
+    sub: "착향제 알레르기 유발성분"
+    what: "장미·팔마로사 향."
+    pct: "N40과 같은 표시 기준"
+    why: "플로럴 볼륨."
+    caution: "—"
+    malassezia: "—"
+    related: "N39 · #232 로즈제라늄"
+    first_seen: "P001"
+  - id: "N46"
+    name: "헥실신남알"
+    inci: "Hexyl Cinnamal"
+    role: "향"
+    sub: "착향제 알레르기 유발성분"
+    what: "합성 재스민 향."
+    pct: "N40과 같은 표시 기준"
+    why: "은은한 플로럴 볼륨."
+    caution: "—"
+    malassezia: "—"
+    related: "N39"
+    first_seen: "P001"
+  - id: "N47"
+    name: "하이드록시시트로넬알"
+    inci: "Hydroxycitronellal"
+    role: "향"
+    sub: "착향제 알레르기 유발성분"
+    what: "합성 은방울꽃(뮤게) 향 — 깨끗하게 세탁한 듯한 느낌."
+    pct: "N40과 같은 표시 기준"
+    why: "청결감."
+    caution: "IFRA 사용 한도가 엄격한 편."
+    malassezia: "—"
+    related: "N39"
+    first_seen: "P001"
+  - id: "N48"
+    name: "리날룰"
+    inci: "Linalool"
+    role: "향"
+    sub: "착향제 알레르기 유발성분"
+    what: "라벤더·베르가못·로즈우드 향의 주성분."
+    pct: "N40과 같은 표시 기준"
+    why: "신선한 연결 노트."
+    caution: "산화물이 감작 원인 — 라벤더 오일(#226)을 써도 표시 대상."
+    malassezia: "—"
+    related: "N39 · #226 라벤더 · #234 로즈우드"
+    first_seen: "P001"
+
+# 사진으로 찍은 실제 제품. 사진은 제품사진/P번호_브랜드_제품명_부위.jpeg 로 정리. ingredients = 라벨 순서 "전성분 표기 | 참조 | 한 줄 메모(선택)"
+products:
+  - id: P001
+    name: 쿤달 허니 앤드 마카다미아 퓨어 바디워시 (베이비파우더향)
+    brand: 쿤달
+    type: 바디워시 (씻어내는 제품)
+    volume: 1,058 mL
+    date: 2026-10-29
+    photo: 제품사진/P001_쿤달_허니마카다미아바디워시_베이비파우더_전성분.jpeg
+    structure: "AOS(N01) 주세정 + 라우레스설포석시네이트(N02) 자극 완화 + 소금(N03) 점증 + 글리세린·PG라우레이트 보습감. 꿀·마카다미아는 3,000ppm 강조, 뒤쪽 발효물·추출물 40여 종은 극미량 스토리 성분."
+    scent: "베이비파우더: 쿠마린·알파-아이소메틸아이오논(분내·달콤) + 장미·재스민·은방울꽃 플로럴 + 리모넨 시트러스 톱. 알레르기 성분 9개가 모두 표시될 만큼 향료가 넉넉(추정 1% 안팎)."
+    lesson: "① 대용량 바디워시 = 싼 주세정제 + 마일드 보조 + 소금 점도의 3단 골격 ② 향이 판매 포인트면 향료를 넉넉히 + 알레르기 성분 표시가 뒤따른다 ③ 추출물 개수는 마케팅, 함량 표기(ppm)가 실제 강조 성분 ④ 전성분엔 원료 부산물(헥사데센)·향료 용제(DPG)도 보인다."
+    note: "곡면 라벨이라 끝부분 추출물(고삼~흰목이) 순서는 일부 불확실 — 1% 이하 구간이라 순서 의미 없음."
+    ingredients:
+      - "정제수 | #1"
+      - "소듐C14-16올레핀설포네이트 | N01 | 주세정제"
+      - "다이소듐라우레스설포석시네이트 | N02 | 마일드 보조세정"
+      - "소듐클로라이드 | N03 | 점도"
+      - "글리세린 | #13"
+      - "프로필렌글라이콜라우레이트 | N04 | 점도·세정 후 촉촉"
+      - "1,2-헥산다이올 | #179 | 방부 보조"
+      - "카프릴릴글라이콜 | #181 | 방부 보조"
+      - "헥사데센 | N05 | N01 부산물"
+      - "테트라데센 | N05 | N01 부산물"
+      - "꿀추출물(3,000ppm) | #24 | 제품명 원료, 함량 강조"
+      - "마카다미아씨추출물(3,000ppm) | N06 | 제품명 원료, 함량 강조"
+      - "폴리쿼터늄-10 | #209 | 헹굼 후 부드러움(컨디셔닝)"
+      - "알로에베라잎즙 | #116"
+      - "시트릭애씨드 | #189 | pH"
+      - "다이소듐이디티에이 | #195 | 킬레이트"
+      - "말토덱스트린 | N07 | 부형제"
+      - "부틸렌글라이콜 | #17 | 추출물 용매로 동반"
+      - "알란토인 | #102"
+      - "동백나무씨오일 | #55"
+      - "코코넛야자오일 | #72"
+      - "호호바씨오일 | #52"
+      - "트로메타민 | #191 | pH"
+      - "잔탄검 | #25 | 점증 보조"
+      - "프로판다이올 | #14"
+      - "티이에이-코코일글루타메이트 | N08 | 아미노산 세정"
+      - "소듐코코일글루타메이트 | #206 | 아미노산 세정"
+      - "다이프로필렌글라이콜 | N09 | 향료 용제"
+      - "락토바실러스/콩발효추출물 | N10"
+      - "락토바실러스/배즙발효여과물 | N11"
+      - "락토바실러스/석류발효추출물 | N12"
+      - "효모/보리씨발효여과물 | N13"
+      - "소듐하이알루로네이트 | #16"
+      - "효모/쌀발효여과물 | N14"
+      - "얼룩파인애플추출물 | N15"
+      - "참당귀뿌리추출물 | N16"
+      - "귀리커넬추출물 | N17"
+      - "녹차추출물 | #103"
+      - "몰로키아잎추출물 | N18"
+      - "당근추출물 | N20"
+      - "서양고추나물추출물 | N21"
+      - "버지니아풍년화추출물 | N22"
+      - "비타민나무열매추출물 | N19"
+      - "레몬밤잎추출물 | N24"
+      - "인삼추출물 | #153"
+      - "쇠비름추출물 | #154"
+      - "복령추출물 | N23"
+      - "소엽잎추출물 | N26"
+      - "인디안구스베리열매추출물 | N27"
+      - "황금추출물 | N28"
+      - "고삼뿌리추출물 | N25"
+      - "유칼립투스잎추출물 | N30"
+      - "포트마리골드꽃추출물 | #156"
+      - "병풀추출물 | #106"
+      - "치커리뿌리추출물 | N29"
+      - "지치뿌리추출물 | N31"
+      - "참마뿌리추출물 | N32"
+      - "무화과추출물 | N33"
+      - "라벤더꽃추출물 | N34"
+      - "스피룰리나플라텐시스추출물 | N35"
+      - "메도우스위트꽃추출물 | N36"
+      - "흰목이버섯추출물 | N37"
+      - "옥촉서예추출물 | N38"
+      - "향료 | N39 | 조합향"
+      - "알파-아이소메틸아이오논 | N40 | 알레르기 표시"
+      - "벤질살리실레이트 | N41 | 알레르기 표시"
+      - "시트로넬올 | N42 | 알레르기 표시"
+      - "쿠마린 | N43 | 알레르기 표시"
+      - "리모넨 | N44 | 알레르기 표시"
+      - "제라니올 | N45 | 알레르기 표시"
+      - "헥실신남알 | N46 | 알레르기 표시"
+      - "하이드록시시트로넬알 | N47 | 알레르기 표시"
+      - "리날룰 | N48 | 알레르기 표시"
