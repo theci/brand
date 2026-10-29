@@ -10,6 +10,8 @@
   3) 신규 원료 카드 N01~ (정체·감각·%·왜 넣나·주의·말라세지아·1권 연결) + 내 메모(입력)
   4) 제품 목록     P001~ 한 줄 요약(구조·향·배울 점) + 내 메모(입력)
   5) 제품 해부     제품별 전성분 순서대로 → 카드 번호·찾는 곳·한 줄 메모
+  6) 향료 읽는 법   알레르기 성분 → 향 노트(제품별 등장) · 안 보이는 원료 · 표시 규정·읽는 법·쓰는 법
+  7) 출시 비용·절차 · 8) 정오표
 
 데이터: data/ingredient_addendum.yaml (제품·신규 카드·별칭을 여기에 쌓는다)
 1권 쪽 번호: 인쇄본/1권_원료마스터.pdf 의 '원료 색인'에서 읽음(pdftotext 필요, 없으면 빈칸)
@@ -171,12 +173,16 @@ def sheet_readme(wb, n_book1, n_new, n_prod):
                   "'전성분 표기'는 제품 라벨에 실제로 적히는 이름(예: 구연산 → 시트릭애씨드)."),
         ("신규 원료 카드", "1권에 없던 원료. 1권 카드보다 짧게 — 정체·감각·%·왜 넣나·주의·말라세지아·1권 연결."),
         ("제품 목록 / 해부", "사진 찍은 제품별 구조·향·배울 점, 전성분 순서대로 각 성분이 어느 카드인지."),
+        ("향료 읽는 법", "향료 카드. 전성분의 알레르기 성분으로 톱·미들·베이스 노트 읽기(제품별 ✓), 전성분에 안 보이는 원료, "
+                     "표시 기준(씻어내는 0.01% · 바르는 0.001%)과 향료량 역산, 사용량·넣는 시점·IFRA 서류."),
         ("출시 비용·절차", "등록·자격·인증·품질검사·OEM·예산을 출처로 재검증한 표(확인/정정/미확인). 2권 '개발→창업 워크플로우'의 증보."),
         ("정오표", "제본한 1·2권에서 고치거나 보충할 내용을 쪽 번호와 함께."),
         ("쌓는 루프", "① 제품 전성분 사진 → Claude에게 질문  ② 1권에 있으면 #번호, 없으면 N번호 카드 추가  "
                   "③ 라벨 표기가 1권 이름과 다르면 별칭 추가  ④ 재생성  ⑤ 손으로 '내 메모'"),
         ("전성분 읽기 요령", "1% 초과 성분은 많은 순서, 1% 이하는 순서 무관. 함량(ppm) 표기 = 마케팅 강조 성분. "
                        "원료 1개가 성분 여러 개로(부산물·용매) 적히기도 한다."),
+        ("향료 읽기 요령", "'향료' 뒤에 붙은 성분(쿠마린·리날룰 등)은 알레르기 표시 성분 → 향의 노트를 알려 준다. "
+                       "개수가 많을수록 향료가 넉넉. 머스크·바닐라 같은 몸통 원료는 안 보인다."),
         ("⚠", "%·규제 수치는 교육용 정리(추정 포함). 제조·판매 전 식약처 최신 고시·공급사 TDS로 재확인."),
     ]
     for i, (k, v) in enumerate(rows, 4):
@@ -319,6 +325,58 @@ def sheet_teardown(wb, products, book1_by_no, new_by_id, pages):
         r += 1
 
 
+NOTE_FILL = {"톱": "FFFFF2CC", "미들": "FFFCE4D6", "베이스": "FFE4DFEC"}
+
+
+def section(ws, r, text, width):
+    ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=width)
+    c = ws.cell(r, 1, text)
+    c.font = f(True, 11)
+    c.fill = PatternFill("solid", fgColor="FFD9E1F2")
+    return r + 1
+
+
+def sheet_fragrance(wb, fr, products, new_by_id):
+    ws = wb.create_sheet("향료 읽는 법")
+    scented = [p for p in products if any(parse_ing(x)[1] == "N39" for x in p["ingredients"])]
+    width = 4 + len(scented)
+    title(ws, "향료 읽는 법 — 향료 카드", fr.get("note", ""), width)
+    for j, w in enumerate([12, 30, 62, 34] + [8] * len(scented), 1):
+        ws.column_dimensions[get_column_letter(j)].width = w
+
+    r = section(ws, 4, "① 전성분에 보이는 뼈대 — 착향제 알레르기 유발성분 → 향 노트 (✓ = 그 제품 전성분에 표시됨)", width)
+    header(ws, r, [("노트", 12), ("성분 (카드)", 30), ("느낌·향 계열", 62), ("천연 오일 연결 (1권)", 34)]
+           + [(p["id"], 8) for p in scented])
+    refs = {p["id"]: {parse_ing(x)[1] for x in p["ingredients"]} for p in scented}
+    r += 1
+    for note, cid, feel, natural in fr["pyramid"]:
+        name = new_by_id[cid]["name"] if cid in new_by_id else cid
+        put(ws, r, [note, f"{name} ({cid})", feel, natural] + ["✓" if cid in refs[p["id"]] else "" for p in scented])
+        ws.cell(r, 1).fill = PatternFill("solid", fgColor=NOTE_FILL.get(note, "FFFFFFFF"))
+        for j in range(5, width + 1):
+            ws.cell(r, j).alignment = CENTER
+        r += 1
+    put(ws, r, ["합계", "", "", ""] + [sum(c[1] in refs[p["id"]] for c in fr["pyramid"]) for p in scented], bold=True)
+    for j in range(5, width + 1):
+        ws.cell(r, j).alignment = CENTER
+
+    r = section(ws, r + 2, "② 전성분에 안 보이는 원료 — 알레르기 25종이 아니라 '향료' 속에 숨는 향의 몸통", width)
+    header(ws, r, [("계열", 12), ("원료", 30), ("느낌·역할", 62)])
+    r += 1
+    for row in fr["hidden"]:
+        put(ws, r, row)
+        r += 1
+
+    r = section(ws, r + 1, "③ 표시 규정 · 읽는 법 · 쓰는 법", width)
+    header(ws, r, [("구분", 12), ("항목", 30), ("내용", 62), ("연결", 34)])
+    r += 1
+    for row in fr["rows"]:
+        put(ws, r, row)
+        ws.cell(r, 2).font = f(True)
+        r += 1
+    ws.freeze_panes = "A4"
+
+
 VERDICT_FILL = {"확인": "FFE2EFDA", "정정": "FFF8CBAD", "미확인": "FFFFF2CC", "보충": "FFDDEBF7"}
 
 
@@ -390,6 +448,8 @@ def main():
     sheet_new_cards(wb, new_cards, book1_by_no, pages, memos)
     sheet_products(wb, products, book1_by_no, new_by_id, pages, memos)
     sheet_teardown(wb, products, book1_by_no, new_by_id, pages)
+    if data.get("fragrance"):
+        sheet_fragrance(wb, data["fragrance"], products, new_by_id)
     launch = data.get("launch")
     if launch:
         sheet_launch(wb, launch)
