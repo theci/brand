@@ -159,7 +159,7 @@ def parse_ing(line: str) -> tuple[str, str, str]:
 def sheet_readme(wb, n_book1, n_new, n_prod):
     ws = wb.active
     ws.title = "읽어보기"
-    title(ws, "원료 추가노트 — 1권(원료 마스터) 증보",
+    title(ws, "원료 추가노트 — 1·2권 증보",
           "제본한 1권 뒤에 쌓는 노트. 실제 제품 전성분을 해부하며 1권에 없던 원료를 신규 카드로 추가한다. "
           "재생성: uv run python scripts/ingredient_addendum.py (데이터 = data/ingredient_addendum.yaml, 내 메모 칸은 보존).", 2)
     ws.column_dimensions["A"].width = 22
@@ -171,6 +171,8 @@ def sheet_readme(wb, n_book1, n_new, n_prod):
                   "'전성분 표기'는 제품 라벨에 실제로 적히는 이름(예: 구연산 → 시트릭애씨드)."),
         ("신규 원료 카드", "1권에 없던 원료. 1권 카드보다 짧게 — 정체·감각·%·왜 넣나·주의·말라세지아·1권 연결."),
         ("제품 목록 / 해부", "사진 찍은 제품별 구조·향·배울 점, 전성분 순서대로 각 성분이 어느 카드인지."),
+        ("출시 비용·절차", "등록·자격·인증·품질검사·OEM·예산을 출처로 재검증한 표(확인/정정/미확인). 2권 '개발→창업 워크플로우'의 증보."),
+        ("정오표", "제본한 1·2권에서 고치거나 보충할 내용을 쪽 번호와 함께."),
         ("쌓는 루프", "① 제품 전성분 사진 → Claude에게 질문  ② 1권에 있으면 #번호, 없으면 N번호 카드 추가  "
                   "③ 라벨 표기가 1권 이름과 다르면 별칭 추가  ④ 재생성  ⑤ 손으로 '내 메모'"),
         ("전성분 읽기 요령", "1% 초과 성분은 많은 순서, 1% 이하는 순서 무관. 함량(ppm) 표기 = 마케팅 강조 성분. "
@@ -317,6 +319,51 @@ def sheet_teardown(wb, products, book1_by_no, new_by_id, pages):
         r += 1
 
 
+VERDICT_FILL = {"확인": "FFE2EFDA", "정정": "FFF8CBAD", "미확인": "FFFFF2CC", "보충": "FFDDEBF7"}
+
+
+def sheet_launch(wb, launch):
+    ws = wb.create_sheet("출시 비용·절차")
+    cols = [("구분", 14), ("항목", 22), ("확인된 내용", 70), ("금액(추정)", 18), ("판정", 8), ("출처", 40)]
+    title(ws, "출시 비용·절차 — 조사 재검증 (2026-10)",
+          launch.get("note", "") + "  판정: 확인 = 출처로 맞음 · 정정 = 조사 내용이 틀려 고침 · 미확인 = 공개 근거 부족, 견적·문의로 확정.",
+          len(cols))
+    header(ws, 4, cols)
+    src = launch.get("sources", {})
+    r, prev = 5, None
+    for g, item, body, amount, verdict, key in launch["rows"]:
+        if g != prev:
+            ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=len(cols))
+            c = ws.cell(r, 1, g)
+            c.font = f(True, 11)
+            c.fill = PatternFill("solid", fgColor="FFD9E1F2")
+            r, prev = r + 1, g
+        put(ws, r, [g, item, body, amount, verdict, src.get(key, "")])
+        ws.cell(r, 2).font = f(True)
+        ws.cell(r, 5).fill = PatternFill("solid", fgColor=VERDICT_FILL.get(verdict, "FFFFFFFF"))
+        ws.cell(r, 5).alignment = CENTER
+        if src.get(key):
+            ws.cell(r, 6).hyperlink = src[key]
+            ws.cell(r, 6).font = f(color="FF0563C1")
+        r += 1
+    ws.freeze_panes = "C5"
+
+
+def sheet_errata(wb, errata, sources):
+    ws = wb.create_sheet("정오표")
+    cols = [("권", 6), ("쪽", 14), ("시트", 26), ("책에 적힌 것", 36), ("정정·보충", 60), ("종류", 7), ("근거", 40)]
+    title(ws, "정오표 — 제본한 1·2권에 덧붙일 정정·보충",
+          "쪽 = 인쇄본 PDF 쪽 번호. 정정 = 책 내용이 틀림 · 보충 = 맞지만 빠진 정보. 책에 포스트잇으로 붙이거나 이 표를 출력해 끼워 두기.",
+          len(cols))
+    header(ws, 4, cols)
+    for i, (vol, page, sheet, old, new, kind, key) in enumerate(errata, 5):
+        put(ws, i, [vol, page, sheet, old, new, kind, sources.get(key, "")])
+        ws.cell(i, 6).fill = PatternFill("solid", fgColor=VERDICT_FILL.get(kind, "FFFFFFFF"))
+        if sources.get(key):
+            ws.cell(i, 7).hyperlink = sources[key]
+            ws.cell(i, 7).font = f(color="FF0563C1")
+
+
 def main():
     data = yaml.safe_load(DATA.read_text(encoding="utf-8"))
     book1 = load_book1()
@@ -343,6 +390,11 @@ def main():
     sheet_new_cards(wb, new_cards, book1_by_no, pages, memos)
     sheet_products(wb, products, book1_by_no, new_by_id, pages, memos)
     sheet_teardown(wb, products, book1_by_no, new_by_id, pages)
+    launch = data.get("launch")
+    if launch:
+        sheet_launch(wb, launch)
+    if data.get("errata"):
+        sheet_errata(wb, data["errata"], (launch or {}).get("sources", {}))
     wb.save(OUT)
     print(f"저장: {OUT.name}  (1권 {len(book1)} · 쪽번호 {len(pages)} · 신규 {len(new_cards)} · 제품 {len(products)})")
     for pid, ing in bad:
